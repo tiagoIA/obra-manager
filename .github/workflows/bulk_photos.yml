@@ -15,8 +15,12 @@ jobs:
         with:
           python-version: '3.11'
       - run: pip install firebase-admin requests
-      - run: echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}' > serviceAccountKey.json
-      - run: python3 scripts/bulk_photos.py
+      - name: Create service account key
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: printf '%s' "$FIREBASE_SA" > serviceAccountKey.json
+      - name: Run bulk photo upload
+        run: python3 scripts/bulk_photos.py
         env:
           GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
           GOOGLE_CX: ${{ secrets.GOOGLE_CX }}
