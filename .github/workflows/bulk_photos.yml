@@ -18,7 +18,7 @@ jobs:
       - name: Create service account key
         env:
           FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-        run: echo "$FIREBASE_SA" > serviceAccountKey.json
+        run: python3 -c "import os,json; sa=os.environ['FIREBASE_SA']; open('serviceAccountKey.json','w').write(sa); d=json.loads(sa); print('Key OK:', d['project_id'])"
       - name: Run bulk photo upload
         run: python3 scripts/bulk_photos.py
         env:
