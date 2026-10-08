@@ -1,0 +1,4757 @@
+[
+  {
+    "name": "WCU RX 14/2/2 14GA 2 CIRCUIT  W/GRN",
+    "brand": "generic",
+    "manufacturerPart": "RX-NMB-2CIR-14GA-1000R",
+    "upc": "980100144401",
+    "cat": "eletrica",
+    "subcategory": "wiring",
+    "family": "wiring",
+    "unit": "ft",
+    "specs": "Wire Size: 14/2; Length: 1000 ft",
+    "technicalAttributes": {
+      "Wire Size": "14/2",
+      "Length": "1000 ft"
+    },
+    "guidedUses": [
+      "circuit"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/rx-nmb-2cir-14ga-1000r-type-nm-b-2-circuit-non-metallic-sheathed-cable-with-grounding-14-2-62012/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/774009/PN62012.jpg?v=639230654440470000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "62012",
+        "url": "https://www.ew-ne.com/rx-nmb-2cir-14ga-1000r-type-nm-b-2-circuit-non-metallic-sheathed-cable-with-grounding-14-2-62012/p",
+        "unit": "ft",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "64acd6b5ef483080141d8301e4ebc6fa118cfd9bb0854793c67458ea9817db3b",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "WCU RX 4/3 W/GRND MASTER REEL",
+    "brand": "southwire",
+    "manufacturerPart": "RX-NMB-4/3-W/GRD-500MR",
+    "upc": "739373012456",
+    "cat": "eletrica",
+    "subcategory": "wiring",
+    "family": "wiring",
+    "unit": "ft",
+    "specs": "Amperage Rating: 70 A; Voltage Rating: 600 Volt; Wire Size: 4/3 AWG; Length: 500 ft",
+    "technicalAttributes": {
+      "Amperage Rating": "70 A",
+      "Voltage Rating": "600 Volt",
+      "Wire Size": "4/3 AWG",
+      "Length": "500 ft"
+    },
+    "guidedUses": [
+      "circuit"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/rx-nmb-4-3-w-grd-500mr-stranded-copper-type-nm-b-non-metallic-sheathed-cable-with-grounding-4-3-8-3-500-ft-master-reel-romex-997429/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/842088/P997429.jpg?v=639233167339000000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "997429",
+        "url": "https://www.ew-ne.com/rx-nmb-4-3-w-grd-500mr-stranded-copper-type-nm-b-non-metallic-sheathed-cable-with-grounding-4-3-8-3-500-ft-master-reel-romex-997429/p",
+        "unit": "ft",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "7d0857b54896b503cfd089542305994a45353896cca16b08f9b238c712c4ed51",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "Stranded Copper Type NM-B Non-Metallic Sheathed Cable With Grounding 4/3 125-ft Coil",
+    "brand": "",
+    "manufacturerPart": "",
+    "upc": "980100263751",
+    "cat": "eletrica",
+    "subcategory": "wiring",
+    "family": "wiring",
+    "unit": "un",
+    "specs": "Amperage Rating: 70 A; Voltage Rating: 600 Volt; Wire Size: 4/3 AWG; Length: 125 ft",
+    "technicalAttributes": {
+      "Amperage Rating": "70 A",
+      "Voltage Rating": "600 Volt",
+      "Wire Size": "4/3 AWG",
+      "Length": "125 ft"
+    },
+    "guidedUses": [
+      "circuit"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/stranded-copper-type-nm-b-non-metallic-sheathed-cable-with-grounding-4-3-125-ft-coil-62979/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/776089/P41211.jpg?v=639228627617230000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "62979",
+        "url": "https://www.ew-ne.com/stranded-copper-type-nm-b-non-metallic-sheathed-cable-with-grounding-4-3-125-ft-coil-62979/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08",
+        "catalogReference": "B04561"
+      }
+    ],
+    "photoSha256": "2163ee14dd877f33da917a1170063458fc1068bc39c5dabd0b9c07e7c970ac0e",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "MC-350-4-350-MC-4-COND-CU Copper Conductor MC Cable 350/4",
+    "brand": "afc",
+    "manufacturerPart": "",
+    "upc": "595064",
+    "cat": "eletrica",
+    "subcategory": "wiring",
+    "family": "wiring",
+    "unit": "un",
+    "specs": "Wire Size: 350/4",
+    "technicalAttributes": {
+      "Wire Size": "350/4"
+    },
+    "guidedUses": [
+      "circuit",
+      "recessed"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/mc-350-4-350-mc-4-cond-cu-copper-conductor-mc-cable-350-4-595064/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/766070/PN595064.jpg?v=638966983043000000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "595064",
+        "url": "https://www.ew-ne.com/mc-350-4-350-mc-4-cond-cu-copper-conductor-mc-cable-350-4-595064/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08",
+        "catalogReference": "WIRE"
+      }
+    ],
+    "photoSha256": "dd34ee9fdf43b4c2c1db244789a0fdb9380eadc9c7596cc4e2ee915b11402324",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "MC Armored Cable 4/3 MC",
+    "brand": "afc",
+    "manufacturerPart": "",
+    "upc": "505138",
+    "cat": "eletrica",
+    "subcategory": "wiring",
+    "family": "wiring",
+    "unit": "un",
+    "specs": "Wire Size: 4/3",
+    "technicalAttributes": {
+      "Wire Size": "4/3"
+    },
+    "guidedUses": [
+      "circuit",
+      "recessed"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/mc-armored-cable-4-3-mc-505138/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/742779/P237325.jpg?v=638986875540400000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "505138",
+        "url": "https://www.ew-ne.com/mc-armored-cable-4-3-mc-505138/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08",
+        "catalogReference": "WIRE"
+      }
+    ],
+    "photoSha256": "1561f2b066acb17e73d50dc50db52241a2e30b37fb3878858573bc1d0e6bfedb",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "AFC Cable Systems MC-12/2-MC-QUICK-BLUE-1000R MC Armored Cable 12/2 1000-ft Reel Blue MC-Quik&reg;",
+    "brand": "afc",
+    "manufacturerPart": "",
+    "upc": "278733",
+    "cat": "eletrica",
+    "subcategory": "wiring",
+    "family": "wiring",
+    "unit": "un",
+    "specs": "Color: Blue; Wire Size: 12/2; Length: 1000 ft",
+    "technicalAttributes": {
+      "Color": "Blue",
+      "Wire Size": "12/2",
+      "Length": "1000 ft"
+    },
+    "guidedUses": [
+      "circuit",
+      "recessed"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/afc-cable-systems-mc-12-2-mc-quick-blue-1000r-mc-armored-cable-12-2-1000-ft-reel-blue-mc-quik-278733/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/687381/PN278733.jpg?v=638966876256200000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "278733",
+        "url": "https://www.ew-ne.com/afc-cable-systems-mc-12-2-mc-quick-blue-1000r-mc-armored-cable-12-2-1000-ft-reel-blue-mc-quik-278733/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08",
+        "catalogReference": "WIRE"
+      }
+    ],
+    "photoSha256": "024eeb60b524dafbd65ff90f8664043e533c4cfd4be4461a92cb909de3f8cc4e",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "THHN-600-RED Aluminum THHN Cable 600-KCMIL Red",
+    "brand": "wal",
+    "manufacturerPart": "",
+    "upc": "633139",
+    "cat": "eletrica",
+    "subcategory": "wiring",
+    "family": "wiring",
+    "unit": "un",
+    "specs": "Color: Red; Wire Size: 600 kcmil",
+    "technicalAttributes": {
+      "Color": "Red",
+      "Wire Size": "600 kcmil"
+    },
+    "guidedUses": [
+      "service",
+      "subpanel",
+      "circuit",
+      "hvac",
+      "ev"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/thhn-600-red-aluminum-thhn-cable-600-kcmil-red-633139/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/776784/P294098.jpg?v=638967022579970000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "633139",
+        "url": "https://www.ew-ne.com/thhn-600-red-aluminum-thhn-cable-600-kcmil-red-633139/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08",
+        "catalogReference": "WIRE"
+      }
+    ],
+    "photoSha256": "ef21a7feb7bfac6d4d4e07eaef51b6ca929d9af0048b28f173ce682d013f863b",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "THHN-500-AL-STR-WH Stranded Aluminum THHN Cable 500-KCMIL White",
+    "brand": "generic",
+    "manufacturerPart": "",
+    "upc": "706650",
+    "cat": "eletrica",
+    "subcategory": "wiring",
+    "family": "wiring",
+    "unit": "un",
+    "specs": "Color: White; Wire Size: 500 kcmil",
+    "technicalAttributes": {
+      "Color": "White",
+      "Wire Size": "500 kcmil"
+    },
+    "guidedUses": [
+      "service",
+      "subpanel",
+      "circuit",
+      "hvac",
+      "ev"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/thhn-500-al-str-wh-stranded-aluminum-thhn-cable-500-kcmil-white-706650/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/792997/P190939.jpg?v=638981128492100000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "706650",
+        "url": "https://www.ew-ne.com/thhn-500-al-str-wh-stranded-aluminum-thhn-cable-500-kcmil-white-706650/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08",
+        "catalogReference": "N/A"
+      }
+    ],
+    "photoSha256": "46505f84d29011c7b0e7c7eb97b438c969aee7cf497eb9bd2dd0a78c0ddef2ca",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "THHN-350-AL-STR-RED Stranded Aluminum THHN Cable 350-KCMIL Red",
+    "brand": "wal",
+    "manufacturerPart": "",
+    "upc": "706646",
+    "cat": "eletrica",
+    "subcategory": "wiring",
+    "family": "wiring",
+    "unit": "un",
+    "specs": "Color: Red; Wire Size: 350 kcmil",
+    "technicalAttributes": {
+      "Color": "Red",
+      "Wire Size": "350 kcmil"
+    },
+    "guidedUses": [
+      "service",
+      "subpanel",
+      "circuit",
+      "hvac",
+      "ev"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/thhn-350-al-str-red-stranded-aluminum-thhn-cable-350-kcmil-red-706646/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/792989/P294098.jpg?v=638981128494300000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "706646",
+        "url": "https://www.ew-ne.com/thhn-350-al-str-red-stranded-aluminum-thhn-cable-350-kcmil-red-706646/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08",
+        "catalogReference": "N/A"
+      }
+    ],
+    "photoSha256": "ef21a7feb7bfac6d4d4e07eaef51b6ca929d9af0048b28f173ce682d013f863b",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "THHN-600-AL-WH Stranded Aluminum THHN Building Wire 600-KCMIL White",
+    "brand": "generic",
+    "manufacturerPart": "",
+    "upc": "633140",
+    "cat": "eletrica",
+    "subcategory": "wiring",
+    "family": "wiring",
+    "unit": "un",
+    "specs": "Color: White; Wire Size: 600 kcmil",
+    "technicalAttributes": {
+      "Color": "White",
+      "Wire Size": "600 kcmil"
+    },
+    "guidedUses": [
+      "service",
+      "subpanel",
+      "circuit",
+      "hvac",
+      "ev"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/thhn-600-al-wh-stranded-aluminum-thhn-building-wire-600-kcmil-white-633140/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/776787/P213854.jpg?v=638967022582770000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "633140",
+        "url": "https://www.ew-ne.com/thhn-600-al-wh-stranded-aluminum-thhn-building-wire-600-kcmil-white-633140/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08",
+        "catalogReference": "WIRE"
+      }
+    ],
+    "photoSha256": "94fd298bfcc6714533cbaeb65e2315474243649fc08e6dccbe6e0f3de7e1b679",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "THHN-500-AL-STR-BLUE Stranded Aluminum THHN Cable 500-KCMIL Blue",
+    "brand": "wal",
+    "manufacturerPart": "",
+    "upc": "599871",
+    "cat": "eletrica",
+    "subcategory": "wiring",
+    "family": "wiring",
+    "unit": "un",
+    "specs": "Color: Blue; Wire Size: 500 kcmil",
+    "technicalAttributes": {
+      "Color": "Blue",
+      "Wire Size": "500 kcmil"
+    },
+    "guidedUses": [
+      "service",
+      "subpanel",
+      "circuit",
+      "hvac",
+      "ev"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/thhn-500-al-str-blue-stranded-aluminum-thhn-cable-500-kcmil-blue-599871/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/874133/P11812.jpg?v=638966989629500000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "599871",
+        "url": "https://www.ew-ne.com/thhn-500-al-str-blue-stranded-aluminum-thhn-cable-500-kcmil-blue-599871/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08",
+        "catalogReference": "WIRE"
+      }
+    ],
+    "photoSha256": "78cd9d18480698cb48e3b928402d9978b430e6be087e35b1bdd5ae701cf73bc6",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "Omni Cable Stranded THHN/THWN-2 Cable 14/1 Red",
+    "brand": "omni",
+    "manufacturerPart": "",
+    "upc": "499345",
+    "cat": "eletrica",
+    "subcategory": "wiring",
+    "family": "wiring",
+    "unit": "un",
+    "specs": "Voltage Rating: 600 Volt; Color: Red; Wire Size: 14 AWG",
+    "technicalAttributes": {
+      "Voltage Rating": "600 Volt",
+      "Color": "Red",
+      "Wire Size": "14 AWG"
+    },
+    "guidedUses": [
+      "circuit",
+      "hvac",
+      "ev"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/omni-cable-stranded-thhn-thwn-2-cable-14-1-red-499345/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/741077/P499345.jpg?v=638986865443700000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "499345",
+        "url": "https://www.ew-ne.com/omni-cable-stranded-thhn-thwn-2-cable-14-1-red-499345/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08",
+        "catalogReference": "WIRE"
+      }
+    ],
+    "photoSha256": "945ba7724cd0eb26d1928f398c07b9c337095ac89941ade60c411ca9b2bb2f4e",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "HWC HW15101407 Stranded Copper THHN/THWN-2 Building Wire (7) 14-AWG",
+    "brand": "hwc",
+    "manufacturerPart": "HWC HW15101407",
+    "upc": "137552",
+    "cat": "eletrica",
+    "subcategory": "wiring",
+    "family": "wiring",
+    "unit": "un",
+    "specs": "Voltage Rating: 600 Volt; Wire Size: 14 AWG",
+    "technicalAttributes": {
+      "Voltage Rating": "600 Volt",
+      "Wire Size": "14 AWG"
+    },
+    "guidedUses": [
+      "circuit",
+      "hvac",
+      "ev"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/hwc-hw15101407-stranded-copper-thhn-thwn-2-building-wire-7-14-awg-137552/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/636696/LG112503.jpg?v=638966750224470000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "137552",
+        "url": "https://www.ew-ne.com/hwc-hw15101407-stranded-copper-thhn-thwn-2-building-wire-7-14-awg-137552/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "7e62481771f7a0f13ced6880bbc4b9878ba93c878a12ce67f4e31d7d8d7cc282",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "EMT I300EMT 3\" X 10' EMT CONDUIT",
+    "brand": "",
+    "manufacturerPart": "",
+    "upc": "1266598",
+    "cat": "eletrica",
+    "subcategory": "conduit",
+    "family": "conduit",
+    "unit": "ft",
+    "specs": "Referência: EMT  X; unidade do fornecedor: ft.",
+    "technicalAttributes": {},
+    "guidedUses": [
+      "circuit",
+      "hvac",
+      "ev"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/emt-i300emt-3-x-10-emt-conduit-1266598/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1377430/1266598.jpg?v=639095332806870000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "1266598",
+        "url": "https://www.ew-ne.com/emt-i300emt-3-x-10-emt-conduit-1266598/p",
+        "unit": "ft",
+        "verifiedAt": "2026-10-08",
+        "catalogReference": "EMT  X"
+      }
+    ],
+    "photoSha256": "299ae44fa8fbd51f1ba16c46b67af5ab91f28f60379db706233a8a92ebc6202d",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "EMT I100EMT 1\" X 10' EMT CONDUIT",
+    "brand": "",
+    "manufacturerPart": "",
+    "upc": "1266593",
+    "cat": "eletrica",
+    "subcategory": "conduit",
+    "family": "conduit",
+    "unit": "ft",
+    "specs": "Referência: EMT  X; unidade do fornecedor: ft.",
+    "technicalAttributes": {},
+    "guidedUses": [
+      "circuit",
+      "hvac",
+      "ev"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/emt-i100emt-1-x-10-emt-conduit-1266593/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1377425/1266593.jpg?v=639095332750800000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "1266593",
+        "url": "https://www.ew-ne.com/emt-i100emt-1-x-10-emt-conduit-1266593/p",
+        "unit": "ft",
+        "verifiedAt": "2026-10-08",
+        "catalogReference": "EMT  X"
+      }
+    ],
+    "photoSha256": "27198889eb8b9f31365ec0a389a5585b0afbe5a872ec00e82e2056c58e7ed34f",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "EMT I400EMT 4\" X 10' EMT CONDUIT",
+    "brand": "",
+    "manufacturerPart": "",
+    "upc": "1266600",
+    "cat": "eletrica",
+    "subcategory": "conduit",
+    "family": "conduit",
+    "unit": "ft",
+    "specs": "Referência: EMT  X; unidade do fornecedor: ft.",
+    "technicalAttributes": {},
+    "guidedUses": [
+      "circuit",
+      "hvac",
+      "ev"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/emt-i400emt-4-x-10-emt-conduit-1266600/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1377432/1266600.jpg?v=639095332826500000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "1266600",
+        "url": "https://www.ew-ne.com/emt-i400emt-4-x-10-emt-conduit-1266600/p",
+        "unit": "ft",
+        "verifiedAt": "2026-10-08",
+        "catalogReference": "EMT  X"
+      }
+    ],
+    "photoSha256": "299ae44fa8fbd51f1ba16c46b67af5ab91f28f60379db706233a8a92ebc6202d",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "EMT I200EMT 2\" X 10' EMT CONDUIT",
+    "brand": "",
+    "manufacturerPart": "",
+    "upc": "1266596",
+    "cat": "eletrica",
+    "subcategory": "conduit",
+    "family": "conduit",
+    "unit": "ft",
+    "specs": "Referência: EMT  X; unidade do fornecedor: ft.",
+    "technicalAttributes": {},
+    "guidedUses": [
+      "circuit",
+      "hvac",
+      "ev"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/emt-i200emt-2-x-10-emt-conduit-1266596/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1650400/1266596.jpg?v=639266710121430000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "1266596",
+        "url": "https://www.ew-ne.com/emt-i200emt-2-x-10-emt-conduit-1266596/p",
+        "unit": "ft",
+        "verifiedAt": "2026-10-08",
+        "catalogReference": "EMT  X"
+      }
+    ],
+    "photoSha256": "ef16a38d38ded6f1519212d12976a3cf2b835659afec7d6e64d8b8244a6aba9e",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "EMT Conduit 1/2\" x 10'",
+    "brand": "",
+    "manufacturerPart": "",
+    "upc": "022224428408",
+    "cat": "eletrica",
+    "subcategory": "conduit",
+    "family": "conduit",
+    "unit": "un",
+    "specs": "Referência: EMT  X; unidade do fornecedor: un.",
+    "technicalAttributes": {},
+    "guidedUses": [
+      "circuit",
+      "hvac",
+      "ev"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/emt-i050emt-1-2-x-10-emt-conduit-1352634/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1581145/conduit_metal__i050emt__1352634_a7ec682515e2.jpg?v=639220838450000000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "1352634",
+        "url": "https://www.ew-ne.com/emt-i050emt-1-2-x-10-emt-conduit-1352634/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08",
+        "catalogReference": "EMT  X"
+      }
+    ],
+    "photoSha256": "299ae44fa8fbd51f1ba16c46b67af5ab91f28f60379db706233a8a92ebc6202d",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "WM V6086 STEEL PANEL CONNECTOR  600",
+    "brand": "wiremold",
+    "manufacturerPart": "V6086",
+    "upc": "786776105612",
+    "cat": "eletrica",
+    "subcategory": "fittings",
+    "family": "fittings",
+    "unit": "un",
+    "specs": "Color: Ivory; Material: Steel; Length: 18 inch",
+    "technicalAttributes": {
+      "Color": "Ivory",
+      "Material": "Steel",
+      "Length": "18 inch"
+    },
+    "guidedUses": [
+      "circuit",
+      "hvac",
+      "ev"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/panel-connector-wm-v6086-panel-connector-110678/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1189993/WIREMDE00515_4_PE_004.jpg?v=639228629562230000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "110678",
+        "url": "https://www.ew-ne.com/panel-connector-wm-v6086-panel-connector-110678/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "e3abe3710343861515efd8ad899d13470dd9cb9d0363e6e51e041b3126a6bf5a",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "RAK TT500.B2 2WAY CONNECTOR",
+    "brand": "rack a tiers",
+    "manufacturerPart": "TT500.B2",
+    "upc": "625912500020",
+    "cat": "eletrica",
+    "subcategory": "fittings",
+    "family": "fittings",
+    "unit": "un",
+    "specs": "Referência: TT500.B2; unidade do fornecedor: un.",
+    "technicalAttributes": {},
+    "guidedUses": [
+      "circuit",
+      "hvac",
+      "ev"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/loomex-connector-rmi-tt500-b2-2way-connector-1245361/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1389121/0UUMD9F7GQGJ3SWY_PRODUCTIMAGES_DIR100564_RackATiers_TT500B2.jpg?v=639258303282630000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "1245361",
+        "url": "https://www.ew-ne.com/loomex-connector-rmi-tt500-b2-2way-connector-1245361/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "1eaafebc67b94f25b61da5ea30b1af38eca4f6dda371d82a3f7ba8bd41671a2e",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "TOPAZELE 270B 6IN MI CONNECTOR",
+    "brand": "topaz",
+    "manufacturerPart": "270B",
+    "upc": "751338014947",
+    "cat": "eletrica",
+    "subcategory": "fittings",
+    "family": "fittings",
+    "unit": "un",
+    "specs": "Material: Malleable Iron; Trade Size: 6 inch; Size: 6; Length: 9.3 inch",
+    "technicalAttributes": {
+      "Material": "Malleable Iron",
+      "Trade Size": "6 inch",
+      "Size": "6",
+      "Length": "9.3 inch"
+    },
+    "guidedUses": [
+      "circuit",
+      "hvac",
+      "ev"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/rigid-connector-tpz-270b-6in-mi-connector-873538/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1176979/270b_2.jpg?v=639229695173670000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "873538",
+        "url": "https://www.ew-ne.com/rigid-connector-tpz-270b-6in-mi-connector-873538/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "a25e023e3d235eb00f8fb2799e541ead80097aa30ddbc7a009ad0b4ab119421c",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "CH Connector Kit",
+    "brand": "eaton",
+    "manufacturerPart": "KPRL4X32",
+    "upc": "786689242589",
+    "cat": "eletrica",
+    "subcategory": "breakers",
+    "family": "breakers",
+    "unit": "un",
+    "specs": "Length: 25.7 inch",
+    "technicalAttributes": {
+      "Length": "25.7 inch"
+    },
+    "guidedUses": [
+      "panel",
+      "subpanel"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/panelboard-connector-kit-chv-kprl4x32-connector-kit-1109661/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1316192/10964_X4Q0W16AHYGPF9IC.jpg?v=639230173161300000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "1109661",
+        "url": "https://www.ew-ne.com/panelboard-connector-kit-chv-kprl4x32-connector-kit-1109661/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "2f5b467eac2e6db4a06e255539baf1c2b7d30a1180e2d0d620224336558800d4",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "TOPAZELE 1135 1-1/2X1-1/4 PVC  REDU",
+    "brand": "topaz",
+    "manufacturerPart": "1135",
+    "upc": "751338230842",
+    "cat": "eletrica",
+    "subcategory": "fittings",
+    "family": "fittings",
+    "unit": "un",
+    "specs": "Material: PVC; Trade Size: 1-1/4 inch, 1-1/2 inch; Size: 1-1/2 x 1-1/4; Length: 1.5 inch",
+    "technicalAttributes": {
+      "Material": "PVC",
+      "Trade Size": "1-1/4 inch, 1-1/2 inch",
+      "Size": "1-1/2 x 1-1/4",
+      "Length": "1.5 inch"
+    },
+    "guidedUses": [
+      "circuit",
+      "service",
+      "hvac",
+      "ev"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/pvc-conduit-reducer-tpz-1135-1-1-2x1-1-4-pvc-reducers-864182/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/823431/1132_b.jpg?v=639245281148170000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "864182",
+        "url": "https://www.ew-ne.com/pvc-conduit-reducer-tpz-1135-1-1-2x1-1-4-pvc-reducers-864182/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "8432d4b08331280ef78fa86db9d00d957f793813e1fb4ea3bfb5035e1e2bb82a",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "CAL PV1545EL00 1-1/2\" X 45 Degree P",
+    "brand": "calpipe",
+    "manufacturerPart": "PV1545EL00",
+    "upc": "847656054038",
+    "cat": "eletrica",
+    "subcategory": "fittings",
+    "family": "fittings",
+    "unit": "un",
+    "specs": "Color: Black; Trade Size: 1-1/2 inch; Length: 17 inch",
+    "technicalAttributes": {
+      "Color": "Black",
+      "Trade Size": "1-1/2 inch",
+      "Length": "17 inch"
+    },
+    "guidedUses": [
+      "circuit",
+      "service",
+      "hvac",
+      "ev"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/pvc-coated-steel-rigid-conduit-standard-radius-elbow-calp-pv1545el00-1-1-2-ctd-45d-el-852760/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/820690/PVCC_GRC_ELB_45_Primary_Image.jpg?v=639230377633530000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "852760",
+        "url": "https://www.ew-ne.com/pvc-coated-steel-rigid-conduit-standard-radius-elbow-calp-pv1545el00-1-1-2-ctd-45d-el-852760/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "d588f633e7fe38dc4b91afebae66c6e5202785de638a9b5b4815729b8aa4eb9c",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "RACO 5606-0 PAR LAMPHOLDER GRY",
+    "brand": "raco",
+    "manufacturerPart": "5606-0",
+    "upc": "050169560600",
+    "cat": "eletrica",
+    "subcategory": "lighting",
+    "family": "lighting",
+    "unit": "un",
+    "specs": "Color: Gray; Material: Die-Cast Aluminum; Length: 5 inch",
+    "technicalAttributes": {
+      "Color": "Gray",
+      "Material": "Die-Cast Aluminum",
+      "Length": "5 inch"
+    },
+    "guidedUses": [
+      "led"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/raco-5606-0-raco-traditional-lampholder-gray-327783/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/698959/11275_PI6GEU2ZTM5NQLR7.jpg?v=639232809073700000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "327783",
+        "url": "https://www.ew-ne.com/raco-5606-0-raco-traditional-lampholder-gray-327783/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "ef80410de5ed3f88c9ccac09ca0814e4cd601022ceebcaf3e74ace90d353438f",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "RACO 769HAMR 4IN MUD RING",
+    "brand": "raco",
+    "manufacturerPart": "769HAMR",
+    "upc": "050169996034",
+    "cat": "eletrica",
+    "subcategory": "boxes",
+    "family": "boxes",
+    "unit": "un",
+    "specs": "Size: 4 in",
+    "technicalAttributes": {
+      "Size": "4 in"
+    },
+    "guidedUses": [
+      "devices",
+      "circuit",
+      "recessed"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/raco-769hamr-4in-mud-ring-1304526/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1631247/DAMRoot_Original_11904_11275_V9D3B1J6P27W8FLZ.jpg?v=639230323735500000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "1304526",
+        "url": "https://www.ew-ne.com/raco-769hamr-4in-mud-ring-1304526/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "7e6e179773a1e51d2652a4c7dfdf06e06ce7565991af1b76566f227dcdb8b2f2",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "RACO Old Work Pan",
+    "brand": "raco",
+    "manufacturerPart": "290",
+    "upc": "050169002902",
+    "cat": "eletrica",
+    "subcategory": "boxes",
+    "family": "boxes",
+    "unit": "un",
+    "specs": "Material: Steel; Size: 1.348 in x 4.843 in x 4.000 in; Length: 1.348 inch",
+    "technicalAttributes": {
+      "Material": "Steel",
+      "Size": "1.348 in x 4.843 in x 4.000 in",
+      "Length": "1.348 inch"
+    },
+    "guidedUses": [
+      "devices",
+      "circuit",
+      "recessed"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/raco-290-old-work-pan-1271346/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/935326/11275_0HN8YKVFRDEOTIJ3.jpg?v=639229538806300000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "1271346",
+        "url": "https://www.ew-ne.com/raco-290-old-work-pan-1271346/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "5a16a7ee0e0b7677681064251671d9171d1d6f56b220df9914ea52cc3026a52d",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "Raco 20310 1-Gang Extension Ring",
+    "brand": "raco",
+    "manufacturerPart": "20310",
+    "upc": "092326203104",
+    "cat": "eletrica",
+    "subcategory": "boxes",
+    "family": "boxes",
+    "unit": "un",
+    "specs": "Color: Gray",
+    "technicalAttributes": {
+      "Color": "Gray"
+    },
+    "guidedUses": [
+      "devices",
+      "circuit",
+      "recessed"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/raco-20310-1-gang-extension-ring-59963/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/767946/P59963.jpg?v=639258578238000000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "59963",
+        "url": "https://www.ew-ne.com/raco-20310-1-gang-extension-ring-59963/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "c1584f685f868deaa2a9358ca52b56be5d3c0d1a91660d11602d3c59fc37f9e9",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "RACO 873 HB COVER",
+    "brand": "raco",
+    "manufacturerPart": "873",
+    "upc": "050169008737",
+    "cat": "eletrica",
+    "subcategory": "boxes",
+    "family": "boxes",
+    "unit": "un",
+    "specs": "Color: Gray; Material: Steel; Size: 0.5 in x 4.56 in x 4.5 in",
+    "technicalAttributes": {
+      "Color": "Gray",
+      "Material": "Steel",
+      "Size": "0.5 in x 4.56 in x 4.5 in"
+    },
+    "guidedUses": [
+      "devices",
+      "circuit",
+      "recessed"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/raco-873-steel-square-cover-435022/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/723777/ID_PIC_v1_873_1200.jpg?v=639258262075200000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "435022",
+        "url": "https://www.ew-ne.com/raco-873-steel-square-cover-435022/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "cff8e8411491ffcb9f86b818803074d0b57fd2092011f025e875dbbc15b2fbe1",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "RACO 922 18-1/2MAX ADJ BAR HGR&CLIP",
+    "brand": "raco",
+    "manufacturerPart": "922",
+    "upc": "050169009222",
+    "cat": "eletrica",
+    "subcategory": "accessories",
+    "family": "accessories",
+    "unit": "un",
+    "specs": "Color: Silver; Material: Pre-galvanized steel; Size: 1.375 in x 1.156 in x 26.313 in; Length: 1.375 inch",
+    "technicalAttributes": {
+      "Color": "Silver",
+      "Material": "Pre-galvanized steel",
+      "Size": "1.375 in x 1.156 in x 26.313 in",
+      "Length": "1.375 inch"
+    },
+    "guidedUses": [
+      "devices",
+      "circuit"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/raco-922-silver-adjustable-bar-hanger-295250/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1213918/11275_P3SOD5BU46J27X08.jpg?v=639228667278170000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "295250",
+        "url": "https://www.ew-ne.com/raco-922-silver-adjustable-bar-hanger-295250/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "ef9cf0f31451d7f30830d8fe4a98f6a007e42fb98380c91ddaf8970d65bb2623",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "CL B418AR-UPC 4 SQUARE ZIP BX W/NA",
+    "brand": "carlon",
+    "manufacturerPart": "B418AR-UPC",
+    "upc": "034481021520",
+    "cat": "eletrica",
+    "subcategory": "boxes",
+    "family": "boxes",
+    "unit": "un",
+    "specs": "Color: Blue; Length: 0.01 inch",
+    "technicalAttributes": {
+      "Color": "Blue",
+      "Length": "0.01 inch"
+    },
+    "guidedUses": [
+      "devices",
+      "recessed"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/outlet-box-carlon-b418ar-upc-outlet-box-886993/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/900895/12055_SB3GHTQ8AN69JOWY.jpg?v=639233072124400000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "886993",
+        "url": "https://www.ew-ne.com/outlet-box-carlon-b418ar-upc-outlet-box-886993/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "428f7d7618071f77be82307aa43653ffa57a93aa4b6d442b8da53fafa8f01f72",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "CLN E240P 5\" PVC P&C DB COUPLING",
+    "brand": "carlon",
+    "manufacturerPart": "E240P",
+    "upc": "034481048527",
+    "cat": "eletrica",
+    "subcategory": "fittings",
+    "family": "fittings",
+    "unit": "un",
+    "specs": "Color: Gray; Material: Non-Metallic; Trade Size: 5 inch; Length: 0.01 inch",
+    "technicalAttributes": {
+      "Color": "Gray",
+      "Material": "Non-Metallic",
+      "Trade Size": "5 inch",
+      "Length": "0.01 inch"
+    },
+    "guidedUses": [
+      "circuit",
+      "service",
+      "hvac",
+      "ev"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/thomas-betts-e240p-pvc-coupling-5-inch-carlon-66185/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1249757/P66179.jpg?v=639258285675430000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "66185",
+        "url": "https://www.ew-ne.com/thomas-betts-e240p-pvc-coupling-5-inch-carlon-66185/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "3d631d62a7882f922c8d514c713f8524a1238300579af7fbb896c5c1dfb965f3",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "CLN UA9CJB 2IN 18RAD 90D ELBOW",
+    "brand": "carlon",
+    "manufacturerPart": "UA9CJB",
+    "upc": "034481196525",
+    "cat": "eletrica",
+    "subcategory": "fittings",
+    "family": "fittings",
+    "unit": "un",
+    "specs": "Color: Gray; Material: PVC; Trade Size: 2 inch; Size: 30.3 in; Length: 0.01 inch",
+    "technicalAttributes": {
+      "Color": "Gray",
+      "Material": "PVC",
+      "Trade Size": "2 inch",
+      "Size": "30.3 in",
+      "Length": "0.01 inch"
+    },
+    "guidedUses": [
+      "circuit",
+      "service",
+      "hvac",
+      "ev"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/conduit-elbow-carlon-ua9cjb-2in-18rad-90d-elbow-553418/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/752238/12055_32WDB0JTFXAGNKYZ.jpg?v=639229654550770000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "553418",
+        "url": "https://www.ew-ne.com/conduit-elbow-carlon-ua9cjb-2in-18rad-90d-elbow-553418/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "7846edf0531fe2d283fd0758971e57426ae4ee40798846ecaf60389c6bea6b9a",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "CLN E240N 4\" PVC P&C DB COUPLING",
+    "brand": "carlon",
+    "manufacturerPart": "E240N",
+    "upc": "034481048503",
+    "cat": "eletrica",
+    "subcategory": "fittings",
+    "family": "fittings",
+    "unit": "un",
+    "specs": "Color: Gray; Material: Non-Metallic; Trade Size: 4 inch; Length: 0.01 inch",
+    "technicalAttributes": {
+      "Color": "Gray",
+      "Material": "Non-Metallic",
+      "Trade Size": "4 inch",
+      "Length": "0.01 inch"
+    },
+    "guidedUses": [
+      "circuit",
+      "service",
+      "hvac",
+      "ev"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/thomas-betts-e240n-pvc-coupling-4-inch-carlon-66179/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/783347/12055_ID_PIC_v1_e240l_cl1_2.jpg?v=639229410385930000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "66179",
+        "url": "https://www.ew-ne.com/thomas-betts-e240n-pvc-coupling-4-inch-carlon-66179/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "c54adcb0c449b736722f0a5d50aa9fb19f420fe407d131d9a185f6abfeb3c43a",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "CLN LT9LD 1/2\" PVC LOCKNUT",
+    "brand": "carlon",
+    "manufacturerPart": "LT9LD",
+    "upc": "034481212638",
+    "cat": "eletrica",
+    "subcategory": "fittings",
+    "family": "fittings",
+    "unit": "un",
+    "specs": "Material: Non-Metallic; Trade Size: 1/2 inch; Size: 1/2; Length: 0.01 inch",
+    "technicalAttributes": {
+      "Material": "Non-Metallic",
+      "Trade Size": "1/2 inch",
+      "Size": "1/2",
+      "Length": "0.01 inch"
+    },
+    "guidedUses": [
+      "circuit",
+      "service",
+      "hvac",
+      "ev"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/conduit-locknut-carlon-lt9ld-1-2-pvc-locknut-67388/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/785855/12055_E68IMDW4VT9P1JHR.jpg?v=639228769332130000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "67388",
+        "url": "https://www.ew-ne.com/conduit-locknut-carlon-lt9ld-1-2-pvc-locknut-67388/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "204b23903f8df8b33b092c84b9f43555737487d514673deb071af78e0b5a281e",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "CLN UB9HN 4\" PVC SCH-80 90 DEGREE",
+    "brand": "carlon",
+    "manufacturerPart": "UB9HN",
+    "upc": "034481192008",
+    "cat": "eletrica",
+    "subcategory": "fittings",
+    "family": "fittings",
+    "unit": "un",
+    "specs": "Color: Gray; Material: PVC; Trade Size: 4 inch",
+    "technicalAttributes": {
+      "Color": "Gray",
+      "Material": "PVC",
+      "Trade Size": "4 inch"
+    },
+    "guidedUses": [
+      "circuit",
+      "service",
+      "hvac",
+      "ev"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/conduit-elbow-carlon-ub9hn-4in-sch80-48rad90d-el-165605/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1202425/CARLONE00117_WB_170_PE_001.jpg?v=639228663697000000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "165605",
+        "url": "https://www.ew-ne.com/conduit-elbow-carlon-ub9hn-4in-sch80-48rad90d-el-165605/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "4f97b421a47aca3e154eb37e3971b4f4b77252ded39e27d79599739c2a217e71",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "RECEPTACLE BRYANT CBRS20 DUPLEX RECEPTACLE",
+    "brand": "bryant",
+    "manufacturerPart": "CBRS20",
+    "upc": "781786161153",
+    "cat": "eletrica",
+    "subcategory": "devices",
+    "family": "devices",
+    "unit": "un",
+    "specs": "Amperage Rating: 20 A / 20 A; Voltage Rating: 125 V; Material: Composite; Number Of Poles: 2-Pole; Wire Size: 14 to 12; Size: 3.28 in x 1.38 in x 1.07 in; Length: 3.3 inch",
+    "technicalAttributes": {
+      "Amperage Rating": "20 A / 20 A",
+      "Voltage Rating": "125 V",
+      "Material": "Composite",
+      "Number Of Poles": "2-Pole",
+      "Wire Size": "14 to 12",
+      "Size": "3.28 in x 1.38 in x 1.07 in",
+      "Length": "3.3 inch"
+    },
+    "guidedUses": [
+      "devices",
+      "circuit"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/receptacle-bryant-cbrs20-duplex-receptacle-825594/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/900454/11008_1EO93YM6NLRSFXTG.jpg?v=638968173622200000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "825594",
+        "url": "https://www.ew-ne.com/receptacle-bryant-cbrs20-duplex-receptacle-825594/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "6c989e28371468a82e602a5e81bffa9185fcbcf6b64f91c6281bbac43c5e4d23",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "LEV T5461-E 20A 250V RECEPTACLE",
+    "brand": "leviton",
+    "manufacturerPart": "T5461-E",
+    "upc": "078477649992",
+    "cat": "eletrica",
+    "subcategory": "devices",
+    "family": "devices",
+    "unit": "un",
+    "specs": "Length: 12.75 inch",
+    "technicalAttributes": {
+      "Length": "12.75 inch"
+    },
+    "guidedUses": [
+      "devices",
+      "circuit"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/receptacle-lev-t5461-e-20a-250v-receptacle-938251/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1266892/10962_5RQA6HBP1L9V8SFT.jpg?v=639258972836000000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "938251",
+        "url": "https://www.ew-ne.com/receptacle-lev-t5461-e-20a-250v-receptacle-938251/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "48759ae1b56f0d6f223004735ad72c3f6439c969675cfdf912ee1bfc395d2dee",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "CWD SGF20BK 125V RECEPTACLE",
+    "brand": "cooper",
+    "manufacturerPart": "SGF20BK",
+    "upc": "032664742507",
+    "cat": "eletrica",
+    "subcategory": "devices",
+    "family": "devices",
+    "unit": "un",
+    "specs": "Amperage Rating: 20 A; Voltage Rating: 125V",
+    "technicalAttributes": {
+      "Amperage Rating": "20 A",
+      "Voltage Rating": "125V"
+    },
+    "guidedUses": [
+      "devices",
+      "circuit"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/gfci-receptacle-cwd-sgf20bk-125v-receptacle-473452/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/736022/ID_PIC_v1_SGF20BK_C_1000.jpg?v=639258369974370000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "473452",
+        "url": "https://www.ew-ne.com/gfci-receptacle-cwd-sgf20bk-125v-receptacle-473452/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "32f73a83273c5c94e38800bb618652eae39102d12e6a9a818f49f6e0a39e020a",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "LEV W5461-W 20A-250V WR SINGLE  OUT",
+    "brand": "leviton",
+    "manufacturerPart": "W5461-W",
+    "upc": "078477065563",
+    "cat": "eletrica",
+    "subcategory": "devices",
+    "family": "devices",
+    "unit": "un",
+    "specs": "Amperage Rating: 20 A; Number Of Poles: 2",
+    "technicalAttributes": {
+      "Amperage Rating": "20 A",
+      "Number Of Poles": "2"
+    },
+    "guidedUses": [
+      "devices",
+      "circuit"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/receptacle-lev-w5461-w-20a-250v-receptacle-898595/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1623330/0UUMD9F7GQGJ3SWY_PRODUCTIMAGES_DIR100605_Leviton_W5461W.jpg?v=639230501587600000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "898595",
+        "url": "https://www.ew-ne.com/receptacle-lev-w5461-w-20a-250v-receptacle-898595/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "94b10badc9326c1973ee69c6ac86d66dfab176a29049b8b72d31660a2c21e706",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "LEV 5262-2PR 15A RED RECEPTACLE",
+    "brand": "leviton",
+    "manufacturerPart": "5262-2PR",
+    "upc": "078477706206",
+    "cat": "eletrica",
+    "subcategory": "devices",
+    "family": "devices",
+    "unit": "un",
+    "specs": "Amperage Rating: 15 A; Voltage Rating: 125; Number Of Poles: 2",
+    "technicalAttributes": {
+      "Amperage Rating": "15 A",
+      "Voltage Rating": "125",
+      "Number Of Poles": "2"
+    },
+    "guidedUses": [
+      "devices",
+      "circuit"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/receptacle-lev-5262-2pr-15a-red-receptacle-868286/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1500780/DAMRoot_Original_101_10962_Q5G6RSX49CEK2H07.jpg?v=639160657792430000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "868286",
+        "url": "https://www.ew-ne.com/receptacle-lev-5262-2pr-15a-red-receptacle-868286/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "b325fa4ac64107aa944c08b3c0df5fa300a85ecb27369cfa7179a8ca6d0d9a83",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "CRSH GFICS1 FS FD GFI COVER STL",
+    "brand": "crouse-hinds",
+    "manufacturerPart": "GFICS1",
+    "upc": "662277026697",
+    "cat": "eletrica",
+    "subcategory": "devices",
+    "family": "devices",
+    "unit": "un",
+    "specs": "Material: Steel; Size: 6 in; Length: 0 inch",
+    "technicalAttributes": {
+      "Material": "Steel",
+      "Size": "6 in",
+      "Length": "0 inch"
+    },
+    "guidedUses": [
+      "devices",
+      "circuit"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/crouse-hinds-gfics1-steel-gfci-cover-gfci-condulet-323392/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/697719/GFICS1_C.jpg?v=639228685584630000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "323392",
+        "url": "https://www.ew-ne.com/crouse-hinds-gfics1-steel-gfci-cover-gfci-condulet-323392/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "2e38e56148f4f0b4108de495a2eb294b25631a762e4b9c279d246f99a4088ec4",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "LEV GSIA2 20A GFCI PLUG",
+    "brand": "leviton",
+    "manufacturerPart": "GSIA2",
+    "upc": "078477682920",
+    "cat": "eletrica",
+    "subcategory": "devices",
+    "family": "devices",
+    "unit": "un",
+    "specs": "Length: 1.313 inch",
+    "technicalAttributes": {
+      "Length": "1.313 inch"
+    },
+    "guidedUses": [
+      "devices",
+      "circuit"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/gfci-plug-lev-gsia2-20a-gfci-plug-1213690/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1446458/DAMRoot_Original_100_10962_U1BHC78ANTKDGWZ2.jpg?v=639228642119830000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "1213690",
+        "url": "https://www.ew-ne.com/gfci-plug-lev-gsia2-20a-gfci-plug-1213690/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "d4d0dd48d355a57b74d22a26bd2e4f5e28b07a51ad033ac6f07f2ad6c0d920df",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "PS PT2097-GRY 20A GFCI RCPT",
+    "brand": "ps",
+    "manufacturerPart": "PT2097GRY",
+    "upc": "785007048346",
+    "cat": "eletrica",
+    "subcategory": "devices",
+    "family": "devices",
+    "unit": "un",
+    "specs": "Amperage Rating: 20; Voltage Rating: 125; Material: Thermoplatic; Number Of Poles: 2; Length: 1.03 inch",
+    "technicalAttributes": {
+      "Amperage Rating": "20",
+      "Voltage Rating": "125",
+      "Material": "Thermoplatic",
+      "Number Of Poles": "2",
+      "Length": "1.03 inch"
+    },
+    "guidedUses": [
+      "devices",
+      "circuit"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/gfci-receptacle-p-s-pt2097-gry-20a-gfci-rcpt-409261/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/717722/11258_ID_PIC_v1_70E477AD4AEE42FAAD934DA559545EC4.jpg?v=639258009300670000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "409261",
+        "url": "https://www.ew-ne.com/gfci-receptacle-p-s-pt2097-gry-20a-gfci-rcpt-409261/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "2266dbd640fba8089d1a525f464471e44153df8a4a66e3e3d7fed712d2099b2c",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "GFCI RECEPTACLE HWS GF20WL 20A 125V COML LED GFCI",
+    "brand": "hubbell",
+    "manufacturerPart": "GF20WL",
+    "upc": "883778113611",
+    "cat": "eletrica",
+    "subcategory": "devices",
+    "family": "devices",
+    "unit": "un",
+    "specs": "Referência: GF20WL; unidade do fornecedor: un.",
+    "technicalAttributes": {},
+    "guidedUses": [
+      "devices",
+      "circuit"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/gfci-receptacle-hws-gf20wl-20a-125v-coml-led-gfci-86920/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/824221/HUBKELE02238_WB_1_PE_001.jpg?v=639258924233700000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "86920",
+        "url": "https://www.ew-ne.com/gfci-receptacle-hws-gf20wl-20a-125v-coml-led-gfci-86920/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "04be170b43d7e2a83b7b86db46cfc6b24dacdf16b7d7194ce1b2be45766d9b86",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "LEV MGFN2-HGR 20A 125V RECEPTACLE",
+    "brand": "leviton",
+    "manufacturerPart": "MGFN2-HGR",
+    "upc": "078477724453",
+    "cat": "eletrica",
+    "subcategory": "devices",
+    "family": "devices",
+    "unit": "un",
+    "specs": "Amperage Rating: 20 A / 20 A; Voltage Rating: 125; Color: Red; Material: Polycarbonate / PBT; Number Of Poles: 2; Length: 2.25 inch",
+    "technicalAttributes": {
+      "Amperage Rating": "20 A / 20 A",
+      "Voltage Rating": "125",
+      "Color": "Red",
+      "Material": "Polycarbonate / PBT",
+      "Number Of Poles": "2",
+      "Length": "2.25 inch"
+    },
+    "guidedUses": [
+      "devices",
+      "circuit"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/gfci-receptacle-lev-mgfn2-hgr-20a-125v-receptacle-493748/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1588159/DAMRoot_Original_106_10962_H0WMYBF7A9GD3NSX.jpg?v=639265876672030000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "493748",
+        "url": "https://www.ew-ne.com/gfci-receptacle-lev-mgfn2-hgr-20a-125v-receptacle-493748/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "7e09c2ae9acbc9099362c13d0bdd394a33836415be04154ab5dbe936866bbc9d",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "LEV 2 GANG 430SS 2.465IN WP",
+    "brand": "leviton",
+    "manufacturerPart": "SL701",
+    "upc": "078477919262",
+    "cat": "eletrica",
+    "subcategory": "devices",
+    "family": "devices",
+    "unit": "un",
+    "specs": "Color: Silver; Material: Stainless Steel; Length: 4.92 inch",
+    "technicalAttributes": {
+      "Color": "Silver",
+      "Material": "Stainless Steel",
+      "Length": "4.92 inch"
+    },
+    "guidedUses": [
+      "devices"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/wallplate-lev-sl701-2g-wallplate-758095/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/966873/10962_CNP9TJOB53HKLW4Q.jpg?v=639239664730470000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "758095",
+        "url": "https://www.ew-ne.com/wallplate-lev-sl701-2g-wallplate-758095/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "358a96441aeef7c6b655c47eb1bc4d45c9208adca15d5d7c8bf2acffecdb3da6",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "WALL PLATE M-SIZE 1-G, 1-G,1)DUP,WH",
+    "brand": "hubbell",
+    "manufacturerPart": "PJ8W",
+    "upc": "883778314704",
+    "cat": "eletrica",
+    "subcategory": "devices",
+    "family": "devices",
+    "unit": "un",
+    "specs": "Color: White; Material: Polycarbonate; Size: 4.94 in x 3.15 in x 0.25 in; Length: 4.93 inch",
+    "technicalAttributes": {
+      "Color": "White",
+      "Material": "Polycarbonate",
+      "Size": "4.94 in x 3.15 in x 0.25 in",
+      "Length": "4.93 inch"
+    },
+    "guidedUses": [
+      "devices"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/wallplate-hws-pj8w-1g-wallplate-1017651/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1540815/DAMRoot_Original_11270_11456_F36W4DK5SOTURIJ9.jpg?v=639228969638930000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "1017651",
+        "url": "https://www.ew-ne.com/wallplate-hws-pj8w-1g-wallplate-1017651/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "08f78e99fc39dcb0e882f5c1cdfc0efdfbb6030319de3f3a071f987ff77226be",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "WALLPLATE LEV SS701 40 2G WALLPLATE",
+    "brand": "leviton",
+    "manufacturerPart": "SS701-40",
+    "upc": "078477919729",
+    "cat": "eletrica",
+    "subcategory": "devices",
+    "family": "devices",
+    "unit": "un",
+    "specs": "Length: 4.92 inch",
+    "technicalAttributes": {
+      "Length": "4.92 inch"
+    },
+    "guidedUses": [
+      "devices"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/wallplate-lev-ss701-40-2g-wallplate-804095/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1263625/10962_4AYEZCKGWD8UXMIJ.jpg?v=638885602212430000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "804095",
+        "url": "https://www.ew-ne.com/wallplate-lev-ss701-40-2g-wallplate-804095/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "b26dde0266064e3df713b3257a5a3af26ea22c6f5a910beb6f74852106fbd745",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "LEV 80409-REW 2G WALLPLATE",
+    "brand": "leviton",
+    "manufacturerPart": "80409-REW",
+    "upc": "078477670552",
+    "cat": "eletrica",
+    "subcategory": "devices",
+    "family": "devices",
+    "unit": "un",
+    "specs": "Color: Red",
+    "technicalAttributes": {
+      "Color": "Red"
+    },
+    "guidedUses": [
+      "devices"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/wallplate-lev-80409-rew-2g-wallplate-405129/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1287353/10962_75KZ034QPVHFJDGL.jpg?v=639258138266600000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "405129",
+        "url": "https://www.ew-ne.com/wallplate-lev-80409-rew-2g-wallplate-405129/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "3ae0e50f4918aa0d0a9e55d27f6b7114374a1c0cd5505d7197c47d1f17f1db28",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "LEV 80321-SE 5GANG WALLPLATE",
+    "brand": "leviton",
+    "manufacturerPart": "80321-SE",
+    "upc": "078477254103",
+    "cat": "eletrica",
+    "subcategory": "devices",
+    "family": "devices",
+    "unit": "un",
+    "specs": "Referência: 80321-SE; unidade do fornecedor: un.",
+    "technicalAttributes": {},
+    "guidedUses": [
+      "devices"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/wallplate-lev-80321-se-5gang-wallplate-995725/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1416654/DAMRoot_Original_111_10962_3GNRA5WSLBF16TXC.jpg?v=639229470723870000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "995725",
+        "url": "https://www.ew-ne.com/wallplate-lev-80321-se-5gang-wallplate-995725/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "bba40e344d5b2e681ced020b53a70065d47dfcaaac8a68e602b76696db430cef",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "CH LATCHPS LOADCENTER LATCH",
+    "brand": "eaton",
+    "manufacturerPart": "LATCHPS",
+    "upc": "786689056551",
+    "cat": "eletrica",
+    "subcategory": "breakers",
+    "family": "breakers",
+    "unit": "un",
+    "specs": "Color: Sandalwood; Length: 4 inch",
+    "technicalAttributes": {
+      "Color": "Sandalwood",
+      "Length": "4 inch"
+    },
+    "guidedUses": [
+      "panel",
+      "subpanel"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/loadcenter-latch-chv-latchps-loadcenter-latch-803013/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1520975/DAMRoot_Original_10903_10964_OF5R6H3WJZ2B8V74.jpg?v=639258067236470000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "803013",
+        "url": "https://www.ew-ne.com/loadcenter-latch-chv-latchps-loadcenter-latch-803013/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "6f37446c064b37ec32aef0a6cd2ea8979d78c459fc9bbe8c5252e9ca9014e36b",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "LEV LP210-BPD 100A LOADCENTER",
+    "brand": "leviton",
+    "manufacturerPart": "LP210-BPD",
+    "upc": "078477996157",
+    "cat": "eletrica",
+    "subcategory": "breakers",
+    "family": "breakers",
+    "unit": "un",
+    "specs": "Length: 32 inch",
+    "technicalAttributes": {
+      "Length": "32 inch"
+    },
+    "guidedUses": [
+      "panel",
+      "subpanel"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/loadcenter-lev-lp210-bpd-100a-loadcenter-1225456/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1640241/10962_PXIWYR5C1A2N3V48.jpg?v=639251920939870000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "1225456",
+        "url": "https://www.ew-ne.com/loadcenter-lev-lp210-bpd-100a-loadcenter-1225456/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "b761f29b09accc363a71a81efbde3df25ca752f053c153ccf0653713b40bd4b2",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "LEV LP312-BPD 125A LOADCENTER",
+    "brand": "leviton",
+    "manufacturerPart": "LP312-BPD",
+    "upc": "078477996201",
+    "cat": "eletrica",
+    "subcategory": "breakers",
+    "family": "breakers",
+    "unit": "un",
+    "specs": "Length: 39 inch",
+    "technicalAttributes": {
+      "Length": "39 inch"
+    },
+    "guidedUses": [
+      "panel",
+      "subpanel"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/loadcenter-lev-lp312-bpd-125a-loadcenter-1225480/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1435019/DAMRoot_Original_112_10962_AKOI2Y6W0NJ45BH1.jpg?v=639228675025270000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "1225480",
+        "url": "https://www.ew-ne.com/loadcenter-lev-lp312-bpd-125a-loadcenter-1225480/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "064e1f467da3435991c3371565f0a5542cecac5763088e9b91b387a65d1e35f7",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "CH BRP30B200GW 200A LOADCENTER",
+    "brand": "eaton",
+    "manufacturerPart": "BRP30B200GW",
+    "upc": "786689242350",
+    "cat": "eletrica",
+    "subcategory": "breakers",
+    "family": "breakers",
+    "unit": "un",
+    "specs": "Amperage Rating: 200 A / 200 A; Size: X6; Length: 36.5 inch",
+    "technicalAttributes": {
+      "Amperage Rating": "200 A / 200 A",
+      "Size": "X6",
+      "Length": "36.5 inch"
+    },
+    "guidedUses": [
+      "panel",
+      "subpanel"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/loadcenter-chv-brp30b200gw-200a-loadcenter-1082559/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/907181/10964_QLZRGNW20D1V975X.jpg?v=639228902411230000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "1082559",
+        "url": "https://www.ew-ne.com/loadcenter-chv-brp30b200gw-200a-loadcenter-1082559/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "bd5582c375c9627ae8dc5219c10e126607623b9df2e065696e93c9df69557f73",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "LEV LR420-BDD 200A LOADCENTER",
+    "brand": "leviton",
+    "manufacturerPart": "LR420-BDD",
+    "upc": "078477217177",
+    "cat": "eletrica",
+    "subcategory": "breakers",
+    "family": "breakers",
+    "unit": "un",
+    "specs": "Referência: LR420-BDD; unidade do fornecedor: un.",
+    "technicalAttributes": {},
+    "guidedUses": [
+      "panel",
+      "subpanel"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/loadcenter-lev-lr420-bdd-200a-loadcenter-1225510/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1435042/DAMRoot_Original_112_10962_6TE0WRDCZG7Y51SI.jpg?v=639228844933000000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "1225510",
+        "url": "https://www.ew-ne.com/loadcenter-lev-lr420-bdd-200a-loadcenter-1225510/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "19793ee1b8a4bb3c0f7e849cacfa93844ee8e4f3ffa483123ba5f2baa184f00c",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "LEV LR220-BDD 200A LOADCENTER",
+    "brand": "leviton",
+    "manufacturerPart": "LR220-BDD",
+    "upc": "078477996454",
+    "cat": "eletrica",
+    "subcategory": "breakers",
+    "family": "breakers",
+    "unit": "un",
+    "specs": "Length: 36.25 inch",
+    "technicalAttributes": {
+      "Length": "36.25 inch"
+    },
+    "guidedUses": [
+      "panel",
+      "subpanel"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/loadcenter-lev-lr220-bdd-200a-loadcenter-1225502/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1644349/DAMRoot_Original_112_10962_VH34A19O8UK7Q6Y2.jpg?v=639258217884700000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "1225502",
+        "url": "https://www.ew-ne.com/loadcenter-lev-lr220-bdd-200a-loadcenter-1225502/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "537359763fc22cce27d14e00ee0a1ae0316b1883df3d1f8778519912a0f99eb6",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "BLINE SB6691X73/4 GROUNDING STRAP",
+    "brand": "bline",
+    "manufacturerPart": "SB6691X73/4",
+    "upc": "799038206651",
+    "cat": "eletrica",
+    "subcategory": "grounding",
+    "family": "grounding",
+    "unit": "un",
+    "specs": "Length: 7.75 inch",
+    "technicalAttributes": {
+      "Length": "7.75 inch"
+    },
+    "guidedUses": [
+      "service",
+      "panel"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/grounding-strap-bline3-sb6691x73-4-grounding-strap-348810/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/704687/11024_YG4SFQDAVTR3XBIO.jpg?v=639231277064300000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "348810",
+        "url": "https://www.ew-ne.com/grounding-strap-bline3-sb6691x73-4-grounding-strap-348810/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "b794f6a320df351e2f88364944469cab01c4e98c48c8528cb55ef86a013bc824",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "BUR GAR2426 4-2/0CU 5IPS",
+    "brand": "burndy",
+    "manufacturerPart": "GAR2426",
+    "upc": "781810237854",
+    "cat": "eletrica",
+    "subcategory": "grounding",
+    "family": "grounding",
+    "unit": "un",
+    "specs": "Material: Copper Alloy; Length: 1.56 inch",
+    "technicalAttributes": {
+      "Material": "Copper Alloy",
+      "Length": "1.56 inch"
+    },
+    "guidedUses": [
+      "service",
+      "panel"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/mechanical-grounding-connector-bur-gar2426-2-0awg-grounding-conn-448864/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/726683/BURNDYC00004_D27_TN_001.jpg?v=639229324398430000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "448864",
+        "url": "https://www.ew-ne.com/mechanical-grounding-connector-bur-gar2426-2-0awg-grounding-conn-448864/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "5562babf67e1f652ed4a25809da96e0a9e25212fc2b441263265b5f0071d6475",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "Grounding Bar System",
+    "brand": "hoffman",
+    "manufacturerPart": "PGS4K",
+    "upc": "783510459895",
+    "cat": "eletrica",
+    "subcategory": "grounding",
+    "family": "grounding",
+    "unit": "un",
+    "specs": "Color: Unpainted; Material: Copper; Size: 400mm",
+    "technicalAttributes": {
+      "Color": "Unpainted",
+      "Material": "Copper",
+      "Size": "400mm"
+    },
+    "guidedUses": [
+      "service",
+      "panel"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/modular-enclosure-grounding-bar-system-hoff-pgs4k-grounding-bar-system-516144/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/744709/11015_0R6UP9GWAE3Q7X1F.jpg?v=639231427616100000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "516144",
+        "url": "https://www.ew-ne.com/modular-enclosure-grounding-bar-system-hoff-pgs4k-grounding-bar-system-516144/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "9836bbb4195c0a9fb08eb9c2c0c0c41429a3394d0bcd20b1670ffaae7cda6121",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "TB 3887-TB 3IN GROUNDING BUSHING",
+    "brand": "thomas-betts",
+    "manufacturerPart": "3887-TB",
+    "upc": "786210357546",
+    "cat": "eletrica",
+    "subcategory": "grounding",
+    "family": "grounding",
+    "unit": "un",
+    "specs": "Material: Malleable Iron; Trade Size: 3 inch; Size: 3 Inch; Length: 0.01 inch",
+    "technicalAttributes": {
+      "Material": "Malleable Iron",
+      "Trade Size": "3 inch",
+      "Size": "3 Inch",
+      "Length": "0.01 inch"
+    },
+    "guidedUses": [
+      "service",
+      "panel"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/tb-3887-tb-3in-grounding-bushing-1415425/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/870801/12055_EUGWHDZSQB97JCO2.jpg?v=639228763749930000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "1415425",
+        "url": "https://www.ew-ne.com/tb-3887-tb-3in-grounding-bushing-1415425/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "67187b389aca823deb95edbd56416e3a786e4a842083aab0c693515d000dbca0",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "STRUT BRACKET P STRUT PS 3282 36 EG STRUT BRACKET",
+    "brand": "pstrut",
+    "manufacturerPart": "PS-3282-36-EG",
+    "upc": "702316531109",
+    "cat": "eletrica",
+    "subcategory": "accessories",
+    "family": "accessories",
+    "unit": "un",
+    "specs": "Referência: PS-3282-36-EG; unidade do fornecedor: un.",
+    "technicalAttributes": {},
+    "guidedUses": [
+      "service",
+      "circuit"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/strut-bracket-p-strut-ps-3282-36-eg-strut-bracket-539479/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/928151/ALDSPTC00005_95_PE_004.jpg?v=638968101151670000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "539479",
+        "url": "https://www.ew-ne.com/strut-bracket-p-strut-ps-3282-36-eg-strut-bracket-539479/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "c482feb30580f4052c6b701e6d636799b6dc759847f3afa43bf25730c019edf0",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "CUSHION CLAMP 25.4MM OD",
+    "brand": "erico",
+    "manufacturerPart": "CCC0100",
+    "upc": "782856712695",
+    "cat": "eletrica",
+    "subcategory": "accessories",
+    "family": "accessories",
+    "unit": "un",
+    "specs": "Length: 12.5984 inch",
+    "technicalAttributes": {
+      "Length": "12.5984 inch"
+    },
+    "guidedUses": [
+      "service",
+      "circuit"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/strut-clamp-erc-ccc0100-1in-strut-clamp-533939/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1625809/0UUMD9F7GQGJ3SWY_PRODUCTIMAGES_DIR100603_nVentElectricPLC_Caddy_CCC0100.jpg?v=639258886240970000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "533939",
+        "url": "https://www.ew-ne.com/strut-clamp-erc-ccc0100-1in-strut-clamp-533939/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "eb8d30a7b07d9b7c5c60df608ea1e9378a0cae8ae53dbd3566d7e7e552797e19",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "RECESSED PLUG ROB R PRPLG8 RECESSED PLUG",
+    "brand": "plasti-bond",
+    "manufacturerPart": "PRPLG8",
+    "upc": "784011209583",
+    "cat": "eletrica",
+    "subcategory": "fittings",
+    "family": "fittings",
+    "unit": "un",
+    "specs": "Material: Ferrous Metal; Trade Size: 3 inch",
+    "technicalAttributes": {
+      "Material": "Ferrous Metal",
+      "Trade Size": "3 inch"
+    },
+    "guidedUses": [
+      "circuit",
+      "service",
+      "hvac",
+      "ev"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/recessed-plug-rob-r-prplg8-recessed-plug-837169/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1622620/0UUMD9F7GQGJ3SWY_PRODUCTIMAGES_DIR100571_RobroyIndustries_Korns_PRPLG8.jpg?v=639258225962570000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "837169",
+        "url": "https://www.ew-ne.com/recessed-plug-rob-r-prplg8-recessed-plug-837169/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "732e2bfaf30b6f3b3c476451c3e6e11b43597037bc8b548e5073819321dec7e1",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "ARL TVBS503 1G RECESSED TV BOX",
+    "brand": "arlington",
+    "manufacturerPart": "TVBS503",
+    "upc": "018997381125",
+    "cat": "eletrica",
+    "subcategory": "boxes",
+    "family": "boxes",
+    "unit": "un",
+    "specs": "Color: Silver;White; Material: Plastic;Steel",
+    "technicalAttributes": {
+      "Color": "Silver;White",
+      "Material": "Plastic;Steel"
+    },
+    "guidedUses": [
+      "data",
+      "devices"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/recessed-tv-box-arl-tvbs503-1g-recessed-tv-box-1147363/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1316772/11196_PTIDYW54OG0MNBEZ.jpg?v=639229186605300000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "1147363",
+        "url": "https://www.ew-ne.com/recessed-tv-box-arl-tvbs503-1g-recessed-tv-box-1147363/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "1829f808fe50be654d04813da23a1895e4e51380f3befb7842088d86b7efec35",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "Tenmat FF130-E Recessed Light Cover For Recessed Light Fixtures",
+    "brand": "tenmat",
+    "manufacturerPart": "FF130-E",
+    "upc": "177944",
+    "cat": "eletrica",
+    "subcategory": "lighting",
+    "family": "lighting",
+    "unit": "un",
+    "specs": "Referência: FF130-E; unidade do fornecedor: un.",
+    "technicalAttributes": {},
+    "guidedUses": [
+      "recessed",
+      "led"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/tenmat-ff130-e-recessed-light-cover-for-recessed-light-fixtures-177944/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/651556/LG177944.jpg?v=639229353239170000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "177944",
+        "url": "https://www.ew-ne.com/tenmat-ff130-e-recessed-light-cover-for-recessed-light-fixtures-177944/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "868960eac067f6e0e443d2fd41b29bdb8c382cbe134985a61d1929f30b56c0f4",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "ADV 523464 EVOKIT CLKE 2X2 32L 24W",
+    "brand": "philips",
+    "manufacturerPart": "523464",
+    "upc": "781087161906",
+    "cat": "eletrica",
+    "subcategory": "lighting",
+    "family": "lighting",
+    "unit": "un",
+    "specs": "Length: 24.5 inch",
+    "technicalAttributes": {
+      "Length": "24.5 inch"
+    },
+    "guidedUses": [
+      "recessed",
+      "led"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/led-recessed-troffer-adv-523464-2x2-24w-recessed-troffer-945118/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/835053/10982_8RQ42L5ECJKSH9ZG.jpg?v=639230994406000000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "945118",
+        "url": "https://www.ew-ne.com/led-recessed-troffer-adv-523464-2x2-24w-recessed-troffer-945118/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "d560443732fcff53e60f2b401ed2b7f22643891d93d0ec17f20104a9d3ce1bcd",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "LED EMERGENCY LIGHT FIXTURE MOR 73302 EMERGENCY LIGHT FIXTURE",
+    "brand": "morris",
+    "manufacturerPart": "73302",
+    "upc": "601986733021",
+    "cat": "eletrica",
+    "subcategory": "lighting",
+    "family": "lighting",
+    "unit": "un",
+    "specs": "Referência: 73302; unidade do fornecedor: un.",
+    "technicalAttributes": {},
+    "guidedUses": [
+      "led"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/led-emergency-light-fixture-mor-73302-emergency-light-fixture-948773/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1417839/images_73302_l.jpg?v=639258084344370000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "948773",
+        "url": "https://www.ew-ne.com/led-emergency-light-fixture-mor-73302-emergency-light-fixture-948773/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "c3c9544f865ee23f2b1943fa50927651c02f287ddb15ad548e49074cce9bb513",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "LED EMERGENCY LIGHT FIXTURE MOR 73301 EMERGENCY LIGHT FIXTURE",
+    "brand": "morris",
+    "manufacturerPart": "73301",
+    "upc": "601986733014",
+    "cat": "eletrica",
+    "subcategory": "lighting",
+    "family": "lighting",
+    "unit": "un",
+    "specs": "Referência: 73301; unidade do fornecedor: un.",
+    "technicalAttributes": {},
+    "guidedUses": [
+      "led"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/led-emergency-light-fixture-mor-73301-emergency-light-fixture-903566/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1296598/73301_l.jpg?v=639258942925400000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "903566",
+        "url": "https://www.ew-ne.com/led-emergency-light-fixture-mor-73301-emergency-light-fixture-903566/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "c3c9544f865ee23f2b1943fa50927651c02f287ddb15ad548e49074cce9bb513",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "RAB ECOMBO34 EMERGENCY EXIT",
+    "brand": "rab",
+    "manufacturerPart": "ECOMBO34",
+    "upc": "192552019897",
+    "cat": "eletrica",
+    "subcategory": "lighting",
+    "family": "lighting",
+    "unit": "un",
+    "specs": "Length: 12 inch",
+    "technicalAttributes": {
+      "Length": "12 inch"
+    },
+    "guidedUses": [
+      "led"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/rab-ecombo34-emergency-exit-1287933/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1297134/11274_0NZC5SX9FLK7UAD4.jpg?v=639240178685970000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "1287933",
+        "url": "https://www.ew-ne.com/rab-ecombo34-emergency-exit-1287933/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "2ac39978405b47274294998290d39b5855226e6291e0087dc477706bdf8255c8",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "BUSS 15149-3 FUSED DISCONNECT",
+    "brand": "bussmann",
+    "manufacturerPart": "15149-3",
+    "upc": "051712735988",
+    "cat": "eletrica",
+    "subcategory": "devices",
+    "family": "devices",
+    "unit": "un",
+    "specs": "Amperage Rating: 30 A; Voltage Rating: 600 V; Number Of Poles: Three-pole; Length: 5.5 inch",
+    "technicalAttributes": {
+      "Amperage Rating": "30 A",
+      "Voltage Rating": "600 V",
+      "Number Of Poles": "Three-pole",
+      "Length": "5.5 inch"
+    },
+    "guidedUses": [
+      "hvac",
+      "circuit"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/disconnect-switch-buss-15149-3-fused-disconnect-448617/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/726660/10973_6R7UQ1Z5AXPG3LVB.jpg?v=639269129227570000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "448617",
+        "url": "https://www.ew-ne.com/disconnect-switch-buss-15149-3-fused-disconnect-448617/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "c6c5e4798d08c0cf55860d151adb3577bdb095704b83b4cb754c91bc57128648",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "TB LD2-D 2P LUMINAIRE DISCONNECT",
+    "brand": "thomas-betts",
+    "manufacturerPart": "LD2-D",
+    "upc": "786209869715",
+    "cat": "eletrica",
+    "subcategory": "lighting",
+    "family": "lighting",
+    "unit": "un",
+    "specs": "Amperage Rating: 4 A; Voltage Rating: 600 V; Color: Orange; Material: Brass",
+    "technicalAttributes": {
+      "Amperage Rating": "4 A",
+      "Voltage Rating": "600 V",
+      "Color": "Orange",
+      "Material": "Brass"
+    },
+    "guidedUses": [
+      "led",
+      "recessed"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/disconnect-tbp-ld2-d-2p-luminaire-disconnect-15262/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/642643/12055_O08IJ7MKDS6ATGE1.jpg?v=639228777486400000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "15262",
+        "url": "https://www.ew-ne.com/disconnect-tbp-ld2-d-2p-luminaire-disconnect-15262/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "bd3910827454714899b652d869fa712ad8293a5de17784698d08cc6f2034834a",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "CH R5B3100U 100A DISCONNECT SW",
+    "brand": "eaton",
+    "manufacturerPart": "R5B3100U",
+    "upc": "786679188002",
+    "cat": "eletrica",
+    "subcategory": "devices",
+    "family": "devices",
+    "unit": "un",
+    "specs": "Amperage Rating: 100 A; Voltage Rating: 600 V; Number Of Poles: Three-pole; Length: 3.5 inch",
+    "technicalAttributes": {
+      "Amperage Rating": "100 A",
+      "Voltage Rating": "600 V",
+      "Number Of Poles": "Three-pole",
+      "Length": "3.5 inch"
+    },
+    "guidedUses": [
+      "service",
+      "circuit"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/rotary-disconnect-switch-chd-r5b3100u-100a-disconnect-sw-941993/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/834587/10964_8OE3B6ADLTRSZ4QH.jpg?v=639231624459570000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "941993",
+        "url": "https://www.ew-ne.com/rotary-disconnect-switch-chd-r5b3100u-100a-disconnect-sw-941993/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "b295925d6aabf98a62d30f72072f49531ab1028ffb73d82a912f6cfe2eec695a",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "ELECTRIC VEHICLE WALL CHARGER KIT CHV GMEV32BR WCPL WALL CHARGER KIT",
+    "brand": "eaton",
+    "manufacturerPart": "GMEV32BR-WCPL",
+    "upc": "786689667665",
+    "cat": "eletrica",
+    "subcategory": "devices",
+    "family": "devices",
+    "unit": "un",
+    "specs": "Voltage Rating: 208-240 Vac; Length: 10.74 inch",
+    "technicalAttributes": {
+      "Voltage Rating": "208-240 Vac",
+      "Length": "10.74 inch"
+    },
+    "guidedUses": [
+      "ev"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/electric-vehicle-wall-charger-kit-chv-gmev32br-wcpl-wall-charger-kit-1219623/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1198822/10964_Q2N4K3IJPFM0TGD6.jpg?v=639228686032130000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "1219623",
+        "url": "https://www.ew-ne.com/electric-vehicle-wall-charger-kit-chv-gmev32br-wcpl-wall-charger-kit-1219623/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "74a2293501eb45a3407fb3cd7556933d2b3e4e146c5eec80ba75a0f2a0484e34",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "CWD TRUSBC15W-BOX 15A RCP/CHARGER",
+    "brand": "cooper",
+    "manufacturerPart": "TRUSBC15W-BOX",
+    "upc": "032664753305",
+    "cat": "eletrica",
+    "subcategory": "devices",
+    "family": "devices",
+    "unit": "un",
+    "specs": "Length: 1.95 inch",
+    "technicalAttributes": {
+      "Length": "1.95 inch"
+    },
+    "guidedUses": [
+      "devices"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/duplex-receptacle-and-usb-charger-cwd-trusbc15w-box-15a-rcp-charger-873898/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/825065/14550897_PIC_EN_1.jpg?v=639250036623230000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "873898",
+        "url": "https://www.ew-ne.com/duplex-receptacle-and-usb-charger-cwd-trusbc15w-box-15a-rcp-charger-873898/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "27b6bff3f0c69b5a4e5205e555694a6e988c99067101e128a9eeb196d6e6fb09",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "COMBINATION USB CHARGER AND RECEPTACLE CWD TR7766W BOX 20A CHARGER RCP",
+    "brand": "cooper",
+    "manufacturerPart": "TR7766W-BOX",
+    "upc": "032664767081",
+    "cat": "eletrica",
+    "subcategory": "devices",
+    "family": "devices",
+    "unit": "un",
+    "specs": "Length: 1.4 inch",
+    "technicalAttributes": {
+      "Length": "1.4 inch"
+    },
+    "guidedUses": [
+      "devices"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/combination-usb-charger-and-receptacle-cwd-tr7766w-box-20a-charger-rcp-1161723/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1295924/11033_VN9T7SGW0BZURILP.jpg?v=639228817789870000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "1161723",
+        "url": "https://www.ew-ne.com/combination-usb-charger-and-receptacle-cwd-tr7766w-box-20a-charger-rcp-1161723/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "45ed08f49882f83742a26d4c07f799b430739b8b61b74551be4cbe2a339f7e01",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "DUPLEX RECEPTACLE AND USB CHARGER CWD TRUSBC15LA BOX 15A RCP CHARGER",
+    "brand": "cooper",
+    "manufacturerPart": "TRUSBC15LA-BOX",
+    "upc": "032664753282",
+    "cat": "eletrica",
+    "subcategory": "devices",
+    "family": "devices",
+    "unit": "un",
+    "specs": "Length: 1.67 inch",
+    "technicalAttributes": {
+      "Length": "1.67 inch"
+    },
+    "guidedUses": [
+      "devices"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/duplex-receptacle-and-usb-charger-cwd-trusbc15la-box-15a-rcp-charger-1055530/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1197041/11033_R3I7PYT5H4UGCQ2S.jpg?v=639228952520030000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "1055530",
+        "url": "https://www.ew-ne.com/duplex-receptacle-and-usb-charger-cwd-trusbc15la-box-15a-rcp-charger-1055530/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "90a4192a162afbf892cd017b8f9c0f423f8e2ba5162f86f12eced418f58ffe38",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "PAND NK6PC3YLY CAT 6 PATCH CORD",
+    "brand": "panduit",
+    "manufacturerPart": "NK6PC3YLY",
+    "upc": "074983055630",
+    "cat": "eletrica",
+    "subcategory": "datacom",
+    "family": "datacom",
+    "unit": "un",
+    "specs": "Color: Yellow; Wire Size: 24; Length: 3 inch",
+    "technicalAttributes": {
+      "Color": "Yellow",
+      "Wire Size": "24",
+      "Length": "3 inch"
+    },
+    "guidedUses": [
+      "data"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/pand-nk6pc3yly-cat-6-patch-cord-1332790/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1646942/10965_4DYFCLAU72G95MWP.jpg?v=639258825749600000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "1332790",
+        "url": "https://www.ew-ne.com/pand-nk6pc3yly-cat-6-patch-cord-1332790/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "ea8be94afb84cb703181f9059d2222dbeb52082b56b96e4322d554fdd7e3c7ca",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "PAND NK6PC5YLY CAT 6 PATCH CORD",
+    "brand": "panduit",
+    "manufacturerPart": "NK6PC5YLY",
+    "upc": "074983055685",
+    "cat": "eletrica",
+    "subcategory": "datacom",
+    "family": "datacom",
+    "unit": "un",
+    "specs": "Color: Yellow; Wire Size: 24; Length: 5 inch",
+    "technicalAttributes": {
+      "Color": "Yellow",
+      "Wire Size": "24",
+      "Length": "5 inch"
+    },
+    "guidedUses": [
+      "data"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/pand-nk6pc5yly-cat-6-patch-cord-1332789/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1643073/10965_N04SWK1GAHR9XVEI.jpg?v=639258068475570000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "1332789",
+        "url": "https://www.ew-ne.com/pand-nk6pc5yly-cat-6-patch-cord-1332789/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "ea8be94afb84cb703181f9059d2222dbeb52082b56b96e4322d554fdd7e3c7ca",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "Dynacom Cat6 Jack White",
+    "brand": "dynacom",
+    "manufacturerPart": "10606KWH",
+    "upc": "879302007839",
+    "cat": "eletrica",
+    "subcategory": "datacom",
+    "family": "datacom",
+    "unit": "un",
+    "specs": "Referência: 10606KWH; unidade do fornecedor: un.",
+    "technicalAttributes": {},
+    "guidedUses": [
+      "data"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/dynacom-10606kwh-cat6-jack-wht-533372/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1647253/dynacom__10606kwh__533372_cda06df0425a.jpg?v=639258886065930000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "533372",
+        "url": "https://www.ew-ne.com/dynacom-10606kwh-cat6-jack-wht-533372/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "eb1d7dc0c7d92d63153a8ebb9ca8a8d636939f6a32fd20bd9de11726da1ad598",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "STI NEZ44 SMOKE/ACOUS PATHWAY",
+    "brand": "sti",
+    "manufacturerPart": "NEZ44",
+    "upc": "730573111727",
+    "cat": "eletrica",
+    "subcategory": "accessories",
+    "family": "accessories",
+    "unit": "un",
+    "specs": "Color: Blue; Material: V-0 Hi Impact ABS/PC Thermoplastic; Length: 7.5 inch",
+    "technicalAttributes": {
+      "Color": "Blue",
+      "Material": "V-0 Hi Impact ABS/PC Thermoplastic",
+      "Length": "7.5 inch"
+    },
+    "guidedUses": [
+      "data",
+      "fire"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/smoke-and-acoustical-pathway-sti-nez44-smoke-acous-pathway-899387/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1266127/11379_VW3XG5S4FL7HZ2B8.jpg?v=639258319543230000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "899387",
+        "url": "https://www.ew-ne.com/smoke-and-acoustical-pathway-sti-nez44-smoke-acous-pathway-899387/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "57d87e34f8946549753cacb02682288b1b7cf7448fdf10d311cc7d7f0bda33de",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "STI NEZ33-W SMOKE/ACOUS PATHWAY",
+    "brand": "sti",
+    "manufacturerPart": "NEZ33-W",
+    "upc": "730573111666",
+    "cat": "eletrica",
+    "subcategory": "accessories",
+    "family": "accessories",
+    "unit": "un",
+    "specs": "Color: White; Material: V-O High Impact ABS/PC Thermoplastic, Flame Retardant Neoprene Rubber; Length: 6.25 inch",
+    "technicalAttributes": {
+      "Color": "White",
+      "Material": "V-O High Impact ABS/PC Thermoplastic, Flame Retardant Neoprene Rubber",
+      "Length": "6.25 inch"
+    },
+    "guidedUses": [
+      "data",
+      "fire"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/smoke-and-acoustical-pathway-sti-nez33-w-smoke-acous-pathway-946216/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1267048/11379_3J9WUNIMBDT6LPX2.jpg?v=639258949582800000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "946216",
+        "url": "https://www.ew-ne.com/smoke-and-acoustical-pathway-sti-nez33-w-smoke-acous-pathway-946216/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "7895372b62cbc28311d5c2865f9d4dbe9b3214ef8c17077e53b4186644f3ecc1",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "STI SNS129W SMOKE&ACOUSTICAL SLNT",
+    "brand": "sti",
+    "manufacturerPart": "SNS129W",
+    "upc": "730573111529",
+    "cat": "eletrica",
+    "subcategory": "accessories",
+    "family": "accessories",
+    "unit": "un",
+    "specs": "Color: White; Size: 29; Length: 16.5 inch",
+    "technicalAttributes": {
+      "Color": "White",
+      "Size": "29",
+      "Length": "16.5 inch"
+    },
+    "guidedUses": [
+      "data",
+      "fire"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/smoke-and-acoustical-sealant-sti-sns129w-smoke-acoustical-slnt-677384/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1159314/11379_V4ZKJYOH5C0L9TUS.jpg?v=639231373326530000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "677384",
+        "url": "https://www.ew-ne.com/smoke-and-acoustical-sealant-sti-sns129w-smoke-acoustical-slnt-677384/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "72b8999f3a398fa72e2c69cf399b07bde7f2ce571fa6eb6c1c7dbf2a10ea9820",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "STI NEZ44-W SMOKE/ACOUS PATHWAY",
+    "brand": "sti",
+    "manufacturerPart": "NEZ44-W",
+    "upc": "730573111734",
+    "cat": "eletrica",
+    "subcategory": "accessories",
+    "family": "accessories",
+    "unit": "un",
+    "specs": "Color: White; Material: V-0 Hi Impact ABS/PC Thermoplastic; Length: 7.5 inch",
+    "technicalAttributes": {
+      "Color": "White",
+      "Material": "V-0 Hi Impact ABS/PC Thermoplastic",
+      "Length": "7.5 inch"
+    },
+    "guidedUses": [
+      "data",
+      "fire"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/smoke-and-acoustical-pathway-sti-nez44-w-smoke-acous-pathway-834575/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1264275/11379_FZQ4UKN2OVCGE35L.jpg?v=639258959170600000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "834575",
+        "url": "https://www.ew-ne.com/smoke-and-acoustical-pathway-sti-nez44-w-smoke-acous-pathway-834575/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "1895ffc91ab5d0474a6ebf19b229f716e668c71a433838fa92ef37bf4bc90081",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "PSEWRS 505/281 RD 50/ROLL",
+    "brand": "hellermann",
+    "manufacturerPart": "596-00474",
+    "upc": "089306354512",
+    "cat": "eletrica",
+    "subcategory": "solar",
+    "family": "solar",
+    "unit": "un",
+    "specs": "Color: Red; Material: Type 242/552, UV Stable Reflective Vinyl w/Acrylic Laminate; Length: 0 inch",
+    "technicalAttributes": {
+      "Color": "Red",
+      "Material": "Type 242/552, UV Stable Reflective Vinyl w/Acrylic Laminate",
+      "Length": "0 inch"
+    },
+    "guidedUses": [
+      "solar"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/solar-label-tyn-596-00474-red-solar-label-547233/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/751110/11398_EPWYZ75839AIBVRF.jpg?v=639258165648870000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "547233",
+        "url": "https://www.ew-ne.com/solar-label-tyn-596-00474-red-solar-label-547233/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "06123f55c16c580f52e0de0f5a79e286cc1ac3605b0dbef6a173e5c1ad6e7e09",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "1-Gang Decora/GFCI Device Wallplate, Standard Size, Thermoplastic Nylon, Black, 80401-NE",
+    "brand": "Leviton",
+    "manufacturerPart": "80401-019-0NE",
+    "upc": "",
+    "cat": "eletrica",
+    "subcategory": "devices",
+    "family": "devices",
+    "unit": "un",
+    "specs": "Referência: 80401-019-0NE; unidade do fornecedor: un.",
+    "guidedUses": [
+      "devices"
+    ],
+    "recordType": "product",
+    "source": "Leviton Store",
+    "sourceUrl": "https://store.leviton.com/products/1-gang-decora-gfci-device-wallplate-standard-size-thermoplastic-nylon-black-80401-ne",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://cdn.shopify.com/s/files/1/1196/6550/files/51kJ1ygC86L._AC_SL1000_c58e8b84-0df5-4228-9fc4-b7f3d24e9cf0.jpg?v=1768316427",
+    "suppliers": [
+      {
+        "name": "Leviton Store",
+        "code": "80401-019-0NE",
+        "url": "https://store.leviton.com/products/1-gang-decora-gfci-device-wallplate-standard-size-thermoplastic-nylon-black-80401-ne",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "09451cae20dc8b9fd3b5050a96694596c586cdd0c6af9e3eba3751d388203b42",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "1-Gang Single 1.406 Outlet/Receptacle Wallplate, Standard Size, Thermoset, White, 88004",
+    "brand": "Leviton",
+    "manufacturerPart": "88004-001-000",
+    "upc": "",
+    "cat": "eletrica",
+    "subcategory": "devices",
+    "family": "devices",
+    "unit": "un",
+    "specs": "Referência: 88004-001-000; unidade do fornecedor: un.",
+    "guidedUses": [
+      "devices"
+    ],
+    "recordType": "product",
+    "source": "Leviton Store",
+    "sourceUrl": "https://store.leviton.com/products/1-gang-single-1-406-outlet-receptacle-wallplate-standard-size-thermoset-white-88004",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://cdn.shopify.com/s/files/1/1196/6550/files/51_xWkXyEmL._AC_SL1500__1.jpg?v=1789494830",
+    "suppliers": [
+      {
+        "name": "Leviton Store",
+        "code": "88004-001-000",
+        "url": "https://store.leviton.com/products/1-gang-single-1-406-outlet-receptacle-wallplate-standard-size-thermoset-white-88004",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "9d94fa5fbcd9557f9192fc47c486ab15ca673cae528c27047af4de95cd6f1832",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "15 Amp 3-Way Toggle CO/ALR Switch, Grounding, White, 2653-2W",
+    "brand": "Leviton",
+    "manufacturerPart": "02653-218-02W",
+    "upc": "",
+    "cat": "eletrica",
+    "subcategory": "devices",
+    "family": "devices",
+    "unit": "un",
+    "specs": "Referência: 02653-218-02W; unidade do fornecedor: un.",
+    "guidedUses": [
+      "devices"
+    ],
+    "recordType": "product",
+    "source": "Leviton Store",
+    "sourceUrl": "https://store.leviton.com/products/15-amp-3-way-toggle-co-alr-switch-grounding-white-2653-2w",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://cdn.shopify.com/s/files/1/1196/6550/files/2653-2W_01.jpg?v=1769628056",
+    "suppliers": [
+      {
+        "name": "Leviton Store",
+        "code": "02653-218-02W",
+        "url": "https://store.leviton.com/products/15-amp-3-way-toggle-co-alr-switch-grounding-white-2653-2w",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "615f6fca5de7693bf3ed59c9f8b56edea9a00257dbb537ad69d7b9f73512ac3d",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "15 Amp Decora Single-Pole Switch, Outlet/Receptacle, Combination Device, Grounding, 5625-W, White",
+    "brand": "Leviton",
+    "manufacturerPart": "05625-022-00W",
+    "upc": "",
+    "cat": "eletrica",
+    "subcategory": "devices",
+    "family": "devices",
+    "unit": "un",
+    "specs": "Referência: 05625-022-00W; unidade do fornecedor: un.",
+    "guidedUses": [
+      "devices"
+    ],
+    "recordType": "product",
+    "source": "Leviton Store",
+    "sourceUrl": "https://store.leviton.com/products/15-amp-decora-single-pole-switch-outlet-receptacle-combination-device-grounding-5625-w-white",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://cdn.shopify.com/s/files/1/1196/6550/files/5625-W_02.jpg?v=1779109334",
+    "suppliers": [
+      {
+        "name": "Leviton Store",
+        "code": "05625-022-00W",
+        "url": "https://store.leviton.com/products/15-amp-decora-single-pole-switch-outlet-receptacle-combination-device-grounding-5625-w-white",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "0e5515e748b64b8b697e1d8154b286c05b92f49a5d084ffad265be9577961990",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "15 Amp Decora Tamper-Resistant Duplex Outlet/Receptacle, Grounding, White, T5325-W",
+    "brand": "Leviton",
+    "manufacturerPart": "T5325-205-00W",
+    "upc": "",
+    "cat": "eletrica",
+    "subcategory": "devices",
+    "family": "devices",
+    "unit": "un",
+    "specs": "Referência: T5325-205-00W; unidade do fornecedor: un.",
+    "guidedUses": [
+      "devices"
+    ],
+    "recordType": "product",
+    "source": "Leviton Store",
+    "sourceUrl": "https://store.leviton.com/products/15-amp-decora-tamper-resistant-duplex-outlet-receptacle-grounding-white-t5325-w",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://cdn.shopify.com/s/files/1/1196/6550/files/T5325-W_a_c7109ac5-ecac-4ee5-9bf8-8512c32cbbf6.jpg?v=1768228316",
+    "suppliers": [
+      {
+        "name": "Leviton Store",
+        "code": "T5325-205-00W",
+        "url": "https://store.leviton.com/products/15-amp-decora-tamper-resistant-duplex-outlet-receptacle-grounding-white-t5325-w",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "0465628578eb64cb5a57504cf752de2b9256d4753ec5ddef604cc0121e6180c7",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "15 Amp SmartlockPro® Wi-Fi Certified Smart GFCI Receptacle/Outlet, White, D2GF1-KW",
+    "brand": "Leviton",
+    "manufacturerPart": "D2GF1-R12-0KW",
+    "upc": "",
+    "cat": "eletrica",
+    "subcategory": "devices",
+    "family": "devices",
+    "unit": "un",
+    "specs": "Referência: D2GF1-R12-0KW; unidade do fornecedor: un.",
+    "guidedUses": [
+      "devices"
+    ],
+    "recordType": "product",
+    "source": "Leviton Store",
+    "sourceUrl": "https://store.leviton.com/products/15-amp-smartlockpro-wi-fi-certified-smart-gfci-receptacle-outlet-white-d2gf1-kw",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://cdn.shopify.com/s/files/1/1196/6550/files/D2GF1-KW_b.jpg?v=1749058263",
+    "suppliers": [
+      {
+        "name": "Leviton Store",
+        "code": "D2GF1-R12-0KW",
+        "url": "https://store.leviton.com/products/15-amp-smartlockpro-wi-fi-certified-smart-gfci-receptacle-outlet-white-d2gf1-kw",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "21e75505dd7d30dbe77cabac2a5e55f5d3c7454788e4f953b49d6784c0c9e643",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "15 Amp, 120/277 Volt, Duplex Style 3-Way / 3-Way AC Combination Switch, Residential/Commercial Specification Grade, Non-Grounding, Side Wired, White, 5243-W",
+    "brand": "Leviton",
+    "manufacturerPart": "05243-032-00W",
+    "upc": "",
+    "cat": "eletrica",
+    "subcategory": "devices",
+    "family": "devices",
+    "unit": "un",
+    "specs": "Referência: 05243-032-00W; unidade do fornecedor: un.",
+    "guidedUses": [
+      "devices"
+    ],
+    "recordType": "product",
+    "source": "Leviton Store",
+    "sourceUrl": "https://store.leviton.com/products/15-amp-120-277-volt-duplex-style-3-way-3-way-ac-combination-switch-residential-commercial-specification-grade-non-grounding-side-wired-white-5243-w",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://cdn.shopify.com/s/files/1/1196/6550/files/71PAM8Rw4BL._SL1500_0eaa342f-e94c-4b0a-a8de-d4687983c536.jpg?v=1759512739",
+    "suppliers": [
+      {
+        "name": "Leviton Store",
+        "code": "05243-032-00W",
+        "url": "https://store.leviton.com/products/15-amp-120-277-volt-duplex-style-3-way-3-way-ac-combination-switch-residential-commercial-specification-grade-non-grounding-side-wired-white-5243-w",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "67ac9f6c6d5a2b49d0c19b70a6657eb8322d0959bc8c70a1e875abcc7b4db314",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "15 Amp, Self Test, Non Tamper-Resistant Slim GFCI Outlet with LED Indicator Light, GFNT1-W",
+    "brand": "Leviton",
+    "manufacturerPart": "GFNT1-012-00W",
+    "upc": "",
+    "cat": "eletrica",
+    "subcategory": "devices",
+    "family": "devices",
+    "unit": "un",
+    "specs": "Referência: GFNT1-012-00W; unidade do fornecedor: un.",
+    "guidedUses": [
+      "devices"
+    ],
+    "recordType": "product",
+    "source": "Leviton Store",
+    "sourceUrl": "https://store.leviton.com/products/15-amp-self-test-non-tamper-resistant-slim-gfci-outlet-with-led-indicator-light-gfnt1-w",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://cdn.shopify.com/s/files/1/1196/6550/files/GFNT1-W_2.jpg?v=1789494924",
+    "suppliers": [
+      {
+        "name": "Leviton Store",
+        "code": "GFNT1-012-00W",
+        "url": "https://store.leviton.com/products/15-amp-self-test-non-tamper-resistant-slim-gfci-outlet-with-led-indicator-light-gfnt1-w",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "63cfd153cbdf74a4313af8bf576dd747afaa195d75c37c0eb7c6c4591cd18c0b",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "15 Amp, Self Test, Tamper-Resistant Slim GFCI Outlet with LED Indicator Light, GFTR1-GY",
+    "brand": "Leviton",
+    "manufacturerPart": "GFTR1-113-0GY",
+    "upc": "",
+    "cat": "eletrica",
+    "subcategory": "devices",
+    "family": "devices",
+    "unit": "un",
+    "specs": "Referência: GFTR1-113-0GY; unidade do fornecedor: un.",
+    "guidedUses": [
+      "devices"
+    ],
+    "recordType": "product",
+    "source": "Leviton Store",
+    "sourceUrl": "https://store.leviton.com/products/15-amp-self-test-tamper-resistant-slim-gfci-outlet-with-led-indicator-light-gftr1-gy",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://cdn.shopify.com/s/files/1/1196/6550/files/GFTR1-GY_a.jpg?v=1768318054",
+    "suppliers": [
+      {
+        "name": "Leviton Store",
+        "code": "GFTR1-113-0GY",
+        "url": "https://store.leviton.com/products/15-amp-self-test-tamper-resistant-slim-gfci-outlet-with-led-indicator-light-gftr1-gy",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "ad59dc025316c2219d5e7415dbb03665cca210533b367f0b935861525170c3e2",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "2-Gang Decora Plus Screwless Wallplate Polycarbonate, White, 80309-SW",
+    "brand": "Leviton",
+    "manufacturerPart": "80309-022-0SW",
+    "upc": "",
+    "cat": "eletrica",
+    "subcategory": "devices",
+    "family": "devices",
+    "unit": "un",
+    "specs": "Referência: 80309-022-0SW; unidade do fornecedor: un.",
+    "guidedUses": [
+      "devices"
+    ],
+    "recordType": "product",
+    "source": "Leviton Store",
+    "sourceUrl": "https://store.leviton.com/products/2-gang-decora-plus-screwless-wallplate-polycarbonate-white-80309-sw",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://cdn.shopify.com/s/files/1/1196/6550/files/61o-HGs_yQL._AC_SL1500.jpg?v=1768247209",
+    "suppliers": [
+      {
+        "name": "Leviton Store",
+        "code": "80309-022-0SW",
+        "url": "https://store.leviton.com/products/2-gang-decora-plus-screwless-wallplate-polycarbonate-white-80309-sw",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "3f1e36a032818cac378b79c478b48bc1ffe1758be57128f7ee5021b3497ff7e6",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "20 Amp Slim GFCI Weather-Resistant Outlet, Self Test, with LED Indicator Light, GFWR2-W",
+    "brand": "Leviton",
+    "manufacturerPart": "GFWR2-112-00W",
+    "upc": "",
+    "cat": "eletrica",
+    "subcategory": "devices",
+    "family": "devices",
+    "unit": "un",
+    "specs": "Referência: GFWR2-112-00W; unidade do fornecedor: un.",
+    "guidedUses": [
+      "devices"
+    ],
+    "recordType": "product",
+    "source": "Leviton Store",
+    "sourceUrl": "https://store.leviton.com/products/20-amp-slim-gfci-weather-resistant-outlet-self-test-with-led-indicator-light-gfwr2-w",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://cdn.shopify.com/s/files/1/1196/6550/files/GFWR2-W_a.jpg?v=1766003948",
+    "suppliers": [
+      {
+        "name": "Leviton Store",
+        "code": "GFWR2-112-00W",
+        "url": "https://store.leviton.com/products/20-amp-slim-gfci-weather-resistant-outlet-self-test-with-led-indicator-light-gfwr2-w",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "05843058eac679f61be6999f3995b97d3622181048e9818a555d87af5efb0a36",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "20 Amp SmartlockPro® GFCI Receptacle/Outlet, Industrial Grade, Weather and Tamper-Resistant G5362-WTW",
+    "brand": "Leviton",
+    "manufacturerPart": "G5362-WTW",
+    "upc": "",
+    "cat": "eletrica",
+    "subcategory": "devices",
+    "family": "devices",
+    "unit": "un",
+    "specs": "Referência: G5362-WTW; unidade do fornecedor: un.",
+    "guidedUses": [
+      "devices"
+    ],
+    "recordType": "product",
+    "source": "Leviton Store",
+    "sourceUrl": "https://store.leviton.com/products/20-amp-smartlockpro-gfci-receptacle-outlet-industrial-grade-weather-and-tamper-resistant-g5362-wtw",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://cdn.shopify.com/s/files/1/1196/6550/files/G5362-WTW.jpg?v=1784144491",
+    "suppliers": [
+      {
+        "name": "Leviton Store",
+        "code": "G5362-WTW",
+        "url": "https://store.leviton.com/products/20-amp-smartlockpro-gfci-receptacle-outlet-industrial-grade-weather-and-tamper-resistant-g5362-wtw",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "7842063d9bc2d36c66a9a1dee57c35ed4f8a67530dfc59e928695e4c980dd353",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "20 Amp SmartlockPro® Wi-Fi Certified Smart GFCI Receptacle/Outlet, White, D2GF2-KW",
+    "brand": "Leviton",
+    "manufacturerPart": "D2GF2-R12-0KW",
+    "upc": "",
+    "cat": "eletrica",
+    "subcategory": "devices",
+    "family": "devices",
+    "unit": "un",
+    "specs": "Referência: D2GF2-R12-0KW; unidade do fornecedor: un.",
+    "guidedUses": [
+      "devices"
+    ],
+    "recordType": "product",
+    "source": "Leviton Store",
+    "sourceUrl": "https://store.leviton.com/products/20-amp-smartlockpro-wi-fi-certified-smart-gfci-receptacle-outlet-white-d2gf2-kw",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://cdn.shopify.com/s/files/1/1196/6550/files/D2GF2-KW_b.jpg?v=1749058262",
+    "suppliers": [
+      {
+        "name": "Leviton Store",
+        "code": "D2GF2-R12-0KW",
+        "url": "https://store.leviton.com/products/20-amp-smartlockpro-wi-fi-certified-smart-gfci-receptacle-outlet-white-d2gf2-kw",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "33844348d383b4516ee5b6d3c5e1aab16b92134780eae488218031bda0aa0771",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "20 Amp, Self Test, Tamper-Resistant Dual-Function AFCI/GFCI Outlet with LED Indicator Light, AGTR2-W",
+    "brand": "Leviton",
+    "manufacturerPart": "AGTR2-112-00W",
+    "upc": "",
+    "cat": "eletrica",
+    "subcategory": "devices",
+    "family": "devices",
+    "unit": "un",
+    "specs": "Referência: AGTR2-112-00W; unidade do fornecedor: un.",
+    "guidedUses": [
+      "devices"
+    ],
+    "recordType": "product",
+    "source": "Leviton Store",
+    "sourceUrl": "https://store.leviton.com/products/20-amp-self-test-tamper-resistant-dual-function-afci-gfci-outlet-with-led-indicator-light-agtr2-w",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://cdn.shopify.com/s/files/1/1196/6550/files/AGTR2-W_a.jpg?v=1768227814",
+    "suppliers": [
+      {
+        "name": "Leviton Store",
+        "code": "AGTR2-112-00W",
+        "url": "https://store.leviton.com/products/20-amp-self-test-tamper-resistant-dual-function-afci-gfci-outlet-with-led-indicator-light-agtr2-w",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "6b0df9ac201733e4a8dc073ba5ceeec2146b050d1eb4b3b2fb0dd74122daba31",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "20 Amp, Self Test, Tamper-Resistant Slim GFCI Outlet with LED Indicator Light, GFTR2-W",
+    "brand": "Leviton",
+    "manufacturerPart": "GFTR2-142-00W",
+    "upc": "",
+    "cat": "eletrica",
+    "subcategory": "devices",
+    "family": "devices",
+    "unit": "un",
+    "specs": "Referência: GFTR2-142-00W; unidade do fornecedor: un.",
+    "guidedUses": [
+      "devices"
+    ],
+    "recordType": "product",
+    "source": "Leviton Store",
+    "sourceUrl": "https://store.leviton.com/products/20-amp-self-test-tamper-resistant-slim-gfci-outlet-with-led-indicator-light-gftr2-w",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://cdn.shopify.com/s/files/1/1196/6550/files/GFTR2-W_Screws_1.jpg?v=1762540260",
+    "suppliers": [
+      {
+        "name": "Leviton Store",
+        "code": "GFTR2-142-00W",
+        "url": "https://store.leviton.com/products/20-amp-self-test-tamper-resistant-slim-gfci-outlet-with-led-indicator-light-gftr2-w",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "6e6dbba4e2c90a9b05ed6bf3f28f024fcf26b05633122f0b05dcc7aa4b43c7a5",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "Banana Jack QUICKPORT™ Coupler, Gold-Plated, Black Stripe, White Housing, 40837-BWE",
+    "brand": "Leviton",
+    "manufacturerPart": "40837-012-BWE",
+    "upc": "",
+    "cat": "eletrica",
+    "subcategory": "datacom",
+    "family": "datacom",
+    "unit": "un",
+    "specs": "Referência: 40837-012-BWE; unidade do fornecedor: un.",
+    "guidedUses": [
+      "data"
+    ],
+    "recordType": "product",
+    "source": "Leviton Store",
+    "sourceUrl": "https://store.leviton.com/products/banana-jack-quickport-coupler-gold-plated-black-stripe-white-housing-40837-bwe",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://cdn.shopify.com/s/files/1/1196/6550/files/40837-BWE_1000x1000_2.jpg?v=1758558383",
+    "suppliers": [
+      {
+        "name": "Leviton Store",
+        "code": "40837-012-BWE",
+        "url": "https://store.leviton.com/products/banana-jack-quickport-coupler-gold-plated-black-stripe-white-housing-40837-bwe",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "9747c09f66c8a86e94211a646a19016ffd70c96ec05b070dc00b7315be23ac01",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "Banana Jack QUICKPORT™ Coupler, Gold-Plated, Red Stripe, White Housing, 40837-BWR",
+    "brand": "Leviton",
+    "manufacturerPart": "40837-002-BWR",
+    "upc": "",
+    "cat": "eletrica",
+    "subcategory": "datacom",
+    "family": "datacom",
+    "unit": "un",
+    "specs": "Referência: 40837-002-BWR; unidade do fornecedor: un.",
+    "guidedUses": [
+      "data"
+    ],
+    "recordType": "product",
+    "source": "Leviton Store",
+    "sourceUrl": "https://store.leviton.com/products/banana-jack-quickport-coupler-gold-plated-red-stripe-white-housing-40837-bwr",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://cdn.shopify.com/s/files/1/1196/6550/files/40837-BWR_1000x1000_e3df924f-f39f-438f-9b0a-f073a7573e2c.jpg?v=1758557746",
+    "suppliers": [
+      {
+        "name": "Leviton Store",
+        "code": "40837-002-BWR",
+        "url": "https://store.leviton.com/products/banana-jack-quickport-coupler-gold-plated-red-stripe-white-housing-40837-bwr",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "ec79e2cdb5f421a1eb32b9dceff41756c9e29f132b4ce8baebd83c23476bfbae",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "Decora Motion Sensor In-Wall Switch, Auto-On, 2.5A, Single Pole, IPS02-1LW, White",
+    "brand": "Leviton",
+    "manufacturerPart": "IPS02-R12-1LW",
+    "upc": "",
+    "cat": "eletrica",
+    "subcategory": "devices",
+    "family": "devices",
+    "unit": "un",
+    "specs": "Referência: IPS02-R12-1LW; unidade do fornecedor: un.",
+    "guidedUses": [
+      "devices"
+    ],
+    "recordType": "product",
+    "source": "Leviton Store",
+    "sourceUrl": "https://store.leviton.com/products/decora-motion-sensor-in-wall-switch-auto-on-2-5a-single-pole-ips02-1lw-white",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://cdn.shopify.com/s/files/1/1196/6550/files/IPS02-1LW_b.jpg?v=1781032297",
+    "suppliers": [
+      {
+        "name": "Leviton Store",
+        "code": "IPS02-R12-1LW",
+        "url": "https://store.leviton.com/products/decora-motion-sensor-in-wall-switch-auto-on-2-5a-single-pole-ips02-1lw-white",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "f5e8cd94bbb10db7a03ac40dcbbc98c1ebcb8aa745391c59695d38bda57186a4",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "Decora Occupancy Motion Sensor Light Switch, Auto-On or Manual-On, 2A, Residential Grade, Single Pole, DOS02-LW",
+    "brand": "Leviton",
+    "manufacturerPart": "DOS02-012-0LW",
+    "upc": "",
+    "cat": "eletrica",
+    "subcategory": "devices",
+    "family": "devices",
+    "unit": "un",
+    "specs": "Referência: DOS02-012-0LW; unidade do fornecedor: un.",
+    "guidedUses": [
+      "devices",
+      "led",
+      "recessed"
+    ],
+    "recordType": "product",
+    "source": "Leviton Store",
+    "sourceUrl": "https://store.leviton.com/products/decora-occupancy-motion-sensor-light-switch-auto-on-or-manual-on-2a-residential-grade-single-pole-dos02-lw",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://cdn.shopify.com/s/files/1/1196/6550/files/DOS02-LW_e.jpg?v=1768246503",
+    "suppliers": [
+      {
+        "name": "Leviton Store",
+        "code": "DOS02-012-0LW",
+        "url": "https://store.leviton.com/products/decora-occupancy-motion-sensor-light-switch-auto-on-or-manual-on-2a-residential-grade-single-pole-dos02-lw",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "3a0fa688b6b31c95913a4844ac32fe05ec98bd1709c825766adb0cd7d134f20c",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "Decora Slide LED Advanced Dimmer Switch for 150W Dimmable LED, Halogen and Incandescent Bulbs and Fixtures, DSL01-LW, White",
+    "brand": "Leviton",
+    "manufacturerPart": "DSL01-R02-0LW",
+    "upc": "",
+    "cat": "eletrica",
+    "subcategory": "devices",
+    "family": "devices",
+    "unit": "un",
+    "specs": "Referência: DSL01-R02-0LW; unidade do fornecedor: un.",
+    "guidedUses": [
+      "devices",
+      "led",
+      "recessed"
+    ],
+    "recordType": "product",
+    "source": "Leviton Store",
+    "sourceUrl": "https://store.leviton.com/products/decora-slide-led-advanced-dimmer-switch-for-150w-dimmable-led-halogen-and-incandescent-bulbs-and-fixtures-dsl01-0lw-white",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://cdn.shopify.com/s/files/1/1196/6550/files/71wmlIuhoFL._AC_SL1500.jpg?v=1771360157",
+    "suppliers": [
+      {
+        "name": "Leviton Store",
+        "code": "DSL01-R02-0LW",
+        "url": "https://store.leviton.com/products/decora-slide-led-advanced-dimmer-switch-for-150w-dimmable-led-halogen-and-incandescent-bulbs-and-fixtures-dsl01-0lw-white",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "872f9456336c72ab7f7f279c372cc751e58a0fe209958d73c6b455f4ac70faea",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "Decora Smart Dimmer Switch, 0-10V, Wi-Fi, Neutral Wire Required, works with Matter, My Leviton, Alexa, Google Assistant, Apple Home/Siri & Wired or Wire-Free 3-Way, D2710-1BW, White",
+    "brand": "Leviton",
+    "manufacturerPart": "D2710-002-1BW",
+    "upc": "",
+    "cat": "eletrica",
+    "subcategory": "devices",
+    "family": "devices",
+    "unit": "un",
+    "specs": "Referência: D2710-002-1BW; unidade do fornecedor: un.",
+    "guidedUses": [
+      "devices",
+      "led",
+      "recessed"
+    ],
+    "recordType": "product",
+    "source": "Leviton Store",
+    "sourceUrl": "https://store.leviton.com/products/decora-smart-dimmer-switch-0-10v-wi-fi-neutral-wire-required-works-with-matter-my-leviton-alexa-google-assistant-apple-home-siri-wired-or-wire-free-3-way-d2710-1bw-white",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://cdn.shopify.com/s/files/1/1196/6550/files/D2710-1BW_a.jpg?v=1749057795",
+    "suppliers": [
+      {
+        "name": "Leviton Store",
+        "code": "D2710-002-1BW",
+        "url": "https://store.leviton.com/products/decora-smart-dimmer-switch-0-10v-wi-fi-neutral-wire-required-works-with-matter-my-leviton-alexa-google-assistant-apple-home-siri-wired-or-wire-free-3-way-d2710-1bw-white",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "bd2f26ec3bbd57b769aacba59affb11ea0e599ed5d2cf06efcb8f449732bcecb",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "Decora Smart Dimmer Switch, Wi-Fi, Works with Matter, My Leviton, Alexa, Google Assistant, Apple Home/Siri & Wired or Wire-Free 3-Way, Neutral Wire Required, D36HD-1RW, White",
+    "brand": "Leviton",
+    "manufacturerPart": "D36HD-R02-1RW",
+    "upc": "",
+    "cat": "eletrica",
+    "subcategory": "devices",
+    "family": "devices",
+    "unit": "un",
+    "specs": "Referência: D36HD-R02-1RW; unidade do fornecedor: un.",
+    "guidedUses": [
+      "devices",
+      "led",
+      "recessed"
+    ],
+    "recordType": "product",
+    "source": "Leviton Store",
+    "sourceUrl": "https://store.leviton.com/products/decora-smart-dimmer-switch-wi-fi-works-with-matter-my-leviton-alexa-google-assistant-apple-home-siri-wired-or-wire-free-3-way-neutral-wire-required-d36hd-1rw-white",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://cdn.shopify.com/s/files/1/1196/6550/files/01_D36HD_Smart_Dimmer_Switch.jpg?v=1775576109",
+    "suppliers": [
+      {
+        "name": "Leviton Store",
+        "code": "D36HD-R02-1RW",
+        "url": "https://store.leviton.com/products/decora-smart-dimmer-switch-wi-fi-works-with-matter-my-leviton-alexa-google-assistant-apple-home-siri-wired-or-wire-free-3-way-neutral-wire-required-d36hd-1rw-white",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "3f7bd39e3f258ae503b2c48548516dbf663c1dbe258391851a530d2a0fd5495c",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "Decora Smart Switch, Wi-Fi, Works with Matter, Alexa, Google Assistant, Apple Home/Siri & Wired or Wirefree 3-Way, Neutral Wire Required, D315S-1RW, White",
+    "brand": "Leviton",
+    "manufacturerPart": "D315S-R02-1RW",
+    "upc": "",
+    "cat": "eletrica",
+    "subcategory": "devices",
+    "family": "devices",
+    "unit": "un",
+    "specs": "Referência: D315S-R02-1RW; unidade do fornecedor: un.",
+    "guidedUses": [
+      "devices",
+      "led",
+      "recessed"
+    ],
+    "recordType": "product",
+    "source": "Leviton Store",
+    "sourceUrl": "https://store.leviton.com/products/decora-smart-switch-wi-fi-works-with-matter-alexa-google-assistant-apple-home-siri-wired-or-wirefree-3-way-neutral-wire-required-d315s-1rw-white",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://cdn.shopify.com/s/files/1/1196/6550/files/01_D315S_Smart_Switch.jpg?v=1775576501",
+    "suppliers": [
+      {
+        "name": "Leviton Store",
+        "code": "D315S-R02-1RW",
+        "url": "https://store.leviton.com/products/decora-smart-switch-wi-fi-works-with-matter-alexa-google-assistant-apple-home-siri-wired-or-wirefree-3-way-neutral-wire-required-d315s-1rw-white",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "96222dec5f47b337eb563c0f6d7b1a3d1f95a549cb276ae038775306b9998acc",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "CH BR120 20A 1P PLUG-IN 120/240V",
+    "brand": "eaton",
+    "manufacturerPart": "BR120",
+    "upc": "786676362108",
+    "cat": "eletrica",
+    "subcategory": "breakers",
+    "family": "breakers",
+    "unit": "un",
+    "specs": "Amperage Rating: 20 A; Voltage Rating: 120/240 V; Conductor Size: 14-4 AWG Copper/Aluminum; Number Of Poles: Single-pole; Wire Size: #14-4 AWG Cu/Al; Length: 2.5 inch",
+    "technicalAttributes": {
+      "Amperage Rating": "20 A",
+      "Voltage Rating": "120/240 V",
+      "Conductor Size": "14-4 AWG Copper/Aluminum",
+      "Number Of Poles": "Single-pole",
+      "Wire Size": "#14-4 AWG Cu/Al",
+      "Length": "2.5 inch"
+    },
+    "guidedUses": [
+      "panel",
+      "circuit"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/eaton-br120-plug-on-mount-type-br-circuit-breaker-1-pole-20-amp-120-240-volt-ac-18031/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/652555/10964_MOQV5F4KR3UIY9JL.jpg?v=639228819543000000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "18031",
+        "url": "https://www.ew-ne.com/eaton-br120-plug-on-mount-type-br-circuit-breaker-1-pole-20-amp-120-240-volt-ac-18031/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "b84b701fb3d7e4f1dc554f42dc4fa524c56176b69499d4d1a703f762345b78e5",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "Lutron NTSTV-DV-BR 120/277-Volt 8-Amp 1-Pole Small Control Dimmer Brown Nova-T&reg;",
+    "brand": "lutron",
+    "manufacturerPart": "NTSTV-DV-BR",
+    "upc": "078427607195",
+    "cat": "eletrica",
+    "subcategory": "devices",
+    "family": "devices",
+    "unit": "un",
+    "specs": "Amperage Rating: 8 A; Voltage Rating: 120 to 277; Color: Brown; Material: Plastic/Metal; Number Of Poles: 1; Size: 4.56 in x 2.75 in; Length: 3.1 inch",
+    "technicalAttributes": {
+      "Amperage Rating": "8 A",
+      "Voltage Rating": "120 to 277",
+      "Color": "Brown",
+      "Material": "Plastic/Metal",
+      "Number Of Poles": "1",
+      "Size": "4.56 in x 2.75 in",
+      "Length": "3.1 inch"
+    },
+    "guidedUses": [
+      "devices",
+      "led"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/lutron-ntstv-dv-br-120-277-volt-8-amp-1-pole-small-control-dimmer-brown-nova-t-470488/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1228037/P470488.jpg?v=639258153739630000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "470488",
+        "url": "https://www.ew-ne.com/lutron-ntstv-dv-br-120-277-volt-8-amp-1-pole-small-control-dimmer-brown-nova-t-470488/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "047ab07955dfd78ec80f7b8daa2a73845599e87fabd4d7cd63535167b0018065",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "LUT CA-3PS-BR BROWN 15A 3WY SWITCH",
+    "brand": "lutron",
+    "manufacturerPart": "CA-3PS-BR",
+    "upc": "784276016193",
+    "cat": "eletrica",
+    "subcategory": "devices",
+    "family": "devices",
+    "unit": "un",
+    "specs": "Amperage Rating: 15 A; Voltage Rating: 120/277 VAC; Color: Brown; Material: Metal;Plastic; Number Of Poles: 1; Size: 4.69 in x 2.94 in; Length: 2.3 inch",
+    "technicalAttributes": {
+      "Amperage Rating": "15 A",
+      "Voltage Rating": "120/277 VAC",
+      "Color": "Brown",
+      "Material": "Metal;Plastic",
+      "Number Of Poles": "1",
+      "Size": "4.69 in x 2.94 in",
+      "Length": "2.3 inch"
+    },
+    "guidedUses": [
+      "devices",
+      "led"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/lutron-ca-3ps-br-120-277-volt-at-60-hz-15-amp-3-way-general-purpose-designer-style-mechanical-switch-brown-diva-claro-82574/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1174462/10977_0QOGT4RJK6ANCSIM.jpg?v=639258311143930000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "82574",
+        "url": "https://www.ew-ne.com/lutron-ca-3ps-br-120-277-volt-at-60-hz-15-amp-3-way-general-purpose-designer-style-mechanical-switch-brown-diva-claro-82574/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "15295eb25ca79e739fde122dfb0ae8bcf60d9b6f8edb5169ecbffe6b3cba1b94",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "LUT DVSTV-BR 120-277V WALLBOX  CONT",
+    "brand": "lutron",
+    "manufacturerPart": "DVSTV-BR",
+    "upc": "784276099585",
+    "cat": "eletrica",
+    "subcategory": "devices",
+    "family": "devices",
+    "unit": "un",
+    "specs": "Amperage Rating: 8 A; Voltage Rating: 120 to 277; Color: Brown; Material: Plastic/Metal; Number Of Poles: 1; Size: 4.69 in x 2.94 in; Length: 2.3 inch",
+    "technicalAttributes": {
+      "Amperage Rating": "8 A",
+      "Voltage Rating": "120 to 277",
+      "Color": "Brown",
+      "Material": "Plastic/Metal",
+      "Number Of Poles": "1",
+      "Size": "4.69 in x 2.94 in",
+      "Length": "2.3 inch"
+    },
+    "guidedUses": [
+      "devices",
+      "led"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/lutron-dvstv-br-120-277-volt-at-50-60-hz-0-10-volt-dc-50-milli-amp-sink-1-pole-3-way-preset-dimmer-brown-diva-364740/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/940060/10977_G90VKASFB74OQZMW.jpg?v=639229514408800000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "364740",
+        "url": "https://www.ew-ne.com/lutron-dvstv-br-120-277-volt-at-50-60-hz-0-10-volt-dc-50-milli-amp-sink-1-pole-3-way-preset-dimmer-brown-diva-364740/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "60b96f033b1c21f7101b0152679296d9c5cf02cb37e0768feea5fdf2124514d8",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "LUT CA-1PS-BR 15A 120/277V DMR SW",
+    "brand": "lutron",
+    "manufacturerPart": "CA-1PS-BR",
+    "upc": "784276016056",
+    "cat": "eletrica",
+    "subcategory": "devices",
+    "family": "devices",
+    "unit": "un",
+    "specs": "Amperage Rating: 15 A; Voltage Rating: 120/277 VAC; Color: Brown; Material: Metal;Plastic; Number Of Poles: 1; Size: 4.69 in x 2.94 in; Length: 2.3 inch",
+    "technicalAttributes": {
+      "Amperage Rating": "15 A",
+      "Voltage Rating": "120/277 VAC",
+      "Color": "Brown",
+      "Material": "Metal;Plastic",
+      "Number Of Poles": "1",
+      "Size": "4.69 in x 2.94 in",
+      "Length": "2.3 inch"
+    },
+    "guidedUses": [
+      "devices",
+      "led"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/lutron-ca-1ps-br-1-pole-120-277-volt-ac-at-60-hz-general-purpose-mechanical-switch-brown-diva-84015/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/818567/10977_WZQ6E09IANV2XRS7.jpg?v=639229442780770000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "84015",
+        "url": "https://www.ew-ne.com/lutron-ca-1ps-br-1-pole-120-277-volt-ac-at-60-hz-general-purpose-mechanical-switch-brown-diva-84015/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "75e815e845d00e6b425bc60cd7ef3053e5126d5633d259e189906b12afb38f1d",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "CH BR230 30A 2P PLUG-IN 120/240V  1",
+    "brand": "eaton",
+    "manufacturerPart": "BR230",
+    "upc": "786676362955",
+    "cat": "eletrica",
+    "subcategory": "breakers",
+    "family": "breakers",
+    "unit": "un",
+    "specs": "Amperage Rating: 30 A; Voltage Rating: 120/240 V; Conductor Size: 14-4 AWG Copper/Aluminum; Number Of Poles: Two-pole; Wire Size: #14-4 AWG Cu/Al; Length: 1.9 inch",
+    "technicalAttributes": {
+      "Amperage Rating": "30 A",
+      "Voltage Rating": "120/240 V",
+      "Conductor Size": "14-4 AWG Copper/Aluminum",
+      "Number Of Poles": "Two-pole",
+      "Wire Size": "#14-4 AWG Cu/Al",
+      "Length": "1.9 inch"
+    },
+    "guidedUses": [
+      "panel",
+      "hvac"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/eaton-br230-plug-on-mount-type-br-circuit-breaker-2-pole-30-amp-120-240-volt-ac-18085/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/652731/10964_PQ1AV65RKCFLIT9U.jpg?v=639230973261500000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "18085",
+        "url": "https://www.ew-ne.com/eaton-br230-plug-on-mount-type-br-circuit-breaker-2-pole-30-amp-120-240-volt-ac-18085/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "b68c81a87e4be0e56d2e7d8305645cfd6c57061656cbfa3083446eea80950524",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "CH BR230SUR 2P 30A 240V CB",
+    "brand": "eaton",
+    "manufacturerPart": "BR230SUR",
+    "upc": "786685546063",
+    "cat": "eletrica",
+    "subcategory": "breakers",
+    "family": "breakers",
+    "unit": "un",
+    "specs": "Amperage Rating: 30 A; Voltage Rating: 120/240 Volt AC; Number Of Poles: Two-pole; Length: 6.5 inch",
+    "technicalAttributes": {
+      "Amperage Rating": "30 A",
+      "Voltage Rating": "120/240 Volt AC",
+      "Number Of Poles": "Two-pole",
+      "Length": "6.5 inch"
+    },
+    "guidedUses": [
+      "panel",
+      "hvac"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/eaton-br230sur-plug-in-mount-type-br-residential-surge-breaker-2-pole-30-amp-120-240-volt-ac-182300/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/653218/10964_2ZQ1LUT6K9E84CGN.jpg?v=639229169554430000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "182300",
+        "url": "https://www.ew-ne.com/eaton-br230sur-plug-in-mount-type-br-residential-surge-breaker-2-pole-30-amp-120-240-volt-ac-182300/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "fcdf1d0492c5bf79325f753f63d756b04711790b1b06ed748c01a8e52aba485d",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "CH BR230ST 30A 2P PLUG-IN 120/240V",
+    "brand": "eaton",
+    "manufacturerPart": "BR230ST",
+    "upc": "786676000239",
+    "cat": "eletrica",
+    "subcategory": "breakers",
+    "family": "breakers",
+    "unit": "un",
+    "specs": "Amperage Rating: 30 A; Voltage Rating: 120/240 V; Conductor Size: 14-4 AWG Copper/Aluminum; Number Of Poles: Two-pole; Wire Size: #14-4 AWG Cu/Al; Length: 4.5 inch",
+    "technicalAttributes": {
+      "Amperage Rating": "30 A",
+      "Voltage Rating": "120/240 V",
+      "Conductor Size": "14-4 AWG Copper/Aluminum",
+      "Number Of Poles": "Two-pole",
+      "Wire Size": "#14-4 AWG Cu/Al",
+      "Length": "4.5 inch"
+    },
+    "guidedUses": [
+      "panel",
+      "hvac"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/eaton-br230st-plug-in-mount-type-br-circuit-breaker-with-shunt-trip-2-pole-30-amp-120-240-volt-ac-70604/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/792870/10964_SYLQTI1B2AZP9DE4.jpg?v=639231324077270000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "70604",
+        "url": "https://www.ew-ne.com/eaton-br230st-plug-in-mount-type-br-circuit-breaker-with-shunt-trip-2-pole-30-amp-120-240-volt-ac-70604/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "4fec228e0ad747b22dff6b44d7a32703545e5d0c9f5f5d348e5ba5fd8c8fa708",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "Eaton BR230B Plug-On Mount Circuit Breaker 2-Pole 30-Amp 120/240-Volt AC",
+    "brand": "eaton",
+    "manufacturerPart": "BR230B",
+    "upc": "786676008518",
+    "cat": "eletrica",
+    "subcategory": "breakers",
+    "family": "breakers",
+    "unit": "un",
+    "specs": "Amperage Rating: 30 A; Voltage Rating: 120/240 V; Conductor Size: 14-4 AWG Copper/Aluminum; Number Of Poles: Two-pole; Wire Size: #14-4 AWG Cu/Al; Length: 3 inch",
+    "technicalAttributes": {
+      "Amperage Rating": "30 A",
+      "Voltage Rating": "120/240 V",
+      "Conductor Size": "14-4 AWG Copper/Aluminum",
+      "Number Of Poles": "Two-pole",
+      "Wire Size": "#14-4 AWG Cu/Al",
+      "Length": "3 inch"
+    },
+    "guidedUses": [
+      "panel",
+      "hvac"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/eaton-br230b-plug-on-mount-circuit-breaker-2-pole-30-amp-120-240-volt-ac-406254/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/717124/10964_CWT6FYL0HB3GVM7E.jpg?v=639230719135000000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "406254",
+        "url": "https://www.ew-ne.com/eaton-br230b-plug-on-mount-circuit-breaker-2-pole-30-amp-120-240-volt-ac-406254/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "4cd8463d6134afc6abf3cab4b3375609bc56c2c2465ff3f029050d9b1a7f6967",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "HANWHA Q.PEAK-DUO-BLK-G10+-365 365W",
+    "brand": "qcells",
+    "manufacturerPart": "Q.PEAK-DUO-BLK-G10+-365",
+    "upc": "1182738",
+    "cat": "eletrica",
+    "subcategory": "solar",
+    "family": "solar",
+    "unit": "un",
+    "specs": "Amperage Rating: 11.07 A, 10.56 A, 8.92 A, 8.31 A; Voltage Rating: 41.21 Volt VCC, 34.58 Volt MPP (STC), 38.86 Volt VCC, 32.94 MPP (NMOT)",
+    "technicalAttributes": {
+      "Amperage Rating": "11.07 A, 10.56 A, 8.92 A, 8.31 A",
+      "Voltage Rating": "41.21 Volt VCC, 34.58 Volt MPP (STC), 38.86 Volt VCC, 32.94 MPP (NMOT)"
+    },
+    "guidedUses": [
+      "solar"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/hanwha-q-cells-q-peak-duo-blk-g10-365-120-monocrystalline-q-antum-high-performance-solar-panel-365-watt-q-antum-1182738/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1311634/LG1182738.jpg?v=638969673715630000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "1182738",
+        "url": "https://www.ew-ne.com/hanwha-q-cells-q-peak-duo-blk-g10-365-120-monocrystalline-q-antum-high-performance-solar-panel-365-watt-q-antum-1182738/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "c8142a6de8330cf686d0a04040e4b49ba61c9fa39aa2595d94e9091e48ff7a2d",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "Hanwha Q.Home Combiner",
+    "brand": "qcells",
+    "manufacturerPart": "Q.HOMECOMBINER80G1",
+    "upc": "",
+    "cat": "eletrica",
+    "subcategory": "solar",
+    "family": "solar",
+    "unit": "un",
+    "specs": "Referência: Q.HOMECOMBINER80G1; unidade do fornecedor: un.",
+    "technicalAttributes": {},
+    "guidedUses": [
+      "solar"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/hanwha-q-homecombiner80g1-q-home-co-1432014/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1351716/1432014.jpg?v=639076485387830000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "1432014",
+        "url": "https://www.ew-ne.com/hanwha-q-homecombiner80g1-q-home-co-1432014/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "6641a6d6539177348dfdfb7ff51d9d68b095a0a6254214c995f53b88d3f514fa",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "LEV 61HOM-RB6 HOME 6 JACK",
+    "brand": "leviton",
+    "manufacturerPart": "61HOM-RB6",
+    "upc": "078477488720",
+    "cat": "eletrica",
+    "subcategory": "datacom",
+    "family": "datacom",
+    "unit": "un",
+    "specs": "Color: Brown; Material: High Impact Fire Retardant Plastic; Size: 1.18 in x 0.63 in x 0.58 in; Length: 1.18 inch",
+    "technicalAttributes": {
+      "Color": "Brown",
+      "Material": "High Impact Fire Retardant Plastic",
+      "Size": "1.18 in x 0.63 in x 0.58 in",
+      "Length": "1.18 inch"
+    },
+    "guidedUses": [
+      "data"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/leviton-61hom-rb6-type-t568a-b-61hom-model-snap-in-jack-connector-home-6-quickport-781602/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1502869/DAMRoot_Original_110_10962_8VU97FJP2IM3Y0N1.jpg?v=639231294173700000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "781602",
+        "url": "https://www.ew-ne.com/leviton-61hom-rb6-type-t568a-b-61hom-model-snap-in-jack-connector-home-6-quickport-781602/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "623a3c6b66b6442fab3a5f8db9e0d598ca1c024ad36238646d465a02f8efaa69",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "LEV 61HOM-RE6 BLACK CATEGORY 6 JACK",
+    "brand": "leviton",
+    "manufacturerPart": "61HOM-RE6",
+    "upc": "078477488775",
+    "cat": "eletrica",
+    "subcategory": "datacom",
+    "family": "datacom",
+    "unit": "un",
+    "specs": "Color: Black; Material: High Impact Flame Retardant Plastic; Size: 0.63 in x 0.58 in x 1.18 in; Length: 1.18 inch",
+    "technicalAttributes": {
+      "Color": "Black",
+      "Material": "High Impact Flame Retardant Plastic",
+      "Size": "0.63 in x 0.58 in x 1.18 in",
+      "Length": "1.18 inch"
+    },
+    "guidedUses": [
+      "data"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/leviton-61hom-re6-utp-category-6-jack-black-home-6-391878/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/489376/LEVMFCE08448_WB_74_75_PE_001_61HOM_RE6.jpg?v=639251098178870000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "391878",
+        "url": "https://www.ew-ne.com/leviton-61hom-re6-utp-category-6-jack-black-home-6-391878/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "10b4e6b16409360d6b7f0961b43d4c7e4ff29b3f1e73bb4de8612aa2b72b258e",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "LEV 61HOM-RW6 WHITE CATEGORY 6 JACK",
+    "brand": "leviton",
+    "manufacturerPart": "61HOM-RW6",
+    "upc": "078477488737",
+    "cat": "eletrica",
+    "subcategory": "datacom",
+    "family": "datacom",
+    "unit": "un",
+    "specs": "Color: White; Material: High Impact Flame Retardant Plastic; Size: 1.18 in x 0.63 in x 0.58 in; Length: 1.18 inch",
+    "technicalAttributes": {
+      "Color": "White",
+      "Material": "High Impact Flame Retardant Plastic",
+      "Size": "1.18 in x 0.63 in x 0.58 in",
+      "Length": "1.18 inch"
+    },
+    "guidedUses": [
+      "data"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/leviton-61hom-rw6-utp-category-6-jack-white-home-6-227250/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1206379/P227250.jpg?v=639228684496700000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "227250",
+        "url": "https://www.ew-ne.com/leviton-61hom-rw6-utp-category-6-jack-white-home-6-227250/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "3eb7886685f33379c339de7103a77642333506674156554df10885f62281695f",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "LEV GFTR2 20A RECEPTACLE",
+    "brand": "leviton",
+    "manufacturerPart": "GFTR2",
+    "upc": "078477497296",
+    "cat": "eletrica",
+    "subcategory": "devices",
+    "family": "devices",
+    "unit": "un",
+    "specs": "Amperage Rating: 20 A; Voltage Rating: 125; Color: Brown; Material: Polycarbonate Body, Thermoplastic Face; Conductor Size: 14-10 AWG; Number Of Poles: 2",
+    "technicalAttributes": {
+      "Amperage Rating": "20 A",
+      "Voltage Rating": "125",
+      "Color": "Brown",
+      "Material": "Polycarbonate Body, Thermoplastic Face",
+      "Conductor Size": "14-10 AWG",
+      "Number Of Poles": "2"
+    },
+    "guidedUses": [
+      "devices"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/leviton-gftr2-residential-grade-slim-tamper-resistant-monochromatic-self-test-gfci-receptacle-with-led-indicator-20-amp-125-volt-nema-5-20r-brown-s-396508/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1636011/10962_V3RDHLGCE2TQO6Z9.jpg?v=639240591454370000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "396508",
+        "url": "https://www.ew-ne.com/leviton-gftr2-residential-grade-slim-tamper-resistant-monochromatic-self-test-gfci-receptacle-with-led-indicator-20-amp-125-volt-nema-5-20r-brown-s-396508/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "9ca11a20aaaadaf37299a5f7befde3eb5305c3921e20eab212f9edb1962f9beb",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "ADORNE AGFTR2152-W4 TAMPER  RESISTA",
+    "brand": "adorne",
+    "manufacturerPart": "AGFTR2152W4",
+    "upc": "785007052626",
+    "cat": "eletrica",
+    "subcategory": "devices",
+    "family": "devices",
+    "unit": "un",
+    "specs": "Amperage Rating: 15 A; Voltage Rating: 125 V; Color: White; Material: Polycarbonate; Number Of Poles: 2; Wire Size: 14 - 12; Length: 1.82 inch",
+    "technicalAttributes": {
+      "Amperage Rating": "15 A",
+      "Voltage Rating": "125 V",
+      "Color": "White",
+      "Material": "Polycarbonate",
+      "Number Of Poles": "2",
+      "Wire Size": "14 - 12",
+      "Length": "1.82 inch"
+    },
+    "guidedUses": [
+      "devices"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/adorne-agftr2152-w4-tamper-resistant-gfci-outlet-15-amp-125-volt-white-449669/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/726882/12537_AGFTR2152W4.jpg?v=639229280654130000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "449669",
+        "url": "https://www.ew-ne.com/adorne-agftr2152-w4-tamper-resistant-gfci-outlet-15-amp-125-volt-white-449669/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "fc3792c2e640f6381669c2b7d74e8a524c0e8ed8974883885c86810efe6bc57a",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "ADORNE AGFTR2202-W4 20A 125V GFCI",
+    "brand": "adorne",
+    "manufacturerPart": "AGFTR2202W4",
+    "upc": "785007052640",
+    "cat": "eletrica",
+    "subcategory": "devices",
+    "family": "devices",
+    "unit": "un",
+    "specs": "Amperage Rating: 20 A; Voltage Rating: 125 V; Material: Polycarbonate; Number Of Poles: 2; Wire Size: 14 - 12; Length: 1.82 inch",
+    "technicalAttributes": {
+      "Amperage Rating": "20 A",
+      "Voltage Rating": "125 V",
+      "Material": "Polycarbonate",
+      "Number Of Poles": "2",
+      "Wire Size": "14 - 12",
+      "Length": "1.82 inch"
+    },
+    "guidedUses": [
+      "devices"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/legrand-agftr2202w4-tamper-resistant-20a-duplex-self-test-gfci-receptacles-495800/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/740215/12537_AGFTR2202W4.jpg?v=639228888718470000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "495800",
+        "url": "https://www.ew-ne.com/legrand-agftr2202w4-tamper-resistant-20a-duplex-self-test-gfci-receptacles-495800/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "a0719eae31fe1ae3273aa1770baded55719967c3bf0f7b0dbab9c7021216a4bc",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "Hubbell-Wiring GFTR20W Commercial Grade Tamper-Resistant GFCI Receptacle With LED Indicator 20-Amp 120-Volt AC NEMA 5-20R White",
+    "brand": "hubbell",
+    "manufacturerPart": "GFTR20W",
+    "upc": "883778114755",
+    "cat": "eletrica",
+    "subcategory": "devices",
+    "family": "devices",
+    "unit": "un",
+    "specs": "Amperage Rating: 20 A; Voltage Rating: 120 Volt AC; Color: White; Material: Nylon; Conductor Size: 14-10 AWG Solid/Stranded Copper; Number Of Poles: 2",
+    "technicalAttributes": {
+      "Amperage Rating": "20 A",
+      "Voltage Rating": "120 Volt AC",
+      "Color": "White",
+      "Material": "Nylon",
+      "Conductor Size": "14-10 AWG Solid/Stranded Copper",
+      "Number Of Poles": "2"
+    },
+    "guidedUses": [
+      "devices"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/hubbell-wiring-gftr20w-commercial-grade-tamper-resistant-gfci-receptacle-with-led-indicator-20-amp-120-volt-ac-nema-5-20r-white-59556/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/766314/LG59556.jpg?v=639258172213900000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "59556",
+        "url": "https://www.ew-ne.com/hubbell-wiring-gftr20w-commercial-grade-tamper-resistant-gfci-receptacle-with-led-indicator-20-amp-120-volt-ac-nema-5-20r-white-59556/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "c2fe6044d125ec695c34ce1968b51d5b16e8c3d8de41b8a3e45e35d4f57bfdaa",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "ADORNE AGFTR2202-M4 TAMPER  RESISTA",
+    "brand": "adorne",
+    "manufacturerPart": "AGFTR2202M4",
+    "upc": "785007052633",
+    "cat": "eletrica",
+    "subcategory": "devices",
+    "family": "devices",
+    "unit": "un",
+    "specs": "Amperage Rating: 20 A; Voltage Rating: 125 V; Color: Magnesium; Material: Polycarbonate; Number Of Poles: 2; Wire Size: 14 - 12; Length: 1.82 inch",
+    "technicalAttributes": {
+      "Amperage Rating": "20 A",
+      "Voltage Rating": "125 V",
+      "Color": "Magnesium",
+      "Material": "Polycarbonate",
+      "Number Of Poles": "2",
+      "Wire Size": "14 - 12",
+      "Length": "1.82 inch"
+    },
+    "guidedUses": [
+      "devices"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/adorne-agftr2202-m4-tamper-resistant-gfci-outlet-20-amp-125-volt-magnesium-426821/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/721713/12537_AGFTR2202M4.jpg?v=639228888895000000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "426821",
+        "url": "https://www.ew-ne.com/adorne-agftr2202-m4-tamper-resistant-gfci-outlet-20-amp-125-volt-magnesium-426821/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "dfa22676dd5c94213285a9a2586e903c707fedae282c17fa541c55d2c10f1669",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "Lutron SCR-15-GFTR-ES Commercial/Residential Grade Tamper-Resistant GFCI Receptacle 15-Amp 125-Volt NEMA 5-15R Eggshell Claro&reg; Satin Colors&reg;",
+    "brand": "lutron",
+    "manufacturerPart": "SCR-15-GFTR-ES",
+    "upc": "027557630191",
+    "cat": "eletrica",
+    "subcategory": "devices",
+    "family": "devices",
+    "unit": "un",
+    "specs": "Amperage Rating: 15 A; Voltage Rating: 125 Volt; Color: Eggshell; Material: Plastic; Number Of Poles: 2",
+    "technicalAttributes": {
+      "Amperage Rating": "15 A",
+      "Voltage Rating": "125 Volt",
+      "Color": "Eggshell",
+      "Material": "Plastic",
+      "Number Of Poles": "2"
+    },
+    "guidedUses": [
+      "devices"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/lutron-scr-15-gftr-es-commercial-residential-grade-tamper-resistant-gfci-receptacle-15-amp-125-volt-nema-5-15r-eggshell-claro-satin-colors-53851/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/749387/PN53851.jpg?v=639258884682330000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "53851",
+        "url": "https://www.ew-ne.com/lutron-scr-15-gftr-es-commercial-residential-grade-tamper-resistant-gfci-receptacle-15-amp-125-volt-nema-5-15r-eggshell-claro-satin-colors-53851/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "fab694d716a15189e734c3c1b8d83da4591a11b1189be76437ec2c146c0340a4",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "WAGO 222-412/K194-4045 51249533 2",
+    "brand": "wago",
+    "manufacturerPart": "222-412/K194-4045",
+    "upc": "050821346566",
+    "cat": "eletrica",
+    "subcategory": "fittings",
+    "family": "fittings",
+    "unit": "un",
+    "specs": "Amperage Rating: 32 A; Voltage Rating: 400 Volt; Color: Gray; Conductor Size: 28-12 AWG Copper; Wire Size: 12-28 AWG",
+    "technicalAttributes": {
+      "Amperage Rating": "32 A",
+      "Voltage Rating": "400 Volt",
+      "Color": "Gray",
+      "Conductor Size": "28-12 AWG Copper",
+      "Wire Size": "12-28 AWG"
+    },
+    "guidedUses": [
+      "devices",
+      "recessed"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/wago-222-412-compact-splicing-connector-12-28-awg-94821/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1648761/P94821.jpg?v=639266279091130000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "94821",
+        "url": "https://www.ew-ne.com/wago-222-412-compact-splicing-connector-12-28-awg-94821/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "58f194431ea3c85acb51841aa2b10f8d88bfa8edb99dca8e9194ddba46e08e5c",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "NONMETALLIC SHEATHED CABLE SOU 55054201 12 4 NM B CU WR W G",
+    "brand": "coleman",
+    "manufacturerPart": "55054201",
+    "upc": "811548",
+    "cat": "eletrica",
+    "subcategory": "wiring",
+    "family": "wiring",
+    "unit": "un",
+    "specs": "Color: White; Wire Size: 12/4",
+    "technicalAttributes": {
+      "Color": "White",
+      "Wire Size": "12/4"
+    },
+    "guidedUses": [
+      "circuit"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/nonmetallic-sheathed-cable-sou-55054201-12-4-nm-b-cu-wr-w-g-811548/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/814396/SOUWIRE00123_WB_1_PE_001.jpg?v=639258819842600000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "811548",
+        "url": "https://www.ew-ne.com/nonmetallic-sheathed-cable-sou-55054201-12-4-nm-b-cu-wr-w-g-811548/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "4493dede5334a258e03e297cbefbf34ae0d62c3f09f9e07c38fd64f19dec1187",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "Solid Copper Type NM-B Non-Metallic Sheathed Cable With Grounding 12/2 1000-ft Reel Yellow",
+    "brand": "",
+    "manufacturerPart": "",
+    "upc": "980100263065",
+    "cat": "eletrica",
+    "subcategory": "wiring",
+    "family": "wiring",
+    "unit": "ft",
+    "specs": "Voltage Rating: 600 Volt; Color: Yellow; Wire Size: 12/2; Length: 1000 ft",
+    "technicalAttributes": {
+      "Voltage Rating": "600 Volt",
+      "Color": "Yellow",
+      "Wire Size": "12/2",
+      "Length": "1000 ft"
+    },
+    "guidedUses": [
+      "circuit"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/solid-copper-type-nm-b-non-metallic-sheathed-cable-with-grounding-12-2-1000-ft-reel-yellow-10416/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1656223/P41211.jpg?v=639267860124700000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "10416",
+        "url": "https://www.ew-ne.com/solid-copper-type-nm-b-non-metallic-sheathed-cable-with-grounding-12-2-1000-ft-reel-yellow-10416/p",
+        "unit": "ft",
+        "verifiedAt": "2026-10-08",
+        "catalogReference": "B04502"
+      }
+    ],
+    "photoSha256": "2163ee14dd877f33da917a1170063458fc1068bc39c5dabd0b9c07e7c970ac0e",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "Solid Copper Type NM-B Non-Metallic Sheathed Cable With Grounding 12/2 100-ft Box Yellow",
+    "brand": "",
+    "manufacturerPart": "",
+    "upc": "980100263096",
+    "cat": "eletrica",
+    "subcategory": "wiring",
+    "family": "wiring",
+    "unit": "ft",
+    "specs": "Voltage Rating: 600 Volt; Color: Yellow; Wire Size: 12/2; Length: 100 ft",
+    "technicalAttributes": {
+      "Voltage Rating": "600 Volt",
+      "Color": "Yellow",
+      "Wire Size": "12/2",
+      "Length": "100 ft"
+    },
+    "guidedUses": [
+      "circuit"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/solid-copper-type-nm-b-non-metallic-sheathed-cable-with-grounding-12-2-100-ft-box-yellow-62866/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1658718/P41211.jpg?v=639268670354070000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "62866",
+        "url": "https://www.ew-ne.com/solid-copper-type-nm-b-non-metallic-sheathed-cable-with-grounding-12-2-100-ft-box-yellow-62866/p",
+        "unit": "ft",
+        "verifiedAt": "2026-10-08",
+        "catalogReference": "B04505"
+      }
+    ],
+    "photoSha256": "2163ee14dd877f33da917a1170063458fc1068bc39c5dabd0b9c07e7c970ac0e",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "Solid Copper Type NM-B Non-Metallic Sheathed Cable With Grounding 12/2 50-ft Box Yellow",
+    "brand": "",
+    "manufacturerPart": "",
+    "upc": "980100263089",
+    "cat": "eletrica",
+    "subcategory": "wiring",
+    "family": "wiring",
+    "unit": "ft",
+    "specs": "Voltage Rating: 600 Volt; Color: Yellow; Wire Size: 12/2; Length: 50 ft",
+    "technicalAttributes": {
+      "Voltage Rating": "600 Volt",
+      "Color": "Yellow",
+      "Wire Size": "12/2",
+      "Length": "50 ft"
+    },
+    "guidedUses": [
+      "circuit"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/solid-copper-type-nm-b-non-metallic-sheathed-cable-with-grounding-12-2-50-ft-box-yellow-62857/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1655126/P41211.jpg?v=639267650226970000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "62857",
+        "url": "https://www.ew-ne.com/solid-copper-type-nm-b-non-metallic-sheathed-cable-with-grounding-12-2-50-ft-box-yellow-62857/p",
+        "unit": "ft",
+        "verifiedAt": "2026-10-08",
+        "catalogReference": "B04504"
+      }
+    ],
+    "photoSha256": "2163ee14dd877f33da917a1170063458fc1068bc39c5dabd0b9c07e7c970ac0e",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "NM-B - 12/2 Solid Copper Yellow",
+    "brand": "",
+    "manufacturerPart": "",
+    "upc": "980100163051",
+    "cat": "eletrica",
+    "family": "wiring",
+    "subcategory": "wiring",
+    "unit": "ft",
+    "packQuantity": 250,
+    "packUnit": "ft",
+    "specs": "Purchase length in feet; reference pack 250 ft. Confirm package before ordering.",
+    "guidedUses": [
+      "circuit",
+      "recessed"
+    ],
+    "recordType": "product",
+    "source": "Platt Electric Supply",
+    "sourceUrl": "https://www.platt.com/p/0062408/nm-b-12-2-solid-copper-yellow/980100163051/122nmbgx250c",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://rexel-cdn.com/products/122nmbgx250c.jpg?i=2A9A8D43-47A1-4814-9C8D-676920AE9223&f=420",
+    "suppliers": [
+      {
+        "name": "Platt Electric Supply",
+        "code": "0062408",
+        "catalogReference": "122NMBGX250C",
+        "url": "https://www.platt.com/p/0062408/nm-b-12-2-solid-copper-yellow/980100163051/122nmbgx250c",
+        "unit": "ft",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "4cd5e097ee813c18584bb80fd77718d92635f533634bb0042869ca2d2fc9db24",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "12/2 w/Ground, MC, Aluminum Armor, Solid",
+    "brand": "",
+    "manufacturerPart": "",
+    "upc": "980100347024",
+    "cat": "eletrica",
+    "family": "wiring",
+    "subcategory": "wiring",
+    "unit": "ft",
+    "packQuantity": 250,
+    "packUnit": "ft",
+    "specs": "Purchase length in feet; reference pack 250 ft. Confirm package before ordering.",
+    "guidedUses": [
+      "circuit",
+      "recessed"
+    ],
+    "recordType": "product",
+    "source": "Platt Electric Supply",
+    "sourceUrl": "https://www.platt.com/p/0013179/12-2-w-ground-mc-aluminum-armor-solid/980100347024/122mcagx250",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://rexel-cdn.com/products/image.jpg?i=B967CA43-5B5A-4176-916B-C511347FF57C&f=420",
+    "suppliers": [
+      {
+        "name": "Platt Electric Supply",
+        "code": "0013179",
+        "catalogReference": "122MCAGX250",
+        "url": "https://www.platt.com/p/0013179/12-2-w-ground-mc-aluminum-armor-solid/980100347024/122mcagx250",
+        "unit": "ft",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "5675af38a0bd862fbfc8eaadabc416c4f0a7a8d2ec1731b07bf568d31247e0eb",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  },
+  {
+    "name": "14/2 NM-B Solid Copper White 500'",
+    "brand": "",
+    "manufacturerPart": "",
+    "upc": "980100162993",
+    "cat": "eletrica",
+    "family": "wiring",
+    "subcategory": "wiring",
+    "unit": "ft",
+    "packQuantity": 500,
+    "packUnit": "ft",
+    "specs": "Purchase length in feet; reference pack 500 ft. Confirm package before ordering.",
+    "guidedUses": [
+      "circuit",
+      "recessed"
+    ],
+    "recordType": "product",
+    "source": "Platt Electric Supply",
+    "sourceUrl": "https://www.platt.com/p/0172550/14-2-nm-b-solid-copper-white-500/980100162993/142nmbgx500c",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://rexel-cdn.com/products/image.jpg?i=181D8134-91D3-4F02-9791-43D3C3133132&f=420",
+    "suppliers": [
+      {
+        "name": "Platt Electric Supply",
+        "code": "0172550",
+        "catalogReference": "142NMBGX500C",
+        "url": "https://www.platt.com/p/0172550/14-2-nm-b-solid-copper-white-500/980100162993/142nmbgx500c",
+        "unit": "ft",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "5f3d2f32a8fdbb5334daef4a0514252e19fa3478cfa93def9b429c7cc67e2ae9",
+    "reviewNote": "Exact catalog reference and public product photo reviewed; confirm compatibility and order unit for the job."
+  }
+]
