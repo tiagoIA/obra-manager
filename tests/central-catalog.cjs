@@ -20,5 +20,11 @@ const {chromium}=require('playwright');const fs=require('fs');const assert=requi
  await page.getByRole('button',{name:'By room',exact:true}).click();assert.equal(await page.locator('.cc-print h3').count(),3);await page.getByRole('button',{name:'Store list',exact:true}).click();
  await page.getByLabel('Fornecedor da compra',{exact:true}).selectOption('My custom store');assert.match(await page.locator('.cc-print').innerText(),/CUSTOM-2/);assert.doesNotMatch(await page.locator('.cc-print').innerText(),/Platt Electric Supply:.*18280/);
  await page.evaluate(()=>generateShopPDF('list','store','Platt Electric Supply'));await page.setViewportSize({width:1000,height:850});await page.emulateMedia({media:'print'});assert.equal(await page.locator('#cc-print-controls').isVisible(),false);await page.pdf({path:'central-shopping-review.pdf',format:'Letter',printBackground:true});await page.screenshot({path:'central-pdf.png',fullPage:true});
- assert.deepEqual(errors,[]);await browser.close();console.log('PASS central catalog: supplier metadata; role guards; duplicate IDs; live photos/codes; quantity/unit/note consolidation; room/status preservation; safe markup; mobile; print PDF');
+ // Exercise the real app's task and quick-shopping pickers using supplier/model/internal codes.
+ const source=fs.readFileSync('public/index.html','utf8');const extract=name=>{const start=source.indexOf('window.'+name+'=');return source.slice(start,source.indexOf('\n};',start)+3);};
+ await page.addScriptTag({content:'const materials=Object.fromEntries(testMats.map(m=>[m.id,m]));const x=esc;'+extract('filterTaskMaterials')+extract('filterShopMaterials')});
+ await page.evaluate(()=>{for(const id of ['mat-dropdown','shop-mat-drop']){const d=document.createElement('div');d.id=id;document.body.append(d);}filterTaskMaterials('T5320-W');filterShopMaterials('CUSTOM-2','shop-mat-drop','hidden');});
+ assert.equal(await page.locator('#mat-dropdown .mat-drop-item').count(),1);assert.equal(await page.locator('#shop-mat-drop .shop-mat-item').count(),1);
+ await page.evaluate(()=>filterShopMaterials('MAT-A1','shop-mat-drop','hidden'));assert.equal(await page.locator('#shop-mat-drop .shop-mat-item').count(),1);
+ assert.deepEqual(errors,[]);await browser.close();console.log('PASS central catalog: supplier metadata; role guards; duplicate IDs; live photos/codes; quantity/unit/note consolidation; room/status preservation; safe markup; mobile; print PDF; real task/quick-shopping code search');
 })().catch(e=>{console.error(e);process.exit(1)});
