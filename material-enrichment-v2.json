@@ -1,0 +1,312 @@
+[
+  {
+    "id": "5mVHA0DMbuJOj6jSntzc",
+    "expectedName": "WarriorWrap 7mil Premium Elec Tape Blue",
+    "expectedSku": "1049108",
+    "fields": {
+      "brand": "NSI Industries",
+      "manufacturerPart": "WW-732-BL",
+      "model": "WW-732-BL",
+      "upc": "662381367228",
+      "recordType": "product",
+      "specs": "Vinyl electrical tape; 7 mil; 0.75 in; 66 ft; Blue; 600 V."
+    },
+    "manufacturerSourceUrl": "https://nsiindustries.com/product/professional-plus-blue-vinyl-electrical-tape-7mil-66ft-long/",
+    "basis": "Modelo, série, cor e comprimento conferidos na ficha oficial NSI. Código e imagem GCE preservados."
+  },
+  {
+    "id": "SCTvn3vdEYxIZ147Dajp",
+    "expectedName": "WarriorWrap 7mil Premium Elec Tape Brown",
+    "expectedSku": "1049103",
+    "fields": {
+      "brand": "NSI Industries",
+      "manufacturerPart": "WW-732-BN",
+      "model": "WW-732-BN",
+      "upc": "662381367174",
+      "recordType": "product",
+      "specs": "Vinyl electrical tape; 7 mil; 0.75 in; 66 ft; Brown; 600 V."
+    },
+    "manufacturerSourceUrl": "https://nsiindustries.com/product/professional-plus-brown-vinyl-electrical-tape-7mil-66ft-long/",
+    "basis": "Modelo, série, cor e comprimento conferidos na ficha oficial NSI. Código e imagem GCE preservados."
+  },
+  {
+    "id": "e7x9xdRnVdyBfLyXTH4f",
+    "expectedName": "WarriorWrap 7mil Premium Elec Tape Green",
+    "expectedSku": "1049107",
+    "fields": {
+      "brand": "NSI Industries",
+      "manufacturerPart": "WW-732-GN",
+      "model": "WW-732-GN",
+      "upc": "662381367211",
+      "recordType": "product",
+      "specs": "Vinyl electrical tape; 7 mil; 0.75 in; 66 ft; Green; 600 V."
+    },
+    "manufacturerSourceUrl": "https://nsiindustries.com/product/professional-plus-green-vinyl-electrical-tape-7mil-66ft-long/",
+    "basis": "Modelo, série, cor e comprimento conferidos na ficha oficial NSI. Código e imagem GCE preservados."
+  },
+  {
+    "id": "MEOsoeUxzrHBhGmPyVhn",
+    "expectedName": "WarriorWrap 7mil Premium Elec Tape Grey",
+    "expectedSku": "1049110",
+    "fields": {
+      "brand": "NSI Industries",
+      "manufacturerPart": "WW-732-GY",
+      "model": "WW-732-GY",
+      "upc": "662381367242",
+      "recordType": "product",
+      "specs": "Vinyl electrical tape; 7 mil; 0.75 in; 66 ft; Gray; 600 V."
+    },
+    "manufacturerSourceUrl": "https://nsiindustries.com/product/professional-plus-grey-vinyl-electrical-tape-7mil-66ft-long/",
+    "basis": "Modelo, série, cor e comprimento conferidos na ficha oficial NSI. Código e imagem GCE preservados."
+  },
+  {
+    "id": "M0GsIVZUYsHSUz8jWeEU",
+    "expectedName": "WarriorWrap 7mil Prem. Elec Tape Orange",
+    "expectedSku": "1049105",
+    "fields": {
+      "brand": "NSI Industries",
+      "manufacturerPart": "WW-732-OR",
+      "model": "WW-732-OR",
+      "upc": "662381367198",
+      "recordType": "product",
+      "specs": "Vinyl electrical tape; 7 mil; 0.75 in; 66 ft; Orange; 600 V."
+    },
+    "manufacturerSourceUrl": "https://nsiindustries.com/product/professional-plus-orange-vinyl-electrical-tape-7mil-66ft-long/",
+    "basis": "Modelo, série, cor e comprimento conferidos na ficha oficial NSI. Código e imagem GCE preservados."
+  },
+  {
+    "id": "fJnIo5uttl1l2FSiwJzu",
+    "expectedName": "WarriorWrap 7mil Premium Elec Tape Red",
+    "expectedSku": "1049104",
+    "fields": {
+      "brand": "NSI Industries",
+      "manufacturerPart": "WW-732-RD",
+      "model": "WW-732-RD",
+      "upc": "662381367181",
+      "recordType": "product",
+      "specs": "Vinyl electrical tape; 7 mil; 0.75 in; 66 ft; Red; 600 V."
+    },
+    "manufacturerSourceUrl": "https://nsiindustries.com/product/professional-plus-red-vinyl-electrical-tape-7mil-66ft-long/",
+    "basis": "Modelo, série, cor e comprimento conferidos na ficha oficial NSI. Código e imagem GCE preservados."
+  },
+  {
+    "id": "8N7dtshyObZpMmOcfru3",
+    "expectedName": "WarriorWrap 7mil Prem. Elec Tape Purple",
+    "expectedSku": "1049109",
+    "fields": {
+      "brand": "NSI Industries",
+      "manufacturerPart": "WW-732-VT",
+      "model": "WW-732-VT",
+      "upc": "662381367235",
+      "recordType": "product",
+      "specs": "Vinyl electrical tape; 7 mil; 0.75 in; 66 ft; Violet; 600 V."
+    },
+    "manufacturerSourceUrl": "https://nsiindustries.com/product/professional-plus-violet-vinyl-electrical-tape-7mil-66ft-long/",
+    "basis": "Modelo, série, cor e comprimento conferidos na ficha oficial NSI. Código e imagem GCE preservados."
+  },
+  {
+    "id": "6oeHGpEDUCeSduU0PgUA",
+    "expectedName": "WarriorWrap 7mil Premium Elec Tape White",
+    "expectedSku": "1049112",
+    "fields": {
+      "brand": "NSI Industries",
+      "manufacturerPart": "WW-732-WT",
+      "model": "WW-732-WT",
+      "upc": "662381367259",
+      "recordType": "product",
+      "specs": "Vinyl electrical tape; 7 mil; 0.75 in; 66 ft; White; 600 V."
+    },
+    "manufacturerSourceUrl": "https://nsiindustries.com/product/professional-plus-white-vinyl-electrical-tape-7mil-66ft-long/",
+    "basis": "Modelo, série, cor e comprimento conferidos na ficha oficial NSI. Código e imagem GCE preservados."
+  },
+  {
+    "id": "mzhlD070DcQ2sgyeYGCa",
+    "expectedName": "WarriorWrap 7mil Prem. Elec Tape Yellow",
+    "expectedSku": "1049106",
+    "fields": {
+      "brand": "NSI Industries",
+      "manufacturerPart": "WW-732-YL",
+      "model": "WW-732-YL",
+      "upc": "662381367204",
+      "recordType": "product",
+      "specs": "Vinyl electrical tape; 7 mil; 0.75 in; 66 ft; Yellow; 600 V."
+    },
+    "manufacturerSourceUrl": "https://nsiindustries.com/product/professional-plus-yellow-vinyl-electrical-tape-7mil-66ft-long/",
+    "basis": "Modelo, série, cor e comprimento conferidos na ficha oficial NSI. Código e imagem GCE preservados."
+  },
+  {
+    "id": "QhKZHjNd4iMi11dAxkTa",
+    "expectedName": "WarriorWrap 7mil General Elec Tape Blue",
+    "expectedSku": "1049098",
+    "fields": {
+      "brand": "NSI Industries",
+      "manufacturerPart": "WW-716-BL",
+      "model": "WW-716-BL",
+      "upc": "662381367426",
+      "recordType": "product",
+      "specs": "Vinyl electrical tape; 7 mil; 0.75 in; 60 ft; Blue; 600 V."
+    },
+    "manufacturerSourceUrl": "https://nsiindustries.com/product/general-use-blue-vinyl-electrical-tape-7mil-60ft-long/",
+    "basis": "Modelo, série, cor e comprimento conferidos na ficha oficial NSI. Código e imagem GCE preservados."
+  },
+  {
+    "id": "c3JKTvY55UgybL8wONyK",
+    "expectedName": "WarriorWrap 7mil General Elec Tape Brown",
+    "expectedSku": "1049096",
+    "fields": {
+      "brand": "NSI Industries",
+      "manufacturerPart": "WW-716-BN",
+      "model": "WW-716-BN",
+      "upc": "662381367372",
+      "recordType": "product",
+      "specs": "Vinyl electrical tape; 7 mil; 0.75 in; 60 ft; Brown; 600 V."
+    },
+    "manufacturerSourceUrl": "https://nsiindustries.com/product/general-use-brown-vinyl-electrical-tape-7mil-60ft-long/",
+    "basis": "Modelo, série, cor e comprimento conferidos na ficha oficial NSI. Código e imagem GCE preservados."
+  },
+  {
+    "id": "yJA2MDdq1vM1evRP7KWo",
+    "expectedName": "WarriorWrap 7mil General Elec Tape Green",
+    "expectedSku": "1030075",
+    "fields": {
+      "brand": "NSI Industries",
+      "manufacturerPart": "WW-716-GN",
+      "model": "WW-716-GN",
+      "upc": "662381367419",
+      "recordType": "product",
+      "specs": "Vinyl electrical tape; 7 mil; 0.75 in; 60 ft; Green; 600 V."
+    },
+    "manufacturerSourceUrl": "https://nsiindustries.com/product/general-use-green-vinyl-electrical-tape-7mil-60ft-long/",
+    "basis": "Modelo, série, cor e comprimento conferidos na ficha oficial NSI. Código e imagem GCE preservados."
+  },
+  {
+    "id": "ozmDqb3u4ikJB4scJgsD",
+    "expectedName": "WarriorWrap 7mil General Elec Tape Grey",
+    "expectedSku": "1036160",
+    "fields": {
+      "brand": "NSI Industries",
+      "manufacturerPart": "WW-716-GY",
+      "model": "WW-716-GY",
+      "upc": "662381367440",
+      "recordType": "product",
+      "specs": "Vinyl electrical tape; 7 mil; 0.75 in; 60 ft; Gray; 600 V."
+    },
+    "manufacturerSourceUrl": "https://nsiindustries.com/product/general-use-grey-vinyl-electrical-tape-7mil-60ft-long/",
+    "basis": "Modelo, série, cor e comprimento conferidos na ficha oficial NSI. Código e imagem GCE preservados."
+  },
+  {
+    "id": "ZnvBe7IGNwD1W0MEGsTj",
+    "expectedName": "WarriorWrap 7mil Gen. Elec Tape Orange",
+    "expectedSku": "1030096",
+    "fields": {
+      "brand": "NSI Industries",
+      "manufacturerPart": "WW-716-OR",
+      "model": "WW-716-OR",
+      "upc": "662381367396",
+      "recordType": "product",
+      "specs": "Vinyl electrical tape; 7 mil; 0.75 in; 60 ft; Orange; 600 V."
+    },
+    "manufacturerSourceUrl": "https://nsiindustries.com/product/general-use-orange-vinyl-electrical-tape-7mil-60ft-long/",
+    "basis": "Modelo, série, cor e comprimento conferidos na ficha oficial NSI. Código e imagem GCE preservados."
+  },
+  {
+    "id": "f3LgFsIbGIjUByUMush0",
+    "expectedName": "WarriorWrap 7mil General Elec Tape Red",
+    "expectedSku": "1033236",
+    "fields": {
+      "brand": "NSI Industries",
+      "manufacturerPart": "WW-716-RD",
+      "model": "WW-716-RD",
+      "upc": "662381367389",
+      "recordType": "product",
+      "specs": "Vinyl electrical tape; 7 mil; 0.75 in; 60 ft; Red; 600 V."
+    },
+    "manufacturerSourceUrl": "https://nsiindustries.com/product/general-use-red-vinyl-electrical-tape-7mil-60ft-long/",
+    "basis": "Modelo, série, cor e comprimento conferidos na ficha oficial NSI. Código e imagem GCE preservados."
+  },
+  {
+    "id": "Vy4RTCkpvpY46vJEdWaC",
+    "expectedName": "WarriorWrap 7mil Gen. Elec Tape Purple",
+    "expectedSku": "1049099",
+    "fields": {
+      "brand": "NSI Industries",
+      "manufacturerPart": "WW-716-VT",
+      "model": "WW-716-VT",
+      "upc": "662381367433",
+      "recordType": "product",
+      "specs": "Vinyl electrical tape; 7 mil; 0.75 in; 60 ft; Violet; 600 V."
+    },
+    "manufacturerSourceUrl": "https://nsiindustries.com/product/general-use-violet-vinyl-electrical-tape-7mil-60ft-long/",
+    "basis": "Modelo, série, cor e comprimento conferidos na ficha oficial NSI. Código e imagem GCE preservados."
+  },
+  {
+    "id": "TnVkwtSNwKET7LDsioBV",
+    "expectedName": "WarriorWrap 7mil General Elec Tape White",
+    "expectedSku": "1028022",
+    "fields": {
+      "brand": "NSI Industries",
+      "manufacturerPart": "WW-716-WT",
+      "model": "WW-716-WT",
+      "upc": "662381367457",
+      "recordType": "product",
+      "specs": "Vinyl electrical tape; 7 mil; 0.75 in; 60 ft; White; 600 V."
+    },
+    "manufacturerSourceUrl": "https://nsiindustries.com/product/general-use-white-vinyl-electrical-tape-7mil-60ft-long/",
+    "basis": "Modelo, série, cor e comprimento conferidos na ficha oficial NSI. Código e imagem GCE preservados."
+  },
+  {
+    "id": "p1RVMHWzclws4Gl6Hi43",
+    "expectedName": "WarriorWrap 7mil Gen. Elec Tape Yellow",
+    "expectedSku": "1049097",
+    "fields": {
+      "brand": "NSI Industries",
+      "manufacturerPart": "WW-716-YL",
+      "model": "WW-716-YL",
+      "upc": "662381367402",
+      "recordType": "product",
+      "specs": "Vinyl electrical tape; 7 mil; 0.75 in; 60 ft; Yellow; 600 V."
+    },
+    "manufacturerSourceUrl": "https://nsiindustries.com/product/general-use-yellow-vinyl-electrical-tape-7mil-60ft-long/",
+    "basis": "Modelo, série, cor e comprimento conferidos na ficha oficial NSI. Código e imagem GCE preservados."
+  },
+  {
+    "id": "vWCTLHXhVRpg2kJ6Xzsk",
+    "expectedName": "AUS AB300HS 3-IN COND HOLE SEAL",
+    "expectedSku": "MAT-009",
+    "fields": {
+      "brand": "Austin Electrical Enclosures",
+      "manufacturerPart": "300HS",
+      "model": "300HS",
+      "recordType": "product",
+      "sourceUrl": "https://austinenclosures.com/products/view/Austin_Oiltight_Hole_Seals/300HS/",
+      "specs": "Oiltight hole seal; conduit opening 3 in; seal diameter 4 in; gray powder-coated steel; neoprene gasket."
+    },
+    "basis": "Referência AB300HS corresponde ao catálogo Austin 300HS; medida conferida no catálogo oficial. Sem UPC confirmado."
+  },
+  {
+    "id": "CgJJWtIw77jEO7AOPqVH",
+    "expectedName": "AUS AB400HS 4-IN COND HOLE SEAL",
+    "expectedSku": "MAT-010",
+    "fields": {
+      "brand": "Austin Electrical Enclosures",
+      "manufacturerPart": "400HS",
+      "model": "400HS",
+      "recordType": "product",
+      "sourceUrl": "https://austinenclosures.com/products/view/Austin_Oiltight_Hole_Seals/400HS/",
+      "specs": "Oiltight hole seal; conduit opening 4 in; seal diameter 5.125 in; gray powder-coated steel; neoprene gasket."
+    },
+    "basis": "Referência AB400HS corresponde ao catálogo Austin 400HS; medida conferida no catálogo oficial. Sem UPC confirmado."
+  },
+  {
+    "id": "pySLdPcCNwLVQFoFQHmI",
+    "expectedName": "ITE QSPD2A035B LV PLUG ON SURGE DEVICE 35kA",
+    "expectedSku": "MAT-008",
+    "fields": {},
+    "manufacturerSourceUrl": "https://media.cityelectricsupply.com/media/siemensindustry/qspd2a035b/documents/siemensin_datasheet_stepid-1194031.pdf",
+    "photoSourceUrl": "https://media.cityelectricsupply.com/media/siemensindustry/qspd2a035b/documents/siemensin_datasheet_stepid-1194031.pdf",
+    "photoDocumentSha256": "1fdb354f89f09d7b26663544124082a358069594ccccb40d49432289e9d67ae1",
+    "photoImageXref": 641,
+    "photoSha256": "896648ae089c00b992b2f6af67fe6078f3a72a693fd25f5b8051de701824cfc8",
+    "basis": "Imagem original extraída da ficha Siemens BoltShield QSPD Base. Rótulo QSPD2A035B conferido visualmente; documento e imagem conferidos por SHA-256."
+  }
+]
