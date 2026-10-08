@@ -13,22 +13,18 @@ jobs:
       - run: pip install requests pillow beautifulsoup4
       - run: |
           python - <<'PY'
-          import requests,json,io,hashlib,base64
-          from PIL import Image,ImageDraw
+          import requests,io,hashlib,base64,json
+          from PIL import Image
           from bs4 import BeautifulSoup
-          urls=['https://www.platt.com/p/0051342/mersen/fuse-tri-onic-600vac-300vdc-15a-time-delay-class-rk5-trs-series-/782001748821/trs15r','https://www.platt.com/p/1741121/siemens/surge-protection-device-spd-low-voltage-plug-in-2p-q-frame-120-240vac/804766954863/qspd2a035b']
+          urls=['https://static.grainger.com/rp/s/is/image/Grainger/4YZG7_AS01?%24adapimg%24=&hei=536&wid=536']
+          try:
+           r=requests.get('https://www.lowes.com/pd/Siemens-BoltShield-QSPD-35-kA-Indoor-Surge-Protective-Device/5014559979',timeout=40);r.raise_for_status();soup=BeautifulSoup(r.text,'html.parser')
+           urls += [x.get('src') for x in soup.select('img') if 'QSPD2A035B' in (x.get('alt') or '') and 'mobileimages.lowes.com' in (x.get('src') or '')][:1]
+           print('SOURCE_IMAGES',len(urls))
+          except Exception as e:print('SOURCE_ERROR',type(e).__name__)
           for u in urls:
            try:
-            r=requests.get(u,timeout=40);r.raise_for_status();soup=BeautifulSoup(r.text,'html.parser');products=[]
-            for sc in soup.select('script[type="application/ld+json"]'):
-             d=json.loads(sc.get_text());d=d if isinstance(d,list) else [d]
-             products.extend(x for x in d if isinstance(x,dict) and x.get('@type')=='Product')
-            for p in products:
-             print('EXACT_SCHEMA',json.dumps(p))
-             image=p.get('image');image=image[0] if isinstance(image,list) else image;assert image
-             r=requests.get(image,timeout=40);r.raise_for_status();im=Image.open(io.BytesIO(r.content));im.load();im=im.convert('RGB');im.thumbnail((1000,1000));b=io.BytesIO();im.save(b,'JPEG',quality=86)
-             print('EXACT_PHOTO_META',json.dumps({'url':image,'sourceUrl':u,'sha':hashlib.sha256(b.getvalue()).hexdigest(),'upc':p.get('gtin12')}))
-             print('EXACT_PHOTO',base64.b64encode(b.getvalue()).decode())
-           except Exception as e:print('SOURCE_ERROR',u,type(e).__name__,str(e)[:200])
+            r=requests.get(u,timeout=40);r.raise_for_status();im=Image.open(io.BytesIO(r.content));im.load();im=im.convert('RGB');im.thumbnail((1000,1000));b=io.BytesIO();im.save(b,'JPEG',quality=86);print('EXACT_PHOTO_META',json.dumps({'url':u,'sha':hashlib.sha256(b.getvalue()).hexdigest()}));print('EXACT_PHOTO',base64.b64encode(b.getvalue()).decode())
+           except Exception as e:print('PHOTO_ERROR',type(e).__name__)
           
           PY
