@@ -1,0 +1,23 @@
+name: Find remaining product images
+on:
+  push:
+    branches: [review/materials-2026-10-08]
+    paths: [.github/workflows/resolve_pilot_sources.yml]
+permissions:
+  contents: read
+jobs:
+  find:
+    runs-on: ubuntu-latest
+    steps:
+      - run: pip install requests beautifulsoup4
+      - run: |
+          python - <<'PY'
+          import requests
+          from bs4 import BeautifulSoup
+          urls=["https://www.hardwareworld.com/pw3apiv/Armorlite-MC-Cable-12-2-250-Ft","https://cottinshardware.com/p/southwire-armored-cable-electrical-wire-032886347146","https://www.partssupercenter.com/Product/274937-trs15r"]
+          for u in urls:
+           r=requests.get(u,timeout=25);s=BeautifulSoup(r.text,"html.parser")
+           print("PAGE",u,r.status_code)
+           print("META",[(m.get("property"),m.get("content")) for m in s.select('meta[property="og:image"]')])
+           print("IMAGES",[(i.get("src"),i.get("alt")) for i in s.select("img")][:30])
+          PY
