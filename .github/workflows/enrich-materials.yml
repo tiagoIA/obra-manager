@@ -1,4 +1,4 @@
-name: Collect existing material references
+name: Review exact existing product photos
 on:
   push:
     branches: [feature/lista-guiada-v1]
@@ -8,15 +8,27 @@ permissions:
 jobs:
   collect:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 6
     steps:
-      - run: pip install requests pillow
-      - name: Match exact existing models in public distributor feed
-        run: |
+      - run: pip install requests pillow beautifulsoup4
+      - run: |
           python - <<'PY'
-          import requests,io,hashlib,base64,json
-          from PIL import Image
-          u='https://www.mersen.com/sites/default/files/styles/article/public/medias/PIM/images/PHP-TRS15R-Mersen-TIMG.jpg.webp?itok=9x6l2tvc'
-          r=requests.get(u,timeout=40);r.raise_for_status();im=Image.open(io.BytesIO(r.content));im.load();assert min(im.size)>=80;im=im.convert('RGB');im.thumbnail((1000,1000));b=io.BytesIO();im.save(b,'JPEG',quality=86);print('EXACT_PHOTO_SHA',hashlib.sha256(b.getvalue()).hexdigest());print('EXACT_PHOTO',base64.b64encode(b.getvalue()).decode())
+          import requests,json,io,hashlib,base64
+          from PIL import Image,ImageDraw
+          from bs4 import BeautifulSoup
+          urls=['https://www.platt.com/p/0051342/mersen/fuse-tri-onic-600vac-300vdc-15a-time-delay-class-rk5-trs-series-/782001748821/trs15r','https://www.platt.com/p/1741121/siemens/surge-protection-device-spd-low-voltage-plug-in-2p-q-frame-120-240vac/804766954863/qspd2a035b']
+          for u in urls:
+           try:
+            r=requests.get(u,timeout=40);r.raise_for_status();soup=BeautifulSoup(r.text,'html.parser');products=[]
+            for sc in soup.select('script[type="application/ld+json"]'):
+             d=json.loads(sc.get_text());d=d if isinstance(d,list) else [d]
+             products.extend(x for x in d if isinstance(x,dict) and x.get('@type')=='Product')
+            for p in products:
+             print('EXACT_SCHEMA',json.dumps(p))
+             image=p.get('image');image=image[0] if isinstance(image,list) else image;assert image
+             r=requests.get(image,timeout=40);r.raise_for_status();im=Image.open(io.BytesIO(r.content));im.load();im=im.convert('RGB');im.thumbnail((1000,1000));b=io.BytesIO();im.save(b,'JPEG',quality=86)
+             print('EXACT_PHOTO_META',json.dumps({'url':image,'sourceUrl':u,'sha':hashlib.sha256(b.getvalue()).hexdigest(),'upc':p.get('gtin12')}))
+             print('EXACT_PHOTO',base64.b64encode(b.getvalue()).decode())
+           except Exception as e:print('SOURCE_ERROR',u,type(e).__name__,str(e)[:200])
           
           PY
