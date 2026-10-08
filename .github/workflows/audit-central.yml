@@ -1,4 +1,4 @@
-name: Audit central catalog
+name: Audit remaining catalog references
 on:
   push:
     branches: [feature/lista-guiada-v1]
