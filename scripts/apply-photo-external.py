@@ -37,7 +37,7 @@ def main():
   assert old.get('active') is not False and old.get('status')!='inactive' and not old.get('isTask')
   assert not old.get('photoUrl'),'A user already added a photo; audit again'
   assert urlparse(p['photoSourceUrl']).scheme=='https'
-  assert urlparse(p['photoSourceUrl']).hostname in {'www.power-sonic.com','www.resideo.com','static.tp-link.com','prod-edam.honeywell.com','ew-ne.vteximg.com.br','www.ew-ne.com'}
+  assert urlparse(p['photoSourceUrl']).hostname in {'www.power-sonic.com','www.resideo.com','static.tp-link.com','prod-edam.honeywell.com','uselectrical.vteximg.com.br','digitalassets.resideo.com','www.ew-ne.com'}
   r=requests.get(p['photoSourceUrl'],timeout=45);r.raise_for_status();assert len(r.content)<40000000
   raw=r.content
   if p.get('photoDocumentSha256'):
@@ -45,7 +45,7 @@ def main():
    with fitz.open(stream=raw,filetype='pdf') as doc:raw=doc.extract_image(p['photoImageXref'])['image']
   im=Image.open(io.BytesIO(raw));im.load();assert min(im.size)>=80;im=im.convert('RGB');im.thumbnail((1000,1000));b=io.BytesIO();im.save(b,'JPEG',quality=86);payload=b.getvalue()
   assert hashlib.sha256(payload).hexdigest()==p['photoSha256'],'Source image changed after visual review'
-  unused=None;digest=hashlib.sha256(payload).hexdigest();asset='materials/'+p['id']+'/reference-'+digest[:12]+'.jpg';blob=bucket.blob(asset)
+  digest=hashlib.sha256(payload).hexdigest();asset='materials/'+p['id']+'/reference-'+digest[:12]+'.jpg';blob=bucket.blob(asset)
   if blob.exists():blob.reload();token=(blob.metadata or {}).get('firebaseStorageDownloadTokens');assert token
   else:
    token=str(uuid.uuid4());blob.metadata={'firebaseStorageDownloadTokens':token,'sourceUrl':p['sourceUrl'],'referenceType':'family'};blob.upload_from_string(payload,content_type='image/jpeg',if_generation_match=0)
