@@ -1,0 +1,30 @@
+name: Backup live hosting before guided lists
+on:
+  push:
+    branches: [feature/lista-guiada-v1]
+    paths: [.github/workflows/backup-guided.yml]
+permissions:
+  contents: read
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install google-auth google-cloud-storage requests
+      - env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: |
+          python - <<'PY'
+          import os,json,requests,hashlib
+          from google.oauth2 import service_account
+          from google.cloud import storage
+          key=json.loads(os.environ["FIREBASE_SA"]);assert key["project_id"]=="obra-manager-4ecc7"
+          creds=service_account.Credentials.from_service_account_info(key)
+          bucket=storage.Client(project=key["project_id"],credentials=creds).bucket("obra-manager-4ecc7.firebasestorage.app")
+          live=requests.get("https://obra-manager-4ecc7.web.app/index.html",timeout=30);live.raise_for_status()
+          bucket.blob("backups/guided-lists/"+os.environ["GITHUB_RUN_ID"]+"/index.html").upload_from_string(live.content,content_type="text/html",if_generation_match=0)
+          baseline=open("public/index.html","rb").read()
+          print("LIVE_HASH",hashlib.sha256(live.content).hexdigest())
+          print("BASELINE_HASH",hashlib.sha256(baseline).hexdigest())
+          print("BASELINE_MATCH",live.content.rstrip()==baseline.rstrip())
+          PY
