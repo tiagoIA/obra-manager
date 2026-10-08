@@ -1,0 +1,54 @@
+name: Audit missing material photos
+on:
+  push:
+    branches: [review/materials-2026-10-08]
+    paths: [.github/workflows/audit_material_photos.yml]
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install google-auth requests
+      - name: Read material catalog
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: |
+          python - <<'PY'
+          import os,json
+          from google.oauth2 import service_account
+          from google.auth.transport.requests import AuthorizedSession
+          key=json.loads(os.environ["FIREBASE_SA"])
+          assert key["project_id"]=="obra-manager-4ecc7"
+          s=AuthorizedSession(service_account.Credentials.from_service_account_info(key,scopes=["https://www.googleapis.com/auth/cloud-platform"]))
+          url="https://firestore.googleapis.com/v1/projects/obra-manager-4ecc7/databases/(default)/documents/materials"
+          def decode(v):
+              for k in ("stringValue","integerValue","doubleValue","booleanValue","nullValue"):
+                  if k in v:return v[k]
+              if "arrayValue" in v:return [decode(x) for x in v["arrayValue"].get("values",[])]
+              if "mapValue" in v:return {k:decode(x) for k,x in v["mapValue"].get("fields",{}).items()}
+              return None
+          docs=[]
+          token=None
+          while True:
+              params={"pageSize":1000}
+              if token:params["pageToken"]=token
+              r=s.get(url,params=params,timeout=60);r.raise_for_status();data=r.json()
+              docs+=data.get("documents",[])
+              token=data.get("nextPageToken")
+              if not token:break
+          missing=[]
+          for d in docs:
+              f={k:decode(v) for k,v in d.get("fields",{}).items()}
+              if not f.get("photoUrl"):
+                  out={"id":d["name"].split("/")[-1]}
+                  for k,v in f.items():
+                      if any(w in k.lower() for w in ("name","brand","model","sku","cat","desc","manufacturer","part","photo","image","url")):out[k]=v
+                  missing.append(out)
+          print("CATALOG_SUMMARY",json.dumps({"total":len(docs),"missing":len(missing),"with_photo":len(docs)-len(missing)}))
+          for item in missing:print("MISSING_MATERIAL",json.dumps(item,ensure_ascii=False))
+          PY
