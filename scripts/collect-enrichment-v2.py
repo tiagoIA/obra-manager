@@ -12,7 +12,7 @@ colors=['blue','brown','green','grey','orange','red','violet','white','yellow']
 urls=[]
 for grade,length in [('professional-plus',66),('general-use',60)]:
  for c in colors:urls.append('https://nsiindustries.com/product/'+grade+'-'+c+'-vinyl-electrical-tape-7mil-'+str(length)+'ft-long/')
-urls+=['https://nsiindustries.com/product/economy-duct-cloth-tape-8mil-2in-wide-55yd-long/']
+urls+=['https://nsiindustries.com/product/general-purpose-duct-cloth-tape-2in-wide-55yd-long/']
 urls+=['https://austinenclosures.com/products/view/Austin_Oiltight_Hole_Seals/'+p+'/' for p in ['300HS','400HS']]
 def read(u):
  try:
@@ -38,7 +38,7 @@ def read(u):
  except Exception as e:return {'sourceUrl':u,'error':type(e).__name__,'detail':str(e)[:120]}
 with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:
  for row in pool.map(read,urls):print('BATCH2_CANDIDATE',json.dumps(row,ensure_ascii=False))
-u='https://support.industry.siemens.com/cs/attachments/109791957/SIE_SS_QSPDB.pdf'
+u='https://media.cityelectricsupply.com/media/siemensindustry/qspd2a035b/documents/siemensin_datasheet_stepid-1194031.pdf'
 try:
  raw=get(u).content;doc=fitz.open(stream=raw,filetype='pdf');print('PDF_TEXT',doc[0].get_text()[:3500]);seen=set()
  for page in doc:
