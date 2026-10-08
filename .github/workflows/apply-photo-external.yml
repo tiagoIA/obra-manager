@@ -1,0 +1,20 @@
+name: Apply reviewed manufacturer material photos
+on:
+  push:
+    branches: [feature/lista-guiada-v1]
+    paths: [.github/workflows/apply-photo-external.yml]
+permissions:
+  contents: read
+concurrency:
+  group: obra-material-enrichment
+  cancel-in-progress: false
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install google-auth google-cloud-storage requests pillow pymupdf
+      - run: python scripts/apply-photo-external.py
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
