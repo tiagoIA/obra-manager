@@ -1,0 +1,9 @@
+Obra Manager — Cópia 1.0
+Captura do site publicado em 08/10/2026.
+
+Esta cópia preserva sem alterações o HTML recuperado do site e os arquivos publicados identificados: manifest.json, sw.js e ícones.
+BACKUP-1.0.json contém os tamanhos e SHA-256 para verificar a integridade.
+
+Escopo: cópia do frontend publicado. NÃO inclui banco Firestore, usuários do Authentication, fotos do Storage, regras de segurança, configurações completas do Hosting, código de Cloud Functions ou arquivos não publicados do antigo Codespace.
+A configuração pública do Firebase no HTML foi preservada. A aplicação continua dependendo do projeto Firebase existente.
+Nenhuma publicação foi feita e nenhuma regra ou dado do Firebase foi alterado.

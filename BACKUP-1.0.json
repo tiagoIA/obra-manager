@@ -1,0 +1,28 @@
+{
+  "name": "Obra Manager - Copia 1.0",
+  "source": "https://obra-manager-4ecc7.web.app",
+  "captured_at": "2026-10-08",
+  "scope": "Published frontend files only; not a backup of Firebase data, rules or Cloud Functions",
+  "files": {
+    "sw.js": {
+      "bytes": 1670,
+      "sha256": "5eb47202d306b46d795e81c6acd2adcdcebe850180ec8e59d08f4d2a6d984646"
+    },
+    "index.html": {
+      "bytes": 901972,
+      "sha256": "82e4c25d4cab868766165006ac8e11655822a1d9064d47c0eed6e90555eb12a6"
+    },
+    "manifest.json": {
+      "bytes": 623,
+      "sha256": "278362a3cb11c518a525477c74f284cc5f152ac763d6295808f9927793dff046"
+    },
+    "icons/icon-192.png": {
+      "bytes": 756,
+      "sha256": "76cfc84f0ab24acf4d31b23aeaca7c05b1bedc416d4da0d623b4c4a2a0b63c0b"
+    },
+    "icons/icon-512.png": {
+      "bytes": 3027,
+      "sha256": "ce0786b6262ce2c3a553880688e22c5622e0ba3c5d9d3adc18a007d38ae36b71"
+    }
+  }
+}
