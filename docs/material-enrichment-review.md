@@ -38,3 +38,5 @@ Referências públicas do fabricante: Mersen TRS15R, manual Siemens QSPD2A035B, 
 Backup dos materiais e coleções vinculadas: `backups/material-enrichment/37851755467/`. O relatório privado `pending-identification.json` registra os 192 materiais sem foto. A gravação foi atômica, com condições de versão para impedir sobrescrever uma edição posterior à leitura. IDs e campos fora da atualização foram comparados depois da gravação.
 
 Testes: identidade exata, rejeição de conflito de fabricante/modelo, preservação de estoque e metadados do fornecedor, prevenção de novas duplicatas, edição de duplicatas antigas e validação do formato de UPC.
+
+Publicação verificada: somente os arquivos de validação da biblioteca e cache foram atualizados; 74 arquivos do site preservados, sem gravações adicionais no Firestore. Testes de edição, busca nas tasks/listas, PDF e layout móvel passaram. Backup da interface: `backups/catalog-guards/37852263957/`.
