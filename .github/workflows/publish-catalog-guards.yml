@@ -1,4 +1,4 @@
-name: Publish catalog identity guards
+name: Verify and publish catalog identity guards v5.1
 on:
   push:
     branches: [feature/lista-guiada-v1]
