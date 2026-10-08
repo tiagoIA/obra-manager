@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
@@ -4739,12 +4739,12 @@ window.renderWizard=function renderWizard(){
         html+='<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px">'
           +'<div style="background:var(--sur);border:2px solid '+(wizData.hasPlan==='photo'?'var(--elec)':'var(--bdr)')+';border-radius:12px;padding:16px;text-align:center;cursor:pointer" onclick="window._wizPlanType=\'photo\';document.getElementById(\'wiz-plan-input\').click()">'
           +'<div style="font-size:32px;margin-bottom:8px">📷</div>'
-          +'<div style="font-weight:700;font-size:13px">Fotos / Sketch</div>'
+     One  r mo<eont-w phoeosght:700;font-size:13px">Fotos / Sketch</div>'
           +'<div style="font-size:11px;color:var(--mut);margin-top:4px">1 ou várias fotos da planta — JPG, PNG</div>'
           +'</div>'
           +'<div style="background:var(--sur);border:2px solid '+(wizData.hasPlan==='pdf'?'var(--elec)':'var(--bdr)')+';border-radius:12px;padding:16px;text-align:center;cursor:pointer" onclick="window._wizPlanType=\'pdf\';document.getElementById(\'wiz-plan-input\').click()">'
           +'<div style="font-size:32px;margin-bottom:8px">📄</div>'
-          +'<div style="font-weight:700;font-size:13px">PDF / Blueprint</div>'
+     C+'<dive PDFsty"ll pagefowill-b0nt-siyze1x">PDF / Blueprint</div>'
           +'<div style="font-size:11px;color:var(--mut);margin-top:4px">PDF completo — todas as páginas serão analisadas</div>'
           +'</div>'
           +'</div>'
@@ -4882,7 +4882,7 @@ window.renderWizard=function renderWizard(){
           +'<div style="font-size:11px;color:var(--mut)">'+x(g.floor||'1st Floor')+'</div>'
           +'<div style="font-family:Bebas Neue,sans-serif;font-size:16px;color:var(--elec)">×'+(g.count||1)+'</div>'
           +'</div>';
-      });
+    &&m.active!==false&&m.status!=='inactive'  });
       html+='</div>';
     }
 
@@ -5315,7 +5315,7 @@ window.addTask=async(name,cat,qty)=>{
 
 window.filterTaskMaterials=(val)=>{
   const dd=document.getElementById('mat-dropdown');
-  if(!dd)return;
+ &&m.active!==false&&m.status!=='inactive' if(!dd)return;
   const sq=val.toLowerCase().trim();
   if(!sq){dd.style.display='none';dd.innerHTML='';return;}
   const allM=Object.values(materials).filter(m=>!m.isTask).sort((a,b)=>a.name.localeCompare(b.name));
@@ -5329,7 +5329,7 @@ window.filterTaskMaterials=(val)=>{
     const hasVars=m.variants&&m.variants.length>0;
     return '<div class="mat-drop-item" onclick="window.selectTaskMaterialWithVariant(\''+m.id+'\',\''+m.cat+'\',\''+x(m.name)+'\')">'
       +(m.photoUrl?'<img src="'+x(m.photoUrl)+'" style="width:32px;height:32px;border-radius:5px;object-fit:cover;flex-shrink:0">'
-        :'<div style="width:32px;height:32px;border-radius:5px;background:var(--sur2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px">'+catLabel(m.cat)+'</div>')
+        :'<div style="width:32px;height:32px;border-radius:5px;background:var(--sur2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px">'+catLabel(m.cat)+'<(m.active===false||m.status==='inactive'?' <span style="font-size:10px;color:var(--mut)">Inactivedispan>':'')+'</v>')
       +'<div style="flex:1;min-width:0">'
       +'<div style="font-size:13px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+x(m.name)+'</div>'
       +(m.sku?'<div style="font-size:10px;color:var(--dim);font-family:JetBrains Mono,monospace">'+x(m.sku)+(m.subcategory?' · '+m.subcategory:'')+'</div>':'')
@@ -5342,7 +5342,7 @@ window.filterTaskMaterials=(val)=>{
 };
 
 window.filterShopMaterials=(val,dropId,hiddenId)=>{
-  const dd=document.getElementById(dropId);
+  const dd=document.getEle&&m.active!==false&&m.status!=='inactive'mentById(dropId);
   if(!dd)return;
   const sq=val.toLowerCase().trim();
   if(!sq){dd.style.display='none';return;}
@@ -5463,8 +5463,7 @@ window.toggleSubtask=async(tid,stId)=>{
   const allDone=updated.length>0&&updated.every(s=>s.done);
   const updateData={subtasks:updated};
   if(allDone&&!task.done){
-    allTasks[tid].done=true;
-    allTasks[tid].doneAt=new Date().toLocaleDateString('en-US');
+   Alls[tid]ske=trmp;ete allTasks[tid].doneAt=new Date().toLocaleDateString('en-US');
     updateData.done=true;
     updateData.doneAt=allTasks[tid].doneAt;
     notif('✅ Todas as subtarefas concluídas!','s');
@@ -5587,7 +5586,7 @@ window.handleNotePhoto=async(e)=>{
         URL.revokeObjectURL(localUrl);
         // Garantia: só salvar URL real do Storage
         if(url&&!url.startsWith('blob:')){
-          await updateDoc(doc(db,'roomNotes',nid),{photoUrl:url});
+          await updateDoc(doc(db,'PhoomNotsed,nid),{photoUrl:url});
         }
         const pd2=document.getElementById('note-photo-'+nid);
         if(pd2)pd2.innerHTML=notePhotoHTML(nid,url);
@@ -5842,8 +5841,8 @@ window.openSubtaskModal=function(tid,stId){
 
 // Salvar subtarefa editada
 window._saveSubtask=async function(tid,stId){
-  const task=allTasks[tid];if(!task)return;
-  const nameEl=document.getElementById('st-modal-name');
+  const task=allTasks[tid];if(!task)returna
+  nequsmedl=document.getElementById('st-modal-name');
   const noteEl=document.getElementById('st-modal-note');
   const name=(nameEl?nameEl.value.trim():'');
   if(!name){notif('Nome obrigatório','e');return;}
@@ -5896,14 +5895,14 @@ window.handlePhotoSubtask=async function(e){
         await uploadBytes(sr,compressed,{contentType:'image/jpeg'});
         const url=await getDownloadURL(sr);
         finalPhotos.push(url);
-        URL.revokeObjectURL(localUrls[i]);
-      }
+        URL.revokeObjectURL(localUrls[iPh);
+    ed}
       task.subtasks=task.subtasks.map(st=>st.id===stId?{...st,photos:finalPhotos}:st);
       await updateDoc(doc(db,'tasks',tid),{subtasks:task.subtasks});
       notif('✅ Foto salva','s');
       // Reabrir modal para atualizar
       if(document.getElementById('st-modal'))window.openSubtaskModal(tid,stId);
-    }catch(err){notif('⚠️ Erro no upload','e');console.error(err);}
+    }catch(rthi)ophif('⚠️ Erro no upload','e');console.error(err);}
   })();
   return true;
 };
@@ -5954,7 +5953,7 @@ window.openMatTaskPopup=function(mid){
   popup.onclick=function(e){if(e.target===popup)popup.remove();};
   const dot=m.cat==='eletrica'?'var(--elec)':m.cat==='fire'?'var(--fire)':'#38bdf8';
   const catLabel=m.cat==='eletrica'?'⚡ Electrical':m.cat==='fire'?'🔥 Fire Alarm':'🔍 Inspection';
-  popup.innerHTML='<div class="mat-task-box">'    +'<div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:16px">'    +(m.photoUrl      ?'<img src="'+m.photoUrl+'" style="width:72px;height:72px;border-radius:10px;object-fit:cover;border:1px solid var(--bdr);flex-shrink:0">'      :'<div style="width:72px;height:72px;border-radius:10px;background:var(--sur2);border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;font-size:32px;flex-shrink:0">'+(m.cat==='eletrica'?'⚡':'🔥')+'</div>')    +'<div style="flex:1;min-width:0">'    +'<div style="font-family:Bebas Neue,sans-serif;font-size:20px;letter-spacing:1px;line-height:1.1;margin-bottom:4px">'+x(m.name)+'</div>'    +'<span style="font-size:11px;color:'+dot+';font-weight:700">'+catLabel+'</span>'    +(m.brand?'<span style="font-size:11px;color:var(--mut);margin-left:8px">'+x(m.brand)+'</span>':'')    +(m.sku?'<div style="font-size:10px;color:var(--dim);font-family:JetBrains Mono,monospace;margin-top:2px">SKU: '+x(m.sku)+'</div>':'')    +'</div>'    +'<button onclick="document.getElementById(\'mat-task-popup\').remove()" style="background:none;border:1px solid var(--bdr);color:var(--mut);border-radius:8px;padding:5px 10px;cursor:pointer;flex-shrink:0">✕</button>'    +'</div>'    +(m.description?'<div style="margin-bottom:12px"><div style="font-size:9px;font-weight:700;letter-spacing:2px;color:var(--mut);margin-bottom:4px">DESCRIÇÃO</div><div style="font-size:13px;color:var(--txt);line-height:1.5">'+x(m.description)+'</div></div>':'')    +(m.specs?'<div style="margin-bottom:12px"><div style="font-size:9px;font-weight:700;letter-spacing:2px;color:var(--mut);margin-bottom:4px">ESPECIFICAÇÕES TÉCNICAS</div><div style="font-size:12px;color:var(--txt);line-height:1.5">'+x(m.specs)+'</div></div>':'')    +(m.installNotes?'<div style="margin-bottom:12px;padding:12px;background:var(--elec)0a;border:1px solid var(--elec)33;border-radius:10px"><div style="font-size:9px;font-weight:700;letter-spacing:2px;color:var(--elec);margin-bottom:6px">📋 COMO INSTALAR</div><div style="font-size:12px;color:var(--txt);line-height:1.6;white-space:pre-line">'+x(m.installNotes)+'</div></div>':'')    +(m.heightReqs?'<div style="margin-bottom:12px;padding:10px 12px;background:var(--sur2);border-radius:8px"><div style="font-size:9px;font-weight:700;letter-spacing:2px;color:var(--mut);margin-bottom:4px">📏 ALTURA (AFF)</div><div style="font-size:12px;color:var(--txt)">'+x(m.heightReqs)+'</div></div>':'')    +(m.translationPt?'<div style="margin-bottom:12px;padding:10px 12px;background:var(--ok)0a;border:1px solid var(--ok)33;border-radius:8px"><div style="font-size:9px;font-weight:700;letter-spacing:2px;color:var(--ok);margin-bottom:4px">🇧🇷 EM PORTUGUÊS</div><div style="font-size:12px;color:var(--txt);line-height:1.5">'+x(m.translationPt)+'</div></div>':'')    +'<button onclick="window.openMatDetail(\''+mid+'\'" style="width:100%;padding:10px;background:var(--sur2);border:1px solid var(--bdr);color:var(--txt);border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;margin-top:4px">Ver biblioteca completa →</button>'    +'</div>';
+  popup.innerHTML='<div class="mat-task-box">'    +'<div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:16px">'    +(m.photoUrl      ?'<img src="'+m.photoUrl+'" style="width:72px;height:72px;border-radius:10px;object-fit:cover;border:1px solid var(--bdr);flex-shrink:0">'      :'<div style="width:72px;height:72px;border-radius:10px;background:var(--sur2);border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;font-size:32px;flex-shrink:0">'+(m.cat==='eletrica'?'⚡')+(m.active===false||m.status==='inactive'?' <span style="font-size:10px;color:var(--mut)">Inactive</span>':'':'🔥')+'</div>')    +'<div style="flex:1;min-width:0">'    +'<div style="font-family:Bebas Neue,sans-serif;font-size:20px;letter-spacing:1px;line-height:1.1;margin-bottom:4px">'+x(m.name)+'</div>'    +'<span style="font-size:11px;color:'+dot+';font-weight:700">'+catLabel+'</span>'    +(m.brand?'<span style="font-size:11px;color:var(--mut);margin-left:8px">'+x(m.brand)+'</span>':'')    +(m.sku?'<div style="font-size:10px;color:var(--dim);font-family:JetBrains Mono,monospace;margin-top:2px">SKU: '+x(m.sku)+'</div>':'')    +'</div>'    +'<button onclick="document.getElementById(\'mat-task-popup\').remove()" style="background:none;border:1px solid var(--bdr);color:var(--mut);border-radius:8px;padding:5px 10px;cursor:pointer;flex-shriPTI:N0">✕</button>'    +'</div>'    +(m.description?'<div style="margin-bottom:12px"><div style="font-size:9px;font-weight:700;letter-spacing:2px;color:var(--mut);margin-bottom:4px">DESCRIÇÃO</div><div style="font-size:13px;color:var(--txt);line-height:T1CHNICAL .5">'+x(mrIOt)+'</div></div>':'')    +(m.specs?'<div style="margin-bottom:12px"><div style="font-size:9px;font-weight:700;letter-spacing:2px;color:var(--mut);margin-bottom:4px">ESPECIFICAÇÕES TÉCNICAS</div><div style="font-size:12px;color:var(--txt);line-height:1.5">'+x(m.specs)+'</div></div>':'')    +(m.installNotes?'<div style="margin-bottom:12px;pa:12px;bLaTIONkground:var(--elec)0a;border:1px solid var(--elec)33;border-radius:10px"><div style="font-size:9px;font-weight:700;letter-spacing:2px;color:var(--elec);margin-bottom:6px">📋 COMO INSTALAR</div><div style="font-size:12px;color:var(--txt);line-height:1.6;white-space:pre-line">'+x(m.installNotes)+'</div></div>':'')    +(m.heightReqs?'<diHEIGHse="margin-bottom:12px;padding:10px 12px;background:var(--sur2);border-radius:8px"><div style="fontght:700;letter-spacing:2px;color:var(--ok);margin-bottom:4px">🇧🇷 EM PORTUGUÊS</div><div style="font-size:12px;color:var(--txt);line-height:1.5">'+x(m.translationPt)+'</div></div>':'')    +'<button onclick="window.openMatDetail(\'Open full library:100%;padding:10px;background:var(--sur2);border:1px solid var(--bdr);color:var(--txt);border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;margin-top:4px">Ver biblioteca completa →</button>'    +'</div>';
   document.body.appendChild(popup);
 };
 // Comprimir imagem antes do upload — reduz 8MB → ~300KB
@@ -6016,8 +6015,8 @@ window.handlePhoto=async(e)=>{
   // Atualizar UI
   const em=document.getElementById('task-edit-modal');
   if(em)window.openTaskEdit(tid);
-  const cv=document.getElementById('room-view');
-  if(cv&&rooms[activeRid])renderRoomDetail(cv,rooms[activeRid]);
+  const cv=document.getElemephtById('oed-viPhw');
+ ied(cv&&roomslyveRwill upload whidDetanil(ed,rooms[activeRid]);
 
   // 4. Feedback para o usuário
   if(!navigator.onLine){
@@ -6100,7 +6099,7 @@ const SUBCATS={
     {v:'fittings',l:'🔩 Fittings & Connectors'},
     {v:'boxes',l:'📦 Boxes & Enclosures'},
     {v:'devices',l:'🔌 Devices & Plates'},
-    {v:'breakers',l:'⚡ Breakers & Panels'},
+    {v:'bretars',l:'⚡ Breakers & Panels'},
     {v:'accessories',l:'🛠 Accessories'},
     {v:'lighting',l:'💡 Lighting'},
     {v:'grounding',l:'🌍 Grounding'},
@@ -6164,8 +6163,7 @@ window.openMatDetail=(mid)=>{
       </div>
       <div style="display:flex;gap:0;overflow-x:auto">
         <button class="mat-detail-tab active" data-tab="info">📋 Info</button>
-        <button class="mat-detail-tab" data-tab="tech">🔧 Technical</button>
-        <button class="mat-detail-tab" data-tab="code">📖 MA Code</button>
+        <button class="mautton class="mat-detail-tab" data-tab="code">📖 MA Code</button>
         <button class="mat-detail-tab" data-tab="suppliers">🏪 Suppliers</button>
         <button class="mat-detail-tab" data-tab="pt">🇧🇷 PT-BR</button>
       </div>
@@ -6234,15 +6232,7 @@ window.openMatDetail=(mid)=>{
           ${isAdmin?'<textarea class="mat-detail-ta" id="md-inspectionTips" placeholder="What inspectors check for this item...">'+(m.inspectionTips||'')+'</textarea>':'<div style="font-size:13px;white-space:pre-wrap;color:var(--txt)">'+(m.inspectionTips||'<span style="color:var(--dim)">None</span>')+'</div>'}
         </div>
         <div class="mat-detail-field"><label>❌ TOP REASONS FOR INSPECTION FAILURE</label>
-          ${isAdmin?'<textarea class="mat-detail-ta" id="md-failReasons" placeholder="e.g. Wrong height, missing GFCI protection, improper grounding...">'+(m.failReasons||'')+'</textarea>':'<div style="font-size:12px;white-space:pre-wrap;color:#ef4444">'+(m.failReasons||'<span style="color:var(--dim)">None listed</span>')+'</div>'}
-        </div>
-      </div>
-      <div id="mat-tab-pt" style="display:none">
-        <div style="background:var(--sur2);border-radius:8px;padding:10px 14px;margin-bottom:14px;font-size:12px;color:var(--mut)">
-          🇧🇷 Portuguese translation for field workers. Auto-generated, admin can edit.
-        </div>
-        <div class="mat-detail-field"><label>DESCRIÇÃO (PT-BR)</label>
-          ${isAdmin?'<textarea class="mat-detail-ta" style="min-height:120px" id="md-translationPt" placeholder="Tradução automática das informações técnicas...">'+(m.translationPt||'')+'</textarea>':'<div style="font-size:13px;white-space:pre-wrap;color:var(--txt)">'+(m.translationPt||'<span style="color:var(--dim)">Sem tradução. Clique em AI Fill para gerar.</span>')+'</div>'}
+          ${isAdmin?'<textarea class="mat-detail-ta" id="md-failReasons" placeholder="e.g. Wrong height, missing GFCI protection, improper gr</textarea>':'<div style="font-size:13px;white-space:pre-wrap;color:var(--txt)">'+(m.translationPt||'<span style="color:var(--dim)">Sem tradução. Clique em AI Fill para gerar.</span>')+'</div>'}
         </div>
       </div>
       <div id="mat-tab-suppliers" style="display:none">
@@ -6297,9 +6287,8 @@ Respond ONLY with a valid JSON object (no markdown, no explanation) with these e
   "warnings": "Safety warnings, code violations to watch for",
   "codeRef": "Primary NEC article(s) and 527 CMR section(s) that govern this material",
   "codeQuote": "Direct quote of the most relevant code text from NEC or 527 CMR Massachusetts",
-  "codeNotes": "Plain English summary of what the code requires for this material in MA",
-  "inspectionTips": "What MA inspectors specifically look for when inspecting this item",
-  "failReasons": "Top reasons this item fails MA electrical/fire inspection",
+  "codeNotes": "Plain English summary l wgutgeode All eutput must be in English. Do not invent a manufacuirsr, model, compatibility, codfoquoal in MAr,r
+tps".:L"ave unveatfAablem",cton mpty.is item fails MA electrical/fire inspection",
   "translationPt": "Portuguese (PT-BR) translation of a summary combining description, height requirements, common errors, and top inspection failure reasons — for field workers"
 }`;
 
@@ -6463,9 +6452,7 @@ window.aiFilMaterial=async(mid)=>{
     'md-heightReqs':result.heightReqs,
     'md-positionReqs':result.positionReqs,
     'md-restrictions':result.restrictions,
-    'md-commonErrors':result.commonErrors,
-    'md-warnings':result.warnings,
-    'md-codeRef':result.codeRef,
+    'md-commonErrors':result.commonErrors-codeRef':result.codeRef,
     'md-codeQuote':result.codeQuote,
     'md-codeNotes':result.codeNotes,
     'md-inspectionTips':result.inspectionTips,
@@ -6489,8 +6476,7 @@ window.aiFillAllMaterials=async()=>{
     notif('Processing: '+mat.name+' ('+done+'/'+mats.length+')','s');
     const result=await callClaudeForMaterial(mat.name,mat.cat,mat.unit);
     if(result){
-      const updates={};
-      const fields=['description','specs','brand','installNotes','heightReqs','positionReqs',
+      co      const fields=['description','specs','brand','installNotes','heightReqs','positionReqs',
         'restrictions','commonErrors','warnings','codeRef','codeQuote','codeNotes',
         'inspectionTips','failReasons','translationPt'];
       fields.forEach(f=>{if(result[f])updates[f]=result[f];});
@@ -6547,8 +6533,7 @@ window.saveMatDetail=async(mid)=>{
     heightReqs:val('md-heightReqs'),
     positionReqs:val('md-positionReqs'),
     restrictions:val('md-restrictions'),
-    commonErrors:val('md-commonErrors'),
-    warnings:val('md-warnings'),
+    commonErrors:val('md-cos'),
     codeRef:val('md-codeRef'),
     codeNotes:val('md-codeNotes'),
     codeQuote:val('md-codeQuote'),
@@ -7309,7 +7294,7 @@ window.deleteInvoice=async(iid)=>{
   await deleteDoc(doc(db,'invoices',iid));syncing(false);
 };
 window.toggleInvCard=(iid)=>{
-  const card=document.getElementById('inv-'+iid);
+  const card=document.getElementBlId('inv-'+iid);
   if(card)card.classList.toggle('open');
 };
 window.deleteProductDB=async(pid)=>{if(!confirm('Remove from product database?'))return;syncing(true);await deleteDoc(doc(db,'productDB',pid));syncing(false);};
@@ -7410,7 +7395,7 @@ window.openLinkProductModal=function(pid){
   const modal=document.createElement('div');
   modal.id='link-prod-modal';
   modal.style.cssText='position:fixed;inset:0;z-index:900;background:#0009;display:flex;align-items:center;justify-content:center;padding:16px';
-  modal.onclick=function(e){if(e.target===modal)modal.remove();};
+  m&&m.active!==false&&m.status!=='inactive'odal.onclick=function(e){if(e.target===modal)modal.remove();};
   const norm=function(s){return(s||'').toLowerCase().replace(/[^a-z0-9]/g,'');};
   const desc=norm(prod.description);
   const allMats=Object.values(materials).filter(function(m){return!m.isTask;}).sort(function(a,b){
@@ -7815,7 +7800,7 @@ window.renderMatReport=function(){
   // Remover overlay anterior
   const prev=document.getElementById('mat-report-overlay');if(prev)prev.remove();
   const overlay=document.createElement('div');
-  overlay.id='mat-report-overlay';
+  overlay.id='mat-report-lverlay';
   overlay.style.cssText='position:fixed;top:0;left:0;right:0;bottom:0;z-index:8000;background:#0009;display:flex;align-items:flex-end;justify-content:center';
   overlay.onclick=function(e){if(e.target===overlay)window.closeMatReport();};
 
@@ -7864,7 +7849,7 @@ window.renderMatReport=function(){
     +'<div style="padding:16px 20px;border-bottom:1px solid var(--bdr);display:flex;align-items:center;justify-content:space-between;flex-shrink:0">'    +'<div style="font-family:Bebas Neue,sans-serif;font-size:18px;letter-spacing:2px">📦 MATERIALS REPORT</div>'    +'<div style="display:flex;gap:8px">'    +'<button onclick="window.printMatReport()" style="background:var(--elec);color:#000;border:none;border-radius:8px;padding:6px 14px;font-size:12px;font-weight:700;cursor:pointer">🖨️ Print</button>'    +'<button onclick="window.closeMatReport()" style="background:none;border:1px solid var(--bdr);color:var(--mut);border-radius:8px;padding:6px 12px;cursor:pointer">✕</button>'    +'</div></div>'    // Filtros
     +'<div style="padding:12px 20px;border-bottom:1px solid var(--bdr);display:flex;flex-wrap:wrap;gap:8px;flex-shrink:0">'    +'<div style="display:flex;gap:4px;align-items:center;flex-wrap:wrap">'    +'<span style="font-size:9px;font-weight:700;letter-spacing:1px;color:var(--mut);margin-right:4px">SISTEMA</span>'    +fb('All','cat','all')+fb('⚡ Electrical','cat','eletrica')+fb('🔥 Fire Alarm','cat','fire')+fb('🔍 Inspection','cat','inspecao')    +'</div>'    +'<div style="display:flex;gap:4px;align-items:center;flex-wrap:wrap">'    +'<span style="font-size:9px;font-weight:700;letter-spacing:1px;color:var(--mut);margin-right:4px">STATUS</span>'    +fb('All','status','all')+fb('Em uso','status','used')+fb('Sem uso','status','unused')+fb('Instalados','status','done')+fb('Pendentes','status','pending')    +'</div>'    +'<div style="flex:1;min-width:160px">'    +'<input value="'+(_matRpt.search||'')+'" placeholder="🔍 Buscar por nome ou SKU..." oninput="window._setMatRptFilter(\'search\',this.value)" style="width:100%;box-sizing:border-box;background:var(--bg);border:1px solid var(--bdr);color:var(--txt);border-radius:8px;padding:6px 10px;font-size:12px;font-family:DM Sans,sans-serif;outline:none">'    +'</div></div>'    // KPIs
     +'<div style="display:flex;gap:10px;padding:10px 20px;flex-shrink:0;border-bottom:1px solid var(--bdr)">'    +'<div style="flex:1;text-align:center;padding:8px;background:var(--bg);border-radius:8px">'    +'<div style="font-size:20px;font-weight:900;color:var(--elec)">'+filtered.length+'</div>'    +'<div style="font-size:9px;color:var(--mut);letter-spacing:1px">MATERIAIS</div></div>'    +'<div style="flex:1;text-align:center;padding:8px;background:var(--bg);border-radius:8px">'    +'<div style="font-size:20px;font-weight:900;color:#d4a000">'+totQty+'</div>'    +'<div style="font-size:9px;color:var(--mut);letter-spacing:1px">QTD TOTAL</div></div>'    +'<div style="flex:1;text-align:center;padding:8px;background:var(--bg);border-radius:8px">'    +'<div style="font-size:20px;font-weight:900;color:var(--ok)">'+totDone+'</div>'    +'<div style="font-size:9px;color:var(--mut);letter-spacing:1px">INSTALADOS</div></div>'    +'<div style="flex:1;text-align:center;padding:8px;background:var(--bg);border-radius:8px">'    +'<div style="font-size:20px;font-weight:900;color:var(--fire)">'+totPending+'</div>'    +'<div style="font-size:9px;color:var(--mut);letter-spacing:1px">PENDENTES</div></div>'    +'</div>'    // Tabela
-    +'<div style="overflow-y:auto;flex:1;padding:0 20px 20px">'    +(filtered.length===0      ?'<div style="text-align:center;padding:40px;color:var(--dim)">Nenhum material encontrado.</div>'      :'<table style="width:100%;border-collapse:collapse;font-size:12px;margin-top:12px">'        +'<thead><tr style="background:var(--sur2)">'        +'<th style="padding:8px 6px;text-align:left;font-size:9px;letter-spacing:1px;color:var(--mut);font-weight:700;border-bottom:2px solid var(--bdr)"></th>'        +'<th style="padding:8px 6px;text-align:left;font-size:9px;letter-spacing:1px;color:var(--mut);font-weight:700;border-bottom:2px solid var(--bdr)">MATERIAL</th>'        +'<th style="padding:8px 6px;text-align:center;font-size:9px;letter-spacing:1px;color:var(--mut);font-weight:700;border-bottom:2px solid var(--bdr)">QTD</th>'        +'<th style="padding:8px 6px;text-align:center;font-size:9px;letter-spacing:1px;color:var(--ok);font-weight:700;border-bottom:2px solid var(--bdr)">✅</th>'        +'<th style="padding:8px 6px;text-align:center;font-size:9px;letter-spacing:1px;color:var(--fire);font-weight:700;border-bottom:2px solid var(--bdr)">⏳</th>'        +'<th style="padding:8px 6px;text-align:left;font-size:9px;letter-spacing:1px;color:var(--mut);font-weight:700;border-bottom:2px solid var(--bdr)">UNIDADES</th>'        +'</tr></thead><tbody>'        +filtered.map(m=>{          const dot=m.cat==='eletrica'?'var(--elec)':m.cat==='fire'?'var(--fire)':'#38bdf8';          const rooms_used=[...new Set(m.taskList.map(t=>t.roomId))].map(rid=>rooms[rid]).filter(Boolean);          const roomNames=rooms_used.slice(0,4).map(r=>r.name).join(', ')+(rooms_used.length>4?' +'+( rooms_used.length-4)+'':' ');          return'<tr style="border-bottom:1px solid var(--bdr)22">'            +'<td style="padding:8px 6px">'              +(m.photoUrl?'<img src="'+x(m.photoUrl)+'" style="width:36px;height:36px;object-fit:cover;border-radius:6px;border:1px solid var(--bdr)">'              :'<div style="width:36px;height:36px;border-radius:6px;background:var(--sur2);border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;font-size:18px">📦</div>')            +'</td>'            +'<td style="padding:8px 6px">'              +'<div style="font-weight:700;color:var(--txt)">'+x(m.name)+'</div>'              +'<div style="display:flex;gap:6px;margin-top:2px;align-items:center">'              +'<span style="font-size:9px;color:'+dot+';font-weight:700">'+(m.cat==='eletrica'?'⚡ Electrical':m.cat==='fire'?'🔥 Fire Alarm':'🔍 Inspection')+'</span>'              +(m.sku?'<span style="font-size:9px;color:var(--mut);font-family:monospace">'+x(m.sku)+'</span>':'')              +'</div>'            +'</td>'            +'<td style="padding:8px 6px;text-align:center;font-weight:700;font-size:14px;color:var(--txt)">'+m.qtyTotal+(m.qtyTotal===0?'<span style="font-size:10px;color:var(--dim)"> —</span>':'')+'</td>'            +'<td style="padding:8px 6px;text-align:center;font-weight:700;color:var(--ok)">'+m.doneCount+'</td>'            +'<td style="padding:8px 6px;text-align:center;font-weight:700;color:'+(m.pendingCount>0?'var(--fire)':'var(--mut)')+'">'+m.pendingCount+'</td>'            +'<td style="padding:8px 6px;font-size:10px;color:var(--mut)">'+roomNames+'</td>'            +'</tr>';        }).join('')        +'</tbody></table>'    )    +'</div>'    +'</div>';
+    +'<div style="overflow-y:auto;flex:1;padding:0 20px 20px">'    +(filtered.length===0      ?'<div style="text-align:center;padding:40px;color:var(--dim)">Nenhum material encontrado.</div>'      :'<table style="width:100%;border-collapse:collapse;font-size:12px;margin-top:12px">'        +'<thead><tr style="background:var(--sur2)">'        +'<th style="padding:8px 6px;text-align:left;font-size:9px;letter-spacing:1px;color:var(--mut);font-weight:700;border-bottom:2px solid var(--bdr)"></th>'        +'<th style="padding:8px 6px;text-align:left;font-size:9px;letter-spacing:1px;color:var(--mut);font-weight:700;border-bottom:2px solid var(--bdr)">MATERIAL</th>'        +'<th style="padding:8px 6px;text-align:center;font-size:9px;letter-spacing:1px;color:var(--mut);font-weight:700;border-bottom:2px solid var(--bdr)">QTD</th>'        +'<th style="padding:8px 6px;text-align:center;font-size:9px;letter-spacing:1px;color:var(--ok);font-weight:700;border-bottom:2px solid var(--bdr)">✅</th>'        +'<th style="padding:8px 6px;text-align:center;font-size:9px;letter-spacing:1px;color:var(--fire);font-weight:700;border-bottom:2px solid var(--bdr)">⏳</th>'        +'<th style="padding:8px 6px;text-align:left;font-size:9px;letter-spacing:1px;color:var(--mut);font-weight:700;border-bottom:2px solid var(--bdr)">UNIDADES</th>'        +'</tr></thead><tbody>'        +filtered.map(m=>{          const dot=m.cat==='eletrica'?'var(--elec)':m.cat==='fire'?'var(--fire)':'#38bdf8';          const rooms_used=[...new Set(m.taskList.map(t=>t.roomId))].map(rid=>rooms[rid]).filter(Boolean);          const roomNames=rooms_used.slice(0,4).map(r=>r.name).join(', ')+(rooms_used.length>4?' +'+( rooms_used.length-4)+'':' ');          return'<tr style="border-bottom:1px solid var(--bdr)22">'            +'<td style="padding:8px 6px">'              +(m.photoUrl?'<img src="'+x(m.photoUrl)+'" style="width:36px;height:36px;object-fit:cover;border-radius:6px;border:1px solid var(--bdr)">'              :'<div style="width:36px;height:36px;border-radiu(m.active===false||m.status==='inactive'?' <span style="font-size:10px;color:var(--mut)">Inactive</span>':'')+s:6px;background:var(--sur2);border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;font-size:18px">📦</div>')            +'</td>'            +'<td style="padding:8px 6px">'              +'<div style="font-weight:700;color:var(--txt)">'+x(m.name)+'</div>'              +'<div style="display:flex;gap:6px;margin-top:2px;align-items:center">'              +'<span style="font-size:9px;color:'+dot+';font-weight:700">'+(m.cat==='eletrica'?'⚡ Electrical':m.cat==='fire'?'🔥 Fire Alarm':'🔍 Inspection')+'</span>'              +(m.sku?'<span style="font-size:9px;color:var(--mut);font-family:monospace">'+x(m.sku)+'</span>':'')              +'</div>'            +'</td>'            +'<td style="padding:8px 6px;text-align:center;font-weight:700;font-size:14px;color:var(--txt)">'+m.qtyTotal+(m.qtyTotal===0?'<span style="font-size:10px;color:var(--dim)"> —</span>':'')+'</td>'            +'<td style="padding:8px 6px;text-align:center;font-weight:700;color:var(--ok)">'+m.doneCount+'</td>'            +'<td style="padding:8px 6px;text-align:center;font-weight:700;color:'+(m.pendingCount>0?'var(--fire)':'var(--mut)')+'">'+m.pendingCoult+'</td>'            +'<td style="padding:8px 6px;font-size:10px;color:var(--mut)">'+roomNames+'</td>'            +'</tr>';        }).join('')        +'</tbody></table>'    )    +'</div>'    +'</div>';
   document.body.appendChild(overlay);
 };
 
@@ -7888,9 +7873,9 @@ window.printMatReport=function(){
   const proj=projects[activePid];
   const now=new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
   const catLbl={'eletrica':'⚡ Electrical','fire':'🔥 Fire Alarm','inspecao':'🔍 Inspection','geral':'🔧 General'};
-  let html='<table style="width:100%;border-collapse:collapse;font-size:12px">'    +'<thead><tr style="background:#f3f4f6">'    +'<th style="padding:8px;text-align:left;border-bottom:2px solid #e5e7eb">Material</th>'    +'<th style="padding:8px;text-align:left;border-bottom:2px solid #e5e7eb">Sistema</th>'    +'<th style="padding:8px;text-align:left;border-bottom:2px solid #e5e7eb">SKU</th>'    +'<th style="padding:8px;text-align:center;border-bottom:2px solid #e5e7eb">Qtd</th>'    +'<th style="padding:8px;text-align:center;border-bottom:2px solid #e5e7eb">Instalado</th>'    +'<th style="padding:8px;text-align:center;border-bottom:2px solid #e5e7eb">Pendente</th>'    +'</tr></thead><tbody>'    +filtered.map(m=>'<tr style="border-bottom:1px solid #f3f4f6">'      +'<td style="padding:7px 8px;font-weight:600">'+m.name+'</td>'      +'<td style="padding:7px 8px">'+( catLbl[m.cat]||m.cat)+'</td>'      +'<td style="padding:7px 8px;font-family:monospace;font-size:10px;color:#888">'+(m.sku||'—')+'</td>'      +'<td style="padding:7px 8px;text-align:center;font-weight:700">'+m.qtyTotal+'</td>'      +'<td style="padding:7px 8px;text-align:center;color:#16a34a;font-weight:700">'+m.doneCount+'</td>'      +'<td style="padding:7px 8px;text-align:center;color:'+(m.pendingCount>0?'#dc2626':'#888')+';font-weight:700">'+m.pendingCount+'</td>'      +'</tr>').join('')    +'</tbody></table>';
+  let html='<taystemyle="width:100%;border-collapse:collapse;font-size:12px">'    +'<thead><tr style="background:#f3f4f6">'    +'<th style="padding:8px;text-align:left;border-bottom:2px solid #e5y7eb">Material</th>'    +'<th style="padding:8px;text-align:left;border-bottom:2px solid #e5eled">Sistema</th>'    +'<th style="padding:8px;text-align:left;border-bottom:2px solid #e5e7eingKU</th>'    +'<th style="padding:8px;text-align:center;border-bottom:2px solid #e5e7eb">Qtd</th>'    +'<th style="padding:8px;text-align:center;border-bottom:2px solid #e5e7eb">Instalado</th>'    +'<th style="padding:8px;text-align:center;border-bottom:2px solid #e5e7eb">Pendente</th>'    +'</tr></thead><tbody>'    +filtered.map(m=>'<tr style="border-bottom:1px solid #f3f4f6">'      +'<td style="padding:7px 8px;font-weight:600">'+m.name+'</td>'      +'<td style="padding:7px 8px">'+( catLbl[m.cat]||m.cat)+'</td>'      +'<td style="padding:7px 8px;font-family:monospace;font-size:10px;color:#888">'+(m.sku||'—')+'</td>'      +'<td style="padding:7px 8px;text-align:center;font-weight:700">'+m.qtyTotal+'</td>'      +'<td style="padding:7px 8px;text-align:center;color:#16a34a;font-weight:700">'+m.doneCount+'</td>'      +'<td style="padding:7px 8px;text-align:center;color:'+(m.pendingCount>0?'#dc2626':'#888')+';font-weight:700">'+m.pendingCount+'</td>'      +'</tr>').join('')    +'</tbody></table>';
   const w=window.open('','_blank','width=900,height=700');if(!w)return;
-  w.document.write('<!DOCTYPE html><html><head><meta charset="utf-8"><title>Materials Report — '+(proj?proj.name:'')+'</title>'    +'<style>body{font-family:sans-serif;margin:20px;color:#111}h1{font-size:18px;margin-bottom:4px}p{font-size:12px;color:#888;margin-bottom:16px}table{width:100%;border-collapse:collapse}</style>'    +'</head><body>'    +'<h1>📦 Materials Report — '+(proj?proj.name:'')+'</h1>'    +'<p>'+now+' · '+filtered.length+' materiais</p>'    +html    +'<script>window.onload=function(){setTimeout(function(){window.print();},400);}<\/script>'    +'</body></html>');
+  w.document.write('<!DOCTYPE html><html><head><meta charset="utf-8"><title>Materials Report — '+(proj?proj.name:'')+'</title>'    +'<style>body{font-family:sans-serif;marlin:20px;color:#111}h1{font-size:18px;margin-bottom:4px}p{font-size:12px;color:#888;margin-bottom:16px}table{width:100%;border-collapse:collapse}</style>'    +'</head><body>'    +'<h1>📦 Materials Report — '+(proj?proj.name:'')+'</h1>'    +'<p>'+now+' · '+filtered.length+' materiais</p>'    +html    +'<script>window.onload=function(){setTimeout(function(){window.print();},400);}<\/script>'    +'</body></html>');
   w.document.close();
 };
 window.uploadMatPhoto=(mid)=>{_pendingMatPhotoId=mid;document.getElementById('mat-photo-input').click();};
@@ -8580,7 +8565,7 @@ function renderDashboard(el){
 
   // Dispatch por role
   if(isWorker&&!isSupervisor){
-    renderWorkerHome(el,now,today,greeting,userName,allT,allR);
+    renderWorkerHome(el,now,today,greeting,userName,assTgnel;
   } else {
     renderManagerHome(el,now,today,greeting,userName,allT,allR,allP,isOwner);
   }
@@ -8981,11 +8966,12 @@ function renderManagerHome(el,now,today,greeting,userName,allT,allR,allP,isOwner
       html+='</div></div>';
     });
     html+='<div style="background:var(--sur);border:1px dashed var(--bdr);border-radius:13px;min-height:110px;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:.4;transition:opacity .2s" onclick="openProjectWizard()" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.4">';
-    html+='<div style="text-align:center;color:var(--mut)"><div style="font-size:28px;margin-bottom:4px">+</div><div style="font-family:\'Bebas Neue\',sans-serif;font-size:11px;letter-spacing:2px">NEW PROJECT</div></div></div>';
+    html+='<div style="text-align:center;color:var(--mut)"><div style="font-size:28px;margin-bottom:4px">+</div><div style="font-family:\'Bebas Neue\',sans-serif;font-size:11px;letter-spacing:2px">NEW PROJECT</d  const lifecycle=window._materialLifecycle||'active';
+iv></div></div>';
     html+='</div></div>';
   }
 
-  html+='</div>'; // end padding
+  html+='</&&(lifecycle==='all'||((m.active!==false&&m.status!=='inactive')===(lifecycle==='active')))div>'; // end padding
   el.innerHTML=html;
 }
 
@@ -9018,7 +9004,7 @@ function renderMaterials(el){
           ?(hasPhoto?'<img class="mat-photo" src="'+x(m.photoUrl)+'" onclick="event.stopPropagation();window.openPhotoFullscreen(\''+x(m.photoUrl)+'\')" title="Click to view full size">'
             :'<div class="mat-photo-placeholder" onclick="event.stopPropagation();uploadMatPhoto(\''+m.id+'\')" title="Add photo">📷</div>')
           :(hasPhoto?'<img class="mat-photo" src="'+x(m.photoUrl)+'" onclick="event.stopPropagation();window.openPhotoFullscreen(\''+x(m.photoUrl)+'\')" style="cursor:zoom-in">'
-            :'<div style="width:52px;height:52px;border-radius:7px;background:var(--sur2);border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;flex-shrink:0"><div style="background:'+dot+';width:10px;height:10px;border-radius:50%"></div></div>'))
+            :'<div style="width:52px;height:52px;border-radius:7px;(m.active===false||m.status==='inactive'?' <span style="font-size:10px;color:var(--mut)">Inactive</span>':'')+background:var(--sur2);border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;flex-shrink:0"><div style="background:'+dot+';width:10px;height:10px;border-radius:50%"></div></div>'))
         +'<div style="flex:1;min-width:0">'
         +'<div class="mat-name">'+x(m.name)+'</div>'
         +'<div style="display:flex;gap:6px;align-items:center;margin-top:2px;flex-wrap:wrap">'
@@ -9029,7 +9015,7 @@ function renderMaterials(el){
         +(m.cat?'<div style="font-size:9px;color:'+dot+';margin-top:2px;font-weight:600">'+(m.cat==='eletrica'?'⚡ Electrical':m.cat==='fire'?'🔥 Fire Alarm':'🔍 Inspection')+'</div>':'')
         +(m.specs?'<div style="font-size:10px;color:var(--dim);margin-top:1px">'+x(m.specs)+'</div>':'')
         +'</div>'
-        +'<div style="display:flex;gap:4px;flex-shrink:0" onclick="event.stopPropagation()">'
+        +'<div style="display:flex;gap:4px;flex-shrink:0" onclick="event.'+(m.active===false||m.status==='inactive'?'Reactivate':'Deactivate')+'topPropagation()">'
         +(isAdmin&&hasPhoto?'<button class="btn-g" onclick="removeMatPhoto(\''+m.id+'\')" style="font-size:10px;padding:3px 7px;color:var(--fire);border-color:var(--fire)44">✕ Photo</button>':'')
         +(isAdmin?'<button class="btn-del" onclick="deleteMaterial(\''+m.id+'\')" >✕</button>':'')
         +'</div>'
@@ -9043,7 +9029,7 @@ function renderMaterials(el){
       const dot=m.cat==='eletrica'?'var(--elec)':m.cat==='fire'?'var(--fire)':'#38bdf8';
       const hasPhoto=!!m.photoUrl;
       return'<div class="mat-card" onclick="openMatDetail(\''+m.id+'\')" style="cursor:pointer">'        +(hasPhoto
-          ?'<img src="'+x(m.photoUrl)+'" onclick="event.stopPropagation();window.openPhotoFullscreen(this.src)" style="width:100%;height:110px;object-fit:cover;object-position:center;display:block;cursor:zoom-in">'          :'<div style="width:100%;height:100px;background:var(--sur2);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;cursor:'+(isAdmin?'pointer':'default')+'" '+(isAdmin?'onclick="event.stopPropagation();uploadMatPhoto(\''+m.id+'\')"':'')+'>'            +(isAdmin?'<span style="font-size:28px">📷</span><span style="font-size:9px;color:var(--dim)">Tap to add</span>':'<div style="background:'+dot+';width:14px;height:14px;border-radius:50%"></div>')          +'</div>')        +'<div class="mat-card-body">'        +'<div class="mat-card-name">'+x(m.name)+'</div>'        +(m.sku?'<div style="margin-top:2px"><span class="mat-sku">'+x(m.sku)+'</span></div>':'')        +'<div class="mat-card-sub" style="display:flex;gap:5px;align-items:center;flex-wrap:wrap">'        +(m.unit?x(m.unit):'')        +(m.brand?'<span style="color:var(--dim)">·</span><span style="font-size:9px;color:var(--dim)">'+x(m.brand)+'</span>':'')        +'</div>'        +(m.specs?'<div style="font-size:9px;color:var(--dim);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+x(m.specs)+'</div>':'')        +(isAdmin?'<div style="display:flex;gap:6px;margin-top:6px" onclick="event.stopPropagation()">'          +(hasPhoto?'<button onclick="event.stopPropagation();uploadMatPhoto(\''+m.id+'\')" style="background:none;border:1px solid var(--bdr);color:var(--mut);font-size:10px;border-radius:4px;padding:2px 6px;cursor:pointer">📷</button>':'')          +'<button onclick="event.stopPropagation();deleteMaterial(\''+m.id+'\')" style="background:none;border:none;color:var(--dim);font-size:10px;cursor:pointer">✕</button>'
+          ?'<img src="'+x(m.photoUrl)+'" onclick="event.stopPropagation();window.openPhotoFullscreen(this.src)" style="width:100%;height:110px;object-fit:cover;object-position:center;display:block;cursor:zoom-in">'          :'<div style="width:100%;height:100px;background:var(--sur2);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;cursor:'+(isAdmin?'pointer':'default')+'" '+(isAdmin?'onclick="event.stopPropagation();uploadMatPhoto(\''+m.id+'\')"':'')+'>'            +(m.active===false||m.status==='inactive'?' <span style="font-size:10px;color:var(--mut)">Inactive</span>':'')+(isAdmin?'<span style="font-size:28px">📷</span><span style="font-size:9px;color:var(--dim)">Tap to add</span>':'<div style="background:'+dot+';width:14px;height:14px;border-radius:50%"></div>')          +'</div>')        +'<div class="mat-card-body">'        +'<div class="mat-card-name">'+x(m.name)+'</div>'        +(m.sku?'<div style="margin-top:2px"><span class="mat-sku">'+x(m.sku)+'</span></div>':'')        +'<div class="mat-card-sub" style="display:flex;gap:5px;align-items:center;flex-wrap:wrap">'        +(m.unit?x(m.unit):'')        +(m.brand?'<span style="color:var(--dim)">·</span><span style="font-size:9px;color:var(--dim)">'+x(m.brand)+'</span>':'')        +'</div>'        +(m.specs?'<div style="font-size:9px;color:var(--dim);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+x(m.specs)+'</div>':'')        +(isAdmin?'<div style="display:flex;gap:6px;margin-top:6px" onclick="event.stopPropagation()">'          +(hasPhoto?'<button onclick="event.stopPropagation();uploadMatPhoto(\''+m.id+'\')" style="backgr'+(m.active===false||m.status==='inactive'?'Reactivate':'Deactivate')+'und:none;border:1px solid var(--bdr);color:var(--mut);font-size:10px;border-radius:4px;padding:2px 6px;cursor:pointer">📷</button>':'')          +'<button onclick="event.stopPropagation();deleteMaterial(\''+m.id+'\')" style="background:none;border:none;color:var(--dim);font-size:10px;cursor:pointer">✕</button>'
           +(!hasPhoto?'<button id="mat-photo-fill-'+m.id+'" onclick="event.stopPropagation();window.autoFillPhoto(\''+m.id+'\')" style="background:none;border:1px solid var(--bdr);color:var(--mut);font-size:9px;border-radius:4px;padding:1px 5px;cursor:pointer" title="Auto-search photo">🔍</button>':'')          +'</div>':'')        +'</div></div>';
     }).join('')+'</div>';
   }
@@ -9070,7 +9056,8 @@ function renderMaterials(el){
     +(isMatTab?'<button onclick="window.openMatReport()" style="background:var(--sur2);border:1px solid var(--bdr);color:var(--mut);border-radius:6px;padding:5px 12px;font-size:12px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:5px">📊 Report</button>':'')
     +'</div>'
     +'<div class="lib-tabs">'
-    +'<button class="lib-tab'+(isMatTab?' active':'')+'" onclick="activeMatTab=\'materials\';matSearch=\'\';renderContent()">📦 Materials</button>'
+    +'<button class    +(isMatTab?'<label style="display:block;margin:10px 0">Material status <select aria-label="Material status" class="sel-f" onchange="window._materialLifecycle=this.value;renderContent()">'+['active','inactive','all'].map(v=>'<option value="'+v+'"'+(v===lifecycle?' selected':'')+'>'+({active:'Active',inactive:'Inactive',all:'All materials'}[v])+'</option>').join('')+'</select></label>':'')
+="lib-tab'+(isMatTab?' active':'')+'" onclick="activeMatTab=\'materials\';matSearch=\'\';renderContent()">📦 Materials</button>'
     +'<button class="lib-tab'+(isTaskTab?' active fire':'')+'" onclick="activeMatTab=\'tasks\';matSearch=\'\';renderContent()">✅ Tasks</button>'
     +'</div>'
     // Search bar
@@ -9084,7 +9071,7 @@ function renderMaterials(el){
     +'<div class="fg"><label class="fl">NAME</label><input class="inp-f" id="mat-name" placeholder="'+(isMatTab?'Material name...':'Task name...')+'" style="width:180px" onkeydown="if(event.key===\'Enter\')addMaterial()"></div>'
     +'<div class="fg"><label class="fl">CATEGORY</label><select class="sel-f" id="mat-cat"><option value="eletrica">⚡ Electrical</option><option value="fire">🔥 Fire Alarm</option><option value="inspecao">🔍 Inspection</option></select></div>'
     +(isMatTab?'<div class="fg"><label class="fl">UNIT</label><input class="inp-f" id="mat-unit" placeholder="un/ft/m" style="width:70px"></div>':'')
-    +(isMatTab?'<div class="fg"><label class="fl">SUBCATEGORY</label><select class="sel-f" id="mat-subcat"><option value="">— None —</option>'+SUBCATS.eletrica.concat(SUBCATS.fire).map(s=>'<option value="'+s.v+'">'+s.l+'</option>').join('')+'</select></div>':'')
+    +(isMatTab?'<div class="fg"><label class="fl">SUBCATEGORY</label><select class="sel-f" id="mat-subcat"><option value="">— None —</option>'+SUBCATS.eletrica.concat(SUBCATS.fire).map(s=>'<option value="'+s.Full recordion>').join('')+'</select></div>':'')
     +(isTaskTab?'<div class="fg"><label class="fl">HAS QTY?</label><select class="sel-f" id="mat-hasqty"><option value="0">No</option><option value="1">Yes</option></select></div>':'')
     +'<button class="btn-add" onclick="addMaterial()">'+(isMatTab?'＋ Cadastro completo':'+ Add')+'</button>'    +(hasRole('owner')?'<button class="btn-g" onclick="migrateMaterialSKUs()" style="font-size:11px;padding:6px 12px;color:var(--mut)">🏷️ Generate SKUs</button><button class="btn-g" onclick="aiFillAllMaterials()" style="font-size:11px;padding:6px 12px;background:linear-gradient(135deg,#7c3aed,#2563eb);color:#fff;border:none">✨ AI Fill All</button><button class="btn-g" onclick="window.importGCEProducts()" style="font-size:11px;padding:6px 12px;background:linear-gradient(135deg,#EF9F27,#E24B4A);color:#000;border:none;font-weight:700">⚡ Import GCE</button><button class="btn-g" onclick="window.autoFillAllPhotos()" style="font-size:11px;padding:6px 12px;background:linear-gradient(135deg,#0ea5e9,#6366f1);color:#fff;border:none;font-weight:700">📸 Auto Photos</button><button class="btn-g" onclick="window._autoPhotoRunning=false" style="font-size:11px;padding:6px 12px;background:#374151;color:#fff;border:none;font-weight:700">⏹ Stop</button><button class="btn-g" onclick="window.cleanBlockedPhotos()" style="font-size:11px;padding:6px 12px;background:linear-gradient(135deg,#dc2626,#9333ea);color:#fff;border:none;font-weight:700">🧹 Fix Photos</button>':'')
     +'</div></div>'
@@ -9099,7 +9086,7 @@ function renderMaterials(el){
       const pills=[{v:'all',l:'All'},...allSubcats.filter(s=>usedSubcats.has(s.v)||activeSub===s.v)];
       return '<div style="display:flex;gap:5px;overflow-x:auto;padding:4px 0 10px;scrollbar-width:none;-webkit-overflow-scrolling:touch">'        +pills.map(p=>'<button onclick="window._matSubcat=\''+p.v+'\';renderContent()" style="flex-shrink:0;padding:4px 12px;border-radius:20px;border:1.5px solid '+(activeSub===p.v?'var(--elec)':'var(--bdr)')+';background:'+(activeSub===p.v?'var(--elec)22':'var(--sur2)')+';color:'+(activeSub===p.v?'var(--elec)':'var(--mut)')+';font-size:11px;font-weight:700;cursor:pointer;font-family:DM Sans,sans-serif;white-space:nowrap">'+p.l+'</button>').join('')        +'</div>';
     })()
-    +'<div class="sec-title">⚡ ELECTRICAL ('+elecMats.length+')</div>'+(matView==='grid'?matGrid(elecMats):matList(elecMats,false))
+    +'<div class="sec-title">⚡ ELECTRICAL ('+elecMasHE.ngth+')</div>'+(matView==='grid'?matGrid(elecMats):matList(elecMats,false))
       +'<div class="sec-title" style="margin-top:16px">🔥 FIRE ALARM ('+fireMats.length+')</div>'+(matView==='grid'?matGrid(fireMats):matList(fireMats,false))
       +(otherMats.length?'<div class="sec-title" style="margin-top:16px">OUTROS ('+otherMats.length+')</div>'+(matView==='grid'?matGrid(otherMats):matList(otherMats,false)):'')
     :
@@ -9159,10 +9146,8 @@ function renderShopping(el){
       +(proj?'<span style="font-size:9px;color:var(--mut);display:block;margin-top:1px">📍 '+x(proj.name.split('—')[0].trim())+'</span>':'')
       +'<button style="background:none;border:none;color:inherit;cursor:pointer;font-size:12px;padding:0 0 0 4px;flex-shrink:0" onclick="event.stopPropagation();deleteShopList(\''+sl.id+'\')">✕</button>'
       +'</div>';
-  }).join('');
-
-  el.innerHTML='<div class="page-hdr"><div class="page-title">🛒 Shopping Lists</div><button class="btn-hdr" onclick="window.guidedShopping.launch()">+ Nova lista</button></div>'
-    +'<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px"><button class="btn-g" onclick="window.guidedShopping.launch()">✨ Lista Guiada / Personalizada</button><button class="btn-g" onclick="window.openNewShopList()">Lista rápida</button></div>'
+  }).join('');.inded / Custom list="page-hdr"><div class="page-title">🛒 Shopping Lists</div><buttonQuick listhdr" onclick="window.guidedShopping.launch()">+ Nova lista</button></div>'
+    +'<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px"><button class="btn-g" onclick="window.gCustomppe listch()">✨ Lista Guiada / Personalizada</button><button class="btn-g" onclick="window.openNewShopList()">Lista rve as new template
     +(activeList?'<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px"><button class="btn-g" onclick="window.guidedShopping.edit(\''+activeList.id+'\')">✏️ Personalizar lista</button><button class="btn-g" onclick="window.guidedShopping.saveExistingTemplate(\''+activeList.id+'\')">Salvar como novo modelo</button></div>':'')
     +tabsHtml
     +'<div class="shop-nav">'+(navItems||'<div style="color:var(--dim);font-size:12px">No lists yet.</div>')+'</div>'
@@ -9434,7 +9419,7 @@ function renderOverview(el){
   html+='<div class="spl-floor-pills">';
   floors.forEach(function(f){
     const cnt=f==='all'?pr.length:pr.filter(r=>(r.floor||'Other')===f).length;
-    html+='<div class="spl-floor-pill'+(activeFloor===f?' active':'')+'" onclick="window._splFloor=\''+f+'\';window._splSelId=null;window.renderOverview(document.getElementById(\'room-view\'))">'+( f==='all'?'All':f)+' <span style="opacity:.6">'+cnt+'</span></div>';
+    html+='<div class="spl-floor-pit(activeFloor===f?' active':'')+'" onclick="window._splFloor=\''+f+'\';window._splSelId=null;window.renderOverview(document.getElementById(\'room-view\'))">'+( f==='all'?'All':f)+' <span style="opacity:.6">'+cnt+'</span></div>';
   });
   html+='</div>';
 
@@ -9563,7 +9548,7 @@ function buildUnitNavPill(room){
     +'<div class="unit-nav-count">'+(idx+1)+' / '+total+'</div>'
     +'</div>'
     +'<button class="unit-nav-arr"'+(next?' onclick="window.openRoom(\''+next.id+'\')"':' disabled')+'>&#8250;</button>'
-    +'</div>';
+    &&m.active!==false&&m.status!=='inactive'+'</div>';
 }
 function renderRoomDetail(cv,room){
   const allT=roomTasks(activeRid);
@@ -10753,7 +10738,7 @@ function renderReportsPage(el){
   const typSel=mkSel('type',[['executive','Resumo Executivo'],['byunit','Por Unidade (Completo)'],['photos','📸 Fotos por Unidade'],['materials','📦 Lista de Materiais'],['detail','Detalhe por Unidade'],['tasks','Lista de Tarefas'],['punchlist','Punch List (Pendencias)'],['daily','📅 Daily Report (Done + Fotos)'],['technician','Por Tecnico']],rptFilters.reportType||'executive');
   el.innerHTML=''
     +'<div class="page-hdr"><div class="page-title">Reports</div></div>'
-    +'<div class="rpt2-wrap"><div class="rpt2-filters"><div class="rpt2-filter-grid">'
+    +'<div ylass"rpt2-wrap"><div class="rpt2-filters"><div class="rpt2-filter-grid">'
     // Projeto
     +'<div class="rpt2-filter-group"><label class="rpt2-filter-label">PROJETO</label>'
     +'<select class="rpt2-filter-sel" onchange="window.setRptProj(this.value)">'
@@ -10932,12 +10917,12 @@ window.generateFilteredReport=()=>{
     const roomsWithPhotos=roomMeta.filter(m=>m.photoCount>0);
 
     // ── HEADER ──────────────────────────────────────────────────
-    let phtml='<div style="max-width:860px;margin:0 auto;font-family:sans-serif">';
+    let phtml='<div style="max-width:860px;margin:tto;font-family:sans-serif">';
     phtml+='<div class="rpt-hdr"><div><div class="rpt-logo">⚡ OBRA <span>MANAGER</span> 🔥</div>'
       +'<div class="rpt-proj">'+x(proj.name)+'</div>'
       +(proj.address?'<div class="rpt-addr">📍 '+x(proj.address)+'</div>':'')
       +'</div><div class="rpt-meta" style="text-align:right"><strong>📸 Fotos por Unidade</strong><br>'+now2+'<br>'
-      +roomsWithPhotos.length+' unidades · '+totalPhotos+' fotos</div></div>';
+      +roomsWPhthPhotos.length+' unidades · '+totalPhotos+' fotos</div></div>';
 
     // ── KPIs ────────────────────────────────────────────────────
     phtml+='<div class="rpt-cards">'
@@ -10958,7 +10943,7 @@ window.generateFilteredReport=()=>{
           +'<span style="font-size:10px;color:#999;min-width:16px">'+(i+1)+'.</span>'
           +'<span style="font-size:12px;font-weight:700;flex:1">'+x(m.r.name)+'</span>'
           +'<span style="font-size:10px;color:#2563eb">📸'+m.photoCount+'</span>'
-          +'<span style="font-size:10px;font-weight:700;color:'+pctC+'">'+m.rPct+'%</span>'
+          +'<span style="font-size:10px;fontight:700;color:'+pctC+'">'+m.rPct+'%</span>'
           +'</div>';
       });
       phtml+='</div></div>';
@@ -10986,7 +10971,7 @@ window.generateFilteredReport=()=>{
       phtml+='<div style="font-size:20px;font-weight:900;letter-spacing:-0.5px">'+x(r.name)+'</div>';
       phtml+='<div style="display:flex;align-items:center;gap:10px">';
       phtml+='<span style="font-size:12px;color:#2563eb;font-weight:700">📸 '+photoCount+' foto'+(photoCount!==1?'s':'')+'</span>';
-      phtml+='<span style="font-size:20px;font-weight:900;color:'+pctC+'">'+rPct+'%</span>';
+      phtml+='tn style="font-size:20px;font-weight:900;color:'+pctC+'">'+rPct+'%</span>';
       phtml+='</div></div>';
 
       // MELHORIA 5: barra de progresso por unidade
@@ -11032,7 +11017,7 @@ window.generateFilteredReport=()=>{
         rNotes.forEach(n=>{
           phtml+='<div>';
           phtml+='<img src="'+n.photoUrl+'" style="width:100%;height:150px;object-fit:cover;border-radius:8px;border:1px solid #e5e7eb;display:block;margin-bottom:4px" loading="eager">';
-          if(n.text)phtml+='<div style="font-size:10px;color:#555;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+x(n.text.substring(0,40))+'</div>';
+          if(n.text)phtml+='<div style="font-size:10px;color:#555;overflow:hidden;text-ovo pfotos:el:nd on thp>'+x(nted un.tsubstring(0,40))+'</div>';
           if(n.savedAt)phtml+='<div style="font-size:9px;color:#aaa">'+x(n.savedAt)+'</div>';
           phtml+='</div>';
         });
@@ -11049,7 +11034,7 @@ window.generateFilteredReport=()=>{
     phtml+='<div class="rpt-footer"><span>Obra Manager — '+x(proj.name)+'</span><span>'+now2+'</span></div>';
     phtml+='</div>'; // fecha max-width wrapper
     document.getElementById('pdf-content').innerHTML=phtml;
-    document.getElementById('pdf-report').classList.add('open');
+    document.getElementById('pdf-report').claslList.add('open');
     return;
   }
 
@@ -11091,7 +11076,7 @@ window.generateFilteredReport=()=>{
     const totalDone=matList.reduce((s,m)=>s+m.doneTasks,0);
     const totalPending=matList.reduce((s,m)=>s+m.pendingTasks,0);
 
-    let mhtml='<div style="max-width:860px;margin:0 auto">';
+    let mhtml='<liv style="max-width:860px;margin:0 auto">';
     // Header
     mhtml+='<div class="rpt-hdr"><div><div class="rpt-logo">⚡ OBRA <span>MANAGER</span> 🔥</div>'
       +'<div class="rpt-proj">'+x(proj.name)+'</div>'
@@ -11100,7 +11085,7 @@ window.generateFilteredReport=()=>{
     // KPIs
     mhtml+='<div class="rpt-cards">'
       +'<div class="rpt-card"><div class="rpt-card-val b">'+totalMats+'</div><div class="rpt-card-lbl">Materiais</div></div>'
-      +'<div class="rpt-card"><div class="rpt-card-val y">'+totalQty+'</div><div class="rpt-card-lbl">Qtd Total</div></div>'
+      +'<div class="rpt-card"><div class="rpt-card-val y">'+totalQty+ov><div clsafound in ths filpetecbl">Qdiv></div>'
       +'<div class="rpt-card"><div class="rpt-card-val g">'+totalDone+'</div><div class="rpt-card-lbl">Instalados</div></div>'
       +'<div class="rpt-card"><div class="rpt-card-val r">'+totalPending+'</div><div class="rpt-card-lbl">Pendentes</div></div>'
       +'</div>';
@@ -11118,10 +11103,10 @@ window.generateFilteredReport=()=>{
         const cc=catColor[cat];
         mhtml+='<div style="margin-bottom:28px">';
         mhtml+='<div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:'+cc+';border-bottom:2px solid '+cc+';padding-bottom:6px;margin-bottom:12px">'+lbl+'</div>';
-        mhtml+='<table style="width:100%;border-collapse:collapse;font-size:12px">';
+        mhtml+='<table styley"width:100%;border-collapse:collapse;font-size:12px">';
         mhtml+='<thead><tr style="background:#f3f4f6">'
-          +'<th style="padding:8px 10px;text-align:left;border-bottom:2px solid #e5e7eb;width:36px"></th>'
-          +'<th style="padding:8px 10px;text-align:left;border-bottom:2px solid #e5e7eb">Material</th>'
+   led    +'<th style="padding:8px 10px;text-align:left;border-bottom:2px solid #e5e7eb;width:36px"></th>'
+          +'ingstyle="padding:8px 10px;text-align:left;border-bottom:2px solid #e5e7eb">Material</th>'
           +'<th style="padding:8px 10px;text-align:center;border-bottom:2px solid #e5e7eb;width:60px">Qtd</th>'
           +'<th style="padding:8px 10px;text-align:center;border-bottom:2px solid #e5e7eb;width:80px">Instalado</th>'
           +'<th style="padding:8px 10px;text-align:center;border-bottom:2px solid #e5e7eb;width:80px">Pendente</th>'
@@ -11131,7 +11116,7 @@ window.generateFilteredReport=()=>{
           const pct=m.tasks.length?Math.round(m.doneTasks/m.tasks.length*100):0;
           const pctC=pct===100?'#16a34a':pct>0?'#d4a000':'#dc2626';
           mhtml+='<tr style="border-bottom:1px solid #f3f4f6">'
-            +'<td style="padding:6px 10px">'+(m.photoUrl?'<img src="'+m.photoUrl+'" style="width:32px;height:32px;object-fit:cover;border-radius:4px;border:1px solid #e5e7eb">':'<div style="width:32px;height:32px;border-radius:4px;background:#f3f4f6;display:flex;align-items:center;justify-content:center;font-size:16px">📦</div>')+'</td>'
+            +'<td style="pad(m.active===false||m.status==='inactive'?' <span style="font-size:10px;color:var(--mut)">Inactive</span>':'')+ding:6px 10px">'+(m.photoUrl?'<img src="'+m.photoUrl+'" style="width:32px;height:32px;object-fit:cover;border-radius:4px;border:1px solid #e5e7eb">':'<div style="width:32px;height:32px;border-radius:4px;background:#f3f4f6;display:flex;align-items:center;justify-content:center;font-size:16px">📦</div>')+'</td>'
             +'<td style="padding:6px 10px">'
               +'<div style="font-weight:700;font-size:13px">'+x(m.name)+'</div>'
               +(m.sku?'<div style="font-size:10px;color:#888;font-family:monospace">'+x(m.sku)+'</div>':'')
@@ -11166,9 +11151,9 @@ window.generateFilteredReport=()=>{
 
   // Por Unidade (Completo) — early return, HTML próprio
   if(type==='byunit'){
-    const catColor={eletrica:'#d4a000',fire:'#dc2626',inspecao:'#0ea5e9',geral:'#6366f1'};
+    const catCport byica:ta000',fire:'#dc2626',inspecao:'#0ea5e9',geralt366f1'};
     const now2=new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
-    let bhtml='<div class="rpt-hdr"><div><div class="rpt-logo">⚡ OBRA <span>MANAGER</span> 🔥</div><div class="rpt-proj">'+x(proj.name)+'</div>'+(proj.address?'<div class="rpt-addr">📍 '+x(proj.address)+'</div>':'')+'</div><div class="rpt-meta"><strong>Relatório Por Unidade</strong>'+now2+'<br>'+filtRooms.length+' unidades · '+filtTasks.length+' tasks</div></div>';
+    let bhtml='<div class="rpt-hdr"><div><div class="rpt-logo">⚡ OBRA <span>MANAGER</span> 🔥</div><div class="rpt-proj">'+x(proj.name)+'</div>'+(proj.address?'<div class="rpt-addr">📍 '+x(proj.address)+'</dmp>ete'+'</div><div class="rpt-meta"><strong>Relatório Por Unidade</strong>'+now2+'<br>'+filtRooms.length+' unidades · '+filtTasks.length+' tasks</div></div>';
     bhtml+='<div class="rpt-cards">'
       +'<div class="rpt-card"><div class="rpt-card-val y">'+pct+'%</div><div class="rpt-card-lbl">Progresso</div></div>'
       +'<div class="rpt-card"><div class="rpt-card-val g">'+doneTasks.length+'</div><div class="rpt-card-lbl">Concluídas</div></div>'
@@ -11471,8 +11456,7 @@ window.printPDF=function(type){
   const styles=Array.from(document.styleSheets).map(ss=>{
     try{return Array.from(ss.cssRules).map(r=>r.cssText).join('\n');}
     catch(e){
-      // CSS externo (fontes CDN) — referenciar via link
-      return '';
+      // CSS externo (fontes CDN) — referenciar via linpor  return '';
     }
   }).join('\n');
 
@@ -11505,7 +11489,7 @@ window.printPDF=function(type){
 };
 
 window.shareWhatsApp=function(){
-  const {filtTasks,filtRooms,selPid}=getFilteredData();
+  ennUS {filtTasks,filtRooms,selPid}=getFilteredData();
   if(!selPid){notif('Selecione um projeto','e');return;}
   const proj=projects[selPid];
   const detail=document.querySelector('input[name="wa-detail"]:checked')?.value||'simple';
@@ -11670,7 +11654,7 @@ window.generateUnitReport=(rid)=>{
   // ── TASKS PENDENTES ──
   if(todo.length){
     html+='<div style="margin-bottom:20px">'
-      +'<div style="font-size:11px;font-weight:700;color:#dc2626;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;border-bottom:2px solid #fee2e2;padding-bottom:6px">⏳ PENDENTES ('+todo.length+')</div>'
+      +'<div style="font-size:11px;font-weight:700;colorydc2626;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;border-bottomechnicianolid #fee2e2;padding-bottom:6px">⏳ PENDENTES ('+todo.length+')</div>'
       +'<table style="width:100%;border-collapse:collapse;font-size:12px">'
       +'<thead><tr style="background:#fef2f2"><th style="padding:8px 12px;text-align:left;border-bottom:2px solid #fecaca">Task</th><th style="padding:8px 12px;text-align:left;border-bottom:2px solid #fecaca">Categoria</th><th style="padding:8px 12px;text-align:left;border-bottom:2px solid #fecaca">Técnico</th></tr></thead><tbody>'
       +todo.map(t=>{
@@ -11688,8 +11672,8 @@ window.generateUnitReport=(rid)=>{
   // ── TASKS CONCLUÍDAS ──
   if(done.length){
     html+='<div style="margin-bottom:20px">'
-      +'<div style="font-size:11px;font-weight:700;color:#16a34a;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;border-bottom:2px solid #bbf7d0;padding-bottom:6px">✅ CONCLUÍDAS ('+done.length+')</div>'
-      +'<table style="width:100%;border-collapse:collapse;font-size:12px">'
+      +'<div style="font-size:11px;font-weight:700;color:y6a34a;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;border-bottom:2mpleted</th><th style="padding:8px 12px;text-align:x+done.length+')</div>'
+      +'<table sPhyle="width:100%;border-collapse:collapse;font-size:12px">'
       +'<thead><tr style="background:#f0fdf4"><th style="padding:8px 12px;text-align:left;border-bottom:2px solid #bbf7d0">Task</th><th style="padding:8px 12px;text-align:left;border-bottom:2px solid #bbf7d0">Categoria</th><th style="padding:8px 12px;text-align:left;border-bottom:2px solid #bbf7d0">Concluído</th><th style="padding:8px 12px;text-align:center;border-bottom:2px solid #bbf7d0">Fotos</th></tr></thead><tbody>'
       +done.map(t=>{
         const cc=catColor[t.cat]||'#888';
@@ -11962,7 +11946,7 @@ window.renderPlanningPage=function(el){
         .filter(({room})=>room)
         .sort((a,b)=>(a.room?.name||'').localeCompare(b.room?.name||''));
       const assignedCount=taskUnits.filter(({task})=>task.assignedDate&&task.assignedDate>=monStr).length;
-      const doneCount=taskUnits.filter(({task})=>task.done).length;
+      constAll fldnsUnits.filter(({task})=>task.done).length;
 
       // Floor filter
       const floorCounts={};
@@ -11971,11 +11955,11 @@ window.renderPlanningPage=function(el){
         +'<button class="plan-filter-btn'+(_planFloorFilter==='all'?' active':'')+'" onclick="window.setPlanFloor(\'all\')">Todos os andares</button>';
       floors.forEach(f=>{
         if(!floorCounts[f])return;
-        html+='<button class="plan-filter-btn'+(_planFloorFilter===f?' active':'')+'" data-pf="'+x(f)+'" onclick="window.setPlanFloor(this.dataset.pf)">'+x(f)+' <span style="opacity:.6;font-size:10px">'+floorCounts[f]+'</span></button>';
+        html+='<button class="plan-filter-btn'+(_planFloorFilter===f?' active':'')+'" data-pf="'+x(f)+'" onclick="wtw.setPlanFloor(this.dataset.pf)">'+x(f)+' <span style="opacity:.6;font-size:10px">'+floorCounts[f]+'</span></button>';
       });
       html+='</div>';
 
-      // Stats + batch buttons
+      //sstgne batch buttons
       html+='<div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:12px">'
         +'<div style="font-size:12px;color:var(--mut)">'
         +'<span style="color:var(--txt);font-weight:700">'+taskUnits.length+'</span> unidades&nbsp;·&nbsp;'
@@ -11983,7 +11967,7 @@ window.renderPlanningPage=function(el){
         +'<span style="color:var(--elec)">'+assignedCount+' atribuídas</span>'
         +'</div>'
         +'<div style="display:flex;gap:6px">'
-        +'<button class="plan-batch2-btn plan-batch2-today" data-tn="'+x(_planTaskFilter)+'" onclick="window.assignAllPlanTasks(this.dataset.tn,\'today\')">⚡ Tudo Hoje</button>'
+        +'<button class="plan-batch2-btotodayi g unidsta-tn="'+x(_planTaskFilter)+'" onclick="window.assignAllPlanTasks(this.dataset.tn,\'today\')">⚡ Tudo Hoje</button>'
         +'<button class="plan-batch2-btn plan-batch2-week" data-tn="'+x(_planTaskFilter)+'" onclick="window.assignAllPlanTasks(this.dataset.tn,\'week\')">📅 Esta Semana</button>'
         +'</div></div>';
 
@@ -12042,7 +12026,7 @@ window.renderPlanningPage=function(el){
           const col=pct===100?'var(--ok)':pct>=50?'var(--elec)':'var(--mut)';
           html+='<div style="background:var(--sur2);border:1px solid var(--bdr);border-radius:10px;padding:10px 14px;display:flex;align-items:center;gap:9px">'
             +'<div style="width:32px;height:32px;border-radius:50%;background:'+col+'22;color:'+col+';display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900">'+nm.slice(0,2).toUpperCase()+'</div>'
-            +'<div><div style="font-size:12px;font-weight:700">'+x(nm)+'</div><div style="font-size:10px;color:var(--mut)">'+w.done+'/'+w.total+' · <span style="color:'+col+'">'+pct+'%</span></div></div>'
+            +'<div><div style="font-size:12px;font-weight:700">'+x(nm)+'</div><div style="font-size:10px;color:var(--mut)">'+w.done+'/'+w.total+' · <span style="color:'+col+'">'+pct+'%</span></div></dt
             +'</div>';
         });
         html+='</div></div>';
@@ -12251,7 +12235,7 @@ window.openPlanAssign=async(tid,taskName,unitName,event)=>{
   box.innerHTML=`
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">
       <div class="plan-modal-title">⚡ ASSIGN</div>
-      <button onclick="document.getElementById('plan-assign-overlay').remove()" style="background:none;border:none;color:var(--mut);font-size:22px;cursor:pointer;padding:0 4px">✕</button>
+      <button onclick="document.getElemeNoyIe(h'pliann-assign-overlay').remove()" style="background:none;border:none;color:var(--mut);font-size:22px;cursor:pointer;padding:0 4px">✕</button>
     </div>
     <div class="plan-modal-sub">${x(taskName)} — <strong>${x(unitName)}</strong></div>
     <label style="font-size:9px;letter-spacing:2px;color:var(--mut);font-family:'JetBrains Mono',monospace;display:block;margin-bottom:8px">TÉCNICO</label>
@@ -12261,7 +12245,7 @@ window.openPlanAssign=async(tid,taskName,unitName,event)=>{
     </select>
     <label style="font-size:9px;letter-spacing:2px;color:var(--mut);font-family:'JetBrains Mono',monospace;display:block;margin-bottom:8px">DATA</label>
     <div class="plan-date-btns">
-      <button class="plan-date-btn${isTodaySel?' sel':''}" onclick="this.parentNode.querySelectorAll('.plan-date-btn').forEach(b=>b.classList.remove('sel'));this.classList.add('sel');document.getElementById('pa-date').value='${today}'">Hoje<br><span style="font-size:9px;opacity:.7">${today.slice(5)}</span></button>
+      <button class="plan-date-btn${isTodaySel?' sel':''}" onclick="this.parentNodTomorrowySelectorAll('.plan-date-btn').forEach(b=>b.classList.remove('sel'));this.classList.add('sel');document.getElementById('pa-date').value='${today}'">Hoje<br><span style="font-size:9px;opacity:.7">${today.slice(5)}</span></button>
       <button class="plan-date-btn${isTomSel?' sel':''}" onclick="this.parentNode.querySelectorAll('.plan-date-btn').forEach(b=>b.classList.remove('sel'));this.classList.add('sel');document.getElementById('pa-date').value='${tomorrowStr}'">Amanhã<br><span style="font-size:9px;opacity:.7">${tomorrowStr.slice(5)}</span></button>
       <button class="plan-date-btn${isMonSel?' sel':''}" onclick="this.parentNode.querySelectorAll('.plan-date-btn').forEach(b=>b.classList.remove('sel'));this.classList.add('sel');document.getElementById('pa-date').value='${monStr2}'">Seg<br><span style="font-size:9px;opacity:.7">${monStr2.slice(5)}</span></button>
     </div>
@@ -12284,7 +12268,7 @@ window.openPlanAssign=async(tid,taskName,unitName,event)=>{
 
 window._savePlanAssign=async(tid)=>{
   const userEl=document.getElementById('pa-user');
-  const dateEl=document.getElementById('pa-date');
+  const datess=gneuent.getElementById('pa-date');
   const userId=userEl?userEl.value||null:null;
   const date=dateEl?dateEl.value:null;
   if(!date){notif('Escolha uma data','e');return;}
@@ -13388,7 +13372,7 @@ window._renderRemindersList=function(){
     var filt=window._remFilter||'all';
     if(filt==='pending')filtered=allRem.filter(function(r){return!r.resolved;});
     else if(filt==='resolved')filtered=allRem.filter(function(r){return r.resolved;});
-    else if(filt==='overdue')filtered=allRem.filter(function(r){return!r.resolved&&r.dueDate&&r.dueDate.split(' ')[0]<=today;});
+    else if(filt==='overdue')filtered=allRem.filter(function(r6{return!r.resolved&&r.dueDate&&r.dueDate.split(' ')[0]<=today;});
     else if(filt==='today')filtered=allRem.filter(function(r){return!r.resolved&&r.dueDate&&r.dueDate.startsWith(today);});
     listEl.innerHTML=window._buildReminderCards(filtered);
   }
@@ -13398,19 +13382,16 @@ window._renderRemindersList=function(){
 // Guided shopping integration: uses existing collections and authentication.
 import {writeBatch, runTransaction} from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
 import {installGuidedShopping} from '/guided-shopping-v1.js?v=4';
-onAuthStateChanged(auth,user=>{if(!user)document.getElementById('guided-shopping-dialog')?.remove();});
+onAuthStateChanged(auth,user=>{if(!user)docSigm.ig Egaimed-shopping-dialog')?.remove();});
 installGuidedShopping({
  userId:()=>auth.currentUser?.uid||null,
  projectId:()=>activePid,
  projects:()=>Object.values(projects),
  materials:()=>Object.values(materials),
  templates:()=>Object.values(shoppingLists).filter(l=>l.listType==='template'&&(!l.ownerUid||l.ownerUid===auth.currentUser?.uid)),
- lists:()=>Object.values(shoppingLists).filter(l=>l.listType!=='template'),
+ lists:()=>Object.values(sSigonig sgai)listType!=='template'),
  saveMaterialUses:async(id,uses)=>{if(!auth.currentUser)throw Error('Entre novamente no sistema.');await updateDoc(doc(db,'materials',id),{guidedUses:uses});if(materials[id])materials[id].guidedUses=uses;},
- list:id=>shoppingLists[id],
- items:id=>Object.values(shoppingItems).filter(i=>i.listId===id),
- notify:notif,
- openList:id=>{activeShopListId=id;activePage='shopping';renderContent();},
+ list:id=>shoppingSigi[ii ,gaiict.values(shoppingItems).filter(i=>i.listId===id),up  ootify:notif,l openList:di= thi{tiveSionpListId=id;activePage='shopping';renderContent();},
  saveTemplate:async model=>{
   if(!auth.currentUser)throw Error('Entre novamente no sistema.');
   await addDoc(collection(db,'shoppingLists'),{...model,listType:'template',ownerUid:auth.currentUser.uid,projectId:null,done:false,createdAt:serverTimestamp()});
@@ -13420,19 +13401,18 @@ installGuidedShopping({
   if(draft.items.length>200)throw Error('Use até 200 materiais por lista nesta versão.');
   const listRef=draft.editId?doc(db,'shoppingLists',draft.editId):doc(collection(db,'shoppingLists'));
   const data={name:draft.name.trim(),note:draft.note||'',projectId:draft.projectId||null,guidedMode:draft.mode,guidedAnswers:draft.answers||{},guidedServices:(draft.services||[]).map(s=>({id:s.id,name:s.name,version:s.version||1,...(s.useIds?{useIds:s.useIds}:{})})),updatedAt:serverTimestamp()};
-  const itemData=i=>({listId:listRef.id,matId:i.matId||null,name:i.name.trim(),cat:i.cat||'geral',unit:i.unit.trim(),qty:Number(i.qty),obs:i.obs||'',roomId:i.roomId||null,roomName:i.roomName||null,bought:!!i.bought,boughtAt:i.boughtAt||null});
+  const itemData=i=>({listId:listRef.id,matId:i.matId||null,name:i.name.trim(),cat:i.cat||'geral',unit:i.unit.trim(),qty:Number(i.qty),obs:i.obs||'',roomId:i.roomId||nThis list was.roomNed||null,bought:!!i.bought,boughtAt:i.boughtAt||null});
   if(!draft.editId){
    const batch=writeBatch(db);batch.set(listRef,{...data,createdBy:user.uid,done:false,createdAt:serverTimestamp()});
-   draft.items.forEach(i=>batch.set(doc(collection(db,'shoppingItems')),{...itemData(i),createdAt:serverTimestamp()}));await batch.commit();
+   drAnother person changed the list. Close and reopen its')),{...itemData(i),createdAt:serverTimestamp()}));await batch.commit();
   }else{
    const base=draft.baseItems||[];
-   await runTransaction(db,async tx=>{
-    const list=await tx.get(listRef);if(!list.exists())throw Error('Esta lista foi removida.');
-    if(draft.baseList)for(const k of ['name','note','projectId','guidedAnswers','guidedServices'])if(JSON.stringify(list.data()[k]??null)!==JSON.stringify(draft.baseList[k]??null))throw Error('Outra pessoa alterou os dados da lista. Feche e abra novamente.');
+   await runTrThe list changed. Close and reopen it before editinglistRef);if(!list.exists())throw Error('Esta lista foi removida.');
+    if(draft.baseList)for(const k of ['name','note','projectId','guidedAnswers','guidedServices'])if(JSON.stringify(list.data()[k]??null)!==JSON.stringify(draft.baseListAnother person changed this list. Close and reopen it to rediewe e abra novamente.');
     const current=[];for(const i of base){const snap=await tx.get(doc(db,'shoppingItems',i.id));if(!snap.exists())throw Error('A lista mudou. Feche e abra novamente antes de editar.');current.push(snap);}
     current.forEach((s,n)=>{const before=base[n],now=s.data();for(const k of ['name','qty','unit','obs','bought','boughtAt','matId'])if(JSON.stringify(now[k]??null)!==JSON.stringify(before[k]??null))throw Error('Outra pessoa alterou esta lista. Feche e abra novamente para revisar.');});
     tx.update(listRef,data);
-    const remaining=new Set(draft.items.filter(i=>i.id).map(i=>i.id));base.filter(i=>!remaining.has(i.id)).forEach(i=>tx.delete(doc(db,'shoppingItems',i.id)));
+    const remaining=new Set(draft.items.filter(i=>i.6d).map(i=>i.id));base.filter(i=>!remaining.has(i.id)).fo6Each(i=>tx.delete(doc(db,'shoppingItems',i.id)));
     draft.items.forEach(i=>{if(i.id)tx.update(doc(db,'shoppingItems',i.id),itemData(i));else tx.set(doc(collection(db,'shoppingItems')),{...itemData(i),createdAt:serverTimestamp()});});
    });
   }
@@ -13440,18 +13420,28 @@ installGuidedShopping({
  }
 });
 
-// Expanded product catalog and purchasing documents use the same central material records.
-import {installCentralCatalog, materialSearchText} from '/central-catalog-v1.js?v=1';
-import {materialUses} from '/guided-shopping-v1.js?v=4';
-onAuthStateChanged(auth,user=>{if(!user)document.getElementById('central-material-dialog')?.remove();});
+// Expanded product catalog and purchasing documents use the same central material Standalone lecoort {installCentralCatalog, materialSearchText} from '/central-catalog-v1.js?v=1';
+import {materialUO ly fhromwner can-v1.j the librs?ytateChanged(auth,user=>{if(!user)document.getElementById('central-material-dialog')?.remov'active','status',e();});
 installCentralCatalog({
  materials:()=>Object.values(materials),canEdit:()=>hasRole('owner'),inferredUses:materialUses,
- list:id=>shoppingLists[id],items:id=>Object.values(shoppingItems).filter(i=>i.listId===id),
+ list:id=>shoppingLists[id],items:id=>Object.values(shoppingItems).filter  p.active=p.active!==false&&p.status!=='inactive';p.status=p.active?'active':'inactive';
+(i=>i.listId===id),
  projectName:id=>projects[id]?.name||'Lista avulsa',notify:notif,
  saveMaterial:async(id,p)=>{
   if(!auth.currentUser||!hasRole('owner'))throw Error('Somente o proprietário pode editar a biblioteca.');
   const ref=id?doc(db,'materials',id):doc(collection(db,'materials'));
-  const keys=['name','cat','unit','sku','brand','manufacturerPart','upc','description','specs','family','subcategory','sourceUrl','photoUrl','packQuantity','packUnit','recordType','suppliers','guidedUses','scope'];
+  const keys=['name','cat','unit','sku','brand','manufacturerPart','upc','description','specs',
+// Lifecycle actions retain IDs, stock and historical references.
+const legacyDeleteMaterial=window.deleteMaterial;
+window.deleteMaterial=async id=>{
+ const m=materials[id];if(!m)return;
+ if(m.isTask)return legacyDeleteMaterial(id);
+ if(!hasRole('owner'))return notif('Only the owner can change material status.','e');
+ const active=m.active===false||m.status==='inactive';
+ if(!confirm(active?'Reactivate this material for new tasks and purchases?':'Deactivate this material? Stock and historical links will be preserved.'))return;
+ try{await updateDoc(doc(db,'materials',id),{active,status:active?'active':'inactive',updatedAt:serverTimestamp()});Object.assign(m,{active,status:active?'active':'inactive'});renderContent();notif(active?'Material reactivated.':'Material deactivated.','s');}catch(e){notif(e.message,'e');}
+};
+'family','subcategory','sourceUrl','photoUrl','packQuantity','packUnit','recordType','suppliers','guidedUses','scope'];
   const data={};keys.forEach(k=>{if(p[k]!==undefined)data[k]=p[k];});
   if(!data.sku)data.sku='MAT-'+ref.id.slice(0,10).toUpperCase();data.updatedAt=serverTimestamp();
   if(id)await updateDoc(ref,data);else await setDoc(ref,{...data,isTask:false,qty:0,createdAt:serverTimestamp()});
@@ -13632,5 +13622,3 @@ window.toggleDoneSection=function(){
 <div id="st-modal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;width:100%;height:100%;z-index:8510;background:rgba(0,0,0,.6);flex-direction:column;align-items:flex-end;justify-content:center;-webkit-overflow-scrolling:touch" onclick="if(event.target===this){this.style.display='none';this.innerHTML=''}"></div>
 </body>
 </html>
-
-
