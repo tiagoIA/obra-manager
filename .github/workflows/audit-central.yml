@@ -44,12 +44,14 @@ jobs:
                 print('CATALOG_ROW',json.dumps(out,ensure_ascii=False))
               else:print('VENDOR_ROW',json.dumps({key:f.get(key) for key in ['company','code','materialId']},ensure_ascii=False))
           from bs4 import BeautifulSoup
-          for url in ['https://www.rexelusa.com/brands/leviton/rnsw3','https://www.platt.com/p/0172550/14-2-nm-b-solid-copper-white-500/980100162993/142nmbgx500c','https://store.leviton.com/products.json?limit=250','https://www.ew-ne.com/','https://shop.granitecityelectric.com/']:
+          for url in ['https://www.ew-ne.com/api/catalog_system/pub/products/search?ft=emt&_from=0&_to=2','https://www.needco.com/api/catalog_system/pub/products/search?ft=emt&_from=0&_to=2','https://www.granitecityelectric.com/nsi-ww-732-66ft-7mil-prem-vinyl-elect-tape-black','https://www.granitecityelectric.com/api/catalog_system/pub/products/search?ft=emt&_from=0&_to=2']:
             try:
               r=requests.get(url,timeout=30);print('PROBE',url,r.status_code,len(r.content))
               soup=BeautifulSoup(r.text,'html.parser')
               scripts=[x.get_text()[:1200] for x in soup.select('script[type="application/ld+json"]')]
               print('SCHEMA',url,json.dumps(scripts)[:4000])
+              if 'api/catalog' in url and r.ok:
+                print('PRODUCT_SAMPLE',url,json.dumps(r.json())[:16000])
               if 'products.json' in url and r.ok:
                 data=r.json();print('LEVITON_COUNT',len(data.get('products',[])))
                 for p in data.get('products',[])[:3]:print('LEVITON_SAMPLE',json.dumps(p)[:4000])
