@@ -1,5 +1,5 @@
 """Preserve all existing hosting files/config and seed only absent template IDs."""
-import os,json,gzip,hashlib,pathlib,time,requests
+import os,json,gzip,hashlib,pathlib,time,requests,runpy
 from google.oauth2 import service_account
 from google.auth.transport.requests import AuthorizedSession
 from google.cloud import storage
@@ -11,7 +11,7 @@ def call(method,path,**kw):
 previous=call('GET',site+'/releases',params={'pageSize':1})['releases'][0]['version']
 oldname=previous['name'];oldversion=call('GET',oldname)
 live=requests.get('https://obra-manager-4ecc7.web.app/index.html',timeout=30);live.raise_for_status()
-assert hashlib.sha256(live.content.rstrip()).hexdigest()=='44b96beab5e39494a06d688889b94791f4fc841146d84bad080ca06d0254b378','Live app changed; aborting instead of overwriting'
+assert hashlib.sha256(live.content.rstrip()).hexdigest()==pathlib.Path('live-index.sha256').read_text().strip(),'Live app changed; aborting instead of overwriting'
 files={};token=None
 while True:
  params={'pageSize':1000}
@@ -22,7 +22,7 @@ while True:
  if not token:break
 assert '/index.html' in files and '/manifest.json' in files
 bucket=storage.Client(project=key['project_id'],credentials=creds).bucket('obra-manager-4ecc7.firebasestorage.app')
-folder='backups/guided-lists/'+os.environ['GITHUB_RUN_ID']+'/'
+folder='backups/central-catalog/'+os.environ['GITHUB_RUN_ID']+'/'
 bucket.blob(folder+'hosting.json').upload_from_string(json.dumps({'version':oldversion,'files':files}),content_type='application/json',if_generation_match=0)
 bucket.blob(folder+'index.html').upload_from_string(live.content,content_type='text/html',if_generation_match=0)
 fire='https://firestore.googleapis.com/v1/projects/obra-manager-4ecc7/databases/(default)/documents'
@@ -42,6 +42,14 @@ while True:
  token=data.get('nextPageToken')
  if not token:break
 bucket.blob(folder+'materials.json').upload_from_string(json.dumps(material_docs),content_type='application/json',if_generation_match=0)
+for collection in ['shoppingItems','tasks','productDB','invoices']:
+ saved=[];token=None
+ while True:
+  params={'pageSize':1000}
+  if token:params['pageToken']=token
+  r=s.get(fire+'/'+collection,params=params,timeout=60);r.raise_for_status();data=r.json();saved+=data.get('documents',[]);token=data.get('nextPageToken')
+  if not token:break
+ bucket.blob(folder+collection+'.json').upload_from_string(json.dumps(saved),content_type='application/json',if_generation_match=0)
 def encode(v):
  if v is None:return {'nullValue':None}
  if isinstance(v,bool):return {'booleanValue':v}
@@ -56,8 +64,12 @@ for p in json.loads(pathlib.Path('guided-presets-v1.json').read_text()):
  ident=p['id'];p={**p,'listType':'template','ownerUid':None,'projectId':None,'done':False,'isBuiltIn':True}
  fields={k:encode(v) for k,v in p.items() if k!='id'}
  writes.append({'update':{'name':'projects/obra-manager-4ecc7/databases/(default)/documents/shoppingLists/'+ident,'fields':fields},'currentDocument':{'exists':False},'updateTransforms':[{'fieldPath':'createdAt','setToServerValue':'REQUEST_TIME'}]})
+catalog=runpy.run_path('scripts/import-central.py')
+catalog_writes,originals=catalog['prepare'](s,fire,bucket,folder,material_docs,encode)
+writes=catalog_writes+writes
 uploaded={}
-for path in ['/index.html','/guided-shopping-v1.js','/sw.js']:
+asset_paths=['/index.html','/guided-shopping-v1.js','/central-catalog-v1.js','/sw.js']
+for path in asset_paths:
  raw=pathlib.Path('public'+path).read_bytes();blob=gzip.compress(raw,mtime=0);h=hashlib.sha256(blob).hexdigest();files[path]=h;uploaded[h]=blob
 new=call('POST',site+'/versions',json={'config':oldversion.get('config',{})})['name']
 pop=call('POST',new+':populateFiles',json={'files':files})
@@ -66,12 +78,30 @@ for h in pop.get('uploadRequiredHashes',[]):
  r=s.post(pop['uploadUrl']+'/'+h,data=uploaded[h],headers={'Content-Type':'application/octet-stream'},timeout=60);r.raise_for_status()
 call('PATCH',new,params={'update_mask':'status'},json={'status':'FINALIZED'})
 # All files staged before creating the built-ins or publishing.
-if writes:
- r=s.post(fire+':commit',json={'writes':writes},timeout=60);r.raise_for_status()
-print('PRESETS_CREATED',len(writes))
-release=call('POST',site+'/releases',params={'versionName':new},json={'message':'Service classifications and reusable purchases v3'})
+committed=None
 try:
- for path in ['/index.html','/guided-shopping-v1.js','/sw.js']:
+ if writes:
+  r=s.post(fire+':commit',json={'writes':writes},timeout=60);r.raise_for_status();committed=r.json()
+ print('PRESETS_CREATED',len(writes)-len(catalog_writes))
+ # Existing stock, IDs, purchase links and unrelated fields must be unchanged.
+ r=s.get(fire+'/materials',params={'pageSize':1000},timeout=60);r.raise_for_status();current={d['name']:d for d in r.json().get('documents',[])}
+ masks={w['update']['name']:set(w.get('updateMask',{}).get('fieldPaths',[]))|{'updatedAt'} for w in catalog_writes}
+ for name,original in originals.items():
+  assert name in current,'Existing material removed'
+  for key,value in original.get('fields',{}).items():
+   if key not in masks.get(name,set()):assert current[name]['fields'].get(key)==value,'Unrelated field changed: '+key
+ for collection in ['shoppingItems','tasks','productDB','invoices']:
+  saved=json.loads(bucket.blob(folder+collection+'.json').download_as_text());now=[];token=None
+  while True:
+   params={'pageSize':1000}
+   if token:params['pageToken']=token
+   r=s.get(fire+'/'+collection,params=params,timeout=60);r.raise_for_status();data=r.json();now+=data.get('documents',[]);token=data.get('nextPageToken')
+   if not token:break
+  # No changes to these collections are performed by this migration.
+  assert {d['name']:d.get('fields',{}) for d in saved}=={d['name']:d.get('fields',{}) for d in now},'Concurrent activity detected in '+collection
+ print('EXISTING_RECORDS_PRESERVED',len(originals))
+ release=call('POST',site+'/releases',params={'versionName':new},json={'message':'Central materials v4: verified catalog, supplier codes and purchasing PDF'})
+ for path in asset_paths:
   for attempt in range(6):
    r=requests.get('https://obra-manager-4ecc7.web.app'+path,params={'verify':os.environ['GITHUB_RUN_ID']},timeout=30)
    if r.ok and r.content.rstrip()==pathlib.Path('public'+path).read_bytes().rstrip():break
@@ -80,5 +110,7 @@ try:
  print('DEPLOY_VERIFIED',new,'files preserved',len(files),'backup',folder)
 except Exception:
  call('POST',site+'/releases',params={'versionName':oldname},json={'message':'Automatic rollback after verification failure'})
+ if committed:catalog['rollback'](s,fire,writes,committed,originals)
  print('ROLLED_BACK',oldname);raise
+
 
