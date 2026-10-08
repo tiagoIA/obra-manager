@@ -9,6 +9,8 @@ export const PRESETS = [
  ['led','Retrofit LED','eletrica',['Kit / luminária LED compatível','Driver se necessário','Conectores','Etiquetas / adaptadores'],['Modelo das luminárias e ballast/driver existentes','Quantidade; troca completa ou kit; controle']],
  ['hvac','Mini-split / HVAC','eletrica',['Breaker conforme placa/manual','Cabo / condutores especificados','Disconnect','Whip e conectores','Interligação quando no escopo'],['Modelo; placa; MCA/MOCP quando disponíveis','Unidades; percurso; itens incluídos pelo fornecedor']],
  ['ev','EV charger','eletrica',['Carregador quando fornecido','Breaker compatível','Cabo / condutores especificados','Receptáculo se indicado','Montagem / acessórios'],['Modelo/manual; hardwired ou receptáculo','Capacidade avaliada; corrente ajustada; percurso']],
+ ['data','Dados / Cat6','eletrica',[],['Pontos e percurso; categoria e terminação']],
+ ['solar','Solar','eletrica',[],['Projeto; equipamento e conexões especificados']],
  ['fire','Dispositivos de fire alarm','fire',['Dispositivos compatíveis por tipo','Bases / backboxes se não inclusos','Cabo de fire alarm especificado','Módulos conforme projeto','Identificação'],['Central, modelo, protocolo; adição ou troca','Quantidade por tipo; compatibilidade; circuitos e percursos']]
 ].map(([id,name,cat,names,questions])=>({id:'guided-v1-'+id,name,cat,version:1,questions,items:names.map(name=>({name,cat,unit:'un',qty:null,obs:'Definir especificação e quantidade; retirar itens não aplicáveis.'}))}));
 
@@ -34,6 +36,8 @@ const SERVICE_SPECIFIC={
  led:/led|driver|ballast|lamp|retrofit/i,
  hvac:/disconnect|whip|mini.?split|hvac|air.?condition/i,
  ev:/charger|carregador|evse|nema.?14.?50|nema.?6.?50|receptacle.*50|tomada.*50/i,
+ data:/cat.?6|cat.?5|keystone|patch|rj.?45|ethernet|data|network/i,
+ solar:/solar|photovoltaic|pv.?wire|mc.?4|inverter|microinverter/i,
  fire:/smoke|heat.?detector|strobe|horn|speaker|pull.?station|module|m[oó]dulo|fire|alarm|annunciator|booster|bps|mmf|sgrk|monitor/i
 };
 const ELECTRICAL_SHARED=/wire|cable|cabo|conduit|emt|connector|conector|bushing|bucha|coupling/i;
@@ -113,7 +117,7 @@ export function installGuidedShopping(host){
  if(tab==='suggested')pane.append(el('p','Sugestões da sua biblioteca por tipo de trabalho. Marque o que precisa e confira modelo, compatibilidade e quantidade.','gs-muted'));
  const grid=el('div',undefined,'gs-grid');const foot=el('div');pane.append(grid,foot);
  function renderCards(){grid.replaceChildren();foot.replaceChildren();const all=materials();let rows=tab==='suggested'?suggestedMaterials(all,draft.services):all;const explicitIds=new Set(draft.services.flatMap(s=>(s.items||[]).map(i=>i.matId).filter(Boolean)));if(tab==='suggested')rows=[...rows,...all.filter(m=>explicitIds.has(m.id)&&!rows.some(r=>r.id===m.id))];
- rows=rows.filter(m=>(category==='all'||(category==='geral'?!['eletrica','fire'].includes(m.cat):m.cat===category))&&(!term||(m.name+' '+(m.sku||'')+' '+(m.brand||'')).toLowerCase().includes(term.toLowerCase())));if(tab==='library')rows.sort((a,b)=>Number(!!b.photoUrl)-Number(!!a.photoUrl)||a.name.localeCompare(b.name));
+ rows=rows.filter(m=>(category==='all'||(category==='geral'?!['eletrica','fire'].includes(m.cat):m.cat===category))&&(!term||(m.name+' '+(m.sku||'')+' '+(m.brand||'')+' '+(m.manufacturerPart||'')+' '+(m.upc||'')+' '+(m.suppliers||[]).map(s=>s.code).join(' ')).toLowerCase().includes(term.toLowerCase())));if(tab==='library')rows.sort((a,b)=>Number(!!b.photoUrl)-Number(!!a.photoUrl)||a.name.localeCompare(b.name));
  rows.slice(0,limit).forEach(m=>{const selected=draft.items.some(i=>i.matId===m.id);const card=el('article',undefined,'gs-card'+(selected?' selected':''));card.append(photo(m));const body=el('div',undefined,'gs-card-body');body.append(el('div',m.name,'gs-name'),el('div',(m.sku||'Sem código')+' · '+(m.unit||'un'),'gs-code'));const label=el('label',undefined,'gs-check');const cb=el('input');cb.type='checkbox';cb.checked=selected;cb.setAttribute('aria-label','Selecionar '+m.name);cb.onchange=()=>{if(cb.checked){if(!draft.items.some(i=>i.matId===m.id))draft.items.push(catalogItem(m));}else draft.items=draft.items.filter(i=>i.matId!==m.id);card.classList.toggle('selected',cb.checked);label.lastChild.textContent=cb.checked?'✓ Na lista':'Adicionar';resetReview();renderPicked();};label.append(cb,el('span',selected?'✓ Na lista':'Adicionar'));body.append(label);const uses=materialUses(m);body.append(el('div',uses.map(id=>USE_LABELS.find(u=>u.id===id)?.name).join(' · ')||'Sem usos definidos','gs-code'),btn('🏷 Editar usos',()=>classify(m)));card.append(body);grid.append(card);});
  if(!rows.length)grid.append(el('div',tab==='suggested'?'Nenhuma sugestão encontrada. Abra Biblioteca ou Material manual.':'Nenhum material encontrado. Adicione manualmente.','gs-empty'));
  foot.append(el('p',`${Math.min(limit,rows.length)} de ${rows.length} produtos`,'gs-muted'));if(limit<rows.length)foot.append(btn('Ver mais produtos',()=>{limit+=24;renderCards();}));}
@@ -127,4 +131,5 @@ export function installGuidedShopping(host){
  function saveExistingTemplate(id){const l=host.list(id);if(!l)return;draft={name:l.name,note:l.note||'',items:host.items(id).map(copy),services:[],answers:{},projectId:l.projectId||'',mode:'custom',reviewed:false};editor();}
  window.guidedShopping={launch,edit,saveExistingTemplate,reuse,version:3};window.addEventListener('keydown',e=>{if(e.key==='Escape'&&dialog)close();});
 }
+
 
