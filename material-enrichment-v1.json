@@ -1,0 +1,143 @@
+[
+  {
+    "id": "oxFzbQOzVC2Xs9gaqg5D",
+    "expectedName": "FERRAZ TRS15R Fuse Class RK5 Time Delay 15A INOVAC 300>",
+    "expectedSku": "MAT-004",
+    "fields": {
+      "brand": "Mersen",
+      "manufacturerPart": "TRS15R",
+      "upc": "782001748821",
+      "sourceUrl": "https://www.mersen.com/en/products/trs-r-class-rk5-time-delay/trs15r",
+      "recordType": "product",
+      "specs": "Fusível temporizado classe RK5; 15 A; 600 V AC / 300 V DC; série Tri-Onic. Foto de referência da série TRS-R, publicada na página do TRS15R pelo fornecedor.",
+      "description": "Fusível Mersen TRS15R, temporizado, classe RK5. Conferir compatibilidade com o porta-fusível antes da compra."
+    },
+    "basis": "Modelo TRS15R explícito no nome; confirmação na página do fabricante e correspondência exata no distribuidor.",
+    "photoSourceUrl": "https://static.grainger.com/rp/s/is/image/Grainger/4YZG7_AS01?%24adapimg%24=&hei=536&wid=536",
+    "photoSha256": "2db758d5f8b07260101dc82d5c052fd44722efd4454e8c0342723be5b40f8bf0",
+    "supplier": {
+      "name": "Grainger",
+      "code": "4YZL3",
+      "url": "https://www.grainger.com/product/MERSEN-Fuse-Class-RK5-4YZL3",
+      "unit": "un",
+      "verifiedAt": "2026-10-08"
+    }
+  },
+  {
+    "id": "z7ekJTRh08uiGDiwy6kt",
+    "expectedName": "FERRAZ TRS15R Fuse Class RK5",
+    "expectedSku": "MAT-003",
+    "fields": {
+      "brand": "Mersen",
+      "manufacturerPart": "TRS15R",
+      "upc": "782001748821",
+      "sourceUrl": "https://www.mersen.com/en/products/trs-r-class-rk5-time-delay/trs15r",
+      "recordType": "product",
+      "specs": "Fusível temporizado classe RK5; 15 A; 600 V AC / 300 V DC; série Tri-Onic.",
+      "description": "Fusível Mersen TRS15R, temporizado, classe RK5. Conferir compatibilidade com o porta-fusível antes da compra."
+    },
+    "basis": "Modelo TRS15R explícito no nome; confirmação na página do fabricante e correspondência exata no distribuidor.",
+    "supplier": {
+      "name": "Grainger",
+      "code": "4YZL3",
+      "url": "https://www.grainger.com/product/MERSEN-Fuse-Class-RK5-4YZL3",
+      "unit": "un",
+      "verifiedAt": "2026-10-08"
+    }
+  },
+  {
+    "id": "pySLdPcCNwLVQFoFQHmI",
+    "expectedName": "ITE QSPD2A035B LV PLUG ON SURGE DEVICE 35kA",
+    "expectedSku": "MAT-008",
+    "fields": {
+      "brand": "Siemens",
+      "manufacturerPart": "QSPD2A035B",
+      "sourceUrl": "https://support.industry.siemens.com/cs/attachments/109792046/SIE_IS_QSPDBase.pdf",
+      "recordType": "product",
+      "specs": "DPS BoltShield; 2 polos; 120/240 V monofásico, 3 fios; corrente de surto 35 kA; SCCR 22 kA. Conferir quadro aprovado pelo fabricante."
+    },
+    "basis": "Modelo exato no nome e manual Siemens. UPC e imagem não inferidos."
+  },
+  {
+    "id": "a4oNs282XKyiqkxB8RX4",
+    "expectedName": "FACP Mircom FX-2000",
+    "expectedSku": "FIRE-046",
+    "fields": {
+      "brand": "Mircom",
+      "model": "FX-2000",
+      "recordType": "family",
+      "sourceUrl": "https://mircom.com/fx-2000-addressable-panel-end-of-life-notice/",
+      "specs": "Família de painéis endereçáveis FX-2000. O fabricante publicou aviso de fim de vida; identificar a referência completa do painel ou componente antes de comprar."
+    },
+    "basis": "Nome identifica família, mas não a referência completa. Nenhum UPC, código de compra ou foto de variante atribuído."
+  },
+  {
+    "id": "xTCUBDHqv7PGEFg9ymSr",
+    "expectedName": "FACP — Mircom FX-2000",
+    "expectedSku": "FIRE-008",
+    "fields": {
+      "brand": "Mircom",
+      "model": "FX-2000",
+      "recordType": "family",
+      "sourceUrl": "https://mircom.com/fx-2000-addressable-panel-end-of-life-notice/",
+      "specs": "Família de painéis endereçáveis FX-2000. O fabricante publicou aviso de fim de vida; identificar a referência completa do painel ou componente antes de comprar."
+    },
+    "basis": "Nome identifica família, mas não a referência completa. Nenhum UPC, código de compra ou foto de variante atribuído."
+  },
+  {
+    "id": "j28vHLHEvjwSllhwY9cq",
+    "expectedName": "Professional Plus Black Vinyl Electrical Tape, 7mil, 66ft Long",
+    "expectedSku": "1049101",
+    "fields": {
+      "brand": "NSI Industries",
+      "manufacturerPart": "WW-732",
+      "upc": "662381367167",
+      "recordType": "product",
+      "specs": "Fita isolante preta; vinil; 7 mil; 3/4 in × 66 ft; tensão nominal 600 V."
+    },
+    "manufacturerSourceUrl": "https://nsiindustries.com/product/professional-plus-black-vinyl-electrical-tape-7mil-66ft-long/",
+    "basis": "Modelo exato na URL original GCE; dimensões/cor coincidem com a referência oficial NSI. Preservar fonte e código do fornecedor."
+  },
+  {
+    "id": "DQULhsNEvTDwa7qp7jtC",
+    "expectedName": "Heavy Duty Black Vinyl Electrical Tape, 8.5mil, 66ft Long",
+    "expectedSku": "1037923",
+    "fields": {
+      "brand": "NSI Industries",
+      "manufacturerPart": "WW-832",
+      "upc": "662381367150",
+      "recordType": "product",
+      "specs": "Fita isolante preta; vinil; 8,5 mil; 3/4 in × 66 ft; tensão nominal 600 V."
+    },
+    "manufacturerSourceUrl": "https://nsiindustries.com/product/heavy-duty-black-vinyl-electrical-tape-8-5mil-66ft-long/",
+    "basis": "Modelo exato na URL original GCE; dimensões/cor coincidem com a referência oficial NSI. Preservar fonte e código do fornecedor."
+  },
+  {
+    "id": "weR3CvbjIG4jw6r1LzQ8",
+    "expectedName": "General Use Black Vinyl Electrical Tape, 7mil, 60ft Long",
+    "expectedSku": "1033407",
+    "fields": {
+      "brand": "NSI Industries",
+      "manufacturerPart": "WW-716",
+      "upc": "662381367365",
+      "recordType": "product",
+      "specs": "Fita isolante preta; vinil; 7 mil; 3/4 in × 60 ft; tensão nominal 600 V."
+    },
+    "manufacturerSourceUrl": "https://nsiindustries.com/product/general-use-black-vinyl-electrical-tape-7mil-60ft-long/",
+    "basis": "Modelo exato na URL original GCE; dimensões/cor coincidem com a referência oficial NSI. Preservar fonte e código do fornecedor."
+  },
+  {
+    "id": "lGygNdNu76HCrEDKLZJG",
+    "expectedName": "Corrosion Protection Tape, 10 mil",
+    "expectedSku": "1083231",
+    "fields": {
+      "brand": "NSI Industries",
+      "manufacturerPart": "WW-CP-401",
+      "upc": "662381994189",
+      "recordType": "product",
+      "specs": "Fita preta de proteção anticorrosão; PVC plastificado; 10 mil; 4 in × 100 ft."
+    },
+    "manufacturerSourceUrl": "https://nsiindustries.com/product/black-all-weather-corrosion-protection-tape-4in-wide-100ft-long/",
+    "basis": "Modelo exato na URL original GCE; dimensões/cor coincidem com a referência oficial NSI. Preservar fonte e código do fornecedor."
+  }
+]
