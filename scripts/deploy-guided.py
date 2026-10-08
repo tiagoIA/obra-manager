@@ -7,7 +7,9 @@ key=json.loads(os.environ['FIREBASE_SA']);assert key['project_id']=='obra-manage
 creds=service_account.Credentials.from_service_account_info(key,scopes=['https://www.googleapis.com/auth/cloud-platform'])
 s=AuthorizedSession(creds);root='https://firebasehosting.googleapis.com/v1beta1/';site='sites/obra-manager-4ecc7'
 def call(method,path,**kw):
- r=s.request(method,root+path,timeout=60,**kw);r.raise_for_status();return r.json() if r.content else {}
+ r=s.request(method,root+path,timeout=60,**kw)
+ if not r.ok:raise RuntimeError('Hosting API '+str(r.status_code)+': '+r.text[:1200])
+ return r.json() if r.content else {}
 previous=call('GET',site+'/releases',params={'pageSize':1})['releases'][0]['version']
 oldname=previous['name'];oldversion=call('GET',oldname)
 live=requests.get('https://obra-manager-4ecc7.web.app/index.html',timeout=30);live.raise_for_status()
@@ -78,13 +80,18 @@ for h in pop.get('uploadRequiredHashes',[]):
  r=s.post(pop['uploadUrl']+'/'+h,data=uploaded[h],headers={'Content-Type':'application/octet-stream'},timeout=60);r.raise_for_status()
 call('PATCH',new,params={'update_mask':'status'},json={'status':'FINALIZED'})
 # All files staged before creating the built-ins or publishing.
-committed=None
+committed=None;published=False
 try:
  if writes:
   r=s.post(fire+':commit',json={'writes':writes},timeout=60);r.raise_for_status();committed=r.json()
  print('PRESETS_CREATED',len(writes)-len(catalog_writes))
  # Existing stock, IDs, purchase links and unrelated fields must be unchanged.
- r=s.get(fire+'/materials',params={'pageSize':1000},timeout=60);r.raise_for_status();current={d['name']:d for d in r.json().get('documents',[])}
+ current={};token=None
+ while True:
+  params={'pageSize':1000}
+  if token:params['pageToken']=token
+  r=s.get(fire+'/materials',params=params,timeout=60);r.raise_for_status();data=r.json();current.update({d['name']:d for d in data.get('documents',[])});token=data.get('nextPageToken')
+  if not token:break
  masks={w['update']['name']:set(w.get('updateMask',{}).get('fieldPaths',[]))|{'updatedAt'} for w in catalog_writes}
  for name,original in originals.items():
   assert name in current,'Existing material removed'
@@ -99,8 +106,19 @@ try:
    if not token:break
   # No changes to these collections are performed by this migration.
   assert {d['name']:d.get('fields',{}) for d in saved}=={d['name']:d.get('fields',{}) for d in now},'Concurrent activity detected in '+collection
+ # Recovery check against the original pre-import backup, not just this run's snapshot.
+ baseline=json.loads(bucket.blob('backups/central-catalog/37848656302/materials.json').download_as_text())
+ for d in baseline:
+  assert d['name'] in current
+  for key,value in d.get('fields',{}).items():
+   if key not in {'suppliers','updatedAt'}:assert current[d['name']]['fields'].get(key)==value,'Pre-import field changed: '+key
+ for collection in ['shoppingItems','tasks','productDB','invoices']:
+  baseline_items=json.loads(bucket.blob('backups/central-catalog/37848656302/'+collection+'.json').download_as_text())
+  this_run=json.loads(bucket.blob(folder+collection+'.json').download_as_text())
+  assert {d['name']:d.get('fields',{}) for d in baseline_items}=={d['name']:d.get('fields',{}) for d in this_run},'Pre-import '+collection+' changed'
+ print('PRE_IMPORT_RECORDS_PRESERVED',len(baseline),'CURRENT_CATALOG',len(current))
  print('EXISTING_RECORDS_PRESERVED',len(originals))
- release=call('POST',site+'/releases',params={'versionName':new},json={'message':'Central materials v4: verified catalog, supplier codes and purchasing PDF'})
+ release=call('POST',site+'/releases',params={'versionName':new},json={'message':'Central materials v4: verified catalog, supplier codes and purchasing PDF'});published=True
  for path in asset_paths:
   for attempt in range(6):
    r=requests.get('https://obra-manager-4ecc7.web.app'+path,params={'verify':os.environ['GITHUB_RUN_ID']},timeout=30)
@@ -109,8 +127,8 @@ try:
   else:raise RuntimeError('Published file verification failed: '+path)
  print('DEPLOY_VERIFIED',new,'files preserved',len(files),'backup',folder)
 except Exception:
- call('POST',site+'/releases',params={'versionName':oldname},json={'message':'Automatic rollback after verification failure'})
- if committed:catalog['rollback'](s,fire,writes,committed,originals)
+ try:
+  if published:call('POST',site+'/releases',params={'versionName':oldname},json={'message':'Automatic rollback after verification failure'})
+ finally:
+  if committed:catalog['rollback'](s,fire,writes,committed,originals)
  print('ROLLED_BACK',oldname);raise
-
-
