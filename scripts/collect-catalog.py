@@ -2,7 +2,7 @@
 import requests,json,re,io,base64,concurrent.futures,pathlib,collections,hashlib,time
 from PIL import Image,ImageDraw
 out=pathlib.Path('catalog-stage');out.mkdir(exist_ok=True)
-QUERIES=[('NM-B 12/2','wiring',['circuit']),('MC 12/2','wiring',['circuit','recessed']),('THHN 12','wiring',['service','subpanel','circuit','hvac','ev']),('THHN 10','wiring',['circuit','hvac','ev']),('1/2 EMT','conduit',['circuit','hvac','ev']),('3/4 EMT connector','fittings',['circuit','hvac','ev']),('PVC conduit','conduit',['service','circuit']),('RACO box','boxes',['devices','circuit','recessed']),('Carlon box','boxes',['devices','recessed']),('tamper resistant receptacle','devices',['devices','circuit']),('GFCI receptacle','devices',['devices','circuit']),('single pole switch','devices',['devices']),('wallplate','devices',['devices']),('load center','breakers',['panel','subpanel']),('Eaton breaker','breakers',['panel','circuit','hvac','ev']),('Siemens breaker','breakers',['panel','circuit','hvac','ev']),('ground rod','grounding',['service','panel']),('wire connector','fittings',['devices','circuit','recessed']),('strut clamp','accessories',['service','circuit']),('recessed LED','lighting',['recessed','led']),('LED panel','lighting',['led']),('exit emergency','lighting',['led']),('disconnect','devices',['hvac','circuit']),('EV charger','devices',['ev']),('CAT6 jack','datacom',['data']),('smoke detector','detectors',['fire']),('fire alarm cable','wiring',['fire']),('solar connector','solar',['solar'])]
+QUERIES=[('NM-B','wiring',['circuit']),('MC','wiring',['circuit','recessed']),('THHN','wiring',['service','subpanel','circuit','hvac','ev']),('THWN','wiring',['circuit','hvac','ev']),('EMT','conduit',['circuit','hvac','ev']),('connector','fittings',['circuit','hvac','ev']),('PVC','conduit',['service','circuit']),('RACO','boxes',['devices','circuit','recessed']),('Carlon','boxes',['devices','recessed']),('receptacle','devices',['devices','circuit']),('GFCI','devices',['devices','circuit']),('switch','devices',['devices']),('wallplate','devices',['devices']),('loadcenter','breakers',['panel','subpanel']),('Eaton','breakers',['panel','circuit','hvac','ev']),('Siemens','breakers',['panel','circuit','hvac','ev']),('grounding','grounding',['service','panel']),('wireconnector','fittings',['devices','circuit','recessed']),('strut','accessories',['service','circuit']),('recessed','lighting',['recessed','led']),('LED','lighting',['led']),('emergency','lighting',['led']),('disconnect','devices',['hvac','circuit']),('charger','devices',['ev']),('CAT6','datacom',['data']),('smoke','detectors',['fire']),('FPLP','wiring',['fire']),('solar','solar',['solar'])]
 http=requests.Session();http.headers['User-Agent']='ObraManager-Catalog/1.0 product reference research'
 def get(url,**kw):
  r=http.get(url,timeout=35,**kw);r.raise_for_status();return r
@@ -18,7 +18,7 @@ for query,sub,uses in QUERIES:
    image=next((i.get('imageUrl') for i in images if i.get('imageUrl')),None)
    if not image:continue
    def v(k,default=''):return (p.get(k) or [default])[0]
-   name=v('Short Description',p.get('productName',''));brand=v('Manufacturer Name',p.get('brand',''));part=v('Manufacturer Part Number')
+   name=v('Short Description',p.get('productName',''));brand=next((str(x) for x in [p.get('brand'),v('Brand Name'),v('Manufacturer Name')] if x and not str(x).isdigit()),'');part=v('Manufacturer Part Number')
    unit=v('UOM','un').lower();unit={'ea':'un','each':'un','pc':'un','pcs':'un'}.get(unit,unit)
    cat='fire' if uses==['fire'] else 'eletrica';family=sub if cat!='fire' else ('detectors' if sub=='detectors' else 'wiring')
    facts={k:v(k) for k in ['Amperage Rating','Voltage Rating','Color','Material','Trade Size','Conductor Size','Number Of Poles','Wire Size','Size','Length'] if p.get(k)}
@@ -27,12 +27,12 @@ for query,sub,uses in QUERIES:
    rows.append(row);seen.add(p['productId']);added+=1
    if added>=6:break
   print('FEED_QUERY',query,'selected',added)
- except Exception as e:errors.append({'query':query,'error':type(e).__name__});print('FEED_ERROR',query,type(e).__name__)
+ except Exception as e:errors.append({'query':query,'error':type(e).__name__});print('FEED_ERROR',query,type(e).__name__,str(e)[:250])
 # A bounded manufacturer supplement: specific wiring devices and controls, with SKU and variant photo.
 try:
  data=get('https://store.leviton.com/products.json?limit=250').json()
  selected=0
- for p in data.get('products',[]):
+ for p in sorted(data.get('products',[]),key=lambda p:(not bool(re.search(r'white|residential|gfci',p['title'],re.I)),p['title'])):
   if not re.search(r'receptacle|outlet|switch|wallplate|dimmer|charger|jack',p['title'],re.I):continue
   if re.search(r'kit|pack|bundle|box of|discontinued',p['title'],re.I):continue
   vs=p.get('variants') or []
