@@ -5319,7 +5319,7 @@ window.filterTaskMaterials=(val)=>{
   const sq=val.toLowerCase().trim();
   if(!sq){dd.style.display='none';dd.innerHTML='';return;}
   const allM=Object.values(materials).filter(m=>!m.isTask).sort((a,b)=>a.name.localeCompare(b.name));
-  const filtered=allM.filter(m=>m.name.toLowerCase().includes(sq));
+  const filtered=allM.filter(m=>materialSearchText(m).includes(sq));
   if(!filtered.length){
     dd.innerHTML='<div class="mat-drop-none" style="padding:12px 14px;font-size:12px;color:var(--dim);font-style:italic">No match — task will use custom name</div>';
     dd.style.display='block';return;
@@ -5347,7 +5347,7 @@ window.filterShopMaterials=(val,dropId,hiddenId)=>{
   const sq=val.toLowerCase().trim();
   if(!sq){dd.style.display='none';return;}
   const allM=Object.values(materials).filter(m=>!m.isTask).sort((a,b)=>a.name.localeCompare(b.name));
-  const filtered=allM.filter(m=>m.name.toLowerCase().includes(sq)).slice(0,10);
+  const filtered=allM.filter(m=>materialSearchText(m).includes(sq)).slice(0,10);
   dd.innerHTML='';
   if(!filtered.length){
     const none=document.createElement('div');
@@ -7823,7 +7823,7 @@ window.renderMatReport=function(){
   const allMats=Object.values(materials).filter(m=>!m.isTask).sort((a,b)=>a.name.localeCompare(b.name));
   const sq=(_matRpt.search||'').toLowerCase();
   let filtered=allMats.filter(m=>{
-    if(sq&&!m.name.toLowerCase().includes(sq)&&!(m.sku||'').toLowerCase().includes(sq))return false;
+    if(sq&&!materialSearchText(m).includes(sq))return false;
     if(_matRpt.cat!=='all'&&m.cat!==_matRpt.cat)return false;
     if(_matRpt.scope!=='all'){
       if(!m.scope&&_matRpt.scope!=='none')return false;
@@ -7873,7 +7873,7 @@ window.printMatReport=function(){
   const allMats=Object.values(materials).filter(m=>!m.isTask).sort((a,b)=>a.name.localeCompare(b.name));
   const sq=(_matRpt.search||'').toLowerCase();
   let filtered=allMats.filter(m=>{
-    if(sq&&!m.name.toLowerCase().includes(sq)&&!(m.sku||'').toLowerCase().includes(sq))return false;
+    if(sq&&!materialSearchText(m).includes(sq))return false;
     if(_matRpt.cat!=='all'&&m.cat!==_matRpt.cat)return false;
     return true;
   }).map(m=>{
