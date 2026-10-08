@@ -6092,7 +6092,7 @@ function generateSKU(cat){
   const next=(nums.length?Math.max(...nums):0)+1;
   return prefix+'-'+String(next).padStart(3,'0');
 }
-const SUPPLIERS=['Standard Electric','NorthEast Electrical','ADI Global','Home Depot','Grainger','Other'];
+const SUPPLIERS=['Granite City Electric','NorthEast Electrical','Electrical Wholesalers NE','Standard Electric','City Electric Supply','Graybar','Rexel USA','Platt Electric Supply','ADI Global','Home Depot','Grainger','Leviton Store','Other'];
 const SUBCATS={
   eletrica:[
     {v:'wiring',l:'🔌 Wiring & Cable'},
@@ -6105,6 +6105,8 @@ const SUBCATS={
     {v:'lighting',l:'💡 Lighting'},
     {v:'grounding',l:'🌍 Grounding'},
     {v:'tools',l:'🔨 Tools'},
+    {v:'datacom',l:'🌐 Dados / Cat6'},
+    {v:'solar',l:'☀️ Solar'},
   ],
   fire:[
     {v:'detectors',l:'🔴 Detectors'},
@@ -6126,7 +6128,7 @@ window.openMatDetail=(mid)=>{
   const catLabel=m.cat==='eletrica'?'⚡ Electrical':m.cat==='fire'?'🔥 Fire Alarm':'🔍 Inspection';
   const sku=m.sku||'—';
   const suppliers=m.suppliers||[];
-  const supRows=SUPPLIERS.map(s=>{
+  const supRows=[...new Set([...SUPPLIERS,...suppliers.map(s=>s.name)])].map(s=>{
     const key=s.replace(/\s+/g,'-');
     const ex=suppliers.find(x=>x.name===s);
     const codeVal=ex?x(ex.code):'';
@@ -6526,11 +6528,11 @@ window.migrateMaterialSKUs=async()=>{
 };
 window.saveMatDetail=async(mid)=>{
   const val=id=>document.getElementById(id)?.value.trim()||null;
-  const suppliers=SUPPLIERS.map(s=>{
+  const suppliers=[...new Set([...SUPPLIERS,...(materials[mid]?.suppliers||[]).map(s=>s.name)])].map(s=>{
     const key=s.replace(/\s+/g,'-');
     const code=val('sup-'+key+'-code');
     const price=val('sup-'+key+'-price');
-    return code||price?{name:s,code:code||'',price:price||''}:null;
+    const old=(materials[mid]?.suppliers||[]).find(r=>r.name===s)||{};return code||price?{...old,name:s,code:code||'',price:price||''}:null;
   }).filter(Boolean);
   const subcategoryEl=document.getElementById('md-subcategory');
   const variantsEl=document.getElementById('md-variants');
@@ -6579,7 +6581,7 @@ window.importGCEProducts=async function(){
   if(!ok)return;
   syncing(true);
   notif('Importing GCE products...','s');
-  const existingSKUs=new Set(Object.values(materials).map(m=>m.sku||m.gceCode).filter(Boolean));
+  const existingSKUs=new Set(Object.values(materials).map(m=>m.gceCode).filter(Boolean));
   const existingNames=new Set(Object.values(materials).map(m=>(m.name||'').toLowerCase().substring(0,50)));
   let added=0,skipped=0;
   for(const p of GCE_PRODUCTS){
@@ -6588,7 +6590,7 @@ window.importGCEProducts=async function(){
     try{
       const docRef=await addDoc(collection(db,'materials'),{
         name:p.name,cat:p.cat,unit:p.unit||'un',qty:0,isTask:false,
-        sku:p.sku||'',gceCode:p.gceCode||p.sku||'',
+        sku:generateSKU(p.cat),gceCode:p.gceCode||p.sku||'',suppliers:[{name:'Granite City Electric',code:p.gceCode||p.sku||'',url:p.sourceUrl||''}],recordType:'product',
         brand:p.brand||'',description:p.description||'',
         photoUrl:p.imageUrl||'',subcategory:p.subcategory||'',
         source:'GCE',sourceUrl:p.sourceUrl||'',
@@ -6620,10 +6622,10 @@ window.addMaterial=async()=>{
     const _scope=document.getElementById('mat-scope');const scope=_scope?_scope.value:'';
     const sku=generateSKU(c);
     const _subEl=document.getElementById('mat-subcat');
-    await addDoc(collection(db,'materials'),{name:n,cat:c,qty:0,unit:u,scope:scope||null,isTask:false,sku,subcategory:_subEl?_subEl.value||null:null,createdAt:serverTimestamp()});
+    window.centralCatalog.create({name:n,cat:c,unit:u,scope:scope||null,subcategory:_subEl?_subEl.value||'':'',recordType:'family'});
     document.getElementById('mat-name').value='';
     const mu=document.getElementById('mat-unit');if(mu)mu.value='';
-    syncing(false);notif('Material added','s');
+    syncing(false);
   }
 };
 window.setMatScope=async(mid,scope)=>{syncing(true);await updateDoc(doc(db,'materials',mid),{scope:scope||null});syncing(false);notif('Scope updated','s');};
@@ -8992,11 +8994,12 @@ function renderMaterials(el){
   const sq=matSearch.toLowerCase();
   const activeSub=window._matSubcat||'all';
   // MATERIALS tab
-  const allMats=Object.values(materials).sort((a,b)=>a.name.localeCompare(b.name));
+  const allMats=Object.values(materials).filter(m=>!m.isTask).sort((a,b)=>a.name.localeCompare(b.name));
   const scopeF=m=>{if(activeScopeTab==='all')return true;if(!m.scope)return true;return m.scope===activeScopeTab||m.scope==='RC';};
   const subcatF=m=>activeSub==='all'||(m.subcategory||'').toLowerCase()===activeSub;
-  const elecMats=allMats.filter(m=>m.cat==='eletrica'&&(!sq||m.name.toLowerCase().includes(sq))&&scopeF(m)&&subcatF(m));
-  const fireMats=allMats.filter(m=>m.cat==='fire'&&(!sq||m.name.toLowerCase().includes(sq))&&scopeF(m)&&subcatF(m));
+  const elecMats=allMats.filter(m=>m.cat==='eletrica'&&(!sq||materialSearchText(m).includes(sq))&&scopeF(m)&&subcatF(m));
+  const fireMats=allMats.filter(m=>m.cat==='fire'&&(!sq||materialSearchText(m).includes(sq))&&scopeF(m)&&subcatF(m));
+  const otherMats=allMats.filter(m=>m.cat!=='eletrica'&&m.cat!=='fire'&&(!sq||materialSearchText(m).includes(sq))&&scopeF(m)&&subcatF(m));
   // TASKS tab (DEFAULT_TASKS as global library)
   const allTaskLib=Object.values(materials).filter(m=>m.isTask).sort((a,b)=>a.name.localeCompare(b.name));
   const elecTaskLib=allTaskLib.filter(t=>t.cat==='eletrica'&&(!sq||t.name.toLowerCase().includes(sq)));
@@ -9083,7 +9086,7 @@ function renderMaterials(el){
     +(isMatTab?'<div class="fg"><label class="fl">UNIT</label><input class="inp-f" id="mat-unit" placeholder="un/ft/m" style="width:70px"></div>':'')
     +(isMatTab?'<div class="fg"><label class="fl">SUBCATEGORY</label><select class="sel-f" id="mat-subcat"><option value="">— None —</option>'+SUBCATS.eletrica.concat(SUBCATS.fire).map(s=>'<option value="'+s.v+'">'+s.l+'</option>').join('')+'</select></div>':'')
     +(isTaskTab?'<div class="fg"><label class="fl">HAS QTY?</label><select class="sel-f" id="mat-hasqty"><option value="0">No</option><option value="1">Yes</option></select></div>':'')
-    +'<button class="btn-add" onclick="addMaterial()">+ Add</button>'    +(hasRole('owner')?'<button class="btn-g" onclick="migrateMaterialSKUs()" style="font-size:11px;padding:6px 12px;color:var(--mut)">🏷️ Generate SKUs</button><button class="btn-g" onclick="aiFillAllMaterials()" style="font-size:11px;padding:6px 12px;background:linear-gradient(135deg,#7c3aed,#2563eb);color:#fff;border:none">✨ AI Fill All</button><button class="btn-g" onclick="window.importGCEProducts()" style="font-size:11px;padding:6px 12px;background:linear-gradient(135deg,#EF9F27,#E24B4A);color:#000;border:none;font-weight:700">⚡ Import GCE</button><button class="btn-g" onclick="window.autoFillAllPhotos()" style="font-size:11px;padding:6px 12px;background:linear-gradient(135deg,#0ea5e9,#6366f1);color:#fff;border:none;font-weight:700">📸 Auto Photos</button><button class="btn-g" onclick="window._autoPhotoRunning=false" style="font-size:11px;padding:6px 12px;background:#374151;color:#fff;border:none;font-weight:700">⏹ Stop</button><button class="btn-g" onclick="window.cleanBlockedPhotos()" style="font-size:11px;padding:6px 12px;background:linear-gradient(135deg,#dc2626,#9333ea);color:#fff;border:none;font-weight:700">🧹 Fix Photos</button>':'')
+    +'<button class="btn-add" onclick="addMaterial()">'+(isMatTab?'＋ Cadastro completo':'+ Add')+'</button>'    +(hasRole('owner')?'<button class="btn-g" onclick="migrateMaterialSKUs()" style="font-size:11px;padding:6px 12px;color:var(--mut)">🏷️ Generate SKUs</button><button class="btn-g" onclick="aiFillAllMaterials()" style="font-size:11px;padding:6px 12px;background:linear-gradient(135deg,#7c3aed,#2563eb);color:#fff;border:none">✨ AI Fill All</button><button class="btn-g" onclick="window.importGCEProducts()" style="font-size:11px;padding:6px 12px;background:linear-gradient(135deg,#EF9F27,#E24B4A);color:#000;border:none;font-weight:700">⚡ Import GCE</button><button class="btn-g" onclick="window.autoFillAllPhotos()" style="font-size:11px;padding:6px 12px;background:linear-gradient(135deg,#0ea5e9,#6366f1);color:#fff;border:none;font-weight:700">📸 Auto Photos</button><button class="btn-g" onclick="window._autoPhotoRunning=false" style="font-size:11px;padding:6px 12px;background:#374151;color:#fff;border:none;font-weight:700">⏹ Stop</button><button class="btn-g" onclick="window.cleanBlockedPhotos()" style="font-size:11px;padding:6px 12px;background:linear-gradient(135deg,#dc2626,#9333ea);color:#fff;border:none;font-weight:700">🧹 Fix Photos</button>':'')
     +'</div></div>'
     // Lists
     +(isMatTab?
@@ -9098,6 +9101,7 @@ function renderMaterials(el){
     })()
     +'<div class="sec-title">⚡ ELECTRICAL ('+elecMats.length+')</div>'+(matView==='grid'?matGrid(elecMats):matList(elecMats,false))
       +'<div class="sec-title" style="margin-top:16px">🔥 FIRE ALARM ('+fireMats.length+')</div>'+(matView==='grid'?matGrid(fireMats):matList(fireMats,false))
+      +(otherMats.length?'<div class="sec-title" style="margin-top:16px">OUTROS ('+otherMats.length+')</div>'+(matView==='grid'?matGrid(otherMats):matList(otherMats,false)):'')
     :
       '<div class="sec-title">BUILT-IN TASKS ('+builtinTasks.length+')</div>'
       +'<div style="font-size:11px;color:var(--dim);margin-bottom:8px">Default tasks included in every new project.</div>'
@@ -11494,7 +11498,7 @@ window.printPDF=function(type){
     '</style>'+
     '</head><body>'+
     contentEl.outerHTML+
-    '<script>window.onload=function(){setTimeout(function(){window.print();},400);};<\/script>'+
+    '<script>window.onload=function(){Promise.race([Promise.all(Array.from(document.images).map(function(i){return i.complete?Promise.resolve():new Promise(function(r){i.onload=r;i.onerror=r;});})),new Promise(function(r){setTimeout(r,4000);})]).then(function(){window.print();});};<\/script>'+
     '</body></html>'
   );
   w.document.close();
@@ -13393,7 +13397,7 @@ window._renderRemindersList=function(){
 
 // Guided shopping integration: uses existing collections and authentication.
 import {writeBatch, runTransaction} from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
-import {installGuidedShopping} from '/guided-shopping-v1.js?v=3';
+import {installGuidedShopping} from '/guided-shopping-v1.js?v=4';
 onAuthStateChanged(auth,user=>{if(!user)document.getElementById('guided-shopping-dialog')?.remove();});
 installGuidedShopping({
  userId:()=>auth.currentUser?.uid||null,
@@ -13433,6 +13437,25 @@ installGuidedShopping({
    });
   }
   return listRef.id;
+ }
+});
+
+// Expanded product catalog and purchasing documents use the same central material records.
+import {installCentralCatalog, materialSearchText} from '/central-catalog-v1.js?v=1';
+import {materialUses} from '/guided-shopping-v1.js?v=4';
+onAuthStateChanged(auth,user=>{if(!user)document.getElementById('central-material-dialog')?.remove();});
+installCentralCatalog({
+ materials:()=>Object.values(materials),canEdit:()=>hasRole('owner'),inferredUses:materialUses,
+ list:id=>shoppingLists[id],items:id=>Object.values(shoppingItems).filter(i=>i.listId===id),
+ projectName:id=>projects[id]?.name||'Lista avulsa',notify:notif,
+ saveMaterial:async(id,p)=>{
+  if(!auth.currentUser||!hasRole('owner'))throw Error('Somente o proprietário pode editar a biblioteca.');
+  const ref=id?doc(db,'materials',id):doc(collection(db,'materials'));
+  const keys=['name','cat','unit','sku','brand','manufacturerPart','upc','description','specs','family','subcategory','sourceUrl','photoUrl','packQuantity','packUnit','recordType','suppliers','guidedUses','scope'];
+  const data={};keys.forEach(k=>{if(p[k]!==undefined)data[k]=p[k];});
+  if(!data.sku)data.sku='MAT-'+ref.id.slice(0,10).toUpperCase();data.updatedAt=serverTimestamp();
+  if(id)await updateDoc(ref,data);else await setDoc(ref,{...data,isTask:false,qty:0,createdAt:serverTimestamp()});
+  materials[ref.id]={...(materials[ref.id]||{}),...data,id:ref.id};renderContent();return ref.id;
  }
 });
 
@@ -13609,4 +13632,5 @@ window.toggleDoneSection=function(){
 <div id="st-modal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;width:100%;height:100%;z-index:8510;background:rgba(0,0,0,.6);flex-direction:column;align-items:flex-end;justify-content:center;-webkit-overflow-scrolling:touch" onclick="if(event.target===this){this.style.display='none';this.innerHTML=''}"></div>
 </body>
 </html>
+
 
