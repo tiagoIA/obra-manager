@@ -1,4 +1,4 @@
-name: Test central materials v4
+name: Test central materials v4.1
 on:
   push:
     branches: [feature/lista-guiada-v1]
