@@ -1,0 +1,86 @@
+[
+  {
+    "key": "battery",
+    "part": "PS-1270",
+    "url": "https://www.power-sonic.com/product/ps-1270/?preview=true"
+  },
+  {
+    "key": "wired-pir",
+    "part": "IS335",
+    "url": "https://www.resideo.com/us/en/pro/products/security/wired-sensors/motion-sensors/is335-pet-immune-pir-detector-40-ft-x-56-ft-is335/"
+  },
+  {
+    "key": "wireless-pir",
+    "part": "5800PIR",
+    "url": "https://www.resideo.com/us/en/pro/products/security/wireless-sensors/motion-sensors/5800pir-fully-featured-pir-wireless-motion-detector-5800pir/"
+  },
+  {
+    "key": "wireless-contact",
+    "part": "5816",
+    "url": "https://www.resideo.com/us/en/pro/products/security/wireless-sensors/magnetic-contacts/5816-door-and-window-transmitter-white-5816/"
+  },
+  {
+    "key": "wired-contact",
+    "part": "7939",
+    "url": "https://customer.resideo.com/products/p-7939"
+  },
+  {
+    "key": "glassbreak",
+    "part": "1625",
+    "url": "https://www.resideo.com/us/en/pro/products/security/wired-sensors/glass-break-wired/0-001-027-02-fg-1625t-flexguard-glassbreak-detector-with-tamper-25ft-0-001-027-02/"
+  },
+  {
+    "key": "annunciator",
+    "part": "RAX",
+    "url": "https://mircom.com/product-listing/fire-alarm-detection/09-remote-annunciators/rax-lcd-remote-shared-display/"
+  },
+  {
+    "key": "poe",
+    "part": "POE150S",
+    "url": "https://www.tp-link.com/us/business-networking/omada-accessory-poe-adapter/tl-poe150s/v4/"
+  },
+  {
+    "key": "dome",
+    "part": "S245",
+    "url": "https://www.tp-link.com/us/business-networking/vigi-network-camera/insight-s245/v1%20%284mm%20lens%29/"
+  },
+  {
+    "key": "bullet",
+    "part": "S345",
+    "url": "https://www.tp-link.com/us/business-networking/vigi-network-camera/insight-s345/v1%20%282.8mm%20lens%29/"
+  },
+  {
+    "key": "nvr",
+    "part": "NVR2016",
+    "url": "https://www.tp-link.com/uk/business-networking/vigi-network-video-recorder/vigi-nvr2016h-16mp/"
+  },
+  {
+    "key": "hole-seal",
+    "part": "400HS",
+    "url": "https://austinenclosures.com/products/view/Austin_Oiltight_Hole_Seals/400HS/"
+  },
+  {
+    "key": "fx2000",
+    "part": "FX-2000",
+    "url": "https://mircom.com/wp-content/uploads/product_documents/BR_190049_EN_Mircom_Fire_Detection-Notification_Brochure.pdf",
+    "pdf": true
+  },
+  {
+    "key": "heat",
+    "part": "5601P",
+    "url": "https://prod-edam.honeywell.com/content/dam/honeywell-edam/hbt/en-us/documents/literature-and-specs/datasheets/5600-Series_DataSheet_SPDS3001.pdf",
+    "pdf": true
+  },
+  {
+    "key": "dual-pir",
+    "part": "DT8050",
+    "url": "https://prod-edam.honeywell.com/content/dam/honeywell-edam/hbt/en-us/documents/literature-and-specs/datasheets/hon-ba-sec-dt8050af24-ds-us-en-0625-v1.pdf?download=false",
+    "pdf": true
+  },
+  {
+    "key": "hole-seal-pdf",
+    "part": "400HS",
+    "url": "https://austinenclosures.com/files/literature/austin-catalog_full_OLD.pdf",
+    "pdf": true
+  }
+]
