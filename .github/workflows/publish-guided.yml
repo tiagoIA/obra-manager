@@ -1,4 +1,4 @@
-name: Publish guided shopping v3.1
+name: Publish central materials v4
 on:
   push:
     branches: [feature/lista-guiada-v1]
@@ -7,11 +7,11 @@ permissions:
   contents: read
 concurrency:
   group: obra-manager-guided-release
-  cancel-in-progress: true
+  cancel-in-progress: false
 jobs:
   publish:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 18
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -20,6 +20,7 @@ jobs:
       - run: npm install --no-save playwright
       - run: |
           GUIDED_BROWSER_PATH=$(command -v google-chrome) node tests/guided-shopping.cjs
+          GUIDED_BROWSER_PATH=$(command -v google-chrome) node tests/central-catalog.cjs
       - name: Capture reviewed mobile layout
         run: python3 -c "import base64; print('MOBILE_REVIEW_BASE64',base64.b64encode(open('guided-mobile.png','rb').read()).decode())"
       - name: Syntax check all application scripts
@@ -30,8 +31,8 @@ jobs:
           for i,c in enumerate(re.findall(r'<script(?:[^>]*)>([\s\S]*?)</script>',s)):pathlib.Path(f"check-{i}.mjs").write_text(c)
           PY
           for f in check-*.mjs; do node --check "$f"; done
-      - run: pip install google-auth google-cloud-storage requests
-      - name: Preserve backup and publish guided classifications
+      - run: pip install google-auth google-cloud-storage requests pillow
+      - name: Back up current data, import verified catalog atomically and publish
         env:
           FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
         run: python scripts/deploy-guided.py
