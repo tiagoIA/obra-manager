@@ -1,4 +1,4 @@
-name: Validate status transitions and English purchasing
+name: Validate final lifecycle and complete app syntax
 on:
   push:
     branches: [feature/lista-guiada-v1]
@@ -13,6 +13,7 @@ jobs:
       - uses: actions/checkout@v4
       - run: npm install --no-save playwright
       - run: npx playwright install --with-deps chromium
+      - run: node --experimental-vm-modules tests/app-syntax.cjs
       - run: node tests/catalog-legacy-identities.cjs
       - run: node tests/central-catalog.cjs
       - run: node tests/guided-shopping.cjs
