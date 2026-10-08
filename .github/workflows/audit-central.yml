@@ -1,4 +1,4 @@
-name: Audit remaining catalog references
+name: Audit lifecycle and supplier usage
 on:
   push:
     branches: [feature/lista-guiada-v1]
@@ -28,7 +28,7 @@ jobs:
             if 'arrayValue' in v:return [dec(x) for x in v['arrayValue'].get('values',[])]
             if 'mapValue' in v:return {key:dec(x) for key,x in v['mapValue'].get('fields',{}).items()}
             return None
-          for col in ['materials']:
+          for col in ['materials','shoppingItems','tasks','productDB','invoiceItems','invoices']:
             docs=[];token=None
             while True:
               params={'pageSize':1000}
@@ -40,7 +40,7 @@ jobs:
             for d in docs:
               f={key:dec(v) for key,v in d.get('fields',{}).items()}
               if col=='materials':
-                out={'id':d['name'].split('/')[-1],**{key:f.get(key) for key in ['name','sku','brand','manufacturerPart','model','upc','cat','isTask','subcategory','suppliers','gceCode','catalogCode','description','specs','recordType','unit','sourceUrl']},'photo':bool(f.get('photoUrl'))}
+                out={'id':d['name'].split('/')[-1],**{key:f.get(key) for key in ['name','sku','brand','manufacturerPart','model','upc','cat','isTask','subcategory','suppliers','gceCode','catalogCode','description','specs','recordType','unit','sourceUrl','qty','active','status','recordType','importBatch']},'photo':bool(f.get('photoUrl'))}
                 print('CATALOG_ROW',json.dumps(out,ensure_ascii=False))
-              else:print('VENDOR_ROW',json.dumps({key:f.get(key) for key in ['company','code','materialId']},ensure_ascii=False))
+              else:print('LINK_ROW',col,json.dumps({key:f.get(key) for key in ['supplier','supplierName','vendor','vendorName','company','code','materialId','matId','qty','description']},ensure_ascii=False))
           PY
