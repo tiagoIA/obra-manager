@@ -13393,7 +13393,7 @@ window._renderRemindersList=function(){
 
 // Guided shopping integration: uses existing collections and authentication.
 import {writeBatch, runTransaction} from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
-import {installGuidedShopping} from '/guided-shopping-v1.js';
+import {installGuidedShopping} from '/guided-shopping-v1.js?v=3';
 onAuthStateChanged(auth,user=>{if(!user)document.getElementById('guided-shopping-dialog')?.remove();});
 installGuidedShopping({
  userId:()=>auth.currentUser?.uid||null,
@@ -13401,6 +13401,8 @@ installGuidedShopping({
  projects:()=>Object.values(projects),
  materials:()=>Object.values(materials),
  templates:()=>Object.values(shoppingLists).filter(l=>l.listType==='template'&&(!l.ownerUid||l.ownerUid===auth.currentUser?.uid)),
+ lists:()=>Object.values(shoppingLists).filter(l=>l.listType!=='template'),
+ saveMaterialUses:async(id,uses)=>{if(!auth.currentUser)throw Error('Entre novamente no sistema.');await updateDoc(doc(db,'materials',id),{guidedUses:uses});if(materials[id])materials[id].guidedUses=uses;},
  list:id=>shoppingLists[id],
  items:id=>Object.values(shoppingItems).filter(i=>i.listId===id),
  notify:notif,
@@ -13413,7 +13415,7 @@ installGuidedShopping({
   const user=auth.currentUser;if(!user)throw Error('Entre novamente no sistema.');
   if(draft.items.length>200)throw Error('Use até 200 materiais por lista nesta versão.');
   const listRef=draft.editId?doc(db,'shoppingLists',draft.editId):doc(collection(db,'shoppingLists'));
-  const data={name:draft.name.trim(),note:draft.note||'',projectId:draft.projectId||null,guidedMode:draft.mode,guidedAnswers:draft.answers||{},guidedServices:(draft.services||[]).map(s=>({id:s.id,name:s.name,version:s.version||1})),updatedAt:serverTimestamp()};
+  const data={name:draft.name.trim(),note:draft.note||'',projectId:draft.projectId||null,guidedMode:draft.mode,guidedAnswers:draft.answers||{},guidedServices:(draft.services||[]).map(s=>({id:s.id,name:s.name,version:s.version||1,...(s.useIds?{useIds:s.useIds}:{})})),updatedAt:serverTimestamp()};
   const itemData=i=>({listId:listRef.id,matId:i.matId||null,name:i.name.trim(),cat:i.cat||'geral',unit:i.unit.trim(),qty:Number(i.qty),obs:i.obs||'',roomId:i.roomId||null,roomName:i.roomName||null,bought:!!i.bought,boughtAt:i.boughtAt||null});
   if(!draft.editId){
    const batch=writeBatch(db);batch.set(listRef,{...data,createdBy:user.uid,done:false,createdAt:serverTimestamp()});
@@ -13607,3 +13609,4 @@ window.toggleDoneSection=function(){
 <div id="st-modal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;width:100%;height:100%;z-index:8510;background:rgba(0,0,0,.6);flex-direction:column;align-items:flex-end;justify-content:center;-webkit-overflow-scrolling:touch" onclick="if(event.target===this){this.style.display='none';this.innerHTML=''}"></div>
 </body>
 </html>
+
