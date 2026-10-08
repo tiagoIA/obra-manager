@@ -1,6 +1,6 @@
 """Enrich existing material documents only, with backup and optimistic preconditions."""
 import os,json,io,hashlib,pathlib,uuid,re
-from urllib.parse import quote
+from urllib.parse import quote, urlparse
 import requests
 from PIL import Image
 from google.oauth2 import service_account
@@ -61,15 +61,20 @@ def main():
  originals={d['name']:d for d in docs};records={d['name'].split('/')[-1]:{k:dec(v) for k,v in d.get('fields',{}).items()} for d in docs}
  save('materials.json',docs)
  for col in ['shoppingLists','shoppingItems','tasks','productDB','invoices']:save(col+'.json',read(col))
- manifest=json.loads(pathlib.Path('material-enrichment-v1.json').read_text());assert len(manifest)==9
+ manifest=json.loads(pathlib.Path(os.environ.get('ENRICHMENT_MANIFEST','material-enrichment-v1.json')).read_text());assert len(manifest)==int(os.environ.get('ENRICHMENT_EXPECTED_COUNT','9'))
  patches={};photos=[]
  for p in manifest:
   ident=p['id'];assert ident in records
   old=records[ident];patch=fill(old,p)
   if p.get('photoSourceUrl') and not old.get('photoUrl'):
-   assert p['photoSourceUrl'].startswith('https://static.grainger.com/')
+   assert urlparse(p['photoSourceUrl']).scheme=='https' and urlparse(p['photoSourceUrl']).hostname in {'static.grainger.com','media.cityelectricsupply.com'}
    r=requests.get(p['photoSourceUrl'],timeout=40);r.raise_for_status();assert len(r.content)<12_000_000
-   im=Image.open(io.BytesIO(r.content));im.load();assert min(im.size)>=80;im=im.convert('RGB');im.thumbnail((1000,1000));b=io.BytesIO();im.save(b,'JPEG',quality=86);raw=b.getvalue()
+   image_bytes=r.content
+   if p.get('photoDocumentSha256'):
+    import fitz
+    assert hashlib.sha256(r.content).hexdigest()==p['photoDocumentSha256'],'Source PDF changed after review'
+    with fitz.open(stream=r.content,filetype='pdf') as pdf:image_bytes=pdf.extract_image(p['photoImageXref'])['image']
+   im=Image.open(io.BytesIO(image_bytes));im.load();assert min(im.size)>=80;im=im.convert('RGB');im.thumbnail((1000,1000));b=io.BytesIO();im.save(b,'JPEG',quality=86);raw=b.getvalue()
    assert hashlib.sha256(raw).hexdigest()==p['photoSha256'],'Image changed after visual review'
    asset='materials/'+ident+'/verified-'+p['photoSha256'][:12]+'.jpg';blob=bucket.blob(asset)
    if blob.exists():blob.reload();token=(blob.metadata or {}).get('firebaseStorageDownloadTokens');assert token
@@ -79,7 +84,7 @@ def main():
    check=requests.get(url,timeout=40);check.raise_for_status();assert hashlib.sha256(check.content).hexdigest()==p['photoSha256']
    patch.update(photoUrl=url,photoSourceUrl=p['photoSourceUrl'],photoVerifiedAt='2026-10-08');photos.append(ident)
   if patch:
-   provenance=dict(old.get('catalogProvenance') or {});provenance['enrichment20261008']={'sourceUrl':p.get('manufacturerSourceUrl') or p['fields']['sourceUrl'],'basis':p['basis'],'fields':list(patch),'verifiedAt':'2026-10-08'};patch['catalogProvenance']=provenance;patches[ident]=patch
+   provenance=dict(old.get('catalogProvenance') or {});provenance['enrichment'+os.environ['GITHUB_RUN_ID']]={'sourceUrl':p.get('manufacturerSourceUrl') or p['fields']['sourceUrl'],'basis':p['basis'],'fields':list(patch),'verifiedAt':'2026-10-08'};patch['catalogProvenance']=provenance;patches[ident]=patch
  # The previous feed supplied some short retailer IDs in its ean field. Preserve retailer codes; remove only these proven non-GTIN copies.
  corrected=[]
  for ident,old in records.items():
