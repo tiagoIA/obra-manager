@@ -1,0 +1,25 @@
+name: Apply reviewed second material enrichment
+on:
+  push:
+    branches: [feature/lista-guiada-v1]
+    paths: [.github/workflows/enrich-materials-v2.yml]
+permissions:
+  contents: read
+concurrency:
+  group: obra-material-enrichment
+  cancel-in-progress: false
+jobs:
+  enrich:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install google-auth google-cloud-storage requests pillow pymupdf
+      - name: Test preservation and identity guards
+        run: python tests/enrich-existing.py
+      - name: Back up and enrich existing documents only
+        env:
+          ENRICHMENT_MANIFEST: material-enrichment-v2.json
+          ENRICHMENT_EXPECTED_COUNT: '21'
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: python scripts/enrich-existing.py
