@@ -1,0 +1,478 @@
+[
+  {
+    "id": "guided-v1-panel",
+    "name": "Panel replacement",
+    "cat": "eletrica",
+    "version": 1,
+    "questions": [
+      "Existing and new manufacturer/model",
+      "Circuits and poles; reused items"
+    ],
+    "items": [
+      {
+        "name": "Compatible panel and cover",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Specify product and quantity; remove items that do not apply."
+      },
+      {
+        "name": "Breakers by circuit",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Specify product and quantity; remove items that do not apply."
+      },
+      {
+        "name": "Entry connectors",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Specify product and quantity; remove items that do not apply."
+      },
+      {
+        "name": "Circuit identification",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Specify product and quantity; remove items that do not apply."
+      }
+    ]
+  },
+  {
+    "id": "guided-v1-service",
+    "name": "New service / upgrade",
+    "cat": "eletrica",
+    "version": 1,
+    "questions": [
+      "Overhead or underground; utility requirements",
+      "Voltage, phases and specified capacity; distances"
+    ],
+    "items": [
+      {
+        "name": "Approved meter socket / meter-main",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Specify product and quantity; remove items that do not apply."
+      },
+      {
+        "name": "Disconnect / panel specified by the design",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Specify product and quantity; remove items that do not apply."
+      },
+      {
+        "name": "Service conductors",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Specify product and quantity; remove items that do not apply."
+      },
+      {
+        "name": "Grounding / bonding",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Specify product and quantity; remove items that do not apply."
+      },
+      {
+        "name": "Supports and accessories",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Specify product and quantity; remove items that do not apply."
+      }
+    ]
+  },
+  {
+    "id": "guided-v1-subpanel",
+    "name": "Subpanel",
+    "cat": "eletrica",
+    "version": 1,
+    "questions": [
+      "Source panel and subpanel specifications",
+      "Feeder route and configuration"
+    ],
+    "items": [
+      {
+        "name": "Subpanel and cover",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Specify product and quantity; remove items that do not apply."
+      },
+      {
+        "name": "Compatible feeder breaker",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Specify product and quantity; remove items that do not apply."
+      },
+      {
+        "name": "Specified feeder",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Specify product and quantity; remove items that do not apply."
+      },
+      {
+        "name": "Bars and accessories",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Specify product and quantity; remove items that do not apply."
+      },
+      {
+        "name": "Identification",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Specify product and quantity; remove items that do not apply."
+      }
+    ]
+  },
+  {
+    "id": "guided-v1-circuit",
+    "name": "Dedicated circuit",
+    "cat": "eletrica",
+    "version": 1,
+    "questions": [
+      "Equipment and nameplate/manual data",
+      "Circuit count; endpoint; route"
+    ],
+    "items": [
+      {
+        "name": "Compatible breaker",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Specify product and quantity; remove items that do not apply."
+      },
+      {
+        "name": "Specified cable / conductors",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Specify product and quantity; remove items that do not apply."
+      },
+      {
+        "name": "Junction box",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Specify product and quantity; remove items that do not apply."
+      },
+      {
+        "name": "Receptacle or disconnect",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Specify product and quantity; remove items that do not apply."
+      },
+      {
+        "name": "Connectors",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Specify product and quantity; remove items that do not apply."
+      }
+    ]
+  },
+  {
+    "id": "guided-v1-devices",
+    "name": "Receptacles and switches",
+    "cat": "eletrica",
+    "version": 1,
+    "questions": [
+      "Replacement or new installation; quantity by type",
+      "Gangs; location; protection and controls"
+    ],
+    "items": [
+      {
+        "name": "Receptacles by type",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Specify product and quantity; remove items that do not apply."
+      },
+      {
+        "name": "Switches / controls by type",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Specify product and quantity; remove items that do not apply."
+      },
+      {
+        "name": "Cover plates by box",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Specify product and quantity; remove items that do not apply."
+      },
+      {
+        "name": "New boxes",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Specify product and quantity; remove items that do not apply."
+      },
+      {
+        "name": "Connectors / pigtails",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Specify product and quantity; remove items that do not apply."
+      }
+    ]
+  },
+  {
+    "id": "guided-v1-recessed",
+    "name": "Recessed lights",
+    "cat": "eletrica",
+    "version": 1,
+    "questions": [
+      "Quantity and model; ceiling; location",
+      "Included accessories; layout and routes"
+    ],
+    "items": [
+      {
+        "name": "Recessed luminaires",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Specify product and quantity; remove items that do not apply."
+      },
+      {
+        "name": "Housing / trim if not included",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Specify product and quantity; remove items that do not apply."
+      },
+      {
+        "name": "Compatible control / dimmer",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Specify product and quantity; remove items that do not apply."
+      },
+      {
+        "name": "Specified cable",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Specify product and quantity; remove items that do not apply."
+      },
+      {
+        "name": "Connectors / boxes",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Specify product and quantity; remove items that do not apply."
+      }
+    ]
+  },
+  {
+    "id": "guided-v1-led",
+    "name": "Retrofit LED",
+    "cat": "eletrica",
+    "version": 1,
+    "questions": [
+      "Existing luminaire and ballast/driver models",
+      "Quantity; full replacement or kit; control"
+    ],
+    "items": [
+      {
+        "name": "Compatible LED kit / luminaire",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Specify product and quantity; remove items that do not apply."
+      },
+      {
+        "name": "Driver if required",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Specify product and quantity; remove items that do not apply."
+      },
+      {
+        "name": "Connectors",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Specify product and quantity; remove items that do not apply."
+      },
+      {
+        "name": "Labels / adapters",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Specify product and quantity; remove items that do not apply."
+      }
+    ]
+  },
+  {
+    "id": "guided-v1-hvac",
+    "name": "Mini-split / HVAC",
+    "cat": "eletrica",
+    "version": 1,
+    "questions": [
+      "Model; nameplate; MCA/MOCP when available",
+      "Units; route; items included by supplier"
+    ],
+    "items": [
+      {
+        "name": "Breaker specified by the nameplate/manual",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Specify product and quantity; remove items that do not apply."
+      },
+      {
+        "name": "Specified cable / conductors",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Specify product and quantity; remove items that do not apply."
+      },
+      {
+        "name": "Disconnect",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Specify product and quantity; remove items that do not apply."
+      },
+      {
+        "name": "Whip and connectors",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Specify product and quantity; remove items that do not apply."
+      },
+      {
+        "name": "Interconnection when in scope",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Specify product and quantity; remove items that do not apply."
+      }
+    ]
+  },
+  {
+    "id": "guided-v1-ev",
+    "name": "EV charger",
+    "cat": "eletrica",
+    "version": 1,
+    "questions": [
+      "Model/manual; hardwired or receptacle",
+      "Assessed capacity; adjusted current; route"
+    ],
+    "items": [
+      {
+        "name": "Charger when supplied",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Specify product and quantity; remove items that do not apply."
+      },
+      {
+        "name": "Compatible breaker",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Specify product and quantity; remove items that do not apply."
+      },
+      {
+        "name": "Specified cable / conductors",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Specify product and quantity; remove items that do not apply."
+      },
+      {
+        "name": "Receptacle if specified",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Specify product and quantity; remove items that do not apply."
+      },
+      {
+        "name": "Mounting / accessories",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Specify product and quantity; remove items that do not apply."
+      }
+    ]
+  },
+  {
+    "id": "guided-v1-data",
+    "name": "Data / Cat6",
+    "cat": "eletrica",
+    "version": 1,
+    "questions": [
+      "Endpoints and route; category and termination"
+    ],
+    "items": []
+  },
+  {
+    "id": "guided-v1-solar",
+    "name": "Solar",
+    "cat": "eletrica",
+    "version": 1,
+    "questions": [
+      "Design; specified equipment and connections"
+    ],
+    "items": []
+  },
+  {
+    "id": "guided-v1-fire",
+    "name": "Fire alarm devices",
+    "cat": "fire",
+    "version": 1,
+    "questions": [
+      "Panel, model, protocol; addition or replacement",
+      "Quantity by type; compatibility; circuits and routes"
+    ],
+    "items": [
+      {
+        "name": "Compatible devices by type",
+        "cat": "fire",
+        "unit": "un",
+        "qty": null,
+        "obs": "Specify product and quantity; remove items that do not apply."
+      },
+      {
+        "name": "Bases / backboxes if not included",
+        "cat": "fire",
+        "unit": "un",
+        "qty": null,
+        "obs": "Specify product and quantity; remove items that do not apply."
+      },
+      {
+        "name": "Specified fire alarm cable",
+        "cat": "fire",
+        "unit": "un",
+        "qty": null,
+        "obs": "Specify product and quantity; remove items that do not apply."
+      },
+      {
+        "name": "Modules specified by the design",
+        "cat": "fire",
+        "unit": "un",
+        "qty": null,
+        "obs": "Specify product and quantity; remove items that do not apply."
+      },
+      {
+        "name": "Identification",
+        "cat": "fire",
+        "unit": "un",
+        "qty": null,
+        "obs": "Specify product and quantity; remove items that do not apply."
+      }
+    ]
+  }
+]
