@@ -1,0 +1,33 @@
+name: Find remaining pilot images
+on:
+  push:
+    branches: [review/materials-2026-10-08]
+    paths: [.github/workflows/find_remaining_images.yml]
+permissions:
+  contents: read
+jobs:
+  find:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install requests beautifulsoup4
+      - name: Extract remaining candidates
+        run: |
+          python - <<'PY'
+          import requests,json,concurrent.futures
+          from bs4 import BeautifulSoup
+          pages=[["ELEC-001","https://www.southwire.com/wire-cable/building-wire/romex-sup-sup-brand-simpull-sup-sup-copper-type-nm-b-cable/p/28827428"],["ELEC-002","https://www.southwire.com/wire-cable/building-wire/romex-sup-sup-brand-simpull-sup-sup-copper-type-nm-b-cable/p/28828228"],["ELEC-080","https://www.southwire.com/wire-cable/metal-clad-cable/armorlite-type-mc-thhn-thwn-circuit-size-copper-conductor-120-208v-colors/p/68580055"],["FIRE-062","https://buildings.honeywell.com/ae/en/products/by-category/fire-life-safety/notification-appliances/combination-strobes/l-series-with-led-outdoor-compact-wall-strobes"],["MAT-008","https://us.rs-online.com/product/siemens/qspd2a035b/72202591/"]]
+          def one(item):
+           sku,url=item
+           try:
+            r=requests.get(url,timeout=25,headers={"User-Agent":"Mozilla/5.0"});s=BeautifulSoup(r.text,"html.parser")
+            out={"sku":sku,"page":url,"status":r.status_code,"title":s.title.get_text() if s.title else ""}
+            out["meta"]=[m.get("content") for m in s.find_all("meta") if m.get("property") in ("og:image","og:image:secure_url") or m.get("name")=="twitter:image"]
+            out["images"]=[{"src":i.get("src"),"alt":i.get("alt"),"data":i.get("data-src")} for i in s.find_all("img") if i.get("alt") and any(t.lower() in i.get("alt","").lower() for t in ("Romex","NM-B","MC ","288274","288282","685800","SGRKLED","QSPD"))][:12]
+            print("CANDIDATE",json.dumps(out))
+           except Exception as e:print("CANDIDATE",json.dumps({"sku":sku,"error":str(e)}))
+          with concurrent.futures.ThreadPoolExecutor(max_workers=5) as pool:list(pool.map(one,pages))
+          PY
