@@ -1,6 +1,6 @@
 const {chromium}=require('playwright');const fs=require('fs');const assert=require('node:assert/strict');
 (async()=>{
- const browser=await chromium.launch({headless:true});const page=await browser.newPage({viewport:{width:390,height:844}});const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ const browser=await chromium.launch({headless:true,executablePath:process.env.GUIDED_BROWSER_PATH||undefined});const page=await browser.newPage({viewport:{width:390,height:844}});const errors=[];page.on('pageerror',e=>errors.push(e.message));
  await page.route('http://guided.test/',r=>r.fulfill({contentType:'text/html',body:'<html><head></head><body><button id="launch">Nova lista</button></body></html>'}));
  await page.route('https://photo.test/**',r=>r.fulfill({contentType:'image/png',body:Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+jB3sAAAAASUVORK5CYII=','base64')}));await page.goto('http://guided.test/');
  await page.addScriptTag({content:fs.readFileSync('public/guided-shopping-v1.js','utf8').replaceAll('export ','')+`
