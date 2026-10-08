@@ -1,4 +1,4 @@
-name: Publish guided shopping v2
+name: Publish guided shopping v3
 on:
   push:
     branches: [feature/lista-guiada-v1]
@@ -31,7 +31,8 @@ jobs:
           PY
           for f in check-*.mjs; do node --check "$f"; done
       - run: pip install google-auth google-cloud-storage requests
-      - name: Preserve backup and publish library cards
+      - name: Preserve backup and publish guided classifications
         env:
           FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
         run: python scripts/deploy-guided.py
+
