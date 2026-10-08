@@ -1,0 +1,458 @@
+[
+  {
+    "id": "guided-v1-panel",
+    "name": "Troca de painel",
+    "cat": "eletrica",
+    "version": 1,
+    "questions": [
+      "Fabricante/modelo atual e novo",
+      "Circuitos e polos; itens reaproveitados"
+    ],
+    "items": [
+      {
+        "name": "Painel e tampa compatíveis",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Definir especificação e quantidade; retirar itens não aplicáveis."
+      },
+      {
+        "name": "Breakers por circuito",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Definir especificação e quantidade; retirar itens não aplicáveis."
+      },
+      {
+        "name": "Conectores para entradas",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Definir especificação e quantidade; retirar itens não aplicáveis."
+      },
+      {
+        "name": "Identificação dos circuitos",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Definir especificação e quantidade; retirar itens não aplicáveis."
+      }
+    ]
+  },
+  {
+    "id": "guided-v1-service",
+    "name": "Service novo / upgrade",
+    "cat": "eletrica",
+    "version": 1,
+    "questions": [
+      "Aéreo ou subterrâneo; requisitos da concessionária",
+      "Tensão, fases e capacidade definida; distâncias"
+    ],
+    "items": [
+      {
+        "name": "Meter socket / meter-main aprovado",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Definir especificação e quantidade; retirar itens não aplicáveis."
+      },
+      {
+        "name": "Disconnect / painel conforme projeto",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Definir especificação e quantidade; retirar itens não aplicáveis."
+      },
+      {
+        "name": "Condutores de entrada",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Definir especificação e quantidade; retirar itens não aplicáveis."
+      },
+      {
+        "name": "Grounding / bonding",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Definir especificação e quantidade; retirar itens não aplicáveis."
+      },
+      {
+        "name": "Suportes e acessórios",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Definir especificação e quantidade; retirar itens não aplicáveis."
+      }
+    ]
+  },
+  {
+    "id": "guided-v1-subpanel",
+    "name": "Subpanel",
+    "cat": "eletrica",
+    "version": 1,
+    "questions": [
+      "Painel de origem e especificação do subpanel",
+      "Percurso e configuração do feeder"
+    ],
+    "items": [
+      {
+        "name": "Subpanel e tampa",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Definir especificação e quantidade; retirar itens não aplicáveis."
+      },
+      {
+        "name": "Breaker do feeder compatível",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Definir especificação e quantidade; retirar itens não aplicáveis."
+      },
+      {
+        "name": "Feeder especificado",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Definir especificação e quantidade; retirar itens não aplicáveis."
+      },
+      {
+        "name": "Barras e acessórios",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Definir especificação e quantidade; retirar itens não aplicáveis."
+      },
+      {
+        "name": "Identificação",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Definir especificação e quantidade; retirar itens não aplicáveis."
+      }
+    ]
+  },
+  {
+    "id": "guided-v1-circuit",
+    "name": "Circuito dedicado",
+    "cat": "eletrica",
+    "version": 1,
+    "questions": [
+      "Equipamento e dados da placa/manual",
+      "Quantidade de circuitos; ponto final; percurso"
+    ],
+    "items": [
+      {
+        "name": "Breaker compatível",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Definir especificação e quantidade; retirar itens não aplicáveis."
+      },
+      {
+        "name": "Cabo / condutores especificados",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Definir especificação e quantidade; retirar itens não aplicáveis."
+      },
+      {
+        "name": "Caixa de conexão",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Definir especificação e quantidade; retirar itens não aplicáveis."
+      },
+      {
+        "name": "Tomada ou disconnect",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Definir especificação e quantidade; retirar itens não aplicáveis."
+      },
+      {
+        "name": "Conectores",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Definir especificação e quantidade; retirar itens não aplicáveis."
+      }
+    ]
+  },
+  {
+    "id": "guided-v1-devices",
+    "name": "Tomadas e switches",
+    "cat": "eletrica",
+    "version": 1,
+    "questions": [
+      "Troca ou instalação nova; quantidade por tipo",
+      "Gangs; ambiente; proteção e controles"
+    ],
+    "items": [
+      {
+        "name": "Tomadas por tipo",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Definir especificação e quantidade; retirar itens não aplicáveis."
+      },
+      {
+        "name": "Switches / controles por tipo",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Definir especificação e quantidade; retirar itens não aplicáveis."
+      },
+      {
+        "name": "Placas por caixa",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Definir especificação e quantidade; retirar itens não aplicáveis."
+      },
+      {
+        "name": "Caixas novas",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Definir especificação e quantidade; retirar itens não aplicáveis."
+      },
+      {
+        "name": "Conectores / pigtails",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Definir especificação e quantidade; retirar itens não aplicáveis."
+      }
+    ]
+  },
+  {
+    "id": "guided-v1-recessed",
+    "name": "Recessed lights",
+    "cat": "eletrica",
+    "version": 1,
+    "questions": [
+      "Quantidade e modelo; teto; ambiente",
+      "Acessórios inclusos; distribuição e percursos"
+    ],
+    "items": [
+      {
+        "name": "Luminárias recessed",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Definir especificação e quantidade; retirar itens não aplicáveis."
+      },
+      {
+        "name": "Housing / trim se não incluso",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Definir especificação e quantidade; retirar itens não aplicáveis."
+      },
+      {
+        "name": "Controle / dimmer compatível",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Definir especificação e quantidade; retirar itens não aplicáveis."
+      },
+      {
+        "name": "Cabo especificado",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Definir especificação e quantidade; retirar itens não aplicáveis."
+      },
+      {
+        "name": "Conectores / caixas",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Definir especificação e quantidade; retirar itens não aplicáveis."
+      }
+    ]
+  },
+  {
+    "id": "guided-v1-led",
+    "name": "Retrofit LED",
+    "cat": "eletrica",
+    "version": 1,
+    "questions": [
+      "Modelo das luminárias e ballast/driver existentes",
+      "Quantidade; troca completa ou kit; controle"
+    ],
+    "items": [
+      {
+        "name": "Kit / luminária LED compatível",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Definir especificação e quantidade; retirar itens não aplicáveis."
+      },
+      {
+        "name": "Driver se necessário",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Definir especificação e quantidade; retirar itens não aplicáveis."
+      },
+      {
+        "name": "Conectores",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Definir especificação e quantidade; retirar itens não aplicáveis."
+      },
+      {
+        "name": "Etiquetas / adaptadores",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Definir especificação e quantidade; retirar itens não aplicáveis."
+      }
+    ]
+  },
+  {
+    "id": "guided-v1-hvac",
+    "name": "Mini-split / HVAC",
+    "cat": "eletrica",
+    "version": 1,
+    "questions": [
+      "Modelo; placa; MCA/MOCP quando disponíveis",
+      "Unidades; percurso; itens incluídos pelo fornecedor"
+    ],
+    "items": [
+      {
+        "name": "Breaker conforme placa/manual",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Definir especificação e quantidade; retirar itens não aplicáveis."
+      },
+      {
+        "name": "Cabo / condutores especificados",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Definir especificação e quantidade; retirar itens não aplicáveis."
+      },
+      {
+        "name": "Disconnect",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Definir especificação e quantidade; retirar itens não aplicáveis."
+      },
+      {
+        "name": "Whip e conectores",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Definir especificação e quantidade; retirar itens não aplicáveis."
+      },
+      {
+        "name": "Interligação quando no escopo",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Definir especificação e quantidade; retirar itens não aplicáveis."
+      }
+    ]
+  },
+  {
+    "id": "guided-v1-ev",
+    "name": "EV charger",
+    "cat": "eletrica",
+    "version": 1,
+    "questions": [
+      "Modelo/manual; hardwired ou receptáculo",
+      "Capacidade avaliada; corrente ajustada; percurso"
+    ],
+    "items": [
+      {
+        "name": "Carregador quando fornecido",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Definir especificação e quantidade; retirar itens não aplicáveis."
+      },
+      {
+        "name": "Breaker compatível",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Definir especificação e quantidade; retirar itens não aplicáveis."
+      },
+      {
+        "name": "Cabo / condutores especificados",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Definir especificação e quantidade; retirar itens não aplicáveis."
+      },
+      {
+        "name": "Receptáculo se indicado",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Definir especificação e quantidade; retirar itens não aplicáveis."
+      },
+      {
+        "name": "Montagem / acessórios",
+        "cat": "eletrica",
+        "unit": "un",
+        "qty": null,
+        "obs": "Definir especificação e quantidade; retirar itens não aplicáveis."
+      }
+    ]
+  },
+  {
+    "id": "guided-v1-fire",
+    "name": "Dispositivos de fire alarm",
+    "cat": "fire",
+    "version": 1,
+    "questions": [
+      "Central, modelo, protocolo; adição ou troca",
+      "Quantidade por tipo; compatibilidade; circuitos e percursos"
+    ],
+    "items": [
+      {
+        "name": "Dispositivos compatíveis por tipo",
+        "cat": "fire",
+        "unit": "un",
+        "qty": null,
+        "obs": "Definir especificação e quantidade; retirar itens não aplicáveis."
+      },
+      {
+        "name": "Bases / backboxes se não inclusos",
+        "cat": "fire",
+        "unit": "un",
+        "qty": null,
+        "obs": "Definir especificação e quantidade; retirar itens não aplicáveis."
+      },
+      {
+        "name": "Cabo de fire alarm especificado",
+        "cat": "fire",
+        "unit": "un",
+        "qty": null,
+        "obs": "Definir especificação e quantidade; retirar itens não aplicáveis."
+      },
+      {
+        "name": "Módulos conforme projeto",
+        "cat": "fire",
+        "unit": "un",
+        "qty": null,
+        "obs": "Definir especificação e quantidade; retirar itens não aplicáveis."
+      },
+      {
+        "name": "Identificação",
+        "cat": "fire",
+        "unit": "un",
+        "qty": null,
+        "obs": "Definir especificação e quantidade; retirar itens não aplicáveis."
+      }
+    ]
+  }
+]
