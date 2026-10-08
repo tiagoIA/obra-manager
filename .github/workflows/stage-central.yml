@@ -1,4 +1,4 @@
-name: Stage electrical catalog expansion v2
+name: Stage electrical catalog supplement v3
 on:
   push:
     branches: [feature/lista-guiada-v1]
@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: pip install requests pillow
-      - run: python scripts/collect-catalog.py
+      - run: python scripts/collect-supplement.py
       - uses: actions/upload-artifact@v4
         with:
           name: catalog-stage
