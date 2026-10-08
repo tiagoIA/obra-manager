@@ -79,7 +79,7 @@ def main():
   before_ids={d['name'] for d in snapshot['materials']};assert before_ids<=set(all_after),'Historical material ID removed'
   new_ids={w['update']['name'] for w in writes if w['update']['name'] not in originals};assert len(after)==495+len(new_ids)
   for w in writes:
-   name=w['update']['name'];actual=all_after[name]['fields'];assert all(actual.get(k)==v for k,v in w['update']['fields'].items()),'Saved fields differ'
+   name=w['update']['name'];actual=all_after[name]['fields'];differences=[k for k,v in w['update']['fields'].items() if k not in actual or catalog.decode(actual[k])!=catalog.decode(v)];assert not differences,'Saved fields differ: '+','.join(differences)
    if name in originals:
     mask=set(w['update']['fields'])|{'updatedAt'};before=originals[name].get('fields',{})
     assert {k:v for k,v in before.items() if k not in mask}=={k:v for k,v in actual.items() if k not in mask},'Protected stock/history field changed'
