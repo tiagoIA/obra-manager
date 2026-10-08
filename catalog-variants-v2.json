@@ -1,0 +1,1219 @@
+[
+  {
+    "name": "Siemens Q115 Type QP Circuit Breaker, 1-Pole, 15A, 120V",
+    "brand": "Siemens",
+    "manufacturerPart": "Q115",
+    "upc": "783643148185",
+    "cat": "eletrica",
+    "subcategory": "breakers",
+    "family": "breakers",
+    "unit": "un",
+    "specs": "Type QP; 1-pole; 15 A; 120 V AC; plug-in; use only in manufacturer-approved panels.",
+    "technicalAttributes": {},
+    "guidedUses": [
+      "panel",
+      "circuit"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/siemens-q115-plug-in-mount-type-qp-circuit-breaker-1-pole-15-amp-120-volt-ac-5590/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/753580/10991_KWNV0LA6OXZSED21.jpg?v=639229623376600000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "5590",
+        "url": "https://www.ew-ne.com/siemens-q115-plug-in-mount-type-qp-circuit-breaker-1-pole-15-amp-120-volt-ac-5590/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "ceca36e7cd7575184b64af822b71cd6bd25f730d10aac6bb7600f04660ac6fcc",
+    "catalogReview": {
+      "sourceBrand": "murray-feiss",
+      "reason": "Supplier brand taxonomy differs from Siemens name/model and manufacturer catalog."
+    },
+    "manufacturerSourceUrl": "https://cache.industry.siemens.com/dl/files/610/109803610/att_1084067/v1/SIE_CM_ResiElectrical.pdf",
+    "active": true,
+    "status": "active",
+    "description": "Public supplier catalog reference. Verify the exact model, compatibility, order unit and package before purchasing."
+  },
+  {
+    "name": "Siemens Q120 Type QP Circuit Breaker, 1-Pole, 20A, 120V",
+    "brand": "Siemens",
+    "manufacturerPart": "Q120",
+    "upc": "783643148192",
+    "cat": "eletrica",
+    "subcategory": "breakers",
+    "family": "breakers",
+    "unit": "un",
+    "specs": "Type QP; 1-pole; 20 A; 120 V AC; plug-in; use only in manufacturer-approved panels.",
+    "technicalAttributes": {},
+    "guidedUses": [
+      "panel",
+      "circuit"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/siemens-q120-plug-in-mount-type-qp-circuit-breaker-1-pole-20-amp-120-volt-ac-5596/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/753725/10991_60EGU1T4MBVX5LON.jpg?v=639230041313000000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "5596",
+        "url": "https://www.ew-ne.com/siemens-q120-plug-in-mount-type-qp-circuit-breaker-1-pole-20-amp-120-volt-ac-5596/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "33f1613fecd0066822fb548682406c0d21a433c81e84f773e191c8c81c2c3085",
+    "catalogReview": {
+      "sourceBrand": "murray-feiss",
+      "reason": "Supplier brand taxonomy differs from Siemens name/model and manufacturer catalog."
+    },
+    "manufacturerSourceUrl": "https://cache.industry.siemens.com/dl/files/610/109803610/att_1084067/v1/SIE_CM_ResiElectrical.pdf",
+    "active": true,
+    "status": "active",
+    "description": "Public supplier catalog reference. Verify the exact model, compatibility, order unit and package before purchasing."
+  },
+  {
+    "name": "Siemens Q230 Type QP Circuit Breaker, 2-Pole, 30A, 120/240V",
+    "brand": "Siemens",
+    "manufacturerPart": "Q230",
+    "upc": "783643148383",
+    "cat": "eletrica",
+    "subcategory": "breakers",
+    "family": "breakers",
+    "unit": "un",
+    "specs": "Type QP; 2-pole; 30 A; 120/240 V AC; plug-in; use only in manufacturer-approved panels.",
+    "technicalAttributes": {},
+    "guidedUses": [
+      "panel",
+      "circuit"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/siemens-q230-plug-in-mount-type-qp-circuit-breaker-2-pole-30-amp-120-240-volt-ac-5688/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/756490/10991_JEKQ4PA92T6BMH1S.jpg?v=639229442617630000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "5688",
+        "url": "https://www.ew-ne.com/siemens-q230-plug-in-mount-type-qp-circuit-breaker-2-pole-30-amp-120-240-volt-ac-5688/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "de4844b8694a9aad33931f5a682c0d1459558a0e4a1693bae2f695d682e62d47",
+    "catalogReview": {
+      "sourceBrand": "murray-feiss",
+      "reason": "Supplier brand taxonomy differs from Siemens name/model and manufacturer catalog."
+    },
+    "manufacturerSourceUrl": "https://cache.industry.siemens.com/dl/files/610/109803610/att_1084067/v1/SIE_CM_ResiElectrical.pdf",
+    "active": true,
+    "status": "active",
+    "description": "Public supplier catalog reference. Verify the exact model, compatibility, order unit and package before purchasing."
+  },
+  {
+    "name": "Siemens Q240 Type QP Circuit Breaker, 2-Pole, 40A, 120/240V",
+    "brand": "Siemens",
+    "manufacturerPart": "Q240",
+    "upc": "783643148635",
+    "cat": "eletrica",
+    "subcategory": "breakers",
+    "family": "breakers",
+    "unit": "un",
+    "specs": "Type QP; 2-pole; 40 A; 120/240 V AC; plug-in; use only in manufacturer-approved panels.",
+    "technicalAttributes": {},
+    "guidedUses": [
+      "panel",
+      "circuit"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/siemens-q240-plug-in-mount-type-qp-circuit-breaker-2-pole-40-amp-120-240-volt-ac-5816/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1638425/10991_IYGFE413NP90WHMU.jpg?v=639250279903300000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "5816",
+        "url": "https://www.ew-ne.com/siemens-q240-plug-in-mount-type-qp-circuit-breaker-2-pole-40-amp-120-240-volt-ac-5816/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "2d008c83c9a3aab98540108a43c23acde962d0b7b23ee0582e31521607da6953",
+    "catalogReview": {
+      "sourceBrand": "murray-feiss",
+      "reason": "Supplier brand taxonomy differs from Siemens name/model and manufacturer catalog."
+    },
+    "manufacturerSourceUrl": "https://cache.industry.siemens.com/dl/files/610/109803610/att_1084067/v1/SIE_CM_ResiElectrical.pdf",
+    "active": true,
+    "status": "active",
+    "description": "Public supplier catalog reference. Verify the exact model, compatibility, order unit and package before purchasing."
+  },
+  {
+    "name": "Siemens Q250 Type QP Circuit Breaker, 2-Pole, 50A, 120/240V",
+    "brand": "Siemens",
+    "manufacturerPart": "Q250",
+    "upc": "783643148642",
+    "cat": "eletrica",
+    "subcategory": "breakers",
+    "family": "breakers",
+    "unit": "un",
+    "specs": "Type QP; 2-pole; 50 A; 120/240 V AC; plug-in; use only in manufacturer-approved panels.",
+    "technicalAttributes": {},
+    "guidedUses": [
+      "panel",
+      "circuit"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/siemens-q250-plug-in-mount-type-qp-circuit-breaker-2-pole-50-amp-120-240-volt-ac-5827/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/761224/10991_BGC8AFNIOJ103V2E.jpg?v=639231174706600000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "5827",
+        "url": "https://www.ew-ne.com/siemens-q250-plug-in-mount-type-qp-circuit-breaker-2-pole-50-amp-120-240-volt-ac-5827/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "b0a2f69810f5d55d3d00383e93ed3c162090f245013fe9f8808071f1a7022aca",
+    "catalogReview": {
+      "sourceBrand": "murray-feiss",
+      "reason": "Supplier brand taxonomy differs from Siemens name/model and manufacturer catalog."
+    },
+    "manufacturerSourceUrl": "https://cache.industry.siemens.com/dl/files/610/109803610/att_1084067/v1/SIE_CM_ResiElectrical.pdf",
+    "active": true,
+    "status": "active",
+    "description": "Public supplier catalog reference. Verify the exact model, compatibility, order unit and package before purchasing."
+  },
+  {
+    "name": "Siemens Q260 Type QP Circuit Breaker, 2-Pole, 60A, 120/240V",
+    "brand": "Siemens",
+    "manufacturerPart": "Q260",
+    "upc": "783643148659",
+    "cat": "eletrica",
+    "subcategory": "breakers",
+    "family": "breakers",
+    "unit": "un",
+    "specs": "Type QP; 2-pole; 60 A; 120/240 V AC; plug-in; use only in manufacturer-approved panels.",
+    "technicalAttributes": {},
+    "guidedUses": [
+      "panel",
+      "circuit"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/siemens-q260-plug-in-mount-type-qp-circuit-breaker-2-pole-60-amp-120-240-volt-ac-5836/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/761579/10991_VNOPTMZ08ELJ19XH.jpg?v=639229297890330000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "5836",
+        "url": "https://www.ew-ne.com/siemens-q260-plug-in-mount-type-qp-circuit-breaker-2-pole-60-amp-120-240-volt-ac-5836/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "053b4ad8f1b1a11a4566b47b4d4a416a313e11a6bf498e04b654264f01f19787",
+    "catalogReview": {
+      "sourceBrand": "murray-feiss",
+      "reason": "Supplier brand taxonomy differs from Siemens name/model and manufacturer catalog."
+    },
+    "manufacturerSourceUrl": "https://cache.industry.siemens.com/dl/files/610/109803610/att_1084067/v1/SIE_CM_ResiElectrical.pdf",
+    "active": true,
+    "status": "active",
+    "description": "Public supplier catalog reference. Verify the exact model, compatibility, order unit and package before purchasing."
+  },
+  {
+    "name": "Siemens QA115AFC Plug-In Mount Type QAF2 Combination Arc Fault Circuit Breaker 1-Pole 15-Amp 120-Volt AC",
+    "brand": "Siemens",
+    "manufacturerPart": "QA115AFC",
+    "upc": "887621216207",
+    "cat": "eletrica",
+    "subcategory": "breakers",
+    "family": "breakers",
+    "unit": "un",
+    "specs": "Siemens QA115AFC circuit breaker. Confirm the manufacturer-approved panel, pole count and voltage before ordering.",
+    "technicalAttributes": {},
+    "guidedUses": [
+      "panel",
+      "circuit"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/siemens-qa115afc-plug-in-mount-type-qaf2-combination-arc-fault-circuit-breaker-1-pole-15-amp-120-volt-ac-312827/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/460244/10991_D6UGO3BV4QK7LXWF.jpg?v=639233121787730000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "312827",
+        "url": "https://www.ew-ne.com/siemens-qa115afc-plug-in-mount-type-qaf2-combination-arc-fault-circuit-breaker-1-pole-15-amp-120-volt-ac-312827/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "2ee00c5e66ead355f749c8bbfab2d45bd029ed0797d08500c25cdccc360f71c7",
+    "catalogReview": {
+      "sourceBrand": "murray-feiss",
+      "reason": "Supplier brand taxonomy differs from Siemens name/model and manufacturer catalog."
+    },
+    "manufacturerSourceUrl": "https://cache.industry.siemens.com/dl/files/610/109803610/att_1084067/v1/SIE_CM_ResiElectrical.pdf",
+    "active": true,
+    "status": "active",
+    "description": "Public supplier catalog reference. Verify the exact model, compatibility, order unit and package before purchasing."
+  },
+  {
+    "name": "Siemens QA115AFCN 1P 15A INTPR",
+    "brand": "Siemens",
+    "manufacturerPart": "QA115AFCN",
+    "upc": "804766906657",
+    "cat": "eletrica",
+    "subcategory": "breakers",
+    "family": "breakers",
+    "unit": "un",
+    "specs": "Siemens QA115AFCN circuit breaker. Confirm the manufacturer-approved panel, pole count and voltage before ordering.",
+    "technicalAttributes": {},
+    "guidedUses": [
+      "panel",
+      "circuit"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/sie-qa115afcn-1p-15a-intpr-1023113/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1196650/10991_BMZLNORA4DKYIUPS.jpg?v=639230952818530000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "1023113",
+        "url": "https://www.ew-ne.com/sie-qa115afcn-1p-15a-intpr-1023113/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "1df0b81f550d780ea34e815da33a656a225c1f4bc84de12e187a7e001882e741",
+    "catalogReview": {
+      "sourceBrand": "murray-feiss",
+      "reason": "Supplier brand taxonomy differs from Siemens name/model and manufacturer catalog."
+    },
+    "manufacturerSourceUrl": "https://cache.industry.siemens.com/dl/files/610/109803610/att_1084067/v1/SIE_CM_ResiElectrical.pdf",
+    "active": true,
+    "status": "active",
+    "description": "Public supplier catalog reference. Verify the exact model, compatibility, order unit and package before purchasing."
+  },
+  {
+    "name": "Siemens QA120AFC 1P 120V CB",
+    "brand": "Siemens",
+    "manufacturerPart": "QA120AFC",
+    "upc": "887621216252",
+    "cat": "eletrica",
+    "subcategory": "breakers",
+    "family": "breakers",
+    "unit": "un",
+    "specs": "Siemens QA120AFC circuit breaker. Confirm the manufacturer-approved panel, pole count and voltage before ordering.",
+    "technicalAttributes": {},
+    "guidedUses": [
+      "panel",
+      "circuit"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/siemens-qa120afc-plug-in-mount-type-qaf2-combination-arc-fault-circuit-breaker-1-pole-20-amp-120-volt-ac-270031/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/460246/10991_D6UGO3BV4QK7LXWF.jpg?v=639229510279700000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "270031",
+        "url": "https://www.ew-ne.com/siemens-qa120afc-plug-in-mount-type-qaf2-combination-arc-fault-circuit-breaker-1-pole-20-amp-120-volt-ac-270031/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "2ee00c5e66ead355f749c8bbfab2d45bd029ed0797d08500c25cdccc360f71c7",
+    "catalogReview": {
+      "sourceBrand": "murray-feiss",
+      "reason": "Supplier brand taxonomy differs from Siemens name/model and manufacturer catalog."
+    },
+    "manufacturerSourceUrl": "https://cache.industry.siemens.com/dl/files/610/109803610/att_1084067/v1/SIE_CM_ResiElectrical.pdf",
+    "active": true,
+    "status": "active",
+    "description": "Public supplier catalog reference. Verify the exact model, compatibility, order unit and package before purchasing."
+  },
+  {
+    "name": "Siemens QF120A 1P 20A CIRCUIT BREAKER",
+    "brand": "Siemens",
+    "manufacturerPart": "QF120A",
+    "upc": "887621216559",
+    "cat": "eletrica",
+    "subcategory": "breakers",
+    "family": "breakers",
+    "unit": "un",
+    "specs": "Siemens QF120A circuit breaker. Confirm the manufacturer-approved panel, pole count and voltage before ordering.",
+    "technicalAttributes": {},
+    "guidedUses": [
+      "panel",
+      "circuit"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/siemens-qf120a-plug-in-mount-gfci-circuit-breaker-1-pole-20-amp-120-volt-493908/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/460248/10991_ID_PIC_v1_887621216559_V1_R02_C04.jpg?v=639230301358330000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "493908",
+        "url": "https://www.ew-ne.com/siemens-qf120a-plug-in-mount-gfci-circuit-breaker-1-pole-20-amp-120-volt-493908/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "50bd1c904cc7dc813f5281ff9451432118606ac01b576a99bc607a44e0c5be08",
+    "catalogReview": {
+      "sourceBrand": "murray-feiss",
+      "reason": "Supplier brand taxonomy differs from Siemens name/model and manufacturer catalog."
+    },
+    "manufacturerSourceUrl": "https://cache.industry.siemens.com/dl/files/610/109803610/att_1084067/v1/SIE_CM_ResiElectrical.pdf",
+    "active": true,
+    "status": "active",
+    "description": "Public supplier catalog reference. Verify the exact model, compatibility, order unit and package before purchasing."
+  },
+  {
+    "name": "Siemens QF240A 2P 40A GFCI",
+    "brand": "Siemens",
+    "manufacturerPart": "QF240A",
+    "upc": "887621216726",
+    "cat": "eletrica",
+    "subcategory": "breakers",
+    "family": "breakers",
+    "unit": "un",
+    "specs": "Siemens QF240A circuit breaker. Confirm the manufacturer-approved panel, pole count and voltage before ordering.",
+    "technicalAttributes": {},
+    "guidedUses": [
+      "panel",
+      "circuit"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/siemens-qf240a-plug-in-mount-type-qf-gfci-circuit-breaker-2-pole-40-amp-120-240-volt-ac-646729/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/460254/10991_ID_PIC_v1_887621216726_V1_R01_C01.jpg?v=639230737070930000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "646729",
+        "url": "https://www.ew-ne.com/siemens-qf240a-plug-in-mount-type-qf-gfci-circuit-breaker-2-pole-40-amp-120-240-volt-ac-646729/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "d7f07c0e96c3aef34fd805521335ced0f8cc96e1eb5c55fb30e12250d084050a",
+    "catalogReview": {
+      "sourceBrand": "murray-feiss",
+      "reason": "Supplier brand taxonomy differs from Siemens name/model and manufacturer catalog."
+    },
+    "manufacturerSourceUrl": "https://cache.industry.siemens.com/dl/files/610/109803610/att_1084067/v1/SIE_CM_ResiElectrical.pdf",
+    "active": true,
+    "status": "active",
+    "description": "Public supplier catalog reference. Verify the exact model, compatibility, order unit and package before purchasing."
+  },
+  {
+    "name": "Siemens QF260A 2P INTERRUPTER",
+    "brand": "Siemens",
+    "manufacturerPart": "QF260A",
+    "upc": "887621216788",
+    "cat": "eletrica",
+    "subcategory": "breakers",
+    "family": "breakers",
+    "unit": "un",
+    "specs": "Siemens QF260A circuit breaker. Confirm the manufacturer-approved panel, pole count and voltage before ordering.",
+    "technicalAttributes": {},
+    "guidedUses": [
+      "panel",
+      "circuit"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/siemens-qf260a-plug-in-mount-type-qpfb-ground-fault-circuit-interrupter-2-pole-60-amp-120-240-volt-ac-speedfax-873338/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/973231/10991_ID_PIC_v1_887621216788_R02_C04.jpg?v=639258076013330000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "873338",
+        "url": "https://www.ew-ne.com/siemens-qf260a-plug-in-mount-type-qpfb-ground-fault-circuit-interrupter-2-pole-60-amp-120-240-volt-ac-speedfax-873338/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "245d790370d7a474788d2615d9fc142072e7124e47a9d2695e2cedb5c468cd1f",
+    "catalogReview": {
+      "sourceBrand": "murray-feiss",
+      "reason": "Supplier brand taxonomy differs from Siemens name/model and manufacturer catalog."
+    },
+    "manufacturerSourceUrl": "https://cache.industry.siemens.com/dl/files/610/109803610/att_1084067/v1/SIE_CM_ResiElectrical.pdf",
+    "active": true,
+    "status": "active",
+    "description": "Public supplier catalog reference. Verify the exact model, compatibility, order unit and package before purchasing."
+  },
+  {
+    "name": "Siemens QF220A 2P 20A INTERRUPTER",
+    "brand": "Siemens",
+    "manufacturerPart": "QF220A",
+    "upc": "887621216665",
+    "cat": "eletrica",
+    "subcategory": "breakers",
+    "family": "breakers",
+    "unit": "un",
+    "specs": "Siemens QF220A circuit breaker. Confirm the manufacturer-approved panel, pole count and voltage before ordering.",
+    "technicalAttributes": {},
+    "guidedUses": [
+      "panel",
+      "circuit"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/siemens-qf220a-plug-in-mount-type-qpfb-ground-fault-circuit-interrupter-2-pole-20-amp-120-240-volt-ac-speedfax-575144/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/460251/10991_H0E2Z5C4KWMX9FLG.jpg?v=639231565260500000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "575144",
+        "url": "https://www.ew-ne.com/siemens-qf220a-plug-in-mount-type-qpfb-ground-fault-circuit-interrupter-2-pole-20-amp-120-240-volt-ac-speedfax-575144/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "e8b37a1cbe97bdf5b5e20f0a47102d0e3ee53b3f358438e26f19caf37b253963",
+    "catalogReview": {
+      "sourceBrand": "murray-feiss",
+      "reason": "Supplier brand taxonomy differs from Siemens name/model and manufacturer catalog."
+    },
+    "manufacturerSourceUrl": "https://cache.industry.siemens.com/dl/files/610/109803610/att_1084067/v1/SIE_CM_ResiElectrical.pdf",
+    "active": true,
+    "status": "active",
+    "description": "Public supplier catalog reference. Verify the exact model, compatibility, order unit and package before purchasing."
+  },
+  {
+    "name": "Eaton BR115 15A 1P PLUG-IN 120/240V  1",
+    "brand": "Eaton",
+    "manufacturerPart": "BR115",
+    "upc": "786676362054",
+    "cat": "eletrica",
+    "subcategory": "breakers",
+    "family": "breakers",
+    "unit": "un",
+    "specs": "Amperage Rating: 15 A; Voltage Rating: 120/240 V; Conductor Size: 14-4 AWG Copper/Aluminum; Number Of Poles: Single-pole; Wire Size: #14-4 AWG Cu/Al",
+    "technicalAttributes": {
+      "Amperage Rating": "15 A",
+      "Voltage Rating": "120/240 V",
+      "Conductor Size": "14-4 AWG Copper/Aluminum",
+      "Number Of Poles": "Single-pole",
+      "Wire Size": "#14-4 AWG Cu/Al"
+    },
+    "guidedUses": [
+      "panel",
+      "circuit"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/eaton-br115-plug-on-mount-type-br-circuit-breaker-1-pole-15-amp-120-240-volt-ac-18021/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/652508/10964_PK2T5DFXU7LHGYEC.jpg?v=639228818220830000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "18021",
+        "url": "https://www.ew-ne.com/eaton-br115-plug-on-mount-type-br-circuit-breaker-1-pole-15-amp-120-240-volt-ac-18021/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "877d723398f0ec7c3d38b6f5dfbf4bb7740313c1493e11b299bc7b6e4513c288",
+    "active": true,
+    "status": "active",
+    "description": "Public supplier catalog reference. Verify the exact model, compatibility, order unit and package before purchasing."
+  },
+  {
+    "name": "Eaton BR115CAFA Plug-On Mount Type BR Combination Arc Fault Circuit Breaker 1-Pole 15-Amp 120/240-Volt AC",
+    "brand": "Eaton",
+    "manufacturerPart": "BR115CAFA",
+    "upc": "786685406442",
+    "cat": "eletrica",
+    "subcategory": "breakers",
+    "family": "breakers",
+    "unit": "un",
+    "specs": "Amperage Rating: 15 A; Voltage Rating: 120/240 Volt AC; Conductor Size: 14-4 AWG Copper/Aluminum; Number Of Poles: 1",
+    "technicalAttributes": {
+      "Amperage Rating": "15 A",
+      "Voltage Rating": "120/240 Volt AC",
+      "Conductor Size": "14-4 AWG Copper/Aluminum",
+      "Number Of Poles": "1"
+    },
+    "guidedUses": [
+      "panel",
+      "circuit"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/eaton-br115cafa-plug-on-mount-type-br-combination-arc-fault-circuit-breaker-1-pole-15-amp-120-240-volt-ac-24680/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1208198/P24680.jpg?v=639258674354430000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "24680",
+        "url": "https://www.ew-ne.com/eaton-br115cafa-plug-on-mount-type-br-combination-arc-fault-circuit-breaker-1-pole-15-amp-120-240-volt-ac-24680/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "5f6953582af372955c9d9ced28f03b634ba6d9903e8ba7ecfd7f7e120ff18598",
+    "active": true,
+    "status": "active",
+    "description": "Public supplier catalog reference. Verify the exact model, compatibility, order unit and package before purchasing."
+  },
+  {
+    "name": "Eaton BR120 20A 1P PLUG-IN 120/240V",
+    "brand": "Eaton",
+    "manufacturerPart": "BR120",
+    "upc": "786676362108",
+    "cat": "eletrica",
+    "subcategory": "breakers",
+    "family": "breakers",
+    "unit": "un",
+    "specs": "Amperage Rating: 20 A; Voltage Rating: 120/240 V; Conductor Size: 14-4 AWG Copper/Aluminum; Number Of Poles: Single-pole; Wire Size: #14-4 AWG Cu/Al",
+    "technicalAttributes": {
+      "Amperage Rating": "20 A",
+      "Voltage Rating": "120/240 V",
+      "Conductor Size": "14-4 AWG Copper/Aluminum",
+      "Number Of Poles": "Single-pole",
+      "Wire Size": "#14-4 AWG Cu/Al"
+    },
+    "guidedUses": [
+      "panel",
+      "circuit"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/eaton-br120-plug-on-mount-type-br-circuit-breaker-1-pole-20-amp-120-240-volt-ac-18031/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/652555/10964_MOQV5F4KR3UIY9JL.jpg?v=639228819543000000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "18031",
+        "url": "https://www.ew-ne.com/eaton-br120-plug-on-mount-type-br-circuit-breaker-1-pole-20-amp-120-240-volt-ac-18031/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "b84b701fb3d7e4f1dc554f42dc4fa524c56176b69499d4d1a703f762345b78e5",
+    "active": true,
+    "status": "active",
+    "description": "Public supplier catalog reference. Verify the exact model, compatibility, order unit and package before purchasing."
+  },
+  {
+    "name": "Eaton BR230 30A 2P PLUG-IN 120/240V  1",
+    "brand": "Eaton",
+    "manufacturerPart": "BR230",
+    "upc": "786676362955",
+    "cat": "eletrica",
+    "subcategory": "breakers",
+    "family": "breakers",
+    "unit": "un",
+    "specs": "Amperage Rating: 30 A; Voltage Rating: 120/240 V; Conductor Size: 14-4 AWG Copper/Aluminum; Number Of Poles: Two-pole; Wire Size: #14-4 AWG Cu/Al",
+    "technicalAttributes": {
+      "Amperage Rating": "30 A",
+      "Voltage Rating": "120/240 V",
+      "Conductor Size": "14-4 AWG Copper/Aluminum",
+      "Number Of Poles": "Two-pole",
+      "Wire Size": "#14-4 AWG Cu/Al"
+    },
+    "guidedUses": [
+      "panel",
+      "circuit"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/eaton-br230-plug-on-mount-type-br-circuit-breaker-2-pole-30-amp-120-240-volt-ac-18085/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/652731/10964_PQ1AV65RKCFLIT9U.jpg?v=639230973261500000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "18085",
+        "url": "https://www.ew-ne.com/eaton-br230-plug-on-mount-type-br-circuit-breaker-2-pole-30-amp-120-240-volt-ac-18085/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "b68c81a87e4be0e56d2e7d8305645cfd6c57061656cbfa3083446eea80950524",
+    "active": true,
+    "status": "active",
+    "description": "Public supplier catalog reference. Verify the exact model, compatibility, order unit and package before purchasing."
+  },
+  {
+    "name": "Eaton BR240 40A 2P PLUG-IN 120/240V  1",
+    "brand": "Eaton",
+    "manufacturerPart": "BR240",
+    "upc": "786676363006",
+    "cat": "eletrica",
+    "subcategory": "breakers",
+    "family": "breakers",
+    "unit": "un",
+    "specs": "Amperage Rating: 40 A; Voltage Rating: 120/240 V; Conductor Size: 14-4 AWG Copper/Aluminum; Number Of Poles: Two-pole; Wire Size: #14-4 AWG Cu/Al",
+    "technicalAttributes": {
+      "Amperage Rating": "40 A",
+      "Voltage Rating": "120/240 V",
+      "Conductor Size": "14-4 AWG Copper/Aluminum",
+      "Number Of Poles": "Two-pole",
+      "Wire Size": "#14-4 AWG Cu/Al"
+    },
+    "guidedUses": [
+      "panel",
+      "circuit"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/eaton-br240-plug-on-mount-type-br-circuit-breaker-2-pole-40-amp-120-240-volt-ac-18090/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1203496/10964_3N7YQB8U49GLSTCV.jpg?v=639232817935170000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "18090",
+        "url": "https://www.ew-ne.com/eaton-br240-plug-on-mount-type-br-circuit-breaker-2-pole-40-amp-120-240-volt-ac-18090/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "2533fd71a0920a1ee2d07de4af39d59e751d4cfb16e7e5522e359cf7ae2650f5",
+    "active": true,
+    "status": "active",
+    "description": "Public supplier catalog reference. Verify the exact model, compatibility, order unit and package before purchasing."
+  },
+  {
+    "name": "Eaton BR250 50A 2P PLUG-IN 120/240V  1",
+    "brand": "Eaton",
+    "manufacturerPart": "BR250",
+    "upc": "786676363051",
+    "cat": "eletrica",
+    "subcategory": "breakers",
+    "family": "breakers",
+    "unit": "un",
+    "specs": "Amperage Rating: 50 A; Voltage Rating: 120/240 V; Conductor Size: 14-4 AWG Copper/Aluminum; Number Of Poles: Two-pole; Wire Size: #14-4 AWG Cu/Al",
+    "technicalAttributes": {
+      "Amperage Rating": "50 A",
+      "Voltage Rating": "120/240 V",
+      "Conductor Size": "14-4 AWG Copper/Aluminum",
+      "Number Of Poles": "Two-pole",
+      "Wire Size": "#14-4 AWG Cu/Al"
+    },
+    "guidedUses": [
+      "panel",
+      "circuit"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/eaton-br250-plug-on-mount-type-br-circuit-breaker-2-pole-50-amp-120-240-volt-ac-18099/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/652744/10964_8HNOY30IGTRL5UB6.jpg?v=639231186812770000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "18099",
+        "url": "https://www.ew-ne.com/eaton-br250-plug-on-mount-type-br-circuit-breaker-2-pole-50-amp-120-240-volt-ac-18099/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "22421b384bfe98fb4880b40d39be1dfac89569a2a1cf429f7a8ddd02c3010ea6",
+    "active": true,
+    "status": "active",
+    "description": "Public supplier catalog reference. Verify the exact model, compatibility, order unit and package before purchasing."
+  },
+  {
+    "name": "Eaton BR250H 2P 50A CB",
+    "brand": "Eaton",
+    "manufacturerPart": "BR250H",
+    "upc": "786676374507",
+    "cat": "eletrica",
+    "subcategory": "breakers",
+    "family": "breakers",
+    "unit": "un",
+    "specs": "Voltage Rating: 240 V - 240 V; Number Of Poles: Two-pole",
+    "technicalAttributes": {
+      "Voltage Rating": "240 V - 240 V",
+      "Number Of Poles": "Two-pole"
+    },
+    "guidedUses": [
+      "panel",
+      "circuit"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/ch-br250h-2p-50a-cb-397824/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1645379/DAMRoot_Original_11206_10964_VJMG5TKO9DEI08CU.jpg?v=639258364147670000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "397824",
+        "url": "https://www.ew-ne.com/ch-br250h-2p-50a-cb-397824/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "67f8e91d984cd4938eb4d23c7ac7a577ebd7a2e804f227ffbcf14a330528ac69",
+    "active": true,
+    "status": "active",
+    "description": "Public supplier catalog reference. Verify the exact model, compatibility, order unit and package before purchasing."
+  },
+  {
+    "name": "Eaton BR260 60A 2P PLUG-IN 120/240V  1",
+    "brand": "Eaton",
+    "manufacturerPart": "BR260",
+    "upc": "786676363105",
+    "cat": "eletrica",
+    "subcategory": "breakers",
+    "family": "breakers",
+    "unit": "un",
+    "specs": "Amperage Rating: 60 A; Voltage Rating: 120/240 V; Conductor Size: 8-1/0 AWG Copper/Aluminum; Number Of Poles: Two-pole; Wire Size: #8-1/0 AWG Cu/Al",
+    "technicalAttributes": {
+      "Amperage Rating": "60 A",
+      "Voltage Rating": "120/240 V",
+      "Conductor Size": "8-1/0 AWG Copper/Aluminum",
+      "Number Of Poles": "Two-pole",
+      "Wire Size": "#8-1/0 AWG Cu/Al"
+    },
+    "guidedUses": [
+      "panel",
+      "circuit"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/eaton-br260-plug-on-mount-type-br-circuit-breaker-2-pole-60-amp-120-240-volt-ac-18106/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/652770/10964_7QK4VUSB2YWJOZM9.jpg?v=639229435741830000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "18106",
+        "url": "https://www.ew-ne.com/eaton-br260-plug-on-mount-type-br-circuit-breaker-2-pole-60-amp-120-240-volt-ac-18106/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "90d934994adf69fbd0310e7e34ced4cface5a6594877dedac6e8f75dbf3f49e3",
+    "active": true,
+    "status": "active",
+    "description": "Public supplier catalog reference. Verify the exact model, compatibility, order unit and package before purchasing."
+  },
+  {
+    "name": "Eaton BR260H 2P 60A CB",
+    "brand": "Eaton",
+    "manufacturerPart": "BR260H",
+    "upc": "786676374606",
+    "cat": "eletrica",
+    "subcategory": "breakers",
+    "family": "breakers",
+    "unit": "un",
+    "specs": "Voltage Rating: 240 V - 240 V; Number Of Poles: Two-pole",
+    "technicalAttributes": {
+      "Voltage Rating": "240 V - 240 V",
+      "Number Of Poles": "Two-pole"
+    },
+    "guidedUses": [
+      "panel",
+      "circuit"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/ch-br260h-2p-60a-cb-437275/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1641375/DAMRoot_Original_11206_10964_VJMG5TKO9DEI08CU.jpg?v=639253000216230000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "437275",
+        "url": "https://www.ew-ne.com/ch-br260h-2p-60a-cb-437275/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "67f8e91d984cd4938eb4d23c7ac7a577ebd7a2e804f227ffbcf14a330528ac69",
+    "active": true,
+    "status": "active",
+    "description": "Public supplier catalog reference. Verify the exact model, compatibility, order unit and package before purchasing."
+  },
+  {
+    "name": "Eaton BR260ST Plug-On Mount Circuit Breaker With Shunt Trip 2-Pole 60-Amp 120/240-Volt AC",
+    "brand": "Eaton",
+    "manufacturerPart": "BR260ST",
+    "upc": "786676000369",
+    "cat": "eletrica",
+    "subcategory": "breakers",
+    "family": "breakers",
+    "unit": "un",
+    "specs": "Amperage Rating: 60 A; Voltage Rating: 120/240 V; Conductor Size: 8-1/0 AWG Copper/Aluminum; Number Of Poles: Two-pole; Wire Size: #8-1/0 AWG Cu/Al",
+    "technicalAttributes": {
+      "Amperage Rating": "60 A",
+      "Voltage Rating": "120/240 V",
+      "Conductor Size": "8-1/0 AWG Copper/Aluminum",
+      "Number Of Poles": "Two-pole",
+      "Wire Size": "#8-1/0 AWG Cu/Al"
+    },
+    "guidedUses": [
+      "panel",
+      "circuit"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/eaton-br260st-plug-on-mount-circuit-breaker-with-shunt-trip-2-pole-60-amp-120-240-volt-ac-112118/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/620916/10964_SYLQTI1B2AZP9DE4.jpg?v=639231324076970000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "112118",
+        "url": "https://www.ew-ne.com/eaton-br260st-plug-on-mount-circuit-breaker-with-shunt-trip-2-pole-60-amp-120-240-volt-ac-112118/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "4fec228e0ad747b22dff6b44d7a32703545e5d0c9f5f5d348e5ba5fd8c8fa708",
+    "active": true,
+    "status": "active",
+    "description": "Public supplier catalog reference. Verify the exact model, compatibility, order unit and package before purchasing."
+  },
+  {
+    "name": "L.H. Dottie PHSMSS8114 Stainless Steel Phillips Pan Head Sheet Metal Screw, #8 x 1-1/4 in",
+    "brand": "L.H. Dottie",
+    "manufacturerPart": "PHSMSS8114",
+    "upc": "781002702269",
+    "cat": "eletrica",
+    "subcategory": "accessories",
+    "family": "accessories",
+    "unit": "un",
+    "specs": "18-8 stainless steel; #8 x 1-1/4 in; Phillips pan head; sheet metal screw. Confirm supplier order unit and pack quantity.",
+    "technicalAttributes": {
+      "Material": "Stainless Steel",
+      "Size": "#8 x 1-1/4 in"
+    },
+    "guidedUses": [
+      "devices",
+      "circuit"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/screw-dottie-phsmss8114-ss-mach-screw-788320/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/810268/LHDOTTC00002_A19_TM_002.jpg?v=639229311459530000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "788320",
+        "url": "https://www.ew-ne.com/screw-dottie-phsmss8114-ss-mach-screw-788320/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "38cfec4bd4a1cb07813ee81def8b1fec30380a9c34525e3680b33baa841fa27e",
+    "manufacturerSourceUrl": "https://lhdottie.com/pdf/product-specification-sheet/PHSMSS8114",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Supplier catalog image represents the product family; order by the stated manufacturer part and size.",
+    "active": true,
+    "status": "active",
+    "description": "Public supplier catalog reference. Verify the exact model, compatibility, order unit and package before purchasing."
+  },
+  {
+    "name": "L.H. Dottie PMS6321 Stainless Steel Phillips Pan Head Machine Screw, #6-32 x 1 in",
+    "brand": "L.H. Dottie",
+    "manufacturerPart": "PMS6321",
+    "upc": "781002701101",
+    "cat": "eletrica",
+    "subcategory": "accessories",
+    "family": "accessories",
+    "unit": "un",
+    "specs": "Material: 18-8 Stainless Steel; Size: #6-32 x 1 in",
+    "technicalAttributes": {
+      "Material": "18-8 Stainless Steel",
+      "Size": "#6-32 x 1 in"
+    },
+    "guidedUses": [
+      "devices",
+      "circuit"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/machine-screw-dottie-pms6321-ss-mach-screw-1055786/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/615082/LHDOTTC00002_A8_TN_002.jpg?v=639230796988100000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "1055786",
+        "url": "https://www.ew-ne.com/machine-screw-dottie-pms6321-ss-mach-screw-1055786/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "dde0aa276b5ce08945af92e4f0d8f38e985aa7efa3f8eb0b6467d28d29f49397",
+    "manufacturerSourceUrl": "https://lhdottie.com/pdf/product-specification-sheet/PMS6321",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Supplier catalog image represents the product family; order by the stated manufacturer part and size.",
+    "active": true,
+    "status": "active",
+    "description": "Public supplier catalog reference. Verify the exact model, compatibility, order unit and package before purchasing."
+  },
+  {
+    "name": "L.H. Dottie LWBZ58 Silicon Bronze Lock Washer, 5/8 in",
+    "brand": "L.H. Dottie",
+    "manufacturerPart": "LWBZ58",
+    "upc": "781002311676",
+    "cat": "eletrica",
+    "subcategory": "accessories",
+    "family": "accessories",
+    "unit": "un",
+    "specs": "Color: Bronze; Material: Silicon Bronze",
+    "technicalAttributes": {
+      "Color": "Bronze",
+      "Material": "Silicon Bronze"
+    },
+    "guidedUses": [
+      "devices",
+      "circuit"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/lock-washer-dottie-lwbz58-lock-washer-843143/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1640985/11077_ID_PIC_v1_LWBZ12.jpg?v=639252591962800000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "843143",
+        "url": "https://www.ew-ne.com/lock-washer-dottie-lwbz58-lock-washer-843143/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "eda4dbf86408c9e4056c9e7549f692807ec13877367d21eb32ef294f87d03cfe",
+    "manufacturerSourceUrl": "https://lhdottie.com/pdf/product-specification-sheet/LWBZ58",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Supplier catalog image represents the product family; order by the stated manufacturer part and size.",
+    "active": true,
+    "status": "active",
+    "description": "Public supplier catalog reference. Verify the exact model, compatibility, order unit and package before purchasing."
+  },
+  {
+    "name": "L.H. Dottie FWBZ38 Silicon Bronze Flat Washer, 3/8 in",
+    "brand": "L.H. Dottie",
+    "manufacturerPart": "FWBZ38",
+    "upc": "781002309840",
+    "cat": "eletrica",
+    "subcategory": "accessories",
+    "family": "accessories",
+    "unit": "un",
+    "specs": "Material: Silicon Bronze",
+    "technicalAttributes": {
+      "Material": "Silicon Bronze"
+    },
+    "guidedUses": [
+      "devices",
+      "circuit"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/flat-washer-dottie-fwbz38-flat-washer-590885/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/764433/11077_ID_PIC_v1_FWBZ12.jpg?v=639230275050030000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "590885",
+        "url": "https://www.ew-ne.com/flat-washer-dottie-fwbz38-flat-washer-590885/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "b83a8d367848d902e68142dae9306d4db97bb7a06de68ef9c41ef3290b1db7d9",
+    "manufacturerSourceUrl": "https://lhdottie.com/pdf/product-specification-sheet/FWBZ38",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Supplier catalog image represents the product family; order by the stated manufacturer part and size.",
+    "active": true,
+    "status": "active",
+    "description": "Public supplier catalog reference. Verify the exact model, compatibility, order unit and package before purchasing."
+  },
+  {
+    "name": "L.H. Dottie FWBZ12 Silicon Bronze Flat Washer, 1/2 in",
+    "brand": "L.H. Dottie",
+    "manufacturerPart": "FWBZ12",
+    "upc": "781002309857",
+    "cat": "eletrica",
+    "subcategory": "accessories",
+    "family": "accessories",
+    "unit": "un",
+    "specs": "Material: Silicon Bronze",
+    "technicalAttributes": {
+      "Material": "Silicon Bronze"
+    },
+    "guidedUses": [
+      "devices",
+      "circuit"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/flat-washer-dottie-fwbz12-flat-washer-713163/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/794867/11077_ID_PIC_v1_FWBZ12.jpg?v=639229568211870000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "713163",
+        "url": "https://www.ew-ne.com/flat-washer-dottie-fwbz12-flat-washer-713163/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "b83a8d367848d902e68142dae9306d4db97bb7a06de68ef9c41ef3290b1db7d9",
+    "manufacturerSourceUrl": "https://lhdottie.com/pdf/product-specification-sheet/FWBZ12",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Supplier catalog image represents the product family; order by the stated manufacturer part and size.",
+    "active": true,
+    "status": "active",
+    "description": "Public supplier catalog reference. Verify the exact model, compatibility, order unit and package before purchasing."
+  },
+  {
+    "name": "L.H. Dottie HNBZ38 Silicon Bronze Hex Nut, 3/8-16",
+    "brand": "L.H. Dottie",
+    "manufacturerPart": "HNBZ38",
+    "upc": "781002171669",
+    "cat": "eletrica",
+    "subcategory": "accessories",
+    "family": "accessories",
+    "unit": "un",
+    "specs": "Size: 3/8",
+    "technicalAttributes": {
+      "Size": "3/8"
+    },
+    "guidedUses": [
+      "devices",
+      "circuit"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/hex-nut-dottie-hnbz38-hex-nut-784056/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/809594/11077_ID_PIC_v1_HNBZ38.jpg?v=639258065029300000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "784056",
+        "url": "https://www.ew-ne.com/hex-nut-dottie-hnbz38-hex-nut-784056/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "03f6393df8dddacc234cb1fe6addd170255ebb36a630a5314bf65c13220adcc1",
+    "manufacturerSourceUrl": "https://lhdottie.com/pdf/product-specification-sheet/HNBZ38",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Supplier catalog image represents the product family; order by the stated manufacturer part and size.",
+    "active": true,
+    "status": "active",
+    "description": "Public supplier catalog reference. Verify the exact model, compatibility, order unit and package before purchasing."
+  },
+  {
+    "name": "L.H. Dottie SA38300 Sleeve Anchor, 3/8 x 3 in",
+    "brand": "L.H. Dottie",
+    "manufacturerPart": "SA38300",
+    "upc": "781002593409",
+    "cat": "eletrica",
+    "subcategory": "accessories",
+    "family": "accessories",
+    "unit": "un",
+    "specs": "Material: Steel; Size: 3/8 in x 3 in",
+    "technicalAttributes": {
+      "Material": "Steel",
+      "Size": "3/8 in x 3 in"
+    },
+    "guidedUses": [
+      "devices",
+      "circuit"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/sleeve-anchor-dottie-sa38300-sleeve-anchor-664865/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/783939/SA516112.jpg?v=639230996808700000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "664865",
+        "url": "https://www.ew-ne.com/sleeve-anchor-dottie-sa38300-sleeve-anchor-664865/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "a187693e8afbf2b0baff9183b7b4a0a8c70d89c34da0780b01ddfada5f745f50",
+    "manufacturerSourceUrl": "https://lhdottie.com/pdf/product-specification-sheet/SA38300",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Supplier catalog image represents the product family; order by the stated manufacturer part and size.",
+    "active": true,
+    "status": "active",
+    "description": "Public supplier catalog reference. Verify the exact model, compatibility, order unit and package before purchasing."
+  },
+  {
+    "name": "L.H. Dottie SA14138 Sleeve Anchor, 1/4 x 1-3/8 in",
+    "brand": "L.H. Dottie",
+    "manufacturerPart": "SA14138",
+    "upc": "781002593300",
+    "cat": "eletrica",
+    "subcategory": "accessories",
+    "family": "accessories",
+    "unit": "un",
+    "specs": "Material: Steel; Size: 0.25 in x 1.375 in",
+    "technicalAttributes": {
+      "Material": "Steel",
+      "Size": "0.25 in x 1.375 in"
+    },
+    "guidedUses": [
+      "devices",
+      "circuit"
+    ],
+    "recordType": "product",
+    "source": "Electrical Wholesalers NE",
+    "sourceUrl": "https://www.ew-ne.com/sleeve-anchor-dottie-sa14138-sleeve-anchor-645322/p",
+    "sourceVerifiedAt": "2026-10-08",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/779798/sa14138.jpg?v=639258189123870000",
+    "suppliers": [
+      {
+        "name": "Electrical Wholesalers NE",
+        "code": "645322",
+        "url": "https://www.ew-ne.com/sleeve-anchor-dottie-sa14138-sleeve-anchor-645322/p",
+        "unit": "un",
+        "verifiedAt": "2026-10-08"
+      }
+    ],
+    "photoSha256": "2c67ced75baffd0882493ac5cf193a44fd59a7653d328bbb4026cb07b3a9d887",
+    "manufacturerSourceUrl": "https://lhdottie.com/pdf/product-specification-sheet/SA14138",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Supplier catalog image represents the product family; order by the stated manufacturer part and size.",
+    "active": true,
+    "status": "active",
+    "description": "Public supplier catalog reference. Verify the exact model, compatibility, order unit and package before purchasing."
+  }
+]
