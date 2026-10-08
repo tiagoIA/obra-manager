@@ -1,0 +1,31 @@
+name: Test guided shopping v1
+on:
+  push:
+    branches: [feature/lista-guiada-v1]
+    paths: [.github/workflows/test-guided.yml, public/guided-shopping-v1.js, tests/guided-shopping.cjs]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm install --no-save playwright
+      - run: npx playwright install --with-deps chromium
+      - run: node tests/guided-shopping.cjs
+      - name: Syntax of integrated app
+        run: |
+          python3 - <<'PY'
+          import re,pathlib
+          s=pathlib.Path("public/index.html").read_text()
+          for i,c in enumerate(re.findall(r'<script(?:[^>]*)>([\s\S]*?)</script>',s)):pathlib.Path(f"check-{i}.mjs").write_text(c)
+          PY
+          for f in check-*.mjs; do node --check "$f"; done
+      - uses: actions/upload-artifact@v4
+        with:
+          name: guided-mobile-review
+          path: guided-mobile.png
