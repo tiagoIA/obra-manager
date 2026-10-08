@@ -1,0 +1,592 @@
+[
+  {
+    "id": "JfqbWJzBlyDRmhJ6arwb",
+    "expectedName": "Romex 12/2",
+    "expectedSku": "ELEC-002",
+    "sourceMaterialId": "catalog-506bf5cdc6b5d4308de9",
+    "sourceExpectedName": "Solid Copper Type NM-B Non-Metallic Sheathed Cable With Grounding 12/2 100-ft Box Yellow",
+    "basis": "NM-B 12/2 family",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. NM-B 12/2 family; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "XR8XjVVJh51rrjodmg6F",
+    "expectedName": "Romex Wire 12/2 w/ Ground",
+    "expectedSku": "ELEC-071",
+    "sourceMaterialId": "catalog-506bf5cdc6b5d4308de9",
+    "sourceExpectedName": "Solid Copper Type NM-B Non-Metallic Sheathed Cable With Grounding 12/2 100-ft Box Yellow",
+    "basis": "NM-B 12/2 family",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. NM-B 12/2 family; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "qUjrurmw0l9YKyN1wmly",
+    "expectedName": "Romex 14/2",
+    "expectedSku": "ELEC-001",
+    "sourceMaterialId": "catalog-6d670179c65ba96e2991",
+    "sourceExpectedName": "14/2 NM-B Solid Copper White 500'",
+    "basis": "NM-B 14/2 family",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. NM-B 14/2 family; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "Q16lCgO7TEkUJRqM7LQu",
+    "expectedName": "Romex Wire 14/2 w/ Ground",
+    "expectedSku": "ELEC-072",
+    "sourceMaterialId": "catalog-6d670179c65ba96e2991",
+    "sourceExpectedName": "14/2 NM-B Solid Copper White 500'",
+    "basis": "NM-B 14/2 family",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. NM-B 14/2 family; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "rXzu68NL75HoVqCoeaNi",
+    "expectedName": "Romex Wire 10/2 w/ Ground",
+    "expectedSku": "ELEC-073",
+    "sourceMaterialId": "catalog-8ebce853d0912a02355f",
+    "sourceExpectedName": "Stranded Copper Type NM-B Non-Metallic Sheathed Cable With Grounding 4/3 125-ft Coil",
+    "basis": "NM-B cable family; reference gauge/conductor count differs",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. NM-B cable family; reference gauge/conductor count differs; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "VpimfjK2nTbS8BG3liSX",
+    "expectedName": "Romex Wire 6/3 w/ Ground",
+    "expectedSku": "ELEC-074",
+    "sourceMaterialId": "catalog-8ebce853d0912a02355f",
+    "sourceExpectedName": "Stranded Copper Type NM-B Non-Metallic Sheathed Cable With Grounding 4/3 125-ft Coil",
+    "basis": "NM-B cable family; reference gauge/conductor count differs",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. NM-B cable family; reference gauge/conductor count differs; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "5Um5KgFsQnbRuvB1YhZN",
+    "expectedName": "MC 12/2",
+    "expectedSku": "ELEC-025",
+    "sourceMaterialId": "BvRl7ySAlrEphHmWJKv9",
+    "sourceExpectedName": "MC Cable 12/2",
+    "basis": "MC cable family; confirm conductor size and count",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. MC cable family; confirm conductor size and count; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "ffpS50HLmZNJadIIhX11",
+    "expectedName": "MC Cable 12/3",
+    "expectedSku": "ELEC-081",
+    "sourceMaterialId": "BvRl7ySAlrEphHmWJKv9",
+    "sourceExpectedName": "MC Cable 12/2",
+    "basis": "MC cable family; confirm conductor size and count",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. MC cable family; confirm conductor size and count; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "pc9cKYqZQijgEPKsqW2j",
+    "expectedName": "MC Cable 10/2",
+    "expectedSku": "ELEC-082",
+    "sourceMaterialId": "BvRl7ySAlrEphHmWJKv9",
+    "sourceExpectedName": "MC Cable 12/2",
+    "basis": "MC cable family; confirm conductor size and count",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. MC cable family; confirm conductor size and count; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "4ZRlyguRiSe3Tc7WOuwr",
+    "expectedName": "Fire Alarm Cable 14/2 TSP",
+    "expectedSku": "FIRE-034",
+    "sourceMaterialId": "4WUUexcr20zGvswn5uHe",
+    "sourceExpectedName": "Fire Alarm Cable 14/2 FPL",
+    "basis": "alarm cable family; confirm gauge, conductors, shielding and listing",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. alarm cable family; confirm gauge, conductors, shielding and listing; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "RARFGPYgMqArTxW0VZI3",
+    "expectedName": "Alarm Cable 22/4 Shielded",
+    "expectedSku": "FIRE-035",
+    "sourceMaterialId": "4WUUexcr20zGvswn5uHe",
+    "sourceExpectedName": "Fire Alarm Cable 14/2 FPL",
+    "basis": "alarm cable family; confirm gauge, conductors, shielding and listing",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. alarm cable family; confirm gauge, conductors, shielding and listing; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "loAw3surJBhva2NnUr7t",
+    "expectedName": "Alarm Cable 18/2",
+    "expectedSku": "FIRE-036",
+    "sourceMaterialId": "4WUUexcr20zGvswn5uHe",
+    "sourceExpectedName": "Fire Alarm Cable 14/2 FPL",
+    "basis": "alarm cable family; confirm gauge, conductors, shielding and listing",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. alarm cable family; confirm gauge, conductors, shielding and listing; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "GKILIIPiGGzEWTOXSQv6",
+    "expectedName": "Alarm Cable 22/2 Shielded",
+    "expectedSku": "FIRE-037",
+    "sourceMaterialId": "4WUUexcr20zGvswn5uHe",
+    "sourceExpectedName": "Fire Alarm Cable 14/2 FPL",
+    "basis": "alarm cable family; confirm gauge, conductors, shielding and listing",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. alarm cable family; confirm gauge, conductors, shielding and listing; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "1hLa0vPWGOhoebByzj2f",
+    "expectedName": "Low Voltage Wire 18/2",
+    "expectedSku": "ELEC-085",
+    "sourceMaterialId": "wue5m4Z8KFD5EklHThgP",
+    "sourceExpectedName": "18/4 Thermostat Wire",
+    "basis": "low-voltage multi-conductor cable family; reference is 18/4",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. low-voltage multi-conductor cable family; reference is 18/4; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "FSzaR70yTleiuGqYToKx",
+    "expectedName": "THHN Wire #10 AWG Red",
+    "expectedSku": "ELEC-076",
+    "sourceMaterialId": "catalog-54f8c9db67ce2ff14f9f",
+    "sourceExpectedName": "Omni Cable Stranded THHN/THWN-2 Cable 14/1 Red",
+    "basis": "red THHN copper wire family; reference gauge differs",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. red THHN copper wire family; reference gauge differs; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "UVzOh2YgW0y6av9EQ34E",
+    "expectedName": "THHN Wire #12 AWG Black",
+    "expectedSku": "ELEC-075",
+    "sourceMaterialId": "catalog-56d354b6e3c0d12fd332",
+    "sourceExpectedName": "HWC HW15101407 Stranded Copper THHN/THWN-2 Building Wire (7) 14-AWG",
+    "basis": "THHN copper wire family; confirm gauge and insulation color",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. THHN copper wire family; confirm gauge and insulation color; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "xYJYnLmzRjcRsH7SO4Tn",
+    "expectedName": "THHN Wire #8 AWG",
+    "expectedSku": "ELEC-077",
+    "sourceMaterialId": "catalog-56d354b6e3c0d12fd332",
+    "sourceExpectedName": "HWC HW15101407 Stranded Copper THHN/THWN-2 Building Wire (7) 14-AWG",
+    "basis": "THHN copper wire family; confirm gauge and insulation color",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. THHN copper wire family; confirm gauge and insulation color; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "d8YBSCIZkiSW5DeMlwjP",
+    "expectedName": "THHN Wire #4 AWG",
+    "expectedSku": "ELEC-078",
+    "sourceMaterialId": "catalog-56d354b6e3c0d12fd332",
+    "sourceExpectedName": "HWC HW15101407 Stranded Copper THHN/THWN-2 Building Wire (7) 14-AWG",
+    "basis": "THHN copper wire family; confirm gauge and insulation color",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. THHN copper wire family; confirm gauge and insulation color; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "py9TVS5KG5hFSbGSTW9K",
+    "expectedName": "THHN Wire #6 AWG Green",
+    "expectedSku": "ELEC-079",
+    "sourceMaterialId": "zZq3YnWSAslOaVrX4RrD",
+    "sourceExpectedName": "6 AWG THHN green",
+    "basis": "green 6 AWG THHN wire family",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. green 6 AWG THHN wire family; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "iJkizMXcaFurbcVyL3lx",
+    "expectedName": "SER Cable 2/0-2/0-1/0",
+    "expectedSku": "ELEC-083",
+    "sourceMaterialId": "euH3TMg0Ey3DDgtLm1Ep",
+    "sourceExpectedName": "SE cable 2/0 aluminum",
+    "basis": "aluminum service-entrance cable family; confirm cable type and conductor configuration",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. aluminum service-entrance cable family; confirm cable type and conductor configuration; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "LZ1c21bkAeKHw56sERaw",
+    "expectedName": "URD Direct Burial Cable",
+    "expectedSku": "ELEC-084",
+    "sourceMaterialId": "4VXnBGswUqDC6Mtx879s",
+    "sourceExpectedName": "1/0 URD ALUM BRENAU 1000FT REEL",
+    "basis": "URD cable family; confirm conductor material, gauge and configuration",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. URD cable family; confirm conductor material, gauge and configuration; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "CW5XTmZeAkllUvrkEIQi",
+    "expectedName": "EMT Conduit 1/2\"",
+    "expectedSku": "ELEC-090",
+    "sourceMaterialId": "catalog-a5ac3bcba9406a6dc365",
+    "sourceExpectedName": "EMT Conduit 1/2\" x 10'",
+    "basis": "EMT conduit family; confirm trade size",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. EMT conduit family; confirm trade size; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "ZWAwyym1QVnN6VkvsbWf",
+    "expectedName": "EMT 1/2 pipe.",
+    "expectedSku": "ELEC-056",
+    "sourceMaterialId": "catalog-a5ac3bcba9406a6dc365",
+    "sourceExpectedName": "EMT Conduit 1/2\" x 10'",
+    "basis": "EMT conduit family; confirm trade size",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. EMT conduit family; confirm trade size; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "dWfsOTY9BwvNcyihESq6",
+    "expectedName": "Conduit 1/2\"",
+    "expectedSku": "ELEC-007",
+    "sourceMaterialId": "catalog-a5ac3bcba9406a6dc365",
+    "sourceExpectedName": "EMT Conduit 1/2\" x 10'",
+    "basis": "EMT conduit family; confirm trade size",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. EMT conduit family; confirm trade size; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "BCNR2A3fJCTGUzJ7w8nb",
+    "expectedName": "Conduit 1/2\" (Misc)",
+    "expectedSku": "ELEC-166",
+    "sourceMaterialId": "catalog-a5ac3bcba9406a6dc365",
+    "sourceExpectedName": "EMT Conduit 1/2\" x 10'",
+    "basis": "EMT conduit family; confirm trade size",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. EMT conduit family; confirm trade size; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "FuUxCwO2ObGwhu2TmszW",
+    "expectedName": "EMT Conduit 3/4\"",
+    "expectedSku": "ELEC-091",
+    "sourceMaterialId": "catalog-a5ac3bcba9406a6dc365",
+    "sourceExpectedName": "EMT Conduit 1/2\" x 10'",
+    "basis": "EMT conduit family; confirm trade size",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. EMT conduit family; confirm trade size; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "LvI7oM48vvhQt1U6ZZyD",
+    "expectedName": "EMT Conduit 1\"",
+    "expectedSku": "ELEC-092",
+    "sourceMaterialId": "catalog-619681b2084f123a64a6",
+    "sourceExpectedName": "EMT I100EMT 1\" X 10' EMT CONDUIT",
+    "basis": "1-inch EMT conduit family",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. 1-inch EMT conduit family; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "kifgSwPPgJMtfOGJzopQ",
+    "expectedName": "PVC Conduit Schedule 40 1/2\"",
+    "expectedSku": "ELEC-094",
+    "sourceMaterialId": "4KrKpKSg18bZuJiCfVlS",
+    "sourceExpectedName": "1/2in pvc pipe",
+    "basis": "Schedule 40 PVC conduit family; confirm trade size",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. Schedule 40 PVC conduit family; confirm trade size; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "Roz0i9wXmaBHkKtFdzOe",
+    "expectedName": "PVC Conduit Schedule 40 3/4\"",
+    "expectedSku": "ELEC-095",
+    "sourceMaterialId": "4KrKpKSg18bZuJiCfVlS",
+    "sourceExpectedName": "1/2in pvc pipe",
+    "basis": "Schedule 40 PVC conduit family; confirm trade size",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. Schedule 40 PVC conduit family; confirm trade size; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "5XeKfTya6EWQsTskVuSw",
+    "expectedName": "LB Conduit Body 3/4\"",
+    "expectedSku": "ELEC-158",
+    "sourceMaterialId": "tqs8nV8vAxA2mVPgH1tW",
+    "sourceExpectedName": "1/2in pvc LB",
+    "basis": "PVC LB conduit body family; reference trade size differs",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. PVC LB conduit body family; reference trade size differs; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "9YRfV1MGm9FRyGsBHSDx",
+    "expectedName": "Conduit Straps 1/2\"",
+    "expectedSku": "ELEC-157",
+    "sourceMaterialId": "l1pbBVhr1CjrKjiW6uP1",
+    "sourceExpectedName": "1/2 EMT metal clamp.",
+    "basis": "1/2-inch EMT strap family",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. 1/2-inch EMT strap family; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "DcsqfN6tGQ2cJzVhmaTI",
+    "expectedName": "Three gang new work",
+    "expectedSku": "ELEC-014",
+    "sourceMaterialId": "cGKElblzlq25lKtKR28O",
+    "sourceExpectedName": "3-Gang New Work Box",
+    "basis": "3-gang new-work box family",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. 3-gang new-work box family; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "ap0MTS6NRILU5BVorxfV",
+    "expectedName": "Three gang old work",
+    "expectedSku": "ELEC-015",
+    "sourceMaterialId": "3d013aAGpaZVY6XNeafk",
+    "sourceExpectedName": "3-Gang Old Work Box",
+    "basis": "3-gang old-work box family",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. 3-gang old-work box family; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "7U3sA5mK23bY2AX4aqUT",
+    "expectedName": "Outlet (Duplex)",
+    "expectedSku": "ELEC-004",
+    "sourceMaterialId": "catalog-261462acdb17e2b5ec5d",
+    "sourceExpectedName": "15 Amp Decora Tamper-Resistant Duplex Outlet/Receptacle, Grounding, White, T5325-W",
+    "basis": "duplex receptacle family; quantity and circuit suitability are not confirmed by the image",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. duplex receptacle family; quantity and circuit suitability are not confirmed by the image; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "H1OihHaCTgaAwOv0QlGd",
+    "expectedName": "Bedroom receptacle",
+    "expectedSku": "ELEC-179",
+    "sourceMaterialId": "catalog-261462acdb17e2b5ec5d",
+    "sourceExpectedName": "15 Amp Decora Tamper-Resistant Duplex Outlet/Receptacle, Grounding, White, T5325-W",
+    "basis": "duplex receptacle family; quantity and circuit suitability are not confirmed by the image",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. duplex receptacle family; quantity and circuit suitability are not confirmed by the image; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "M68kMz3JGzydpLgtQpSc",
+    "expectedName": "GFCI Receptacle",
+    "expectedSku": "ELEC-018",
+    "sourceMaterialId": "catalog-31acb6f08be98923724d",
+    "sourceExpectedName": "20 Amp SmartlockPro® GFCI Receptacle/Outlet, Industrial Grade, Weather and Tamper-Resistant G5362-WTW",
+    "basis": "GFCI receptacle family; confirm rating and application",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. GFCI receptacle family; confirm rating and application; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "9REH15Ak1gMMFkclsAXt",
+    "expectedName": "Kitchen counter outlet",
+    "expectedSku": "ELEC-181",
+    "sourceMaterialId": "catalog-31acb6f08be98923724d",
+    "sourceExpectedName": "20 Amp SmartlockPro® GFCI Receptacle/Outlet, Industrial Grade, Weather and Tamper-Resistant G5362-WTW",
+    "basis": "GFCI receptacle family; confirm rating and application",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. GFCI receptacle family; confirm rating and application; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "Vc2t3K9GT9sesS1zXcPT",
+    "expectedName": "Bathroom outlet",
+    "expectedSku": "ELEC-182",
+    "sourceMaterialId": "catalog-31acb6f08be98923724d",
+    "sourceExpectedName": "20 Amp SmartlockPro® GFCI Receptacle/Outlet, Industrial Grade, Weather and Tamper-Resistant G5362-WTW",
+    "basis": "GFCI receptacle family; confirm rating and application",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. GFCI receptacle family; confirm rating and application; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "vYficJ6GY9UNJenFTsy0",
+    "expectedName": "Wire Connector",
+    "expectedSku": "ELEC-008",
+    "sourceMaterialId": "catalog-eb6ad2a18a5244cee72b",
+    "sourceExpectedName": "WAGO 222-412/K194-4045 51249533 2",
+    "basis": "lever wire connector family; confirm connector style, conductor range and listing",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. lever wire connector family; confirm connector style, conductor range and listing; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "96CfkwevrktfLFu5lBBR",
+    "expectedName": "Commercial Fire Alarm Panel",
+    "expectedSku": "FIRE-049",
+    "sourceMaterialId": "qdwumUZWT8PzMxJVeOpr",
+    "sourceExpectedName": "Addressable Fire-Lite Control Panel ES-50X",
+    "basis": "commercial fire alarm panel family; reference is Fire-Lite ES-50X",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. commercial fire alarm panel family; reference is Fire-Lite ES-50X; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "2U0PH28lzsywsXxPkZbn",
+    "expectedName": "Manual Pull Station (TPD)",
+    "expectedSku": "FIRE-006",
+    "sourceMaterialId": "WLSGLJy6jx3PNMEEkk9w",
+    "sourceExpectedName": "Fire-LitePull station BG-12LX Addressable",
+    "basis": "manual pull station family; reference is Fire-Lite BG-12LX",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. manual pull station family; reference is Fire-Lite BG-12LX; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "GqXBvcCV97ZRXIrT82J7",
+    "expectedName": "Addressable Smoke Detector (System)",
+    "expectedSku": "FIRE-007",
+    "sourceMaterialId": "1Sp34E8mnVHMnUaUhnle",
+    "sourceExpectedName": "Fire-lite SD365 smoke addressable detector",
+    "basis": "addressable smoke detector family; reference is Fire-Lite SD365",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. addressable smoke detector family; reference is Fire-Lite SD365; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "3LUEJBQ6rU9V28JclaeP",
+    "expectedName": "Smoke Detector Hardwired+Battery",
+    "expectedSku": "FIRE-039",
+    "sourceMaterialId": "Jpp0vYQeBS6Crx1okJsF",
+    "sourceExpectedName": "SMI100-AC Smoke alarm 120volts",
+    "basis": "hardwired smoke alarm family; reference is BRK SMI100-AC",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. hardwired smoke alarm family; reference is BRK SMI100-AC; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "SNT3JzrhxxMuNH0HHzeZ",
+    "expectedName": "Ionization Smoke Detector",
+    "expectedSku": "FIRE-056",
+    "sourceMaterialId": "Jpp0vYQeBS6Crx1okJsF",
+    "sourceExpectedName": "SMI100-AC Smoke alarm 120volts",
+    "basis": "hardwired smoke alarm family; reference is BRK SMI100-AC",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. hardwired smoke alarm family; reference is BRK SMI100-AC; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "by8neWFWKhLlcxqDBPt8",
+    "expectedName": "Combo Smoke/CO Detector",
+    "expectedSku": "FIRE-041",
+    "sourceMaterialId": "SygVJtBtbVfb46jDF7NM",
+    "sourceExpectedName": "1046781 - Interconnect Hardwire Smoke & CO Alarm with Battery Backup & Voice",
+    "basis": "smoke/CO combination alarm family",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. smoke/CO combination alarm family; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "tkjlKXY14WydyEpKLnTf",
+    "expectedName": "Horn/Strobe 75cd (75)",
+    "expectedSku": "FIRE-004",
+    "sourceMaterialId": "4vYjBFXMkWz1Oob0rDyv",
+    "sourceExpectedName": "P2R Led wall Horn strobe",
+    "basis": "horn/strobe notification appliance family; confirm candela rating",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. horn/strobe notification appliance family; confirm candela rating; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "CTQuOc21S8E8V2HxuBQw",
+    "expectedName": "Horn/Strobe 75cd",
+    "expectedSku": "FIRE-060",
+    "sourceMaterialId": "4vYjBFXMkWz1Oob0rDyv",
+    "sourceExpectedName": "P2R Led wall Horn strobe",
+    "basis": "horn/strobe notification appliance family; confirm candela rating",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. horn/strobe notification appliance family; confirm candela rating; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "nvitdOv1vyoy0niLj3nR",
+    "expectedName": "Audio/Visual Notification (AV)",
+    "expectedSku": "FIRE-005",
+    "sourceMaterialId": "4vYjBFXMkWz1Oob0rDyv",
+    "sourceExpectedName": "P2R Led wall Horn strobe",
+    "basis": "horn/strobe notification appliance family; confirm candela rating",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. horn/strobe notification appliance family; confirm candela rating; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "603hulLCLlRqnkzBEcyZ",
+    "expectedName": "Exterior Beacon/Strobe (WP)",
+    "expectedSku": "FIRE-010",
+    "sourceMaterialId": "9on7EDymNDcx01bylzxR",
+    "sourceExpectedName": "SGRK Led Wall Strobe, outdoor, red color",
+    "basis": "weatherproof strobe family; reference is System Sensor SGRK",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. weatherproof strobe family; reference is System Sensor SGRK; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "gZ0EZV3MY7BOQOz828LT",
+    "expectedName": "Low Frequency Sounder — Horn (L)",
+    "expectedSku": "FIRE-002",
+    "sourceMaterialId": "RS6ncOKXFr75X51oJj8j",
+    "sourceExpectedName": "HWL-LF Low frequency wall indoor",
+    "basis": "low-frequency wall sounder family; reference is System Sensor HWL-LF",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. low-frequency wall sounder family; reference is System Sensor HWL-LF; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "eseNyfCyvHNW0V0QvvRo",
+    "expectedName": "Low Frequency Sounder Horn",
+    "expectedSku": "FIRE-063",
+    "sourceMaterialId": "RS6ncOKXFr75X51oJj8j",
+    "sourceExpectedName": "HWL-LF Low frequency wall indoor",
+    "basis": "low-frequency wall sounder family; reference is System Sensor HWL-LF",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. low-frequency wall sounder family; reference is System Sensor HWL-LF; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "JHLlTX7j7LOo2wPCDGdC",
+    "expectedName": "Loop 24v module and smoke",
+    "expectedSku": "FIRE-030",
+    "sourceMaterialId": "6QaMLvEhgikzaNcroCTZ",
+    "sourceExpectedName": "MMF-300 Monitor Module",
+    "basis": "addressable monitor module appearance reference; confirm intended loop/device function",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. addressable monitor module appearance reference; confirm intended loop/device function; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "4x3WL8mo6Wzcz0q2Nyw4",
+    "expectedName": "Loop 24V Module and Smoke",
+    "expectedSku": "FIRE-054",
+    "sourceMaterialId": "6QaMLvEhgikzaNcroCTZ",
+    "sourceExpectedName": "MMF-300 Monitor Module",
+    "basis": "addressable monitor module appearance reference; confirm intended loop/device function",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. addressable monitor module appearance reference; confirm intended loop/device function; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "Oosy2hbhYaeoJvtT1bKP",
+    "expectedName": "Alarm Power Supply 12V 2.5A",
+    "expectedSku": "FIRE-090",
+    "sourceMaterialId": "S922MvxORlTOfFReQ0si",
+    "sourceExpectedName": "Power Supply 12V 6A",
+    "basis": "alarm/access-control power-supply family; reference is 12V 6A, not voltage/current confirmation",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. alarm/access-control power-supply family; reference is 12V 6A, not voltage/current confirmation; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "BhGcI00m6TnuwZiJ3H5a",
+    "expectedName": "Main Panel 100A 20-Space",
+    "expectedSku": "ELEC-129",
+    "sourceMaterialId": "0DOTubhDrjyYUAkDk0L5",
+    "sourceExpectedName": "100A Siemens panel 30 spaces.",
+    "basis": "load center family; confirm amperage, space count and main/lug configuration",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. load center family; confirm amperage, space count and main/lug configuration; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "ezr4KBZCVxjSpVbo4jRD",
+    "expectedName": "Main Panel 200A 40-Space",
+    "expectedSku": "ELEC-128",
+    "sourceMaterialId": "0DOTubhDrjyYUAkDk0L5",
+    "sourceExpectedName": "100A Siemens panel 30 spaces.",
+    "basis": "load center family; confirm amperage, space count and main/lug configuration",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. load center family; confirm amperage, space count and main/lug configuration; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "jSrxcmMF4vshbnMzGzcD",
+    "expectedName": "Subpanel 60A 12-Space",
+    "expectedSku": "ELEC-140",
+    "sourceMaterialId": "0DOTubhDrjyYUAkDk0L5",
+    "sourceExpectedName": "100A Siemens panel 30 spaces.",
+    "basis": "load center family; confirm amperage, space count and main/lug configuration",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. load center family; confirm amperage, space count and main/lug configuration; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "b0kZ5rEuiyfXsxsLFPDl",
+    "expectedName": "Feed Panel",
+    "expectedSku": "ELEC-009",
+    "sourceMaterialId": "0DOTubhDrjyYUAkDk0L5",
+    "sourceExpectedName": "100A Siemens panel 30 spaces.",
+    "basis": "load center family; confirm amperage, space count and main/lug configuration",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. load center family; confirm amperage, space count and main/lug configuration; this photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "Tylw9LhhR2wtgzoDtfmH",
+    "expectedName": "Surge Protector Whole House",
+    "expectedSku": "ELEC-142",
+    "sourceMaterialId": "pySLdPcCNwLVQFoFQHmI",
+    "sourceExpectedName": "ITE QSPD2A035B LV PLUG ON SURGE DEVICE 35kA",
+    "basis": "whole-house surge protection family; reference is Siemens QSPD2A035B",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. whole-house surge protection family; reference is Siemens QSPD2A035B; this photo does not identify stock or establish compatibility."
+  }
+]
