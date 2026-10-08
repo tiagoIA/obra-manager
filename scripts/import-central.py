@@ -49,7 +49,7 @@ def prepare(s,fire,bucket,folder,material_docs,encode):
   if json.dumps(ref,sort_keys=True)!=before or suppliers!=(p.get('suppliers') or []):p['suppliers']=suppliers;changed.setdefault(name,set()).add('suppliers')
  gce_count=len(changed)
  for p,photo in zip(products,photos):
-  p={**p,'name':html.unescape(p['name']).strip()};assert p['name'] and p['unit'] and p['sourceUrl'].startswith('https://')
+  p={**p,'name':html.unescape(p['name']).strip()};p['upc']=str(p.get('upc') or '') if re.fullmatch(r'\d{12,14}',str(p.get('upc') or '')) else '';assert p['name'] and p['unit'] and p['sourceUrl'].startswith('https://')
   pkeys=set(keys(p));matches=[name for name,old in records.items() if not old.get('isTask') and pkeys.intersection(keys(old))]
   if len(matches)>1:skipped.append({'name':p['name'],'reason':'Ambiguous existing identity'});continue
   if matches:
