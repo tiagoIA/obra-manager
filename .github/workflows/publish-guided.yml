@@ -7,7 +7,7 @@ permissions:
   contents: read
 concurrency:
   group: obra-manager-guided-release
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -18,8 +18,8 @@ jobs:
         with:
           node-version: '24'
       - run: npm install --no-save playwright
-      - run: npx playwright install --with-deps chromium
-      - run: node tests/guided-shopping.cjs
+      - run: |
+          GUIDED_BROWSER_PATH=$(command -v google-chrome) node tests/guided-shopping.cjs
       - name: Capture reviewed mobile layout
         run: python3 -c "import base64; print('MOBILE_REVIEW_BASE64',base64.b64encode(open('guided-mobile.png','rb').read()).decode())"
       - name: Syntax check all application scripts
