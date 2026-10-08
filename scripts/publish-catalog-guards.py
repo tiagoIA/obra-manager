@@ -1,5 +1,5 @@
 """Publish only the catalog validator and cache version; never write Firestore."""
-import os,json,gzip,hashlib,pathlib,requests
+import os,json,gzip,hashlib,pathlib,requests,time
 from google.oauth2 import service_account
 from google.auth.transport.requests import AuthorizedSession
 from google.cloud import storage
@@ -35,5 +35,9 @@ assert call('GET',site+'/releases',params={'pageSize':1})['releases'][0]['versio
 call('POST',site+'/releases',params={'versionName':new})
 assert call('GET',site+'/releases',params={'pageSize':1})['releases'][0]['version']['name']==new
 for path,raw in expected.items():
- r=requests.get('https://obra-manager-4ecc7.web.app'+path,timeout=40);r.raise_for_status();assert r.content==raw,'Public asset differs'
+ for attempt in range(6):
+  r=requests.get('https://obra-manager-4ecc7.web.app'+path,params={'catalogRevision':os.environ['GITHUB_RUN_ID']},headers={'Cache-Control':'no-cache'},timeout=40);r.raise_for_status()
+  if r.content==raw:break
+  if attempt==5:raise AssertionError('Public asset differs after release propagation')
+  time.sleep(3)
 print('CATALOG_GUARDS_PUBLISHED',json.dumps({'version':new,'preservedFiles':len(files),'backup':folder,'firestoreWrites':0}))
