@@ -1,0 +1,58 @@
+name: Audit central catalog
+on:
+  push:
+    branches: [feature/lista-guiada-v1]
+    paths: [.github/workflows/audit-central.yml]
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - run: pip install google-auth requests beautifulsoup4
+      - name: Read existing catalog and public product markup
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: |
+          python - <<'PY'
+          import os,json,requests
+          from google.oauth2 import service_account
+          from google.auth.transport.requests import AuthorizedSession
+          k=json.loads(os.environ['FIREBASE_SA']);assert k['project_id']=='obra-manager-4ecc7'
+          s=AuthorizedSession(service_account.Credentials.from_service_account_info(k,scopes=['https://www.googleapis.com/auth/cloud-platform']))
+          base='https://firestore.googleapis.com/v1/projects/obra-manager-4ecc7/databases/(default)/documents/'
+          def dec(v):
+            for key in ['stringValue','integerValue','doubleValue','booleanValue','nullValue']:
+              if key in v:return v[key]
+            if 'arrayValue' in v:return [dec(x) for x in v['arrayValue'].get('values',[])]
+            if 'mapValue' in v:return {key:dec(x) for key,x in v['mapValue'].get('fields',{}).items()}
+            return None
+          for col in ['materials','productDB']:
+            docs=[];token=None
+            while True:
+              params={'pageSize':1000}
+              if token:params['pageToken']=token
+              r=s.get(base+col,params=params,timeout=60);r.raise_for_status();d=r.json();docs+=d.get('documents',[])
+              token=d.get('nextPageToken')
+              if not token:break
+            print('COLLECTION',col,len(docs))
+            for d in docs:
+              f={key:dec(v) for key,v in d.get('fields',{}).items()}
+              if col=='materials':
+                out={'id':d['name'].split('/')[-1],**{key:f.get(key) for key in ['name','sku','brand','manufacturerPart','model','upc','cat','isTask','subcategory','suppliers','gceCode','catalogCode']},'photo':bool(f.get('photoUrl'))}
+                print('CATALOG_ROW',json.dumps(out,ensure_ascii=False))
+              else:print('VENDOR_ROW',json.dumps({key:f.get(key) for key in ['company','code','materialId']},ensure_ascii=False))
+          from bs4 import BeautifulSoup
+          for url in ['https://www.rexelusa.com/brands/leviton/rnsw3','https://www.platt.com/p/0172550/14-2-nm-b-solid-copper-white-500/980100162993/142nmbgx500c','https://store.leviton.com/products.json?limit=250','https://www.ew-ne.com/','https://shop.granitecityelectric.com/']:
+            try:
+              r=requests.get(url,timeout=30);print('PROBE',url,r.status_code,len(r.content))
+              soup=BeautifulSoup(r.text,'html.parser')
+              scripts=[x.get_text()[:1200] for x in soup.select('script[type="application/ld+json"]')]
+              print('SCHEMA',url,json.dumps(scripts)[:4000])
+              if 'products.json' in url and r.ok:
+                data=r.json();print('LEVITON_COUNT',len(data.get('products',[])))
+                for p in data.get('products',[])[:3]:print('LEVITON_SAMPLE',json.dumps(p)[:4000])
+              if 'rexel' in url:print('REXEL_SNIP',r.text[r.text.find('T5320')-300:r.text.find('T5320')+1200])
+            except Exception as e:print('PROBE_ERROR',url,type(e).__name__)
+          PY
