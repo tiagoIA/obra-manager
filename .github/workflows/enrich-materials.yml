@@ -1,0 +1,45 @@
+name: Collect existing material references
+on:
+  push:
+    branches: [feature/lista-guiada-v1]
+    paths: [.github/workflows/enrich-materials.yml]
+permissions:
+  contents: read
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - run: pip install requests pillow
+      - name: Match exact existing models in public distributor feed
+        run: |
+          python - <<'PY'
+          import requests,json,re,io,base64,hashlib,concurrent.futures
+          from PIL import Image,ImageDraw
+          terms=['QA1154FC','AB400HS','AB300HS','HP362N','R977LCCAR','TRS15R','RG36','QSPD2A035B','K2A250','FX-2000','SMICO-210','B300-16']
+          def norm(s):return re.sub('[^A-Z0-9]','',str(s).upper())
+          rows=[]
+          for term in terms:
+           try:
+            r=requests.get('https://www.ew-ne.com/api/catalog_system/pub/products/search',params={'ft':term,'_from':0,'_to':19},timeout=35);r.raise_for_status()
+            for p in r.json():
+             def v(k,d=''):return (p.get(k) or [d])[0]
+             part=v('Manufacturer Part Number')
+             if norm(part)!=norm(term):continue
+             item=(p.get('items') or [{}])[0];imgs=item.get('images') or []
+             facts={k:v(k) for k in ['Amperage Rating','Voltage Rating','Color','Material','Trade Size','Conductor Size','Number Of Poles','Wire Size','Size','Length'] if p.get(k)}
+             rows.append({'term':term,'name':p.get('productName'),'manufacturerPart':part,'brand':p.get('brand'),'brandName':v('Brand Name'),'upc':item.get('ean'),'sourceUrl':p.get('link'),'code':str(v('Eclipse ID',p['productId'])),'unit':v('UOM'),'specs':facts,'photoSourceUrl':imgs[0].get('imageUrl') if imgs else ''})
+            print('QUERY',term,len([x for x in rows if x['term']==term]))
+           except Exception as e:print('QUERY_ERROR',term,type(e).__name__)
+          valid=[]
+          for row in rows:
+           try:
+            r=requests.get(row['photoSourceUrl'],timeout=35);r.raise_for_status();im=Image.open(io.BytesIO(r.content)).convert('RGB');im.thumbnail((1000,1000));buf=io.BytesIO();im.save(buf,'JPEG',quality=86);raw=buf.getvalue();row['photoSha256']=hashlib.sha256(raw).hexdigest();row['_raw']=raw;valid.append(row)
+           except Exception as e:row['photoError']=type(e).__name__
+          for row in rows:print('ENRICH_CANDIDATE',json.dumps({k:v for k,v in row.items() if k!='_raw'}))
+          canvas=Image.new('RGB',(1000,((len(valid)+5)//6)*190),'white');draw=ImageDraw.Draw(canvas)
+          for i,row in enumerate(valid):
+           im=Image.open(io.BytesIO(row['_raw']));im.thumbnail((150,140));x=i%6*166;y=i//6*190;canvas.paste(im,(x+(166-im.width)//2,y));draw.text((x+4,y+144),str(i)+' '+row['term'],fill='black');draw.text((x+4,y+163),row['code'],fill='black')
+          b=io.BytesIO();canvas.save(b,'PNG');print('ENRICH_SHEET',base64.b64encode(b.getvalue()).decode())
+          
+          PY
