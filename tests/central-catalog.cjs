@@ -26,5 +26,15 @@ const {chromium}=require('playwright');const fs=require('fs');const assert=requi
  await page.evaluate(()=>{for(const id of ['mat-dropdown','shop-mat-drop']){const d=document.createElement('div');d.id=id;document.body.append(d);}filterTaskMaterials('T5320-W');filterShopMaterials('CUSTOM-2','shop-mat-drop','hidden');});
  assert.equal(await page.locator('#mat-dropdown .mat-drop-item').count(),1);assert.equal(await page.locator('#shop-mat-drop .shop-mat-item').count(),1);
  await page.evaluate(()=>filterShopMaterials('MAT-A1','shop-mat-drop','hidden'));assert.equal(await page.locator('#shop-mat-drop .shop-mat-item').count(),1);
+
+ // Inactive records remain editable and historical PDFs retain their photo and codes.
+ await page.emulateMedia({media:'screen'});await page.evaluate(()=>openMatDetail('m1'));
+ await page.getByLabel('Status',{exact:true}).selectOption('inactive');await page.getByRole('button',{name:'Save record',exact:true}).click();
+ assert.equal(await page.evaluate(()=>testMats[0].active),false);assert.equal(await page.evaluate(()=>testMats[0].qty),7);
+ await page.evaluate(()=>{filterTaskMaterials('MAT-A1');filterShopMaterials('MAT-A1','shop-mat-drop','hidden');generateShopPDF('list','store','Platt Electric Supply');});
+ assert.equal(await page.locator('#mat-dropdown .mat-drop-item').count(),0);assert.equal(await page.locator('#shop-mat-drop .shop-mat-item').count(),0);
+ assert.match(await page.locator('.cc-print').innerText(),/Inactive — historical reference/);assert.match(await page.locator('.cc-print').innerText(),/18280/);
+ await page.evaluate(()=>openMatDetail('m1'));await page.getByLabel('Status',{exact:true}).selectOption('active');await page.getByRole('button',{name:'Save record',exact:true}).click();
+ await page.evaluate(()=>filterTaskMaterials('MAT-A1'));assert.equal(await page.locator('#mat-dropdown .mat-drop-item').count(),1);
  assert.deepEqual(errors,[]);await browser.close();console.log('PASS central catalog: supplier metadata; role guards; duplicate IDs; live photos/codes; quantity/unit/note consolidation; room/status preservation; safe markup; mobile; print PDF; real task/quick-shopping code search');
 })().catch(e=>{console.error(e);process.exit(1)});
