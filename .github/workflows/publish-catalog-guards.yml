@@ -1,0 +1,28 @@
+name: Publish catalog identity guards
+on:
+  push:
+    branches: [feature/lista-guiada-v1]
+    paths: [.github/workflows/publish-catalog-guards.yml]
+permissions:
+  contents: read
+concurrency:
+  group: obra-catalog-hosting
+  cancel-in-progress: false
+jobs:
+  verify_publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm install --no-save playwright
+      - run: npx playwright install --with-deps chromium
+      - run: node tests/catalog-legacy-identities.cjs
+      - run: node tests/central-catalog.cjs
+      - run: pip install google-auth google-cloud-storage requests
+      - name: Back up and publish only two assets
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: python scripts/publish-catalog-guards.py
