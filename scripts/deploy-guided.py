@@ -11,7 +11,7 @@ def call(method,path,**kw):
 previous=call('GET',site+'/releases',params={'pageSize':1})['releases'][0]['version']
 oldname=previous['name'];oldversion=call('GET',oldname)
 live=requests.get('https://obra-manager-4ecc7.web.app/index.html',timeout=30);live.raise_for_status()
-assert hashlib.sha256(live.content).hexdigest()=='82e4c25d4cab868766165006ac8e11655822a1d9064d47c0eed6e90555eb12a6','Live app changed; aborting instead of overwriting'
+assert live.content.rstrip()==pathlib.Path('public/index.html').read_bytes().rstrip(),'Live app changed; aborting instead of overwriting'
 files={};token=None
 while True:
  params={'pageSize':1000}
@@ -61,7 +61,7 @@ call('PATCH',new,params={'update_mask':'status'},json={'status':'FINALIZED'})
 if writes:
  r=s.post(fire+':commit',json={'writes':writes},timeout=60);r.raise_for_status()
 print('PRESETS_CREATED',len(writes))
-release=call('POST',site+'/releases',params={'versionName':new},json={'message':'Guided and custom shopping v1'})
+release=call('POST',site+'/releases',params={'versionName':new},json={'message':'Library photo cards and manual shopping items v2'})
 try:
  for path in ['/index.html','/guided-shopping-v1.js','/sw.js']:
   for attempt in range(6):
