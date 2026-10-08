@@ -1,0 +1,3931 @@
+[
+  {
+    "id": "0LsydAl68mdEroScSlL9",
+    "expected": {
+      "name": "Grounding Bushing 1/2\"",
+      "sku": "ELEC-164",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "2PranxssMhNxzfY3Fv3E",
+    "expected": {
+      "name": "Heat Detector Fixed 135°F",
+      "sku": "FIRE-042",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "3LUEJBQ6rU9V28JclaeP",
+    "expected": {
+      "name": "Smoke Detector Hardwired+Battery",
+      "sku": "FIRE-039",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "3d013aAGpaZVY6XNeafk",
+    "expected": {
+      "name": "3-Gang Old Work Box",
+      "sku": "ELEC-102",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "49FyhYJPLBqHozkKGFO6",
+    "expected": {
+      "name": "Emergency Light Twin Head",
+      "sku": "ELEC-149",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "4x3WL8mo6Wzcz0q2Nyw4",
+    "expected": {
+      "name": "Loop 24V Module and Smoke",
+      "sku": "FIRE-054",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "4zqDfUAms3fUjunGopEC",
+    "expected": {
+      "name": "Exit Sign LED",
+      "sku": "ELEC-148",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "5NEj7d2ovSNJ2DQEEhr6",
+    "expected": {
+      "name": "Breaker AFCI 15 Amps  Siemens",
+      "sku": "ELEC-185",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "5XeKfTya6EWQsTskVuSw",
+    "expected": {
+      "name": "LB Conduit Body 3/4\"",
+      "sku": "ELEC-158",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "60ZNit1Z7MPCacluG1vp",
+    "expected": {
+      "name": "Intercom Entry System",
+      "sku": "FIRE-089",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "6Slgo0bUln1R3rBe8RY5",
+    "expected": {
+      "name": "uninstructed clamp",
+      "sku": "ELEC-196",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "6tH0z1iXOyrnFxCqAiax",
+    "expected": {
+      "name": "Video Doorbell Wired",
+      "sku": "FIRE-080",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "81YGKqCFsjH1UpwyNW2G",
+    "expected": {
+      "name": "Fire Alarm Bell 6\"",
+      "sku": "FIRE-064",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "8ISQUbKRVjQGUy8y7sy1",
+    "expected": {
+      "name": "PVC Conduit Schedule 80 3/4\"",
+      "sku": "ELEC-096",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "8P5QWV9506rMvR1oubJ2",
+    "expected": {
+      "name": "Battery 12V 7Ah",
+      "sku": "FIRE-093",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "96CfkwevrktfLFu5lBBR",
+    "expected": {
+      "name": "Commercial Fire Alarm Panel",
+      "sku": "FIRE-049",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "9XEjVaHTyL6LFeftnPRs",
+    "expected": {
+      "name": "UPS 650VA",
+      "sku": "FIRE-094",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "9YRfV1MGm9FRyGsBHSDx",
+    "expected": {
+      "name": "Conduit Straps 1/2\"",
+      "sku": "ELEC-157",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "A5DEzUVyVlfLHFRUSDDd",
+    "expected": {
+      "name": "EV Charger Outlet NEMA 14-50",
+      "sku": "ELEC-126",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "AQ0zA9bH8Zzp5vo7aC9i",
+    "expected": {
+      "name": "Recessed Can Light 4\"",
+      "sku": "ELEC-145",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "BCNR2A3fJCTGUzJ7w8nb",
+    "expected": {
+      "name": "Conduit 1/2\" (Misc)",
+      "sku": "ELEC-166",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "BKBnlLtqgmRtgOmuZvqO",
+    "expected": {
+      "name": "Siemens Surge protection",
+      "sku": "ELEC-184",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "BSaKLBJemhYap6v1IaEl",
+    "expected": {
+      "name": "Glass Break Detector Wired",
+      "sku": "FIRE-070",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "BhGcI00m6TnuwZiJ3H5a",
+    "expected": {
+      "name": "Main Panel 100A 20-Space",
+      "sku": "ELEC-129",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "Bv7BWVVHlE3Vc9EU4KXJ",
+    "expected": {
+      "name": "Dimmer Switch Single Pole",
+      "sku": "ELEC-123",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "CTQuOc21S8E8V2HxuBQw",
+    "expected": {
+      "name": "Horn/Strobe 75cd",
+      "sku": "FIRE-060",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "CVq6xrNBHVAiBqNt47zq",
+    "expected": {
+      "name": "Concrete Screws 3in",
+      "sku": "ELEC-172",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "CnnRpTKpv9ZNjTokBQMn",
+    "expected": {
+      "name": "Rigid Conduit (RMC) 1/2\"",
+      "sku": "ELEC-093",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "DBYapPIID82cltVrPgqQ",
+    "expected": {
+      "name": "Cellular Communicator 4G",
+      "sku": "FIRE-052",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "DNs7gBCItcioSKjybuKy",
+    "expected": {
+      "name": "Double Pole Breaker 50A",
+      "sku": "ELEC-134",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "DQULhsNEvTDwa7qp7jtC",
+    "expected": {
+      "name": "Heavy Duty Black Vinyl Electrical Tape, 8.5mil, 66ft Long",
+      "sku": "1037923",
+      "specs": "Fita isolante preta; vinil; 8,5 mil; 3/4 in × 66 ft; tensão nominal 600 V."
+    },
+    "fields": {
+      "specs": "Black vinyl electrical tape; 8.5 mil; 3/4 in × 66 ft; rated voltage 600 V."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "DURgbPXeOZRPGnrn4Ew4",
+    "expected": {
+      "name": "Non-Metal Liquid Tight Connector",
+      "sku": "ELEC-173",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "DVVTOnzVeBYDYuY8CcdF",
+    "expected": {
+      "name": "Door/Window Contact Wired",
+      "sku": "FIRE-065",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "GA8cyro4V9xeBtnjUu49",
+    "expected": {
+      "name": "4 in” Metal Pancakes box 1/2 k’Os 5.9 cu. in",
+      "sku": "ELEC-188",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "HAvsU3Xkf359Tkbs5kwO",
+    "expected": {
+      "name": "Pipe Lines for Smoke 120V",
+      "sku": "FIRE-045",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "HODDa2dtYtGh0gquPLxB",
+    "expected": {
+      "name": "Door Contact (Supervised)",
+      "sku": "FIRE-086",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "HURzsxJdMIdRAuEgDUly",
+    "expected": {
+      "name": "Dryer Outlet 30A 240V",
+      "sku": "ELEC-124",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "HvegEabW0UkjsIr5U7s7",
+    "expected": {
+      "name": "Electric Strike 12/24V",
+      "sku": "FIRE-082",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "JHLlTX7j7LOo2wPCDGdC",
+    "expected": {
+      "name": "Loop 24v módulo and smoke",
+      "sku": "FIRE-030"
+    },
+    "fields": {
+      "name": "Loop 24v module and smoke"
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "K33swTccpr1IltiFQV7R",
+    "expected": {
+      "name": "Alarm Control Panel Hybrid",
+      "sku": "FIRE-048",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "LALTyOqFZMGkDyjuUyb2",
+    "expected": {
+      "name": "POE Switch 8-Port",
+      "sku": "FIRE-079",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "LoYLbM1L84My08pldyN3",
+    "expected": {
+      "name": "NVR 8-Channel 4K",
+      "sku": "FIRE-076",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "LvI7oM48vvhQt1U6ZZyD",
+    "expected": {
+      "name": "EMT Conduit 1\"",
+      "sku": "ELEC-092",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "NjJHg8RaoqZx230m1eVm",
+    "expected": {
+      "name": "Door/Window Contact Wireless",
+      "sku": "FIRE-066",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "NmB0pU7IQs9E1SsXn2gM",
+    "expected": {
+      "name": "GFCI Outlet 20A",
+      "sku": "ELEC-116",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "O0hAhSIfUTLRJw9HWndP",
+    "expected": {
+      "name": "4-Way Switch 15A",
+      "sku": "ELEC-122",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "OKjCCfcDLznOOJauhNpI",
+    "expected": {
+      "name": "DVR Hybrid 8CH",
+      "sku": "FIRE-078",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "Oosy2hbhYaeoJvtT1bKP",
+    "expected": {
+      "name": "Alarm Power Supply 12V 2.5A",
+      "sku": "FIRE-090",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "OrvNTlqOM7EYxta2pamv",
+    "expected": {
+      "name": "USB Outlet Type A+C",
+      "sku": "ELEC-118",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "P0Xlto4rmpjUylFjJik0",
+    "expected": {
+      "name": "Single Pole Breaker 15A",
+      "sku": "ELEC-131",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "P7qWZD0tkGe6tDGVTRbm",
+    "expected": {
+      "name": "EMT Connector 1/2\"",
+      "sku": "ELEC-160",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "PCGNcjPrSHg0bTvDeyZF",
+    "expected": {
+      "name": "IP Camera 4MP Bullet Outdoor",
+      "sku": "FIRE-074",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "PE8jqDI5FxhjArakx3Xh",
+    "expected": {
+      "name": "Liquid-Tight Flex 1/2\"",
+      "sku": "ELEC-098",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "PtcRwCP8l0r11NWwFqjO",
+    "expected": {
+      "name": "4 in” round Fan box 1-1/2  in. Deep 15.3",
+      "sku": "ELEC-189",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "QCMM85GuX6wjpCWswqcL",
+    "expected": {
+      "name": "LED Shop Light 4ft",
+      "sku": "ELEC-147",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "QL1DFKh3Ont6a4vbeWyB",
+    "expected": {
+      "name": "Door Release Button",
+      "sku": "FIRE-088",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "RMfUNODcUoG6ULECyl70",
+    "expected": {
+      "name": "Shock/Vibration Sensor",
+      "sku": "FIRE-071",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "Roz0i9wXmaBHkKtFdzOe",
+    "expected": {
+      "name": "PVC Conduit Schedule 40 3/4\"",
+      "sku": "ELEC-095",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "S922MvxORlTOfFReQ0si",
+    "expected": {
+      "name": "Power Supply 12V 6A",
+      "sku": "FIRE-091",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "SKb8RXCYaU9WxX8zV4Y3",
+    "expected": {
+      "name": "Range Outlet 50A 240V",
+      "sku": "ELEC-125",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "SNT3JzrhxxMuNH0HHzeZ",
+    "expected": {
+      "name": "Ionization Smoke Detector",
+      "sku": "FIRE-056",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "TEs8xZmzjjBrGk6cugiN",
+    "expected": {
+      "name": "AFCI Breaker Single Pole 20A",
+      "sku": "ELEC-136",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "TYL3nNq68pR22lICY5oN",
+    "expected": {
+      "name": "Cable Staples 3/4\"",
+      "sku": "ELEC-156",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 1
+  },
+  {
+    "id": "TpfREBeUxOBg6gajzTX2",
+    "expected": {
+      "name": "Duct Smoke Detector",
+      "sku": "FIRE-057",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "Tylw9LhhR2wtgzoDtfmH",
+    "expected": {
+      "name": "Surge Protector Whole House",
+      "sku": "ELEC-142",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "U1vwxaBwvMeKHLGiNsv4",
+    "expected": {
+      "name": "PIR Motion Sensor Wired",
+      "sku": "FIRE-067",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "UofDGNDNYtyenGhjlyPj",
+    "expected": {
+      "name": "Knockout Seal 1/2\"",
+      "sku": "ELEC-161",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "UtuDY8Dbz7cuMZCNS8kA",
+    "expected": {
+      "name": "Wire Nut Red 16-10 AWG",
+      "sku": "ELEC-154",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "VdvN6zXmCzFH4kuIQbuK",
+    "expected": {
+      "name": "4\" Square Box 1-1/2\" Deep",
+      "sku": "ELEC-106",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "WGAKVTR8y9k0Gmj2JpG2",
+    "expected": {
+      "name": "Handy Box",
+      "sku": "ELEC-111",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "WJmAwPBiZRiTrFA9gFd4",
+    "expected": {
+      "name": "Nut 3/8",
+      "sku": "ELEC-194",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "WZOLhPR3T5WwpIEtz8zU",
+    "expected": {
+      "name": "Push-In Wire Connector WAGO",
+      "sku": "ELEC-155",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "WuipyL2RWrfw6UtwgHRd",
+    "expected": {
+      "name": "Wire Nut Orange 22-14 AWG",
+      "sku": "ELEC-152",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "X5Dbt8MDm5JK0poaO2Rb",
+    "expected": {
+      "name": "Heat Detector ROR 135°F",
+      "sku": "FIRE-058",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "Y60BfbFY1XMpRRCn9tVr",
+    "expected": {
+      "name": "Magnetic Lock 600LB",
+      "sku": "FIRE-081",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "YFwbbEA2mr5gbtrbK4I0",
+    "expected": {
+      "name": "Smoke Detector Conventional",
+      "sku": "FIRE-055",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "Zd3C5nWBwRIEzWx9OTiZ",
+    "expected": {
+      "name": "Dinner room outlet",
+      "sku": "ELEC-180",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "a4oNs282XKyiqkxB8RX4",
+    "expected": {
+      "name": "FACP Mircom FX-2000",
+      "sku": "FIRE-046",
+      "specs": "Família de painéis endereçáveis FX-2000. O fabricante publicou aviso de fim de vida; identificar a referência completa do painel ou componente antes de comprar."
+    },
+    "fields": {
+      "specs": "FX-2000 addressable panel family. The manufacturer issued an end-of-life notice; identify the complete panel or component reference before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "a57GRIBcE70F080MjjB2",
+    "expected": {
+      "name": "Access Control Panel 2-Door",
+      "sku": "FIRE-083",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "a955uNjMKqiri840lKzG",
+    "expected": {
+      "name": "Outlet Duplex 20A 125V",
+      "sku": "ELEC-114",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "aqR9w3bhyQLpeM2ok6Mz",
+    "expected": {
+      "name": "Flexible Conduit 3/8\"",
+      "sku": "ELEC-097",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "arW0at5B3cLJ5w7ixAMZ",
+    "expected": {
+      "name": "2in Weatherhead PVC",
+      "sku": "ELEC-171",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "b6ZtJGl2e62KByIENNsJ",
+    "expected": {
+      "name": "CO Detector Hardwired",
+      "sku": "FIRE-040",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "by8neWFWKhLlcxqDBPt8",
+    "expected": {
+      "name": "Combo Smoke/CO Detector",
+      "sku": "FIRE-041",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "cAy8yRSFvZzuC8dzwxyG",
+    "expected": {
+      "name": "AFCI Outlet 15A",
+      "sku": "ELEC-117",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "cGKElblzlq25lKtKR28O",
+    "expected": {
+      "name": "3-Gang New Work Box",
+      "sku": "ELEC-105",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-00df738a1817ca4098a7",
+    "expected": {
+      "name": "TB 3887-TB 3IN GROUNDING BUSHING",
+      "sku": "MAT-00DF738A1817",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-0512916deea62bb47533",
+    "expected": {
+      "name": "Decora Smart Dimmer Switch, 0-10V, Wi-Fi, Neutral Wire Required, works with Matter, My Leviton, Alexa, Google Assistant, Apple Home/Siri & Wired or Wire-Free 3-Way, D2710-1BW, White",
+      "sku": "MAT-0512916DEEA6",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra.",
+      "specs": "Referência: D2710-002-1BW; unidade do fornecedor: un."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing.",
+      "specs": "Reference: D2710-002-1BW; supplier unit: un."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-054574ce7c1c7ce85386",
+    "expected": {
+      "name": "LEV 80409-REW 2G WALLPLATE",
+      "sku": "MAT-054574CE7C1C",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-096d36e564a059ba7395",
+    "expected": {
+      "name": "LUT CA-3PS-BR BROWN 15A 3WY SWITCH",
+      "sku": "MAT-096D36E564A0",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-0a4609fde633fb922514",
+    "expected": {
+      "name": "Raco 20310 1-Gang Extension Ring",
+      "sku": "MAT-0A4609FDE633",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-0c134221b49c5fa6fb79",
+    "expected": {
+      "name": "15 Amp 3-Way Toggle CO/ALR Switch, Grounding, White, 2653-2W",
+      "sku": "MAT-0C134221B49C",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra.",
+      "specs": "Referência: 02653-218-02W; unidade do fornecedor: un."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing.",
+      "specs": "Reference: 02653-218-02W; supplier unit: un."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-10e5ea1b6d5fac979c6c",
+    "expected": {
+      "name": "Eaton BR230B Plug-On Mount Circuit Breaker 2-Pole 30-Amp 120/240-Volt AC",
+      "sku": "MAT-10E5EA1B6D5F",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-1324eecda4bc041f9200",
+    "expected": {
+      "name": "STI NEZ33-W SMOKE/ACOUS PATHWAY",
+      "sku": "MAT-1324EECDA4BC",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-13c45ed403837f6dbce1",
+    "expected": {
+      "name": "LEV T5461-E 20A 250V RECEPTACLE",
+      "sku": "MAT-13C45ED40383",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-1418ccc67a80cb53ece2",
+    "expected": {
+      "name": "LED EMERGENCY LIGHT FIXTURE MOR 73301 EMERGENCY LIGHT FIXTURE",
+      "sku": "MAT-1418CCC67A80",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra.",
+      "specs": "Referência: 73301; unidade do fornecedor: un."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing.",
+      "specs": "Reference: 73301; supplier unit: un."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-14ef02b119dd230c4a44",
+    "expected": {
+      "name": "LEV 61HOM-RE6 BLACK CATEGORY 6 JACK",
+      "sku": "MAT-14EF02B119DD",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-18c5c7c6b73d80c9d894",
+    "expected": {
+      "name": "20 Amp, Self Test, Tamper-Resistant Dual-Function AFCI/GFCI Outlet with LED Indicator Light, AGTR2-W",
+      "sku": "MAT-18C5C7C6B73D",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra.",
+      "specs": "Referência: AGTR2-112-00W; unidade do fornecedor: un."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing.",
+      "specs": "Reference: AGTR2-112-00W; supplier unit: un."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-1b5c17365d6dbfb65483",
+    "expected": {
+      "name": "LEV 5262-2PR 15A RED RECEPTACLE",
+      "sku": "MAT-1B5C17365D6D",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-1de6888f640920439df1",
+    "expected": {
+      "name": "15 Amp, Self Test, Tamper-Resistant Slim GFCI Outlet with LED Indicator Light, GFTR1-GY",
+      "sku": "MAT-1DE6888F6409",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra.",
+      "specs": "Referência: GFTR1-113-0GY; unidade do fornecedor: un."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing.",
+      "specs": "Reference: GFTR1-113-0GY; supplier unit: un."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-208bbf2df237973c6d21",
+    "expected": {
+      "name": "RECEPTACLE BRYANT CBRS20 DUPLEX RECEPTACLE",
+      "sku": "MAT-208BBF2DF237",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-23692e28311dfa72a34e",
+    "expected": {
+      "name": "15 Amp SmartlockPro® Wi-Fi Certified Smart GFCI Receptacle/Outlet, White, D2GF1-KW",
+      "sku": "MAT-23692E28311D",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra.",
+      "specs": "Referência: D2GF1-R12-0KW; unidade do fornecedor: un."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing.",
+      "specs": "Reference: D2GF1-R12-0KW; supplier unit: un."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-2415847784578c638b8e",
+    "expected": {
+      "name": "RACO 922 18-1/2MAX ADJ BAR HGR&CLIP",
+      "sku": "MAT-241584778457",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-260cf333ec1a7738c445",
+    "expected": {
+      "name": "CL B418AR-UPC 4 SQUARE ZIP BX W/NA",
+      "sku": "MAT-260CF333EC1A",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-261462acdb17e2b5ec5d",
+    "expected": {
+      "name": "15 Amp Decora Tamper-Resistant Duplex Outlet/Receptacle, Grounding, White, T5325-W",
+      "sku": "MAT-261462ACDB17",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra.",
+      "specs": "Referência: T5325-205-00W; unidade do fornecedor: un."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing.",
+      "specs": "Reference: T5325-205-00W; supplier unit: un."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-2a7948a92c6705813582",
+    "expected": {
+      "name": "RAK TT500.B2 2WAY CONNECTOR",
+      "sku": "MAT-2A7948A92C67",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra.",
+      "specs": "Referência: TT500.B2; unidade do fornecedor: un."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing.",
+      "specs": "Reference: TT500.B2; supplier unit: un."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-2af4ef05c9c5dfc29c1c",
+    "expected": {
+      "name": "LEV 61HOM-RW6 WHITE CATEGORY 6 JACK",
+      "sku": "MAT-2AF4EF05C9C5",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-2b9a0a132600941dd105",
+    "expected": {
+      "name": "RACO Old Work Pan",
+      "sku": "MAT-2B9A0A132600",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-2cf715a3b5e7f93540ed",
+    "expected": {
+      "name": "Banana Jack QUICKPORT™ Coupler, Gold-Plated, Red Stripe, White Housing, 40837-BWR",
+      "sku": "MAT-2CF715A3B5E7",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra.",
+      "specs": "Referência: 40837-002-BWR; unidade do fornecedor: un."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing.",
+      "specs": "Reference: 40837-002-BWR; supplier unit: un."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-2d25655bd75ad5f0662e",
+    "expected": {
+      "name": "CLN UB9HN 4\" PVC SCH-80 90 DEGREE",
+      "sku": "MAT-2D25655BD75A",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-2d25d6520878fd87a151",
+    "expected": {
+      "name": "ELECTRIC VEHICLE WALL CHARGER KIT CHV GMEV32BR WCPL WALL CHARGER KIT",
+      "sku": "MAT-2D25D6520878",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-31acb6f08be98923724d",
+    "expected": {
+      "name": "20 Amp SmartlockPro® GFCI Receptacle/Outlet, Industrial Grade, Weather and Tamper-Resistant G5362-WTW",
+      "sku": "MAT-31ACB6F08BE9",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra.",
+      "specs": "Referência: G5362-WTW; unidade do fornecedor: un."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing.",
+      "specs": "Reference: G5362-WTW; supplier unit: un."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-33a598002be53b4a00a1",
+    "expected": {
+      "name": "RACO 5606-0 PAR LAMPHOLDER GRY",
+      "sku": "MAT-33A598002BE5",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-33ab1ee56820bc3e19d8",
+    "expected": {
+      "name": "EMT I400EMT 4\" X 10' EMT CONDUIT",
+      "sku": "MAT-33AB1EE56820",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra.",
+      "specs": "Referência: EMT  X; unidade do fornecedor: ft."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing.",
+      "specs": "Reference: EMT  X; supplier unit: ft."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-348e241f1aa46f4f4b7c",
+    "expected": {
+      "name": "BLINE SB6691X73/4 GROUNDING STRAP",
+      "sku": "MAT-348E241F1AA4",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-34d834c3321bde188937",
+    "expected": {
+      "name": "RAB ECOMBO34 EMERGENCY EXIT",
+      "sku": "MAT-34D834C3321B",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-380bc3d3d2ff4a3a0162",
+    "expected": {
+      "name": "COMBINATION USB CHARGER AND RECEPTACLE CWD TR7766W BOX 20A CHARGER RCP",
+      "sku": "MAT-380BC3D3D2FF",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-39298fc8f73d88871db3",
+    "expected": {
+      "name": "ADORNE AGFTR2202-W4 20A 125V GFCI",
+      "sku": "MAT-39298FC8F73D",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-3b730549b7e5cd073324",
+    "expected": {
+      "name": "1-Gang Decora/GFCI Device Wallplate, Standard Size, Thermoplastic Nylon, Black, 80401-NE",
+      "sku": "MAT-3B730549B7E5",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra.",
+      "specs": "Referência: 80401-019-0NE; unidade do fornecedor: un."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing.",
+      "specs": "Reference: 80401-019-0NE; supplier unit: un."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-3d161979c91a6c3e2bc3",
+    "expected": {
+      "name": "LEV GFTR2 20A RECEPTACLE",
+      "sku": "MAT-3D161979C91A",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-3ee8ecf918f5c6f25ce8",
+    "expected": {
+      "name": "CH R5B3100U 100A DISCONNECT SW",
+      "sku": "MAT-3EE8ECF918F5",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-42435361895dd6cac362",
+    "expected": {
+      "name": "THHN-600-AL-WH Stranded Aluminum THHN Building Wire 600-KCMIL White",
+      "sku": "MAT-42435361895D",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-433fc08dec6e6b14d8ec",
+    "expected": {
+      "name": "STRUT BRACKET P STRUT PS 3282 36 EG STRUT BRACKET",
+      "sku": "MAT-433FC08DEC6E",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra.",
+      "specs": "Referência: PS-3282-36-EG; unidade do fornecedor: un."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing.",
+      "specs": "Reference: PS-3282-36-EG; supplier unit: un."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-446e005c32c51c2563e1",
+    "expected": {
+      "name": "LEV LP210-BPD 100A LOADCENTER",
+      "sku": "MAT-446E005C32C5",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-46840b0b2889cd66a1b5",
+    "expected": {
+      "name": "TB LD2-D 2P LUMINAIRE DISCONNECT",
+      "sku": "MAT-46840B0B2889",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-485aab8e39c3ed393458",
+    "expected": {
+      "name": "THHN-500-AL-STR-BLUE Stranded Aluminum THHN Cable 500-KCMIL Blue",
+      "sku": "MAT-485AAB8E39C3",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-4878b3d747b72d79f6c0",
+    "expected": {
+      "name": "20 Amp, Self Test, Tamper-Resistant Slim GFCI Outlet with LED Indicator Light, GFTR2-W",
+      "sku": "MAT-4878B3D747B7",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra.",
+      "specs": "Referência: GFTR2-142-00W; unidade do fornecedor: un."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing.",
+      "specs": "Reference: GFTR2-142-00W; supplier unit: un."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-4c9aa91104d9f1b9e253",
+    "expected": {
+      "name": "15 Amp, Self Test, Non Tamper-Resistant Slim GFCI Outlet with LED Indicator Light, GFNT1-W",
+      "sku": "MAT-4C9AA91104D9",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra.",
+      "specs": "Referência: GFNT1-012-00W; unidade do fornecedor: un."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing.",
+      "specs": "Reference: GFNT1-012-00W; supplier unit: un."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-506bf5cdc6b5d4308de9",
+    "expected": {
+      "name": "Solid Copper Type NM-B Non-Metallic Sheathed Cable With Grounding 12/2 100-ft Box Yellow",
+      "sku": "MAT-506BF5CDC6B5",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-50951ced46b8045149c2",
+    "expected": {
+      "name": "ADORNE AGFTR2152-W4 TAMPER  RESISTA",
+      "sku": "MAT-50951CED46B8",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-513ef584f17dcbec91e8",
+    "expected": {
+      "name": "AFC Cable Systems MC-12/2-MC-QUICK-BLUE-1000R MC Armored Cable 12/2 1000-ft Reel Blue MC-Quik®",
+      "sku": "MAT-513EF584F17D",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-51fd83b698f9c8c9a35c",
+    "expected": {
+      "name": "Decora Occupancy Motion Sensor Light Switch, Auto-On or Manual-On, 2A, Residential Grade, Single Pole, DOS02-LW",
+      "sku": "MAT-51FD83B698F9",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra.",
+      "specs": "Referência: DOS02-012-0LW; unidade do fornecedor: un."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing.",
+      "specs": "Reference: DOS02-012-0LW; supplier unit: un."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-54f8c9db67ce2ff14f9f",
+    "expected": {
+      "name": "Omni Cable Stranded THHN/THWN-2 Cable 14/1 Red",
+      "sku": "MAT-54F8C9DB67CE",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-56d354b6e3c0d12fd332",
+    "expected": {
+      "name": "HWC HW15101407 Stranded Copper THHN/THWN-2 Building Wire (7) 14-AWG",
+      "sku": "MAT-56D354B6E3C0",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-59a2e612301f1679eed8",
+    "expected": {
+      "name": "CLN UA9CJB 2IN 18RAD 90D ELBOW",
+      "sku": "MAT-59A2E612301F",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-5f109821affec2584c0c",
+    "expected": {
+      "name": "LEV 2 GANG 430SS 2.465IN WP",
+      "sku": "MAT-5F109821AFFE",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-5f1cb80d35540f7961d5",
+    "expected": {
+      "name": "RACO 769HAMR 4IN MUD RING",
+      "sku": "MAT-5F1CB80D3554",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-601f894e9381845db2d8",
+    "expected": {
+      "name": "DUPLEX RECEPTACLE AND USB CHARGER CWD TRUSBC15LA BOX 15A RCP CHARGER",
+      "sku": "MAT-601F894E9381",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-610038fa2852ecf6ef95",
+    "expected": {
+      "name": "STI NEZ44-W SMOKE/ACOUS PATHWAY",
+      "sku": "MAT-610038FA2852",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-619681b2084f123a64a6",
+    "expected": {
+      "name": "EMT I100EMT 1\" X 10' EMT CONDUIT",
+      "sku": "MAT-619681B2084F",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra.",
+      "specs": "Referência: EMT  X; unidade do fornecedor: ft."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing.",
+      "specs": "Reference: EMT  X; supplier unit: ft."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-61a649c01575446e16de",
+    "expected": {
+      "name": "THHN-350-AL-STR-RED Stranded Aluminum THHN Cable 350-KCMIL Red",
+      "sku": "MAT-61A649C01575",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-61bfcc67089c8f0f850e",
+    "expected": {
+      "name": "HANWHA Q.PEAK-DUO-BLK-G10+-365 365W",
+      "sku": "MAT-61BFCC67089C",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-63b74a007831f16a2eea",
+    "expected": {
+      "name": "LEV GSIA2 20A GFCI PLUG",
+      "sku": "MAT-63B74A007831",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-6573bb2cf4bd228d2184",
+    "expected": {
+      "name": "Lutron NTSTV-DV-BR 120/277-Volt 8-Amp 1-Pole Small Control Dimmer Brown Nova-T®",
+      "sku": "MAT-6573BB2CF4BD",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-67ecd331888997a6d61b",
+    "expected": {
+      "name": "MC-350-4-350-MC-4-COND-CU Copper Conductor MC Cable 350/4",
+      "sku": "MAT-67ECD3318889",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-696cfb75f812e1b540d1",
+    "expected": {
+      "name": "STI SNS129W SMOKE&ACOUSTICAL SLNT",
+      "sku": "MAT-696CFB75F812",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-69d9e75e98b29280c43a",
+    "expected": {
+      "name": "LED EMERGENCY LIGHT FIXTURE MOR 73302 EMERGENCY LIGHT FIXTURE",
+      "sku": "MAT-69D9E75E98B2",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra.",
+      "specs": "Referência: 73302; unidade do fornecedor: un."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing.",
+      "specs": "Reference: 73302; supplier unit: un."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-69e55f98dd968c151c3a",
+    "expected": {
+      "name": "EMT I300EMT 3\" X 10' EMT CONDUIT",
+      "sku": "MAT-69E55F98DD96",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra.",
+      "specs": "Referência: EMT  X; unidade do fornecedor: ft."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing.",
+      "specs": "Reference: EMT  X; supplier unit: ft."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-6a08d142b405bd59a0e7",
+    "expected": {
+      "name": "RACO 873 HB COVER",
+      "sku": "MAT-6A08D142B405",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-6c6a3f1545b88da4be43",
+    "expected": {
+      "name": "WCU RX 14/2/2 14GA 2 CIRCUIT  W/GRN",
+      "sku": "MAT-6C6A3F1545B8",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-6d3668650c666d0cbef5",
+    "expected": {
+      "name": "20 Amp Slim GFCI Weather-Resistant Outlet, Self Test, with LED Indicator Light, GFWR2-W",
+      "sku": "MAT-6D3668650C66",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra.",
+      "specs": "Referência: GFWR2-112-00W; unidade do fornecedor: un."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing.",
+      "specs": "Reference: GFWR2-112-00W; supplier unit: un."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-6d670179c65ba96e2991",
+    "expected": {
+      "name": "14/2 NM-B Solid Copper White 500'",
+      "sku": "MAT-6D670179C65B",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-6dbe269e26681aa9962f",
+    "expected": {
+      "name": "CLN E240P 5\" PVC P&C DB COUPLING",
+      "sku": "MAT-6DBE269E2668",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-6ef1ee3a33ea793ddb50",
+    "expected": {
+      "name": "20 Amp SmartlockPro® Wi-Fi Certified Smart GFCI Receptacle/Outlet, White, D2GF2-KW",
+      "sku": "MAT-6EF1EE3A33EA",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra.",
+      "specs": "Referência: D2GF2-R12-0KW; unidade do fornecedor: un."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing.",
+      "specs": "Reference: D2GF2-R12-0KW; supplier unit: un."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-6f94b05d3f6c3163c9b5",
+    "expected": {
+      "name": "CWD TRUSBC15W-BOX 15A RCP/CHARGER",
+      "sku": "MAT-6F94B05D3F6C",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-73fec7c8480c84e36bb2",
+    "expected": {
+      "name": "2-Gang Decora Plus Screwless Wallplate Polycarbonate, White, 80309-SW",
+      "sku": "MAT-73FEC7C8480C",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra.",
+      "specs": "Referência: 80309-022-0SW; unidade do fornecedor: un."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing.",
+      "specs": "Reference: 80309-022-0SW; supplier unit: un."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-762dd73e90ebe746ea8a",
+    "expected": {
+      "name": "Decora Smart Dimmer Switch, Wi-Fi, Works with Matter, My Leviton, Alexa, Google Assistant, Apple Home/Siri & Wired or Wire-Free 3-Way, Neutral Wire Required, D36HD-1RW, White",
+      "sku": "MAT-762DD73E90EB",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra.",
+      "specs": "Referência: D36HD-R02-1RW; unidade do fornecedor: un."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing.",
+      "specs": "Reference: D36HD-R02-1RW; supplier unit: un."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-7bd70a3b9bb747b8ba91",
+    "expected": {
+      "name": "PAND NK6PC5YLY CAT 6 PATCH CORD",
+      "sku": "MAT-7BD70A3B9BB7",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-7bf355ccd1a720410fbe",
+    "expected": {
+      "name": "Banana Jack QUICKPORT™ Coupler, Gold-Plated, Black Stripe, White Housing, 40837-BWE",
+      "sku": "MAT-7BF355CCD1A7",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra.",
+      "specs": "Referência: 40837-012-BWE; unidade do fornecedor: un."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing.",
+      "specs": "Reference: 40837-012-BWE; supplier unit: un."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-7c4a0b1b119ebebbeaeb",
+    "expected": {
+      "name": "RECESSED PLUG ROB R PRPLG8 RECESSED PLUG",
+      "sku": "MAT-7C4A0B1B119E",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-8254a36c5afd56cb068b",
+    "expected": {
+      "name": "CH BR230SUR 2P 30A 240V CB",
+      "sku": "MAT-8254A36C5AFD",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-834ab77f595d7433826e",
+    "expected": {
+      "name": "ADV 523464 EVOKIT CLKE 2X2 32L 24W",
+      "sku": "MAT-834AB77F595D",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-84423239c51586c08cc5",
+    "expected": {
+      "name": "LEV 61HOM-RB6 HOME 6 JACK",
+      "sku": "MAT-84423239C515",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-86829db10baef684466a",
+    "expected": {
+      "name": "TOPAZELE 270B 6IN MI CONNECTOR",
+      "sku": "MAT-86829DB10BAE",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-874c23df0b2bd04d2cf0",
+    "expected": {
+      "name": "CAL PV1545EL00 1-1/2\" X 45 Degree P",
+      "sku": "MAT-874C23DF0B2B",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-89b603fa73794a9d6899",
+    "expected": {
+      "name": "Decora Smart Switch, Wi-Fi, Works with Matter, Alexa, Google Assistant, Apple Home/Siri & Wired or Wirefree 3-Way, Neutral Wire Required, D315S-1RW, White",
+      "sku": "MAT-89B603FA7379",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra.",
+      "specs": "Referência: D315S-R02-1RW; unidade do fornecedor: un."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing.",
+      "specs": "Reference: D315S-R02-1RW; supplier unit: un."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-8a47427c9b495b98efc2",
+    "expected": {
+      "name": "Decora Slide LED Advanced Dimmer Switch for 150W Dimmable LED, Halogen and Incandescent Bulbs and Fixtures, DSL01-LW, White",
+      "sku": "MAT-8A47427C9B49",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra.",
+      "specs": "Referência: DSL01-R02-0LW; unidade do fornecedor: un."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing.",
+      "specs": "Reference: DSL01-R02-0LW; supplier unit: un."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-8b74adb17c146d8f9ee5",
+    "expected": {
+      "name": "CH BR120 20A 1P PLUG-IN 120/240V",
+      "sku": "MAT-8B74ADB17C14",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-8b94b0cd549cfff7bd67",
+    "expected": {
+      "name": "15 Amp Decora Single-Pole Switch, Outlet/Receptacle, Combination Device, Grounding, 5625-W, White",
+      "sku": "MAT-8B94B0CD549C",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra.",
+      "specs": "Referência: 05625-022-00W; unidade do fornecedor: un."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing.",
+      "specs": "Reference: 05625-022-00W; supplier unit: un."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-8ebce853d0912a02355f",
+    "expected": {
+      "name": "Stranded Copper Type NM-B Non-Metallic Sheathed Cable With Grounding 4/3 125-ft Coil",
+      "sku": "MAT-8EBCE853D091",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-8fc813174a780b482c1d",
+    "expected": {
+      "name": "CH BR230ST 30A 2P PLUG-IN 120/240V",
+      "sku": "MAT-8FC813174A78",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-90e8e4bcff412556ae0c",
+    "expected": {
+      "name": "CLN E240N 4\" PVC P&C DB COUPLING",
+      "sku": "MAT-90E8E4BCFF41",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-94097096fd08a0e22c03",
+    "expected": {
+      "name": "CH Connector Kit",
+      "sku": "MAT-94097096FD08",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-950654fcef3e7567eec0",
+    "expected": {
+      "name": "CH BR230 30A 2P PLUG-IN 120/240V  1",
+      "sku": "MAT-950654FCEF3E",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-9913f4d3b9ff57cf05ca",
+    "expected": {
+      "name": "Solid Copper Type NM-B Non-Metallic Sheathed Cable With Grounding 12/2 1000-ft Reel Yellow",
+      "sku": "MAT-9913F4D3B9FF",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-9ab959ada4da46055ca0",
+    "expected": {
+      "name": "Hubbell-Wiring GFTR20W Commercial Grade Tamper-Resistant GFCI Receptacle With LED Indicator 20-Amp 120-Volt AC NEMA 5-20R White",
+      "sku": "MAT-9AB959ADA4DA",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-9ac9e61c1f99501c8d11",
+    "expected": {
+      "name": "Hanwha Q.Home Combiner",
+      "sku": "MAT-9AC9E61C1F99",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra.",
+      "specs": "Referência: Q.HOMECOMBINER80G1; unidade do fornecedor: un."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing.",
+      "specs": "Reference: Q.HOMECOMBINER80G1; supplier unit: un."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-9f264b299f9447488f92",
+    "expected": {
+      "name": "WALL PLATE M-SIZE 1-G, 1-G,1)DUP,WH",
+      "sku": "MAT-9F264B299F94",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-a35131060d9669fb7830",
+    "expected": {
+      "name": "LEV MGFN2-HGR 20A 125V RECEPTACLE",
+      "sku": "MAT-A35131060D96",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-a5ac3bcba9406a6dc365",
+    "expected": {
+      "name": "EMT Conduit 1/2\" x 10'",
+      "sku": "MAT-A5AC3BCBA940",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra.",
+      "specs": "Referência: EMT  X; unidade do fornecedor: un."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing.",
+      "specs": "Reference: EMT  X; supplier unit: un."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-a9445ff3e03be1c3fa9c",
+    "expected": {
+      "name": "WM V6086 STEEL PANEL CONNECTOR  600",
+      "sku": "MAT-A9445FF3E03B",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-aade47aac3e0096e20d3",
+    "expected": {
+      "name": "GFCI RECEPTACLE HWS GF20WL 20A 125V COML LED GFCI",
+      "sku": "MAT-AADE47AAC3E0",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra.",
+      "specs": "Referência: GF20WL; unidade do fornecedor: un."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing.",
+      "specs": "Reference: GF20WL; supplier unit: un."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-ad86361881286e7420e2",
+    "expected": {
+      "name": "THHN-500-AL-STR-WH Stranded Aluminum THHN Cable 500-KCMIL White",
+      "sku": "MAT-AD8636188128",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-af044e7ab4f78c7e1851",
+    "expected": {
+      "name": "CLN LT9LD 1/2\" PVC LOCKNUT",
+      "sku": "MAT-AF044E7AB4F7",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-b0b5184a5fb539b771d7",
+    "expected": {
+      "name": "BUSS 15149-3 FUSED DISCONNECT",
+      "sku": "MAT-B0B5184A5FB5",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-b18f67060c9d0a62bbdd",
+    "expected": {
+      "name": "STI NEZ44 SMOKE/ACOUS PATHWAY",
+      "sku": "MAT-B18F67060C9D",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-b33ba9df4acd41235d23",
+    "expected": {
+      "name": "WALLPLATE LEV SS701 40 2G WALLPLATE",
+      "sku": "MAT-B33BA9DF4ACD",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-ba142fb5bde5fd2bb810",
+    "expected": {
+      "name": "CWD SGF20BK 125V RECEPTACLE",
+      "sku": "MAT-BA142FB5BDE5",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-ba294db8a1ee6cf3f719",
+    "expected": {
+      "name": "ARL TVBS503 1G RECESSED TV BOX",
+      "sku": "MAT-BA294DB8A1EE",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-bc1b32764a83d33c81b9",
+    "expected": {
+      "name": "LEV W5461-W 20A-250V WR SINGLE  OUT",
+      "sku": "MAT-BC1B32764A83",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-bcbad303ba8da58f65d2",
+    "expected": {
+      "name": "LEV LR420-BDD 200A LOADCENTER",
+      "sku": "MAT-BCBAD303BA8D",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra.",
+      "specs": "Referência: LR420-BDD; unidade do fornecedor: un."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing.",
+      "specs": "Reference: LR420-BDD; supplier unit: un."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-c335274721df00aec3a5",
+    "expected": {
+      "name": "LEV 80321-SE 5GANG WALLPLATE",
+      "sku": "MAT-C335274721DF",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra.",
+      "specs": "Referência: 80321-SE; unidade do fornecedor: un."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing.",
+      "specs": "Reference: 80321-SE; supplier unit: un."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-c66e83af5a9335af3b93",
+    "expected": {
+      "name": "TOPAZELE 1135 1-1/2X1-1/4 PVC  REDU",
+      "sku": "MAT-C66E83AF5A93",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-c6f84df26eff3916505f",
+    "expected": {
+      "name": "Lutron SCR-15-GFTR-ES Commercial/Residential Grade Tamper-Resistant GFCI Receptacle 15-Amp 125-Volt NEMA 5-15R Eggshell Claro® Satin Colors®",
+      "sku": "MAT-C6F84DF26EFF",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-c80254132a0afb54398e",
+    "expected": {
+      "name": "12/2 w/Ground, MC, Aluminum Armor, Solid",
+      "sku": "MAT-C80254132A0A",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-c814c0df66a8465f9825",
+    "expected": {
+      "name": "PAND NK6PC3YLY CAT 6 PATCH CORD",
+      "sku": "MAT-C814C0DF66A8",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-c86dce7dec70ed3fd814",
+    "expected": {
+      "name": "CUSHION CLAMP 25.4MM OD",
+      "sku": "MAT-C86DCE7DEC70",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-cbb41e288537eab5db0b",
+    "expected": {
+      "name": "ADORNE AGFTR2202-M4 TAMPER  RESISTA",
+      "sku": "MAT-CBB41E288537",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-cbb796145eef1c5b9c90",
+    "expected": {
+      "name": "Grounding Bar System",
+      "sku": "MAT-CBB796145EEF",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-ced63cafb1fc730e15ab",
+    "expected": {
+      "name": "BUR GAR2426 4-2/0CU 5IPS",
+      "sku": "MAT-CED63CAFB1FC",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-d07d86bbcb8adc79d949",
+    "expected": {
+      "name": "Dynacom Cat6 Jack White",
+      "sku": "MAT-D07D86BBCB8A",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra.",
+      "specs": "Referência: 10606KWH; unidade do fornecedor: un."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing.",
+      "specs": "Reference: 10606KWH; supplier unit: un."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-d1e5dd9b782563878242",
+    "expected": {
+      "name": "EMT I200EMT 2\" X 10' EMT CONDUIT",
+      "sku": "MAT-D1E5DD9B7825",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra.",
+      "specs": "Referência: EMT  X; unidade do fornecedor: ft."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing.",
+      "specs": "Reference: EMT  X; supplier unit: ft."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-d67a8f94c8f3c4369caf",
+    "expected": {
+      "name": "PS PT2097-GRY 20A GFCI RCPT",
+      "sku": "MAT-D67A8F94C8F3",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-dd9da3fc6f1327268f64",
+    "expected": {
+      "name": "NM-B - 12/2 Solid Copper Yellow",
+      "sku": "MAT-DD9DA3FC6F13",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-df5580dd931d99eed9b1",
+    "expected": {
+      "name": "THHN-600-RED Aluminum THHN Cable 600-KCMIL Red",
+      "sku": "MAT-DF5580DD931D",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-e060e350c8c4144670fc",
+    "expected": {
+      "name": "NONMETALLIC SHEATHED CABLE SOU 55054201 12 4 NM B CU WR W G",
+      "sku": "MAT-E060E350C8C4",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-e2f2dfe1f4e2b5579580",
+    "expected": {
+      "name": "LUT DVSTV-BR 120-277V WALLBOX  CONT",
+      "sku": "MAT-E2F2DFE1F4E2",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-eb3c73eb1e39af9ff082",
+    "expected": {
+      "name": "LUT CA-1PS-BR 15A 120/277V DMR SW",
+      "sku": "MAT-EB3C73EB1E39",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-eb4a7dc516665a199f4a",
+    "expected": {
+      "name": "CH BRP30B200GW 200A LOADCENTER",
+      "sku": "MAT-EB4A7DC51666",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-eb6ad2a18a5244cee72b",
+    "expected": {
+      "name": "WAGO 222-412/K194-4045 51249533 2",
+      "sku": "MAT-EB6AD2A18A52",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-ed69eb00a324d1ddd0f8",
+    "expected": {
+      "name": "Tenmat FF130-E Recessed Light Cover For Recessed Light Fixtures",
+      "sku": "MAT-ED69EB00A324",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra.",
+      "specs": "Referência: FF130-E; unidade do fornecedor: un."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing.",
+      "specs": "Reference: FF130-E; supplier unit: un."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-ef2ddb1c180b5100802c",
+    "expected": {
+      "name": "Decora Motion Sensor In-Wall Switch, Auto-On, 2.5A, Single Pole, IPS02-1LW, White",
+      "sku": "MAT-EF2DDB1C180B",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra.",
+      "specs": "Referência: IPS02-R12-1LW; unidade do fornecedor: un."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing.",
+      "specs": "Reference: IPS02-R12-1LW; supplier unit: un."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-efbe2e12fae16574c9f1",
+    "expected": {
+      "name": "1-Gang Single 1.406 Outlet/Receptacle Wallplate, Standard Size, Thermoset, White, 88004",
+      "sku": "MAT-EFBE2E12FAE1",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra.",
+      "specs": "Referência: 88004-001-000; unidade do fornecedor: un."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing.",
+      "specs": "Reference: 88004-001-000; supplier unit: un."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-efd471c828750cb8fcc9",
+    "expected": {
+      "name": "WCU RX 4/3 W/GRND MASTER REEL",
+      "sku": "MAT-EFD471C82875",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-f38aa4e5afbd33583e5e",
+    "expected": {
+      "name": "MC Armored Cable 4/3 MC",
+      "sku": "MAT-F38AA4E5AFBD",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-f42e24d73633719d9858",
+    "expected": {
+      "name": "CRSH GFICS1 FS FD GFI COVER STL",
+      "sku": "MAT-F42E24D73633",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-f482e8f190605069acd6",
+    "expected": {
+      "name": "LEV LR220-BDD 200A LOADCENTER",
+      "sku": "MAT-F482E8F19060",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-f5e46a4cb9061f6ae5ee",
+    "expected": {
+      "name": "CH LATCHPS LOADCENTER LATCH",
+      "sku": "MAT-F5E46A4CB906",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-f686f01a16e61b2ad201",
+    "expected": {
+      "name": "LEV LP312-BPD 125A LOADCENTER",
+      "sku": "MAT-F686F01A16E6",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-f90dade8a311b091e57e",
+    "expected": {
+      "name": "Solid Copper Type NM-B Non-Metallic Sheathed Cable With Grounding 12/2 50-ft Box Yellow",
+      "sku": "MAT-F90DADE8A311",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-fd44a7a4d4ab64a7add9",
+    "expected": {
+      "name": "PSEWRS 505/281 RD 50/ROLL",
+      "sku": "MAT-FD44A7A4D4AB",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "catalog-fd99a0a770ac35123a92",
+    "expected": {
+      "name": "15 Amp, 120/277 Volt, Duplex Style 3-Way / 3-Way AC Combination Switch, Residential/Commercial Specification Grade, Non-Grounding, Side Wired, White, 5243-W",
+      "sku": "MAT-FD99A0A770AC",
+      "description": "Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra.",
+      "specs": "Referência: 05243-032-00W; unidade do fornecedor: un."
+    },
+    "fields": {
+      "description": "Public supplier catalog reference. Confirm application, exact model and order unit before purchasing.",
+      "specs": "Reference: 05243-032-00W; supplier unit: un."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "d69jfZPF4sMmJJkvjCr9",
+    "expected": {
+      "name": "4\" Square Box 2-1/8\" Deep",
+      "sku": "ELEC-107",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "dnrPenkuhwiEL0NtwUAY",
+    "expected": {
+      "name": "PIR Motion Sensor Wireless",
+      "sku": "FIRE-068",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "dyGGUtLqULsXjFR95sz9",
+    "expected": {
+      "name": "Single Pole Switch 15A",
+      "sku": "ELEC-120",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "eseNyfCyvHNW0V0QvvRo",
+    "expected": {
+      "name": "Low Frequency Sounder Horn",
+      "sku": "FIRE-063",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "euH3TMg0Ey3DDgtLm1Ep",
+    "expected": {
+      "name": "SE cable 2/0 aluminum",
+      "sku": "ELEC-183",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "ezr4KBZCVxjSpVbo4jRD",
+    "expected": {
+      "name": "Main Panel 200A 40-Space",
+      "sku": "ELEC-128",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "fNz1myulc29bUmKIzzcb",
+    "expected": {
+      "name": "Breaker 20A GFCI Siemens",
+      "sku": "ELEC-186",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 1
+  },
+  {
+    "id": "fRX3EyiQKidNTlFgyeIw",
+    "expected": {
+      "name": "Lock Breaker",
+      "sku": "ELEC-175",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "fthVYJgGVtzbLdvhafxk",
+    "expected": {
+      "name": "Horn/Strobe 15cd",
+      "sku": "FIRE-059",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "g0rnWeBa4jCJWFIHaGBI",
+    "expected": {
+      "name": "Weatherproof Box 1-Gang",
+      "sku": "ELEC-109",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "hkcyV3OmNqsy1JrVJhdq",
+    "expected": {
+      "name": "SELF NAILING PLATE 1 1/2\" X 5\" 18GA",
+      "sku": "ELEC-192",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "ieloxsbLznneFDO22ZfI",
+    "expected": {
+      "name": "Wire Nut Yellow 18-10 AWG",
+      "sku": "ELEC-153",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "igPFRbFtLODANwSIzefU",
+    "expected": {
+      "name": "Wireless Alarm Panel",
+      "sku": "FIRE-050",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "j28vHLHEvjwSllhwY9cq",
+    "expected": {
+      "name": "Professional Plus Black Vinyl Electrical Tape, 7mil, 66ft Long",
+      "sku": "1049101",
+      "specs": "Fita isolante preta; vinil; 7 mil; 3/4 in × 66 ft; tensão nominal 600 V."
+    },
+    "fields": {
+      "specs": "Black vinyl electrical tape; 7 mil; 3/4 in × 66 ft; rated voltage 600 V."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "jQ4dLcg6Ddvtll9dSozV",
+    "expected": {
+      "name": "Junction Box 4\"x4\"",
+      "sku": "ELEC-110",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "jSrxcmMF4vshbnMzGzcD",
+    "expected": {
+      "name": "Subpanel 60A 12-Space",
+      "sku": "ELEC-140",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "jqtvx7y2GI6xAw5y9i53",
+    "expected": {
+      "name": "Dual-Tech Motion Sensor",
+      "sku": "FIRE-069",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "kifgSwPPgJMtfOGJzopQ",
+    "expected": {
+      "name": "PVC Conduit Schedule 40 1/2\"",
+      "sku": "ELEC-094",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "kn6sidVRk3vjT0Q6k1AA",
+    "expected": {
+      "name": "Annunciator",
+      "sku": "FIRE-053",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "l09JFaT01p9ttZmmpr8G",
+    "expected": {
+      "name": "Tamper Resistant Outlet 15A",
+      "sku": "ELEC-119",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "lGygNdNu76HCrEDKLZJG",
+    "expected": {
+      "name": "Corrosion Protection Tape, 10 mil",
+      "sku": "1083231",
+      "specs": "Fita preta de proteção anticorrosão; PVC plastificado; 10 mil; 4 in × 100 ft."
+    },
+    "fields": {
+      "specs": "Black corrosion protection tape; plasticized PVC; 10 mil; 4 in × 100 ft."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "m6FE3hiKDGRqqh386VpM",
+    "expected": {
+      "name": "Outlet 24-Pack",
+      "sku": "ELEC-176",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "n1DxOUWNV8nxH9ZQluh7",
+    "expected": {
+      "name": "Outdoor Motion Sensor Light",
+      "sku": "ELEC-150",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "nPtmtMZrbtWeDaNiyJrQ",
+    "expected": {
+      "name": "IP Camera PTZ",
+      "sku": "FIRE-075",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "ncfrX1B7N0XCvU7WzbTg",
+    "expected": {
+      "name": "Keypad + Card Reader",
+      "sku": "FIRE-084",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "o4r9PmeON45N7QQsgcyk",
+    "expected": {
+      "name": "NVR 16-Channel",
+      "sku": "FIRE-077",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "oxFzbQOzVC2Xs9gaqg5D",
+    "expected": {
+      "name": "FERRAZ TRS15R Fuse Class RK5 Time Delay 15A INOVAC 300>",
+      "sku": "MAT-004",
+      "description": "Fusível Mersen TRS15R, temporizado, classe RK5. Conferir compatibilidade com o porta-fusível antes da compra.",
+      "specs": "Fusível temporizado classe RK5; 15 A; 600 V AC / 300 V DC; série Tri-Onic. Foto de referência da série TRS-R, publicada na página do TRS15R pelo fornecedor."
+    },
+    "fields": {
+      "description": "Mersen TRS15R time-delay Class RK5 fuse. Check fuse-holder compatibility before purchasing.",
+      "specs": "Time-delay Class RK5 fuse; 15 A; 600 V AC / 300 V DC; Tri-Onic series. TRS-R series reference photo published by the supplier on the TRS15R page."
+    },
+    "generic": false,
+    "linkedReferences": 1
+  },
+  {
+    "id": "pJy3hH7CGbWeBey2ZZ6w",
+    "expected": {
+      "name": "PVC Device Box 1-Gang",
+      "sku": "ELEC-112",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "pySLdPcCNwLVQFoFQHmI",
+    "expected": {
+      "name": "ITE QSPD2A035B LV PLUG ON SURGE DEVICE 35kA",
+      "sku": "MAT-008",
+      "specs": "DPS BoltShield; 2 polos; 120/240 V monofásico, 3 fios; corrente de surto 35 kA; SCCR 22 kA. Conferir quadro aprovado pelo fabricante."
+    },
+    "fields": {
+      "specs": "BoltShield surge protective device; 2-pole; 120/240 V single-phase, 3-wire; surge rating 35 kA; SCCR 22 kA. Check manufacturer-approved panel compatibility."
+    },
+    "generic": false,
+    "linkedReferences": 1
+  },
+  {
+    "id": "qVHKmYCzbZ0mb7hu5aTo",
+    "expected": {
+      "name": "Recessed Can Light 6\"",
+      "sku": "ELEC-144",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "qoxTMdKAcPS3RMUo6Vat",
+    "expected": {
+      "name": "Access Control Power Supply 24V",
+      "sku": "FIRE-092",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "qrue0ntm6kQ9TsMR4xzW",
+    "expected": {
+      "name": "Outlet Duplex 15A 125V",
+      "sku": "ELEC-113",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "r3uRe1MdRrwfl3WDlSNW",
+    "expected": {
+      "name": "GFCI Outlet 15A",
+      "sku": "ELEC-115",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "rrtxCr7nOLzVO4i7Taaf",
+    "expected": {
+      "name": "Perimeter Beam Sensor",
+      "sku": "FIRE-072",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "rvVyC5jintnAKVDrIOOK",
+    "expected": {
+      "name": "Dual Function AFCI/GFCI Breaker",
+      "sku": "ELEC-138",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "rwX7nGbTG9yI2RDM1YkO",
+    "expected": {
+      "name": "Febwfbew",
+      "sku": "ELEC-070",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "s7jD9VWiRzlCi7tpItUc",
+    "expected": {
+      "name": "RFID Key Fob / Access Card",
+      "sku": "FIRE-085",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "sGcD7qXkaRwjY2tLUtom",
+    "expected": {
+      "name": "LED Troffer 2x4 5000K",
+      "sku": "ELEC-146",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "sd3fdEkxbTWmhKBEtScM",
+    "expected": {
+      "name": "POE Injector Single Port",
+      "sku": "FIRE-095",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "uU8phgKdBc8pGZh5ajSY",
+    "expected": {
+      "name": "GFCI Breaker 2P 20A",
+      "sku": "ELEC-137",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "v9zsukt4btffYbdl3X0u",
+    "expected": {
+      "name": "4\" Octagon Box",
+      "sku": "ELEC-108",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "vrySHgV4wTXddsU35MUv",
+    "expected": {
+      "name": "EMT Coupling 1/2\"",
+      "sku": "ELEC-159",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "wYycGvB3ANFwSxCapMN2",
+    "expected": {
+      "name": "Request to Exit Button (REX)",
+      "sku": "FIRE-087",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "weR3CvbjIG4jw6r1LzQ8",
+    "expected": {
+      "name": "General Use Black Vinyl Electrical Tape, 7mil, 60ft Long",
+      "sku": "1033407",
+      "specs": "Fita isolante preta; vinil; 7 mil; 3/4 in × 60 ft; tensão nominal 600 V."
+    },
+    "fields": {
+      "specs": "Black vinyl electrical tape; 7 mil; 3/4 in × 60 ft; rated voltage 600 V."
+    },
+    "generic": false,
+    "linkedReferences": 0
+  },
+  {
+    "id": "xAkxyf4tLygIDsK85PgZ",
+    "expected": {
+      "name": "Single Pole Breaker 20A",
+      "sku": "ELEC-132",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "xPAue3n6oGyssvjuCpi1",
+    "expected": {
+      "name": "strut channel (Unistrut)",
+      "sku": "ELEC-195",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "xkBp4zqH3w49DO3aGYqf",
+    "expected": {
+      "name": "\"1\"\" in 2H RiGid strap  Clamp",
+      "sku": "ELEC-193",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "xwnOdhft1QksIRQ2n7VA",
+    "expected": {
+      "name": "Liquid-Tight Flex 3/4\"",
+      "sku": "ELEC-099",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "yT2eIxpsph3UpuH5rTg7",
+    "expected": {
+      "name": "IP Camera 4MP Dome",
+      "sku": "FIRE-073",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "ybyBPZQBKqryGBzZszD1",
+    "expected": {
+      "name": "Double Pole Breaker 30A",
+      "sku": "ELEC-133",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "z7c5PsqmMxKxqKz77aEK",
+    "expected": {
+      "name": "Vapor Tight Fixture 4ft",
+      "sku": "ELEC-151",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "z7ekJTRh08uiGDiwy6kt",
+    "expected": {
+      "name": "FERRAZ TRS15R Fuse Class RK5",
+      "sku": "MAT-003",
+      "description": "Fusível Mersen TRS15R, temporizado, classe RK5. Conferir compatibilidade com o porta-fusível antes da compra.",
+      "specs": "Fusível temporizado classe RK5; 15 A; 600 V AC / 300 V DC; série Tri-Onic."
+    },
+    "fields": {
+      "description": "Mersen TRS15R time-delay Class RK5 fuse. Check fuse-holder compatibility before purchasing.",
+      "specs": "Time-delay Class RK5 fuse; 15 A; 600 V AC / 300 V DC; Tri-Onic series."
+    },
+    "generic": false,
+    "linkedReferences": 1
+  },
+  {
+    "id": "z84aNVHMf3cSjhUsACgi",
+    "expected": {
+      "name": "Transfer Switch 30A Manual",
+      "sku": "ELEC-141",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  },
+  {
+    "id": "zGlPiRvwpKQLCbhGvwwn",
+    "expected": {
+      "name": "3/8” threaded rod",
+      "sku": "ELEC-191",
+      "recordType": null
+    },
+    "fields": {
+      "recordType": "family",
+      "catalogReviewStatus": "needs-identification",
+      "catalogReviewReason": "Generic material: identify manufacturer, exact model, size, compatibility and supplier order code before purchasing. Existing stock and historical references have not been reassigned."
+    },
+    "generic": true,
+    "linkedReferences": 0
+  }
+]
