@@ -1,0 +1,19 @@
+name: Stage electrical catalog expansion
+on:
+  push:
+    branches: [feature/lista-guiada-v1]
+    paths: [.github/workflows/stage-central.yml]
+permissions:
+  contents: read
+jobs:
+  stage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install requests pillow
+      - run: python scripts/collect-catalog.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: catalog-stage
+          path: catalog-stage/
