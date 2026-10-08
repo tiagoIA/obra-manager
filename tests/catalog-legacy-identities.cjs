@@ -3,8 +3,8 @@ const ctx={URL};vm.createContext(ctx);vm.runInContext(fs.readFileSync('public/ce
 const a={id:'a',name:'Existing fuse',sku:'MAT-003',unit:'un',brand:'Mersen',manufacturerPart:'TRS15R',upc:'782001748821'};
 const b={...a,id:'b',sku:'MAT-004'},c={id:'c',name:'Tape',sku:'TAPE',unit:'un',brand:'NSI',manufacturerPart:'WW-732',upc:'662381367167'};
 assert.doesNotThrow(()=>ctx.validateProduct({...a,description:'Updated note'},[a,b,c],'a'));
-assert.throws(()=>ctx.validateProduct({...a,sku:'NEW'},[a,b,c],null),/já existe/);
-assert.throws(()=>ctx.validateProduct({...a,upc:c.upc},[a,b,c],'a'),/já existe/);
+assert.throws(()=>ctx.validateProduct({...a,sku:'NEW'},[a,b,c],null),/already exists/);
+assert.throws(()=>ctx.validateProduct({...a,upc:c.upc},[a,b,c],'a'),/already exists/);
 assert.throws(()=>ctx.validateProduct({...a,upc:'1266600'},[a,b,c],'a'),/UPC precisa/);
 assert.doesNotThrow(()=>ctx.validateProduct({...a,manufacturerPart:'OTHER',upc:''},[a,b,c],'a'));
 console.log('PASS legacy duplicates remain editable, new duplicates rejected, retailer codes rejected as UPC');
