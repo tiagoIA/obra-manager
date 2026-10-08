@@ -1,4 +1,4 @@
-const CACHE_NAME = 'obra-manager-central-v4';
+const CACHE_NAME = 'obra-manager-central-v5';
 const APP_SHELL = [
   '/',
   '/index.html',
