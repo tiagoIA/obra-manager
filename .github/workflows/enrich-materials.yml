@@ -1,30 +1,23 @@
-name: Review exact existing product photos
+name: Enrich existing materials with verified references
 on:
   push:
     branches: [feature/lista-guiada-v1]
     paths: [.github/workflows/enrich-materials.yml]
 permissions:
   contents: read
+concurrency:
+  group: obra-material-enrichment
+  cancel-in-progress: false
 jobs:
-  collect:
+  enrich:
     runs-on: ubuntu-latest
-    timeout-minutes: 6
+    timeout-minutes: 12
     steps:
-      - run: pip install requests pillow beautifulsoup4
-      - run: |
-          python - <<'PY'
-          import requests,io,hashlib,base64,json
-          from PIL import Image
-          from bs4 import BeautifulSoup
-          urls=['https://static.grainger.com/rp/s/is/image/Grainger/4YZG7_AS01?%24adapimg%24=&hei=536&wid=536']
-          try:
-           r=requests.get('https://www.lowes.com/pd/Siemens-BoltShield-QSPD-35-kA-Indoor-Surge-Protective-Device/5014559979',timeout=40);r.raise_for_status();soup=BeautifulSoup(r.text,'html.parser')
-           urls += [x.get('src') for x in soup.select('img') if 'QSPD2A035B' in (x.get('alt') or '') and 'mobileimages.lowes.com' in (x.get('src') or '')][:1]
-           print('SOURCE_IMAGES',len(urls))
-          except Exception as e:print('SOURCE_ERROR',type(e).__name__)
-          for u in urls:
-           try:
-            r=requests.get(u,timeout=40);r.raise_for_status();im=Image.open(io.BytesIO(r.content));im.load();im=im.convert('RGB');im.thumbnail((1000,1000));b=io.BytesIO();im.save(b,'JPEG',quality=86);print('EXACT_PHOTO_META',json.dumps({'url':u,'sha':hashlib.sha256(b.getvalue()).hexdigest()}));print('EXACT_PHOTO',base64.b64encode(b.getvalue()).decode())
-           except Exception as e:print('PHOTO_ERROR',type(e).__name__)
-          
-          PY
+      - uses: actions/checkout@v4
+      - run: pip install google-auth google-cloud-storage requests pillow
+      - name: Test preservation and identity guards
+        run: python tests/enrich-existing.py
+      - name: Back up and enrich existing documents only
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: python scripts/enrich-existing.py
