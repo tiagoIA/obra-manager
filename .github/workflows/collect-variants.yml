@@ -1,4 +1,4 @@
-name: Review breaker and fastener variants
+name: Review fastener and accessory variants
 on:
   push:
     branches: [feature/lista-guiada-v1]
