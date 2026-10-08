@@ -1,4 +1,4 @@
-const CACHE_NAME = 'obra-manager-guided-v3';
+const CACHE_NAME = 'obra-manager-central-v4';
 const APP_SHELL = [
   '/',
   '/index.html',
@@ -33,7 +33,7 @@ self.addEventListener('fetch', event => {
   ) return;
  
   // Network first para o index.html — sempre pega versão mais recente
-  if (new URL(url).pathname==='/' || url.includes('index.html') || url.includes('guided-shopping-v1.js')) {
+  if (new URL(url).pathname==='/' || url.includes('index.html') || url.includes('guided-shopping-v1.js') || url.includes('central-catalog-v1.js')) {
     event.respondWith(
       fetch(event.request).then(response => {
         const clone = response.clone();
