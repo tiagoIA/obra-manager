@@ -6643,7 +6643,7 @@ window.createShoppingList=async()=>{
 };
 window.openNewShopList=()=>{
   // Verificar se já existe lista ativa (não finalizada) para este projeto
-  const activeForProj=Object.values(shoppingLists).filter(sl=>!sl.done&&sl.projectId===activePid);
+  const activeForProj=Object.values(shoppingLists).filter(sl=>sl.listType!=='template').filter(sl=>!sl.done&&sl.projectId===activePid);
   if(activeForProj.length>0){
     // Já tem carrinho aberto — oferecer usar o existente ou criar novo
     const existing=activeForProj[0];
@@ -6693,7 +6693,7 @@ window.deleteShopList=async(lid)=>{
 };
 window.openRoomOrder=(rid)=>{
   const room=rooms[rid];if(!room)return;
-  const projLists=Object.values(shoppingLists)
+  const projLists=Object.values(shoppingLists).filter(sl=>sl.listType!=='template')
     .filter(sl=>!sl.done&&(sl.projectId===activePid||!sl.projectId))
     .sort((a,b)=>(b.createdAt&&b.createdAt.seconds||0)-(a.createdAt&&a.createdAt.seconds||0));
   // Se só tem uma lista ativa, pré-seleciona automaticamente
@@ -9106,7 +9106,7 @@ function renderMaterials(el){
     );
 }
 function renderShopping(el){
-  const allLists=Object.values(shoppingLists).sort((a,b)=>(a.createdAt&&a.createdAt.seconds||0)-(b.createdAt&&b.createdAt.seconds||0));
+  const allLists=Object.values(shoppingLists).filter(sl=>sl.listType!=='template').sort((a,b)=>(a.createdAt&&a.createdAt.seconds||0)-(b.createdAt&&b.createdAt.seconds||0));
   const filterPid=window._shopFilterPid||'all';
   const lists=filterPid==='all'?allLists:allLists.filter(sl=>sl.projectId===filterPid);
   const activeList=activeShopListId?shoppingLists[activeShopListId]:null;
@@ -9157,7 +9157,9 @@ function renderShopping(el){
       +'</div>';
   }).join('');
 
-  el.innerHTML='<div class="page-hdr"><div class="page-title">🛒 Shopping Lists</div><button class="btn-hdr" onclick="window.openNewShopList()">+ New List</button></div>'
+  el.innerHTML='<div class="page-hdr"><div class="page-title">🛒 Shopping Lists</div><button class="btn-hdr" onclick="window.guidedShopping.launch()">+ Nova lista</button></div>'
+    +'<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px"><button class="btn-g" onclick="window.guidedShopping.launch()">✨ Lista Guiada / Personalizada</button><button class="btn-g" onclick="window.openNewShopList()">Lista rápida</button></div>'
+    +(activeList?'<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px"><button class="btn-g" onclick="window.guidedShopping.edit(\''+activeList.id+'\')">✏️ Personalizar lista</button><button class="btn-g" onclick="window.guidedShopping.saveExistingTemplate(\''+activeList.id+'\')">Salvar como novo modelo</button></div>':'')
     +tabsHtml
     +'<div class="shop-nav">'+(navItems||'<div style="color:var(--dim);font-size:12px">No lists yet.</div>')+'</div>'
     +(activeList?
@@ -13388,6 +13390,47 @@ window._renderRemindersList=function(){
   }
 };
 
+
+// Guided shopping integration: uses existing collections and authentication.
+import {writeBatch, runTransaction} from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+import {installGuidedShopping} from '/guided-shopping-v1.js';
+installGuidedShopping({
+ userId:()=>auth.currentUser?.uid||null,
+ projectId:()=>activePid,
+ projects:()=>Object.values(projects),
+ materials:()=>Object.values(materials),
+ templates:()=>Object.values(shoppingLists).filter(l=>l.listType==='template'&&(!l.ownerUid||l.ownerUid===auth.currentUser?.uid)),
+ list:id=>shoppingLists[id],
+ items:id=>Object.values(shoppingItems).filter(i=>i.listId===id),
+ notify:notif,
+ openList:id=>{activeShopListId=id;activePage='shopping';renderContent();},
+ saveTemplate:async model=>{
+  if(!auth.currentUser)throw Error('Entre novamente no sistema.');
+  await addDoc(collection(db,'shoppingLists'),{...model,listType:'template',ownerUid:auth.currentUser.uid,projectId:null,done:false,createdAt:serverTimestamp()});
+ },
+ saveList:async draft=>{
+  const user=auth.currentUser;if(!user)throw Error('Entre novamente no sistema.');
+  if(draft.items.length>200)throw Error('Use até 200 materiais por lista nesta versão.');
+  const listRef=draft.editId?doc(db,'shoppingLists',draft.editId):doc(collection(db,'shoppingLists'));
+  const data={name:draft.name.trim(),note:draft.note||'',projectId:draft.projectId||null,guidedMode:draft.mode,guidedAnswers:draft.answers||{},guidedServices:(draft.services||[]).map(s=>({id:s.id,name:s.name,version:s.version||1})),updatedAt:serverTimestamp()};
+  const itemData=i=>({listId:listRef.id,matId:i.matId||null,name:i.name.trim(),cat:i.cat||'geral',unit:i.unit.trim(),qty:Number(i.qty),obs:i.obs||'',roomId:i.roomId||null,roomName:i.roomName||null,bought:!!i.bought,boughtAt:i.boughtAt||null});
+  if(!draft.editId){
+   const batch=writeBatch(db);batch.set(listRef,{...data,createdBy:user.uid,done:false,createdAt:serverTimestamp()});
+   draft.items.forEach(i=>batch.set(doc(collection(db,'shoppingItems')),{...itemData(i),createdAt:serverTimestamp()}));await batch.commit();
+  }else{
+   const base=draft.baseItems||[];
+   await runTransaction(db,async tx=>{
+    const list=await tx.get(listRef);if(!list.exists())throw Error('Esta lista foi removida.');
+    const current=[];for(const i of base){const snap=await tx.get(doc(db,'shoppingItems',i.id));if(!snap.exists())throw Error('A lista mudou. Feche e abra novamente antes de editar.');current.push(snap);}
+    current.forEach((s,n)=>{const before=base[n],now=s.data();for(const k of ['name','qty','unit','obs','bought','boughtAt','matId'])if(JSON.stringify(now[k]??null)!==JSON.stringify(before[k]??null))throw Error('Outra pessoa alterou esta lista. Feche e abra novamente para revisar.');});
+    tx.update(listRef,data);
+    const remaining=new Set(draft.items.filter(i=>i.id).map(i=>i.id));base.filter(i=>!remaining.has(i.id)).forEach(i=>tx.delete(doc(db,'shoppingItems',i.id)));
+    draft.items.forEach(i=>{if(i.id)tx.update(doc(db,'shoppingItems',i.id),itemData(i));else tx.set(doc(collection(db,'shoppingItems')),{...itemData(i),createdAt:serverTimestamp()});});
+   });
+  }
+  return listRef.id;
+ }
+});
 
 // App starts via onAuthStateChanged → startApp() → listenProjects()
 
