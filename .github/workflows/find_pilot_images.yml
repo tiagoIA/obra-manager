@@ -1,0 +1,33 @@
+name: Find pilot product images
+on:
+  push:
+    branches: [review/materials-2026-10-08]
+    paths: [.github/workflows/find_pilot_images.yml]
+permissions:
+  contents: read
+jobs:
+  find:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install requests beautifulsoup4
+      - name: Extract product image candidates
+        run: |
+          python - <<'PY'
+          import requests,json,re,concurrent.futures
+          from bs4 import BeautifulSoup
+          pages=[["FIRE-017","https://buildings.honeywell.com/ca/en/products/by-category/fire-life-safety/i-o-modules/monitor-modules/mmf-300-addressable-monitor-module"],["FIRE-029","https://www.firstalert.com/products/interconnect-hardwire-smoke-alarm-with-battery-backup"],["FIRE-062","https://voomisupply.com/products/system-sensor-sgrkled-outdoor-led-strobe-red-fire"],["MAT-008","https://www.lowes.com/pd/Siemens-BoltShield-QSPD-35-kA-Indoor-Surge-Protective-Device/5014559979"],["MAT-003","https://us.mersen.com/en/products/trs-r-class-rk5-time-delay/trs15r"],["FIRE-047","https://www.firenotifier.com/products/mircom-bps-1002"],["MAT-009","https://www.rexelusa.com/p/602816/austin-electrical-enclosures/aus-ab-300hs-3-conduit-hole-ot-h/707353048351/ab-300hs"],["FIRE-008","https://mircom.com/fx-2000-addressable-panel-end-of-life-notice/"],["MAT-002","https://www.radwell.com/Buy/BURNDY/BURNDY/K2A250"],["MAT-007","https://www.gordonelectricsupply.com/p/Carlon-E977Lc-Car-3In-Pvc-2Hl-Clmp/5997408"]]
+          def one(item):
+           sku,url=item
+           try:
+            r=requests.get(url,timeout=25,headers={"User-Agent":"Mozilla/5.0"});s=BeautifulSoup(r.text,"html.parser")
+            out={"sku":sku,"page":url,"status":r.status_code,"title":s.title.get_text() if s.title else ""}
+            out["meta"]=[m.get("content") for m in s.find_all("meta") if m.get("property") in ("og:image","og:image:secure_url") or m.get("name")=="twitter:image"]
+            out["images"]=[{"src":i.get("src"),"alt":i.get("alt"),"data":i.get("data-src")} for i in s.find_all("img") if i.get("alt") and any(t.lower() in i.get("alt","").lower() for t in ("MMF","SMI","SGRK","QSPD","TRS","BPS","300HS","FX-2000","K2A","E977"))][:8]
+            print("CANDIDATE",json.dumps(out))
+           except Exception as e:print("CANDIDATE",json.dumps({"sku":sku,"error":str(e)}))
+          with concurrent.futures.ThreadPoolExecutor(max_workers=10) as pool:list(pool.map(one,pages))
+          PY
