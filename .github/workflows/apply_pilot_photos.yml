@@ -1,0 +1,70 @@
+name: Apply ten reviewed material photos
+on:
+  push:
+    branches: [review/materials-2026-10-08]
+    paths: [.github/workflows/apply_pilot_photos.yml]
+permissions:
+  contents: read
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install requests Pillow google-auth google-cloud-storage
+      - name: Backup, atomically update, and verify ten photos
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: |
+          python - <<'PY'
+          import os,json,io,uuid,hashlib,requests
+          from PIL import Image
+          from google.oauth2 import service_account
+          from google.auth.transport.requests import AuthorizedSession
+          from google.cloud import storage
+          from urllib.parse import quote
+          pilot=json.loads(r'''[{"id":"6QaMLvEhgikzaNcroCTZ","description":"A fire alarm system monitor module that supervises the status of normally open or normally closed contact devices such as tamper switches, flow switches, and valve supervisory switches. It provides addressable monitoring of two-wire conventional initiating devices on intelligent fire alarm control panels.","name":"MMF-300 Monitor Module","cat":"fire","sku":"FIRE-017","brand":"System Sensor, Notifier, Edwards, Fire-Lite, Simplex, Honeywell","image":"https://honeywell.scene7.com/is/image/Honeywell65/HBT-Fire-MMF-300-STRAIGHT-HiRes","source":"https://buildings.honeywell.com/ca/en/products/by-category/fire-life-safety/i-o-modules/monitor-modules/mmf-300-addressable-monitor-module"},{"id":"Jpp0vYQeBS6Crx1okJsF","name":"SMI100-AC Smoke alarm 120volts","brand":"First Alert, Kidde, System Sensor, Honeywell, BRK","cat":"fire","sku":"FIRE-029","description":"120-volt AC powered photoelectric smoke detector with battery backup for residential and commercial fire detection applications. Designed for hardwired installation into building electrical system.","image":"https://www.firstalert.com/cdn/shop/files/SMI100-AC_c12-6.jpg?v=1785551848&width=640","source":"https://www.firstalert.com/products/interconnect-hardwire-smoke-alarm-with-battery-backup"},{"id":"xBCix48oCBvMXyY3F2xB","sku":"FIRE-043","cat":"fire","name":"SMI100-AC Smoke Alarm 120V","photoUrl":null,"image":"https://www.firstalert.com/cdn/shop/files/SMI100-AC_c12-6.jpg?v=1785551848&width=640","source":"https://www.firstalert.com/products/interconnect-hardwire-smoke-alarm-with-battery-backup"},{"id":"w490VgnIqzctuS1d6eyR","name":"SGRK LED Wall Strobe Outdoor Red","sku":"FIRE-062","photoUrl":null,"cat":"fire","image":"https://honeywell.scene7.com/is/image/Honeywell65/SGRKLED-3","source":"https://buildings.honeywell.com/ae/en/products/by-category/fire-life-safety/notification-appliances/combination-strobes/l-series-with-led-outdoor-compact-wall-strobes"},{"id":"9on7EDymNDcx01bylzxR","sku":"ELEC-065","cat":"eletrica","description":"LED wall-mounted strobe light for outdoor fire alarm applications, provides visual notification during emergency conditions.","brand":"System Sensor, Wheelock, Gentex, Edwards, Potter","name":"SGRK Led Wall Strobe, outdoor, red color","image":"https://honeywell.scene7.com/is/image/Honeywell65/SGRKLED-3","source":"https://buildings.honeywell.com/ae/en/products/by-category/fire-life-safety/notification-appliances/combination-strobes/l-series-with-led-outdoor-compact-wall-strobes"},{"id":"lttWC0hiZ4JaIySjG4Vq","photoUrl":null,"sku":"FIRE-047","cat":"fire","name":"Remote Booster Panel Mircom BPS-1002","image":"https://www.firenotifier.com/cdn/shop/files/BPS-1002.jpg?v=1734558857&width=1445","source":"https://www.firenotifier.com/products/mircom-bps-1002"},{"id":"H9l4C5QpKXmt9M1yXkMA","brand":"Mircom, Honeywell, Simplex, Edwards, Potter","name":"Remote Booster Panel — Mircom BPS-1002 (RNAC)","cat":"fire","description":"The Mircom BPS-1002 is a remote booster panel that amplifies RNAC (Reverse Network Audio Codec) signals to extend communication range in fire alarm systems. It provides power boosting for audio devices and notification appliances beyond the main panel's direct capacity.","sku":"FIRE-009","image":"https://www.firenotifier.com/cdn/shop/files/BPS-1002.jpg?v=1734558857&width=1445","source":"https://www.firenotifier.com/products/mircom-bps-1002"},{"id":"vWCTLHXhVRpg2kJ6Xzsk","cat":"geral","sku":"MAT-009","name":"AUS AB300HS 3-IN COND HOLE SEAL","image":"https://rexel-cdn.com/products/image.jpg?i=621CBA68-3C5E-44C7-850A-1B70D2E36CFB&f=420","source":"https://www.rexelusa.com/p/602816/austin-electrical-enclosures/aus-ab-300hs-3-conduit-hole-ot-h/707353048351/ab-300hs"},{"id":"z7ekJTRh08uiGDiwy6kt","name":"FERRAZ TRS15R Fuse Class RK5","cat":"geral","sku":"MAT-003","image":"https://rexel-cdn.com/products/image.jpg?f=420&i=F9548718-D56D-4ACB-B837-2CCCB9FBAB6B","source":"https://www.rexelusa.com/p/51342/mersen/fuse-tri-onic-600vac-300vdc-15a-time-delay-class-rk5-trs-series-/782001748821/trs15r"},{"id":"BvRl7ySAlrEphHmWJKv9","cat":"eletrica","name":"MC Cable 12/2","brand":"Southwire, General Cable, Encore Wire, AFC Cable Systems, Cerro Wire","description":"Metal-clad cable with 12 AWG copper conductors (2 insulated plus ground) in galvanized steel armor for branch circuit wiring in dry locations.","photoUrl":null,"sku":"ELEC-080","image":"https://www.elliottelectric.com/Media/MCS122WG0R-ALF-0-5-LargeImage.jpg","source":"https://www.elliottelectric.com/P/Item/ALF/MCS122WG0R/"}]''')
+          key=json.loads(os.environ["FIREBASE_SA"])
+          assert key["project_id"]=="obra-manager-4ecc7"
+          creds=service_account.Credentials.from_service_account_info(key,scopes=["https://www.googleapis.com/auth/cloud-platform"])
+          s=AuthorizedSession(creds)
+          base="https://firestore.googleapis.com/v1/projects/obra-manager-4ecc7/databases/(default)/documents"
+          bucket=storage.Client(project=key["project_id"],credentials=creds).bucket("obra-manager-4ecc7.firebasestorage.app")
+          run=os.environ["GITHUB_RUN_ID"]
+          prepared=[]
+          for p in pilot:
+           r=requests.get(p["image"],timeout=40);r.raise_for_status()
+           im=Image.open(io.BytesIO(r.content));im.load();assert min(im.size)>=80
+           out=io.BytesIO();im.convert("RGB").save(out,format="JPEG",quality=92)
+           r=s.get(base+"/materials/"+p["id"],timeout=30);r.raise_for_status();d=r.json();f=d["fields"]
+           assert f["sku"]["stringValue"]==p["sku"] and f["name"]["stringValue"]==p["name"],p["sku"]
+           assert not f.get("photoUrl",{}).get("stringValue"),"Photo already exists: "+p["sku"]
+           prepared.append((p,d,out.getvalue()))
+          backup="backups/material-photos/pilot-"+run+"/before.json"
+          bucket.blob(backup).upload_from_string(json.dumps({"records":[d for p,d,b in prepared],"sources":pilot}),content_type="application/json",if_generation_match=0)
+          writes=[]
+          for p,d,b in prepared:
+           token=str(uuid.uuid4());path="materials/"+p["id"]+"/pilot-"+run+".jpg"
+           blob=bucket.blob(path);blob.metadata={"firebaseStorageDownloadTokens":token}
+           blob.upload_from_string(b,content_type="image/jpeg",if_generation_match=0)
+           url="https://firebasestorage.googleapis.com/v0/b/"+bucket.name+"/o/"+quote(path,safe="")+"?alt=media&token="+token
+           r=requests.get(url,timeout=30);r.raise_for_status();assert hashlib.sha256(r.content).digest()==hashlib.sha256(b).digest()
+           writes.append({"update":{"name":d["name"],"fields":{"photoUrl":{"stringValue":url}}},"updateMask":{"fieldPaths":["photoUrl"]},"currentDocument":{"updateTime":d["updateTime"]}})
+          r=s.post(base+":commit",json={"writes":writes},timeout=60);r.raise_for_status()
+          for (p,d,b),w in zip(prepared,writes):
+           r=s.get(base+"/materials/"+p["id"],timeout=30);r.raise_for_status();new=r.json()["fields"];old=dict(d["fields"])
+           old["photoUrl"]=w["update"]["fields"]["photoUrl"]
+           assert new==old,p["sku"]
+           print("VERIFIED",p["sku"])
+          docs=[];token=None
+          while True:
+           params={"pageSize":1000}
+           if token:params["pageToken"]=token
+           r=s.get(base+"/materials",params=params,timeout=60);r.raise_for_status();data=r.json();docs+=data.get("documents",[])
+           token=data.get("nextPageToken")
+           if not token:break
+          print("RESULT",json.dumps({"updated":len(prepared),"total":len(docs),"missing":sum(not d.get("fields",{}).get("photoUrl",{}).get("stringValue") for d in docs),"backup":backup}))
+          
+          PY
