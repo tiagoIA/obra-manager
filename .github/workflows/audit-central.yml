@@ -44,3 +44,5 @@ jobs:
                 print('CATALOG_ROW',json.dumps(out,ensure_ascii=False))
               else:print('LINK_ROW',col,json.dumps({key:f.get(key) for key in ['supplier','supplierName','vendor','vendorName','company','code','materialId','matId','qty','description']},ensure_ascii=False))
           PY
+
+# Refresh active photo backlog after lifecycle release.
