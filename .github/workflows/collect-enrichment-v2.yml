@@ -1,4 +1,4 @@
-name: Collect second enrichment batch
+name: Verify second enrichment images
 on:
   push:
     branches: [feature/lista-guiada-v1]
