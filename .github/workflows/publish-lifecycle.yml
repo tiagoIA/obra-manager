@@ -31,3 +31,5 @@ jobs:
         env:
           FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
         run: python scripts/publish-lifecycle.py
+
+# Retry with Firestore value normalization; prior transaction rolled back and verified.
