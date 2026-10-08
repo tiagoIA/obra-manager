@@ -11,7 +11,7 @@ def call(method,path,**kw):
 previous=call('GET',site+'/releases',params={'pageSize':1})['releases'][0]['version']
 oldname=previous['name'];oldversion=call('GET',oldname)
 live=requests.get('https://obra-manager-4ecc7.web.app/index.html',timeout=30);live.raise_for_status()
-assert live.content.rstrip()==pathlib.Path('public/index.html').read_bytes().rstrip(),'Live app changed; aborting instead of overwriting'
+assert hashlib.sha256(live.content.rstrip()).hexdigest()=='44b96beab5e39494a06d688889b94791f4fc841146d84bad080ca06d0254b378','Live app changed; aborting instead of overwriting'
 files={};token=None
 while True:
  params={'pageSize':1000}
@@ -34,6 +34,14 @@ while True:
  token=data.get('nextPageToken')
  if not token:break
 bucket.blob(folder+'shoppingLists.json').upload_from_string(json.dumps(docs),content_type='application/json',if_generation_match=0)
+material_docs=[];token=None
+while True:
+ params={'pageSize':1000}
+ if token:params['pageToken']=token
+ r=s.get(fire+'/materials',params=params,timeout=60);r.raise_for_status();data=r.json();material_docs+=data.get('documents',[])
+ token=data.get('nextPageToken')
+ if not token:break
+bucket.blob(folder+'materials.json').upload_from_string(json.dumps(material_docs),content_type='application/json',if_generation_match=0)
 def encode(v):
  if v is None:return {'nullValue':None}
  if isinstance(v,bool):return {'booleanValue':v}
@@ -61,7 +69,7 @@ call('PATCH',new,params={'update_mask':'status'},json={'status':'FINALIZED'})
 if writes:
  r=s.post(fire+':commit',json={'writes':writes},timeout=60);r.raise_for_status()
 print('PRESETS_CREATED',len(writes))
-release=call('POST',site+'/releases',params={'versionName':new},json={'message':'Library photo cards and manual shopping items v2'})
+release=call('POST',site+'/releases',params={'versionName':new},json={'message':'Service classifications and reusable purchases v3'})
 try:
  for path in ['/index.html','/guided-shopping-v1.js','/sw.js']:
   for attempt in range(6):
@@ -73,3 +81,4 @@ try:
 except Exception:
  call('POST',site+'/releases',params={'versionName':oldname},json={'message':'Automatic rollback after verification failure'})
  print('ROLLED_BACK',oldname);raise
+
