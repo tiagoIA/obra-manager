@@ -1,0 +1,42 @@
+name: Review pilot product photos
+on:
+  push:
+    branches: [review/materials-2026-10-08]
+    paths: [.github/workflows/review_pilot_images.yml]
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install requests Pillow
+      - name: Validate and build contact sheet
+        run: |
+          python - <<'PY'
+          import requests,io,json,os
+          from PIL import Image,ImageOps,ImageDraw
+          pilot=json.loads(r'''[{"id":"6QaMLvEhgikzaNcroCTZ","description":"A fire alarm system monitor module that supervises the status of normally open or normally closed contact devices such as tamper switches, flow switches, and valve supervisory switches. It provides addressable monitoring of two-wire conventional initiating devices on intelligent fire alarm control panels.","name":"MMF-300 Monitor Module","cat":"fire","sku":"FIRE-017","brand":"System Sensor, Notifier, Edwards, Fire-Lite, Simplex, Honeywell","image":"https://honeywell.scene7.com/is/image/Honeywell65/HBT-Fire-MMF-300-STRAIGHT-HiRes","source":"https://buildings.honeywell.com/ca/en/products/by-category/fire-life-safety/i-o-modules/monitor-modules/mmf-300-addressable-monitor-module"},{"id":"Jpp0vYQeBS6Crx1okJsF","name":"SMI100-AC Smoke alarm 120volts","brand":"First Alert, Kidde, System Sensor, Honeywell, BRK","cat":"fire","sku":"FIRE-029","description":"120-volt AC powered photoelectric smoke detector with battery backup for residential and commercial fire detection applications. Designed for hardwired installation into building electrical system.","image":"https://www.firstalert.com/cdn/shop/files/SMI100-AC_c12-6.jpg?v=1785551848&width=640","source":"https://www.firstalert.com/products/interconnect-hardwire-smoke-alarm-with-battery-backup"},{"id":"xBCix48oCBvMXyY3F2xB","sku":"FIRE-043","cat":"fire","name":"SMI100-AC Smoke Alarm 120V","photoUrl":null,"image":"https://www.firstalert.com/cdn/shop/files/SMI100-AC_c12-6.jpg?v=1785551848&width=640","source":"https://www.firstalert.com/products/interconnect-hardwire-smoke-alarm-with-battery-backup"},{"id":"w490VgnIqzctuS1d6eyR","name":"SGRK LED Wall Strobe Outdoor Red","sku":"FIRE-062","photoUrl":null,"cat":"fire","image":"https://honeywell.scene7.com/is/image/Honeywell65/SGRKLED-3","source":"https://buildings.honeywell.com/ae/en/products/by-category/fire-life-safety/notification-appliances/combination-strobes/l-series-with-led-outdoor-compact-wall-strobes"},{"id":"9on7EDymNDcx01bylzxR","sku":"ELEC-065","cat":"eletrica","description":"LED wall-mounted strobe light for outdoor fire alarm applications, provides visual notification during emergency conditions.","brand":"System Sensor, Wheelock, Gentex, Edwards, Potter","name":"SGRK Led Wall Strobe, outdoor, red color","image":"https://honeywell.scene7.com/is/image/Honeywell65/SGRKLED-3","source":"https://buildings.honeywell.com/ae/en/products/by-category/fire-life-safety/notification-appliances/combination-strobes/l-series-with-led-outdoor-compact-wall-strobes"},{"id":"lttWC0hiZ4JaIySjG4Vq","photoUrl":null,"sku":"FIRE-047","cat":"fire","name":"Remote Booster Panel Mircom BPS-1002","image":"https://www.firenotifier.com/cdn/shop/files/BPS-1002.jpg?v=1734558857&width=1445","source":"https://www.firenotifier.com/products/mircom-bps-1002"},{"id":"H9l4C5QpKXmt9M1yXkMA","brand":"Mircom, Honeywell, Simplex, Edwards, Potter","name":"Remote Booster Panel — Mircom BPS-1002 (RNAC)","cat":"fire","description":"The Mircom BPS-1002 is a remote booster panel that amplifies RNAC (Reverse Network Audio Codec) signals to extend communication range in fire alarm systems. It provides power boosting for audio devices and notification appliances beyond the main panel's direct capacity.","sku":"FIRE-009","image":"https://www.firenotifier.com/cdn/shop/files/BPS-1002.jpg?v=1734558857&width=1445","source":"https://www.firenotifier.com/products/mircom-bps-1002"},{"id":"vWCTLHXhVRpg2kJ6Xzsk","cat":"geral","sku":"MAT-009","name":"AUS AB300HS 3-IN COND HOLE SEAL","image":"https://rexel-cdn.com/products/image.jpg?i=621CBA68-3C5E-44C7-850A-1B70D2E36CFB&f=420","source":"https://www.rexelusa.com/p/602816/austin-electrical-enclosures/aus-ab-300hs-3-conduit-hole-ot-h/707353048351/ab-300hs"},{"id":"z7ekJTRh08uiGDiwy6kt","name":"FERRAZ TRS15R Fuse Class RK5","cat":"geral","sku":"MAT-003","image":"https://www.mersen.com/sites/default/files/styles/article/public/medias/PIM/images/PHP-TRS15R-Mersen-TIMG.jpg.webp?itok=9x6l2tvc","source":"https://www.mersen.com/en/products/trs-r-class-rk5-time-delay/trs15r"},{"id":"BvRl7ySAlrEphHmWJKv9","cat":"eletrica","name":"MC Cable 12/2","brand":"Southwire, General Cable, Encore Wire, AFC Cable Systems, Cerro Wire","description":"Metal-clad cable with 12 AWG copper conductors (2 insulated plus ground) in galvanized steel armor for branch circuit wiring in dry locations.","photoUrl":null,"sku":"ELEC-080","image":"https://assets.southwire.com/adaptivemedia/rendition?id=3ba4b946aa34dfb77222fb2b6cb2bb9765140b34&prid=01200Wx1200H&clid=SAPDAM&prclid=productpictures","source":"https://www.southwire.com/wire-cable/metal-clad-cable/armorlite-type-mc-thhn-thwn-circuit-size-copper-conductor-120-208v-colors/p/68580055"}]''')
+          os.makedirs("pilot",exist_ok=True)
+          sheet=Image.new("RGB",(1000,1400),"white");draw=ImageDraw.Draw(sheet)
+          for i,p in enumerate(pilot):
+           try:
+            r=requests.get(p["image"],timeout=30,headers={"User-Agent":"Mozilla/5.0"});r.raise_for_status()
+            im=Image.open(io.BytesIO(r.content));im.load();assert min(im.size)>=80
+            im=im.convert("RGB");im.save("pilot/"+p["sku"]+".jpg",quality=92)
+            thumb=ImageOps.contain(im,(460,230));x=(i%2)*500;y=(i//2)*280;sheet.paste(thumb,(x+(500-thumb.width)//2,y));draw.text((x+8,y+238),p["sku"]+" "+p["name"][:60],fill="black")
+            print("VALIDATED",p["sku"],im.size)
+           except Exception as e:print("FAILED",p["sku"],str(e))
+          sheet.thumbnail((800,1120)); sheet.save("pilot/contact-sheet.jpg",quality=55)
+          import base64
+          print("CONTACT_SHEET_BASE64",base64.b64encode(open("pilot/contact-sheet.jpg","rb").read()).decode())
+          json.dump(pilot,open("pilot/manifest.json","w"),indent=2)
+          
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pilot-photo-review
+          path: pilot/
