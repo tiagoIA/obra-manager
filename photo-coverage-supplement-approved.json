@@ -1,0 +1,90 @@
+[
+  {
+    "id": "OYN2t4AsYWPvRQiYGriV",
+    "expectedName": "Cat5e/Cat6 Plenum Rated",
+    "expectedSku": "ELEC-088",
+    "sourceUrl": "https://www.ew-ne.com/hwc-2404cmp6-type-cmp-plenum-rated-category-6-cable-23-4p-yellow-313332/p",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/695376/P166050.jpg?v=638966906822230000",
+    "photoSha256": "daed69f76873c3b4044f0448106fba17e7d93422a17e07b66865ad6003abc8aa",
+    "basis": "Category 6 cable family; reference is HWC 2404CMP6YELLOW; confirm plenum listing, length and jacket color",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. Category 6 cable family; reference is HWC 2404CMP6YELLOW; confirm plenum listing, length and jacket color. This photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "jqG3ztDlIEJ9Al51Jj8S",
+    "expectedName": "Cat6 Cable 1000ft",
+    "expectedSku": "ELEC-087",
+    "sourceUrl": "https://www.ew-ne.com/hwc-2404cmp6-type-cmp-plenum-rated-category-6-cable-23-4p-yellow-313332/p",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/695376/P166050.jpg?v=638966906822230000",
+    "photoSha256": "daed69f76873c3b4044f0448106fba17e7d93422a17e07b66865ad6003abc8aa",
+    "basis": "Category 6 cable family; reference is HWC 2404CMP6YELLOW; confirm plenum listing, length and jacket color",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. Category 6 cable family; reference is HWC 2404CMP6YELLOW; confirm plenum listing, length and jacket color. This photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "UofDGNDNYtyenGhjlyPj",
+    "expectedName": "Knockout Seal 1/2\"",
+    "expectedSku": "ELEC-161",
+    "sourceUrl": "https://www.ew-ne.com/knockout-seal-grvn-kos-75-otss-3-4-ko-seal-684416/p",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1626833/0UUMD9F7GQGJ3SWY_PRODUCTIMAGES_DIR100605_SouthwireCo_KOS75OTSS.jpg?v=639258393469170000",
+    "photoSha256": "6f1c6d7886de29d4fccced9acc37231278011ce702d4a2b43b45fff3d4d09992",
+    "basis": "knockout seal family; reference is Garvin KOS-75-OTSS in 3/4-inch trade size, not confirmation of the target 1/2-inch size",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. knockout seal family; reference is Garvin KOS-75-OTSS in 3/4-inch trade size, not confirmation of the target 1/2-inch size. This photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "WZOLhPR3T5WwpIEtz8zU",
+    "expectedName": "Push-In Wire Connector WAGO",
+    "expectedSku": "ELEC-155",
+    "sourceUrl": "https://www.ew-ne.com/wago-2773-404-k000-0002-pushwire-splicing-connector-4-conductor-redbox-of-80-pieces-1285890/p",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1654853/wago__2773404_k0000002__1285890_7703ac541331.jpg?v=639267586397300000",
+    "photoSha256": "291e15a2505f7abea37eeda80e0ea26226021c53cc8f74f6ec53b9db3ec2c34f",
+    "basis": "push-in wire connector family; reference is WAGO 2773-404; confirm conductor count and wire range",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. push-in wire connector family; reference is WAGO 2773-404; confirm conductor count and wire range. This photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "b6ZtJGl2e62KByIENNsJ",
+    "expectedName": "CO Detector Hardwired",
+    "expectedSku": "FIRE-040",
+    "sourceUrl": "https://www.ew-ne.com/gentex-co1209-electrochemical-carbon-monoxide-alarm-9-volt-alkaline-battery-120-volt-ac-205916/p",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/660685/P205916.jpg?v=639229367791130000",
+    "photoSha256": "4558ce48b22b09206ad4e96da0c284a3470523695af6089a28b161b62903ad9e",
+    "basis": "hardwired carbon monoxide alarm family; reference is Gentex CO1209",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. hardwired carbon monoxide alarm family; reference is Gentex CO1209. This photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "wYw3FUELzuscxQ3Ht4qh",
+    "expectedName": "FERRAZ RG36 30-60A R FUSE REDUCER",
+    "expectedSku": "MAT-005",
+    "sourceUrl": "https://www.ew-ne.com/mersen-r636-fuse-reducer-30-600-amp-600-volt-57319/p",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1237968/PN57319.jpg?v=639230812932830000",
+    "photoSha256": "bb2164d7075d63854cf58185f66cb8f3d3a0ae701a6751360e3182869aa85c75",
+    "basis": "Class R fuse reducer family; reference is Mersen R636; the stored RG36 code requires confirmation",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. Class R fuse reducer family; reference is Mersen R636; the stored RG36 code requires confirmation. This photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "xM5u9FaMUxkYOaByJ1IU",
+    "expectedName": "BUR K2A250 1/0 ALCU 2H TERM LU",
+    "expectedSku": "MAT-002",
+    "sourceUrl": "https://www.ew-ne.com/burndy-k2a25u-electro-tin-plated-aluminum-type-k2a-u-universal-terminal-14-1-0-awg-stranded-copper-2-14-1-0-awg-stranded-aluminum-56059/p",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1236109/P56059.jpg?v=639233385337630000",
+    "photoSha256": "f7d41504b8d295c238ce3aaad99465481b97e36b201410c62b447ac5ac7158c8",
+    "basis": "Burndy universal terminal family; reference is K2A25U; stored K2A250 code and hole count require confirmation",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. Burndy universal terminal family; reference is K2A25U; stored K2A250 code and hole count require confirmation. This photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "xkBp4zqH3w49DO3aGYqf",
+    "expectedName": "\"1\"\" in 2H RiGid strap  Clamp",
+    "expectedSku": "ELEC-193",
+    "sourceUrl": "https://www.ew-ne.com/strap-minrlac-hd298-6-in-2h-cond-strap-61189/p",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/771793/MINERAC00002_26_TN_002.jpg?v=639258896294070000",
+    "photoSha256": "7484c7d609e6e5440dd3e057ba90e21070e5f99b1ae8357ef4d520f0cb13f451",
+    "basis": "two-hole EMT/RMC strap family; reference trade size is 6 inches, not confirmation of the target 1-inch size",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. two-hole EMT/RMC strap family; reference trade size is 6 inches, not confirmation of the target 1-inch size. This photo does not identify stock or establish compatibility."
+  }
+]
