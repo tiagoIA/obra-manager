@@ -409,6 +409,26 @@
     ]
   },
   {
+    "id": "guided-v1-data",
+    "name": "Dados / Cat6",
+    "cat": "eletrica",
+    "version": 1,
+    "questions": [
+      "Pontos e percurso; categoria e terminação"
+    ],
+    "items": []
+  },
+  {
+    "id": "guided-v1-solar",
+    "name": "Solar",
+    "cat": "eletrica",
+    "version": 1,
+    "questions": [
+      "Projeto; equipamento e conexões especificados"
+    ],
+    "items": []
+  },
+  {
     "id": "guided-v1-fire",
     "name": "Dispositivos de fire alarm",
     "cat": "fire",
