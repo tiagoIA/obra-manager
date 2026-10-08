@@ -1,5 +1,5 @@
 """Preserve all existing hosting files/config and seed only absent template IDs."""
-import os,json,gzip,hashlib,pathlib,time,requests,runpy
+import os,json,gzip,hashlib,pathlib,time,requests,runpy,concurrent.futures
 from google.oauth2 import service_account
 from google.auth.transport.requests import AuthorizedSession
 from google.cloud import storage
@@ -118,6 +118,16 @@ try:
   assert {d['name']:d.get('fields',{}) for d in baseline_items}=={d['name']:d.get('fields',{}) for d in this_run},'Pre-import '+collection+' changed'
  print('PRE_IMPORT_RECORDS_PRESERVED',len(baseline),'CURRENT_CATALOG',len(current))
  print('EXISTING_RECORDS_PRESERVED',len(originals))
+ receipt=json.loads(pathlib.Path('catalog-receipt.json').read_text())
+ def verify_public_photo(row):
+  name=fire.replace('https://firestore.googleapis.com/v1/','')+'/materials/'+row['id'];photo=current[name]['fields']['photoUrl']['stringValue']
+  r=requests.get(photo,timeout=35);r.raise_for_status()
+  from PIL import Image
+  import io
+  im=Image.open(io.BytesIO(r.content));im.load();assert min(im.size)>=80
+  return True
+ with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool:assert all(pool.map(verify_public_photo,receipt['imported']))
+ print('PUBLIC_CATALOG_PHOTOS_VERIFIED',len(receipt['imported']))
  release=call('POST',site+'/releases',params={'versionName':new},json={'message':'Central materials v4: verified catalog, supplier codes and purchasing PDF'});published=True
  for path in asset_paths:
   for attempt in range(6):
