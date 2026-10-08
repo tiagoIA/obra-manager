@@ -1,4 +1,4 @@
-name: Validate English material lifecycle
+name: Validate status transitions and English purchasing
 on:
   push:
     branches: [feature/lista-guiada-v1]
