@@ -1,0 +1,47 @@
+name: Test central materials v4
+on:
+  push:
+    branches: [feature/lista-guiada-v1]
+    paths: [.github/workflows/test-central.yml]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm install --no-save playwright
+      - name: Guided lists and central catalog regression
+        run: |
+          GUIDED_BROWSER_PATH=$(command -v google-chrome) node tests/guided-shopping.cjs
+          GUIDED_BROWSER_PATH=$(command -v google-chrome) node tests/central-catalog.cjs
+      - name: Inspect mobile and print layouts
+        run: |
+          python3 - <<'PY'
+          import base64
+          for file in ['central-mobile.png','central-pdf.png']:
+            print('VISUAL_REVIEW',file,base64.b64encode(open(file,'rb').read()).decode())
+          PY
+      - name: Check entire app and release scripts
+        run: |
+          python3 - <<'PY'
+          import re,pathlib,subprocess,py_compile
+          s=pathlib.Path('public/index.html').read_text()
+          for i,c in enumerate(re.findall(r'<script(?:[^>]*)>([\s\S]*?)</script>',s)):
+            p=pathlib.Path(f'check-{i}.mjs');p.write_text(c);subprocess.run(['node','--check',str(p)],check=True)
+          for p in pathlib.Path('public').glob('*.js'):subprocess.run(['node','--check',str(p)],check=True)
+          for p in pathlib.Path('scripts').glob('*.py'):py_compile.compile(str(p),doraise=True)
+          print('ALL_SYNTAX_PASS')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: central-catalog-reviewed-ui
+          path: |
+            central-mobile.png
+            central-pdf.png
+            central-shopping-review.pdf
+            guided-mobile.png
