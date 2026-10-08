@@ -1,5 +1,5 @@
 """Prepare verified public catalog data; preserve IDs, stock and existing purchase links."""
-import json,pathlib,re,hashlib,io,html,uuid,concurrent.futures,collections
+import os,json,pathlib,re,hashlib,io,html,uuid,concurrent.futures,collections
 from urllib.parse import quote,urlparse
 import requests
 from PIL import Image
@@ -33,7 +33,7 @@ def photograph(p):
  assert hashlib.sha256(raw).hexdigest()==p['photoSha256'],'Photo changed since visual review; abort rather than import a new image'
  return raw
 def prepare(s,fire,bucket,folder,material_docs,encode):
- products=json.loads(pathlib.Path('catalog-products-v1.json').read_text());assert 100<=len(products)<=200
+ products=json.loads(pathlib.Path(os.environ.get('CATALOG_MANIFEST','catalog-products-v1.json')).read_text());assert 1<=len(products)<=200
  # Validate every image before any database write or hosting release.
  with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool:photos=list(pool.map(photograph,products))
  originals={d['name']:d for d in material_docs};records={d['name']:{k:decode(v) for k,v in d.get('fields',{}).items()} for d in material_docs};changed={};new=set();imported=[];skipped=[]
@@ -72,7 +72,7 @@ def prepare(s,fire,bucket,folder,material_docs,encode):
    assert name not in records,'Deterministic ID collision'
    sku='MAT-'+ident[:12].upper();assert not any(x.get('sku')==sku for x in records.values())
    old={k:v for k,v in p.items() if k not in ['source','photoSha256','photoSourceUrl','reviewNote']}
-   old.update({'sku':sku,'isTask':False,'qty':0,'scope':'RC','description':'Referência de catálogo público. Confirmar aplicação, modelo e unidade antes da compra.','importBatch':folder})
+   old.update({'sku':sku,'isTask':False,'qty':0,'scope':'RC','description':p.get('description') or 'Public supplier catalog reference. Confirm application, model and order unit before purchasing.','importBatch':folder})
    records[name]=old;new.add(name);changed[name]=set(old)
   if not old.get('photoUrl'):
    asset='materials/'+name.split('/')[-1]+'/catalog-'+p['photoSha256'][:12]+'.jpg';blob=bucket.blob(asset);token=str(uuid.uuid4());blob.metadata={'firebaseStorageDownloadTokens':token,'sourceUrl':p['photoSourceUrl'],'catalogBatch':folder}
