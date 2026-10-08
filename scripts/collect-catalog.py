@@ -23,7 +23,7 @@ for query,sub,uses in QUERIES:
    cat='fire' if uses==['fire'] else 'eletrica';family=sub if cat!='fire' else ('detectors' if sub=='detectors' else 'wiring')
    facts={k:v(k) for k in ['Amperage Rating','Voltage Rating','Color','Material','Trade Size','Conductor Size','Number Of Poles','Wire Size','Size','Length'] if p.get(k)}
    link=p.get('link') or 'https://www.ew-ne.com/'+p['linkText']+'/p';code=str(v('Eclipse ID',p['productId']))
-   row={'name':name,'brand':brand,'manufacturerPart':part,'upc':str(it.get('ean') or ''),'cat':cat,'subcategory':family,'family':sub,'unit':unit,'specs':'; '.join(k+': '+str(val) for k,val in facts.items()),'technicalAttributes':facts,'guidedUses':uses,'recordType':'product','source':'Electrical Wholesalers NE','sourceUrl':link,'sourceVerifiedAt':'2026-10-08','photoSourceUrl':image,'suppliers':[{'name':'Electrical Wholesalers NE','code':code,'url':link,'unit':unit,'verifiedAt':'2026-10-08'}]}
+   row={'name':name,'brand':brand,'manufacturerPart':part,'upc':(str(it.get('ean') or '') if re.fullmatch(r'\d{12,14}',str(it.get('ean') or '')) else ''),'cat':cat,'subcategory':family,'family':sub,'unit':unit,'specs':'; '.join(k+': '+str(val) for k,val in facts.items()),'technicalAttributes':facts,'guidedUses':uses,'recordType':'product','source':'Electrical Wholesalers NE','sourceUrl':link,'sourceVerifiedAt':'2026-10-08','photoSourceUrl':image,'suppliers':[{'name':'Electrical Wholesalers NE','code':code,'url':link,'unit':unit,'verifiedAt':'2026-10-08'}]}
    rows.append(row);seen.add(p['productId']);added+=1
    if added>=6:break
   print('FEED_QUERY',query,'selected',added)
