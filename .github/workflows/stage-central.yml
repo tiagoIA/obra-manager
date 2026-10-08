@@ -1,4 +1,4 @@
-name: Stage electrical catalog expansion
+name: Stage electrical catalog expansion v2
 on:
   push:
     branches: [feature/lista-guiada-v1]
