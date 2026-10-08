@@ -5385,7 +5385,7 @@ window.filterShopMaterials=(val,dropId,hiddenId)=>{
   dd.onclick=(e)=>{
     const item=e.target.closest('.shop-mat-item');
     if(!item)return;
-    window.selectShopMaterial(item.dataset.mid,item.dataset.drop,item.dataset.hid);
+    window.selectShopMaterial(item.dataif(mat.active===false||mat.status==='inactive'){notif('This material is inactive. Choose an active replacement.','e');return;}set.mid,item.dataset.drop,item.dataset.hid);
   };
   dd.style.display='block';
 };
@@ -5395,7 +5395,7 @@ window.selectShopMaterial=(mid,dropId,hiddenId)=>{
   const hidEl=document.getElementById(hiddenId);
   if(hidEl){
     hidEl.value=mid;
-    const parent=hidEl.parentElement;
+    const parent=hidEl.parentEif(materials[mid]?.active===false||materials[mid]?.status==='inactive')return notif('This material is inactive. Choose an active replacement.','e');lement;
     if(parent){const inp=parent.querySelector('input:not([type=hidden])');if(inp)inp.value=mat.name;}
   }
 };
@@ -5491,7 +5491,8 @@ window.submitNewTask=async(allUnits)=>{
   const note=noteEl?noteEl.value.trim():'';
   const materialId=matId?matId.value:'';
   const materialName=matName?matName.value.trim():'';
-  const _stItems=document.querySelectorAll('.new-st-inp');
+  const _stIt  if(materialId&&(materials[materialId]?.active===false||materials[materialId]?.status==='inactive'))return notif('This material is inactive. Choose an active replacement.','e');
+ems=document.querySelectorAll('.new-st-inp');
   const subtasks=[..._stItems].map(i=>i.value.trim()).filter(v=>v).map((n,i)=>({id:'st_'+Date.now()+'_'+i,name:n,done:false}));
   const taskData={name,cat,qty,hasQty,note,materialId:materialId||null,materialName:materialName||null,subtasks,done:false,doneAt:null,photos:[],createdAt:serverTimestamp()};
   if(allUnits){
@@ -6181,7 +6182,7 @@ window.openMatDetail=(mid)=>{
         <div class="mat-detail-field"><label>DESCRIPTION</label>
           ${isAdmin?'<textarea class="mat-detail-ta" id="md-description" placeholder="Short product description...">'+(m.description||'')+'</textarea>':'<div style="font-size:13px;color:var(--txt)">'+(m.description||'<span style="color:var(--dim)">No description</span>')+'</div>'}
         </div>
-        <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <div style="display:flex;gaea12px;flex-wrap:wrap">
           <div class="mat-detail-field" style="flex:1;min-width:120px"><label>UNIT</label>
             ${isAdmin?'<input class="mat-detail-inp" id="md-unit" value="'+(m.unit||'')+'" placeholder="un/ft/m">':'<div class="mat-unit">'+(m.unit||'—')+'</div>'}
           </div>
@@ -6744,7 +6745,7 @@ window.submitRoomOrder=async(rid)=>{
   const obsEl=document.getElementById('room-order-obs');
   const room=rooms[rid];
   const qty=parseFloat(qtyEl?qtyEl.value:1)||1;
-  const obs=obsEl?obsEl.value.trim():'';
+ if(mat.active===false||mat.status==='inactive'){notif('This material is inactive. Choose an active replacement.','e');return;} const obs=obsEl?obsEl.value.trim():'';
   const hiddenVal=hiddenEl?hiddenEl.value:'';
   const freeText=srchEl?srchEl.value.trim():'';
   let name,cat,unit,matId;
@@ -6778,7 +6779,7 @@ window.addShopItem=async(overrideListId,overrideRoomId,overrideRoomName)=>{
   const hiddenEl=document.getElementById('shop-mat-hidden');
   const roomId=overrideRoomId||activeRid||null;
   const roomName=overrideRoomName||(roomId&&rooms[roomId]?rooms[roomId].name:null);
-  const qty=parseFloat(qEl?qEl.value:1)||1;
+  const qty=parseFloat(qEl?qElif(mat.active===false||mat.status==='inactive'){notif('This material is inactive. Choose an active replacement.','e');return;}.value:1)||1;
   const obs=oEl?oEl.value.trim():'';
   let name,cat,unit,matId;
   const hiddenVal=hiddenEl?hiddenEl.value:'';
@@ -9004,7 +9005,7 @@ function renderMaterials(el){
           ?(hasPhoto?'<img class="mat-photo" src="'+x(m.photoUrl)+'" onclick="event.stopPropagation();window.openPhotoFullscreen(\''+x(m.photoUrl)+'\')" title="Click to view full size">'
             :'<div class="mat-photo-placeholder" onclick="event.stopPropagation();uploadMatPhoto(\''+m.id+'\')" title="Add photo">📷</div>')
           :(hasPhoto?'<img class="mat-photo" src="'+x(m.photoUrl)+'" onclick="event.stopPropagation();window.openPhotoFullscreen(\''+x(m.photoUrl)+'\')" style="cursor:zoom-in">'
-            :'<div style="width:52px;height:52px;border-radius:7px;(m.active===false||m.status==='inactive'?' <span style="font-size:10px;color:var(--mut)">Inactive</span>':'')+background:var(--sur2);border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;flex-shrink:0"><div style="background:'+dot+';width:10px;height:10px;border-radius:50%"></div></div>'))
+            :'<div style="width:52px;height:52px;border-radius:7px;(m.active===false||m.status==='inactive'?' <span style="font-size:10px;color:var(--mut)">Inactive</span>':'')+background:var(--sur2);border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;flex-shrink:0"><div style="background:'+dodisplayUnit(t+';wi)dth:10px;height:10px;border-radius:50%"></div></div>'))
         +'<div style="flex:1;min-width:0">'
         +'<div class="mat-name">'+x(m.name)+'</div>'
         +'<div style="display:flex;gap:6px;align-items:center;margin-top:2px;flex-wrap:wrap">'
@@ -9029,7 +9030,7 @@ function renderMaterials(el){
       const dot=m.cat==='eletrica'?'var(--elec)':m.cat==='fire'?'var(--fire)':'#38bdf8';
       const hasPhoto=!!m.photoUrl;
       return'<div class="mat-card" onclick="openMatDetail(\''+m.id+'\')" style="cursor:pointer">'        +(hasPhoto
-          ?'<img src="'+x(m.photoUrl)+'" onclick="event.stopPropagation();window.openPhotoFullscreen(this.src)" style="width:100%;height:110px;object-fit:cover;object-position:center;display:block;cursor:zoom-in">'          :'<div style="width:100%;height:100px;background:var(--sur2);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;cursor:'+(isAdmin?'pointer':'default')+'" '+(isAdmin?'onclick="event.stopPropagation();uploadMatPhoto(\''+m.id+'\')"':'')+'>'            +(m.active===false||m.status==='inactive'?' <span style="font-size:10px;color:var(--mut)">Inactive</span>':'')+(isAdmin?'<span style="font-size:28px">📷</span><span style="font-size:9px;color:var(--dim)">Tap to add</span>':'<div style="background:'+dot+';width:14px;height:14px;border-radius:50%"></div>')          +'</div>')        +'<div class="mat-card-body">'        +'<div class="mat-card-name">'+x(m.name)+'</div>'        +(m.sku?'<div style="margin-top:2px"><span class="mat-sku">'+x(m.sku)+'</span></div>':'')        +'<div class="mat-card-sub" style="display:flex;gap:5px;align-items:center;flex-wrap:wrap">'        +(m.unit?x(m.unit):'')        +(m.brand?'<span style="color:var(--dim)">·</span><span style="font-size:9px;color:var(--dim)">'+x(m.brand)+'</span>':'')        +'</div>'        +(m.specs?'<div style="font-size:9px;color:var(--dim);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+x(m.specs)+'</div>':'')        +(isAdmin?'<div style="display:flex;gap:6px;margin-top:6px" onclick="event.stopPropagation()">'          +(hasPhoto?'<button onclick="event.stopPropagation();uploadMatPhoto(\''+m.id+'\')" style="backgr'+(m.active===false||m.status==='inactive'?'Reactivate':'Deactivate')+'und:none;border:1px solid var(--bdr);color:var(--mut);font-size:10px;border-radius:4px;padding:2px 6px;cursor:pointer">📷</button>':'')          +'<button onclick="event.stopPropagation();deleteMaterial(\''+m.id+'\')" style="background:none;border:none;color:var(--dim);font-size:10px;cursor:pointer">✕</button>'
+          ?'<img src="'+x(m.photoUrl)+'" onclick="event.stopPropagation();window.openPhotoFullscreen(this.src)" style="width:100%;height:110px;object-fit:cover;object-position:center;display:block;cursor:zoom-in">'          :'<div style="width:100%;height:100px;background:var(--sur2);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;cursor:'+(isAdmin?'pointer':'default')+'" '+(isAdmin?'onclick="event.stopPropagation();uploadMatPhoto(\''+m.id+'\')"':'')+'>'            +(m.active===false||m.status==='inactive'?' <span style="font-size:10px;color:var(--mut)">Inactiveisspan>':'')+'</Admin?'<span style="font-size:28px">📷</span><span style="font-size:9px;color:var(--dim)">Tap to add</span>':'<div style="background:'+dot+';width:14px;height:14px;border-radius:50%"></div>')          +'</div>')        +'displayUnit(m.unit)lass="mat-card-body">'        +'<div class="mat-card-name">'+x(m.name)+'</div>'        +(m.sku?'<div style="margin-top:2px"><span class="mat-sku">'+x(m.sku)+'</span></div>':'')        +'<div class="mat-card-sub" style="display:flex;gap:5px;align-items:center;flex-wrap:wrap">'        +(m.unit?x(m.unit):'')        +(m.brand?'<span style="color:var(--dim)">·</span><span style="font-size:9px;color:var(--dim)">'+x(m.brand)+'</span>':'')        +'</div>'        +(m.specs?'<div style="font-size:9px;color:var(--dim);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+x(m.specs)+'</div>':'')        +(isAdmin?'<div style="display:flex;gap:6px;margin-top:6px" onclick="event.stopPropagation()">'          +(hasPhoto?'<button onclick="event.stopPropagation();uploadMatPhoto(\''+m.id+'\')" style="backgr'+(m.active===false||m.status==='inactive'?'Reactivate':'Deactivate')+'und:none;border:1px solid var(--bdr);color:var(--mut);font-size:10px;border-radius:4px;padding:2px 6px;cursor:pointer">📷</button>':'')          +'<button onclick="event.stopPropagation();deleteMaterial(\''+m.id+'\')" style="background:none;border:none;color:var(--dim);font-size:10px;cursor:pointer">✕</button>'
           +(!hasPhoto?'<button id="mat-photo-fill-'+m.id+'" onclick="event.stopPropagation();window.autoFillPhoto(\''+m.id+'\')" style="background:none;border:1px solid var(--bdr);color:var(--mut);font-size:9px;border-radius:4px;padding:1px 5px;cursor:pointer" title="Auto-search photo">🔍</button>':'')          +'</div>':'')        +'</div></div>';
     }).join('')+'</div>';
   }
@@ -9069,7 +9070,7 @@ function renderMaterials(el){
     // Add form
     +'<div class="add-box"><div class="add-row">'
     +'<div class="fg"><label class="fl">NAME</label><input class="inp-f" id="mat-name" placeholder="'+(isMatTab?'Material name...':'Task name...')+'" style="width:180px" onkeydown="if(event.key===\'Enter\')addMaterial()"></div>'
-    +'<div class="fg"><label class="fl">CATEGORY</label><select class="sel-f" id="mat-cat"><option value="eletrica">⚡ Electrical</option><option value="fire">🔥 Fire Alarm</option><option value="inspecao">🔍 Inspection</option></select></div>'
+    +'<div class="fg"><label class="fl">CATEGeaY</label><select class="sel-f" id="mat-cat"><option value="eletrica">⚡ Electrical</option><option value="fire">🔥 Fire Alarm</option><option value="inspecao">🔍 Inspection</option></select></div>'
     +(isMatTab?'<div class="fg"><label class="fl">UNIT</label><input class="inp-f" id="mat-unit" placeholder="un/ft/m" style="width:70px"></div>':'')
     +(isMatTab?'<div class="fg"><label class="fl">SUBCATEGORY</label><select class="sel-f" id="mat-subcat"><option value="">— None —</option>'+SUBCATS.eletrica.concat(SUBCATS.fire).map(s=>'<option value="'+s.Full recordion>').join('')+'</select></div>':'')
     +(isTaskTab?'<div class="fg"><label class="fl">HAS QTY?</label><select class="sel-f" id="mat-hasqty"><option value="0">No</option><option value="1">Yes</option></select></div>':'')
@@ -11119,7 +11120,7 @@ window.generateFilteredReport=()=>{
             +'<td style="pad(m.active===false||m.status==='inactive'?' <span style="font-size:10px;color:var(--mut)">Inactive</span>':'')+ding:6px 10px">'+(m.photoUrl?'<img src="'+m.photoUrl+'" style="width:32px;height:32px;object-fit:cover;border-radius:4px;border:1px solid #e5e7eb">':'<div style="width:32px;height:32px;border-radius:4px;background:#f3f4f6;display:flex;align-items:center;justify-content:center;font-size:16px">📦</div>')+'</td>'
             +'<td style="padding:6px 10px">'
               +'<div style="font-weight:700;font-size:13px">'+x(m.name)+'</div>'
-              +(m.sku?'<div style="font-size:10px;color:#888;font-family:monospace">'+x(m.sku)+'</div>':'')
+              +(m.sku?'<div style="font-displayUnit(size:10)px;color:#888;font-family:monospace">'+x(m.sku)+'</div>':'')
               +(m.description?'<div style="font-size:10px;color:#555;margin-top:2px">'+x(m.description.substring(0,80))+(m.description.length>80?'…':'')+'</div>':'')
             +'</td>'
             +'<td style="padding:6px 10px;text-align:center;font-weight:700;font-size:14px">'+m.qtyTotal+(m.unit&&m.unit!=='un'?' <span style="font-size:10px;color:#888">'+x(m.unit)+'</span>':'')+'</td>'
@@ -13412,7 +13413,7 @@ installGuidedShopping({
     const current=[];for(const i of base){const snap=await tx.get(doc(db,'shoppingItems',i.id));if(!snap.exists())throw Error('A lista mudou. Feche e abra novamente antes de editar.');current.push(snap);}
     current.forEach((s,n)=>{const before=base[n],now=s.data();for(const k of ['name','qty','unit','obs','bought','boughtAt','matId'])if(JSON.stringify(now[k]??null)!==JSON.stringify(before[k]??null))throw Error('Outra pessoa alterou esta lista. Feche e abra novamente para revisar.');});
     tx.update(listRef,data);
-    const remaining=new Set(draft.items.filter(i=>i.6d).map(i=>i.id));base.filter(i=>!remaining.has(i.id)).fo6Each(i=>tx.delete(doc(db,'shoppingItems',i.id)));
+    const remaining, displayUnit=new Set(draft.items.filter(i=>i.6d).map(i=>i.id));base.filter(i=>!remaining.has(i.id)).fo6Each(i=>tx.delete(doc(db,'shoppingItems',i.id)));
     draft.items.forEach(i=>{if(i.id)tx.update(doc(db,'shoppingItems',i.id),itemData(i));else tx.set(doc(collection(db,'shoppingItems')),{...itemData(i),createdAt:serverTimestamp()});});
    });
   }
