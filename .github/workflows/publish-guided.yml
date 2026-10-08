@@ -1,0 +1,35 @@
+name: Publish guided shopping v1
+on:
+  push:
+    branches: [feature/lista-guiada-v1]
+    paths: [.github/workflows/publish-guided.yml]
+permissions:
+  contents: read
+concurrency:
+  group: obra-manager-guided-release
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm install --no-save playwright
+      - run: npx playwright install --with-deps chromium
+      - run: node tests/guided-shopping.cjs
+      - name: Syntax check all application scripts
+        run: |
+          python3 - <<'PY'
+          import re,pathlib
+          s=pathlib.Path("public/index.html").read_text()
+          for i,c in enumerate(re.findall(r'<script(?:[^>]*)>([\s\S]*?)</script>',s)):pathlib.Path(f"check-{i}.mjs").write_text(c)
+          PY
+          for f in check-*.mjs; do node --check "$f"; done
+      - run: pip install google-auth google-cloud-storage requests
+      - name: Preserve backup, seed templates and publish
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: python scripts/deploy-guided.py
