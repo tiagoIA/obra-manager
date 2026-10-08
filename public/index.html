@@ -13394,6 +13394,7 @@ window._renderRemindersList=function(){
 // Guided shopping integration: uses existing collections and authentication.
 import {writeBatch, runTransaction} from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
 import {installGuidedShopping} from '/guided-shopping-v1.js';
+onAuthStateChanged(auth,user=>{if(!user)document.getElementById('guided-shopping-dialog')?.remove();});
 installGuidedShopping({
  userId:()=>auth.currentUser?.uid||null,
  projectId:()=>activePid,
@@ -13421,6 +13422,7 @@ installGuidedShopping({
    const base=draft.baseItems||[];
    await runTransaction(db,async tx=>{
     const list=await tx.get(listRef);if(!list.exists())throw Error('Esta lista foi removida.');
+    if(draft.baseList)for(const k of ['name','note','projectId','guidedAnswers','guidedServices'])if(JSON.stringify(list.data()[k]??null)!==JSON.stringify(draft.baseList[k]??null))throw Error('Outra pessoa alterou os dados da lista. Feche e abra novamente.');
     const current=[];for(const i of base){const snap=await tx.get(doc(db,'shoppingItems',i.id));if(!snap.exists())throw Error('A lista mudou. Feche e abra novamente antes de editar.');current.push(snap);}
     current.forEach((s,n)=>{const before=base[n],now=s.data();for(const k of ['name','qty','unit','obs','bought','boughtAt','matId'])if(JSON.stringify(now[k]??null)!==JSON.stringify(before[k]??null))throw Error('Outra pessoa alterou esta lista. Feche e abra novamente para revisar.');});
     tx.update(listRef,data);
