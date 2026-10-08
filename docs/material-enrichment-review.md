@@ -40,3 +40,37 @@ Backup dos materiais e coleções vinculadas: `backups/material-enrichment/37851
 Testes: identidade exata, rejeição de conflito de fabricante/modelo, preservação de estoque e metadados do fornecedor, prevenção de novas duplicatas, edição de duplicatas antigas e validação do formato de UPC.
 
 Publicação verificada: somente os arquivos de validação da biblioteca e cache foram atualizados; 74 arquivos do site preservados, sem gravações adicionais no Firestore. Testes de edição, busca nas tasks/listas, PDF e layout móvel passaram. Backup da interface: `backups/catalog-guards/37852263957/`.
+
+## Segundo lote — aplicado e verificado
+
+Execução `37855143847`: 21 cadastros existentes atualizados, uma foto nova, 495 IDs preservados. Total atual: 304 com foto e 191 sem foto. Estoques, códigos internos, fornecedores, imagens anteriores e campos fora da atualização preservados. Nenhum produto novo criado.
+
+| Código interno | Material/modelo | Atualização |
+|---|---|---|
+| 1049108 | WW-732-BL | Marca, modelo, UPC e especificações |
+| 1049103 | WW-732-BN | Marca, modelo, UPC e especificações |
+| 1049107 | WW-732-GN | Marca, modelo, UPC e especificações |
+| 1049110 | WW-732-GY | Marca, modelo, UPC e especificações |
+| 1049105 | WW-732-OR | Marca, modelo, UPC e especificações |
+| 1049104 | WW-732-RD | Marca, modelo, UPC e especificações |
+| 1049109 | WW-732-VT | Marca, modelo, UPC e especificações |
+| 1049112 | WW-732-WT | Marca, modelo, UPC e especificações |
+| 1049106 | WW-732-YL | Marca, modelo, UPC e especificações |
+| 1049098 | WW-716-BL | Marca, modelo, UPC e especificações |
+| 1049096 | WW-716-BN | Marca, modelo, UPC e especificações |
+| 1030075 | WW-716-GN | Marca, modelo, UPC e especificações |
+| 1036160 | WW-716-GY | Marca, modelo, UPC e especificações |
+| 1030096 | WW-716-OR | Marca, modelo, UPC e especificações |
+| 1033236 | WW-716-RD | Marca, modelo, UPC e especificações |
+| 1049099 | WW-716-VT | Marca, modelo, UPC e especificações |
+| 1028022 | WW-716-WT | Marca, modelo, UPC e especificações |
+| 1049097 | WW-716-YL | Marca, modelo, UPC e especificações |
+| MAT-009 | 300HS | Marca, modelo e especificações; UPC pendente |
+| MAT-010 | 400HS | Marca, modelo e especificações; UPC pendente |
+| MAT-008 | Siemens QSPD2A035B | Foto exata, rótulo conferido no PDF Siemens |
+
+Fontes do fabricante registradas individualmente em `material-enrichment-v2.json` e em `catalogProvenance`, preservando a URL e o código GCE. A imagem Siemens foi extraída do PDF público do fabricante hospedado pela City Electric Supply; hashes do documento e da imagem conferidos antes da gravação.
+
+Backup completo das coleções vinculadas: `backups/material-enrichment/37855143847/`. Gravação atômica com condição de versão; comparação dos IDs e campos protegidos após a gravação passou. Testes de identidade, conflito, preservação de estoque/fotos e metadados de fornecedores passaram. Nenhuma alteração de Hosting foi necessária: dados e foto já estão na biblioteca usada pelo site.
+
+Pendência adicional: EWDT-8 tem cadastro de 55 yd e referência atual do fabricante com 60 yd. O UPC e a medida não foram preenchidos sem confirmar a embalagem. Austin 400HS ainda sem foto exata obtida; materiais genéricos e modelos possivelmente digitados incorretamente continuam no levantamento de identificação.
