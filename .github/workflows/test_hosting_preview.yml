@@ -1,0 +1,32 @@
+name: Test Firebase preview publication
+on:
+  push:
+    branches:
+      - setup/hosting-preview-test-2026-10-08
+    paths:
+      - .github/workflows/test_hosting_preview.yml
+permissions:
+  contents: read
+concurrency:
+  group: hosting-preview-setup-test
+  cancel-in-progress: false
+jobs:
+  publish-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install google-auth requests
+      - run: python scripts/test_hosting_preview.py
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: hosting-publication-test-${{ github.run_id }}
+          path: hosting-test/
+          if-no-files-found: ignore
+          retention-days: 90
