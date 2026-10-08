@@ -1,0 +1,44 @@
+name: Correct Arlington project name
+on:
+  push:
+    branches:
+      - fix/arlington-project-name-2026-10-08
+    paths:
+      - .github/workflows/rename_arlington_project.yml
+permissions:
+  contents: read
+concurrency:
+  group: arlington-project-name-correction
+  cancel-in-progress: false
+jobs:
+  rename:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install google-auth requests
+      - name: Read project and prepare backup
+        run: python scripts/rename_arlington_project.py backup
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      - name: Preserve original record before modification
+        uses: actions/upload-artifact@v4
+        with:
+          name: arlington-project-before-${{ github.run_id }}
+          path: backup/arlington-project-before.json
+          if-no-files-found: error
+          retention-days: 90
+      - name: Correct name and verify
+        run: python scripts/rename_arlington_project.py apply
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      - name: Preserve verified result
+        uses: actions/upload-artifact@v4
+        with:
+          name: arlington-project-after-${{ github.run_id }}
+          path: backup/arlington-project-after.json
+          if-no-files-found: error
+          retention-days: 90
