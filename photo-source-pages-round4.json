@@ -1,0 +1,57 @@
+[
+  {
+    "key": "anchor",
+    "part": "14H114",
+    "url": "https://lhdottie.com/concrete-anchoring-system-hex-head/14h114"
+  },
+  {
+    "key": "beam",
+    "part": "AX-100PLUS",
+    "url": "https://optexamerica.com/products/intrusion-detection/ax-100plus"
+  },
+  {
+    "key": "rfid",
+    "part": "1326",
+    "url": "https://www.hidglobal.com/products/1326"
+  },
+  {
+    "key": "exit",
+    "part": "EEB",
+    "url": "https://www.securitron.com/content/dam/assa-abloy/americas/ems/securitron/document/AADSS1058034.pdf",
+    "pdf": true
+  },
+  {
+    "key": "intercom",
+    "part": "GT-DMB",
+    "url": "https://www.aiphone.com/wp-content/uploads/GT-DMB-N-Spec-1.pdf",
+    "pdf": true
+  },
+  {
+    "key": "speaker",
+    "part": "CL2",
+    "url": "https://assets.southwire.com/ImConvServlet/imconv/78962edef23f10dff4061e369b4e2397f0a5f855/origin?assetDescr=SPEC+70416",
+    "pdf": true
+  },
+  {
+    "key": "thhn",
+    "part": "THHN",
+    "url": "https://www.southwire.com/wire-cable/building-wire/thhn-thwn-copper-silicone-free/p/SPEC10003"
+  },
+  {
+    "key": "handycover",
+    "part": "860",
+    "url": "https://www.hubbell.com/hubbell/en/products/4-in-x-2-in-handy-box-cover-blank/p/19467176"
+  },
+  {
+    "key": "dvr",
+    "part": "XVR5108",
+    "url": "https://www.dahuasecurity.com/asset/upload/download/DHI-XVR5108HS-4KL_Datasheet_20170824.pdf",
+    "pdf": true
+  },
+  {
+    "key": "dmp",
+    "part": "XR150",
+    "url": "https://www.dmp.com/assets/LT-1286.pdf",
+    "pdf": true
+  }
+]
