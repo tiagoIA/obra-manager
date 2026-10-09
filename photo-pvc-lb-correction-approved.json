@@ -1,0 +1,15 @@
+[
+  {
+    "sourceUrl": "https://cdn.lsicloud.net/echoginc/Resources/ABB-Carlon_01433_1_2_SPEC.pdf",
+    "photoSourceUrl": "https://cdn.lsicloud.net/echoginc/Resources/ABB-Carlon_01433_1_2_SPEC.pdf",
+    "photoDocumentSha256": "a38b9ecaefb331b112b4745590f1cb3690ec88e34977c08bf2566944d4179344",
+    "photoImageXref": 15,
+    "photoSha256": "b3eb0b56495d1b41d61b5b35ac4de06a2a64a903fe8bfdb412d6dd937076613f",
+    "id": "tqs8nV8vAxA2mVPgH1tW",
+    "expectedName": "1/2in pvc LB",
+    "expectedSku": "ELEC-040",
+    "replaceExistingPhotoSha256": "6b208f6209ec01e775325bcdcf5f1d31edd85190b2ef0a051a1ca1bc1372ed74",
+    "basis": "Visually reviewed manufacturer specification photograph of Carlon E986D PVC Type LB conduit body, replacing an incorrect metal LB image.",
+    "photoReferenceNote": "Family reference — Carlon E986D 1/2-inch PVC Type LB conduit body shown in manufacturer specification. Confirm exact manufacturer, model and included cover/gasket before purchase."
+  }
+]
