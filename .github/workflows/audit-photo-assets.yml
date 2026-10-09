@@ -24,3 +24,5 @@ jobs:
 # Final full asset validation after PVC and THHN recovery.
 
 # Validate final 462 active photos after strap update.
+
+# Validate all active photo assets after wrong-family corrections and cable annotation.
