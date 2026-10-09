@@ -1,0 +1,23 @@
+[
+  {
+    "key": "pvc-pdf",
+    "part": "Conduit",
+    "url": "https://ipexna.com/wp-content/uploads/2023/08/Data-Sheet-IPEX-Sch-40_80-Bell-End-Conduit.pdf",
+    "pdf": true
+  },
+  {
+    "key": "strap",
+    "part": "E977L",
+    "url": "https://carlonsales.com/supportstrapsclampsparts.php"
+  },
+  {
+    "key": "intercom",
+    "part": "IXGS-TE",
+    "url": "https://www.aiphone.com/products/ixgs-te/"
+  },
+  {
+    "key": "thhn",
+    "part": "THHN",
+    "url": "https://www.cerrowire.com/products/resources/tables-calculators/thhn-wire/"
+  }
+]
