@@ -13314,18 +13314,31 @@ installNotePhotos({context:()=>({rid:activeRid,pid:activePid}),compress:compress
 onAuthStateChanged(auth,user=>{if(!user)window.notePhotos.clear();});
 
 // Explicit project / unit scope and before-condition record.
-import {installProjectBrief} from '/project-brief.js?v=2';
+import {installProjectBrief} from '/project-brief.js?v=3';
 window.openCurrentBrief=()=>{if(!activePid)return notif('Select a project first.','e');window.projectBrief.open(activeRid&&rooms[activeRid]?'rooms':'projects',activeRid&&rooms[activeRid]?activeRid:activePid);};
 onAuthStateChanged(auth,user=>{if(!user)window.projectBrief?.close();});
 installProjectBrief({
  record:(kind,id)=>kind==='rooms'?{...rooms[id],initialObservationPhotos:Object.values(roomNotesList).filter(n=>n.roomId===id&&n.phase==='before-installation').flatMap(notePhotoRows)}:projects[id],notify:notif,
- save:async(kind,id,draft,files,original)=>{
+ save:async(kind,id,draft,files,original,mediaFiles=[],mediaPreviews=[])=>{
   if(!auth.currentUser)throw Error('Sign in again.');
   if(!['rooms','projects'].includes(kind))throw Error('Invalid scope target.');
-  const uploaded=[];
-  for(const file of files){const path=ref(storage,'initial-conditions/'+kind+'/'+id+'/'+crypto.randomUUID());await uploadBytes(path,file,{contentType:file.type});uploaded.push({url:await getDownloadURL(path),name:file.name,addedAt:new Date().toISOString(),source:'site-photo'});}
-  const target=doc(db,kind,id);
-  await runTransaction(db,async tx=>{const snap=await tx.get(target);if(!snap.exists())throw Error('This project or unit was removed.');const current=snap.data().scopeBrief||{};const comparable=value=>JSON.stringify({before:value.before||'',workScope:value.workScope||'',observations:value.observations||'',photos:value.photos||[]});if(comparable(current)!==comparable(original))throw Error('Another person changed the scope. Close and reopen to review.');tx.update(target,{scopeBrief:{...draft,before:draft.before.trim(),workScope:draft.workScope.trim(),photos:[...(draft.photos||[]),...uploaded],captureStatus:uploaded.length||(draft.photos||[]).length||snap.data().photos?.before?'documented':'before-photos-needed',updatedAt:serverTimestamp(),updatedBy:auth.currentUser.uid}});});
+  const uploaded=[],attachments=[],paths=[];
+  try{
+   for(const [n,file] of [...files,...mediaFiles].entries()){
+    const path='initial-conditions/'+kind+'/'+id+'/'+crypto.randomUUID(),target=ref(storage,path);paths.push(path);
+    await uploadBytes(target,file,{contentType:file.type});
+    const row={url:await getDownloadURL(target),name:file.name,path,addedAt:new Date().toISOString(),source:'site-capture'};
+    if(n<files.length)uploaded.push(row);else attachments.push({...row,type:file.type.startsWith('video/')?'video':'audio',mime:file.type,transcript:mediaPreviews[n-files.length]?.transcript||''});
+   }
+   const target=doc(db,kind,id);
+   await runTransaction(db,async tx=>{
+    const snap=await tx.get(target);if(!snap.exists())throw Error('This project or unit was removed.');
+    const current=snap.data().scopeBrief||{};
+    const comparable=value=>JSON.stringify({before:value.before||'',workScope:value.workScope||'',observations:value.observations||'',initialAnalysis:value.initialAnalysis||'',attachments:value.attachments||[],photos:value.photos||[]});
+    if(comparable(current)!==comparable(original))throw Error('Another person changed the scope. Close and reopen to review.');
+    tx.update(target,{scopeBrief:{...draft,initialAnalysis:(draft.initialAnalysis||'').trim(),before:(draft.before||'').trim(),workScope:(draft.workScope||'').trim(),photos:[...(draft.photos||[]),...uploaded],attachments:[...(draft.attachments||[]),...attachments],captureStatus:uploaded.length||(draft.photos||[]).length||snap.data().photos?.before?'documented':'before-photos-needed',updatedAt:serverTimestamp(),updatedBy:auth.currentUser.uid}});
+   });
+  }catch(e){await Promise.allSettled(paths.map(path=>deleteObject(ref(storage,path))));throw e;}
   renderContent();
  }
 });

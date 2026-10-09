@@ -5,8 +5,9 @@
     "note-photos.js"
   ],
   "baseline": {
-    "index.html": "3ed5fec170d486ac0416eaedee92a802330167be80694d95ec88145532a86828",
-    "project-brief.js": "f0717f846d0e5cd279cf97f7eda91c79e7e84f8133adfcb4d01af047be80ce6a"
+    "index.html": "da4869dc96c4ea53417b2b3171ed401ac2df7690bb228dd7624cec38181fda38",
+    "project-brief.js": "4785b19af63c516271dd68ff7db69a08139ea382d9b06e9278ce12d6fc54f4bd",
+    "note-photos.js": "944b5f879f5520dc65ad10433e34e3e68e40fde83cd9452c059448feec758836"
   },
-  "message": "Bulk observation photos and camera capture; explicit before-installation records"
+  "message": "Initial assessment with text, multiple photos, audio and video; browser live transcription"
 }
