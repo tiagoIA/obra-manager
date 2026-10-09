@@ -62,11 +62,13 @@ else:
 release = call("POST", SITE + "/channels/" + CHANNEL + "/releases",
                params={"versionName": version}, json={"message": "Verify daily scheduling before live release"})
 url = channel["url"]
+print("PREVIEW_READY", json.dumps({"url": url, "version": version, "expected_sha256": hashlib.sha256(marker).hexdigest()}), flush=True)
 for attempt in range(12):
     response = requests.get(url + "/", timeout=30,
-                            params={"check": os.environ.get("GITHUB_RUN_ID", "test")})
+                            params={"check": os.environ.get("GITHUB_RUN_ID", "test") + "-" + str(attempt)})
     if response.ok and response.content == marker:
         break
+    print("PREVIEW_CHECK", json.dumps({"attempt": attempt, "status": response.status_code, "bytes": len(response.content), "sha256": hashlib.sha256(response.content).hexdigest(), "content_type": response.headers.get("Content-Type"), "encoding": response.headers.get("Content-Encoding")}), flush=True)
     time.sleep(5)
 else:
     raise SystemExit("Published marker verification failed")
