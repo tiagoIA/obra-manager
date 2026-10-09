@@ -1,0 +1,50 @@
+[
+  {
+    "key": "pvc-pdf",
+    "part": "Conduit",
+    "sourceUrl": "https://ipexna.com/wp-content/uploads/2023/08/Data-Sheet-IPEX-Sch-40_80-Bell-End-Conduit.pdf",
+    "photoSourceUrl": "https://ipexna.com/wp-content/uploads/2023/08/Data-Sheet-IPEX-Sch-40_80-Bell-End-Conduit.pdf",
+    "photoDocumentSha256": "52eac5d2f4c9fe720fcbd066792a3a53516c6feeba17eecd58d09b53de6944dc",
+    "photoImageXref": 54,
+    "page": 1,
+    "photoSha256": "aba327c1314f4c7a1626b47fc7ae1656914db648099bc28a0b9ef1342dac3730",
+    "index": 0,
+    "id": "kifgSwPPgJMtfOGJzopQ",
+    "expectedName": "PVC Conduit Schedule 40 1/2\"",
+    "expectedSku": "ELEC-094",
+    "basis": "PVC electrical conduit family; example IPEX Scepter bell-end conduit. Confirm recorded trade size and Schedule 40/80 wall thickness",
+    "photoReferenceNote": "Family reference — confirm model. PVC electrical conduit family; example IPEX Scepter bell-end conduit. Confirm recorded trade size and Schedule 40/80 wall thickness. This photo does not identify stock or establish compatibility."
+  },
+  {
+    "key": "pvc-pdf",
+    "part": "Conduit",
+    "sourceUrl": "https://ipexna.com/wp-content/uploads/2023/08/Data-Sheet-IPEX-Sch-40_80-Bell-End-Conduit.pdf",
+    "photoSourceUrl": "https://ipexna.com/wp-content/uploads/2023/08/Data-Sheet-IPEX-Sch-40_80-Bell-End-Conduit.pdf",
+    "photoDocumentSha256": "52eac5d2f4c9fe720fcbd066792a3a53516c6feeba17eecd58d09b53de6944dc",
+    "photoImageXref": 54,
+    "page": 1,
+    "photoSha256": "aba327c1314f4c7a1626b47fc7ae1656914db648099bc28a0b9ef1342dac3730",
+    "index": 0,
+    "id": "Roz0i9wXmaBHkKtFdzOe",
+    "expectedName": "PVC Conduit Schedule 40 3/4\"",
+    "expectedSku": "ELEC-095",
+    "basis": "PVC electrical conduit family; example IPEX Scepter bell-end conduit. Confirm recorded trade size and Schedule 40/80 wall thickness",
+    "photoReferenceNote": "Family reference — confirm model. PVC electrical conduit family; example IPEX Scepter bell-end conduit. Confirm recorded trade size and Schedule 40/80 wall thickness. This photo does not identify stock or establish compatibility."
+  },
+  {
+    "key": "pvc-pdf",
+    "part": "Conduit",
+    "sourceUrl": "https://ipexna.com/wp-content/uploads/2023/08/Data-Sheet-IPEX-Sch-40_80-Bell-End-Conduit.pdf",
+    "photoSourceUrl": "https://ipexna.com/wp-content/uploads/2023/08/Data-Sheet-IPEX-Sch-40_80-Bell-End-Conduit.pdf",
+    "photoDocumentSha256": "52eac5d2f4c9fe720fcbd066792a3a53516c6feeba17eecd58d09b53de6944dc",
+    "photoImageXref": 54,
+    "page": 1,
+    "photoSha256": "aba327c1314f4c7a1626b47fc7ae1656914db648099bc28a0b9ef1342dac3730",
+    "index": 0,
+    "id": "8ISQUbKRVjQGUy8y7sy1",
+    "expectedName": "PVC Conduit Schedule 80 3/4\"",
+    "expectedSku": "ELEC-096",
+    "basis": "PVC electrical conduit family; example IPEX Scepter bell-end conduit. Confirm recorded trade size and Schedule 40/80 wall thickness",
+    "photoReferenceNote": "Family reference — confirm model. PVC electrical conduit family; example IPEX Scepter bell-end conduit. Confirm recorded trade size and Schedule 40/80 wall thickness. This photo does not identify stock or establish compatibility."
+  }
+]
