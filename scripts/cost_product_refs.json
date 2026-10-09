@@ -1,0 +1,117 @@
+[
+  {
+    "name": "3M Temflex 1700 electrical tape, black, 3/4 in. \u00d7 60 ft.",
+    "brand": "3M",
+    "manufacturerPart": "1700-1PK-BB40",
+    "cat": "eletrica",
+    "unit": "ea",
+    "recordType": "product",
+    "description": "Protective electrical tape; one 60 ft. roll.",
+    "specs": "Protective electrical tape; one 60 ft. roll.",
+    "sourceUrl": "https://www.homedepot.com/p/310698741",
+    "photoUrl": "https://images.thdstatic.com/productImages/a8b8ce24-6c1c-4b7a-b773-3e5b124f6101/svn/3m-electrical-tapes-1700-1pk-bb40-64_600.jpg",
+    "suppliers": [
+      {
+        "name": "Home Depot",
+        "code": "1004658377",
+        "internetId": "310698741",
+        "url": "https://www.homedepot.com/p/310698741",
+        "unit": "ea",
+        "matchVerified": true
+      }
+    ],
+    "referenceVerifiedAt": "2026-10-09"
+  },
+  {
+    "name": "Leviton GFWT1-KW 15A 125V TR/WR GFCI outlet, white",
+    "brand": "Leviton",
+    "manufacturerPart": "GFWT1-KW",
+    "cat": "eletrica",
+    "unit": "ea",
+    "recordType": "product",
+    "description": "Self-test, tamper-resistant and weather-resistant; white. Home Depot packaged model R92-GFWT1-0KW.",
+    "specs": "Self-test, tamper-resistant and weather-resistant; white. Home Depot packaged model R92-GFWT1-0KW.",
+    "sourceUrl": "https://www.homedepot.com/p/205996792",
+    "photoUrl": "https://images.thdstatic.com/productImages/1dfe5be7-831d-4a4a-8f57-82b35a469c1c/svn/white-leviton-protection-devices-r92-gfwt1-0kw-64_600.jpg",
+    "suppliers": [
+      {
+        "name": "Home Depot",
+        "code": "1001370824",
+        "internetId": "205996792",
+        "url": "https://www.homedepot.com/p/205996792",
+        "unit": "ea",
+        "matchVerified": true
+      }
+    ],
+    "referenceVerifiedAt": "2026-10-09"
+  },
+  {
+    "name": "Halex HNF60R 60A non-fusible metallic AC disconnect",
+    "brand": "Halex",
+    "manufacturerPart": "HNF60R",
+    "cat": "eletrica",
+    "unit": "ea",
+    "recordType": "product",
+    "description": "60A non-fusible pullout disconnect; padlockable metallic enclosure. Confirm suitability against equipment nameplate and installation requirements.",
+    "specs": "60A non-fusible pullout disconnect; padlockable metallic enclosure. Confirm suitability against equipment nameplate and installation requirements.",
+    "sourceUrl": "https://www.homedepot.com/p/205785642",
+    "photoUrl": "https://images.thdstatic.com/productImages/a4cb9120-2597-4cd6-aad3-148f21b0c36e/svn/halex-disconnects-hnf60r-64_600.jpg",
+    "suppliers": [
+      {
+        "name": "Home Depot",
+        "code": "589683",
+        "internetId": "205785642",
+        "url": "https://www.homedepot.com/p/205785642",
+        "unit": "ea",
+        "matchVerified": true
+      }
+    ],
+    "referenceVerifiedAt": "2026-10-09"
+  },
+  {
+    "name": "Commercial Electric 12250 1-gang metal weatherproof box, gray",
+    "brand": "Commercial Electric",
+    "manufacturerPart": "12250",
+    "cat": "eletrica",
+    "unit": "ea",
+    "recordType": "product",
+    "description": "Three 1/2 in. holes; 18.3 cu. in. capacity; gray.",
+    "specs": "Three 1/2 in. holes; 18.3 cu. in. capacity; gray.",
+    "sourceUrl": "https://www.homedepot.com/p/326780894",
+    "photoUrl": "https://images.thdstatic.com/productImages/8cff93f5-f0a8-4e05-bb8b-5fa0b853f16f/svn/commercial-electric-boxes-brackets-12250-64_600.jpg",
+    "suppliers": [
+      {
+        "name": "Home Depot",
+        "code": "1010179213",
+        "internetId": "326780894",
+        "url": "https://www.homedepot.com/p/326780894",
+        "unit": "ea",
+        "matchVerified": true
+      }
+    ],
+    "referenceVerifiedAt": "2026-10-09"
+  },
+  {
+    "name": "Commercial Electric WCWR1PG expandable extra-duty in-use cover, gray",
+    "brand": "Commercial Electric",
+    "manufacturerPart": "WCWR1PG",
+    "cat": "eletrica",
+    "unit": "ea",
+    "recordType": "product",
+    "description": "1-gang, horizontal/vertical, non-metallic, 24-in-1 configuration; expandable cover.",
+    "specs": "1-gang, horizontal/vertical, non-metallic, 24-in-1 configuration; expandable cover.",
+    "sourceUrl": "https://www.homedepot.com/p/304669863",
+    "photoUrl": "https://images.thdstatic.com/productImages/1c7ace8c-62d7-4a91-bfa1-6573b66f6f76/svn/commercial-electric-weatherproof-covers-wcwr1pg-64_600.jpg",
+    "suppliers": [
+      {
+        "name": "Home Depot",
+        "code": "1003061901",
+        "internetId": "304669863",
+        "url": "https://www.homedepot.com/p/304669863",
+        "unit": "ea",
+        "matchVerified": true
+      }
+    ],
+    "referenceVerifiedAt": "2026-10-09"
+  }
+]

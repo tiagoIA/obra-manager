@@ -1,15 +1,13 @@
 {
   "files": [
     "index.html",
-    "project-brief.js",
-    "note-photos.js",
-    "field-media.js"
+    "purchasing-core.js",
+    "invoice-store.js",
+    "receipt-review.js",
+    "costs-dashboard.js"
   ],
   "baseline": {
-    "index.html": "1a30d5e89f13bcfe9fef34250f9f41d2b570281e0af6f065b7c3498d3d0bb543",
-    "project-brief.js": "fa1e021cbca78e2725607de9e39dd7e3f03c00164518afba0634c1e6980aa2bd",
-    "note-photos.js": "9bedda9c12ce9e2d251f5759055311b1cc06bdf4221dc062ad5f1b51c77e9db8",
-    "field-media.js": "e747da1fb708af54242e206c15e8ddca3d3734b244ae43e8666cd942313a79db"
+    "index.html": "712266f3f4d76c51262f5aa7fb4dd55bf8cfa6ec86c433080cc51bd5554c3a68"
   },
-  "message": "Initial assessment and field evidence: originals, offline drafts, checklist and linked tasks"
+  "message": "Manual purchase review, receipt attachments, discounts, project filters and retained history"
 }

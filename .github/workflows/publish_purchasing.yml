@@ -25,12 +25,16 @@ jobs:
       - run: node scripts/check-brief.cjs
       - run: node scripts/check-purchasing.cjs
       - run: node scripts/check-purchasing-ui.cjs
+      - run: node scripts/check-purchasing-dashboard.cjs
       - run: node --experimental-vm-modules scripts/check-note-photos.cjs
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
       - run: pip install google-auth requests google-cloud-firestore
       - run: python scripts/audit_field_roof.py
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      - run: python scripts/ensure_cost_products.py
         env:
           FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
       - run: python scripts/publish_purchasing.py
