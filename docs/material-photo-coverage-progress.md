@@ -27,3 +27,7 @@ Family references are not exact-model verification. Product identity, manufactur
 Each operation backed up materials, shoppingLists, shoppingItems, tasks, productDB, invoices and invoiceItems. Original image SHA-256 guards reject stale replacements; Firestore update-time preconditions reject concurrent document changes. Post-write comparisons validated all 524 material records outside the photo/provenance/update-time fields.
 
 See [material-photo-coverage-target.md](material-photo-coverage-target.md) for the six unresolved records and required identification. No record was deactivated solely to improve coverage.
+
+## Final asset audit
+
+Read-only audit [37877815178](https://github.com/tiagoIA/obra-manager/actions/runs/37877815178) completed successfully after all corrections: 524 catalog records, 468 active materials, 462 readable photo assets, 6 missing photos and 0 failed assets. Coverage is 98.72%; the target remains open pending identification of the six records.
