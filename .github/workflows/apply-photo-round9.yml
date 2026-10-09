@@ -22,3 +22,5 @@ jobs:
           PHOTO_EXPECTED_COUNT: '3'
 
 # Retry with exact extracted-photo hash verification.
+
+# Use captured approved JPEG bytes to avoid unreliable PDF redelivery.
