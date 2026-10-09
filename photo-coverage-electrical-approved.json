@@ -1,0 +1,35 @@
+[
+  {
+    "id": "84PPdiVoElKqQxs2NIxf",
+    "expectedName": "disconnect 30A no fuse",
+    "expectedSku": "ELEC-052",
+    "sourceUrl": "https://www.ew-ne.com/siemens-hnf361-3-wire-3-pole-heavy-duty-low-voltage-enclosed-safety-switch-600-volt-ac-250-volt-dc-30-amp-nema-1-speedfax-65408/p",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/781751/10991_MB1TP7JL4ZFHU6R5.jpg?v=639231125321800000",
+    "photoSha256": "d53b5360df9daa7be553f87d807f1fb2c40115faab53945afac2a2b1e49b648e",
+    "basis": "30 A non-fused disconnect family; example Siemens HNF361; confirm poles, voltage and enclosure",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. 30 A non-fused disconnect family; example Siemens HNF361; confirm poles, voltage and enclosure. This photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "TyVHzDYjpvvwCRugHRwp",
+    "expectedName": "ITE HP362N 60A 3P 600V 4W FUSED HD",
+    "expectedSku": "MAT-001",
+    "sourceUrl": "https://www.ew-ne.com/safety-switch-siem5-hf362n-3p-600v-60a-sfty-sw-529962/p",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/747608/10991_ST135AU7NRXYEP6M.jpg?v=639231564193970000",
+    "photoSha256": "271c9c169ff882cc1210246d9ef82814ecddcc510be09e58cb75b37900925587",
+    "basis": "60 A fused safety switch family; pictured Siemens HF362N. Recorded HP362N identity remains unconfirmed",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. 60 A fused safety switch family; pictured Siemens HF362N. Recorded HP362N identity remains unconfirmed. This photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "sQgWh9jYt2ylbiTxWK5w",
+    "expectedName": "6/32",
+    "expectedSku": "ELEC-069",
+    "sourceUrl": "https://www.ew-ne.com/dottie-632-zinc-plated-steel-machine-screw-kit-6-468642/p",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1227921/11077_ID_PIC_v1_FM102434.jpg?v=639229244300800000",
+    "photoSha256": "78dee392c5d139ad7e222f8f89e4d56b53a3118d49ae4449ee595971c3ba85cc",
+    "basis": "6-32 machine screw family; example Dottie flat-head screw; confirm head, length and finish",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. 6-32 machine screw family; example Dottie flat-head screw; confirm head, length and finish. This photo does not identify stock or establish compatibility."
+  }
+]
