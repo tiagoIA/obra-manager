@@ -6,9 +6,10 @@
     "field-media.js"
   ],
   "baseline": {
-    "index.html": "201db1a8b3b70041b0ce866c125bd396a26487c68cda7d506004ae84d7da63f9",
-    "project-brief.js": "c2d25a83aea3f76919d189615438fadcbf6defd4ed13a3cc9ff67332dae538d6",
-    "note-photos.js": "944b5f879f5520dc65ad10433e34e3e68e40fde83cd9452c059448feec758836"
+    "index.html": "1a30d5e89f13bcfe9fef34250f9f41d2b570281e0af6f065b7c3498d3d0bb543",
+    "project-brief.js": "fa1e021cbca78e2725607de9e39dd7e3f03c00164518afba0634c1e6980aa2bd",
+    "note-photos.js": "9bedda9c12ce9e2d251f5759055311b1cc06bdf4221dc062ad5f1b51c77e9db8",
+    "field-media.js": "e747da1fb708af54242e206c15e8ddca3d3734b244ae43e8666cd942313a79db"
   },
   "message": "Initial assessment and field evidence: originals, offline drafts, checklist and linked tasks"
 }

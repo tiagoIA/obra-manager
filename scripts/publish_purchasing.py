@@ -27,7 +27,7 @@ def verify(base):
 live=call('GET',SITE+'/channels/live')
 source=live['release']['version']['name']
 for name,expected in manifest['baseline'].items():
- r=requests.get(url+name,timeout=30)
+ r=requests.get(url+name,params={'baseline':str(time.time_ns())},headers={'Cache-Control':'no-cache'},timeout=30)
  if not r.ok or hashlib.sha256(r.content).hexdigest()!=expected:raise RuntimeError('Live '+name+' changed; stopped to preserve newer edits')
 op=call('POST',SITE+'/versions:clone',json={'sourceVersion':source,'finalize':False})
 for _ in range(60):

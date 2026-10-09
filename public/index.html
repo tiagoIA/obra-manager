@@ -9768,6 +9768,7 @@ function renderNotesPage(el){
       const txt=[n.text||n.transcript,n.difficulties,n.impact,n.nextStep].filter(Boolean).join(' · ');
       return'<div class="note-card" onclick="goToRoomNote(\''+n.roomId+'\')">'
         +'<div class="note-card-room">📍 '+(room?x(room.name):'Unknown room')+(proj?' · '+x(proj.name):'')+(room&&room.floor?' · '+x(room.floor):'')+'</div>'
+        +'<div style="font-size:11px;font-weight:700;margin:6px 0">'+phaseLabel(n.phase)+' · '+evidenceRows(n).length+' files</div>'
         +'<div class="note-card-text">'+x(txt.substring(0,200))+(txt.length>200?'…':'')+'</div>'
         +(evidenceRows(n).some(p=>p.type==='audio')?'<div style="font-size:11px;color:#a78bfa;margin-top:4px">🎙️ Has audio recording</div>':'')
         +'<div class="note-card-meta">'+(n.savedAt||'')+'</div>'
@@ -11645,27 +11646,11 @@ window.generateUnitReport=(rid)=>{
     html+='</div>';
   }
 
-  const initialPhotos=beforeInstallationPhotos(room);
+  const initialPhotos=evidenceRows({photoUrl:room.photos?.before,photos:room.scopeBrief?.photos||[]}).filter(p=>p.type==='image');
   if(initialPhotos.length)html+='<div style="margin-bottom:24px"><h3>BEFORE INSTALLATION — initial conditions</h3><p>'+x(room.scopeBrief?.before||'Original unit conditions before work starts.')+'</p><div style="display:flex;flex-wrap:wrap;gap:10px">'+initialPhotos.map(p=>'<img src="'+x(p.url)+'" style="width:160px;height:120px;object-fit:contain" alt="Before installation">').join('')+'</div></div>';
 
   html+='<div style="margin-bottom:24px"><h3>Initial assessment / work scope</h3>'+['initialAnalysis','before','difficulties','impact','nextStep','workScope','observations'].filter(k=>room.scopeBrief?.[k]).map(k=>'<p style="white-space:pre-wrap"><b>'+x({initialAnalysis:'Initial assessment',before:'Initial conditions',difficulties:'Difficulties',impact:'Impact',nextStep:'Next step',workScope:'Work scope',observations:'Items to verify'}[k])+':</b> '+x(room.scopeBrief[k])+'</p>').join('')+evidenceReport({attachments:room.scopeBrief?.attachments||[]})+'</div>';
   html+='<div style="margin-bottom:24px"><h3>Field records</h3>'+notes.map(n=>'<section style="page-break-inside:avoid;margin-bottom:18px"><h4>'+phaseLabel(n.phase)+'</h4><p>'+x(n.savedAt||'')+' · '+x(fieldAuthor(n.createdBy)||'')+'</p>'+[n.text||n.transcript,n.difficulties&&'Difficulties: '+n.difficulties,n.impact&&'Impact: '+n.impact,n.nextStep&&'Next step: '+n.nextStep].filter(Boolean).map(t=>'<p style="white-space:pre-wrap">'+x(t)+'</p>').join('')+evidenceReport(n)+'</section>').join('')+'</div>';
-
-  // ── FOTOS DAS NOTAS ──
-  const notesWithPhotos=notes.filter(n=>n.phase!=='before-installation').flatMap(n=>notePhotoRows(n).map(p=>({...n,photoUrl:p.url})));
-  if(notesWithPhotos.length){
-    html+='<div style="margin-bottom:24px">'
-      +'<div style="font-size:11px;font-weight:700;color:#555;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;border-bottom:2px solid #e5e7eb;padding-bottom:6px">📝 FOTOS DAS NOTAS</div>'
-      +'<div style="display:flex;flex-wrap:wrap;gap:12px">';
-    notesWithPhotos.forEach(n=>{
-      html+='<div style="page-break-inside:avoid">'
-        +'<img src="'+n.photoUrl+'" style="width:160px;height:120px;object-fit:contain;background:#f8fafc;border-radius:8px;border:1px solid #e5e7eb;display:block;margin-bottom:4px" loading="eager">'
-        +(n.text?'<div style="font-size:10px;color:#555;max-width:160px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+x(n.text.substring(0,40))+'</div>':'')
-        +'<div style="font-size:9px;color:#aaa">'+(n.savedAt||'')+'</div>'
-        +'</div>';
-    });
-    html+='</div></div>';
-  }
 
   // ── TASKS PENDENTES ──
   if(todo.length){

@@ -18,6 +18,7 @@ jobs:
         with:
           node-version: '24'
       - run: node --experimental-vm-modules scripts/check-ui.cjs
+      - run: node scripts/check-field-store.cjs
       - run: TZ=America/New_York node scripts/check-schedule.cjs
       - run: npm install --no-save playwright
       - run: npx playwright install --with-deps chromium
