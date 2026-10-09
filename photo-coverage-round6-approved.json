@@ -1,0 +1,72 @@
+[
+  {
+    "id": "4FSA4WAoDnYXpCWxONf0",
+    "expectedName": "Low frequency Ceiling",
+    "expectedSku": "FIRE-026",
+    "sourceUrl": "https://buildings.honeywell.com/ca/fr/products/by-category/fire-life-safety/notification-appliances/combination-strobes/l-series-low-frequency-ceiling-sounder-strobe",
+    "photoSourceUrl": "https://honeywell.scene7.com/is/image/Honeywell65/hbt-fire-PC2WL-LF-STRAIGHT-HiRes",
+    "photoSha256": "25a69f4233c26ff4d62c30a47369e73169f043d8f3b35f03c9bb022e0a220764",
+    "basis": "Low-frequency ceiling sounder-strobe family; example System Sensor PC2WL-LF; confirm exact model and color",
+    "photoReferenceNote": "Family reference — confirm model. Low-frequency ceiling sounder-strobe family; example System Sensor PC2WL-LF; confirm exact model and color. This photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "YdwDQv0g1uavpWcodtvM",
+    "expectedName": "Low Frequency Strobe (LF)",
+    "expectedSku": "FIRE-003",
+    "sourceUrl": "https://buildings.honeywell.com/ca/fr/products/by-category/fire-life-safety/notification-appliances/combination-strobes/l-series-low-frequency-ceiling-sounder-strobe",
+    "photoSourceUrl": "https://honeywell.scene7.com/is/image/Honeywell65/hbt-fire-PC2WL-LF-STRAIGHT-HiRes",
+    "photoSha256": "25a69f4233c26ff4d62c30a47369e73169f043d8f3b35f03c9bb022e0a220764",
+    "basis": "Low-frequency sounder with strobe family; example ceiling System Sensor PC2WL-LF; confirm mounting and audible/visual configuration",
+    "photoReferenceNote": "Family reference — confirm model. Low-frequency sounder with strobe family; example ceiling System Sensor PC2WL-LF; confirm mounting and audible/visual configuration. This photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "SqwneXs4uscg9y9yfoqa",
+    "expectedName": "Flow Switch Monitor (F)",
+    "expectedSku": "FIRE-012",
+    "sourceUrl": "https://buildings.honeywell.com/us/en/products/by-category/sensors/accessories/wfd-series-vane-type-waterflow-detector",
+    "photoSourceUrl": "https://s7d1.scene7.com/is/image/Honeywell65/hbt-fire-wfd20epn-system-sensor-wfd-series-vane-type-waterflow-detector-primaryimage",
+    "photoSha256": "1ab7a39db3f658f0c2c17897cebca3535cbc6b3c4cc40f7a74327506d78b9442",
+    "basis": "Vane-type sprinkler waterflow detector family; example System Sensor WFD; confirm pipe size and monitor interface",
+    "photoReferenceNote": "Family reference — confirm model. Vane-type sprinkler waterflow detector family; example System Sensor WFD; confirm pipe size and monitor interface. This photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "s7jD9VWiRzlCi7tpItUc",
+    "expectedName": "RFID Key Fob / Access Card",
+    "expectedSku": "FIRE-085",
+    "sourceUrl": "https://www.identisource.net/pd_hid_1326.cfm",
+    "photoSourceUrl": "https://www.identisource.net/prod_images_large/proxcard-ii-clamshell1326.png",
+    "photoSha256": "79b57defc599ebd4fe1ec934674d7415569dbc9412e7b4b83f7b86e686fdde41",
+    "basis": "RFID proximity access card family; example HID 1326; confirm credential format and reader compatibility",
+    "photoReferenceNote": "Family reference — confirm model. RFID proximity access card family; example HID 1326; confirm credential format and reader compatibility. This photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "5XeKfTya6EWQsTskVuSw",
+    "expectedName": "LB Conduit Body 3/4\"",
+    "expectedSku": "ELEC-158",
+    "sourceUrl": "https://www.ew-ne.com/vep-lb-75-3-4-lb-cond-body-1362006/p",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1379013/1362006.jpg?v=639251010366000000",
+    "photoSha256": "c7c62a2e0ba472b868ca3a8f6fa3f7dbdda0d8af0c479467973d165448c63852",
+    "basis": "3/4-inch LB conduit body family; example VEP LB-75; confirm material and connection type",
+    "photoReferenceNote": "Family reference — confirm model. 3/4-inch LB conduit body family; example VEP LB-75; confirm material and connection type. This photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "DURgbPXeOZRPGnrn4Ew4",
+    "expectedName": "Non-Metal Liquid Tight Connector",
+    "expectedSku": "ELEC-173",
+    "sourceUrl": "https://www.ew-ne.com/thomas-betts-ln20ea-pvc-1-piece-non-metallic-90-degree-liquidtight-fitting-3-4-inch-carlon-9642/p",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/837746/9642_Alt_1.jpg?v=639230364622230000",
+    "photoSha256": "30891e71ba565587df1182d46f11dad2e79e6d59f146d0250937843e86a287e6",
+    "basis": "Nonmetallic liquid-tight connector family; example Carlon LN20EA 3/4-inch 90-degree fitting; confirm size and angle",
+    "photoReferenceNote": "Family reference — confirm model. Nonmetallic liquid-tight connector family; example Carlon LN20EA 3/4-inch 90-degree fitting; confirm size and angle. This photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "aqR9w3bhyQLpeM2ok6Mz",
+    "expectedName": "Flexible Conduit 3/8\"",
+    "expectedSku": "ELEC-097",
+    "sourceUrl": "https://www.ew-ne.com/flex-3-4-steel-ul-50c-type-br-12-reduced-wall-liquidtight-flexible-conduit-3-4-inch-x-50-ft-733524/p",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1651953/P733524.jpg?v=639267027009070000",
+    "photoSha256": "2f1c5af905a4ed7a3671399641d8a0f4b7d7a0a29d32c898ad19fee539783873",
+    "basis": "Flexible metallic conduit family; pictured 3/4-inch is not the recorded 3/8-inch size; confirm diameter",
+    "photoReferenceNote": "Family reference — confirm model. Flexible metallic conduit family; pictured 3/4-inch is not the recorded 3/8-inch size; confirm diameter. This photo does not identify stock or establish compatibility."
+  }
+]
