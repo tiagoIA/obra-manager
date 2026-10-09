@@ -1,0 +1,20 @@
+name: Inspect supplied material lists
+on:
+  push:
+    branches: [feature/material-lists-2026-10-09]
+    paths: ['scripts/import_supplied_lists.py', '.github/workflows/import_supplied_lists.yml']
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install google-cloud-firestore
+      - run: python scripts/import_supplied_lists.py
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
