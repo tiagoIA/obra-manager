@@ -1,0 +1,32 @@
+[
+  {
+    "id": "vrySHgV4wTXddsU35MUv",
+    "expectedName": "EMT Coupling 1/2\"",
+    "expectedSku": "ELEC-159",
+    "sourceUrl": "https://www.ew-ne.com/thomas-betts-tk111a-zinc-plated-steel-emt-compression-coupling-1-2-inch-steel-city-236334/p",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/670624/12055_ID_PIC_tk111a_sg1.jpg?v=639228596230200000",
+    "photoSha256": "c34180ec39062cc46786074b8262d0ab5295e5398d733142fd8ad6036a86aba5",
+    "basis": "1/2-inch EMT compression coupling family; example Steel City TK111A; confirm exact fitting",
+    "photoReferenceNote": "Family reference — confirm model. 1/2-inch EMT compression coupling family; example Steel City TK111A; confirm exact fitting. This photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "9ieAedeAz3PRjFvzGe8i",
+    "expectedName": "concrete screws",
+    "expectedSku": "ELEC-036",
+    "sourceUrl": "https://www.ew-ne.com/dottie-14h114-ceramic-coated-blue-anchoring-concrete-screw-1-4-inch-x-1-1-4-inch-221999/p",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1654424/P221999.jpg?v=639267505742730000",
+    "photoSha256": "41be580460cc659f30b0dc30b64760a3dade04298c5c331a8bbf5004b9c61854",
+    "basis": "Concrete screw family; example Dottie 14H114 1/4 x 1-1/4-inch hex-head; confirm size and head",
+    "photoReferenceNote": "Family reference — confirm model. Concrete screw family; example Dottie 14H114 1/4 x 1-1/4-inch hex-head; confirm size and head. This photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "KWq3Z7woVtSf3KoLsiQN",
+    "expectedName": "1/2” threaded rod",
+    "expectedSku": "ELEC-190",
+    "sourceUrl": "https://www.ew-ne.com/power-fasteners-rod12-all-threaded-rod-1-2-inch-x-6-inch-15441/p",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/643456/P15441.jpg?v=639229342174800000",
+    "photoSha256": "93c695e6a31023e99c27a9f602778f0cc9a108567cd251874ebf69f801e7dc10",
+    "basis": "1/2-inch threaded steel rod family; confirm length and finish",
+    "photoReferenceNote": "Family reference — confirm model. 1/2-inch threaded steel rod family; confirm length and finish. This photo does not identify stock or establish compatibility."
+  }
+]
