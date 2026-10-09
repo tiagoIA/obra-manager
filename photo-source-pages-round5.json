@@ -1,0 +1,42 @@
+[
+  {
+    "key": "wireless-panel",
+    "part": "PROA7PLUS",
+    "url": "https://www.alarmgrid.com/products/honeywell-home-proa7plus"
+  },
+  {
+    "key": "smoke",
+    "part": "2W-B",
+    "url": "https://www.alarmgrid.com/products/system-sensor-2w-b"
+  },
+  {
+    "key": "power",
+    "part": "SMP3",
+    "url": "https://www.alarmgrid.com/products/altronix-smp3"
+  },
+  {
+    "key": "annunciator",
+    "part": "RAX-LCD",
+    "url": "https://firealarmdepot.com/products/mircom-rax-lcd-remote-shared-display-new"
+  },
+  {
+    "key": "fmc",
+    "part": "BR",
+    "url": "https://www.electriflex.com/products/type-br/"
+  },
+  {
+    "key": "pvc",
+    "part": "PVC",
+    "url": "https://www.siteone.com/en/pp-ep075-pvc-electrical-conduit-34-in/p/858522"
+  },
+  {
+    "key": "intercom",
+    "part": "IX",
+    "url": "https://www.aiphone.net/products/commercial-intercom/ix/"
+  },
+  {
+    "key": "power24",
+    "part": "AL400ULX",
+    "url": "https://altronix.com/products/AL400ULX"
+  }
+]
