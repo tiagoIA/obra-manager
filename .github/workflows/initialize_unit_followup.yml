@@ -1,0 +1,29 @@
+name: Initialize approved Roof follow-up
+on:
+  push:
+    branches: [feature/unit-followup-2026-10-09]
+    paths: ['scripts/initialize_unit_followup.py', '.github/workflows/initialize_unit_followup.yml']
+permissions:
+  contents: read
+concurrency:
+  group: obra-manager-roof-followup-initialization
+  cancel-in-progress: false
+jobs:
+  initialize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install google-auth google-cloud-firestore
+      - run: python scripts/initialize_unit_followup.py
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: approved-roof-followup-${{ github.run_id }}
+          path: hosting-test/
+          if-no-files-found: ignore
