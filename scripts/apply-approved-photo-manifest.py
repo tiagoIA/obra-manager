@@ -37,11 +37,14 @@ def main():
   assert old.get('active') is not False and old.get('status')!='inactive' and not old.get('isTask')
   assert not old.get('photoUrl'),'A user already added a photo; audit again'
   assert urlparse(p['photoSourceUrl']).scheme=='https'
-  assert urlparse(p['photoSourceUrl']).hostname in {"www.power-sonic.com","digitalassets.resideo.com","static.tp-link.com","prod-edam.honeywell.com","uselectrical.vteximg.com.br","d1unzhqf5a606m.cloudfront.net","www.hesinnovations.com","gw-assets.assaabloy.com","firetekprotection.com","assets.nsiindustries.com","us.store.tapo.com","honeywell.scene7.com","cdn.prod.website-files.com","www.securitron.com","d1unzhqf5a606m.cloudfront.net","firealarmdepot.com","s7d1.scene7.com","www.identisource.net","buy.dmp.com","static.tp-link.com","material.dahuasecurity.com","zktecoma.com","ipexna.com"}
+  assert urlparse(p['photoSourceUrl']).hostname in {"www.power-sonic.com","digitalassets.resideo.com","static.tp-link.com","prod-edam.honeywell.com","uselectrical.vteximg.com.br","d1unzhqf5a606m.cloudfront.net","www.hesinnovations.com","gw-assets.assaabloy.com","firetekprotection.com","assets.nsiindustries.com","us.store.tapo.com","honeywell.scene7.com","cdn.prod.website-files.com","www.securitron.com","d1unzhqf5a606m.cloudfront.net","firealarmdepot.com","s7d1.scene7.com","www.identisource.net","buy.dmp.com","static.tp-link.com","material.dahuasecurity.com","zktecoma.com","ipexna.com","www.elliottelectric.com","assets.gordonelectricsupply.com"}
   r=requests.get(p['photoSourceUrl'],timeout=45);r.raise_for_status();assert len(r.content)<40000000
   raw=r.content
   if p.get('photoDocumentSha256'):
-   assert hashlib.sha256(raw).hexdigest()==p['photoDocumentSha256'],'Manufacturer PDF changed'
+   actual_document_sha=hashlib.sha256(raw).hexdigest()
+   if actual_document_sha!=p['photoDocumentSha256']:
+    assert p.get('allowDocumentMetadataChange') and urlparse(p['photoSourceUrl']).hostname=='ipexna.com','Manufacturer PDF changed'
+   # Extracted photo must still match the visually approved image hash below.
    with fitz.open(stream=raw,filetype='pdf') as doc:raw=doc.extract_image(p['photoImageXref'])['image']
   im=Image.open(io.BytesIO(raw));im.load();assert min(im.size)>=80;im=im.convert('RGB');im.thumbnail((1000,1000));b=io.BytesIO();im.save(b,'JPEG',quality=86);payload=b.getvalue()
   assert hashlib.sha256(payload).hexdigest()==p['photoSha256'],'Source image changed after visual review'
