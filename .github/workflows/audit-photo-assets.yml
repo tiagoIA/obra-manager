@@ -18,3 +18,5 @@ jobs:
       - run: python scripts/audit-photo-assets.py
         env:
           FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+
+# Verify coverage after reviewed photo batches 2026-10-09.
