@@ -2,7 +2,7 @@ name: Verify and publish purchasing scope
 on:
   push:
     branches: [feature/purchasing-costs-2026-10-09]
-    paths: ['public/**', 'scripts/check-brief.cjs', 'scripts/check-purchasing*', 'scripts/check-note-photos.cjs', 'scripts/check-field-evidence.cjs', 'scripts/publication_manifest.json', 'scripts/publish_purchasing.py', '.github/workflows/publish_purchasing.yml']
+    paths: ['public/**', 'scripts/check-brief.cjs', 'scripts/check-purchasing*', 'scripts/check-note-photos.cjs', 'scripts/check-field-evidence.cjs', 'scripts/check-roof-runtime.cjs', 'scripts/publication_manifest.json', 'scripts/publish_purchasing.py', '.github/workflows/publish_purchasing.yml']
 permissions:
   contents: read
 concurrency:
@@ -18,6 +18,7 @@ jobs:
         with:
           node-version: '24'
       - run: node --experimental-vm-modules scripts/check-ui.cjs
+      - run: node --experimental-vm-modules scripts/check-roof-runtime.cjs
       - run: node scripts/check-field-store.cjs
       - run: TZ=America/New_York node scripts/check-schedule.cjs
       - run: npm install --no-save playwright
@@ -34,10 +35,10 @@ jobs:
       - run: python scripts/audit_field_roof.py
         env:
           FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-      - run: python scripts/ensure_cost_products.py
+      - run: python scripts/publish_purchasing.py
         env:
           FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-      - run: python scripts/publish_purchasing.py
+      - run: python scripts/audit_field_roof.py
         env:
           FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
       - uses: actions/upload-artifact@v4

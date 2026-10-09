@@ -13047,6 +13047,7 @@ window.deleteMaterial=async id=>{
 function beforeInstallationPhotos(room){const rows=[...(room?.photos?.before?[{url:room.photos.before,name:'Existing before photo'}]:[]),...(room?.scopeBrief?.photos||[]),...Object.values(roomNotesList).filter(n=>n.roomId===room?.id&&n.phase==='before-installation').flatMap(notePhotoRows)];return rows.filter((p,n)=>p.url&&rows.findIndex(x=>x.url===p.url)===n);}
 // Multi-photo observations keep one record for the whole batch.
 import {installNotePhotos,notePhotoRows} from '/note-photos.js?v=2';
+import {installProjectBrief} from '/project-brief.js?v=1';
 import {evidenceRows,evidenceReport,phaseLabel} from '/field-media.js?v=1';
 async function uploadFieldEvidence(folder,files,progress=()=>{}){
  const rows=[];
@@ -13058,7 +13059,7 @@ async function uploadFieldEvidence(folder,files,progress=()=>{}){
  }
  return rows;
 }
-function fieldAuthor(uid){const user=users.find(u=>u.id===uid||u.uid===uid);return user?.name||user?.email||uid;}
+function fieldAuthor(uid){const users=Array.isArray(window._cachedUsers)?window._cachedUsers:[];const user=users.find(u=>u.id===uid||u.uid===uid);return user?.name||user?.email||uid||'User';}
 async function linkedFieldTask(rid,name,source,details){
  if(!auth.currentUser)throw Error('Sign in again.');const room=rooms[rid];if(!room)throw Error('Select an existing unit.');
  const task=await addDoc(collection(db,'tasks'),{projectId:room.projectId,roomId:rid,name,cat:'eletrica',hasQty:false,qty:0,done:false,doneAt:null,photos:[],note:details,sourceObservationId:source||null,sourceAssessment:source?null:{roomId:rid},createdBy:auth.currentUser.uid,createdAt:serverTimestamp()});

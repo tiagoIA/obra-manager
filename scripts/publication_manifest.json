@@ -1,11 +1,9 @@
 {
   "files": [
-    "index.html",
-    "costs-dashboard.js"
+    "index.html"
   ],
   "baseline": {
-    "index.html": "766c6dd7645a45e77c25ce9c1d68d9af97eb20e4eb487aa25e2b421f556627f8",
-    "costs-dashboard.js": "77388a9c1cb0cc8d7f38394cbb66508a1e28555d1e1692d8e2b5f4592033500e"
+    "index.html": "4b4effef05b318fe48ad2f41416b45d76336cff8a564bb932f3ccad99278d1c6"
   },
-  "message": "Complete selected-project purchase entry and remaining material quantities"
+  "message": "Restore initial assessment, field record photos and unit reports"
 }
