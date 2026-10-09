@@ -2137,15 +2137,6 @@ button, a, [onclick], .btn-g, .bn-item, .home-nav-btn,
 .photo-zoom-stage img{max-width:95vw!important;max-height:100%!important;object-fit:contain;user-select:none;will-change:transform}
 .photo-zoom-controls{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:2}
 .photo-zoom-controls button{min-width:48px;min-height:44px;border:1px solid #ffffff66;border-radius:8px;background:#202020;color:#fff;font:inherit;cursor:pointer}
-
-#daily-assign-overlay,#site-schedule-overlay{z-index:11000}#daily-assign-overlay .plan-modal-box,#site-schedule-overlay .plan-modal-box{box-sizing:border-box;max-height:90vh;overflow:auto} .daily-employee{border-left:3px solid var(--elec);padding-left:10px;margin:18px 0}.daily-pending-group{border:1px solid var(--bdr);padding:10px;border-radius:10px;margin:8px 0}.daily-pending-group>summary{cursor:pointer;padding:8px 0;font-size:13px;font-weight:700}
-/* Daily schedule: large touch targets and a compact week strip. */
-.daily-controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0}
-.daily-controls input,.daily-controls select,.daily-backlog>input{background:var(--sur);color:var(--txt);border:1px solid var(--bdr);border-radius:8px;padding:10px;font:inherit;max-width:100%;min-height:44px;box-sizing:border-box}
-.daily-controls select{flex:1;min-width:150px}.daily-week{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px}
-.daily-day{background:var(--sur);color:var(--mut);border:1px solid var(--bdr);border-radius:10px;min-height:58px;cursor:pointer;font-size:11px;padding:6px 2px}.daily-day strong{display:block;font-size:17px;margin-top:4px}.daily-day.active{background:var(--elec);color:#111;border-color:var(--elec)}
-.daily-task{display:flex;align-items:flex-start;gap:12px;padding:14px;margin:8px 0;border:1px solid var(--bdr);border-radius:12px;background:var(--sur)}.daily-task>input{width:22px;height:22px;accent-color:var(--elec);flex-shrink:0}.daily-task-main{flex:1;min-width:0}.daily-task-title{font-weight:700;font-size:14px;overflow-wrap:anywhere}.daily-task-meta{font-size:12px;color:var(--mut);margin-top:5px;overflow-wrap:anywhere}.daily-task-actions{display:flex;flex-wrap:wrap;gap:5px}.daily-task-actions button,.daily-controls button{min-height:44px}.daily-done{border-color:var(--ok)}.daily-time{display:inline-block;margin-right:8px;color:var(--elec)}.daily-empty{padding:24px 16px;border:1px dashed var(--bdr);border-radius:12px;color:var(--mut);font-size:13px}.daily-backlog{border-top:1px solid var(--bdr);margin-top:24px;padding-top:12px}.daily-backlog>input{width:100%}.daily-controls button:disabled{opacity:.5;cursor:default}
-@media(max-width:600px){.daily-task{flex-wrap:wrap}.daily-task-actions{width:100%;justify-content:flex-end}.daily-controls input[type=date]{min-width:145px}.daily-week{gap:3px}.plan-modal-box{max-height:90vh;overflow:auto}}
 </style>
 </head>
 <body>
@@ -2963,7 +2954,7 @@ function listenJobs(){
   if(unsubs.jobs)unsubs.jobs();jobs={};
   unsubs.jobs=onSnapshot(query(collection(db,'jobs'),orderBy('createdAt','desc')),snap=>{
     jobs={};snap.forEach(d=>{jobs[d.id]={id:d.id,...d.data()};});
-    if(activePage==='jobs'||activePage==='planning')renderContent();
+    if(activePage==='jobs')renderContent();
   });
 }
 
@@ -4389,7 +4380,6 @@ window.loadLiveMap=()=>{
 };
 
 function startApp(){
-  listenPlanningUsers();
   listenProjects();
   listenReminders();
 }
@@ -4399,7 +4389,6 @@ function listenProjects(){
     clearTimeout(t);
     projects={};snap.forEach(d=>{projects[d.id]={id:d.id,...d.data()};});
     renderProjSel();
-    if(activePage==='planning')renderContent();
     if(activePid&&!projects[activePid]){activePid=null;activeRid=null;}
     if(!activePid&&Object.keys(projects).length===0)seedProject();
     listenRooms();listenAllTasks();listenMaterials();listenShoppingLists();listenInvoices();listenAllRoomNotes();listenJobs();
@@ -7653,7 +7642,7 @@ window.openHomePage=function(){
     const myToday=Object.values(allTasks).filter(t=>t.assignedTo===uid&&t.assignedDate===today&&!t.done);
     if(myToday.length>0){
       ov.style.display='none';
-      _planViewMode='worker';window._planViewMode='worker';
+      window._planViewMode='worker';
       window.showPage('planning');
       return;
     }
@@ -11904,7 +11893,6 @@ window.setPlanFloor=function(f){
   if(el)window.renderPlanningPage(el);
 };
 window.setPlanView=function(mode){
-  if(mode==='manager'&&!hasRole('supervisor'))return;
   _planViewMode=mode;window._planViewMode=mode;
   var el=document.getElementById('room-view');
   if(el)window.renderPlanningPage(el);
@@ -11915,186 +11903,381 @@ window.setPlanWeek=function(delta){
   if(el)window.renderPlanningPage(el);
 };
 
-window.getPlanDateStr=function getPlanDateStr(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+window.getPlanDateStr=function getPlanDateStr(d){return d.toISOString().split('T')[0];}
 
 function formatPlanWeek(monday,sunday){
   const opts={month:'short',day:'numeric'};
   return monday.toLocaleDateString('en-US',opts)+' – '+sunday.toLocaleDateString('en-US',{...opts,year:'numeric'});
 }
 
-// Daily schedule — assignments stay on the original task documents.
-let _dailyDate=getPlanDateStr(new Date());
-let _dailyProject='all';
-let _dailyEmployee='all';
-let _dailySearch='';
-let _dailySelected=new Set();
-let _dailyBusy=false;
-let _dailyBacklogOpen=false;
-let _dailyUpcomingOpen=false;
-function planEsc(value){return x(value).replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
-function planRefresh(){const el=document.getElementById('room-view');if(el&&activePage==='planning')window.renderPlanningPage(el);}
-function planUsers(){return (window._cachedUsers||[]).filter(u=>u.id&&u.active!==false&&u.status!=='inactive');}
-function planTasks(){return Object.values(allTasks).filter(t=>projects[t.projectId]&&(_dailyProject==='all'||t.projectId===_dailyProject));}
-function planDayTasks(){return planTasks().filter(t=>t.assignedDate===_dailyDate&&(hasRole('supervisor')&&_planViewMode!=='worker'?(_dailyEmployee==='all'||t.assignedTo===_dailyEmployee):t.assignedTo===currentUser?.uid)).sort((a,b)=>(a.plannedTime||'99:99').localeCompare(b.plannedTime||'99:99')||(a.name||'').localeCompare(b.name||''));}
-function planBacklog(){return planTasks().filter(t=>!t.done&&(!t.assignedTo||!t.assignedDate||t.assignedDate<getPlanDateStr(new Date()))&&(!_dailySearch||(t.name+' '+(rooms[t.roomId]?.name||'')+' '+(projects[t.projectId]?.name||'')).toLowerCase().includes(_dailySearch.toLowerCase())));}
-function planCanComplete(t){return !!t&&(hasRole('supervisor')||t.assignedTo===currentUser?.uid);}
-function planValidDate(v){if(!/^\d{4}-\d{2}-\d{2}$/.test(v||''))return false;const d=new Date(v+'T12:00:00');return !isNaN(d)&&getPlanDateStr(d)===v;}
-window.setDailyBacklogOpen=function(open){_dailyBacklogOpen=open;};
-window.setDailyUpcomingOpen=function(open){_dailyUpcomingOpen=open;};
-window.setDailyDate=function(value){if(planValidDate(value)){_dailyDate=value;planRefresh();}};
-window.shiftDailyDate=function(delta){const d=new Date(_dailyDate+'T12:00:00');d.setDate(d.getDate()+delta);window.setDailyDate(getPlanDateStr(d));};
-window.setDailyProject=function(value){_dailyProject=value;_dailySelected.clear();planRefresh();};
-window.setDailyEmployee=function(value){_dailyEmployee=value;planRefresh();};
-window.setDailySearch=function(value){_dailySearch=value;planRefresh();const el=document.getElementById('daily-search');if(el){el.focus();el.setSelectionRange(value.length,value.length);}};
-window.selectDailyTask=function(id,checked){if(!hasRole('supervisor'))return;if(checked)_dailySelected.add(id);else _dailySelected.delete(id);planRefresh();};
-window.selectDailyVisible=function(checked){if(!hasRole('supervisor'))return;planBacklog().forEach(t=>checked?_dailySelected.add(t.id):_dailySelected.delete(t.id));planRefresh();};
-function planTaskCard(t,backlog){
-  const r=rooms[t.roomId],p=projects[t.projectId],u=planUsers().find(u=>u.id===t.assignedTo);
-  const manager=hasRole('supervisor')&&_planViewMode!=='worker';
-  let html='<article class="daily-task'+(t.done?' daily-done':'')+'">';
-  if(backlog)html+='<input aria-label="Select task" type="checkbox" '+(_dailySelected.has(t.id)?'checked':'')+' onchange="window.selectDailyTask(\''+planEsc(t.id)+'\',this.checked)">';
-  html+='<div class="daily-task-main"><div class="daily-task-title">'+(t.plannedTime&&!backlog?'<span class="daily-time">'+planEsc(t.plannedTime)+'</span>':'')+planEsc(t.name)+(t.plannedMinutes?' <span class="daily-task-meta">· '+planEsc(t.plannedMinutes)+' min</span>':'')+'</div><div class="daily-task-meta">'+planEsc(p?.name||'Project')+' · '+planEsc(r?.name||'General')+'</div>';
-  if(t.description)html+='<div class="daily-task-meta">'+planEsc(t.description)+'</div>';
-  html+='<div class="daily-task-meta">'+(t.done?'✓ Completed':t.assignedDate&&t.assignedDate<getPlanDateStr(new Date())?'⚠ Pending from '+planEsc(t.assignedDate):t.assignedDate?'📅 '+planEsc(t.assignedDate):'No date')+' · '+planEsc(u?.name||u?.email||(t.assignedTo===currentUser?.uid?currentProfile?.name:t.assignedTo?'Assigned employee':'Unassigned'))+'</div></div><div class="daily-task-actions">';
-  if(manager)html+='<button class="btn-g" data-daily-assign="'+planEsc(t.id)+'">'+(t.assignedTo?'Reassign':'Assign')+'</button>';
-  if(!backlog&&planCanComplete(t))html+='<button class="btn-g" data-daily-complete="'+planEsc(t.id)+'" '+(_dailyBusy?'disabled':'')+'>'+(t.done?'Reopen':'✓ Done')+'</button>';
-  html+='<button class="btn-g" data-daily-open="'+planEsc(t.id)+'">Details</button></div></article>';
-  return html;
-}
-// Site allocations use the existing project documents; tasks remain independent.
-function planSiteEntries(){return Object.values(projects).flatMap(p=>(Array.isArray(p.employeeSchedule)?p.employeeSchedule:[]).map(entry=>({...entry,projectId:p.id,projectName:p.name})));}
-function planEntryOnDate(entry,date){if(entry.cancelled||!planValidDate(entry.startDate)||!planValidDate(entry.endDate)||!planValidDate(date)||date<entry.startDate||date>entry.endDate)return false;const day=new Date(date+'T12:00:00').getDay();return entry.weekends||day!==0&&day!==6;}
-function planSitesForDate(date){const manager=hasRole('supervisor')&&_planViewMode!=='worker';return planSiteEntries().filter(e=>(_dailyProject==='all'||e.projectId===_dailyProject)&&planEntryOnDate(e,date)&&(manager?(_dailyEmployee==='all'||e.uid===_dailyEmployee):e.uid===currentUser?.uid));}
-function planSiteCards(date){const entries=planSitesForDate(date);if(!entries.length)return '<div class="daily-empty">No site allocated for this day.'+(hasRole('supervisor')&&_planViewMode!=='worker'?' Use “Schedule site” to allocate an employee.':'')+'</div>';return entries.map(e=>{
-  const u=planUsers().find(u=>u.id===e.uid),manager=hasRole('supervisor')&&_planViewMode!=='worker';
-  return '<article class="daily-task daily-site"><div class="daily-task-main"><div class="daily-task-title">🏗️ '+planEsc(e.projectName)+'</div><div class="daily-task-meta">👷 '+planEsc(u?.name||u?.email||(e.uid===currentUser?.uid?currentProfile?.name:'Assigned employee'))+(e.startTime?' · '+planEsc(e.startTime):'')+'</div><div class="daily-task-meta">📍 '+planEsc(e.address||'Address not provided')+'</div><div class="daily-task-meta">'+planEsc(e.startDate)+' → '+planEsc(e.endDate)+' · '+(e.weekends?'Includes weekends':'Weekdays only')+'</div>'+(e.note?'<div class="daily-task-meta">'+planEsc(e.note)+'</div>':'')+'</div><div class="daily-task-actions">'+(e.address?'<a class="btn-g" target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(e.address)+'">Open Maps</a>':'')+(manager?'<button class="btn-g" data-site-project="'+planEsc(e.projectId)+'" data-site-edit="'+planEsc(e.id)+'">Edit days</button>':'')+'</div></article>';
-}).join('');}
-window.openSiteSchedule=function(projectId,entryId){
-  if(!hasRole('supervisor')){notif('Manager access required','e');return;}
-  const project=projects[projectId];const entry=project?.employeeSchedule?.find(e=>e.id===entryId);
-  const selected=projectId||(_dailyProject!=='all'?_dailyProject:activePid)||'';
-  document.getElementById('site-schedule-overlay')?.remove();
-  const ov=document.createElement('div');ov.id='site-schedule-overlay';ov.className='plan-modal-overlay';
-  ov.innerHTML='<div class="plan-modal-box"><div class="plan-modal-title">🏗️ '+(entry?'Edit site schedule':'Schedule site')+'</div><p class="daily-task-meta">Choose the employee, site and days. Tasks are assigned separately.</p><label class="fl" for="site-plan-user">EMPLOYEE</label><select id="site-plan-user" class="plan-tech-sel"><option value="">Choose an employee</option>'+planUsers().map(u=>'<option value="'+planEsc(u.id)+'" '+((entry?.uid||(_dailyEmployee!=='all'?_dailyEmployee:''))===u.id?'selected':'')+'>'+planEsc(u.name||u.email)+'</option>').join('')+'</select><label class="fl" for="site-plan-project">PROJECT / SITE</label><select id="site-plan-project" class="plan-tech-sel" '+(entry?'disabled':'')+'><option value="">Choose a site</option>'+Object.values(projects).map(p=>'<option value="'+planEsc(p.id)+'" '+(selected===p.id?'selected':'')+'>'+planEsc(p.name)+'</option>').join('')+'</select><label class="fl" for="site-plan-address">SITE ADDRESS</label><input class="m-inp" id="site-plan-address" placeholder="Street, city, state, ZIP" value="'+planEsc(entry?.address||projects[selected]?.address||'')+'"><div class="daily-controls"><div style="flex:1"><label class="fl" for="site-plan-start">FIRST DAY</label><input class="m-inp" type="date" id="site-plan-start" value="'+(entry?.startDate||_dailyDate)+'"></div><div style="flex:1"><label class="fl" for="site-plan-end">LAST DAY</label><input class="m-inp" type="date" id="site-plan-end" value="'+(entry?.endDate||_dailyDate)+'"></div></div><label class="daily-task-meta"><input type="checkbox" id="site-plan-weekends" '+(entry?.weekends?'checked':'')+'> Include Saturdays and Sundays</label><label class="fl" for="site-plan-time" style="margin-top:14px">START TIME (OPTIONAL)</label><input class="m-inp" type="time" id="site-plan-time" value="'+planEsc(entry?.startTime||'')+'"><label class="fl" for="site-plan-note">INSTRUCTIONS (OPTIONAL)</label><input class="m-inp" id="site-plan-note" value="'+planEsc(entry?.note||'')+'" placeholder="Arrival instructions, access contact…"><div class="plan-modal-btns"><button id="site-plan-cancel" class="plan-modal-clear">Cancel</button>'+(entry?'<button id="site-plan-remove" class="plan-modal-clear">Cancel allocation</button>':'')+'<button id="site-plan-save" class="plan-modal-save">Save schedule</button></div><div id="site-plan-status" role="status" class="daily-task-meta"></div></div>';
-  document.body.appendChild(ov);ov.onclick=e=>{if(e.target===ov&&!_dailyBusy)ov.remove();};
-  document.getElementById('site-plan-project').onchange=function(){document.getElementById('site-plan-address').value=projects[this.value]?.address||'';};
-  document.getElementById('site-plan-cancel').onclick=()=>{if(!_dailyBusy)ov.remove();};
-  const remove=document.getElementById('site-plan-remove');if(remove)remove.onclick=()=>window.cancelSiteSchedule(projectId,entryId);
-  document.getElementById('site-plan-save').onclick=()=>window.saveSiteSchedule(document.getElementById('site-plan-project').value,{id:entry?.id||crypto.randomUUID(),uid:document.getElementById('site-plan-user').value,address:document.getElementById('site-plan-address').value.trim(),startDate:document.getElementById('site-plan-start').value,endDate:document.getElementById('site-plan-end').value,weekends:document.getElementById('site-plan-weekends').checked,startTime:document.getElementById('site-plan-time').value,note:document.getElementById('site-plan-note').value.trim()});
-};
-window.saveSiteSchedule=async function(projectId,entry){
-  if(!hasRole('supervisor')){notif('Manager access required','e');return false;}
-  if(_dailyBusy)return false;
-  if(!projects[projectId]||!planUsers().some(u=>u.id===entry.uid)||!entry.address||!planValidDate(entry.startDate)||!planValidDate(entry.endDate)||entry.endDate<entry.startDate||(entry.startTime&&!/^([01]\d|2[0-3]):[0-5]\d$/.test(entry.startTime))){notif('Choose an employee, site, address and valid dates','e');return false;}
-  const start=new Date(entry.startDate+'T12:00:00'),end=new Date(entry.endDate+'T12:00:00');let workingDays=0;
-  if((end-start)/86400000>366){notif('Choose a period of up to one year','e');return false;}
-  for(const d=new Date(start);d<=end;d.setDate(d.getDate()+1))if(planEntryOnDate(entry,getPlanDateStr(d)))workingDays++;
-  if(!workingDays){notif('This period has no working days. Include weekends or choose other dates.','e');return false;}
-  const overlaps=planSiteEntries().filter(e=>e.id!==entry.id&&e.uid===entry.uid).some(e=>{for(const d=new Date(start);d<=end;d.setDate(d.getDate()+1)){const date=getPlanDateStr(d);if(planEntryOnDate(entry,date)&&planEntryOnDate(e,date))return true;}return false;});
-  if(overlaps&&!confirm('This employee already has a site scheduled on one or more of these days. Save this allocation as well?'))return false;
-  _dailyBusy=true;syncing(true);const save=document.getElementById('site-plan-save');if(save)save.disabled=true;const status=document.getElementById('site-plan-status');if(status)status.textContent='Saving site schedule…';
-  try{
-    const employeeSchedule=await runTransaction(db,async tx=>{const projectRef=doc(db,'projects',projectId);const snap=await tx.get(projectRef);if(!snap.exists())throw new Error('Project no longer exists');const previous=Array.isArray(snap.data().employeeSchedule)?snap.data().employeeSchedule:[];const next=previous.filter(e=>e.id!==entry.id);next.push(entry);tx.update(projectRef,{employeeSchedule:next});return next;});
-    if(projects[projectId])projects[projectId].employeeSchedule=employeeSchedule;
-    document.getElementById('site-schedule-overlay')?.remove();notif('Site scheduled for '+workingDays+' working days','s');planRefresh();return true;
-  }catch(error){notif('Site schedule could not be saved. Try again.','e');if(status)status.textContent='Save failed. Your entries are preserved.';return false;}
-  finally{_dailyBusy=false;syncing(false);if(save)save.disabled=false;}
-};
-
-window.cancelSiteSchedule=async function(projectId,entryId){
-  if(!hasRole('supervisor')||_dailyBusy||!projects[projectId])return false;
-  _dailyBusy=true;syncing(true);
-  const status=document.getElementById('site-plan-status');if(status)status.textContent='Cancelling allocation…';
-  try{const entries=await runTransaction(db,async tx=>{const ref=doc(db,'projects',projectId),snap=await tx.get(ref);if(!snap.exists())throw new Error('Project no longer exists');const list=Array.isArray(snap.data().employeeSchedule)?snap.data().employeeSchedule:[];const next=list.map(e=>e.id===entryId?{...e,cancelled:true}:e);tx.update(ref,{employeeSchedule:next});return next;});projects[projectId].employeeSchedule=entries;document.getElementById('site-schedule-overlay')?.remove();notif('Site allocation cancelled','s');planRefresh();return true;}
-  catch(error){notif('Allocation could not be cancelled. Try again.','e');if(status)status.textContent='Save failed. Allocation is unchanged.';return false;}
-  finally{_dailyBusy=false;syncing(false);}
-};
-function planAgendaGroups(tasks,manager){
-  if(!manager)return tasks.map(t=>planTaskCard(t,false)).join('');
-  const groups=new Map();tasks.forEach(t=>{const key=t.assignedTo||'';if(!groups.has(key))groups.set(key,[]);groups.get(key).push(t);});
-  return [...groups].map(([uid,items])=>{const user=planUsers().find(u=>u.id===uid),mins=items.reduce((n,t)=>n+(Number(t.plannedMinutes)||0),0);return '<section class="daily-employee"><h4>👷 '+planEsc(user?.name||user?.email||(uid?'Assigned employee':'Unassigned'))+' <span class="daily-task-meta">'+items.length+' tasks'+(mins?' · '+(mins/60).toFixed(1)+' estimated hours':'')+'</span></h4>'+items.map(t=>planTaskCard(t,false)).join('')+'</section>';}).join('');
-}
-function planPendingGroups(tasks){
-  const groups=new Map();tasks.forEach(t=>{const key=t.projectId+'|'+(t.roomId||'');if(!groups.has(key))groups.set(key,[]);groups.get(key).push(t);});
-  return [...groups.values()].map(items=>'<details class="daily-pending-group"><summary>'+planEsc(projects[items[0].projectId]?.name)+' · '+planEsc(rooms[items[0].roomId]?.name||'General')+' ('+items.length+')</summary>'+items.map(t=>planTaskCard(t,true)).join('')+'</details>').join('');
-}
-function planUpcomingCards(){
-  let html='';for(let i=1;i<=7;i++){const d=new Date(_dailyDate+'T12:00:00');d.setDate(d.getDate()+i);const date=getPlanDateStr(d);const sites=planSitesForDate(date);const tasks=planTasks().filter(t=>t.assignedDate===date&&(hasRole('supervisor')&&_planViewMode!=='worker'?(_dailyEmployee==='all'||t.assignedTo===_dailyEmployee):t.assignedTo===currentUser?.uid));if(sites.length||tasks.length)html+='<section><h4>'+d.toLocaleDateString('en-US',{weekday:'long',month:'short',day:'numeric'})+' · '+tasks.length+' tasks</h4>'+planSiteCards(date)+tasks.map(t=>planTaskCard(t,false)).join('')+'</section>';}
-  return html||'<div class="daily-empty">No scheduled work in the next seven days.</div>';
-}
 window.renderPlanningPage=function(el){
-  if(!el)return;
-  const manager=hasRole('supervisor')&&_planViewMode!=='worker';
-  const day=planDayTasks(),done=day.filter(t=>t.done).length;
+  if(!activePid){el.innerHTML='<div class="empty" style="display:flex"><div class="ico">📅</div><p>Select a project first.</p></div>';return;}
+  const proj=projects[activePid];
+  const {monday,sunday}=getPlanWeekDates(_planWeekOffset);
+  const monStr=getPlanDateStr(monday);
+  const sunStr=getPlanDateStr(sunday);
   const today=getPlanDateStr(new Date());
-  const ownOverdue=planTasks().filter(t=>t.assignedTo===currentUser?.uid&&!t.done&&t.assignedDate&&t.assignedDate<(_dailyDate<today?_dailyDate:today));
-  let html='<div class="page-hdr"><div><div class="page-title">📅 '+(manager?'Daily Planning':'My Schedule')+'</div><div class="daily-task-meta">'+(manager?'Assign pending work to an employee and a day.':'Your tasks across projects, organized by day.')+'</div></div>';
-  if(hasRole('supervisor'))html+='<div class="plan-view-toggle"><button class="plan-view-btn'+(manager?' active':'')+'" onclick="window.setPlanView(\'manager\')">Manager</button><button class="plan-view-btn'+(!manager?' active':'')+'" data-planview="worker" onclick="window.setPlanView(\'worker\')">My Schedule</button></div>';
-  html+='</div>'+(manager?'<button class="btn-hdr" onclick="window.openSiteSchedule()">+ Schedule site</button>':'')+'<div class="daily-controls"><button class="btn-g" onclick="window.shiftDailyDate(-1)" aria-label="Previous day">←</button><input aria-label="Schedule date" type="date" value="'+_dailyDate+'" onchange="window.setDailyDate(this.value)"><button class="btn-g" onclick="window.shiftDailyDate(1)" aria-label="Next day">→</button><button class="btn-g" onclick="window.setDailyDate(\''+today+'\')">Today</button></div>';
-  const d=new Date(_dailyDate+'T12:00:00'),{monday}=getPlanWeekDates(0);
-  monday.setTime(d.getTime());monday.setDate(d.getDate()-(d.getDay()===0?6:d.getDay()-1));
-  html+='<div class="daily-week">';
-  for(let i=0;i<7;i++){const wd=new Date(monday);wd.setDate(wd.getDate()+i);const date=getPlanDateStr(wd);html+='<button class="daily-day'+(date===_dailyDate?' active':'')+'" onclick="window.setDailyDate(\''+date+'\')">'+wd.toLocaleDateString('en-US',{weekday:'short'})+'<strong>'+wd.getDate()+'</strong></button>';}
-  html+='</div><div class="daily-controls"><select aria-label="Project filter" onchange="window.setDailyProject(this.value)"><option value="all">All projects</option>'+Object.values(projects).map(p=>'<option value="'+planEsc(p.id)+'" '+(_dailyProject===p.id?'selected':'')+'>'+planEsc(p.name)+'</option>').join('')+'</select>';
-  if(manager)html+='<select aria-label="Employee filter" onchange="window.setDailyEmployee(this.value)"><option value="all">All employees</option>'+planUsers().map(u=>'<option value="'+planEsc(u.id)+'" '+(_dailyEmployee===u.id?'selected':'')+'>'+planEsc(u.name||u.email)+'</option>').join('')+'</select>';
-  html+='</div><h3 style="font-size:16px;margin:18px 0 8px">'+(manager?'Team sites':'Where I am working')+'</h3>'+planSiteCards(_dailyDate)+'<h3 style="font-size:16px;margin:18px 0 8px">'+(manager?'Team schedule':'My tasks')+' · '+done+'/'+day.length+' complete</h3>';
-  html+=day.length?planAgendaGroups(day,manager):'<div class="daily-empty">No tasks scheduled for this day.'+(manager?' Select pending tasks below to build the schedule.':' Your manager can assign pending work to you.')+'</div>';
-  if(!manager&&ownOverdue.length)html+='<h3 style="font-size:15px;margin:20px 0 8px">Earlier unfinished work ('+ownOverdue.length+')</h3>'+ownOverdue.map(t=>planTaskCard(t,false)).join('');
-  if(manager){
-    const backlog=planBacklog();_dailySelected=new Set([..._dailySelected].filter(id=>allTasks[id]&&!allTasks[id].done&&(_dailyProject==='all'||allTasks[id].projectId===_dailyProject)));
-    html+='<details class="daily-backlog" '+(_dailyBacklogOpen?'open':'')+' ontoggle="window.setDailyBacklogOpen(this.open)"><summary style="font-size:16px;cursor:pointer;padding:12px 0">Pending work to distribute ('+backlog.length+')</summary><input id="daily-search" type="search" placeholder="Search tasks, units or projects" aria-label="Search pending tasks" value="'+planEsc(_dailySearch)+'" oninput="window.setDailySearch(this.value)"><div class="daily-controls"><label><input type="checkbox" '+(backlog.length&&backlog.every(t=>_dailySelected.has(t.id))?'checked':'')+' onchange="window.selectDailyVisible(this.checked)"> Select visible</label><button class="btn-g" data-daily-batch '+(!_dailySelected.size?'disabled':'')+'>Assign selected ('+_dailySelected.size+')</button></div>'+planPendingGroups(backlog)+(!backlog.length?'<div class="daily-empty">No pending tasks match this filter.</div>':'')+'</details>';
+  const isManager=hasRole('supervisor');
+  const currentMode=isManager?_planViewMode:'worker';
+
+  // All tasks for project
+  const projTasks=Object.values(allTasks).filter(t=>t.projectId===activePid);
+  const pendingTasks=projTasks.filter(t=>!t.done);
+
+  // Tasks assigned this week
+  const weekTasks=projTasks.filter(t=>t.assignedDate&&t.assignedDate>=monStr&&t.assignedDate<=sunStr);
+  const myWeekTasks=weekTasks.filter(t=>t.assignedTo===currentUser?.uid);
+  const todayTasks=projTasks.filter(t=>t.assignedDate===today);
+  const myTodayTasks=todayTasks.filter(t=>t.assignedTo===currentUser?.uid);
+
+  // Distinct task names for filter
+  const taskNames=[...new Set(pendingTasks.map(t=>t.name))].sort();
+
+  // Filtered pending tasks for manager view
+  let filteredTasks=pendingTasks;
+  if(_planTaskFilter!=='all') filteredTasks=filteredTasks.filter(t=>t.name===_planTaskFilter);
+  if(_planFloorFilter!=='all'){
+    const floorRooms=Object.values(rooms).filter(r=>r.projectId===activePid&&(r.floor||'Other')===_planFloorFilter).map(r=>r.id);
+    filteredTasks=filteredTasks.filter(t=>floorRooms.includes(t.roomId));
   }
-  html+='<details '+(_dailyUpcomingOpen?'open':'')+' ontoggle="window.setDailyUpcomingOpen(this.open)" class="daily-backlog"><summary style="padding:12px 0;cursor:pointer">Upcoming days</summary>'+planUpcomingCards()+'</details>';
+
+  // Users for assignment
+  const users=window._cachedUsers||[];
+  const floors=[...new Set(Object.values(rooms).filter(r=>r.projectId===activePid).map(r=>r.floor||'Other'))].sort();
+
+  // Velocity — tasks done in last 7 days
+  const last7=new Date();last7.setDate(last7.getDate()-7);
+  const doneLast7=projTasks.filter(t=>t.done&&t.doneAt&&new Date(t.doneAt)>last7).length;
+  const velocityPerDay=doneLast7/7;
+  const estimateDays=velocityPerDay>0?Math.ceil(pendingTasks.length/velocityPerDay):null;
+
+  // KPIs
+  const weekDone=weekTasks.filter(t=>t.done).length;
+  const weekTotal=weekTasks.length;
+
+  // Build HTML
+  let html='';
+
+  // Header
+  html+='<div class="page-hdr">'
+    +'<div><div class="page-title">📅 Planning</div>'
+    +(proj?'<div style="font-size:11px;color:var(--mut)">'+x(proj.name)+'</div>':'')
+    +'</div>'
+    +(isManager?'<div class="plan-view-toggle">'
+      +'<button class="plan-view-btn'+(currentMode==='manager'?' active':'')+'" onclick="window.setPlanView(\'manager\')">👔 Manager</button>'
+      +'<button class="plan-view-btn'+(currentMode==='worker'?' active':'')+'" onclick="window.setPlanView(\'worker\')">👷 My Day</button>'
+      +'</div>':'')
+    +'</div>';
+
+  // Week nav
+  html+='<div class="plan-week-nav">'
+    +'<button class="plan-week-btn" onclick="window.setPlanWeek(-1)">← Prev</button>'
+    +'<div class="plan-week-lbl">'+formatPlanWeek(monday,sunday)+(_planWeekOffset===0?' <span style="font-size:9px;color:var(--elec);letter-spacing:1px">THIS WEEK</span>':'')+'</div>'
+    +'<button class="plan-week-btn" onclick="window.setPlanWeek(1)">Next →</button>'
+    +'</div>';
+
+  if(currentMode==='manager'){
+    // ── MANAGER VIEW — select dropdown ──────────────────────────────────────
+
+    // KPIs
+    html+='<div class="plan-kpi-row">'
+      +'<div class="plan-kpi"><div class="plan-kpi-val" style="color:var(--elec)">'+weekTotal+'</div><div class="plan-kpi-lbl">ASSIGNED</div></div>'
+      +'<div class="plan-kpi"><div class="plan-kpi-val" style="color:var(--ok)">'+weekDone+'</div><div class="plan-kpi-lbl">DONE</div></div>'
+      +'<div class="plan-kpi"><div class="plan-kpi-val" style="color:var(--fire)">'+pendingTasks.length+'</div><div class="plan-kpi-lbl">PENDING</div></div>'
+      +'<div class="plan-kpi"><div class="plan-kpi-val" style="color:#a78bfa">'+(estimateDays?estimateDays+'d':'—')+'</div><div class="plan-kpi-lbl">EST. LEFT</div></div>'
+      +'</div>';
+
+    // ── STEP 1: Dropdown de tarefa ───────────────────────────────────────────
+    const cats2={eletrica:[],fire:[],inspecao:[],geral:[]};
+    taskNames.forEach(name=>{
+      const cat=pendingTasks.find(t=>t.name===name)?.cat||'geral';
+      (cats2[cat]||cats2.geral).push(name);
+    });
+    const catLabels2={eletrica:'⚡ Electrical',fire:'🔥 Fire Alarm',inspecao:'🔍 Inspection',geral:'🔧 General'};
+    const selBorder=_planTaskFilter==='all'?'var(--bdr)':'var(--elec)';
+    html+='<div style="margin-bottom:14px">'
+      +'<label style="font-size:10px;letter-spacing:1px;color:var(--mut);font-family:\'JetBrains Mono\',monospace;display:block;margin-bottom:8px">TIPO DE TAREFA</label>'
+      +'<div style="position:relative">'
+      +'<select id="plan-task-sel" onchange="window.setPlanFilter(this.value)" style="width:100%;box-sizing:border-box;background:var(--sur);border:2px solid '+selBorder+';color:var(--txt);font-family:\'DM Sans\',sans-serif;font-size:16px;font-weight:600;padding:13px 40px 13px 16px;border-radius:12px;outline:none;-webkit-appearance:none;appearance:none;cursor:pointer">'
+      +'<option value="all">Selecione uma tarefa...</option>';
+    Object.entries(cats2).forEach(([cat,names])=>{
+      if(!names.length)return;
+      const cnt=pendingTasks.filter(t=>t.cat===cat).length;
+      html+='<optgroup label="'+catLabels2[cat]+' ('+cnt+' pendentes)">';
+      names.forEach(name=>{
+        const n=pendingTasks.filter(t=>t.name===name).length;
+        html+='<option value="'+x(name)+'"'+(_planTaskFilter===name?' selected':'')+'>'+x(name)+' ('+n+')</option>';
+      });
+      html+='</optgroup>';
+    });
+    html+='</select>'
+      +'<div style="position:absolute;right:14px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--mut);font-size:12px">▼</div>'
+      +'</div></div>';
+
+    if(_planTaskFilter!=='all'){
+      const taskUnits=filteredTasks.map(t=>({task:t,room:rooms[t.roomId]}))
+        .filter(({room})=>room)
+        .sort((a,b)=>(a.room?.name||'').localeCompare(b.room?.name||''));
+      const assignedCount=taskUnits.filter(({task})=>task.assignedDate&&task.assignedDate>=monStr).length;
+      const doneCount=taskUnits.filter(({task})=>task.done).length;
+
+      // Floor filter
+      const floorCounts={};
+      taskUnits.forEach(({room})=>{ const f=room?.floor||'Other'; floorCounts[f]=(floorCounts[f]||0)+1; });
+      html+='<div style="display:flex;gap:6px;overflow-x:auto;padding-bottom:6px;margin-bottom:12px;scrollbar-width:none">'
+        +'<button class="plan-filter-btn'+(_planFloorFilter==='all'?' active':'')+'" onclick="window.setPlanFloor(\'all\')">All floors</button>';
+      floors.forEach(f=>{
+        if(!floorCounts[f])return;
+        html+='<button class="plan-filter-btn'+(_planFloorFilter===f?' active':'')+'" data-pf="'+x(f)+'" onclick="window.setPlanFloor(this.dataset.pf)">'+x(f)+' <span style="opacity:.6;font-size:10px">'+floorCounts[f]+'</span></button>';
+      });
+      html+='</div>';
+
+      // Stats + batch buttons
+      html+='<div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:12px">'
+        +'<div style="font-size:12px;color:var(--mut)">'
+        +'<span style="color:var(--txt);font-weight:700">'+taskUnits.length+'</span> units&nbsp;·&nbsp;'
+        +'<span style="color:var(--ok)">'+doneCount+' prontas</span>&nbsp;·&nbsp;'
+        +'<span style="color:var(--elec)">'+assignedCount+' assigned</span>'
+        +'</div>'
+        +'<div style="display:flex;gap:6px">'
+        +'<button class="plan-batch2-btn plan-batch2-today" data-tn="'+x(_planTaskFilter)+'" onclick="window.assignAllPlanTasks(this.dataset.tn,\'today\')">⚡ Tudo Hoje</button>'
+        +'<button class="plan-batch2-btn plan-batch2-week" data-tn="'+x(_planTaskFilter)+'" onclick="window.assignAllPlanTasks(this.dataset.tn,\'week\')">📅 Esta Semana</button>'
+        +'</div></div>';
+
+      if(!taskUnits.length){
+        html+='<div style="color:var(--dim);font-size:13px;padding:20px;text-align:center">No pending units.</div>';
+      } else {
+        // Agrupar por andar
+        const byFloor3={};
+        taskUnits.forEach(({task,room})=>{ const f=room?.floor||'Other'; if(!byFloor3[f])byFloor3[f]=[]; byFloor3[f].push({task,room}); });
+        const FORD=['Basement','Ground Floor','1st Floor','2nd Floor','3rd Floor','3rd Floor (Penthouse)','4th Floor','5th Floor','Penthouse','Garage','Common Area','Exterior','Other'];
+        const sf=Object.keys(byFloor3).sort((a,b)=>{ const ai=FORD.indexOf(a),bi=FORD.indexOf(b); if(ai<0&&bi<0)return a.localeCompare(b); if(ai<0)return 1; if(bi<0)return-1; return ai-bi; });
+        html+='<div style="background:var(--sur);border:1px solid var(--bdr);border-radius:14px;overflow:hidden">';
+        sf.forEach((floor,fi)=>{
+          const fu=byFloor3[floor];
+          const fd=fu.filter(({task})=>task.done).length;
+          if(fi>0)html+='<div style="height:1px;background:var(--bdr)"></div>';
+          html+='<div style="padding:8px 16px;background:var(--sur2);display:flex;align-items:center;gap:8px">'
+            +'<span style="font-size:9px;letter-spacing:2px;font-weight:700;color:var(--elec);font-family:\'JetBrains Mono\',monospace">'+x(floor).toUpperCase()+'</span>'
+            +'<span style="font-size:10px;color:var(--mut)">'+fu.length+' unit'+(fu.length!==1?'s':'')+' · '+fd+' done</span>'
+            +'</div>';
+          fu.forEach(({task,room},ri)=>{
+            const isToday=task.assignedDate===today;
+            const isWeek=task.assignedDate&&task.assignedDate>=monStr&&task.assignedDate<=sunStr;
+            const aUser=task.assignedTo?users.find(u=>u.id===task.assignedTo):null;
+            let btnTxt='+ Assign';
+            let btnCls='plan-assign-btn2';
+            if(task.done){btnTxt='✓ Done';}
+            else if(isToday&&aUser){btnTxt='📅 '+x((aUser.name||aUser.email||'').split(' ')[0]);btnCls='plan-assign-btn2 today-assigned';}
+            else if(isToday){btnTxt='📅 Today';btnCls='plan-assign-btn2 today-assigned';}
+            else if(aUser){btnTxt='👤 '+x((aUser.name||aUser.email||'').split(' ')[0]);btnCls='plan-assign-btn2 tech-assigned';}
+            else if(isWeek&&task.assignedDate){btnTxt='📅 '+x(task.assignedDate.slice(5));btnCls='plan-assign-btn2 week-assigned';}
+            if(ri>0)html+='<div style="height:1px;background:var(--bdr)33;margin:0 16px"></div>';
+            html+='<div style="display:flex;align-items:center;gap:12px;padding:11px 16px">'
+              +'<div style="width:20px;height:20px;border-radius:50%;border:2px solid '+(task.done?'var(--ok)':'var(--bdr)')+';background:'+(task.done?'var(--ok)':'transparent')+';flex-shrink:0;display:flex;align-items:center;justify-content:center">'              +(task.done?'<span style="color:#000;font-size:11px;font-weight:900">✓</span>':'')              +'</div>'
+              +'<div style="flex:1;min-width:0">'
+              +'<div style="font-size:13px;font-weight:700;'+(task.done?'opacity:.4;text-decoration:line-through':'')+'">'+x(room?.name||task.roomId)+'</div>'
+              +(aUser&&!task.done?'<div style="font-size:10px;color:var(--elec);margin-top:1px">👤 '+x(aUser.name||aUser.email||'?')+'</div>':'')
+              +'</div>'
+              +(task.done?'':'<button class="'+btnCls+'" data-tid="'+task.id+'" data-tname="'+x(_planTaskFilter)+'" data-rname="'+x(room?.name||'')+'" onclick="window.openPlanAssign(this.dataset.tid,this.dataset.tname,this.dataset.rname,event)">'+btnTxt+'</button>')
+              +'</div>';
+          });
+        });
+        html+='</div>';
+      }
+    } else {
+      // Nenhuma task selecionada
+      const workloadToday=projTasks.filter(t=>t.assignedDate===today&&t.assignedTo);
+      if(workloadToday.length){
+        const wl={};
+        workloadToday.forEach(t=>{ if(!wl[t.assignedTo]){wl[t.assignedTo]={done:0,total:0};} wl[t.assignedTo].total++; if(t.done)wl[t.assignedTo].done++; });
+        html+='<div style="margin-top:8px"><div style="font-size:9px;letter-spacing:2px;color:var(--mut);font-family:\'JetBrains Mono\',monospace;margin-bottom:10px">EQUIPE HOJE</div><div style="display:flex;gap:8px;flex-wrap:wrap">';
+        Object.entries(wl).forEach(([uid,w])=>{
+          const u=users.find(u=>u.id===uid);
+          const nm=(u?.name||u?.email||'?').split(' ')[0];
+          const pct=w.total?Math.round(w.done/w.total*100):0;
+          const col=pct===100?'var(--ok)':pct>=50?'var(--elec)':'var(--mut)';
+          html+='<div style="background:var(--sur2);border:1px solid var(--bdr);border-radius:10px;padding:10px 14px;display:flex;align-items:center;gap:9px">'
+            +'<div style="width:32px;height:32px;border-radius:50%;background:'+col+'22;color:'+col+';display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900">'+nm.slice(0,2).toUpperCase()+'</div>'
+            +'<div><div style="font-size:12px;font-weight:700">'+x(nm)+'</div><div style="font-size:10px;color:var(--mut)">'+w.done+'/'+w.total+' · <span style="color:'+col+'">'+pct+'%</span></div></div>'
+            +'</div>';
+        });
+        html+='</div></div>';
+      } else {
+        html+='<div style="text-align:center;padding:32px 20px"><div style="font-size:40px;margin-bottom:12px">📋</div>'
+          +'<div style="font-size:14px;font-weight:700;color:var(--txt);margin-bottom:6px">Selecione uma tarefa acima</div>'
+          +'<div style="font-size:12px;color:var(--dim);line-height:1.5">Escolha o tipo de trabalho no dropdown para ver e distribuir as units pela equipe</div></div>';
+      }
+    }
+
+  } else {
+    // ── WORKER / MY DAY VIEW v2 ─────────────────────────────────────────────
+    const FLOOR_ORDER_MD=['Basement','Ground Floor','1st Floor','2nd Floor','3rd Floor','3rd Floor (Penthouse)','4th Floor','5th Floor','Penthouse','Garage','Common Area','Exterior'];
+
+    // Header
+    html+='<div style="font-family:\'Bebas Neue\',sans-serif;font-size:22px;letter-spacing:3px;margin-bottom:2px;background:linear-gradient(90deg,var(--elec),var(--ok));-webkit-background-clip:text;-webkit-text-fill-color:transparent">MY DAY</div>'
+      +'<div style="font-size:11px;color:var(--mut);font-family:\'JetBrains Mono\',monospace;margin-bottom:14px">'+new Date().toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'}).toUpperCase()+'</div>';
+
+    // ── Clock-in prompt (#5) ──────────────────────────────────────────────
+    if(!window._clockedIn){
+      html+='<div class="myd-clock-prompt" onclick="typeof toggleClock===\'function\'&&toggleClock()">'
+        +'<div class="myd-clock-prompt-icon">⏱️</div>'
+        +'<div class="myd-clock-prompt-text">'
+        +'<div class="myd-clock-prompt-title">Start your day</div>'
+        +'<div class="myd-clock-prompt-sub">Tap to clock in and start tracking your time</div>'
+        +'</div>'
+        +'<button class="myd-clock-prompt-btn" onclick="event.stopPropagation();typeof toggleClock===\'function\'&&toggleClock()">Clock In</button>'
+        +'</div>';
+    }
+
+    if(!myTodayTasks.length){
+      html+='<div class="empty-state">'
+      +'<div class="empty-state-icon">☀️</div>'
+      +'<div class="empty-state-title">No tasks for today yet</div>'
+      +'<div class="empty-state-sub">Your supervisor hasn\'t assigned tasks for today yet.<br>Check back soon or view the Timeline.</div>'
+      +'<button class="empty-state-action" onclick="window.setPlanView(\'manager\')">Switch to Manager view</button>'
+      +'</div>';
+    } else {
+      const myDone=myTodayTasks.filter(t=>t.done).length;
+      const myLeft=myTodayTasks.length-myDone;
+      const myPct=Math.round(myDone/myTodayTasks.length*100);
+      const allDoneToday=myLeft===0;
+
+      // ── Counter badge (#2) ──────────────────────────────────────────────
+      if(allDoneToday){
+        html+='<div class="myd-done-celebrate">'
+          +'<div class="myd-done-title">ALL DONE! 🎉</div>'
+          +'<div style="font-size:13px;color:var(--mut)">'+myDone+' tasks completed today</div>'
+          +'</div>';
+        // Clock-out prompt (#5)
+        if(window._clockedIn){
+          html+='<div class="myd-clockout-prompt">'
+            +'<div style="font-size:24px">🏁</div>'
+            +'<div style="flex:1"><div style="font-size:14px;font-weight:700;color:var(--fire)">All done! Clock out?</div>'
+            +'<div style="font-size:11px;color:var(--mut)">Record your time for today</div></div>'
+            +'<button class="myd-clockout-btn" onclick="typeof toggleClock===\'function\'&&toggleClock()">Clock Out</button>'
+            +'</div>';
+        }
+      } else {
+        html+='<div class="myd-counter">'
+          +'<div class="myd-counter-num" style="color:'+(myLeft<=3?'var(--ok)':'var(--elec)')+'">'+myLeft+'</div>'
+          +'<div class="myd-counter-lbl">unit'+(myLeft!==1?'s':'')+' left today</div>'
+          +'</div>';
+      }
+
+      // Progress bar
+      html+='<div style="margin-bottom:16px">'
+        +'<div style="display:flex;justify-content:space-between;font-size:10px;color:var(--mut);font-family:\'JetBrains Mono\',monospace;margin-bottom:5px"><span>PROGRESS</span><span>'+myDone+'/'+myTodayTasks.length+' · '+myPct+'%</span></div>'
+        +'<div class="plan-progress-bar"><div class="plan-progress-fill" style="width:'+myPct+'%;background:'+(myPct===100?'var(--ok)':myPct>=50?'var(--elec)':'var(--fire)')+'"></div></div></div>';
+
+      // Group by task name
+      const byTask={};
+      myTodayTasks.forEach(t=>{
+        if(!byTask[t.name])byTask[t.name]={name:t.name,cat:t.cat,tasks:[]};
+        byTask[t.name].tasks.push(t);
+      });
+
+      Object.values(byTask).forEach(group=>{
+        const cat=CATS[group.cat]||CATS.geral;
+        const gDone=group.tasks.filter(t=>t.done).length;
+        const gLeft=group.tasks.length-gDone;
+        const dot=group.cat==='eletrica'?'var(--elec)':group.cat==='fire'?'var(--fire)':'#818cf8';
+
+        html+='<div class="plan-my-day-card" style="border-color:'+dot+'33">';
+
+        // Card header with counter
+        html+='<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">'
+          +'<span class="badge '+cat.badge+'" style="font-size:10px">'+cat.label+'</span>'
+          +'<div style="font-size:14px;font-weight:700;flex:1">'+x(group.name)+'</div>'
+          +'<div style="display:flex;align-items:center;gap:6px">'
+          // left counter (#2)
+          +(gLeft>0?'<div style="font-family:\'Bebas Neue\',sans-serif;font-size:20px;color:'+dot+';line-height:1">'+gLeft+'</div>'
+          +'<div style="font-size:9px;color:var(--mut);line-height:1.2">left</div>':'<div style="color:var(--ok);font-size:16px">✅</div>')
+          +'</div></div>';
+
+        // ── Units grouped by floor (#4) ────────────────────────────────
+        const byFloor={};
+        group.tasks.forEach(t=>{
+          const r=rooms[t.roomId];
+          const f=r?r.floor||'Other':'Other';
+          if(!byFloor[f])byFloor[f]=[];
+          byFloor[f].push(t);
+        });
+        const sortedFloors=Object.keys(byFloor).sort((a,b)=>{
+          const ai=FLOOR_ORDER_MD.indexOf(a);const bi=FLOOR_ORDER_MD.indexOf(b);
+          return(ai<0?99:ai)-(bi<0?99:bi);
+        });
+        const multiFloor=sortedFloors.length>1;
+
+        sortedFloors.forEach(floor=>{
+          if(multiFloor){
+            html+='<div class="myd-floor-hdr">'+floor.toUpperCase()+'</div>';
+          }
+          html+='<div class="myd-chip-row">';
+          byFloor[floor].sort((a,b)=>{
+            const ra=rooms[a.roomId],rb=rooms[b.roomId];
+            return(ra?ra.name:'').localeCompare(rb?rb.name:'');
+          }).forEach(t=>{
+            const room=rooms[t.roomId];
+            const done=t.done;
+            // ── Big tap chip (#1) ──────────────────────────────────────
+            html+='<div class="myd-chip'+(done?' done-chip':'')+'" data-mdtid="'+t.id+'">'
+              +'<div class="myd-chip-chk"></div>'
+              +'<div>'
+              +'<div class="myd-chip-name">'+x(room?room.name:t.roomId)+'</div>'
+              +(done&&t.doneAt?'<div class="myd-chip-floor" style="color:var(--ok)">'+x(t.doneAt)+'</div>':'')
+              +'</div></div>';
+          });
+          html+='</div>';
+        });
+
+        // ── Mark All Done button (#3) ──────────────────────────────────
+        if(gLeft>0){
+          const pendingIds=group.tasks.filter(t=>!t.done).map(t=>t.id).join(',');
+          html+='<button class="myd-mark-all" data-mdbatch="'+pendingIds+'">✓ Mark all done ('+(gLeft)+')</button>';
+        }
+
+        html+='</div>'; // plan-my-day-card
+      });
+    }
+
+    // Also show this week's tasks not yet assigned to today
+    const myWeekNotToday=myWeekTasks.filter(t=>t.assignedDate!==today&&!t.done);
+    if(myWeekNotToday.length){
+      html+='<div style="margin-top:16px;font-size:10px;letter-spacing:2px;color:var(--mut);font-family:\'JetBrains Mono\',monospace;margin-bottom:8px">ALSO THIS WEEK ('+myWeekNotToday.length+')</div>';
+      myWeekNotToday.forEach(t=>{
+        const room=rooms[t.roomId];
+        html+='<div style="display:flex;align-items:center;gap:8px;padding:7px 10px;background:var(--sur);border:1px solid var(--bdr);border-radius:8px;margin-bottom:4px">'
+          +'<div style="flex:1"><div style="font-size:12px;font-weight:600">'+x(t.name)+'</div>'
+          +'<div style="font-size:10px;color:var(--mut)">📍 '+x(room?room.name:'?')+' · 📅 '+x(t.assignedDate||'')+'</div></div>'
+          +'</div>';
+      });
+    }
+  }
+
   el.innerHTML=html;
-  el.onclick=function(e){const assign=e.target.closest('[data-daily-assign]'),complete=e.target.closest('[data-daily-complete]'),open=e.target.closest('[data-daily-open]');const site=e.target.closest('[data-site-edit]');if(site)window.openSiteSchedule(site.dataset.siteProject,site.dataset.siteEdit);else if(assign)window.openDailyAssign([assign.dataset.dailyAssign]);else if(complete)window.completeDailyTask(complete.dataset.dailyComplete);else if(open)window.openDailyTask(open.dataset.dailyOpen);else if(e.target.closest('[data-daily-batch]'))window.openDailyAssign([..._dailySelected]);};
+
+  // ── My Day chip taps + mark-all delegation ────────────────────────────
+  if(el._mdEv) el._mdEv=false; // reset so we can re-attach
+  el.addEventListener('click',function mdHandler(e){
+    // Big chip tap (#1)
+    const chip=e.target.closest('[data-mdtid]');
+    if(chip&&!chip.classList.contains('done-chip')){
+      window.togglePlanTask(chip.dataset.mdtid);
+      return;
+    }
+    // Mark All Done (#3)
+    const batchBtn=e.target.closest('[data-mdbatch]');
+    if(batchBtn){
+      const ids=batchBtn.dataset.mdbatch.split(',').filter(Boolean);
+      window.mdMarkAllDone(ids);
+      return;
+    }
+  },{once:true});
 };
-window.openDailyTask=function(id){const t=allTasks[id];if(!t||!planCanComplete(t))return;activePid=t.projectId;activeRid=t.roomId;window.closeHomePage();activePage='rooms';renderProjSel();renderRoomsList();renderContent();updateBottomNav('rooms');window.openTaskEdit?.(id);};
-window.openDailyAssign=function(ids){
-  if(!hasRole('supervisor')){notif('Manager access required','e');return;}
-  const tasks=ids.map(id=>allTasks[id]).filter(t=>t&&!t.done);if(!tasks.length)return;
-  document.getElementById('daily-assign-overlay')?.remove();
-  const first=tasks.length===1?tasks[0]:null;
-  const overlay=document.createElement('div');overlay.id='daily-assign-overlay';overlay.className='plan-modal-overlay';
-  overlay.innerHTML='<div class="plan-modal-box"><div class="plan-modal-title">Assign '+tasks.length+' task'+(tasks.length===1?'':'s')+'</div><p class="daily-task-meta">'+(first?planEsc(first.name):'Assign selected pending tasks together.')+'</p><label class="fl" for="daily-assign-user">EMPLOYEE</label><select class="plan-tech-sel" id="daily-assign-user"><option value="">Choose an employee</option>'+planUsers().map(u=>'<option value="'+planEsc(u.id)+'" '+(first?.assignedTo===u.id?'selected':'')+'>'+planEsc(u.name||u.email)+'</option>').join('')+'</select><label class="fl" for="daily-assign-date">DAY</label><input class="m-inp" type="date" id="daily-assign-date" value="'+(first?.assignedDate||_dailyDate)+'"><label class="fl" for="daily-assign-time">START TIME (OPTIONAL)</label><input class="m-inp" type="time" id="daily-assign-time" value="'+planEsc(first?.plannedTime||'')+'"><label class="fl" for="daily-assign-duration">ESTIMATED MINUTES PER TASK (OPTIONAL)</label><input class="m-inp" type="number" min="1" max="1440" id="daily-assign-duration" value="'+planEsc(first?.plannedMinutes||'')+'"><div class="plan-modal-btns"><button class="plan-modal-clear" id="daily-cancel">Cancel</button>'+(first?.assignedTo?'<button class="plan-modal-clear" id="daily-clear">Unassign</button>':'')+'<button class="plan-modal-save" id="daily-save">Save schedule</button></div><div class="daily-task-meta" id="daily-save-status" role="status"></div></div>';
-  document.body.appendChild(overlay);overlay.onclick=e=>{if(e.target===overlay&&!_dailyBusy)overlay.remove();};document.getElementById('daily-cancel').onclick=()=>{if(!_dailyBusy)overlay.remove();};
-  const taskIds=tasks.map(t=>t.id);
-  document.getElementById('daily-save').onclick=()=>window.saveDailyAssignments(taskIds,document.getElementById('daily-assign-user').value,document.getElementById('daily-assign-date').value,document.getElementById('daily-assign-time').value,false,document.getElementById('daily-assign-duration').value);
-  const clear=document.getElementById('daily-clear');if(clear)clear.onclick=()=>window.saveDailyAssignments(taskIds,null,null,null,true);
-};
-window.saveDailyAssignments=async function(ids,uid,date,time,clear,duration){
-  if(!hasRole('supervisor')){notif('Manager access required','e');return false;}
-  if(_dailyBusy)return false;
-  if(duration&&(!Number.isInteger(Number(duration))||Number(duration)<1||Number(duration)>1440)){notif('Enter an estimate between 1 and 1440 minutes','e');return false;}
-  if(!clear&&(!uid||!planUsers().some(u=>u.id===uid)||!planValidDate(date)||(time&&!/^([01]\d|2[0-3]):[0-5]\d$/.test(time)))){notif('Choose an employee and a valid day','e');return false;}
-  const tasks=[...new Set(ids)].map(id=>allTasks[id]);
-  if(!tasks.length||tasks.length>450||tasks.some(t=>!t||t.done)){notif('Select up to 450 pending tasks','e');return false;}
-  _dailyBusy=true;syncing(true);const save=document.getElementById('daily-save');if(save)save.disabled=true;
-  const status=document.getElementById('daily-save-status');if(status)status.textContent=navigator.onLine?'Saving schedule…':'Waiting for connection to confirm schedule…';
-  try{
-    const batch=writeBatch(db);const changes={assignedTo:clear?null:uid,assignedDate:clear?null:date,plannedTime:clear?null:time||null,plannedMinutes:clear?null:duration?Number(duration):null};
-    tasks.forEach(t=>batch.update(doc(db,'tasks',t.id),changes));await batch.commit();
-    tasks.forEach(t=>{if(allTasks[t.id])Object.assign(allTasks[t.id],changes);_dailySelected.delete(t.id);});
-    document.getElementById('daily-assign-overlay')?.remove();notif(clear?'Assignment removed':'Schedule saved for '+tasks.length+' tasks','s');planRefresh();return true;
-  }catch(error){notif('Schedule could not be saved. Try again.','e');if(status)status.textContent='Save failed. Your selection is preserved.';return false;}
-  finally{_dailyBusy=false;syncing(false);if(save)save.disabled=false;}
-};
-window.completeDailyTask=async function(id){
-  const t=allTasks[id];if(!planCanComplete(t)||_dailyBusy)return false;
-  _dailyBusy=true;syncing(true);
-  try{const changes={done:!t.done,doneAt:t.done?null:new Date().toLocaleDateString('en-US')};await updateDoc(doc(db,'tasks',id),changes);if(allTasks[id])Object.assign(allTasks[id],changes);notif(changes.done?'Task completed':'Task reopened','s');return true;}
-  catch(error){notif('Task could not be updated. Try again.','e');return false;}
-  finally{_dailyBusy=false;syncing(false);planRefresh();}
-};
-function listenPlanningUsers(){
-  if(unsubs.planUsers)unsubs.planUsers();
-  window._cachedUsers=[];
-  if(!hasRole('supervisor'))return;
-  unsubs.planUsers=onSnapshot(collection(db,'users'),snap=>{window._cachedUsers=[];snap.forEach(d=>window._cachedUsers.push({id:d.id,...d.data()}));planRefresh();},()=>{notif('Employee list could not be loaded','e');});
-}
 
 // Assign modal
 window.openPlanAssign=async(tid,taskName,unitName,event)=>{
-  if(!hasRole('supervisor')){notif('Manager access required','e');return;}
   event&&event.stopPropagation&&event.stopPropagation();
   const task=allTasks[tid];if(!task)return;
   const users=(window._cachedUsers||[]).filter(u=>u.role&&u.role!=='admin');
@@ -12157,7 +12340,6 @@ window.openPlanAssign=async(tid,taskName,unitName,event)=>{
 
 
 window._savePlanAssign=async(tid)=>{
-  if(!hasRole('supervisor')){notif('Manager access required','e');return;}
   const userEl=document.getElementById('pa-user');
   const dateEl=document.getElementById('pa-date');
   const userId=userEl?userEl.value||null:null;
@@ -12173,7 +12355,6 @@ window._savePlanAssign=async(tid)=>{
 };
 
 window._clearPlanAssign=async(tid)=>{
-  if(!hasRole('supervisor')){notif('Manager access required','e');return;}
   syncing(true);
   await updateDoc(doc(db,'tasks',tid),{assignedTo:null,assignedDate:null});
   if(allTasks[tid]){allTasks[tid].assignedTo=null;allTasks[tid].assignedDate=null;}
@@ -12184,7 +12365,6 @@ window._clearPlanAssign=async(tid)=>{
 };
 
 window.assignAllPlanTasks=async(taskName,period)=>{
-  if(!hasRole('supervisor')){notif('Manager access required','e');return;}
   const {monday}=getPlanWeekDates(_planWeekOffset);
   const today=getPlanDateStr(new Date());
   const targetDate=period==='today'?today:getPlanDateStr(monday);

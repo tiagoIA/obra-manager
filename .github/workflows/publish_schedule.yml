@@ -1,0 +1,38 @@
+name: Verify and publish daily schedule
+on:
+  push:
+    branches: [feature/daily-schedule-2026-10-09]
+    paths: [public/index.html, scripts/check-schedule.cjs, scripts/check-schedule-layout.cjs, scripts/publish_schedule.py, .github/workflows/publish_schedule.yml]
+permissions:
+  contents: read
+concurrency:
+  group: obra-manager-hosting-publication
+  cancel-in-progress: false
+jobs:
+  verify-publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node --experimental-vm-modules scripts/check-ui.cjs
+      - run: TZ=America/New_York node scripts/check-schedule.cjs
+      - run: npm install --no-save playwright
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/check-schedule-layout.cjs
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install google-auth requests
+      - run: python scripts/publish_schedule.py
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: daily-schedule-publication-${{ github.run_id }}
+          path: hosting-test/
+          if-no-files-found: ignore
+          retention-days: 90
