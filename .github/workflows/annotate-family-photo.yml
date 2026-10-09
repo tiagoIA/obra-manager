@@ -1,0 +1,22 @@
+name: Annotate existing NM-B family reference photo
+on:
+  push:
+    branches: [feature/lista-guiada-v1]
+    paths: [.github/workflows/annotate-family-photo.yml]
+permissions:
+  contents: read
+concurrency:
+  group: obra-material-enrichment
+  cancel-in-progress: false
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install google-auth google-cloud-storage requests pillow pymupdf
+      - run: python scripts/annotate-reviewed-family-photo.py
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          PHOTO_MANIFEST: photo-family-annotation-approved.json
+          PHOTO_EXPECTED_COUNT: '1'
