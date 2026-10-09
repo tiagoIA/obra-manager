@@ -1,0 +1,57 @@
+[
+  {
+    "id": "rXzu68NL75HoVqCoeaNi",
+    "expectedName": "Romex Wire 10/2 w/ Ground",
+    "expectedSku": "ELEC-073",
+    "sourceMaterialId": "catalog-506bf5cdc6b5d4308de9",
+    "sourceExpectedName": "Solid Copper Type NM-B Non-Metallic Sheathed Cable With Grounding 12/2 100-ft Box Yellow",
+    "basis": "NM-B cable family; pictured 12/2 yellow cable is not the recorded 10/2 size; confirm gauge, conductor count and jacket",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. NM-B cable family; pictured 12/2 yellow cable is not the recorded 10/2 size; confirm gauge, conductor count and jacket. This photo does not identify stock or establish compatibility.",
+    "sourceSha256": "2163ee14dd877f33da917a1170063458fc1068bc39c5dabd0b9c07e7c970ac0e"
+  },
+  {
+    "id": "VpimfjK2nTbS8BG3liSX",
+    "expectedName": "Romex Wire 6/3 w/ Ground",
+    "expectedSku": "ELEC-074",
+    "sourceMaterialId": "catalog-506bf5cdc6b5d4308de9",
+    "sourceExpectedName": "Solid Copper Type NM-B Non-Metallic Sheathed Cable With Grounding 12/2 100-ft Box Yellow",
+    "basis": "NM-B cable family; pictured 12/2 yellow cable is not the recorded 6/3 size; confirm gauge, conductor count and jacket",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. NM-B cable family; pictured 12/2 yellow cable is not the recorded 6/3 size; confirm gauge, conductor count and jacket. This photo does not identify stock or establish compatibility.",
+    "sourceSha256": "2163ee14dd877f33da917a1170063458fc1068bc39c5dabd0b9c07e7c970ac0e"
+  },
+  {
+    "id": "xYJYnLmzRjcRsH7SO4Tn",
+    "expectedName": "THHN Wire #8 AWG",
+    "expectedSku": "ELEC-077",
+    "sourceMaterialId": "zZq3YnWSAslOaVrX4RrD",
+    "sourceExpectedName": "6 AWG THHN green",
+    "basis": "THHN single-conductor wire family; pictured green #6 wire is not #8; confirm gauge and insulation color",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. THHN single-conductor wire family; pictured green #6 wire is not #8; confirm gauge and insulation color. This photo does not identify stock or establish compatibility.",
+    "sourceSha256": "2a853b4d7459d663f53a6915ee49b7d74ee1cf1a5068aaa0ef7d97fa3486a180"
+  },
+  {
+    "id": "d8YBSCIZkiSW5DeMlwjP",
+    "expectedName": "THHN Wire #4 AWG",
+    "expectedSku": "ELEC-078",
+    "sourceMaterialId": "zZq3YnWSAslOaVrX4RrD",
+    "sourceExpectedName": "6 AWG THHN green",
+    "basis": "THHN single-conductor wire family; pictured green #6 wire is not #4; confirm gauge and insulation color",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. THHN single-conductor wire family; pictured green #6 wire is not #4; confirm gauge and insulation color. This photo does not identify stock or establish compatibility.",
+    "sourceSha256": "2a853b4d7459d663f53a6915ee49b7d74ee1cf1a5068aaa0ef7d97fa3486a180"
+  },
+  {
+    "id": "olwmUoReCz1CWRffje3t",
+    "expectedName": "Outlet 24 unid",
+    "expectedSku": "ELEC-066",
+    "sourceMaterialId": "catalog-261462acdb17e2b5ec5d",
+    "sourceExpectedName": "15 Amp Decora Tamper-Resistant Duplex Outlet/Receptacle, Grounding, White, T5325-W",
+    "basis": "Duplex receptacle family; pictured Leviton T5325-W; confirm model and package quantity (record says 24 units)",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. Duplex receptacle family; pictured Leviton T5325-W; confirm model and package quantity (record says 24 units). This photo does not identify stock or establish compatibility.",
+    "sourceSha256": "0465628578eb64cb5a57504cf752de2b9256d4753ec5ddef604cc0121e6180c7"
+  }
+]
