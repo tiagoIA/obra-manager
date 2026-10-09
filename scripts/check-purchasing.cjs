@@ -1,0 +1,27 @@
+const assert=require('node:assert/strict');
+(async()=>{
+ const c=await import('../public/purchasing-core.js');const {persistPurchase}=await import('../public/invoice-store.js');
+ const materials=[{id:'m',name:'Verified device',brand:'Leviton',manufacturerPart:'ABC',unit:'un',recordType:'product',upc:'783863054648',suppliers:[{name:'Home Depot',code:'123',price:10,priceDate:'2026-10-01',unit:'ea'}]}];
+ assert(c.validBarcode('783863054648'));assert(!c.validBarcode('783863054649'));
+ assert.equal(c.catalogMatch({code:'123'},'The Home Depot',materials).materialId,'m');
+ assert.equal(c.catalogMatch({code:'123'},'Grainger',materials).materialId,null);
+ assert.equal(c.catalogMatch({code:'123'},'Home Depot',[...materials,{...materials[0],id:'duplicate'}]).materialId,null);
+ assert.equal(c.catalogMatch({code:'123'},'Home Depot',[{...materials[0],suppliers:[{name:'Home Depot',code:'123',matchVerified:false}]}]).materialId,null);
+ const raw={company:'The Home Depot',date:'2026-10-09',projectId:'p',invoice_number:'A-1',items:[{description:'Device',qty:2,unit:'EA',unit_price:10,total_price:20,materialId:'m'}],subtotal:20,tax:1.25,total:21.25};
+ const inv=c.normalizeInvoice(raw);assert.equal(inv.company,'Home Depot');
+ assert.throws(()=>c.normalizeInvoice({...raw,date:'2026-02-31'}));assert.throws(()=>c.normalizeInvoice({...raw,total:20}));assert.throws(()=>c.normalizeInvoice({...raw,subtotal:21}));
+ const credit=c.normalizeInvoice({...raw,items:[{...raw.items[0],qty:-2,total_price:-20}],subtotal:-20,tax:-1.25,total:-21.25});assert.equal(credit.total,-21.25);
+ assert(c.existingInvoice(inv,[{company:'Home Depot',invoiceNumber:'A-1'}]));
+ const prices=c.applyPurchasePrices(materials,[{id:'old',company:'Home Depot',date:'2026-09-30'},{id:'new',company:'Home Depot',date:'2026-10-08'}],[{id:'i1',invoiceId:'old',materialId:'m',qty:1,unit:'EA',unitPrice:8},{id:'i2',invoiceId:'new',materialId:'m',qty:1,unit:'EA',unitPrice:12}]);
+ assert.equal(prices[0].suppliers[0].price,12);assert.equal(materials[0].suppliers[0].price,10);
+ assert.equal(c.estimateList([{matId:'m',unit:'ea',qty:2},{name:'Unknown',unit:'ea',qty:1}],prices,'Home Depot').subtotal,24);
+ assert.equal(c.estimateList([{matId:'m',unit:'ft',qty:2}],prices,'Home Depot').missing,1);
+ assert.equal(c.estimateList([{matId:'m',unit:'ea',qty:null}],prices,'Home Depot').missing,1);
+ const db=new Map([['projects/p',{}]]);let fail=false;
+ const host={userId:()=> 'worker',project:()=>({}),timestamp:()=>1,transaction:async fn=>{const writes=[];await fn({get:async(k,id)=>db.get(k+'/'+id),set:(k,id,v)=>writes.push([k+'/'+id,v])});if(fail)throw Error('Offline');writes.forEach(([k,v])=>db.set(k,v));}};
+ fail=true;await assert.rejects(()=>persistPurchase(inv,null,host),/Offline/);assert.equal(db.size,1);
+ fail=false;const id=await persistPurchase(inv,null,host);assert.equal(db.get('invoices/'+id).total,21.25);assert.equal(db.get('invoiceItems/'+id+'-001').materialId,'m');assert.equal(db.size,3);
+ await assert.rejects(()=>persistPurchase(inv,null,host),/already saved/);assert.equal(db.size,3);
+ assert(![...db.keys()].some(k=>k.startsWith('materials/')));
+ console.log('PASS: exact / ambiguous matching, barcode checks, date and totals, returns, supplier price chronology, partial estimates, worker save, atomic failure and duplicate receipt.');
+})().catch(e=>{console.error(e);process.exitCode=1;});

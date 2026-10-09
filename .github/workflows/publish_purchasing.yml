@@ -22,6 +22,8 @@ jobs:
       - run: npm install --no-save playwright
       - run: npx playwright install --with-deps chromium
       - run: node scripts/check-brief.cjs
+      - run: node scripts/check-purchasing.cjs
+      - run: node scripts/check-purchasing-ui.cjs
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'

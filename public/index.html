@@ -5076,7 +5076,7 @@ IMPORTANT RULES:
       headers:{'Content-Type':'application/json','Authorization':'Bearer '+token},
       body:JSON.stringify({
         model:'claude-sonnet-4-20250514',
-        max_tokens:2000,
+        max_tokens:8192,
         messages:[{role:'user',content:contentBlocks}]
       })
     });
@@ -6163,7 +6163,7 @@ function generateSKU(cat){
   const next=(nums.length?Math.max(...nums):0)+1;
   return prefix+'-'+String(next).padStart(3,'0');
 }
-const SUPPLIERS=['Granite City Electric','NorthEast Electrical','Electrical Wholesalers NE','Standard Electric','City Electric Supply','Graybar','Rexel USA','Platt Electric Supply','ADI Global','Home Depot','Grainger','Leviton Store','Other'];
+const SUPPLIERS=['Electric Supply Center',"Lowe’s",'Granite City Electric','NorthEast Electrical','Electrical Wholesalers NE','Standard Electric','City Electric Supply','Graybar','Rexel USA','Platt Electric Supply','ADI Global','Home Depot','Grainger','Leviton Store','Other'];
 const SUBCATS={
   eletrica:[
     {v:'wiring',l:'🔌 Wiring & Cable'},
@@ -7179,10 +7179,11 @@ window.handleNFUpload=async(e)=>{
   // Convert to base64
   const b64full=await new Promise((res,rej)=>{const r=new FileReader();r.onload=ev=>res(ev.target.result);r.onerror=rej;r.readAsDataURL(file);});
   const b64=b64full.split(',')[1];
+  const fileHash=await purchaseDigest(await file.arrayBuffer());
   const mime=file.type||(isPDF?'application/pdf':'image/jpeg');
   // For PDF, previewUrl shows a PDF icon; for images show the actual image
   const previewUrl=isPDF?null:b64full;
-  pendingNFScan={b64,mime,isPDF,filename:file.name,previewUrl};
+  pendingNFScan={b64,mime,isPDF,filename:file.name,previewUrl,fileHash,projectId:activePid||''};
   // Show scanning state then call Claude Vision API
   renderContent();
   await scanNFWithClaude(b64,mime,isPDF,previewUrl);
@@ -7213,6 +7214,8 @@ Return this exact structure:
   "date": "date in YYYY-MM-DD format if visible, else null",
   "subtotal": 0.00,
   "tax": 0.00,
+  "shipping": 0.00,
+  "adjustment": 0.00,
   "total": 0.00,
   "items": [
     {
@@ -7227,7 +7230,7 @@ Return this exact structure:
 }
 
 IMPORTANT RULES:
-- Extract EVERY line item — do not skip any
+- Extract EVERY line item — do not skip any. Preserve returns as negative quantity and negative line total with a nonnegative net unit price. Separate tax, shipping and other charges. Do not treat a PO number as the receipt/invoice number. Include manufacturer, manufacturerPart and upc on each item only when visible. Never guess these codes.
 - If unit_price is missing but total_price and qty are present: calculate unit_price = total_price / qty
 - If total_price is missing but unit_price and qty are present: calculate total_price = unit_price * qty
 - If a price cannot be determined at all, leave it as 0 (user will fill manually)
@@ -7264,90 +7267,11 @@ IMPORTANT RULES:
   }
 }
 
-window.saveScannedNF=async()=>{
-  if(!pendingNFScan||!pendingNFScan.edited)return;
-  const ed=pendingNFScan.edited;
-  const projId=document.getElementById('nf-proj-sel')&&document.getElementById('nf-proj-sel').value||activePid||null;
-  syncing(true);
-  // Upload image to storage
-  let imgUrl=null;
-  try{
-    const sr=ref(storage,'invoices/'+Date.now()+'_'+pendingNFScan.filename);
-    await uploadString(sr,pendingNFScan.b64,'base64',{contentType:pendingNFScan.mime});
-    imgUrl=await getDownloadURL(sr);
-  }catch(e){}
-  const items=ed.items||[];
-  // Calculate total from items if AI returned 0 or missing; Math.abs eliminates negatives
-  const itemsTotal=items.reduce((s,it)=>s+Math.abs(parseFloat(it.total_price)||0),0);
-  const invoiceTotal=parseFloat(ed.total)||itemsTotal||0;
-  // Save invoice header
-  const invRef=await addDoc(collection(db,'invoices'),{
-    company:ed.company||'Unknown',cnpj:ed.cnpj||null,
-    invoiceNumber:ed.invoice_number||null,date:ed.date||null,
-    total:invoiceTotal,projectId:projId,
-    imgUrl,notes:'',createdAt:serverTimestamp()
-  });
-  // Helper: normalize unit from invoice to library format
-  const unitMap={'EA':'un','EACH':'un','FT':'ft','FEET':'ft','LF':'ft','BX':'bx','BOX':'bx','PK':'pk','PACK':'pk','BAG':'bag','RL':'rl','ROLL':'rl'};
-  const normUnit=(u)=>unitMap[(u||'').toUpperCase()]||(u||'un').toLowerCase();
-  // Helper: normalize name for matching
-  const norm=(s)=>(s||'').toLowerCase().replace(/[^a-z0-9]/g,'');
-  // Save items + productDB + match materials library
-  let matchedCount=0;
-  const newMatsForReview=[];
-  for(const it of items){
-    const unitPrice=Math.abs(parseFloat(it.unit_price)||0);
-    const totalPrice=Math.abs(parseFloat(it.total_price)||0);
-    await addDoc(collection(db,'invoiceItems'),{
-      invoiceId:invRef.id,code:it.code||null,
-      description:it.description||'Item',qty:parseFloat(it.qty)||1,
-      unit:it.unit||'UN',unitPrice,totalPrice,createdAt:serverTimestamp()
-    });
-    // Upsert productDB
-    const existingProd=Object.values(productDB).find(p=>p.description===it.description&&p.company===ed.company);
-    let prodId=null;
-    if(!existingProd){
-      const prodRef=await addDoc(collection(db,'productDB'),{
-        code:it.code||null,description:it.description||'Item',
-        company:ed.company||'Unknown',unit:normUnit(it.unit),
-        lastPrice:unitPrice,materialId:null,
-        lastSeen:ed.date||new Date().toISOString().split('T')[0],
-        createdAt:serverTimestamp()
-      });
-      prodId=prodRef.id;
-    } else {
-      prodId=existingProd.id;
-      await updateDoc(doc(db,'productDB',existingProd.id),{
-        lastPrice:unitPrice,
-        lastSeen:ed.date||new Date().toISOString().split('T')[0]
-      });
-    }
-    // Try auto-match with materials library by normalized name
-    const desc=norm(it.description);
-    const matched=Object.values(materials).find(m=>!m.isTask&&norm(m.name)===desc);
-    if(matched){
-      if(prodId)await updateDoc(doc(db,'productDB',prodId),{materialId:matched.id});
-      await updateDoc(doc(db,'materials',matched.id),{lastPrice:unitPrice,lastPriceSeen:ed.date||null});
-      matchedCount++;
-    } else {
-      // Queue for user review modal
-      newMatsForReview.push({description:it.description||'Item',unit:normUnit(it.unit),code:it.code||null,lastPrice:unitPrice,prodId});
-    }
-  }
-  syncing(false);
-  pendingNFScan=null;
-  activeInvTab='invoices';
-  if(newMatsForReview.length>0){
-    // Show modal for user to categorize new materials
-    window._pendingNewMats={items:newMatsForReview,matchedCount,invoiceDate:ed.date||null};
-    renderContent();
-    window.openNewMatsModal();
-  } else {
-    notif('Invoice saved! '+matchedCount+' matched in library','s');
-    renderContent();
-  }
+window.saveScannedNF=()=>{
+ if(!pendingNFScan?.edited)return;
+ const projectId=document.getElementById('nf-proj-sel')?.value||pendingNFScan.projectId||activePid||'';
+ window.receiptReview.launch({...pendingNFScan.edited,fileHash:pendingNFScan.fileHash,projectId},pendingNFScan,()=>{pendingNFScan=null;renderContent();});
 };
-
 window.updateNFField=(field,val)=>{if(pendingNFScan&&pendingNFScan.edited)pendingNFScan.edited[field]=val;};
 window.updateNFItem=(idx,field,val)=>{
   if(!pendingNFScan||!pendingNFScan.edited)return;
@@ -7366,10 +7290,9 @@ window.addNFItem=()=>{
   renderContent();
 };
 window.cancelScan=()=>{pendingNFScan=null;renderContent();};
-window.deleteInvoice=async(iid)=>{
-  if(!confirm('Delete this invoice?'))return;syncing(true);
-  Object.values(invoiceItems).filter(i=>i.invoiceId===iid).forEach(i=>deleteDoc(doc(db,'invoiceItems',i.id)));
-  await deleteDoc(doc(db,'invoices',iid));syncing(false);
+window.deleteInvoice=async iid=>{
+ if(!confirm('Delete this invoice and all its items?'))return;
+ syncing(true);try{const children=await getDocs(query(collection(db,'invoiceItems'),where('invoiceId','==',iid)));if(children.size>450)throw Error('This invoice is too large for a single removal.');const batch=writeBatch(db);children.forEach(snap=>batch.delete(snap.ref));batch.delete(doc(db,'invoices',iid));await batch.commit();notif('Invoice removed.','s');}catch(e){notif(e.message,'e');}finally{syncing(false);}
 };
 window.toggleInvCard=(iid)=>{
   const card=document.getElementById('inv-'+iid);
@@ -7548,23 +7471,10 @@ function renderManualItems(){
   }).join('');
 }
 window.addManualItem=()=>{manualItems.push({code:'',description:'',qty:1,unit:'UN',unit_price:0,total_price:0});renderManualItems();};
-window.saveManualNF=async()=>{
-  const company=document.getElementById('mn-company').value.trim()||'Unknown';
-  const date=document.getElementById('mn-date').value||null;
-  const num=document.getElementById('mn-number').value.trim()||null;
-  const projId=document.getElementById('mn-proj').value||null;
-  const notes=document.getElementById('mn-notes').value.trim();
-  const total=manualItems.reduce((s,it)=>s+(parseFloat(it.total_price)||0),0);
-  syncing(true);
-  const invRef=await addDoc(collection(db,'invoices'),{company,cnpj:null,invoiceNumber:num,date,total,projectId:projId,imgUrl:null,notes,createdAt:serverTimestamp()});
-  for(const it of manualItems){
-    if(!it.description)continue;
-    await addDoc(collection(db,'invoiceItems'),{invoiceId:invRef.id,code:it.code||null,description:it.description,qty:parseFloat(it.qty)||1,unit:it.unit||'UN',unitPrice:parseFloat(it.unit_price)||0,totalPrice:parseFloat(it.total_price)||0,createdAt:serverTimestamp()});
-    const existing=Object.values(productDB).find(p=>p.description===it.description&&p.company===company);
-    if(!existing){await addDoc(collection(db,'productDB'),{code:it.code||null,description:it.description,company,unit:it.unit||'UN',lastPrice:parseFloat(it.unit_price)||0,lastSeen:date||new Date().toISOString().split('T')[0],createdAt:serverTimestamp()});}else{await updateDoc(doc(db,'productDB',existing.id),{lastPrice:parseFloat(it.unit_price)||0,lastSeen:date||new Date().toISOString().split('T')[0]});}
-  }
-  closeModal('m-manual-nf');syncing(false);
-  notif('Invoice saved manually!','s');renderContent();
+window.saveManualNF=()=>{
+ const value=id=>document.getElementById(id)?.value||'';
+ const raw={company:value('mn-company'),date:value('mn-date'),invoice_number:value('mn-number'),projectId:value('mn-proj'),notes:value('mn-notes'),items:manualItems,subtotal:manualItems.reduce((sum,i)=>sum+(Number(i.total_price)||0),0),tax:0,shipping:0,adjustment:0};
+ closeModal('m-manual-nf');window.receiptReview.launch(raw,null,()=>{manualItems=[];renderContent();});
 };
 window.generateShopPDF=(lid,mode)=>{
   const sl=shoppingLists[lid];if(!sl)return;
@@ -9142,6 +9052,7 @@ function renderMaterials(el){
       +'<button onclick="setMatView(\'list\')" style="background:'+(matView==='list'?'var(--elec)':'var(--sur2)')+';border:1px solid var(--bdr);color:'+(matView==='list'?'#000':'var(--mut)')+';border-radius:6px;padding:5px 10px;cursor:pointer;font-size:13px">☰</button>'
       +'</div>':'')
     +(isMatTab?'<button onclick="window.openMatReport()" style="background:var(--sur2);border:1px solid var(--bdr);color:var(--mut);border-radius:6px;padding:5px 12px;font-size:12px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:5px">📊 Report</button>':'')
+    +(isMatTab?'<button class="btn-sm" onclick="centralCatalog.coverage()">🏪 Suppliers</button>':'')
     +'</div>'
     +'<div class="lib-tabs">'
     +'<button class="lib-tab'+(isMatTab?' active':'')+'" onclick="activeMatTab=\'materials\';matSearch=\'\';renderContent()">📦 Materials</button>'
@@ -13282,17 +13193,32 @@ window._renderRemindersList=function(){
 };
 
 
+// Receipt prices are derived from reviewed purchase records; no stock mutation.
+import {applyPurchasePrices,digest as purchaseDigest,estimateList as purchaseEstimate} from '/purchasing-core.js?v=1';
+import {installReceiptReview} from '/receipt-review.js?v=1';
+import {persistPurchase} from '/invoice-store.js?v=1';
+import {deleteObject} from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js';
+function purchasingMaterials(){return applyPurchasePrices(Object.values(materials),Object.values(invoices),Object.values(invoiceItems));}
+installReceiptReview({materials:purchasingMaterials,projects:()=>Object.values(projects),invoices:()=>Object.values(invoices),notify:notif,openMaterial:id=>window.centralCatalog.view(id),persist:(inv,attachment)=>persistPurchase(inv,attachment,{
+ userId:()=>auth.currentUser?.uid,project:id=>projects[id],timestamp:serverTimestamp,
+ upload:async(id,a)=>{const path='invoices/'+id+'/'+crypto.randomUUID();const target=ref(storage,path);await uploadString(target,a.b64,'base64',{contentType:a.mime});try{return {path,url:await getDownloadURL(target)};}catch(e){await deleteObject(target).catch(()=>{});throw e;}},
+ removeUpload:path=>deleteObject(ref(storage,path)),
+ transaction:fn=>runTransaction(db,tx=>fn({get:async(kind,id)=>{const snap=await tx.get(doc(db,kind,id));return snap.exists()?snap.data():null;},set:(kind,id,data)=>tx.set(doc(db,kind,id),data)}))
+})});
+onAuthStateChanged(auth,user=>{if(!user)window.receiptReview?.close();});
+
 // Guided shopping integration: uses existing collections and authentication.
 import {writeBatch, runTransaction} from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
-import {installGuidedShopping} from '/guided-shopping-v1.js?v=6';
+import {installGuidedShopping} from '/guided-shopping-v1.js?v=7';
 onAuthStateChanged(auth,user=>{if(!user)document.getElementById('guided-shopping-dialog')?.remove();});
 installGuidedShopping({
  userId:()=>auth.currentUser?.uid||null,
  projectId:()=>activePid,
  projects:()=>Object.values(projects),
- materials:()=>Object.values(materials),
+ materials:()=>purchasingMaterials(),
  templates:()=>Object.values(shoppingLists).filter(l=>l.listType==='template'&&(!l.ownerUid||l.ownerUid===auth.currentUser?.uid)),
  lists:()=>Object.values(shoppingLists).filter(l=>l.listType!=='template'),
+ openMaterial:id=>window.centralCatalog.view(id),
  saveMaterialUses:async(id,uses)=>{if(!auth.currentUser)throw Error('Sign in again.');await updateDoc(doc(db,'materials',id),{guidedUses:uses});if(materials[id])materials[id].guidedUses=uses;},
  list:id=>shoppingLists[id],
  items:id=>Object.values(shoppingItems).filter(i=>i.listId===id),
@@ -13306,7 +13232,7 @@ installGuidedShopping({
   const user=auth.currentUser;if(!user)throw Error('Sign in again.');
   if(draft.items.length>200)throw Error('Use up to 200 materials per list in this version.');
   const listRef=draft.editId?doc(db,'shoppingLists',draft.editId):doc(collection(db,'shoppingLists'));
-  const data={name:draft.name.trim(),note:draft.note||'',projectId:draft.projectId||null,guidedMode:draft.mode,guidedAnswers:draft.answers||{},guidedServices:(draft.services||[]).map(s=>({id:s.id,name:s.name,version:s.version||1,...(s.useIds?{useIds:s.useIds}:{})})),updatedAt:serverTimestamp()};
+  const data={name:draft.name.trim(),note:draft.note||'',projectId:draft.projectId||null,purchasingSupplier:draft.supplier||'',estimateSnapshot:draft.estimateSnapshot||null,guidedMode:draft.mode,guidedAnswers:draft.answers||{},guidedServices:(draft.services||[]).map(s=>({id:s.id,name:s.name,version:s.version||1,...(s.useIds?{useIds:s.useIds}:{})})),updatedAt:serverTimestamp()};
   const itemData=i=>({listId:listRef.id,matId:i.matId||null,name:i.name.trim(),cat:i.cat||'geral',unit:i.unit.trim(),qty:Number(i.qty),obs:i.obs||'',roomId:i.roomId||null,roomName:i.roomName||null,bought:!!i.bought,boughtAt:i.boughtAt||null});
   if(!draft.editId){
    const batch=writeBatch(db);batch.set(listRef,{...data,createdBy:user.uid,done:false,createdAt:serverTimestamp()});
@@ -13328,11 +13254,11 @@ installGuidedShopping({
 });
 
 // Expanded product catalog and purchasing documents use the same central material records.
-import {installCentralCatalog, materialSearchText, displayUnit} from '/central-catalog-v1.js?v=6';
-import {materialUses} from '/guided-shopping-v1.js?v=6';
+import {installCentralCatalog, materialSearchText, displayUnit} from '/central-catalog-v1.js?v=7';
+import {materialUses} from '/guided-shopping-v1.js?v=7';
 onAuthStateChanged(auth,user=>{if(!user)document.getElementById('central-material-dialog')?.remove();});
 installCentralCatalog({
- materials:()=>Object.values(materials),canEdit:()=>hasRole('owner'),inferredUses:materialUses,
+ materials:()=>purchasingMaterials(),canEdit:()=>hasRole('owner'),inferredUses:materialUses,
  list:id=>shoppingLists[id],items:id=>Object.values(shoppingItems).filter(i=>i.listId===id),
  projectName:id=>projects[id]?.name||'Standalone list',notify:notif,
  saveMaterial:async(id,p)=>{

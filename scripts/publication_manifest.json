@@ -1,10 +1,17 @@
 {
   "files": [
     "index.html",
-    "project-brief.js"
+    "project-brief.js",
+    "purchasing-core.js",
+    "invoice-store.js",
+    "receipt-review.js",
+    "central-catalog-v1.js",
+    "guided-shopping-v1.js"
   ],
   "baseline": {
-    "index.html": "10541019ebbab99c53116cf8cf8a090ccf15afce15a2096495d4a7311300d5fc"
+    "index.html": "44257bffd7881418657ee1a25a20d209eb0d561ea8078bc6b80574094d7f0242",
+    "central-catalog-v1.js": "d124df1ae18906c35d3f89cfb273c08766c967a6004b2eb4e8daf27711db9da4",
+    "guided-shopping-v1.js": "4c5ac2918f318d7da44de058740d9f3fa5887b19c96d72c6282ec7183ef91dac"
   },
-  "message": "User-authorized project and unit scope, initial conditions and before photos"
+  "message": "Reviewed receipt purchases, supplier estimates and catalog details"
 }
