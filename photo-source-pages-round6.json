@@ -1,0 +1,22 @@
+[
+  {
+    "key": "lowfreq",
+    "part": "Low Frequency",
+    "url": "https://buildings.honeywell.com/ca/fr/products/by-category/fire-life-safety/notification-appliances/combination-strobes/l-series-low-frequency-ceiling-sounder-strobe"
+  },
+  {
+    "key": "flow",
+    "part": "WFD",
+    "url": "https://buildings.honeywell.com/us/en/products/by-category/sensors/accessories/wfd-series-vane-type-waterflow-detector"
+  },
+  {
+    "key": "rfid",
+    "part": "1326",
+    "url": "https://www.identisource.net/pd_hid_1326.cfm"
+  },
+  {
+    "key": "dvr",
+    "part": "XVR5108",
+    "url": "https://www.dahuasecurity.com/Japan/products/All-Products/HDCVI-Recorders/5MP-Value1080p-Series/XVR5108HE-I3/T"
+  }
+]
