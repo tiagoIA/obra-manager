@@ -7183,13 +7183,14 @@ window.handleNFUpload=async(e)=>{
   const mime=file.type||(isPDF?'application/pdf':'image/jpeg');
   // For PDF, previewUrl shows a PDF icon; for images show the actual image
   const previewUrl=isPDF?null:b64full;
-  pendingNFScan={b64,mime,isPDF,filename:file.name,previewUrl,fileHash,projectId:activePid||''};
+  pendingNFScan={b64,mime,isPDF,filename:file.name,previewUrl,fileHash,projectId:activePid||'',scanId:crypto.randomUUID()};
   // Show scanning state then call Claude Vision API
   renderContent();
   await scanNFWithClaude(b64,mime,isPDF,previewUrl);
 };
 
 async function scanNFWithClaude(b64,mime,isPDF,previewUrl){
+  const scanId=pendingNFScan?.scanId;
   const el=document.getElementById('room-view');
   if(el){
     const scanBox=el.querySelector('#scan-status');
@@ -7257,11 +7258,13 @@ IMPORTANT RULES:
       if(it.unit_price&&!it.total_price&&it.qty)it.total_price=parseFloat((it.unit_price*it.qty).toFixed(2));
       if(it.total_price&&!it.unit_price&&it.qty)it.unit_price=parseFloat((it.total_price/it.qty).toFixed(2));
     });
+    if(pendingNFScan?.scanId!==scanId)return;
     pendingNFScan={...pendingNFScan,scanned:parsed,edited:{...parsed,items:(parsed.items||[]).map((it,i)=>({...it,_id:i}))},previewUrl};
     renderContent();
   }catch(err){
     console.error('Invoice scan error:',err);
     notif('AI scan failed — fill manually','e');
+    if(pendingNFScan?.scanId!==scanId)return;
     pendingNFScan={...pendingNFScan,scanned:{company:'',items:[]},edited:{company:'',items:[]},previewUrl};
     renderContent();
   }
@@ -9186,7 +9189,7 @@ function renderShopping(el){
 function renderInvoices(el){
   const allInv=Object.values(invoices).sort((a,b)=>(b.createdAt&&b.createdAt.seconds||0)-(a.createdAt&&a.createdAt.seconds||0));
   const allInvItems=Object.values(invoiceItems);
-  const allProd=Object.values(productDB).sort((a,b)=>(a.company||'').localeCompare(b.company||''));
+  const allProd=purchaseProducts(Object.values(productDB),Object.values(invoices),Object.values(invoiceItems)).sort((a,b)=>(a.company||'').localeCompare(b.company||''));
   const totalSpent=allInv.reduce((s,i)=>s+(i.total||0),0);
   const totalItems=allInvItems.length;
   const projFilter=activePid?allInv.filter(i=>i.projectId===activePid):allInv;
@@ -9286,6 +9289,8 @@ function renderInvoices(el){
           +'<button onclick="event.stopPropagation();deleteInvoice(\''+inv.id+'\')" style="background:none;border:none;color:var(--dim);cursor:pointer;font-size:11px;margin-top:2px">✕ delete</button>'
           +'</div></div>'
           +'<div class="inv-card-body">'
+          +(inv.schemaVersion===2?'<div style="font-size:12px;line-height:1.7;margin:8px 0">Subtotal: '+fmt(inv.subtotal)+' · Tax: '+fmt(inv.tax)+' · Shipping: '+fmt(inv.shipping)+' · Other: '+fmt(inv.adjustment)+'</div>':'')
+          +(inv.imgUrl?'<a href="'+x(inv.imgUrl)+'" target="_blank" rel="noopener" style="color:var(--elec)">Open original receipt</a>':'')
           +(items.length?'<table class="nf-items-table" style="margin-top:8px"><thead><tr><th>CODE</th><th>DESCRIPTION</th><th>QTY</th><th>UNIT PRICE</th><th>TOTAL</th></tr></thead><tbody>'
             +items.map(function(it){return'<tr><td class="nf-code">'+x(it.code||'—')+'</td><td>'+x(it.description)+'</td><td class="nf-qty">'+it.qty+' '+x(it.unit||'UN')+'</td><td class="nf-price">'+fmt(it.unitPrice)+'</td><td class="nf-price">'+fmt(it.totalPrice)+'</td></tr>';}).join('')
             +'</tbody></table>':'<div style="color:var(--dim);font-size:12px;padding:8px 0">No items recorded.</div>')
@@ -9314,8 +9319,8 @@ function renderInvoices(el){
               +'<div style="font-size:10px;color:var(--dim);font-family:JetBrains Mono,monospace;flex-shrink:0;margin-right:8px">'+x(p.unit||'UN')+'</div>'
               +'<div class="prod-db-price">'+fmt(p.lastPrice)+'</div>'
               +'<div style="font-size:10px;color:var(--dim);margin-left:8px;flex-shrink:0">'+x(p.lastSeen||'')+'</div>'
-              +'<button onclick="window.openLinkProductModal(\''+p.id+'\')" style="background:none;border:1px solid var(--bdr);color:'+(linkedMat?'var(--ok)':'var(--mut)')+';border-radius:5px;cursor:pointer;font-size:10px;padding:2px 7px;margin-left:6px;flex-shrink:0" title="Link to library">🔗</button>'
-              +'<button onclick="deleteProductDB(\''+p.id+'\')" style="background:none;border:none;color:var(--dim);cursor:pointer;font-size:12px;margin-left:4px;flex-shrink:0">✕</button>'
+              +(p.receiptDerived?(linkedMat?'<button class="btn-sm" onclick="centralCatalog.view(\''+p.materialId+'\')">View details</button>':'<span style="font-size:10px;color:var(--dim)">Unlinked receipt item</span>'):('<button onclick="window.openLinkProductModal(\''+p.id+'\')" style="background:none;border:1px solid var(--bdr);color:'+(linkedMat?'var(--ok)':'var(--mut)')+';border-radius:5px;cursor:pointer;font-size:10px;padding:2px 7px;margin-left:6px;flex-shrink:0" title="Link to library">🔗</button>'
+              +'<button onclick="deleteProductDB(\''+p.id+'\')" style="background:none;border:none;color:var(--dim);cursor:pointer;font-size:12px;margin-left:4px;flex-shrink:0">✕</button>'))
               +'</div>';
           }).join('')
           +'</div>';
@@ -13194,9 +13199,9 @@ window._renderRemindersList=function(){
 
 
 // Receipt prices are derived from reviewed purchase records; no stock mutation.
-import {applyPurchasePrices,digest as purchaseDigest,estimateList as purchaseEstimate} from '/purchasing-core.js?v=1';
-import {installReceiptReview} from '/receipt-review.js?v=1';
-import {persistPurchase} from '/invoice-store.js?v=1';
+import {applyPurchasePrices,purchaseProducts,digest as purchaseDigest} from '/purchasing-core.js?v=2';
+import {installReceiptReview} from '/receipt-review.js?v=2';
+import {persistPurchase} from '/invoice-store.js?v=2';
 import {deleteObject} from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js';
 function purchasingMaterials(){return applyPurchasePrices(Object.values(materials),Object.values(invoices),Object.values(invoiceItems));}
 installReceiptReview({materials:purchasingMaterials,projects:()=>Object.values(projects),invoices:()=>Object.values(invoices),notify:notif,openMaterial:id=>window.centralCatalog.view(id),persist:(inv,attachment)=>persistPurchase(inv,attachment,{
@@ -13205,11 +13210,12 @@ installReceiptReview({materials:purchasingMaterials,projects:()=>Object.values(p
  removeUpload:path=>deleteObject(ref(storage,path)),
  transaction:fn=>runTransaction(db,tx=>fn({get:async(kind,id)=>{const snap=await tx.get(doc(db,kind,id));return snap.exists()?snap.data():null;},set:(kind,id,data)=>tx.set(doc(db,kind,id),data)}))
 })});
+window.openManualNF=()=>window.receiptReview.launch({company:'',date:getPlanDateStr(new Date()),projectId:activePid||'',tax:0,shipping:0,adjustment:0,items:[{code:'',description:'',qty:1,unit:'EA',unit_price:0,total_price:0}]});
 onAuthStateChanged(auth,user=>{if(!user)window.receiptReview?.close();});
 
 // Guided shopping integration: uses existing collections and authentication.
 import {writeBatch, runTransaction} from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
-import {installGuidedShopping} from '/guided-shopping-v1.js?v=7';
+import {installGuidedShopping} from '/guided-shopping-v1.js?v=8';
 onAuthStateChanged(auth,user=>{if(!user)document.getElementById('guided-shopping-dialog')?.remove();});
 installGuidedShopping({
  userId:()=>auth.currentUser?.uid||null,
@@ -13254,8 +13260,8 @@ installGuidedShopping({
 });
 
 // Expanded product catalog and purchasing documents use the same central material records.
-import {installCentralCatalog, materialSearchText, displayUnit} from '/central-catalog-v1.js?v=7';
-import {materialUses} from '/guided-shopping-v1.js?v=7';
+import {installCentralCatalog, materialSearchText, displayUnit} from '/central-catalog-v1.js?v=8';
+import {materialUses} from '/guided-shopping-v1.js?v=8';
 onAuthStateChanged(auth,user=>{if(!user)document.getElementById('central-material-dialog')?.remove();});
 installCentralCatalog({
  materials:()=>purchasingMaterials(),canEdit:()=>hasRole('owner'),inferredUses:materialUses,

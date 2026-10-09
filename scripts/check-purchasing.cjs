@@ -17,6 +17,7 @@ const assert=require('node:assert/strict');
  assert.equal(c.estimateList([{matId:'m',unit:'ea',qty:2},{name:'Unknown',unit:'ea',qty:1}],prices,'Home Depot').subtotal,24);
  assert.equal(c.estimateList([{matId:'m',unit:'ft',qty:2}],prices,'Home Depot').missing,1);
  assert.equal(c.estimateList([{matId:'m',unit:'ea',qty:null}],prices,'Home Depot').missing,1);
+ const derived=c.purchaseProducts([],[{id:'h',company:'Home Depot',date:'2026-10-09'}],[{id:'it',invoiceId:'h',description:'Device',code:'123',qty:2,unit:'EA',unitPrice:10,materialId:'m'}]);assert.equal(derived[0].lastPrice,10);assert.equal(derived[0].materialId,'m');assert(derived[0].receiptDerived);assert.equal(c.purchaseProducts([],[],[{id:'it',invoiceId:'h',qty:1,unitPrice:10}]).length,0);
  const db=new Map([['projects/p',{}]]);let fail=false;
  const host={userId:()=> 'worker',project:()=>({}),timestamp:()=>1,transaction:async fn=>{const writes=[];await fn({get:async(k,id)=>db.get(k+'/'+id),set:(k,id,v)=>writes.push([k+'/'+id,v])});if(fail)throw Error('Offline');writes.forEach(([k,v])=>db.set(k,v));}};
  fail=true;await assert.rejects(()=>persistPurchase(inv,null,host),/Offline/);assert.equal(db.size,1);

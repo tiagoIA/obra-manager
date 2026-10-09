@@ -2,7 +2,7 @@
 export const normalize = v => String(v ?? '').trim().toLowerCase().replace(/[^a-z0-9]/g,'');
 export function supplierName(value){
  const n=normalize(value);
- const aliases={'homedepot':'Home Depot','thehomedepot':'Home Depot','granitecity':'Granite City Electric','granitecityelectric':'Granite City Electric','granitecityelectricsupply':'Granite City Electric','esc':'Electric Supply Center','electricsupplycenter':'Electric Supply Center','adiglobal':'ADI Global','adiglobaldistribution':'ADI Global','northeastelectrical':'NorthEast Electrical','electricalwholesalersne':'Electrical Wholesalers NE','lowes':"Lowe’s"};
+ const aliases={'homedepot':'Home Depot','thehomedepot':'Home Depot','granitecity':'Granite City Electric','granitecityelectric':'Granite City Electric','granitecityelectricsupply':'Granite City Electric','esc':'Electric Supply Center','electricsupplycenter':'Electric Supply Center','adiglobal':'ADI Global','adiglobaldistribution':'ADI Global','northeastelectrical':'NorthEast Electrical','electricalwholesalersne':'Electrical Wholesalers NE','lowes':"Lowe’s",'platt':'Platt Electric Supply','plattelectricsupply':'Platt Electric Supply'};
  return aliases[n] || String(value||'').trim();
 }
 export function unitName(v){const n=normalize(v);return ({ea:'ea',each:'ea',un:'ea',unit:'ea',ft:'ft',feet:'ft',lf:'ft',bx:'box',box:'box',pk:'pack',pack:'pack',rl:'roll',roll:'roll',barra:'stick',stick:'stick'})[n]||n;}
@@ -53,3 +53,11 @@ export function estimateRow(item,material,supplier=''){
  usable.sort((a,b)=>String(b.priceDate).localeCompare(String(a.priceDate)));const s=usable[0];return {price:Number(s.price),total:cents(Number(item.qty)*Number(s.price))/100,date:s.priceDate,supplier:s.name,source:s.priceSource||'reference',reason:''};
 }
 export function estimateList(items,materials,supplier=''){const rows=items.map(i=>({...i,estimate:estimateRow(i,materials.find(m=>m.id===i.matId),supplier)}));return {rows,subtotal:rows.reduce((sum,r)=>sum+cents(r.estimate.total||0),0)/100,missing:rows.filter(r=>r.estimate.total===null).length};}
+export function purchaseProducts(legacy,invoices,items){
+ const rows=legacy.map(p=>({...p})),headers=new Map(invoices.filter(h=>h.status!=='void').map(h=>[h.id,h]));
+ const key=(company,code,desc,unit)=>normalize(supplierName(company))+'|'+(normalize(code)||normalize(desc))+'|'+unitName(unit);
+ const index=new Map(rows.map((p,n)=>[key(p.company,p.code,p.description,p.unit),n]));
+ const candidates=items.filter(i=>i.qty>0&&i.unitPrice>=0&&headers.has(i.invoiceId)).map(i=>({i,h:headers.get(i.invoiceId)})).sort((a,b)=>String(a.h.date||'').localeCompare(String(b.h.date||''))||(a.h.createdAt?.seconds||0)-(b.h.createdAt?.seconds||0));
+ for(const {i,h} of candidates){const k=key(h.company,i.code,i.description,i.unit),n=index.get(k);if(n!==undefined&&String(rows[n].lastSeen||'')>String(h.date||''))continue;const p={id:'receipt-'+i.id,company:supplierName(h.company),code:i.code,description:i.description,unit:i.unit,lastPrice:i.unitPrice,lastSeen:h.date,materialId:i.materialId||null,receiptDerived:true,invoiceItemId:i.id,invoiceId:h.id};if(n===undefined){index.set(k,rows.length);rows.push(p);}else rows[n]=p;}
+ return rows;
+}

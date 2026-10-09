@@ -1,4 +1,4 @@
-import {digest,invoiceIdentity} from './purchasing-core.js?v=1';
+import {digest,invoiceIdentity} from './purchasing-core.js?v=2';
 // One transaction writes the complete receipt. Material stock is never written.
 export async function persistPurchase(inv,attachment,host){
  const uid=host.userId();if(!uid)throw Error('Sign in again.');
