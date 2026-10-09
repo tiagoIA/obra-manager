@@ -1,0 +1,30 @@
+[
+  {
+    "key": "emt",
+    "part": "TC111A",
+    "title": "TC111A - 1/2\" Emt Compression Conn",
+    "sourceUrl": "https://www.elliottelectric.com/P/Item/TAB/TC111A/",
+    "photoSourceUrl": "https://www.elliottelectric.com/Media/TC111A-TAB-1-1-SmallImage.jpg",
+    "photoSha256": "7b06472497292cd7ab39cb1a29db04438c43b0839f34832c27c0af2594f8cd23",
+    "index": 0,
+    "id": "P7qWZD0tkGe6tDGVTRbm",
+    "expectedName": "EMT Connector 1/2\"",
+    "expectedSku": "ELEC-160",
+    "basis": "1/2-inch EMT compression connector family; example Steel City TC111A; confirm fitting type",
+    "photoReferenceNote": "Family reference — confirm model. 1/2-inch EMT compression connector family; example Steel City TC111A; confirm fitting type. This photo does not identify stock or establish compatibility."
+  },
+  {
+    "key": "cover",
+    "part": "860",
+    "title": "Gordon Electric Supply",
+    "sourceUrl": "https://www.gordonelectricsupply.com/p/Raco-860-Blank-Handybox-Cover/6005317",
+    "photoSourceUrl": "https://assets.gordonelectricsupply.com/tsimages/Hubbell-Raco_860.jpg",
+    "photoSha256": "e6583464a429b6cf76440f1ec1e7f835b33858d6901137c2a3ebecebbb1ec32e",
+    "index": 4,
+    "id": "4YlDe5AwPG8xSrXh0ivc",
+    "expectedName": "handy box plates",
+    "expectedSku": "ELEC-060",
+    "basis": "Blank handy-box cover family; example Raco 860; confirm opening and device configuration",
+    "photoReferenceNote": "Family reference — confirm model. Blank handy-box cover family; example Raco 860; confirm opening and device configuration. This photo does not identify stock or establish compatibility."
+  }
+]
