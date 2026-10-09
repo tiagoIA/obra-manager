@@ -1,4 +1,5 @@
 import os,json,urllib.request
+from concurrent.futures import ThreadPoolExecutor
 from google.oauth2 import service_account
 from google.cloud import firestore
 key=json.loads(os.environ['FIREBASE_SA'])
@@ -18,11 +19,11 @@ if room.get('photos',{}).get('before'):photos.append({'url':room['photos']['befo
 for n in db.collection('roomNotes').where('roomId','==',rooms[0].id).stream():
  note=n.to_dict()
  if note.get('phase')=='before-installation' or note.get('notePhase')=='before-installation':
-  photos.extend(note.get('photos',[]))
+  photos.extend(note.get('photoUrls',[]))
   if note.get('photoUrl'):photos.append({'url':note['photoUrl']})
 urls=list(dict.fromkeys(p if isinstance(p,str) else p.get('url') for p in photos))
 urls=[u for u in urls if u]
-print('ROOF_PHOTOS',json.dumps({'saved':len(urls),'loadable':sum(image_ok(u) for u in urls)}),flush=True)
+print('ROOF_PHOTOS',json.dumps({'saved':len(urls),'loadable':sum(ThreadPoolExecutor(max_workers=8).map(image_ok,urls))}),flush=True)
 cache={}
 for lid in ['guided-reference-fa-scope-20261009','guided-reference-fa-quote-20261009']:
  snap=db.collection('shoppingLists').document(lid).get()
@@ -36,4 +37,6 @@ for lid in ['guided-reference-fa-scope-20261009','guided-reference-fa-quote-2026
   m=cache.get(mid,{})
   out.append({'name':item.get('name'),'model':m.get('manufacturerPart'),'photo':bool(m.get('photoUrl')),'description':bool(m.get('description')),'suppliers':[s.get('name') for s in m.get('suppliers',[]) if s.get('matchVerified') is not False],'review':m.get('catalogReviewStatus')})
  print('LIST_AUDIT',json.dumps({'name':data.get('name'),'total':len(out),'rows':out}),flush=True)
-print('PHOTO_LOAD_AUDIT',json.dumps([{'model':m.get('manufacturerPart'),'loads':image_ok(m.get('photoUrl'))} for m in cache.values() if m.get('photoUrl')]),flush=True)
+with ThreadPoolExecutor(max_workers=8) as pool:
+ rows=list(pool.map(lambda m: {'model':m.get('manufacturerPart'),'loads':image_ok(m.get('photoUrl'))},[m for m in cache.values() if m.get('photoUrl')]))
+print('PHOTO_LOAD_AUDIT',json.dumps(rows),flush=True)
