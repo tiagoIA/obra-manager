@@ -1,0 +1,34 @@
+[
+  {
+    "key": "dmp",
+    "part": "XR150",
+    "url": "https://buy.dmp.com/dmp/Shop?DSP=30100&IID=XR150&PCR=1%3A100%3A10010%3A15242"
+  },
+  {
+    "key": "ptz",
+    "part": "C540",
+    "url": "https://www.tp-link.com/uk/business-networking/vigi-network-camera/vigi-c540/v1%20%284mm%20lens%29/"
+  },
+  {
+    "key": "dvr",
+    "part": "XVR5108",
+    "url": "https://material.dahuasecurity.com/uploads/cpq/prm-os-srv-res/smart/datasheetzipfiles/XVR5108HS-I3_V3_datasheet_20240717.pdf",
+    "pdf": true
+  },
+  {
+    "key": "access",
+    "part": "C3",
+    "url": "https://zktecoma.com/wp-content/uploads/2020/10/C3-Series.pdf",
+    "pdf": true
+  },
+  {
+    "key": "intercom",
+    "part": "IX",
+    "url": "https://www.aiphone.com/products/ix-ixg-series/"
+  },
+  {
+    "key": "pvc",
+    "part": "PVC",
+    "url": "https://www.siteone.com/en/075-elec-conduit-ips-pvc-ul-34-in/p/26468"
+  }
+]
