@@ -1,0 +1,1086 @@
+[
+  {
+    "key": "hwllf",
+    "brand": "System Sensor",
+    "manufacturerPart": "HWL-LF",
+    "name": "Low-frequency wall sounder \u2014 white",
+    "description": "Indoor white wall sounder; 520 Hz. Confirm circuit voltage and compatibility from the manufacturer documentation.",
+    "cat": "fire",
+    "unit": "un",
+    "family": "notification",
+    "subcategory": "notification",
+    "recordType": "product",
+    "catalogReviewStatus": "verified",
+    "catalogVerifiedAt": "2026-10-09",
+    "specs": "Indoor white wall sounder; 520 Hz. Confirm circuit voltage and compatibility from the manufacturer documentation.",
+    "guidedUses": [
+      "fire"
+    ],
+    "sourceUrl": "https://www.adiglobaldistribution.us/Product/BK-HWLLF",
+    "aliases": [],
+    "id": "RS6ncOKXFr75X51oJj8j",
+    "upc": "783863054648",
+    "suppliers": [
+      {
+        "name": "ADI Global",
+        "code": "BK-HWLLF",
+        "url": "https://www.adiglobaldistribution.us/Product/BK-HWLLF",
+        "unit": "un",
+        "matchVerified": true
+      }
+    ]
+  },
+  {
+    "key": "pc2rled",
+    "brand": "System Sensor",
+    "manufacturerPart": "PC2RLED",
+    "name": "LED ceiling horn / strobe \u2014 red",
+    "description": "Indoor red ceiling-mount, 2-wire LED horn/strobe; FIRE marking. Confirm candela and circuit compatibility.",
+    "cat": "fire",
+    "unit": "un",
+    "family": "notification",
+    "subcategory": "notification",
+    "recordType": "product",
+    "catalogReviewStatus": "verified",
+    "catalogVerifiedAt": "2026-10-09",
+    "specs": "Indoor red ceiling-mount, 2-wire LED horn/strobe; FIRE marking. Confirm candela and circuit compatibility.",
+    "guidedUses": [
+      "fire"
+    ],
+    "sourceUrl": "https://www.adiglobaldistribution.us/Product/BK-PC2RLED",
+    "aliases": [],
+    "id": "WeR7T5eIYFEv5gvfCxVd",
+    "upc": "783863058950",
+    "suppliers": [
+      {
+        "name": "ADI Global",
+        "code": "BK-PC2RLED",
+        "url": "https://www.adiglobaldistribution.us/Product/BK-PC2RLED",
+        "unit": "un",
+        "matchVerified": true
+      }
+    ]
+  },
+  {
+    "key": "p2rled",
+    "brand": "System Sensor",
+    "manufacturerPart": "P2RLED",
+    "name": "LED wall horn / strobe \u2014 red",
+    "description": "Indoor red wall-mount, 2-wire LED horn/strobe. Confirm candela and circuit compatibility.",
+    "cat": "fire",
+    "unit": "un",
+    "family": "notification",
+    "subcategory": "notification",
+    "recordType": "product",
+    "catalogReviewStatus": "verified",
+    "catalogVerifiedAt": "2026-10-09",
+    "specs": "Indoor red wall-mount, 2-wire LED horn/strobe. Confirm candela and circuit compatibility.",
+    "guidedUses": [
+      "fire"
+    ],
+    "sourceUrl": "https://www.adiglobaldistribution.us/Product/BK-P2RLED",
+    "aliases": [],
+    "id": "4vYjBFXMkWz1Oob0rDyv",
+    "upc": "783863058851",
+    "suppliers": [
+      {
+        "name": "ADI Global",
+        "code": "BK-P2RLED",
+        "url": "https://www.adiglobaldistribution.us/Product/BK-P2RLED",
+        "unit": "un",
+        "matchVerified": true
+      }
+    ]
+  },
+  {
+    "key": "sgrkled",
+    "brand": "System Sensor",
+    "manufacturerPart": "SGRKLED",
+    "name": "Outdoor LED wall strobe \u2014 red",
+    "description": "Outdoor red compact LED wall strobe. Verify supplied weatherproof backbox and mounting instructions before purchase.",
+    "cat": "fire",
+    "unit": "un",
+    "family": "notification",
+    "subcategory": "notification",
+    "recordType": "product",
+    "catalogReviewStatus": "verified",
+    "catalogVerifiedAt": "2026-10-09",
+    "specs": "Outdoor red compact LED wall strobe. Verify supplied weatherproof backbox and mounting instructions before purchase.",
+    "guidedUses": [
+      "fire"
+    ],
+    "sourceUrl": "https://www.adiglobaldistribution.us/Product/BK-SGRKLED",
+    "aliases": [],
+    "id": "w490VgnIqzctuS1d6eyR",
+    "upc": "783863059964",
+    "suppliers": [
+      {
+        "name": "ADI Global",
+        "code": "BK-SGRKLED",
+        "url": "https://www.adiglobaldistribution.us/Product/BK-SGRKLED",
+        "unit": "un",
+        "matchVerified": true
+      }
+    ]
+  },
+  {
+    "key": "lensr3",
+    "brand": "System Sensor",
+    "manufacturerPart": "LENS-R3",
+    "name": "Red lens for L-Series LED strobes",
+    "description": "Red wall / ceiling lens. Use only with compatible non-FIRE-printed devices for the specified emergency communications application.",
+    "cat": "fire",
+    "unit": "un",
+    "family": "notification",
+    "subcategory": "notification",
+    "recordType": "product",
+    "catalogReviewStatus": "verified",
+    "catalogVerifiedAt": "2026-10-09",
+    "specs": "Red wall / ceiling lens. Use only with compatible non-FIRE-printed devices for the specified emergency communications application.",
+    "guidedUses": [
+      "fire"
+    ],
+    "sourceUrl": "https://www.adiglobaldistribution.us/Product/BK-LENSR3",
+    "aliases": [],
+    "id": "OBTiZE63NB7FWRurQQ62",
+    "upc": "783863058738",
+    "suppliers": [
+      {
+        "name": "ADI Global",
+        "code": "BK-LENSR3",
+        "url": "https://www.adiglobaldistribution.us/Product/BK-LENSR3",
+        "unit": "un",
+        "matchVerified": true
+      }
+    ]
+  },
+  {
+    "key": "sd365co",
+    "brand": "Fire-Lite",
+    "manufacturerPart": "SD365CO",
+    "name": "Addressable fire / CO detector",
+    "description": "LiteSpeed multi-criteria detector using photoelectric, infrared, heat and CO sensing. Confirm panel compatibility and the specified base.",
+    "cat": "fire",
+    "unit": "un",
+    "family": "detectors",
+    "subcategory": "detectors",
+    "recordType": "product",
+    "catalogReviewStatus": "verified",
+    "catalogVerifiedAt": "2026-10-09",
+    "specs": "LiteSpeed multi-criteria detector using photoelectric, infrared, heat and CO sensing. Confirm panel compatibility and the specified base.",
+    "guidedUses": [
+      "fire"
+    ],
+    "sourceUrl": "https://www.adiglobaldistribution.us/Product/FL-SD365CO",
+    "aliases": [],
+    "id": "BQYvE5jgwB01dPYLVMQp",
+    "upc": "783863052590",
+    "suppliers": [
+      {
+        "name": "ADI Global",
+        "code": "FL-SD365CO",
+        "url": "https://www.adiglobaldistribution.us/Product/FL-SD365CO",
+        "unit": "un",
+        "matchVerified": true
+      }
+    ]
+  },
+  {
+    "key": "bg12lx",
+    "brand": "Fire-Lite",
+    "manufacturerPart": "BG-12LX",
+    "name": "Addressable pull station",
+    "description": "Dual-action addressable pull station. Verify compatibility with the installed Fire-Lite control panel.",
+    "cat": "fire",
+    "unit": "un",
+    "family": "notification",
+    "subcategory": "notification",
+    "recordType": "product",
+    "catalogReviewStatus": "verified",
+    "catalogVerifiedAt": "2026-10-09",
+    "specs": "Dual-action addressable pull station. Verify compatibility with the installed Fire-Lite control panel.",
+    "guidedUses": [
+      "fire"
+    ],
+    "sourceUrl": "https://www.adiglobaldistribution.us/Product/FL-BG12LX",
+    "aliases": [],
+    "id": "WLSGLJy6jx3PNMEEkk9w",
+    "upc": "783008104030",
+    "suppliers": [
+      {
+        "name": "ADI Global",
+        "code": "FL-BG12LX",
+        "url": "https://www.adiglobaldistribution.us/Product/FL-BG12LX",
+        "unit": "un",
+        "matchVerified": true
+      }
+    ]
+  },
+  {
+    "key": "sd365",
+    "brand": "Fire-Lite",
+    "manufacturerPart": "SD365",
+    "name": "Addressable photoelectric smoke detector",
+    "description": "White addressable photoelectric smoke detector. Specify the compatible base and panel protocol.",
+    "cat": "fire",
+    "unit": "un",
+    "family": "detectors",
+    "subcategory": "detectors",
+    "recordType": "product",
+    "catalogReviewStatus": "verified",
+    "catalogVerifiedAt": "2026-10-09",
+    "specs": "White addressable photoelectric smoke detector. Specify the compatible base and panel protocol.",
+    "guidedUses": [
+      "fire"
+    ],
+    "sourceUrl": "https://www.adiglobaldistribution.us/Product/FL-SD365",
+    "aliases": [],
+    "id": "1Sp34E8mnVHMnUaUhnle",
+    "upc": "783863051692",
+    "suppliers": [
+      {
+        "name": "ADI Global",
+        "code": "FL-SD365",
+        "url": "https://www.adiglobaldistribution.us/Product/FL-SD365",
+        "unit": "un",
+        "matchVerified": true
+      }
+    ]
+  },
+  {
+    "key": "es50x",
+    "brand": "Fire-Lite",
+    "manufacturerPart": "ES-50X",
+    "name": "50-point addressable fire alarm panel",
+    "description": "50-point addressable fire alarm control panel. Confirm device compatibility, circuit load and battery requirements from the approved design.",
+    "cat": "fire",
+    "unit": "un",
+    "family": "breakers",
+    "subcategory": "breakers",
+    "recordType": "product",
+    "catalogReviewStatus": "verified",
+    "catalogVerifiedAt": "2026-10-09",
+    "specs": "50-point addressable fire alarm control panel. Confirm device compatibility, circuit load and battery requirements from the approved design.",
+    "guidedUses": [
+      "fire"
+    ],
+    "sourceUrl": "https://www.adiglobaldistribution.us/Product/FL-ES50X",
+    "aliases": [],
+    "id": "qdwumUZWT8PzMxJVeOpr",
+    "upc": "783008112622",
+    "suppliers": [
+      {
+        "name": "ADI Global",
+        "code": "FL-ES50X",
+        "url": "https://www.adiglobaldistribution.us/Product/FL-ES50X",
+        "unit": "un",
+        "matchVerified": true
+      }
+    ]
+  },
+  {
+    "key": "mdf300",
+    "brand": "Fire-Lite",
+    "manufacturerPart": "MDF-300",
+    "name": "Dual monitor module",
+    "description": "Addressable dual monitor module; two Class B initiating device circuits. Verify the application and wiring diagram.",
+    "cat": "fire",
+    "unit": "un",
+    "family": "accessories",
+    "subcategory": "accessories",
+    "recordType": "product",
+    "catalogReviewStatus": "verified",
+    "catalogVerifiedAt": "2026-10-09",
+    "specs": "Addressable dual monitor module; two Class B initiating device circuits. Verify the application and wiring diagram.",
+    "guidedUses": [
+      "fire"
+    ],
+    "sourceUrl": "https://www.adiglobaldistribution.us/Product/FL-MDF300",
+    "aliases": [],
+    "id": "D8M1CAb7YMlsYpqI4qq4",
+    "upc": "783863015809",
+    "suppliers": [
+      {
+        "name": "ADI Global",
+        "code": "FL-MDF300",
+        "url": "https://www.adiglobaldistribution.us/Product/FL-MDF300",
+        "unit": "un",
+        "matchVerified": true
+      }
+    ]
+  },
+  {
+    "key": "mmf300",
+    "brand": "Fire-Lite",
+    "manufacturerPart": "MMF-300",
+    "name": "Monitor module",
+    "description": "Addressable monitor module for a supervised initiating device circuit. Confirm the specified circuit configuration.",
+    "cat": "fire",
+    "unit": "un",
+    "family": "accessories",
+    "subcategory": "accessories",
+    "recordType": "product",
+    "catalogReviewStatus": "verified",
+    "catalogVerifiedAt": "2026-10-09",
+    "specs": "Addressable monitor module for a supervised initiating device circuit. Confirm the specified circuit configuration.",
+    "guidedUses": [
+      "fire"
+    ],
+    "sourceUrl": "https://www.adiglobaldistribution.us/Product/FL-MMF300",
+    "aliases": [],
+    "upc": "783863012433",
+    "suppliers": [
+      {
+        "name": "ADI Global",
+        "code": "FL-MMF300",
+        "url": "https://www.adiglobaldistribution.us/Product/FL-MMF300",
+        "unit": "un",
+        "matchVerified": true
+      }
+    ]
+  },
+  {
+    "key": "srled",
+    "brand": "System Sensor",
+    "manufacturerPart": "SRLED",
+    "name": "LED wall strobe \u2014 red",
+    "description": "Indoor red wall-mount LED strobe-only notification appliance. Confirm candela and circuit compatibility.",
+    "cat": "fire",
+    "unit": "un",
+    "family": "notification",
+    "subcategory": "notification",
+    "recordType": "product",
+    "catalogReviewStatus": "verified",
+    "catalogVerifiedAt": "2026-10-09",
+    "specs": "Indoor red wall-mount LED strobe-only notification appliance. Confirm candela and circuit compatibility.",
+    "guidedUses": [
+      "fire"
+    ],
+    "sourceUrl": "https://www.adiglobaldistribution.us/Product/BK-SRLED",
+    "aliases": [],
+    "upc": "783863059018",
+    "suppliers": [
+      {
+        "name": "ADI Global",
+        "code": "BK-SRLED",
+        "url": "https://www.adiglobaldistribution.us/Product/BK-SRLED",
+        "unit": "un",
+        "matchVerified": true
+      }
+    ]
+  },
+  {
+    "key": "ann80",
+    "brand": "Fire-Lite",
+    "manufacturerPart": "ANN-80",
+    "name": "LCD annunciator \u2014 red",
+    "description": "Compact backlit 80-character LCD annunciator; ANN-BUS. Verify panel compatibility, enclosure and mounting accessories.",
+    "cat": "fire",
+    "unit": "un",
+    "family": "notification",
+    "subcategory": "notification",
+    "recordType": "product",
+    "catalogReviewStatus": "verified",
+    "catalogVerifiedAt": "2026-10-09",
+    "specs": "Compact backlit 80-character LCD annunciator; ANN-BUS. Verify panel compatibility, enclosure and mounting accessories.",
+    "guidedUses": [
+      "fire"
+    ],
+    "sourceUrl": "https://www.adiglobaldistribution.us/Product/FL-ANN80",
+    "aliases": [],
+    "upc": "783008108137",
+    "suppliers": [
+      {
+        "name": "ADI Global",
+        "code": "FL-ANN80",
+        "url": "https://www.adiglobaldistribution.us/Product/FL-ANN80",
+        "unit": "un",
+        "matchVerified": true
+      }
+    ],
+    "photoUrl": "https://honeywell.scene7.com/is/image/Honeywell65/HBT-Fire-ANN-80-STRAIGHT-HiRes1"
+  },
+  {
+    "key": "crf300",
+    "brand": "Fire-Lite",
+    "manufacturerPart": "CRF-300",
+    "name": "Addressable relay module",
+    "description": "Addressable relay module with dry-contact outputs for auxiliary control. A relay is not a beacon power supply; verify load, rating and the required circuit.",
+    "cat": "fire",
+    "unit": "un",
+    "family": "accessories",
+    "subcategory": "accessories",
+    "recordType": "product",
+    "catalogReviewStatus": "verified",
+    "catalogVerifiedAt": "2026-10-09",
+    "specs": "Addressable relay module with dry-contact outputs for auxiliary control. A relay is not a beacon power supply; verify load, rating and the required circuit.",
+    "guidedUses": [
+      "fire"
+    ],
+    "sourceUrl": "https://www.adiglobaldistribution.us/Product/FL-CRF300",
+    "aliases": [],
+    "upc": "783863012457",
+    "suppliers": [
+      {
+        "name": "ADI Global",
+        "code": "FL-CRF300",
+        "url": "https://www.adiglobaldistribution.us/Product/FL-CRF300",
+        "unit": "un",
+        "matchVerified": true
+      }
+    ]
+  },
+  {
+    "key": "battery1272",
+    "brand": "UltraTech",
+    "manufacturerPart": "IM-1272F1",
+    "name": "12 V 7 Ah battery \u2014 F1 terminals",
+    "description": "Sealed lead-acid battery, 12 V, 7 Ah, F1 terminals. Confirm terminals, dimensions and panel battery calculation.",
+    "cat": "fire",
+    "unit": "un",
+    "family": "accessories",
+    "subcategory": "accessories",
+    "recordType": "product",
+    "catalogReviewStatus": "verified",
+    "catalogVerifiedAt": "2026-10-09",
+    "specs": "Sealed lead-acid battery, 12 V, 7 Ah, F1 terminals. Confirm terminals, dimensions and panel battery calculation.",
+    "guidedUses": [
+      "fire"
+    ],
+    "sourceUrl": "https://www.adiglobaldistribution.us/Product/IM-1272F1",
+    "aliases": [],
+    "upc": "840049304024",
+    "suppliers": [
+      {
+        "name": "ADI Global",
+        "code": "IM-1272F1",
+        "url": "https://www.adiglobaldistribution.us/Product/IM-1272F1",
+        "unit": "un",
+        "matchVerified": true
+      }
+    ]
+  },
+  {
+    "key": "ssm246",
+    "brand": "System Sensor",
+    "manufacturerPart": "SSM24-6",
+    "name": "6-inch fire alarm bell \u2014 24 VDC",
+    "description": "Red motor-driven 6-inch bell, 24 VDC. The weatherproof WBB backbox is a separate item.",
+    "cat": "fire",
+    "unit": "un",
+    "family": "notification",
+    "subcategory": "notification",
+    "recordType": "product",
+    "catalogReviewStatus": "verified",
+    "catalogVerifiedAt": "2026-10-09",
+    "specs": "Red motor-driven 6-inch bell, 24 VDC. The weatherproof WBB backbox is a separate item.",
+    "guidedUses": [
+      "fire"
+    ],
+    "sourceUrl": "https://www.adiglobaldistribution.us/Product/BK-SSM246",
+    "aliases": [],
+    "suppliers": [
+      {
+        "name": "ADI Global",
+        "code": "BK-SSM246",
+        "url": "https://www.adiglobaldistribution.us/Product/BK-SSM246",
+        "unit": "un",
+        "matchVerified": true
+      }
+    ]
+  },
+  {
+    "key": "wbb",
+    "brand": "System Sensor",
+    "manufacturerPart": "WBB",
+    "name": "Weatherproof backbox for SSM / SSV bells",
+    "description": "Red weatherproof backbox for System Sensor SSM / SSV bells; verify the bell model.",
+    "cat": "fire",
+    "unit": "un",
+    "family": "notification",
+    "subcategory": "notification",
+    "recordType": "product",
+    "catalogReviewStatus": "verified",
+    "catalogVerifiedAt": "2026-10-09",
+    "specs": "Red weatherproof backbox for System Sensor SSM / SSV bells; verify the bell model.",
+    "guidedUses": [
+      "fire"
+    ],
+    "sourceUrl": "https://www.adiglobaldistribution.us/Product/BK-WBB",
+    "aliases": [],
+    "upc": "783863001833",
+    "suppliers": [
+      {
+        "name": "ADI Global",
+        "code": "BK-WBB",
+        "url": "https://www.adiglobaldistribution.us/Product/BK-WBB",
+        "unit": "un",
+        "matchVerified": true
+      }
+    ]
+  },
+  {
+    "key": "hcwllf",
+    "brand": "System Sensor",
+    "manufacturerPart": "HCWL-LF",
+    "name": "Low-frequency ceiling sounder \u2014 white",
+    "description": "Indoor white ceiling-mount 520 Hz sounder. Original quote reads HCWLLE; verify the supplied model. HCWL2-LF is a different replacement model, not an automatic substitution.",
+    "cat": "fire",
+    "unit": "un",
+    "family": "notification",
+    "subcategory": "notification",
+    "recordType": "product",
+    "catalogReviewStatus": "verified",
+    "catalogVerifiedAt": "2026-10-09",
+    "specs": "Indoor white ceiling-mount 520 Hz sounder. Original quote reads HCWLLE; verify the supplied model. HCWL2-LF is a different replacement model, not an automatic substitution.",
+    "guidedUses": [
+      "fire"
+    ],
+    "sourceUrl": "https://www.adiglobaldistribution.us/Product/BK-HCWLLF",
+    "aliases": [
+      "BK-HCWLLE"
+    ],
+    "suppliers": [
+      {
+        "name": "ADI Global",
+        "code": "BK-HCWLLF",
+        "url": "https://www.adiglobaldistribution.us/Catalog/shopproducts/fire/fire-notification-appliances/fire-sounders",
+        "unit": "un",
+        "matchVerified": true
+      }
+    ],
+    "sourceModelReview": "Source code typo; confirm HCWL-LF with supplier before purchasing."
+  },
+  {
+    "key": "elockfa",
+    "brand": "Space Age Electronics",
+    "manufacturerPart": "ELOCK-FA",
+    "name": "Fire alarm circuit lockout kit",
+    "description": "Circuit lockout kit for the fire alarm breaker. Verify fit with the installed breaker; supplier code starts with letter O.",
+    "cat": "fire",
+    "unit": "un",
+    "family": "accessories",
+    "subcategory": "accessories",
+    "recordType": "product",
+    "catalogReviewStatus": "verified",
+    "catalogVerifiedAt": "2026-10-09",
+    "specs": "Circuit lockout kit for the fire alarm breaker. Verify fit with the installed breaker; supplier code starts with letter O.",
+    "guidedUses": [
+      "fire"
+    ],
+    "sourceUrl": "https://www.1sae.com/products-acerbox-integration-accessories-guards-brackets-elock-circuit-lockout-kits",
+    "aliases": [],
+    "suppliers": [
+      {
+        "name": "ADI Global",
+        "code": "O6-ELOCKFA",
+        "url": "https://www.adiglobaldistribution.us/Product/O6-ELOCKFA",
+        "unit": "un",
+        "matchVerified": true
+      }
+    ]
+  },
+  {
+    "key": "hdblank",
+    "brand": "Leviton",
+    "manufacturerPart": "88014-W",
+    "name": "1-gang blank wallplate \u2014 white",
+    "description": "White single-gang blank wallplate. Retail package model R52-88014-00W.",
+    "cat": "eletrica",
+    "unit": "un",
+    "family": "devices",
+    "subcategory": "devices",
+    "recordType": "product",
+    "catalogReviewStatus": "verified",
+    "catalogVerifiedAt": "2026-10-09",
+    "specs": "White single-gang blank wallplate. Retail package model R52-88014-00W.",
+    "guidedUses": [
+      "devices"
+    ],
+    "sourceUrl": "https://www.homedepot.com/p/100356837",
+    "aliases": [],
+    "suppliers": [
+      {
+        "name": "Home Depot",
+        "code": "224175",
+        "internetId": "100356837",
+        "url": "https://www.homedepot.com/p/100356837",
+        "unit": "un",
+        "matchVerified": true,
+        "packageModel": "R52-88014-00W",
+        "price": 0.88,
+        "priceDate": "2026-10-09",
+        "priceSource": "public-reference",
+        "priceNote": "Public page observed 2026-10-09; local store price and availability may vary. Confirm before buying."
+      }
+    ],
+    "photoUrl": "https://images.thdstatic.com/productImages/93622556-0b6c-4ae7-9f46-b3dae16eaa25/svn/white-leviton-blank-wall-plates-r52-88014-00w-64_1000.jpg"
+  },
+  {
+    "key": "hdhom20",
+    "brand": "Square D",
+    "manufacturerPart": "HOM120CP",
+    "name": "Homeline 20 A 1-pole breaker",
+    "description": "20 A, single-pole Homeline breaker. Only for compatible load centers; project amperage and poles must be verified.",
+    "cat": "eletrica",
+    "unit": "un",
+    "family": "breakers",
+    "subcategory": "breakers",
+    "recordType": "product",
+    "catalogReviewStatus": "verified",
+    "catalogVerifiedAt": "2026-10-09",
+    "specs": "20 A, single-pole Homeline breaker. Only for compatible load centers; project amperage and poles must be verified.",
+    "guidedUses": [
+      "panel",
+      "circuit",
+      "subpanel"
+    ],
+    "sourceUrl": "https://www.homedepot.com/p/100045009",
+    "aliases": [],
+    "suppliers": [
+      {
+        "name": "Home Depot",
+        "code": "576387",
+        "internetId": "100045009",
+        "url": "https://www.homedepot.com/p/100045009",
+        "unit": "un",
+        "matchVerified": true,
+        "price": 7.51,
+        "priceDate": "2026-10-09",
+        "priceSource": "public-reference",
+        "priceNote": "Public page observed 2026-10-09; local store price and availability may vary. Confirm before buying."
+      }
+    ],
+    "photoUrl": "https://images.thdstatic.com/productImages/e7fe7a0c-3f45-46d8-a0ee-bfde2c58f84e/svn/square-d-circuit-breakers-hom120cp-64_1000.jpg"
+  },
+  {
+    "key": "hdhom15",
+    "brand": "Square D",
+    "manufacturerPart": "HOM115CP",
+    "name": "Homeline 15 A 1-pole breaker",
+    "description": "15 A, single-pole Homeline breaker. Only for compatible load centers; project amperage and poles must be verified.",
+    "cat": "eletrica",
+    "unit": "un",
+    "family": "breakers",
+    "subcategory": "breakers",
+    "recordType": "product",
+    "catalogReviewStatus": "verified",
+    "catalogVerifiedAt": "2026-10-09",
+    "specs": "15 A, single-pole Homeline breaker. Only for compatible load centers; project amperage and poles must be verified.",
+    "guidedUses": [
+      "panel",
+      "circuit",
+      "subpanel"
+    ],
+    "sourceUrl": "https://www.homedepot.com/p/100153952",
+    "aliases": [],
+    "suppliers": [
+      {
+        "name": "Home Depot",
+        "code": "576379",
+        "internetId": "100153952",
+        "url": "https://www.homedepot.com/p/100153952",
+        "unit": "un",
+        "matchVerified": true,
+        "price": 7.51,
+        "priceDate": "2026-10-09",
+        "priceSource": "public-reference",
+        "priceNote": "Public page observed 2026-10-09; local store price and availability may vary. Confirm before buying."
+      }
+    ],
+    "photoUrl": "https://images.thdstatic.com/productImages/a53113c4-de17-4519-be2d-c400c760360c/svn/square-d-circuit-breakers-hom115cp-64_1000.jpg"
+  },
+  {
+    "key": "hdoutlet",
+    "brand": "Leviton",
+    "manufacturerPart": "5320-W",
+    "name": "Duplex receptacle \u2014 15 A, white",
+    "description": "15 A, 125 V white duplex receptacle. Retail package R52-05320-00W. Not a weather-resistant rooftop selection.",
+    "cat": "eletrica",
+    "unit": "un",
+    "family": "devices",
+    "subcategory": "devices",
+    "recordType": "product",
+    "catalogReviewStatus": "verified",
+    "catalogVerifiedAt": "2026-10-09",
+    "specs": "15 A, 125 V white duplex receptacle. Retail package R52-05320-00W. Not a weather-resistant rooftop selection.",
+    "guidedUses": [
+      "devices"
+    ],
+    "sourceUrl": "https://www.homedepot.com/p/202066670",
+    "aliases": [],
+    "suppliers": [
+      {
+        "name": "Home Depot",
+        "code": "221860",
+        "internetId": "202066670",
+        "url": "https://www.homedepot.com/p/202066670",
+        "unit": "un",
+        "matchVerified": true,
+        "price": 0.98,
+        "priceDate": "2026-10-09",
+        "priceSource": "public-reference",
+        "priceNote": "Public page observed 2026-10-09; local store price and availability may vary. Confirm before buying."
+      }
+    ],
+    "photoUrl": "https://images.thdstatic.com/productImages/5f333b2c-1808-4fd7-a23f-c9e05c15d899/svn/white-leviton-outlets-r52-05320-00w-64_1000.jpg"
+  },
+  {
+    "key": "hdlvbracket",
+    "brand": "Carlon",
+    "manufacturerPart": "SC100RR",
+    "name": "1-gang low-voltage old-work bracket",
+    "description": "Low-voltage old-work mounting bracket. Not an enclosure for line-voltage conductors.",
+    "cat": "eletrica",
+    "unit": "un",
+    "family": "boxes",
+    "subcategory": "boxes",
+    "recordType": "product",
+    "catalogReviewStatus": "verified",
+    "catalogVerifiedAt": "2026-10-09",
+    "specs": "Low-voltage old-work mounting bracket. Not an enclosure for line-voltage conductors.",
+    "guidedUses": [
+      "data"
+    ],
+    "sourceUrl": "https://www.homedepot.com/p/100160916",
+    "aliases": [],
+    "suppliers": [
+      {
+        "name": "Home Depot",
+        "code": "251426",
+        "internetId": "100160916",
+        "url": "https://www.homedepot.com/p/100160916",
+        "unit": "un",
+        "matchVerified": true,
+        "price": 2.76,
+        "priceDate": "2026-10-09",
+        "priceSource": "public-reference",
+        "priceNote": "Public page observed 2026-10-09; local store price and availability may vary. Confirm before buying."
+      }
+    ],
+    "photoUrl": "https://images.thdstatic.com/productImages/d248f1e9-84d5-43d8-aaf8-8f67e8bbcb0c/svn/carlon-boxes-brackets-sc100rr-64_1000.jpg"
+  },
+  {
+    "key": "hdoldbox",
+    "brand": "Carlon",
+    "manufacturerPart": "B114RB",
+    "name": "14 cu. in. 1-gang old-work box",
+    "description": "PVC single-gang old-work box, 14 cubic inches. Confirm box fill and installation suitability.",
+    "cat": "eletrica",
+    "unit": "un",
+    "family": "boxes",
+    "subcategory": "boxes",
+    "recordType": "product",
+    "catalogReviewStatus": "verified",
+    "catalogVerifiedAt": "2026-10-09",
+    "specs": "PVC single-gang old-work box, 14 cubic inches. Confirm box fill and installation suitability.",
+    "guidedUses": [
+      "devices"
+    ],
+    "sourceUrl": "https://www.homedepot.com/p/100404027",
+    "aliases": [],
+    "suppliers": [
+      {
+        "name": "Home Depot",
+        "code": "202460",
+        "internetId": "100404027",
+        "url": "https://www.homedepot.com/p/100404027",
+        "unit": "un",
+        "matchVerified": true,
+        "price": 2.37,
+        "priceDate": "2026-10-09",
+        "priceSource": "public-reference",
+        "priceNote": "Public page observed 2026-10-09; local store price and availability may vary. Confirm before buying."
+      }
+    ],
+    "photoUrl": "https://images.thdstatic.com/productImages/7b044316-f5eb-4095-a512-ec1349004937/svn/carlon-boxes-brackets-b114rb-64_1000.jpg"
+  },
+  {
+    "key": "hdswitch",
+    "brand": "Leviton",
+    "manufacturerPart": "1451-2W",
+    "name": "Single-pole toggle switch \u2014 15 A, white",
+    "description": "15 A white single-pole toggle switch. Retail package R52-01451-02W.",
+    "cat": "eletrica",
+    "unit": "un",
+    "family": "devices",
+    "subcategory": "devices",
+    "recordType": "product",
+    "catalogReviewStatus": "verified",
+    "catalogVerifiedAt": "2026-10-09",
+    "specs": "15 A white single-pole toggle switch. Retail package R52-01451-02W.",
+    "guidedUses": [
+      "devices"
+    ],
+    "sourceUrl": "https://www.homedepot.com/p/100026991",
+    "aliases": [],
+    "suppliers": [
+      {
+        "name": "Home Depot",
+        "code": "614287",
+        "internetId": "100026991",
+        "url": "https://www.homedepot.com/p/100026991",
+        "unit": "un",
+        "matchVerified": true,
+        "price": 0.98,
+        "priceDate": "2026-10-09",
+        "priceSource": "public-reference",
+        "priceNote": "Public page observed 2026-10-09; local store price and availability may vary. Confirm before buying."
+      }
+    ],
+    "photoUrl": "https://images.thdstatic.com/productImages/25824abf-de22-4ab4-a88b-59bf8f87ee76/svn/white-leviton-light-switches-r52-01451-02w-64_1000.jpg"
+  },
+  {
+    "key": "hdnm12",
+    "brand": "Southwire",
+    "manufacturerPart": "28828255",
+    "name": "12/2 NM-B cable \u2014 250 ft roll",
+    "description": "12/2 NM-B cable with ground in a 250 ft roll. Specify permitted dry-location use; not the exterior rooftop whip.",
+    "cat": "eletrica",
+    "unit": "roll",
+    "family": "wiring",
+    "subcategory": "wiring",
+    "recordType": "product",
+    "catalogReviewStatus": "verified",
+    "catalogVerifiedAt": "2026-10-09",
+    "specs": "12/2 NM-B cable with ground in a 250 ft roll. Specify permitted dry-location use; not the exterior rooftop whip.",
+    "guidedUses": [
+      "circuit",
+      "devices"
+    ],
+    "sourceUrl": "https://www.homedepot.com/p/100048873",
+    "aliases": [],
+    "suppliers": [
+      {
+        "name": "Home Depot",
+        "code": "268844",
+        "internetId": "100048873",
+        "url": "https://www.homedepot.com/p/100048873",
+        "unit": "roll",
+        "matchVerified": true,
+        "price": 179.0,
+        "priceDate": "2026-10-09",
+        "priceSource": "public-reference",
+        "priceNote": "Public page observed 2026-10-09; local store price and availability may vary. Confirm before buying."
+      }
+    ],
+    "packQuantity": 250,
+    "packUnit": "ft",
+    "photoUrl": "https://images.thdstatic.com/productImages/93de0fff-7969-4cb9-94dd-d1897d43f980/svn/southwire-nm-wires-28828255-64_1000.jpg"
+  },
+  {
+    "key": "hdfmc",
+    "brand": "Southwire",
+    "manufacturerPart": "55082121",
+    "name": "1/2-inch aluminum FMC \u2014 25 ft coil",
+    "description": "Alflex RWA aluminum flexible metal conduit, 1/2-inch x 25 ft. This is not liquidtight conduit.",
+    "cat": "eletrica",
+    "unit": "roll",
+    "family": "conduit",
+    "subcategory": "conduit",
+    "recordType": "product",
+    "catalogReviewStatus": "verified",
+    "catalogVerifiedAt": "2026-10-09",
+    "specs": "Alflex RWA aluminum flexible metal conduit, 1/2-inch x 25 ft. This is not liquidtight conduit.",
+    "guidedUses": [
+      "circuit"
+    ],
+    "sourceUrl": "https://www.homedepot.com/p/100193695",
+    "aliases": [],
+    "suppliers": [
+      {
+        "name": "Home Depot",
+        "code": "861890",
+        "internetId": "100193695",
+        "url": "https://www.homedepot.com/p/100193695",
+        "unit": "roll",
+        "matchVerified": true,
+        "price": 41.0,
+        "priceDate": "2026-10-09",
+        "priceSource": "public-reference",
+        "priceNote": "Public page observed 2026-10-09; local store price and availability may vary. Confirm before buying."
+      }
+    ],
+    "packQuantity": 25,
+    "packUnit": "ft",
+    "photoUrl": "https://images.thdstatic.com/productImages/1667874a-825d-49cb-8e0a-11ee21ee1508/svn/southwire-conduit-55082121-64_1000.jpg"
+  },
+  {
+    "key": "hddisconnect",
+    "brand": "Eaton",
+    "manufacturerPart": "DPU222RT",
+    "name": "Outdoor AC disconnect \u2014 60 A, non-fused",
+    "description": "Outdoor 60 A non-fused AC disconnect. Confirm voltage, poles, ratings and equipment instructions; not selected automatically for Roof.",
+    "cat": "eletrica",
+    "unit": "un",
+    "family": "breakers",
+    "subcategory": "breakers",
+    "recordType": "product",
+    "catalogReviewStatus": "verified",
+    "catalogVerifiedAt": "2026-10-09",
+    "specs": "Outdoor 60 A non-fused AC disconnect. Confirm voltage, poles, ratings and equipment instructions; not selected automatically for Roof.",
+    "guidedUses": [
+      "hvac"
+    ],
+    "sourceUrl": "https://www.homedepot.com/p/341569446",
+    "aliases": [],
+    "suppliers": [
+      {
+        "name": "Home Depot",
+        "code": "1015431789",
+        "internetId": "341569446",
+        "url": "https://www.homedepot.com/p/341569446",
+        "unit": "un",
+        "matchVerified": true,
+        "price": 16.58,
+        "priceDate": "2026-10-09",
+        "priceSource": "public-reference",
+        "priceNote": "Public page observed 2026-10-09; local store price and availability may vary. Confirm before buying."
+      }
+    ],
+    "photoUrl": "https://images.thdstatic.com/productImages/108e44fe-25a6-464d-87d3-c1bf44e68e67/svn/eaton-disconnects-dpu222rt-64_1000.jpg"
+  },
+  {
+    "key": "hdwroutlet",
+    "brand": "Leviton",
+    "manufacturerPart": "GFWT1-KGY",
+    "name": "WR / TR GFCI receptacle \u2014 15 A, gray",
+    "description": "15 A, 125 V self-test weather-resistant / tamper-resistant GFCI outlet. Retail package R93-GFWT1-KGY. Verify circuit rating and outdoor enclosure.",
+    "cat": "eletrica",
+    "unit": "un",
+    "family": "devices",
+    "subcategory": "devices",
+    "recordType": "product",
+    "catalogReviewStatus": "verified",
+    "catalogVerifiedAt": "2026-10-09",
+    "specs": "15 A, 125 V self-test weather-resistant / tamper-resistant GFCI outlet. Retail package R93-GFWT1-KGY. Verify circuit rating and outdoor enclosure.",
+    "guidedUses": [
+      "devices",
+      "hvac"
+    ],
+    "sourceUrl": "https://www.homedepot.com/p/206001567",
+    "aliases": [],
+    "suppliers": [
+      {
+        "name": "Home Depot",
+        "code": "1001370981",
+        "internetId": "206001567",
+        "url": "https://www.homedepot.com/p/206001567",
+        "unit": "un",
+        "matchVerified": true,
+        "price": 25.48,
+        "priceDate": "2026-10-09",
+        "priceSource": "public-reference",
+        "priceNote": "Public page observed 2026-10-09; local store price and availability may vary. Confirm before buying."
+      }
+    ],
+    "photoUrl": "https://images.thdstatic.com/productImages/dea5fa91-dd33-4805-af31-e3d7ff0eb2fe/svn/gray-leviton-protection-devices-r93-gfwt1-kgy-64_1000.jpg"
+  },
+  {
+    "key": "hdcover",
+    "brand": "Commercial Electric",
+    "manufacturerPart": "WCW1PC",
+    "name": "Extra-duty in-use cover \u2014 clear",
+    "description": "1-gang horizontal / vertical non-metallic weatherproof extra-duty in-use cover. Confirm device, box and orientation compatibility.",
+    "cat": "eletrica",
+    "unit": "un",
+    "family": "devices",
+    "subcategory": "devices",
+    "recordType": "product",
+    "catalogReviewStatus": "verified",
+    "catalogVerifiedAt": "2026-10-09",
+    "specs": "1-gang horizontal / vertical non-metallic weatherproof extra-duty in-use cover. Confirm device, box and orientation compatibility.",
+    "guidedUses": [
+      "devices",
+      "hvac"
+    ],
+    "sourceUrl": "https://www.homedepot.com/p/300849073",
+    "aliases": [],
+    "suppliers": [
+      {
+        "name": "Home Depot",
+        "code": "234165",
+        "internetId": "300849073",
+        "url": "https://www.homedepot.com/p/300849073",
+        "unit": "un",
+        "matchVerified": true,
+        "price": 10.98,
+        "priceDate": "2026-10-09",
+        "priceSource": "public-reference",
+        "priceNote": "Public page observed 2026-10-09; local store price and availability may vary. Confirm before buying."
+      }
+    ],
+    "photoUrl": "https://images.thdstatic.com/productImages/eb8e7207-3995-478c-8552-2c4dbcade9ec/svn/commercial-electric-weatherproof-covers-wcw1pc-64_1000.jpg"
+  },
+  {
+    "key": "hdwhip",
+    "brand": "Southwire",
+    "manufacturerPart": "55189307",
+    "name": "3/4-inch x 6 ft liquidtight cable whip \u2014 8/2",
+    "description": "Factory-assembled liquidtight non-metallic conduit cable whip, 3/4-inch x 6 ft, 8/2. Verify conductor count, gauge, grounding, length and fittings against the actual HVAC requirements.",
+    "cat": "eletrica",
+    "unit": "un",
+    "family": "conduit",
+    "subcategory": "conduit",
+    "recordType": "product",
+    "catalogReviewStatus": "verified",
+    "catalogVerifiedAt": "2026-10-09",
+    "specs": "Factory-assembled liquidtight non-metallic conduit cable whip, 3/4-inch x 6 ft, 8/2. Verify conductor count, gauge, grounding, length and fittings against the actual HVAC requirements.",
+    "guidedUses": [
+      "hvac"
+    ],
+    "sourceUrl": "https://www.homedepot.com/p/203373118",
+    "aliases": [],
+    "suppliers": [
+      {
+        "name": "Home Depot",
+        "code": "229573",
+        "internetId": "203373118",
+        "url": "https://www.homedepot.com/p/203373118",
+        "unit": "un",
+        "matchVerified": true,
+        "price": 41.0,
+        "priceDate": "2026-10-09",
+        "priceSource": "public-reference",
+        "priceNote": "Public page observed 2026-10-09; local store price and availability may vary. Confirm before buying."
+      }
+    ],
+    "photoUrl": "https://images.thdstatic.com/productImages/c4e1a220-bc3e-48e7-b097-36b38caac5d3/svn/southwire-armored-cables-55189307-64_1000.jpg"
+  },
+  {
+    "key": "hdoutletkit",
+    "brand": "Commercial Electric",
+    "manufacturerPart": "WCWV1G-K",
+    "name": "Weatherproof outlet kit \u2014 15 A WR / TR GFCI",
+    "description": "Kit includes one metal box, one 15 A WR/TR GFCI and one extra-duty metal in-use cover with mounting hardware and gasket. Do not also buy loose counterparts without reviewing what is included.",
+    "cat": "eletrica",
+    "unit": "un",
+    "family": "devices",
+    "subcategory": "devices",
+    "recordType": "product",
+    "catalogReviewStatus": "verified",
+    "catalogVerifiedAt": "2026-10-09",
+    "specs": "Kit includes one metal box, one 15 A WR/TR GFCI and one extra-duty metal in-use cover with mounting hardware and gasket. Do not also buy loose counterparts without reviewing what is included.",
+    "guidedUses": [
+      "devices",
+      "hvac"
+    ],
+    "sourceUrl": "https://www.homedepot.com/p/300853233",
+    "aliases": [],
+    "suppliers": [
+      {
+        "name": "Home Depot",
+        "code": "602679",
+        "internetId": "300853233",
+        "url": "https://www.homedepot.com/p/300853233",
+        "unit": "un",
+        "matchVerified": true,
+        "price": 37.98,
+        "priceDate": "2026-10-09",
+        "priceSource": "public-reference",
+        "priceNote": "Public page observed 2026-10-09; local store price and availability may vary. Confirm before buying."
+      }
+    ],
+    "photoUrl": "https://images.thdstatic.com/productImages/398e1e2e-30aa-46c9-89a3-5b0d94ffb6ca/svn/commercial-electric-weatherproof-covers-wcwv1g-k-64_1000.jpg"
+  }
+]

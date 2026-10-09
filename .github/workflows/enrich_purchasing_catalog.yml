@@ -1,0 +1,23 @@
+name: Enrich verified purchasing catalog
+on:
+  push:
+    branches: [feature/purchasing-costs-2026-10-09]
+    paths: ['scripts/catalog_seed.json','scripts/enrich_purchasing_catalog.py','.github/workflows/enrich_purchasing_catalog.yml']
+permissions:
+  contents: read
+concurrency:
+  group: purchasing-catalog-data
+  cancel-in-progress: false
+jobs:
+  catalog:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install google-cloud-firestore google-auth
+      - run: python scripts/enrich_purchasing_catalog.py
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
