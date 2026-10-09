@@ -4,8 +4,8 @@
     "unit-followup.js"
   ],
   "baseline": {
-    "index.html": "2570526019d57d4697959351b44d20c647c956b77af745ed3e27b0082720a247",
-    "unit-followup.js": "fa056f9fe7e6f9cc6abecc36d4d158713f8d30c5b4bbb25cee3f80d9b80f3fc7"
+    "index.html": "6102dcdbf9fcb88b1a55904ac8dd66e326595a17687946d598d4a40cce5ebb0d",
+    "unit-followup.js": "683e7067f65a48acb9c2489909b4f8fa0df22543b0fb49d218169fcc4ff443e5"
   },
-  "message": "Preserve current unit follow-up and complete report, linked assignment and task reuse behavior"
+  "message": "Identify each unit in project follow-up report sections"
 }

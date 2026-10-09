@@ -13115,7 +13115,7 @@ installProjectBrief({
 
 
 // Optional unit follow-up uses its own fields; initial assessments and evidence stay intact.
-import {installUnitFollowup,normalizePlan,canonical,validDate} from '/unit-followup.js?v=2';
+import {installUnitFollowup,normalizePlan,canonical,validDate} from '/unit-followup.js?v=3';
 installUnitFollowup({
  state:()=>({rooms,projects,tasks:allTasks,lists:shoppingLists,items:shoppingItems}),
  users:()=>planUsers(),author:fieldAuthor,canEdit:()=>hasRole('supervisor'),notify:notif,
