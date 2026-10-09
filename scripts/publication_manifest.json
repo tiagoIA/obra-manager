@@ -1,13 +1,11 @@
 {
   "files": [
     "index.html",
-    "purchasing-core.js",
-    "invoice-store.js",
-    "receipt-review.js",
     "costs-dashboard.js"
   ],
   "baseline": {
-    "index.html": "712266f3f4d76c51262f5aa7fb4dd55bf8cfa6ec86c433080cc51bd5554c3a68"
+    "index.html": "766c6dd7645a45e77c25ce9c1d68d9af97eb20e4eb487aa25e2b421f556627f8",
+    "costs-dashboard.js": "77388a9c1cb0cc8d7f38394cbb66508a1e28555d1e1692d8e2b5f4592033500e"
   },
-  "message": "Manual purchase review, receipt attachments, discounts, project filters and retained history"
+  "message": "Complete selected-project purchase entry and remaining material quantities"
 }

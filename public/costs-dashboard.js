@@ -11,7 +11,7 @@ export function installCostsDashboard(host){
   const invoices=host.invoices(),items=host.items(),materials=host.materials(),projects=host.projects(),rooms=host.rooms();
   const visible=filterPurchases(invoices,items,filters).sort((a,b)=>String(b.date||'').localeCompare(String(a.date||''))||(b.createdAt?.seconds||0)-(a.createdAt?.seconds||0));
   const active=visible.filter(h=>h.status!=='void'),ids=new Set(active.map(h=>h.id)),visibleItems=items.filter(i=>ids.has(i.invoiceId));
-  root.replaceChildren();const hdr=node('div',undefined,'page-hdr');hdr.append(node('h2','Costs & receipts'),button('New purchase',()=>host.newPurchase()));root.append(hdr);
+  root.replaceChildren();const hdr=node('div',undefined,'page-hdr');hdr.append(node('h2','Costs & receipts'),button('New purchase',()=>host.newPurchase(filters.projectId||host.projectId())));root.append(hdr);
   const controls=node('section',undefined,'costs-card'),grid=node('div',undefined,'costs-grid');controls.append(grid);root.append(controls);
   const refresh=()=>render(root);
   select(grid,'Cost project',[{id:'',name:'All projects'},...projects],filters.projectId,v=>{filters.projectId=v;filters.roomId='';chosenList='';refresh();});
@@ -32,8 +32,8 @@ export function installCostsDashboard(host){
    const groups=new Map();for(const p of planned){const key=p.matId?p.matId+'|'+unitName(p.unit):p.id||crypto.randomUUID();if(groups.has(key)){const a=groups.get(key);a.qty=(a.qty==null||p.qty==null)?null:Number(a.qty)+Number(p.qty);}else groups.set(key,{...p});}
    const scoped=active.filter(h=>h.projectId===list.projectId);const result=comparePlan([...groups.values()],scoped,items,materials,filters.supplier||list.purchasingSupplier||'');
    text(section,'Estimated materials: '+money(result.estimated)+(result.missing?' · Partial estimate: '+result.missing+' rows need quantity / product / dated price':'')+' · Matched purchases: '+money(result.actual));
-   table(section,['Material','Planned qty','Purchased qty','Estimated','Purchased'],result.rows.map(r=>[r.name,String(r.qty??'Confirm quantity')+' '+(r.unit||''),String(r.purchasedQty)+' '+(r.unit||''),r.estimate.total===null?r.estimate.reason:money(r.estimate.total),money(r.actual)]));
-   const linkedIds=new Set(result.rows.map(r=>r.matId).filter(Boolean));text(section,'Purchase items outside this comparison: '+items.filter(i=>scoped.some(h=>h.id===i.invoiceId)&&(!i.materialId||!linkedIds.has(i.materialId))).length+'. Quantities are purchases, not proof of installation or available stock.');return;
+   table(section,['Material','Planned qty','Purchased qty','Remaining qty','Estimated','Purchased'],result.rows.map(r=>[r.name,String(r.qty??'Confirm quantity')+' '+(r.unit||''),String(r.purchasedQty)+' '+(r.unit||''),r.qty==null?'Confirm quantity':String(Math.max(0,Number(r.qty)-r.purchasedQty)),r.estimate.total===null?r.estimate.reason:money(r.estimate.total),money(r.actual)]));
+   const linkedIds=new Set(result.rows.map(r=>r.matId).filter(Boolean));const outside=items.filter(i=>scoped.some(h=>h.id===i.invoiceId)&&(!i.materialId||!linkedIds.has(i.materialId)));text(section,'Purchase items outside this comparison: '+outside.length+'. Quantities are purchases, not proof of installation or available stock.');if(outside.length)table(section,['Unmatched purchase item','Qty','Net cost'],outside.map(i=>[i.description,String(i.qty)+' '+(i.unit||''),money(i.totalPrice)]));return;
   }
   if(tab==='products'){
    const legacy=(host.legacyProducts?.()||[]).filter(p=>(!filters.supplier||supplierName(p.company)===filters.supplier)&&(!filters.from||p.lastSeen>=filters.from)&&(!filters.to||p.lastSeen<=filters.to));const products=purchaseProducts(legacy,active,visibleItems);if(!products.length)text(root,'No supplier products in the current filters.');

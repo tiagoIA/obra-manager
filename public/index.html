@@ -7170,7 +7170,12 @@ window.updateRoomNotesText=()=>{
 };
 window.triggerNFUpload=()=>document.getElementById('nf-input').click();
 window.handleNFUpload=async(e)=>{
- const files=e.target.files;e.target.value='';window.openManualNF();
+ const files=[...e.target.files];e.target.value='';if(!files.length)return;
+ try{
+  if(files.length>12||files.some(f=>!(f.type.startsWith('image/')||f.type==='application/pdf')||f.size>20*1024*1024)||files.reduce((n,f)=>n+f.size,0)>60*1024*1024)throw Error('Use up to 12 receipt photos or PDF files, 20 MB each and 60 MB total.');
+  const attachments=[];for(const f of files){const data=await new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=()=>reject(Error('Could not read receipt.'));r.readAsDataURL(f);});attachments.push({filename:f.name,size:f.size,mime:f.type,b64:data.split(',')[1],fileHash:await purchaseDigest(await f.arrayBuffer()),isPDF:f.type==='application/pdf',previewUrl:f.type.startsWith('image/')?data:null});}
+  window.receiptReview.launch({company:'',date:getPlanDateStr(new Date()),projectId:activePid||'',tax:0,discount:0,items:[{description:'',qty:1,unit:'EA',unit_price:0,total_price:0}]},attachments);
+ }catch(e){notif(e.message,'e');}
 };
 
 window.updateNFField=(field,val)=>{if(pendingNFScan&&pendingNFScan.edited)pendingNFScan.edited[field]=val;};
@@ -7344,7 +7349,7 @@ window.saveLinkProduct=async function(pid){
 
 
 // Manual entry
-window.openManualNF=()=>{
+window.openManualNF=(pid=activePid)=>{
   manualItems=[{code:'',description:'',qty:1,unit:'UN',unit_price:0,total_price:0}];
   // populate project selector
   const sel=document.getElementById('mn-proj');
@@ -12955,8 +12960,8 @@ const purchaseHost={
  transaction:fn=>runTransaction(db,tx=>fn({get:async(kind,id)=>{const snap=await tx.get(doc(db,kind,id));return snap.exists()?snap.data():null;},set:(kind,id,data)=>tx.set(doc(db,kind,id),data)}))
 };
 installReceiptReview({materials:purchasingMaterials,projects:()=>Object.values(projects),rooms:()=>Object.values(rooms),invoices:()=>Object.values(invoices),notify:notif,openMaterial:id=>window.centralCatalog.view(id),persist:(inv,attachment)=>persistPurchase(inv,attachment,purchaseHost)});
-window.openManualNF=()=>window.receiptReview.launch({company:'',date:getPlanDateStr(new Date()),projectId:activePid||'',tax:0,shipping:0,adjustment:0,discount:0,items:[{code:'',description:'',qty:1,unit:'EA',unit_price:0,total_price:0}]});
-installCostsDashboard({projectId:()=>activePid,projects:()=>Object.values(projects),rooms:()=>Object.values(rooms),materials:purchasingMaterials,invoices:()=>Object.values(invoices),items:()=>Object.values(invoiceItems),lists:()=>Object.values(shoppingLists),shoppingItems:()=>Object.values(shoppingItems),legacyProducts:()=>Object.values(productDB),openLegacyLink:id=>window.openLinkProductModal(id),newPurchase:()=>window.openManualNF(),openMaterial:id=>window.centralCatalog.view(id),notify:notif,
+window.openManualNF=(pid=activePid)=>window.receiptReview.launch({company:'',date:getPlanDateStr(new Date()),projectId:pid||'',tax:0,shipping:0,adjustment:0,discount:0,items:[{code:'',description:'',qty:1,unit:'EA',unit_price:0,total_price:0}]});
+installCostsDashboard({projectId:()=>activePid,projects:()=>Object.values(projects),rooms:()=>Object.values(rooms),materials:purchasingMaterials,invoices:()=>Object.values(invoices),items:()=>Object.values(invoiceItems),lists:()=>Object.values(shoppingLists),shoppingItems:()=>Object.values(shoppingItems),legacyProducts:()=>Object.values(productDB),openLegacyLink:id=>window.openLinkProductModal(id),newPurchase:pid=>window.openManualNF(pid),openMaterial:id=>window.centralCatalog.view(id),notify:notif,
  changeStatus:async(id,status,reason)=>{await changePurchaseStatus(id,status,reason,purchaseHost);if(invoices[id])invoices[id].status=status;},
  linkItem:async(id,mid,reason)=>{await linkPurchaseItem(id,mid,reason,purchaseHost);if(invoiceItems[id])invoiceItems[id].materialId=mid||null;}
 });
