@@ -20,7 +20,7 @@ for seed in seeds:
   assert len(candidates)<=1,'Ambiguous existing product: '+k
   target=candidates[0] if candidates else 'verified-purchase-'+k+'-20261009'
  old=docs.get(target,{})
- before_qty[target]=old.get('qty')
+ if old:before_qty[target]=old.get('qty')
  # Keep existing name, stock, active state, photos and historical references.
  if old:
   p.pop('name',None)
@@ -74,7 +74,7 @@ for lid,links in [('guided-reference-fa-scope-20261009',links1),('guided-referen
   items[n]['obs']=('Manufacturer/model and supplier code verified in the catalog. '+historical).strip()
   if k=='hcwllf':items[n]['obs']='Source reads BK-HCWLLE; verified model HCWL-LF / BK-HCWLLF. Confirm the supplied label and availability. '+historical
   if k=='elockfa':items[n]['obs']='Verified ELOCK-FA kit; ADI code O6-ELOCKFA starts with letter O, not zero. Verify breaker fit. '+historical
- items[12 if 'quote' in lid else 1]['obs']=(items[12 if 'quote' in lid else 1].get('obs','')+' Verify the model and supply noted in the source.').strip()
+ if 'scope' in lid and 'Verify the model and supply noted in the source.' not in items[1].get('obs',''):items[1]['obs']=(items[1].get('obs','')+' Verify the model and supply noted in the source.').strip()
  ref.update({'items':items,'supplierReviewNote':'BK / FL codes verified against ADI references. Undated source prices are historical and are not current estimates. Some source model names require confirmation.','updatedAt':firestore.SERVER_TIMESTAMP})
 # Rooftop checklist has unknown equipment quantities; it cannot be ordered without review.
 lid='guided-arlington-roof-20261009';ref=db.collection('shoppingLists').document(lid)
@@ -85,3 +85,10 @@ if not ref.get().exists:
 for mid,qty in before_qty.items():assert db.collection('materials').document(mid).get().to_dict().get('qty')==qty,'Stock changed unexpectedly'
 for k,mid in resolved.items():assert db.collection('materials').document(mid).get().to_dict()['manufacturerPart']==next(p['manufacturerPart'] for p in seeds if p['key']==k)
 print('CATALOG_VERIFIED '+json.dumps({'verifiedProducts':len(resolved),'homeDepotElectrical':sum(p['cat']=='eletrica' for p in seeds),'preservedExistingStock':len(before_qty),'sourceTemplates':2,'roofChecklist':True,'modelsFlagged':len(flags),'products':resolved}))
+
+coverage={}
+for snap in db.collection('materials').stream():
+ m=snap.to_dict()
+ if m.get('isTask') or m.get('active') is False or m.get('status')=='inactive':continue
+ for name in set(s.get('name','') for s in m.get('suppliers',[]) if s.get('matchVerified') is not False and (s.get('url') or (s.get('code') and norm(s.get('code'))!='0'))):coverage[name]=coverage.get(name,0)+1
+print('SUPPLIER_COVERAGE '+json.dumps(coverage,sort_keys=True))
