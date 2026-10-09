@@ -1,0 +1,24 @@
+[
+  {
+    "id": "skFOYfd8DIfl8OlW2upd",
+    "expectedName": "SMICO-210 Carbon monoxide 120volts",
+    "expectedSku": "FIRE-028",
+    "sourceUrl": "https://www.ew-ne.com/gentex-co1209-electrochemical-carbon-monoxide-alarm-9-volt-alkaline-battery-120-volt-ac-205916/p",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/660685/P205916.jpg?v=639229367791130000",
+    "photoSha256": "4558ce48b22b09206ad4e96da0c284a3470523695af6089a28b161b62903ad9e",
+    "basis": "120V carbon-monoxide alarm family; pictured Gentex CO1209. Recorded SMICO-210 code and voltage remain unconfirmed",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. 120V carbon-monoxide alarm family; pictured Gentex CO1209. Recorded SMICO-210 code and voltage remain unconfirmed. This photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "muXoxFy3fyB2Uae04IE4",
+    "expectedName": "SMICO-210 Carbon Monoxide 120V",
+    "expectedSku": "FIRE-044",
+    "sourceUrl": "https://www.ew-ne.com/gentex-co1209-electrochemical-carbon-monoxide-alarm-9-volt-alkaline-battery-120-volt-ac-205916/p",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/660685/P205916.jpg?v=639229367791130000",
+    "photoSha256": "4558ce48b22b09206ad4e96da0c284a3470523695af6089a28b161b62903ad9e",
+    "basis": "120V carbon-monoxide alarm family; pictured Gentex CO1209. Recorded SMICO-210 code and voltage remain unconfirmed",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. 120V carbon-monoxide alarm family; pictured Gentex CO1209. Recorded SMICO-210 code and voltage remain unconfirmed. This photo does not identify stock or establish compatibility."
+  }
+]
