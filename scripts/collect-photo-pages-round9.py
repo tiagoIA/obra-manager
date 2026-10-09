@@ -55,5 +55,7 @@ for start in range(0,len(rows),24):
   draw.text((x+4,y+167),str(row['index'])+' '+row['key'],fill='black')
   draw.text((x+4,y+185),row['part']+' page '+str(row.get('page','')),fill='black')
  b=io.BytesIO();canvas.save(b,'PNG');print('MANUFACTURER_PHOTO_SHEET',start,base64.b64encode(b.getvalue()).decode())
-for row in rows:print('MANUFACTURER_PHOTO_CANDIDATE',json.dumps({k:v for k,v in row.items() if k!='raw'},ensure_ascii=False))
+for row in rows:
+ print('MANUFACTURER_PHOTO_CANDIDATE',json.dumps({k:v for k,v in row.items() if k!='raw'},ensure_ascii=False))
+ if row['key']=='pvc-pdf':print('APPROVED_ASSET_CANDIDATE',json.dumps({'index':row['index'],'sha256':row['photoSha256'],'jpegBase64':base64.b64encode(row['raw']).decode()}))
 print('MANUFACTURER_PHOTO_COUNT',len(rows))
