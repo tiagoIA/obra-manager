@@ -1,0 +1,20 @@
+name: Verified manufacturer reference photos
+on:
+  push:
+    branches: [feature/purchasing-costs-2026-10-09]
+    paths: ['scripts/verified_reference_photos.py','.github/workflows/verified_reference_photos.yml']
+permissions:
+  contents: read
+jobs:
+  photos:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install google-cloud-firestore google-auth
+      - run: python scripts/verified_reference_photos.py
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
