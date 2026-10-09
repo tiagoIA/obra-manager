@@ -1,0 +1,66 @@
+"""Apply visually reviewed photo references only; preserve all material and history fields."""
+import os,json,io,base64,hashlib,uuid,requests,fitz
+from urllib.parse import quote,urlparse
+from PIL import Image
+from google.oauth2 import service_account
+from google.auth.transport.requests import AuthorizedSession
+from google.cloud import storage
+from importlib.machinery import SourceFileLoader
+catalog=SourceFileLoader('catalog','scripts/import-central.py').load_module()
+def enc(v):
+ if isinstance(v,str):return {'stringValue':v}
+ if isinstance(v,dict):return {'mapValue':{'fields':{k:enc(x) for k,x in v.items()}}}
+ raise TypeError('Photo patch accepts only strings/maps')
+def main():
+ key=json.loads(os.environ['FIREBASE_SA']);assert key['project_id']=='obra-manager-4ecc7'
+ creds=service_account.Credentials.from_service_account_info(key,scopes=['https://www.googleapis.com/auth/cloud-platform'])
+ s=AuthorizedSession(creds);fire='https://firestore.googleapis.com/v1/projects/obra-manager-4ecc7/databases/(default)/documents'
+ bucket=storage.Client(project=key['project_id'],credentials=creds).bucket('obra-manager-4ecc7.firebasestorage.app')
+ folder='backups/photo-coverage/'+os.environ['GITHUB_RUN_ID']+'/'
+ def read(col):
+  docs=[];token=None
+  while True:
+   params={'pageSize':1000}
+   if token:params['pageToken']=token
+   r=s.get(fire+'/'+col,params=params,timeout=60);r.raise_for_status();d=r.json();docs+=d.get('documents',[]);token=d.get('nextPageToken')
+   if not token:return docs
+ def save(name,data):bucket.blob(folder+name).upload_from_string(json.dumps(data,ensure_ascii=False),content_type='application/json',if_generation_match=0)
+ docs=read('materials');assert len(docs)==524,'Catalog count changed; audit again'
+ originals={d['name']:d for d in docs};by_id={d['name'].split('/')[-1]:d for d in docs};records={i:{k:catalog.decode(v) for k,v in d.get('fields',{}).items()} for i,d in by_id.items()}
+ save('materials.json',docs)
+ for col in ['shoppingLists','shoppingItems','tasks','productDB','invoices','invoiceItems']:save(col+'.json',read(col))
+ plans=json.load(open(os.environ['PHOTO_MANIFEST']));assert len(plans)==int(os.environ['PHOTO_EXPECTED_COUNT'])
+ writes=[];cache={};updated=[]
+ for p in plans:
+  old=records[p['id']]
+  assert old['name']==p['expectedName'] and old.get('sku')==p['expectedSku'],'Target identity changed'
+  assert old.get('active') is not False and old.get('status')!='inactive' and not old.get('isTask')
+  if p.get('replaceExistingPhotoSha256'):
+   assert old.get('photoUrl') and old['photoUrl'].startswith('https://')
+   prior=requests.get(old['photoUrl'],timeout=40);prior.raise_for_status()
+   assert hashlib.sha256(prior.content).hexdigest()==p['replaceExistingPhotoSha256'],'Existing photo changed since visual review'
+  else:assert not old.get('photoUrl'),'A user already added a photo; audit again'
+  url=old['photoUrl'];digest=p['replaceExistingPhotoSha256']
+  provenance=dict(old.get('photoProvenance') or {})
+  provenance[os.environ['GITHUB_RUN_ID']]={'sourceUrl':p['sourceUrl'],'photoSourceUrl':p['photoSourceUrl'],'photoSha256':digest,'basis':p['basis'],'reviewedAt':'2026-10-09','type':'family'}
+  patch={'photoUrl':url,'photoReferenceType':'family','photoReferenceNote':p['photoReferenceNote'],'photoVerifiedAt':'2026-10-09','photoProvenance':provenance}
+  doc=by_id[p['id']];writes.append({'update':{'name':doc['name'],'fields':{k:enc(v) for k,v in patch.items()}},'updateMask':{'fieldPaths':sorted(patch)},'currentDocument':{'updateTime':doc['updateTime']},'updateTransforms':[{'fieldPath':'updatedAt','setToServerValue':'REQUEST_TIME'}]})
+  updated.append({'id':p['id'],'sku':p['expectedSku'],'name':p['expectedName'],'type':'family'})
+ save('prepared-writes.json',writes);result=None
+ try:
+  r=s.post(fire+':commit',json={'writes':writes},timeout=90);r.raise_for_status();result=r.json();save('commit-result.json',result)
+  after=read('materials');assert {d['name'] for d in after}==set(originals),'Material IDs changed'
+  written={w['update']['name']:w for w in writes}
+  for d in after:
+   before=originals[d['name']].get('fields',{});actual=d.get('fields',{});w=written.get(d['name'])
+   mask=set(w['update']['fields'])|{'updatedAt'} if w else set()
+   assert {k:v for k,v in before.items() if k not in mask}=={k:v for k,v in actual.items() if k not in mask},'Stock/status/history or another protected field changed'
+   if w:assert all(k in actual and catalog.decode(actual[k])==catalog.decode(v) for k,v in w['update']['fields'].items()),'Photo patch differs'
+  active=[{k:catalog.decode(v) for k,v in d.get('fields',{}).items()} for d in after if catalog.decode(d.get('fields',{}).get('active',{})) is not False and catalog.decode(d.get('fields',{}).get('status',{}))!='inactive']
+  missing=[p for p in active if not p.get('isTask') and not p.get('photoUrl')]
+  receipt={'catalogCount':len(after),'newPhotos':0,'annotatedPhotos':len(plans),'activeWithoutPhotos':len(missing),'activeWithPhotos':sum(bool(p.get('photoUrl')) for p in active),'referencePhotos':len(writes),'backup':folder,'updated':updated}
+  save('receipt.json',receipt);print('PHOTO_COVERAGE_VERIFIED',json.dumps(receipt,ensure_ascii=False))
+ except Exception:
+  if result:catalog.rollback(s,fire,writes,result,originals)
+  raise
+if __name__=='__main__':main()
