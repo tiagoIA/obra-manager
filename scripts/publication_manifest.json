@@ -2,19 +2,11 @@
   "files": [
     "index.html",
     "project-brief.js",
-    "purchasing-core.js",
-    "invoice-store.js",
-    "receipt-review.js",
-    "central-catalog-v1.js",
-    "guided-shopping-v1.js"
+    "note-photos.js"
   ],
   "baseline": {
-    "index.html": "8c12a5478fc2040bfdffaef2b3dfeb43d2b692a4a6d6198bdca049d1c8c331b2",
-    "central-catalog-v1.js": "0e1962fd0e583aa3c1632b7d124f135bb5ddd1dec930c65436019f35b82a1b17",
-    "guided-shopping-v1.js": "d54c609eebb8efced73553eb5ab58be378e0aacb213a22d5587bd1c6e53aa3c5",
-    "receipt-review.js": "55c545af9deb7305f196d2c5c2c36bf46816c1c31a6e29935b04b51fb0445b3d",
-    "purchasing-core.js": "fa689cc462a75b85c99920985f58660ff41ae95114a7cf68835efc346ee2d203",
-    "invoice-store.js": "e3acc8f7436255431dccf4b728e059cf0c9b9dd607075e9bbac1b20bf86c9dc0"
+    "index.html": "3ed5fec170d486ac0416eaedee92a802330167be80694d95ec88145532a86828",
+    "project-brief.js": "f0717f846d0e5cd279cf97f7eda91c79e7e84f8133adfcb4d01af047be80ce6a"
   },
-  "message": "Reviewed receipt purchases, supplier estimates and catalog details"
+  "message": "Bulk observation photos and camera capture; explicit before-installation records"
 }

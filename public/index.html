@@ -2450,7 +2450,8 @@ button, a, [onclick], .btn-g, .bn-item, .home-nav-btn,
   <div class="pdf-page" id="shop-pdf-content"></div>
 </div>
 <input type="file" id="file-input" accept="image/*" multiple onchange="handlePhoto(event)">
-<input type="file" id="note-photo-input" accept="image/*" onchange="handleNotePhoto(event)">
+<input type="file" id="note-photo-input" style="display:none" accept="image/*" multiple onchange="handleNotePhoto(event)">
+<input type="file" id="note-camera-input" style="display:none" accept="image/*" capture="environment" onchange="handleNotePhoto(event)">
 <input type="file" id="ba-input" accept="image/*" onchange="handleBAPhoto(event)">
 <input type="file" id="nf-input" accept="image/*,application/pdf" onchange="handleNFUpload(event)">
 <input type="file" id="mat-photo-input" accept="image/*" onchange="handleMatPhoto(event)">
@@ -6926,11 +6927,13 @@ function listenRoomNotes(rid){
 function renderNotesAudioList(notes){
   const el=document.getElementById('notes-audio-list');
   if(!el)return;
+  window.notePhotos?.draw();
   if(!notes.length){el.innerHTML='<div style="color:var(--dim);font-size:12px;padding:4px 0 8px">No notes yet.</div>';return;}
   el.innerHTML=notes.map(function(n){
     const hasAudio=n.audioUrl;
     const hasText=n.transcript||n.text;
-    const hasPhoto=n.photoUrl;
+    const hasPhoto=notePhotoRows(n).length;
+    roomNotesList[n.id]=n;
     const ts=n.createdAt&&n.createdAt.toDate?n.createdAt.toDate().toLocaleString('en-US'):(n.savedAt||'');
     const icon=hasAudio?'🎙️':hasPhoto?'📷':'📝';
     return '<div class="notes-audio-item" id="note-item-'+n.id+'">'
@@ -6940,13 +6943,7 @@ function renderNotesAudioList(notes){
       +(hasText?'<div class="notes-audio-transcript">'+x(n.transcript||n.text)+'</div>':'')
       +(hasAudio?'<audio class="notes-audio-player" controls src="'+n.audioUrl+'"></audio>':'')
       +'<div id="note-photo-'+n.id+'">'
-      +(hasPhoto
-        ?'<img src="'+n.photoUrl+'" style="max-width:140px;max-height:100px;border-radius:6px;border:1px solid var(--bdr);cursor:pointer;display:block;margin-top:5px" onclick="viewPhoto(\''+n.photoUrl+'\')">'
-         +'<div style="display:flex;gap:5px;margin-top:4px">'
-         +'<button onclick="window.addNotePhoto(\''+n.id+'\')" style="background:none;border:1px solid var(--bdr);color:var(--mut);font-size:10px;padding:2px 7px;border-radius:4px;cursor:pointer">🔄 Change</button>'
-         +'<button onclick="window.deleteNotePhoto(\''+n.id+'\')" style="background:none;border:1px solid var(--bdr);color:var(--fire);font-size:10px;padding:2px 7px;border-radius:4px;cursor:pointer">🗑️ Remove</button>'
-         +'</div>'
-        :'<button onclick="window.addNotePhoto(\''+n.id+'\')" style="background:none;border:1px solid var(--bdr);color:var(--mut);font-size:11px;padding:3px 9px;border-radius:5px;cursor:pointer;margin-top:5px">📷 Add photo</button>')
+      +window.notePhotos.html(n.id,n)
       +'</div>'
       +'<div class="notes-audio-meta">'+x(ts)+'</div>'
       +'</div>'
@@ -9621,12 +9618,15 @@ function renderRoomDetail(cv,room){
     // ── OBSERVATIONS ──
     +'<div class="notes-box">'
     +'<div class="notes-box-title">📋 OBSERVATIONS</div>'
+    +'<div style="border:1px solid var(--elec);border-radius:9px;padding:12px;margin:10px 0"><strong style="display:block;font-size:13px">📷 BEFORE INSTALLATION</strong><p style="font-size:12px;color:var(--mut);line-height:1.5;margin:8px 0">Record how the unit was found before starting any installation. Add several initial-condition photos and describe existing equipment or defects.</p><button class="btn-sm" style="min-height:44px" onclick="projectBrief.open(\'rooms\',\''+activeRid+'\')">Photos and observations before installation</button></div>'
     +'<div id="notes-audio-list" style="margin-bottom:8px"></div>'
+    +'<label style="display:block;font-size:12px;margin:8px 0">Observation timing <select id="note-phase" aria-label="Observation timing" style="width:100%;min-height:44px;background:var(--sur2);color:var(--txt);border:1px solid var(--bdr);padding:8px"><option value="general">General observation</option><option value="before-installation">BEFORE INSTALLATION — initial conditions</option></select></label>'
     +'<textarea class="notes-textarea" id="room-notes-ta" placeholder="Type a new note and press Save, or use the mic..." onkeydown="if(event.ctrlKey&&event.key===\'Enter\')saveRoomNote()"></textarea>'
     +'<div class="notes-actions">'
     +'<button class="btn-save-note" id="btn-save-note" onclick="saveRoomNote()">💾 Save note</button>'
     +'<button class="btn-rec" id="btn-rec" onclick="toggleRecording()"><span class="rec-dot"></span> 🎙️ Record</button>'
-    +'<button onclick="window._pendingNotePhotoData=null;window._pendingNotePhotoIsBlob=false;document.getElementById(\'note-photo-input\').click()" style="background:none;border:1px solid var(--bdr);color:var(--mut);font-size:12px;padding:5px 10px;border-radius:5px;cursor:pointer" id="btn-note-photo">📷</button>'
+    +'<button onclick="notePhotos.pick()" class="btn-sm" style="min-height:44px" id="btn-note-photo">📷 Select photos</button>'
+    +'<button onclick="notePhotos.pick(null,true)" class="btn-sm" style="min-height:44px">📸 Take photo</button>'
     +'</div>'
     +'<div id="note-photo-preview" style="display:none;margin-top:8px"></div>'
     +'<div id="live-transcript" style="font-size:12px;color:#a78bfa;min-height:14px;margin-top:5px;font-style:italic;"></div>'
@@ -9783,6 +9783,7 @@ window.goToRoomNote=(rid)=>{
 // ─── TASK REPORT (pending tasks filter) ──────────────────────────────────────
 // ─── BEFORE/AFTER PHOTO HANDLER ──────────────────────────────────────────────
 window.triggerBAPhoto=(rid,type)=>{
+  if(type==='before'){window.projectBrief.open('rooms',rid);return;}
   pendingBAType={rid,type};
   document.getElementById('ba-input').click();
 };
@@ -10906,7 +10907,7 @@ window.generateFilteredReport=()=>{
       return a.name.localeCompare(b.name);
     });
     const notesMap={};
-    Object.values(roomNotesList||{}).forEach(n=>{if(unitSet.has(n.roomId)&&n.photoUrl){if(!notesMap[n.roomId])notesMap[n.roomId]=[];notesMap[n.roomId].push(n);}});
+    Object.values(roomNotesList||{}).forEach(n=>{if(unitSet.has(n.roomId)&&notePhotoRows(n).length){if(!notesMap[n.roomId])notesMap[n.roomId]=[];notesMap[n.roomId].push(...notePhotoRows(n).map(p=>({...n,photoUrl:p.url})));}});
 
     // Calcular contagens por unidade para o índice
     let totalPhotos=0;
@@ -11643,8 +11644,11 @@ window.generateUnitReport=(rid)=>{
     html+='</div>';
   }
 
+  const initialPhotos=beforeInstallationPhotos(room);
+  if(initialPhotos.length)html+='<div style="margin-bottom:24px"><h3>BEFORE INSTALLATION — initial conditions</h3><p>'+x(room.scopeBrief?.before||'Original unit conditions before work starts.')+'</p><div style="display:flex;flex-wrap:wrap;gap:10px">'+initialPhotos.map(p=>'<img src="'+x(p.url)+'" style="width:160px;height:120px;object-fit:contain" alt="Before installation">').join('')+'</div></div>';
+
   // ── FOTOS DAS NOTAS ──
-  const notesWithPhotos=notes.filter(n=>n.photoUrl);
+  const notesWithPhotos=notes.filter(n=>n.phase!=='before-installation').flatMap(n=>notePhotoRows(n).map(p=>({...n,photoUrl:p.url})));
   if(notesWithPhotos.length){
     html+='<div style="margin-bottom:24px">'
       +'<div style="font-size:11px;font-weight:700;color:#555;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;border-bottom:2px solid #e5e7eb;padding-bottom:6px">📝 FOTOS DAS NOTAS</div>'
@@ -11718,9 +11722,10 @@ window.renderUnitPhotos=(rid)=>{
     +'</div>'
     +(activePhotoTab==='ba'?
       '<div class="ba-grid">'
-      +'<div class="ba-slot before"><div class="ba-slot-label">📷 BEFORE<button onclick="triggerBAPhoto(\''+rid+'\',\'before\')" style="background:none;border:none;color:var(--elec);cursor:pointer;font-size:11px">Change</button></div>'
-      +(photos.before?'<img class="ba-slot-img" src="'+photos.before+'" onclick="viewPhoto(\''+photos.before+'\')">'
-        :'<div class="ba-slot-empty" onclick="triggerBAPhoto(\''+rid+'\',\'before\')"><div class="ba-slot-empty-icon">📷</div>Tap to add BEFORE photo</div>')
+      +'<div class="ba-slot before"><div class="ba-slot-label">📷 BEFORE INSTALLATION</div>'
+      +'<p style="font-size:12px;color:var(--mut);padding:0 10px">Initial conditions before work starts.</p>'
+      +'<div class="photo-gallery">'+beforeInstallationPhotos(room).map(p=>'<img class="gallery-thumb" src="'+x(p.url)+'" alt="Before installation" onclick="viewPhoto(\''+p.url+'\')">').join('')+'</div>'
+      +'<button class="btn-sm" style="min-height:44px;margin:10px" onclick="triggerBAPhoto(\''+rid+'\',\'before\')">Add photos / observations</button>'
       +'</div>'
       +'<div class="ba-slot after"><div class="ba-slot-label">✅ AFTER<button onclick="triggerBAPhoto(\''+rid+'\',\'after\')" style="background:none;border:none;color:var(--ok);cursor:pointer;font-size:11px">Change</button></div>'
       +(photos.after?'<img class="ba-slot-img" src="'+photos.after+'" onclick="viewPhoto(\''+photos.after+'\')">'
@@ -13290,12 +13295,30 @@ window.deleteMaterial=async id=>{
  try{await updateDoc(doc(db,'materials',id),{active,status:active?'active':'inactive',updatedAt:serverTimestamp()});Object.assign(m,{active,status:active?'active':'inactive'});renderContent();notif(active?'Material reactivated.':'Material deactivated.','s');}catch(e){notif(e.message,'e');}
 };
 
+function beforeInstallationPhotos(room){const rows=[...(room?.photos?.before?[{url:room.photos.before,name:'Existing before photo'}]:[]),...(room?.scopeBrief?.photos||[]),...Object.values(roomNotesList).filter(n=>n.roomId===room?.id&&n.phase==='before-installation').flatMap(notePhotoRows)];return rows.filter((p,n)=>p.url&&rows.findIndex(x=>x.url===p.url)===n);}
+// Multi-photo observations keep one record for the whole batch.
+import {installNotePhotos,notePhotoRows} from '/note-photos.js?v=1';
+async function uploadObservationPhotos(nid,files){const uploaded=[];try{for(const file of files){const path='roomNotes/'+nid+'/'+crypto.randomUUID()+'.jpg';const target=ref(storage,path);await uploadBytes(target,file.blob,{contentType:'image/jpeg'});try{uploaded.push({url:await getDownloadURL(target),name:file.name,path,addedAt:new Date().toISOString()});}catch(e){await deleteObject(target).catch(()=>{});throw e;}}return uploaded;}catch(e){await Promise.allSettled(uploaded.map(p=>deleteObject(ref(storage,p.path))));throw e;}}
+async function cleanupObservationPhotos(rows){await Promise.allSettled(rows.map(p=>deleteObject(ref(storage,p.path))));}
+installNotePhotos({context:()=>({rid:activeRid,pid:activePid}),compress:compressImage,notify:notif,
+ create:async(c,text,phase,files)=>{
+  if(!auth.currentUser)throw Error('Sign in again.');const target=doc(collection(db,'roomNotes')),rows=await uploadObservationPhotos(target.id,files);
+  try{await runTransaction(db,async tx=>{const room=await tx.get(doc(db,'rooms',c.rid));if(!room.exists()||room.data().projectId!==c.pid)throw Error('The selected unit changed.');tx.set(target,{roomId:c.rid,projectId:c.pid,text,transcript:null,audioUrl:null,phase,photoUrl:rows[0]?.url||null,photoUrls:rows,savedAt:new Date().toLocaleString('en-US'),createdBy:auth.currentUser.uid,createdAt:serverTimestamp()});});}catch(e){await cleanupObservationPhotos(rows);throw e;}
+ },
+ append:async(nid,files)=>{
+  if(!auth.currentUser)throw Error('Sign in again.');const rows=await uploadObservationPhotos(nid,files),target=doc(db,'roomNotes',nid);
+  try{await runTransaction(db,async tx=>{const snap=await tx.get(target);if(!snap.exists())throw Error('This observation was removed.');const existing=notePhotoRows(snap.data());if(existing.length+rows.length>24)throw Error('Use up to 24 photos per observation.');const all=[...existing,...rows];tx.update(target,{photoUrls:all,photoUrl:all[0]?.url||null,updatedAt:serverTimestamp()});});}catch(e){await cleanupObservationPhotos(rows);throw e;}
+ },
+ remove:async(nid,url)=>{if(!auth.currentUser)throw Error('Sign in again.');await runTransaction(db,async tx=>{const target=doc(db,'roomNotes',nid),snap=await tx.get(target);if(!snap.exists())throw Error('This observation was removed.');const rows=notePhotoRows(snap.data()).filter(p=>p.url!==url);tx.update(target,{photoUrls:rows,photoUrl:rows[0]?.url||null,updatedAt:serverTimestamp()});});}
+});
+onAuthStateChanged(auth,user=>{if(!user)window.notePhotos.clear();});
+
 // Explicit project / unit scope and before-condition record.
-import {installProjectBrief} from '/project-brief.js?v=1';
+import {installProjectBrief} from '/project-brief.js?v=2';
 window.openCurrentBrief=()=>{if(!activePid)return notif('Select a project first.','e');window.projectBrief.open(activeRid&&rooms[activeRid]?'rooms':'projects',activeRid&&rooms[activeRid]?activeRid:activePid);};
 onAuthStateChanged(auth,user=>{if(!user)window.projectBrief?.close();});
 installProjectBrief({
- record:(kind,id)=>kind==='rooms'?rooms[id]:projects[id],notify:notif,
+ record:(kind,id)=>kind==='rooms'?{...rooms[id],initialObservationPhotos:Object.values(roomNotesList).filter(n=>n.roomId===id&&n.phase==='before-installation').flatMap(notePhotoRows)}:projects[id],notify:notif,
  save:async(kind,id,draft,files,original)=>{
   if(!auth.currentUser)throw Error('Sign in again.');
   if(!['rooms','projects'].includes(kind))throw Error('Invalid scope target.');
