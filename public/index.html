@@ -10796,6 +10796,7 @@ window.generateFilteredReport=()=>{
       phtml+='<div style="text-align:center;padding:60px;color:#888;font-size:14px">No photos found in the selected units.</div>';
     }
 
+    phtml+=filtRooms.map(r=>window.unitFollowup?.report(r.id)||'').join('');
     phtml+='<div class="rpt-footer"><span>Obra Manager — '+x(proj.name)+'</span><span>'+now2+'</span></div>';
     phtml+='</div>'; // fecha max-width wrapper
     document.getElementById('pdf-content').innerHTML=phtml;
@@ -10907,6 +10908,7 @@ window.generateFilteredReport=()=>{
         mhtml+='</tbody></table></div>';
       });
     }
+    mhtml+=filtRooms.map(r=>window.unitFollowup?.report(r.id)||'').join('');
     mhtml+='<div class="rpt-footer"><span>Obra Manager — '+x(proj.name)+'</span><span>'+now2+'</span></div>';
     mhtml+='</div>';
     document.getElementById('pdf-content').innerHTML=mhtml;
@@ -11080,6 +11082,7 @@ window.generateFilteredReport=()=>{
       dhtml+='<div style="text-align:center;padding:40px;color:#9ca3af;font-size:14px">No completed tasks found for the selected filters.</div>';
     }
 
+    dhtml+=filtRooms.map(r=>window.unitFollowup?.report(r.id)||'').join('');
     dhtml+='<div class="rpt-footer"><span>Obra Manager — '+x(proj.name)+'</span><span>'+now+'</span></div>';
     dhtml+='</div>';
     document.getElementById('pdf-content').innerHTML=dhtml;
@@ -11200,6 +11203,7 @@ window.generateFilteredReport=()=>{
       html+='<div style="display:flex;gap:16px;margin-top:10px;font-size:12px"><span style="color:#16a34a;font-weight:700">'+data.done.length+' done</span><span style="color:#dc2626;font-weight:700">'+data.todo.length+' pending</span></div></div>';
     });
   }
+  html+=filtRooms.map(r=>window.unitFollowup?.report(r.id)||'').join('');
   html+='<div class="rpt-footer"><span>Obra Manager - '+x(proj.name)+'</span><span>'+now+'</span></div>';
   document.getElementById('pdf-content').innerHTML=html;
   document.getElementById('pdf-report').classList.add('open');
@@ -13111,7 +13115,7 @@ installProjectBrief({
 
 
 // Optional unit follow-up uses its own fields; initial assessments and evidence stay intact.
-import {installUnitFollowup,normalizePlan,canonical,validDate} from '/unit-followup.js?v=1';
+import {installUnitFollowup,normalizePlan,canonical,validDate} from '/unit-followup.js?v=2';
 installUnitFollowup({
  state:()=>({rooms,projects,tasks:allTasks,lists:shoppingLists,items:shoppingItems}),
  users:()=>planUsers(),author:fieldAuthor,canEdit:()=>hasRole('supervisor'),notify:notif,
@@ -13141,7 +13145,9 @@ installUnitFollowup({
  createTask:async(rid,name)=>{
   if(!auth.currentUser||!hasRole('supervisor'))throw Error('Manager access required.');
   const room=rooms[rid],uid=auth.currentUser.uid;if(!room)throw Error('This unit is unavailable.');
-  const digest=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(rid+'|'+name.trim()));const id='followup-'+Array.from(new Uint8Array(digest)).map(b=>b.toString(16).padStart(2,'0')).join('').slice(0,40);
+  const normalized=v=>String(v||'').trim().replace(/\s+/g,' ').toLowerCase();
+  const found=await getDocs(query(collection(db,'tasks'),where('roomId','==',rid)));const matching=found.docs.find(d=>d.data().projectId===room.projectId&&normalized(d.data().name)===normalized(name));if(matching){allTasks[matching.id]={id:matching.id,...matching.data()};return matching.id;}
+  const digest=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(rid+'|'+normalized(name)));const id='followup-'+Array.from(new Uint8Array(digest)).map(b=>b.toString(16).padStart(2,'0')).join('').slice(0,40);
   const task={projectId:room.projectId,roomId:rid,name:name.trim(),cat:'eletrica',hasQty:false,qty:0,done:false,doneAt:null,photos:[],note:name.trim(),sourceFollowUp:rid,createdBy:uid,createdAt:serverTimestamp()};let record;
   await runTransaction(db,async tx=>{const target=doc(db,'tasks',id),existing=await tx.get(target),unit=await tx.get(doc(db,'rooms',rid));if(!unit.exists()||unit.data().projectId!==room.projectId)throw Error('This unit changed.');if(auth.currentUser?.uid!==uid||!hasRole('supervisor'))throw Error('Account changed.');if(existing.exists()){record=existing.data();if(record.roomId!==rid||record.sourceFollowUp!==rid)throw Error('Task identity changed.');return;}record=task;tx.set(target,task);});allTasks[id]={id,...record};return id;
  }
@@ -13305,3 +13311,4 @@ window.toggleDoneSection=function(){
 <div id="st-modal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;width:100%;height:100%;z-index:8510;background:rgba(0,0,0,.6);flex-direction:column;align-items:flex-end;justify-content:center;-webkit-overflow-scrolling:touch" onclick="if(event.target===this){this.style.display='none';this.innerHTML=''}"></div>
 </body>
 </html>
+

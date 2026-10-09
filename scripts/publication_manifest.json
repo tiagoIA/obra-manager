@@ -4,7 +4,8 @@
     "unit-followup.js"
   ],
   "baseline": {
-    "index.html": "81e0d919855fbc8a9cc380a0799bb1f54c869c704aa05b96291e599988411877"
+    "index.html": "2570526019d57d4697959351b44d20c647c956b77af745ed3e27b0082720a247",
+    "unit-followup.js": "fa056f9fe7e6f9cc6abecc36d4d158713f8d30c5b4bbb25cee3f80d9b80f3fc7"
   },
-  "message": "Integrate optional unit follow-up, returns, shopping and reports"
+  "message": "Preserve current unit follow-up and complete report, linked assignment and task reuse behavior"
 }
