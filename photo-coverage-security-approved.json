@@ -1,0 +1,101 @@
+[
+  {
+    "id": "DVVTOnzVeBYDYuY8CcdF",
+    "expectedName": "Door/Window Contact Wired",
+    "expectedSku": "FIRE-065",
+    "sourceUrl": "https://www.alarmgrid.com/products/honeywell-7939wg",
+    "photoSourceUrl": "https://d1unzhqf5a606m.cloudfront.net/images/product/honeywell-7939wg-gy-surface-mount-magnetic-contact-with-screw-te.jpg?1417508513",
+    "photoSha256": "7128d67e1503848485811b0fcef1fb2c42268ac2b5f59dbfd8a26a41a89597a5",
+    "basis": "wired magnetic door/window contact family; example is Honeywell 7939WG; confirm supervision wiring",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. wired magnetic door/window contact family; example is Honeywell 7939WG; confirm supervision wiring. This photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "HODDa2dtYtGh0gquPLxB",
+    "expectedName": "Door Contact (Supervised)",
+    "expectedSku": "FIRE-086",
+    "sourceUrl": "https://www.alarmgrid.com/products/honeywell-7939wg",
+    "photoSourceUrl": "https://d1unzhqf5a606m.cloudfront.net/images/product/honeywell-7939wg-gy-surface-mount-magnetic-contact-with-screw-te.jpg?1417508513",
+    "photoSha256": "7128d67e1503848485811b0fcef1fb2c42268ac2b5f59dbfd8a26a41a89597a5",
+    "basis": "wired magnetic door/window contact family; example is Honeywell 7939WG; confirm supervision wiring",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. wired magnetic door/window contact family; example is Honeywell 7939WG; confirm supervision wiring. This photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "RMfUNODcUoG6ULECyl70",
+    "expectedName": "Shock/Vibration Sensor",
+    "expectedSku": "FIRE-071",
+    "sourceUrl": "https://www.alarmgrid.com/products/honeywell-5819s",
+    "photoSourceUrl": "https://d1unzhqf5a606m.cloudfront.net/images/product/honeywell-5819s-wireless-shock-sensor-and-transmitter.png?1591654861",
+    "photoSha256": "9051ef8887d6216d307d2e2ee477000304b255452910b32343754339f8b40eed",
+    "basis": "shock sensor family; example is Honeywell 5819S; confirm wired/wireless requirements",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. shock sensor family; example is Honeywell 5819S; confirm wired/wireless requirements. This photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "K33swTccpr1IltiFQV7R",
+    "expectedName": "Alarm Control Panel Hybrid",
+    "expectedSku": "FIRE-048",
+    "sourceUrl": "https://www.alarmgrid.com/products/honeywell-vista-20p",
+    "photoSourceUrl": "https://d1unzhqf5a606m.cloudfront.net/images/product/honeywell-vista-20p-wired-alarm-control-panel.gif?1419921987",
+    "photoSha256": "a561e70056139329290d23ef31885a720153d57f583437e8656c1e9a3d86a41d",
+    "basis": "hybrid intrusion control panel family; example is Honeywell VISTA-20P",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. hybrid intrusion control panel family; example is Honeywell VISTA-20P. This photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "ncfrX1B7N0XCvU7WzbTg",
+    "expectedName": "Keypad + Card Reader",
+    "expectedSku": "FIRE-084",
+    "sourceUrl": "https://www.alarmgrid.com/products/honeywell-6160px",
+    "photoSourceUrl": "https://d1unzhqf5a606m.cloudfront.net/images/product/honeywell-6160px-alphanumeric-alarm-keypad-with-integrated-proximity-reader.jpg?1340296094",
+    "photoSha256": "fbe3bcca65501b39805f6389276a89b0e0abfa2fb88cb817ea33499c6ca15562",
+    "basis": "keypad with integrated proximity reader family; example is Honeywell 6160PX",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. keypad with integrated proximity reader family; example is Honeywell 6160PX. This photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "HvegEabW0UkjsIr5U7s7",
+    "expectedName": "Electric Strike 12/24V",
+    "expectedSku": "FIRE-082",
+    "sourceUrl": "https://www.hesinnovations.com/en/products/electric-strikes/5000-series",
+    "photoSourceUrl": "https://www.hesinnovations.com/content/dam/assa-abloy/americas/ems/hes/image/AADSS1190778.jpg",
+    "photoSha256": "eda41e58fb0faac625837f9b1b0ed6db1d9b6f984f64061a2dd70551f47ed3b7",
+    "basis": "electric strike family; example is HES 5000; confirm voltage, frame and fail mode",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. electric strike family; example is HES 5000; confirm voltage, frame and fail mode. This photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "Y60BfbFY1XMpRRCn9tVr",
+    "expectedName": "Magnetic Lock 600LB",
+    "expectedSku": "FIRE-081",
+    "sourceUrl": "https://www.assaabloy.com/ae/en/solutions/products/locks-and-keys/electromechanical-locks/electric-holding-magnets/securitron/securitron-m32",
+    "photoSourceUrl": "https://gw-assets.assaabloy.com/is/image/assaabloy/d3385-lp_m32",
+    "photoSha256": "9452024592aa6a6262b7c50aba6b5b1d9596c390d99b92bec15b886e542b82cb",
+    "basis": "600-lb magnetic lock family; example is Securitron M32",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. 600-lb magnetic lock family; example is Securitron M32. This photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "a4oNs282XKyiqkxB8RX4",
+    "expectedName": "FACP Mircom FX-2000",
+    "expectedSku": "FIRE-046",
+    "sourceUrl": "https://firetekprotection.com/product/",
+    "photoSourceUrl": "https://firetekprotection.com/wp-content/uploads/2022/12/mircom-fx2000-front.jpg",
+    "photoSha256": "09b3822749cbd71fb234bc37d09d54bd74c9b266c4f6dca954f1026a4e0d2ed4",
+    "basis": "Mircom FX-2000 panel family; confirm exact cabinet and model variant",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. Mircom FX-2000 panel family; confirm exact cabinet and model variant. This photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "xTCUBDHqv7PGEFg9ymSr",
+    "expectedName": "FACP — Mircom FX-2000",
+    "expectedSku": "FIRE-008",
+    "sourceUrl": "https://firetekprotection.com/product/",
+    "photoSourceUrl": "https://firetekprotection.com/wp-content/uploads/2022/12/mircom-fx2000-front.jpg",
+    "photoSha256": "09b3822749cbd71fb234bc37d09d54bd74c9b266c4f6dca954f1026a4e0d2ed4",
+    "basis": "Mircom FX-2000 panel family; confirm exact cabinet and model variant",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. Mircom FX-2000 panel family; confirm exact cabinet and model variant. This photo does not identify stock or establish compatibility."
+  }
+]
