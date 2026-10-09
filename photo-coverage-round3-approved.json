@@ -1,0 +1,62 @@
+[
+  {
+    "key": "piercing",
+    "part": "IPCS1002",
+    "title": "Polaris IPCS1002 Insulation Piercing Conn 1/0-2 AWG",
+    "sourceUrl": "https://nsiindustries.com/product/polaris-ipcs1002-insulation-piercing-conn-1-0-2-awg/",
+    "photoSourceUrl": "https://assets.nsiindustries.com/DAMRoot/Med/0/IPCS1002_side2.jpg",
+    "photoSha256": "b3db35bee1d2b36e93cd7ac24d15516154631c9b634b68b15507715c7edbf8ec",
+    "index": 0,
+    "id": "j4NiyLuk8n1wAp5pPiKf",
+    "expectedName": "Piercing Tap connector",
+    "expectedSku": "ELEC-063",
+    "basis": "Insulation-piercing connector family; pictured Polaris IPCS1002 is 1/0–2 AWG, not a confirmation of the recorded conductor sizes",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. Insulation-piercing connector family; pictured Polaris IPCS1002 is 1/0–2 AWG, not a confirmation of the recorded conductor sizes. This photo does not identify stock or establish compatibility."
+  },
+  {
+    "key": "doorbell",
+    "part": "D130",
+    "title": "2K IP65 Smart Doorbell, Tapo D130",
+    "sourceUrl": "https://us.store.tapo.com/products/tapo-d130-doorbell",
+    "photoSourceUrl": "https://us.store.tapo.com/cdn/shop/files/Tapo_D130.png?v=1737511411",
+    "photoSha256": "23bb938e9b82dd5c5f9aa498ca78c535e9060dc308c08ec8dd72e5f8ca35d071",
+    "index": 6,
+    "id": "6tH0z1iXOyrnFxCqAiax",
+    "expectedName": "Video Doorbell Wired",
+    "expectedSku": "FIRE-080",
+    "basis": "Wired video doorbell family; example Tapo D130; confirm power and system compatibility",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. Wired video doorbell family; example Tapo D130; confirm power and system compatibility. This photo does not identify stock or establish compatibility."
+  },
+  {
+    "key": "communicator",
+    "part": "LTEM-PV",
+    "title": "LTEM-PV Advanced Modular Communicator (Verizon)",
+    "sourceUrl": "https://www.resideo.com/us/en/pro/products/security/communicators/ltem-pv-advanced-modular-communicator-verizon-ltem-pv/",
+    "photoSourceUrl": "https://digitalassets.resideo.com/damroot/RDEDesktop/10019/LTEM-PV-PA-c1-6.jpg",
+    "photoSha256": "308e19f1d26bf6ed2aabb65b679491cd344b6569eb7e38f1802f6412a9f267fb",
+    "index": 8,
+    "id": "DBYapPIID82cltVrPgqQ",
+    "expectedName": "Cellular Communicator 4G",
+    "expectedSku": "FIRE-052",
+    "basis": "Cellular communicator family; example Resideo LTEM-PV; confirm carrier, generation and panel compatibility",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. Cellular communicator family; example Resideo LTEM-PV; confirm carrier, generation and panel compatibility. This photo does not identify stock or establish compatibility."
+  },
+  {
+    "key": "duct-smoke",
+    "part": "InnovairFlex",
+    "title": "InnovairFlex™ 4-Wire Duct Smoke Detector",
+    "sourceUrl": "https://buildings.honeywell.com/us/en/products/by-category/fire-life-safety/sensors-and-detectors/conventional-detectors/duct-detectors/innovairflex-4-wire-duct-smoke-detector",
+    "photoSourceUrl": "https://honeywell.scene7.com/is/image/Honeywell65/HBT-Fire-D4120-HORIZONTAL-STRAIGHT-HiRes",
+    "photoSha256": "5636de90fdd7e080c5f8748c3daed9e71fb02cec85d633106ddf2dd992bf7aff",
+    "index": 11,
+    "id": "TpfREBeUxOBg6gajzTX2",
+    "expectedName": "Duct Smoke Detector",
+    "expectedSku": "FIRE-057",
+    "basis": "Duct smoke detector family; example InnovairFlex D4120; confirm voltage and detector configuration",
+    "photoReferenceType": "family",
+    "photoReferenceNote": "Family reference — confirm model. Duct smoke detector family; example InnovairFlex D4120; confirm voltage and detector configuration. This photo does not identify stock or establish compatibility."
+  }
+]
