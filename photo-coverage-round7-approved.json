@@ -1,0 +1,62 @@
+[
+  {
+    "key": "dmp",
+    "part": "XR150",
+    "title": "",
+    "sourceUrl": "https://buy.dmp.com/dmp/Shop?DSP=30100&IID=XR150&PCR=1%3A100%3A10010%3A15242",
+    "photoSourceUrl": "https://buy.dmp.com/dmp/images/medium/XR150DNL-G.jpg",
+    "photoSha256": "460cf32b773e67c037693d09a18a530ed1dc4b4a048e2f6a3958721de1fb2e71",
+    "index": 0,
+    "id": "TtiSLnwG825NZKhELCMN",
+    "expectedName": "DMP BDA Monitoring Panel",
+    "expectedSku": "FIRE-013",
+    "basis": "DMP control-panel family; example XR150. BDA monitoring configuration and listing remain unconfirmed",
+    "photoReferenceNote": "Family reference — confirm model. DMP control-panel family; example XR150. BDA monitoring configuration and listing remain unconfirmed. This photo does not identify stock or establish compatibility."
+  },
+  {
+    "key": "ptz",
+    "part": "C540",
+    "title": "VIGI 4MP Outdoor Full-Color Pan Tilt Network Camera",
+    "sourceUrl": "https://www.tp-link.com/uk/business-networking/vigi-network-camera/vigi-c540/v1%20%284mm%20lens%29/",
+    "photoSourceUrl": "https://static.tp-link.com/upload/image-line/1_large_20220914081812q.jpg",
+    "photoSha256": "47aa738006b3022708898566a5233ca54ac407642ef0c8075d34f0d1ac670bd0",
+    "index": 2,
+    "id": "nPtmtMZrbtWeDaNiyJrQ",
+    "expectedName": "IP Camera PTZ",
+    "expectedSku": "FIRE-075",
+    "basis": "Motorized pan/tilt IP camera family; example VIGI C540. Optical zoom is not confirmed by this image",
+    "photoReferenceNote": "Family reference — confirm model. Motorized pan/tilt IP camera family; example VIGI C540. Optical zoom is not confirmed by this image. This photo does not identify stock or establish compatibility."
+  },
+  {
+    "key": "dvr",
+    "part": "XVR5108",
+    "sourceUrl": "https://material.dahuasecurity.com/uploads/cpq/prm-os-srv-res/smart/datasheetzipfiles/XVR5108HS-I3_V3_datasheet_20240717.pdf",
+    "photoSourceUrl": "https://material.dahuasecurity.com/uploads/cpq/prm-os-srv-res/smart/datasheetzipfiles/XVR5108HS-I3_V3_datasheet_20240717.pdf",
+    "photoDocumentSha256": "15fae34722f97af55a62e4439a33a6b476a2923cb94bbe4a1cacc12361478ba6",
+    "photoImageXref": 7,
+    "page": 1,
+    "photoSha256": "6377fe520de6e080c7df7151dcf2d02a1b45827d000f963783cd361ffe8abb23",
+    "index": 3,
+    "id": "OKjCCfcDLznOOJauhNpI",
+    "expectedName": "DVR Hybrid 8CH",
+    "expectedSku": "FIRE-078",
+    "basis": "8-channel hybrid DVR family; example Dahua XVR5108HS-I3; confirm recording and camera compatibility",
+    "photoReferenceNote": "Family reference — confirm model. 8-channel hybrid DVR family; example Dahua XVR5108HS-I3; confirm recording and camera compatibility. This photo does not identify stock or establish compatibility."
+  },
+  {
+    "key": "access",
+    "part": "C3",
+    "sourceUrl": "https://zktecoma.com/wp-content/uploads/2020/10/C3-Series.pdf",
+    "photoSourceUrl": "https://zktecoma.com/wp-content/uploads/2020/10/C3-Series.pdf",
+    "photoDocumentSha256": "e0ac350b22a2f7b884dcc9792dcfd0f99cc8fe3abb0e713f68d1638fe51a8b5e",
+    "photoImageXref": 468,
+    "page": 1,
+    "photoSha256": "6731dcf054c15920d506f0bd18f85e9c88b64a6549897ec3172e8b1f86519047",
+    "index": 11,
+    "id": "a57GRIBcE70F080MjjB2",
+    "expectedName": "Access Control Panel 2-Door",
+    "expectedSku": "FIRE-083",
+    "basis": "Access-control board family; example ZKTeco C3 series; confirm exact two-door model and enclosure",
+    "photoReferenceNote": "Family reference — confirm model. Access-control board family; example ZKTeco C3 series; confirm exact two-door model and enclosure. This photo does not identify stock or establish compatibility."
+  }
+]
