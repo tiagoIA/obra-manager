@@ -24,3 +24,10 @@ if r.ok:
  name=r.json().get('rulesetName')
  r=s.get('https://firebaserules.googleapis.com/v1/'+name,timeout=30)
  if r.ok:print('RULES',json.dumps(r.json().get('source',{})),flush=True)
+
+projects=[{'id':d.id,'name':d.to_dict().get('name'),'scope':d.to_dict().get('scope'),'type':d.to_dict().get('type')} for d in db.collection('projects').stream()]
+print('PROJECTS',json.dumps(projects),flush=True)
+ids=[p['id'] for p in projects if 'arlington' in (p['name'] or '').lower()]
+for pid in ids:
+ rows=[{'id':d.id,**d.to_dict()} for d in db.collection('rooms').where('projectId','==',pid).stream()]
+ print('ARLINGTON_ROOMS',json.dumps(rows,default=str),flush=True)
