@@ -1,8 +1,8 @@
 name: Verify and publish purchasing scope
 on:
   push:
-    branches: [feature/purchasing-costs-2026-10-09]
-    paths: ['public/**', 'scripts/check-brief.cjs', 'scripts/check-purchasing*', 'scripts/check-note-photos.cjs', 'scripts/check-field-evidence.cjs', 'scripts/check-roof-runtime.cjs', 'scripts/publication_manifest.json', 'scripts/publish_purchasing.py', '.github/workflows/publish_purchasing.yml']
+    branches: [feature/purchasing-costs-2026-10-09, feature/unit-followup-2026-10-09]
+    paths: ['public/**', 'scripts/check-unit-followup.cjs', 'scripts/check-unit-followup-ui.cjs', 'scripts/check-brief.cjs', 'scripts/check-purchasing*', 'scripts/check-note-photos.cjs', 'scripts/check-field-evidence.cjs', 'scripts/check-roof-runtime.cjs', 'scripts/publication_manifest.json', 'scripts/publish_purchasing.py', '.github/workflows/publish_purchasing.yml']
 permissions:
   contents: read
 concurrency:
@@ -23,6 +23,8 @@ jobs:
       - run: TZ=America/New_York node scripts/check-schedule.cjs
       - run: npm install --no-save playwright
       - run: npx playwright install --with-deps chromium
+      - run: node scripts/check-unit-followup.cjs
+      - run: node scripts/check-unit-followup-ui.cjs
       - run: node scripts/check-brief.cjs
       - run: node scripts/check-purchasing.cjs
       - run: node scripts/check-purchasing-ui.cjs

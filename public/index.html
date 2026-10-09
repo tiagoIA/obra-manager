@@ -4452,14 +4452,14 @@ function listenShoppingLists(){
   shoppingLists={};
   unsubs.shopLists=onSnapshot(query(collection(db,'shoppingLists'),orderBy('createdAt','asc')),snap=>{
     shoppingLists={};snap.forEach(d=>{shoppingLists[d.id]={id:d.id,...d.data()};});
-    if(activePage==='shopping')renderContent();
+    if(['shopping','rooms','planning'].includes(activePage))renderContent();
     if(dashOpen)renderDashboard(document.getElementById('dash-content'));
   });
   if(unsubs.shopItems)unsubs.shopItems();
   shoppingItems={};
   unsubs.shopItems=onSnapshot(query(collection(db,'shoppingItems'),orderBy('createdAt','asc')),snap=>{
     shoppingItems={};snap.forEach(d=>{shoppingItems[d.id]={id:d.id,...d.data()};});
-    if(activePage==='shopping')renderContent();
+    if(['shopping','rooms','planning'].includes(activePage))renderContent();
     if(dashOpen)renderDashboard(document.getElementById('dash-content'));
   });
 }
@@ -6704,7 +6704,7 @@ window.createShoppingList=async()=>{
   const r=await addDoc(collection(db,'shoppingLists'),{name,note,projectId,done:false,createdAt:serverTimestamp()});
   shoppingLists[r.id]={id:r.id,name,note,projectId,done:false};
   activeShopListId=r.id;closeModal('m-shop');syncing(false);
-  if(activePage==='shopping')renderContent();
+  if(['shopping','rooms','planning'].includes(activePage))renderContent();
   notif('List created: '+name,'s');
 };
 window.openNewShopList=()=>{
@@ -6740,7 +6740,7 @@ window.toggleShopListDone=async(lid)=>{
   syncing(true);
   await updateDoc(doc(db,'shoppingLists',lid),{done:newDone,doneAt});
   syncing(false);
-  if(activePage==='shopping')renderContent();
+  if(['shopping','rooms','planning'].includes(activePage))renderContent();
 };
 window.deleteShopList=async(lid)=>{
   const sl=shoppingLists[lid];
@@ -6754,7 +6754,7 @@ window.deleteShopList=async(lid)=>{
   delete shoppingLists[lid];
   if(activeShopListId===lid)activeShopListId=null;
   syncing(false);
-  if(activePage==='shopping')renderContent();
+  if(['shopping','rooms','planning'].includes(activePage))renderContent();
   notif('List deleted','s');
 };
 window.openRoomOrder=(rid)=>{
@@ -6882,7 +6882,7 @@ window.addShopItem=async(overrideListId,overrideRoomId,overrideRoomName)=>{
   if(hiddenEl)hiddenEl.value='';
   const drop=document.getElementById('shop-mat-drop');if(drop)drop.style.display='none';
   syncing(false);notif('Item added','s');
-  if(activePage==='shopping')renderContent();
+  if(['shopping','rooms','planning'].includes(activePage))renderContent();
 };
 window.toggleShopItem=async(iid)=>{
   const item=shoppingItems[iid];if(!item)return;
@@ -9132,6 +9132,7 @@ function renderOverview(el){
   let html='<div class="spl-wrap">';
 
   // Projeto header + KPIs
+  html+=(window.unitFollowup?.project(activePid)||'');
   html+='<div class="spl-proj-hdr">';
   html+='<div class="spl-proj-name">'+x(proj.name)+'</div>';
   html+=(proj.address?'<div class="spl-proj-addr">\uD83D\uDCCD '+x(proj.address)+'</div>':'');
@@ -9334,6 +9335,7 @@ function renderRoomDetail(cv,room){
     +'<span style="font-family:Bebas Neue,sans-serif;font-size:12px;letter-spacing:2px;color:var(--elec)">ALL UNITS</span>'
     +'</div>'
     +buildUnitNavPill(room)
+    +(window.unitFollowup?.card(room.id)||'')
     // ── UNIT HEADER (compacto) ──────────────────────────────────────────────
     +'<div style="margin-bottom:10px">'
     +(room.floor?'<div class="unit-floor" style="margin-bottom:2px">'+x(room.floor)+'</div>':'')
@@ -10930,7 +10932,7 @@ window.generateFilteredReport=()=>{
       bhtml+='<div style="margin-bottom:22px"><div style="font-family:monospace;font-size:11px;font-weight:700;letter-spacing:2px;color:#333;border-bottom:2px solid #333;padding-bottom:4px;margin-bottom:10px;text-transform:uppercase">'+fl+'</div>';
       byFu[fl].sort((a,b)=>a.name.localeCompare(b.name)).forEach(r=>{
         const rTasks=filtTasks.filter(t=>t.roomId===r.id);
-        if(!rTasks.length)return;
+        if(!rTasks.length&&!window.unitFollowup?.report(r.id))return;
         const rDone=rTasks.filter(t=>t.done);
         const rTodo=rTasks.filter(t=>!t.done);
         const rPct=rTasks.length?Math.round(rDone.length/rTasks.length*100):0;
@@ -10941,6 +10943,7 @@ window.generateFilteredReport=()=>{
         bhtml+='<div style="font-size:14px;font-weight:900;color:#111">'+x(r.name)+'</div>';
         bhtml+='<div style="display:flex;align-items:center;gap:8px"><div style="font-size:18px;font-weight:900;color:'+pctC+'">'+rPct+'%</div>'+badge+'</div>';
         bhtml+='</div>';
+        bhtml+=(window.unitFollowup?.report(r.id)||'');
         bhtml+='<div style="height:6px;background:#e5e7eb;border-radius:3px;margin-bottom:12px"><div style="height:6px;border-radius:3px;background:'+pctC+';width:'+rPct+'%"></div></div>';
         if(rDone.length){
           bhtml+='<div style="margin-bottom:8px"><div style="font-size:9px;font-weight:700;letter-spacing:1px;color:#16a34a;margin-bottom:4px">✅ CONCLUÍDAS ('+rDone.length+')</div><div style="display:flex;flex-wrap:wrap;gap:4px">';
@@ -11399,6 +11402,7 @@ window.generateUnitReport=(rid)=>{
     html+='</div>';
   }
 
+  html+=(window.unitFollowup?.report(rid)||'');
   const initialPhotos=evidenceRows({photoUrl:room.photos?.before,photos:room.scopeBrief?.photos||[]}).filter(p=>p.type==='image');
   if(initialPhotos.length)html+='<div style="margin-bottom:24px"><h3>BEFORE INSTALLATION — initial conditions</h3><p>'+x(room.scopeBrief?.before||'Original unit conditions before work starts.')+'</p><div style="display:flex;flex-wrap:wrap;gap:10px">'+initialPhotos.map(p=>'<img src="'+x(p.url)+'" style="width:160px;height:120px;object-fit:contain" alt="Before installation">').join('')+'</div></div>';
 
@@ -11711,6 +11715,7 @@ window.renderPlanningPage=function(el){
   html+='</div><div class="daily-controls"><select aria-label="Project filter" onchange="window.setDailyProject(this.value)"><option value="all">All projects</option>'+Object.values(projects).map(p=>'<option value="'+planEsc(p.id)+'" '+(_dailyProject===p.id?'selected':'')+'>'+planEsc(p.name)+'</option>').join('')+'</select>';
   if(manager)html+='<select aria-label="Employee filter" onchange="window.setDailyEmployee(this.value)"><option value="all">All employees</option>'+planUsers().map(u=>'<option value="'+planEsc(u.id)+'" '+(_dailyEmployee===u.id?'selected':'')+'>'+planEsc(u.name||u.email)+'</option>').join('')+'</select>';
   html+='</div><h3 style="font-size:16px;margin:18px 0 8px">'+(manager?'Team sites':'Where I am working')+'</h3>'+planSiteCards(_dailyDate)+'<h3 style="font-size:16px;margin:18px 0 8px">'+(manager?'Team schedule':'My tasks')+' · '+done+'/'+day.length+' complete</h3>';
+  html+=(window.unitFollowup?.schedule({date:_dailyDate,projectId:_dailyProject,employeeId:_dailyEmployee,manager,uid:currentUser?.uid})||'');
   html+=day.length?planAgendaGroups(day,manager):'<div class="daily-empty">No tasks scheduled for this day.'+(manager?' Select pending tasks below to build the schedule.':' Your manager can assign pending work to you.')+'</div>';
   if(!manager&&ownOverdue.length)html+='<h3 style="font-size:15px;margin:20px 0 8px">Earlier unfinished work ('+ownOverdue.length+')</h3>'+ownOverdue.map(t=>planTaskCard(t,false)).join('');
   if(manager){
@@ -13103,6 +13108,46 @@ installProjectBrief({
   });renderContent();
  }
 });
+
+
+// Optional unit follow-up uses its own fields; initial assessments and evidence stay intact.
+import {installUnitFollowup,normalizePlan,canonical,validDate} from '/unit-followup.js?v=1';
+installUnitFollowup({
+ state:()=>({rooms,projects,tasks:allTasks,lists:shoppingLists,items:shoppingItems}),
+ users:()=>planUsers(),author:fieldAuthor,canEdit:()=>hasRole('supervisor'),notify:notif,
+ refresh:()=>renderContent(),openList:id=>window.openShopList(id),
+ assign:ids=>{window.openDailyAssign(ids);const p=rooms[allTasks[ids[0]]?.roomId]?.followUp;if(p){if(p.responsibleId)document.getElementById('daily-assign-user').value=p.responsibleId;if(p.returnDate)document.getElementById('daily-assign-date').value=p.returnDate;if(p.returnTime)document.getElementById('daily-assign-time').value=p.returnTime;}},
+ save:async(rid,draft,original)=>{
+  if(!auth.currentUser||!hasRole('supervisor'))throw Error('Manager access required.');
+  const uid=auth.currentUser.uid,plan=normalizePlan(draft),room=rooms[rid];if(!room)throw Error('This unit is unavailable.');
+  if(plan.returnDate&&!validDate(plan.returnDate))throw Error('Enter a valid return date.');
+  if(plan.returnTime&&!/^([01]\d|2[0-3]):[0-5]\d$/.test(plan.returnTime))throw Error('Enter a valid return time.');
+  if(plan.returnTime&&!plan.returnDate)throw Error('Choose a return date for the time, or leave both blank.');
+  if(plan.returnNeeded==='no'&&(plan.returnDate||plan.returnTime))throw Error('Clear the return date/time when no return is needed.');
+  if(plan.responsibleId&&!planUsers().some(u=>u.id===plan.responsibleId)&&plan.responsibleId!==original.responsibleId)throw Error('Choose an available employee.');
+  if(plan.taskIds.length+plan.listIds.length>450)throw Error('Link up to 450 records.');
+  let saved;
+  await runTransaction(db,async tx=>{
+   const target=doc(db,'rooms',rid),snap=await tx.get(target);if(!snap.exists()||snap.data().projectId!==room.projectId)throw Error('This unit changed.');
+   const current=snap.data().followUp||{};if(canonical(current)!==canonical(original))throw Error('Another person updated the follow-up. Close and reopen to review the current version.');
+   const refs=[...plan.taskIds.map(id=>({kind:'tasks',id})),...plan.listIds.map(id=>({kind:'shoppingLists',id}))];
+   for(const r of refs){const item=await tx.get(doc(db,r.kind,r.id));if(!item.exists()||item.data().projectId!==room.projectId||(r.kind==='tasks'&&item.data().roomId!==rid)||(r.kind==='shoppingLists'&&item.data().listType==='template'))throw Error('A linked task or shopping list changed. Review the selection.');}
+   if(auth.currentUser?.uid!==uid||!hasRole('supervisor'))throw Error('Account changed.');
+   saved={...plan,updatedBy:uid,updatedAt:new Date().toISOString(),history:[...(current.history||[]),{at:new Date().toISOString(),by:uid,status:plan.status,nextStep:plan.nextStep,returnDate:plan.returnDate}].slice(-50)};
+   tx.update(target,{followUp:saved});
+  });
+  if(rooms[rid])rooms[rid].followUp=saved;renderContent();
+ },
+ createTask:async(rid,name)=>{
+  if(!auth.currentUser||!hasRole('supervisor'))throw Error('Manager access required.');
+  const room=rooms[rid],uid=auth.currentUser.uid;if(!room)throw Error('This unit is unavailable.');
+  const digest=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(rid+'|'+name.trim()));const id='followup-'+Array.from(new Uint8Array(digest)).map(b=>b.toString(16).padStart(2,'0')).join('').slice(0,40);
+  const task={projectId:room.projectId,roomId:rid,name:name.trim(),cat:'eletrica',hasQty:false,qty:0,done:false,doneAt:null,photos:[],note:name.trim(),sourceFollowUp:rid,createdBy:uid,createdAt:serverTimestamp()};let record;
+  await runTransaction(db,async tx=>{const target=doc(db,'tasks',id),existing=await tx.get(target),unit=await tx.get(doc(db,'rooms',rid));if(!unit.exists()||unit.data().projectId!==room.projectId)throw Error('This unit changed.');if(auth.currentUser?.uid!==uid||!hasRole('supervisor'))throw Error('Account changed.');if(existing.exists()){record=existing.data();if(record.roomId!==rid||record.sourceFollowUp!==rid)throw Error('Task identity changed.');return;}record=task;tx.set(target,task);});allTasks[id]={id,...record};return id;
+ }
+});
+unitFollowup.bind(document.getElementById('room-view'));
+onAuthStateChanged(auth,user=>{if(!user)document.getElementById('unit-followup-dialog')?.remove();});
 
 // App starts via onAuthStateChanged → startApp() → listenProjects()
 
