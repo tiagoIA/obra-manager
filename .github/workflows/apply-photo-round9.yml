@@ -20,3 +20,5 @@ jobs:
           FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
           PHOTO_MANIFEST: photo-coverage-round9-approved.json
           PHOTO_EXPECTED_COUNT: '3'
+
+# Retry with exact extracted-photo hash verification.
