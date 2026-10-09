@@ -13,3 +13,5 @@ jobs:
       - uses: actions/checkout@v4
       - run: pip install requests beautifulsoup4 pillow pymupdf
       - run: python scripts/collect-photo-pages-round9.py
+
+# Capture source raster bytes, 2026-10-09.
