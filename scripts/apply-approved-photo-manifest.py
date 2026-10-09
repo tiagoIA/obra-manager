@@ -37,7 +37,7 @@ def main():
   assert old.get('active') is not False and old.get('status')!='inactive' and not old.get('isTask')
   assert not old.get('photoUrl'),'A user already added a photo; audit again'
   assert urlparse(p['photoSourceUrl']).scheme=='https'
-  assert urlparse(p['photoSourceUrl']).hostname in {"www.power-sonic.com","digitalassets.resideo.com","static.tp-link.com","prod-edam.honeywell.com","uselectrical.vteximg.com.br","d1unzhqf5a606m.cloudfront.net","www.hesinnovations.com","gw-assets.assaabloy.com","firetekprotection.com","assets.nsiindustries.com","us.store.tapo.com","honeywell.scene7.com","cdn.prod.website-files.com","www.securitron.com","d1unzhqf5a606m.cloudfront.net","firealarmdepot.com"}
+  assert urlparse(p['photoSourceUrl']).hostname in {"www.power-sonic.com","digitalassets.resideo.com","static.tp-link.com","prod-edam.honeywell.com","uselectrical.vteximg.com.br","d1unzhqf5a606m.cloudfront.net","www.hesinnovations.com","gw-assets.assaabloy.com","firetekprotection.com","assets.nsiindustries.com","us.store.tapo.com","honeywell.scene7.com","cdn.prod.website-files.com","www.securitron.com","d1unzhqf5a606m.cloudfront.net","firealarmdepot.com","s7d1.scene7.com","www.identisource.net"}
   r=requests.get(p['photoSourceUrl'],timeout=45);r.raise_for_status();assert len(r.content)<40000000
   raw=r.content
   if p.get('photoDocumentSha256'):
