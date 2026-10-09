@@ -1,0 +1,12 @@
+[
+  {
+    "id": "catalog-8ebce853d0912a02355f",
+    "expectedName": "Stranded Copper Type NM-B Non-Metallic Sheathed Cable With Grounding 4/3 125-ft Coil",
+    "expectedSku": "MAT-8EBCE853D091",
+    "replaceExistingPhotoSha256": "2163ee14dd877f33da917a1170063458fc1068bc39c5dabd0b9c07e7c970ac0e",
+    "sourceUrl": "material-library:catalog-8ebce853d0912a02355f",
+    "photoSourceUrl": "material-library:catalog-8ebce853d0912a02355f",
+    "basis": "Existing library photo visually reviewed as yellow 12/2 NM-B cable; retained only as a family reference, not as a confirmed 4/3 product photo.",
+    "photoReferenceNote": "Family reference — photo shows yellow 12/2 NM-B cable, not the 4/3 125-ft coil specified by this record. Confirm conductor count, gauge, jacket color, manufacturer and coil length before purchase."
+  }
+]
