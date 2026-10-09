@@ -17,3 +17,12 @@ for(const text of ['Machines already installed','Install disconnects and two out
 delete context.window._cachedUsers;context.window.generateUnitReport('roof');
 assert(nodes['pdf-content'].innerHTML.includes('before2.jpg'));
 console.log('PASS: application scope import, field authors with unloaded user cache, unit report with real production generator, before text and multiple field photos.');
+
+const comparisonStart=html.indexOf('  const canonicalScopeValue=');
+const comparisonSource=html.slice(comparisonStart,html.indexOf('  await runTransaction(',comparisonStart));
+const scopeContext=vm.createContext({});vm.runInContext(comparisonSource+'\nglobalThis.compareScope=comparable;',scopeContext);
+const left={before:'Found',workScope:'Connect',checklist:{circuits:'',access:'yes'},photos:[{url:'image.jpg',name:'Image',type:'image'}]};
+const right={workScope:'Connect',before:'Found',checklist:{access:'yes',circuits:''},photos:[{type:'image',name:'Image',url:'image.jpg'}]};
+assert.equal(scopeContext.compareScope(left),scopeContext.compareScope(right),'Firestore map key ordering must not produce a false conflict');
+for(const changed of [{...right,before:'Changed'}, {...right,checklist:{access:'no',circuits:''}}, {...right,photos:[{type:'image',name:'Different',url:'image.jpg'}]}])assert.notEqual(scopeContext.compareScope(left),scopeContext.compareScope(changed),'Real concurrent edits must still be protected');
+console.log('PASS: scope comparison ignores map key order and detects real content changes.');

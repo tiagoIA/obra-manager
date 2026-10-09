@@ -13094,7 +13094,8 @@ installProjectBrief({
   const saveId=draft.saveId||(draft.saveId=crypto.randomUUID()),target=doc(db,kind,id);
   const existing=await getDoc(target);if(!existing.exists())throw Error('This project or unit was removed.');if(existing.data().scopeBrief?.saveId===saveId)return;
   const rows=await uploadFieldEvidence('initial-conditions/'+kind+'/'+id,files,progress);
-  const comparable=value=>JSON.stringify(['before','workScope','observations','initialAnalysis','difficulties','impact','nextStep','checklist','attachments','photos'].map(k=>value[k]||(['attachments','photos'].includes(k)?[]:k==='checklist'?{}:'')));
+  const canonicalScopeValue=value=>{const normalized=JSON.parse(JSON.stringify(value));const sort=v=>Array.isArray(v)?v.map(sort):v&&typeof v==='object'?Object.fromEntries(Object.keys(v).sort().map(k=>[k,sort(v[k])])):v;return JSON.stringify(sort(normalized));};
+  const comparable=value=>canonicalScopeValue(['before','workScope','observations','initialAnalysis','difficulties','impact','nextStep','checklist','attachments','photos'].map(k=>value[k]||(['attachments','photos'].includes(k)?[]:k==='checklist'?{}:'')));
   await runTransaction(db,async tx=>{const snap=await tx.get(target);if(!snap.exists())throw Error('This project or unit was removed.');const current=snap.data().scopeBrief||{};if(current.saveId===saveId)return;if(comparable(current)!==comparable(original))throw Error('Another person changed the scope. Review the saved version before retrying.');if(auth.currentUser?.uid!==uid)throw Error('Account changed.');
    const clean={...draft};for(const k of ['initialAnalysis','before','workScope','observations','difficulties','impact','nextStep'])clean[k]=String(clean[k]||'').trim();
    const history=[...(current.history||[]),{at:new Date().toISOString(),by:uid,summary:[clean.initialAnalysis,clean.difficulties,clean.impact,clean.nextStep].filter(Boolean).join(' · ').slice(0,2000)}].slice(-50);

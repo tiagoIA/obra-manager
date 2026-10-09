@@ -3,7 +3,7 @@
     "index.html"
   ],
   "baseline": {
-    "index.html": "4b4effef05b318fe48ad2f41416b45d76336cff8a564bb932f3ccad99278d1c6"
+    "index.html": "a9daaecc274872e9ec2278c463fc1d4e17307783200b9e58be056da647175015"
   },
-  "message": "Restore initial assessment, field record photos and unit reports"
+  "message": "Compare scope content without false conflicts from map key ordering"
 }
