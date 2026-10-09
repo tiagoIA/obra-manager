@@ -1,0 +1,32 @@
+[
+  {
+    "id": "CnnRpTKpv9ZNjTokBQMn",
+    "expectedName": "Rigid Conduit (RMC) 1/2\"",
+    "expectedSku": "ELEC-093",
+    "sourceUrl": "https://www.ew-ne.com/rmc-rmcgal100-1-x-10-1262830/p",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1326192/11508_Rigid_Steel_Conduit.jpg?v=639229518700530000",
+    "photoSha256": "5f4ff6c25e916d6d3c46404f9615d5085928a2bc1021dd6e0bdf8ad9a9c6a65f",
+    "basis": "Rigid metal conduit family; pictured 1-inch galvanized RMC is not the recorded 1/2-inch size; confirm diameter",
+    "photoReferenceNote": "Family reference — confirm model. Rigid metal conduit family; pictured 1-inch galvanized RMC is not the recorded 1/2-inch size; confirm diameter. This photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "7PDb89uMRgwFvY5YutSU",
+    "expectedName": "S-A QA1154FC 15A 1P 120V 10K w/PIGTAIL",
+    "expectedSku": "MAT-006",
+    "sourceUrl": "https://www.ew-ne.com/siemens-qa115afc-plug-in-mount-type-qaf2-combination-arc-fault-circuit-breaker-1-pole-15-amp-120-volt-ac-312827/p",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/460244/10991_D6UGO3BV4QK7LXWF.jpg?v=639233121787730000",
+    "photoSha256": "2ee00c5e66ead355f749c8bbfab2d45bd029ed0797d08500c25cdccc360f71c7",
+    "basis": "Siemens 15A pigtail AFCI breaker family; example QA115AFC. Recorded QA1154FC identity remains unconfirmed",
+    "photoReferenceNote": "Family reference — confirm model. Siemens 15A pigtail AFCI breaker family; example QA115AFC. Recorded QA1154FC identity remains unconfirmed. This photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "vEApK1xnUrVKOsqNQZQJ",
+    "expectedName": "Speaker Wire 16/2 CL2",
+    "expectedSku": "ELEC-086",
+    "sourceUrl": "https://www.ew-ne.com/speaker-wire-14-2-500-ft-white-467343/p",
+    "photoSourceUrl": "https://uselectrical.vteximg.com.br/arquivos/ids/1653589/P467343.jpg?v=639267332114670000",
+    "photoSha256": "056f9f4402324be29928da03bd55ff206fa967f90506e3da44ef8b458a06fd83",
+    "basis": "Two-conductor speaker cable family; pictured 14/2 cable is not the recorded 16/2 size; confirm gauge and CL2 listing",
+    "photoReferenceNote": "Family reference — confirm model. Two-conductor speaker cable family; pictured 14/2 cable is not the recorded 16/2 size; confirm gauge and CL2 listing. This photo does not identify stock or establish compatibility."
+  }
+]
