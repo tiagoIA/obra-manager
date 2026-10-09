@@ -11,6 +11,8 @@ assert.equal(vm.runInContext('fieldAuthor()',context),'User');
 context.window._cachedUsers=[{id:'u1',name:'Technician'}];
 assert.equal(vm.runInContext("fieldAuthor('u1')",context),'Technician');
 const report=html.slice(html.indexOf('window.generateUnitReport=(rid)=>{'),html.indexOf('window.generateReport=()=>'));
+// Follow-up has its own full integration tests; this fixture exercises legacy report content.
+context.window.unitFollowUp={report:()=>''};
 vm.runInContext(report,context);context.window.generateUnitReport('roof');
 assert.equal(nodes.open,'open');
 for(const text of ['Machines already installed','Install disconnects and two outlets','Existing supply above rooftop','Technician','before1.jpg','before2.jpg','Check circuits'])assert(nodes['pdf-content'].innerHTML.includes(text),text+' missing from unit report');

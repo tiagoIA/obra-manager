@@ -9245,6 +9245,7 @@ function renderOverview(el){
 
   html+='</div>'; // end spl-body
   html+='</div>'; // end spl-wrap
+  html+=window.unitFollowUp.overview(pr);
 
   el.innerHTML=html;
   // Foco no search
@@ -9360,6 +9361,8 @@ function renderRoomDetail(cv,room){
     +'<div style="flex:1;min-width:100px"><div style="font-size:9px;color:var(--fire);font-family:JetBrains Mono,monospace;margin-bottom:3px;display:flex;justify-content:space-between"><span>🔥 FIRE ALARM</span><span>'+p.fireD+'/'+p.fireT+' · '+p.firePct+'%</span></div><div class="pb-main"><div class="pb-main-fill" style="width:'+p.firePct+'%;background:linear-gradient(90deg,var(--fire),#ff8c00)"></div></div></div>'
     +'</div>'
     +'</div>'
+
+    +window.unitFollowUp.card(room)
 
     // ── SHOPPING LIST — colapsável ──
     +'<button class="shop-toggle-btn" style="flex:1;margin:0" onclick="window.toggleShopPanel()"><span>🛒</span> Shopping List <span class="shop-toggle-ico" style="margin-left:auto">▼</span></button>'
@@ -10794,6 +10797,7 @@ window.generateFilteredReport=()=>{
       phtml+='<div style="text-align:center;padding:60px;color:#888;font-size:14px">No photos found in the selected units.</div>';
     }
 
+    phtml+=filtRooms.map(r=>window.unitFollowUp.report(r)).join('');
     phtml+='<div class="rpt-footer"><span>Obra Manager — '+x(proj.name)+'</span><span>'+now2+'</span></div>';
     phtml+='</div>'; // fecha max-width wrapper
     document.getElementById('pdf-content').innerHTML=phtml;
@@ -10905,6 +10909,7 @@ window.generateFilteredReport=()=>{
         mhtml+='</tbody></table></div>';
       });
     }
+    mhtml+=filtRooms.map(r=>window.unitFollowUp.report(r)).join('');
     mhtml+='<div class="rpt-footer"><span>Obra Manager — '+x(proj.name)+'</span><span>'+now2+'</span></div>';
     mhtml+='</div>';
     document.getElementById('pdf-content').innerHTML=mhtml;
@@ -10962,6 +10967,7 @@ window.generateFilteredReport=()=>{
       });
       bhtml+='</div>';
     });
+    bhtml+=filtRooms.map(r=>window.unitFollowUp.report(r)).join('');
     bhtml+='<div class="rpt-footer"><span>Obra Manager - '+x(proj.name)+'</span><span>'+now2+'</span></div>';
     document.getElementById('pdf-content').innerHTML=bhtml;
     document.getElementById('pdf-report').classList.add('open');
@@ -11077,6 +11083,7 @@ window.generateFilteredReport=()=>{
       dhtml+='<div style="text-align:center;padding:40px;color:#9ca3af;font-size:14px">No completed tasks found for the selected filters.</div>';
     }
 
+    dhtml+=filtRooms.map(r=>window.unitFollowUp.report(r)).join('');
     dhtml+='<div class="rpt-footer"><span>Obra Manager — '+x(proj.name)+'</span><span>'+now+'</span></div>';
     dhtml+='</div>';
     document.getElementById('pdf-content').innerHTML=dhtml;
@@ -11197,6 +11204,7 @@ window.generateFilteredReport=()=>{
       html+='<div style="display:flex;gap:16px;margin-top:10px;font-size:12px"><span style="color:#16a34a;font-weight:700">'+data.done.length+' done</span><span style="color:#dc2626;font-weight:700">'+data.todo.length+' pending</span></div></div>';
     });
   }
+  html+=filtRooms.map(r=>window.unitFollowUp.report(r)).join('');
   html+='<div class="rpt-footer"><span>Obra Manager - '+x(proj.name)+'</span><span>'+now+'</span></div>';
   document.getElementById('pdf-content').innerHTML=html;
   document.getElementById('pdf-report').classList.add('open');
@@ -11398,6 +11406,8 @@ window.generateUnitReport=(rid)=>{
     });
     html+='</div>';
   }
+
+  html+=window.unitFollowUp.report(room);
 
   const initialPhotos=evidenceRows({photoUrl:room.photos?.before,photos:room.scopeBrief?.photos||[]}).filter(p=>p.type==='image');
   if(initialPhotos.length)html+='<div style="margin-bottom:24px"><h3>BEFORE INSTALLATION — initial conditions</h3><p>'+x(room.scopeBrief?.before||'Original unit conditions before work starts.')+'</p><div style="display:flex;flex-wrap:wrap;gap:10px">'+initialPhotos.map(p=>'<img src="'+x(p.url)+'" style="width:160px;height:120px;object-fit:contain" alt="Before installation">').join('')+'</div></div>';
@@ -11717,6 +11727,7 @@ window.renderPlanningPage=function(el){
     const backlog=planBacklog();_dailySelected=new Set([..._dailySelected].filter(id=>allTasks[id]&&!allTasks[id].done&&(_dailyProject==='all'||allTasks[id].projectId===_dailyProject)));
     html+='<details class="daily-backlog" '+(_dailyBacklogOpen?'open':'')+' ontoggle="window.setDailyBacklogOpen(this.open)"><summary style="font-size:16px;cursor:pointer;padding:12px 0">Pending work to distribute ('+backlog.length+')</summary><input id="daily-search" type="search" placeholder="Search tasks, units or projects" aria-label="Search pending tasks" value="'+planEsc(_dailySearch)+'" oninput="window.setDailySearch(this.value)"><div class="daily-controls"><label><input type="checkbox" '+(backlog.length&&backlog.every(t=>_dailySelected.has(t.id))?'checked':'')+' onchange="window.selectDailyVisible(this.checked)"> Select visible</label><button class="btn-g" data-daily-batch '+(!_dailySelected.size?'disabled':'')+'>Assign selected ('+_dailySelected.size+')</button></div>'+planPendingGroups(backlog)+(!backlog.length?'<div class="daily-empty">No pending tasks match this filter.</div>':'')+'</details>';
   }
+  html+=window.unitFollowUp.scheduleCards(Object.values(rooms).filter(r=>projects[r.projectId]&&(_dailyProject==='all'||r.projectId===_dailyProject)),_dailyDate,manager?_dailyEmployee:currentUser?.uid,manager);
   html+='<details '+(_dailyUpcomingOpen?'open':'')+' ontoggle="window.setDailyUpcomingOpen(this.open)" class="daily-backlog"><summary style="padding:12px 0;cursor:pointer">Upcoming days</summary>'+planUpcomingCards()+'</details>';
   el.innerHTML=html;
   el.onclick=function(e){const assign=e.target.closest('[data-daily-assign]'),complete=e.target.closest('[data-daily-complete]'),open=e.target.closest('[data-daily-open]');const site=e.target.closest('[data-site-edit]');if(site)window.openSiteSchedule(site.dataset.siteProject,site.dataset.siteEdit);else if(assign)window.openDailyAssign([assign.dataset.dailyAssign]);else if(complete)window.completeDailyTask(complete.dataset.dailyComplete);else if(open)window.openDailyTask(open.dataset.dailyOpen);else if(e.target.closest('[data-daily-batch]'))window.openDailyAssign([..._dailySelected]);};
@@ -13048,6 +13059,7 @@ function beforeInstallationPhotos(room){const rows=[...(room?.photos?.before?[{u
 // Multi-photo observations keep one record for the whole batch.
 import {installNotePhotos,notePhotoRows} from '/note-photos.js?v=2';
 import {installProjectBrief} from '/project-brief.js?v=1';
+import {installUnitFollowUp,followUpKey,cleanFollowUp} from '/unit-followup.js?v=1';
 import {evidenceRows,evidenceReport,phaseLabel} from '/field-media.js?v=1';
 async function uploadFieldEvidence(folder,files,progress=()=>{}){
  const rows=[];
@@ -13084,6 +13096,25 @@ onAuthStateChanged(auth,user=>{if(!user)window.notePhotos.clear();else window.no
 
 window.openCurrentBrief=()=>{if(!activePid)return notif('Select a project first.','e');window.projectBrief.open(activeRid&&rooms[activeRid]?'rooms':'projects',activeRid&&rooms[activeRid]?activeRid:activePid);};
 onAuthStateChanged(auth,user=>{if(!user)window.projectBrief?.close();});
+installUnitFollowUp({
+ room:rid=>rooms[rid],
+ data:()=>({tasks:Object.values(allTasks),lists:Object.values(shoppingLists),users:planUsers(),projects:Object.values(projects)}),notify:notif,
+ schedule:ids=>window.openDailyAssign(ids),
+ task:async(rid,name,details)=>{
+  const uid=auth.currentUser?.uid,room=rooms[rid];if(!uid||!room)throw Error('Sign in and select an existing unit.');
+  const normalize=v=>String(v||'').trim().replace(/\s+/g,' ').toLowerCase();
+  const existing=await getDocs(query(collection(db,'tasks'),where('roomId','==',rid)));
+  const match=existing.docs.find(d=>normalize(d.data().name)===normalize(name));if(match)return match.id;
+  const digest=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(rid+'|'+normalize(name)));
+  const id='followup-'+Array.from(new Uint8Array(digest)).map(b=>b.toString(16).padStart(2,'0')).join(''),ref=doc(db,'tasks',id);
+  await runTransaction(db,async tx=>{const old=await tx.get(ref),r=await tx.get(doc(db,'rooms',rid));if(!r.exists()||r.data().projectId!==room.projectId||auth.currentUser?.uid!==uid)throw Error('Unit or account changed.');if(old.exists())return;tx.set(ref,{projectId:room.projectId,roomId:rid,name:name.trim(),description:details||'',cat:'eletrica',hasQty:false,qty:0,done:false,doneAt:null,photos:[],sourceFollowUp:{roomId:rid},createdBy:uid,createdAt:serverTimestamp()});});return id;
+ },
+ save:async(rid,draft,original)=>{
+  const uid=auth.currentUser?.uid;if(!uid)throw Error('Sign in again.');const clean=cleanFollowUp(draft);
+  await runTransaction(db,async tx=>{const ref=doc(db,'rooms',rid),snap=await tx.get(ref);if(!snap.exists())throw Error('This unit was removed.');if(auth.currentUser?.uid!==uid)throw Error('Account changed.');if(followUpKey(snap.data().followUp)!==followUpKey(original))throw Error('Another person changed the follow-up. Reopen it to review the saved version.');tx.update(ref,{followUp:{...clean,updatedAt:serverTimestamp(),updatedBy:uid}});});
+  if(rooms[rid])rooms[rid].followUp=clean;renderContent();
+ }
+});
 installProjectBrief({
  owner:()=>auth.currentUser?.uid||'',author:fieldAuthor,compress:compressImage,
  record:(kind,id)=>kind==='rooms'?{...rooms[id],initialObservationPhotos:Object.values(roomNotesList).filter(n=>n.roomId===id&&n.phase==='before-installation').flatMap(notePhotoRows)}:projects[id],notify:notif,

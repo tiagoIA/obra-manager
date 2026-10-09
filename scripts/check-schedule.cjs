@@ -11,7 +11,7 @@ const ctx={console,Date,Set,Map,crypto:require('node:crypto').webcrypto,
  writeBatch:()=>{const staged=[];return {update:(ref,data)=>staged.push({ref,data}),commit:async()=>{if(fail)throw Error('denied');writes.push(...staged);}}},
  updateDoc:async(ref,data)=>{if(fail)throw Error('denied');writes.push({ref,data});},
  runTransaction:async(_db,fn)=>{if(fail)throw Error('denied');return fn({get:async ref=>({exists:()=>true,data:()=>({employeeSchedule:[{id:'concurrent',uid:'u2',startDate:'2026-10-09',endDate:'2026-10-09',address:'B'}]})}),update:(ref,data)=>txWrites.push({ref,data})});}
-};ctx.window=ctx;vm.createContext(ctx);vm.runInContext(code,ctx);
+};ctx.unitFollowUp={scheduleCards:()=>''};ctx.window=ctx;vm.createContext(ctx);vm.runInContext(code,ctx);
 const run=s=>vm.runInContext(s,ctx);
 (async()=>{
  assert(run("planValidDate('2026-10-09')"));assert(!run("planValidDate('2026-02-30')"));assert(!run("planValidDate('garbage')"));
