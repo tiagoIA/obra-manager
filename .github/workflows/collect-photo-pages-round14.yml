@@ -1,0 +1,15 @@
+name: Review remaining hardware and fire photo sources
+on:
+  push:
+    branches: [feature/lista-guiada-v1]
+    paths: [.github/workflows/collect-photo-pages-round14.yml]
+permissions:
+  contents: read
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install requests beautifulsoup4 pillow pymupdf
+      - run: python scripts/collect-photo-pages-round14.py
