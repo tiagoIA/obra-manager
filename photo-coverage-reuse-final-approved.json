@@ -1,0 +1,42 @@
+[
+  {
+    "id": "kYNmxVrnLdd41JWX9Eya",
+    "expectedName": "Switch (Single Pole)",
+    "expectedSku": "ELEC-005",
+    "sourceMaterialId": "catalog-eb3c73eb1e39af9ff082",
+    "sourceExpectedName": "LUT CA-1PS-BR 15A 120/277V DMR SW",
+    "sourceSha256": "75e815e845d00e6b425bc60cd7ef3053e5126d5633d259e189906b12afb38f1d",
+    "basis": "Single-pole wall switch family; example Lutron CA-1PS-BR brown; confirm model and color",
+    "photoReferenceNote": "Family reference — confirm model. Single-pole wall switch family; example Lutron CA-1PS-BR brown; confirm model and color. This photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "19YneIf7GFgGFRb2xno2",
+    "expectedName": "Switch 6 normal",
+    "expectedSku": "ELEC-067",
+    "sourceMaterialId": "catalog-eb3c73eb1e39af9ff082",
+    "sourceExpectedName": "LUT CA-1PS-BR 15A 120/277V DMR SW",
+    "sourceSha256": "75e815e845d00e6b425bc60cd7ef3053e5126d5633d259e189906b12afb38f1d",
+    "basis": "Standard wall switch family; pictured single-pole Lutron CA-1PS-BR; recorded quantity six does not establish switch type",
+    "photoReferenceNote": "Family reference — confirm model. Standard wall switch family; pictured single-pole Lutron CA-1PS-BR; recorded quantity six does not establish switch type. This photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "ju22X2f6znNzpL0xuNIh",
+    "expectedName": "Blank Cover",
+    "expectedSku": "FIRE-014",
+    "sourceMaterialId": "nhqXbk37pN0TF7k0hodj",
+    "sourceExpectedName": "\"4in\"\" square Cover \"",
+    "sourceSha256": "dc050034ae355b0086ff2ad1dff8ff5070cff8df6927a51093fbfeb4291d26af",
+    "basis": "Blank metal square electrical-box cover family; pictured 4-inch cover; confirm box size",
+    "photoReferenceNote": "Family reference — confirm model. Blank metal square electrical-box cover family; pictured 4-inch cover; confirm box size. This photo does not identify stock or establish compatibility."
+  },
+  {
+    "id": "CgJJWtIw77jEO7AOPqVH",
+    "expectedName": "AUS AB400HS 4-IN COND HOLE SEAL",
+    "expectedSku": "MAT-010",
+    "sourceMaterialId": "vWCTLHXhVRpg2kJ6Xzsk",
+    "sourceExpectedName": "AUS AB300HS 3-IN COND HOLE SEAL",
+    "sourceSha256": "45272148fca994c5cca962b312839344ce25499bb4c73d50f3a72fadd6157cf5",
+    "basis": "Conduit hole-seal family; pictured 3-inch Austin seals are not the recorded 4-inch size; confirm part and opening",
+    "photoReferenceNote": "Family reference — confirm model. Conduit hole-seal family; pictured 3-inch Austin seals are not the recorded 4-inch size; confirm part and opening. This photo does not identify stock or establish compatibility."
+  }
+]
