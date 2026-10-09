@@ -11931,6 +11931,7 @@ let _dailySelected=new Set();
 let _dailyBusy=false;
 let _dailyBacklogOpen=false;
 let _dailyUpcomingOpen=false;
+let _dailyPendingGroupsOpen=new Set();
 function planEsc(value){return x(value).replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
 function planRefresh(){const el=document.getElementById('room-view');if(el&&activePage==='planning')window.renderPlanningPage(el);}
 function planUsers(){return (window._cachedUsers||[]).filter(u=>u.id&&u.active!==false&&u.status!=='inactive');}
@@ -11941,6 +11942,7 @@ function planCanComplete(t){return !!t&&(hasRole('supervisor')||t.assignedTo===c
 function planValidDate(v){if(!/^\d{4}-\d{2}-\d{2}$/.test(v||''))return false;const d=new Date(v+'T12:00:00');return !isNaN(d)&&getPlanDateStr(d)===v;}
 window.setDailyBacklogOpen=function(open){_dailyBacklogOpen=open;};
 window.setDailyUpcomingOpen=function(open){_dailyUpcomingOpen=open;};
+window.setDailyGroupOpen=function(key,open){if(open)_dailyPendingGroupsOpen.add(key);else _dailyPendingGroupsOpen.delete(key);};
 window.setDailyDate=function(value){if(planValidDate(value)){_dailyDate=value;planRefresh();}};
 window.shiftDailyDate=function(delta){const d=new Date(_dailyDate+'T12:00:00');d.setDate(d.getDate()+delta);window.setDailyDate(getPlanDateStr(d));};
 window.setDailyProject=function(value){_dailyProject=value;_dailySelected.clear();planRefresh();};
@@ -12016,7 +12018,7 @@ function planAgendaGroups(tasks,manager){
 }
 function planPendingGroups(tasks){
   const groups=new Map();tasks.forEach(t=>{const key=t.projectId+'|'+(t.roomId||'');if(!groups.has(key))groups.set(key,[]);groups.get(key).push(t);});
-  return [...groups.values()].map(items=>'<details class="daily-pending-group"><summary>'+planEsc(projects[items[0].projectId]?.name)+' · '+planEsc(rooms[items[0].roomId]?.name||'General')+' ('+items.length+')</summary>'+items.map(t=>planTaskCard(t,true)).join('')+'</details>').join('');
+  return [...groups.entries()].map(([key,items])=>'<details class="daily-pending-group" data-group="'+planEsc(key)+'" '+(_dailyPendingGroupsOpen.has(key)?'open':'')+' ontoggle="window.setDailyGroupOpen(this.dataset.group,this.open)"><summary>'+planEsc(projects[items[0].projectId]?.name)+' · '+planEsc(rooms[items[0].roomId]?.name||'General')+' ('+items.length+')</summary>'+items.map(t=>planTaskCard(t,true)).join('')+'</details>').join('');
 }
 function planUpcomingCards(){
   let html='';for(let i=1;i<=7;i++){const d=new Date(_dailyDate+'T12:00:00');d.setDate(d.getDate()+i);const date=getPlanDateStr(d);const sites=planSitesForDate(date);const tasks=planTasks().filter(t=>t.assignedDate===date&&(hasRole('supervisor')&&_planViewMode!=='worker'?(_dailyEmployee==='all'||t.assignedTo===_dailyEmployee):t.assignedTo===currentUser?.uid));if(sites.length||tasks.length)html+='<section><h4>'+d.toLocaleDateString('en-US',{weekday:'long',month:'short',day:'numeric'})+' · '+tasks.length+' tasks</h4>'+planSiteCards(date)+tasks.map(t=>planTaskCard(t,false)).join('')+'</section>';}
