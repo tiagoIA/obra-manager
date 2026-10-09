@@ -2280,7 +2280,7 @@ button, a, [onclick], .btn-g, .bn-item, .home-nav-btn,
       <button class="btn-g work" onclick="goWork()">⚒️ Work</button>
       <button class="btn-g mat" onclick="showPage('materials')">🧰 Library</button>
       <button class="btn-g notes-btn top-nav-secondary" onclick="showPage('notes')">📋 Notes</button>
-      <button class="btn-g top-nav-secondary" onclick="openCurrentBrief()">📷 Scope / Before</button>
+      <button class="btn-g top-nav-secondary" onclick="openCurrentBrief()">📷 Scope / Initial assessment</button>
       <button class="btn-g shop top-nav-secondary" onclick="showPage('shopping')">🛒 Shopping</button>
       <button class="btn-g" onclick="showPage('taskview')">📋 Tasks</button>
       <button class="btn-g" onclick="showPage('planning')">📅 Planning</button>
@@ -2518,7 +2518,7 @@ button, a, [onclick], .btn-g, .bn-item, .home-nav-btn,
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getFirestore, initializeFirestore, persistentLocalCache, memoryLocalCache, enableIndexedDbPersistence, getDoc, getDocs, collection, doc, setDoc, addDoc, updateDoc, deleteDoc, onSnapshot, query, orderBy, where, arrayUnion, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-import { getStorage, ref, uploadString, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js";
+import { getStorage, ref, uploadString, uploadBytes, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 const firebaseConfig={apiKey:"AIzaSyD66lIEa3TSOq7KWMtO7yv8bdXlEmQL6r4",authDomain:"obra-manager-4ecc7.firebaseapp.com",projectId:"obra-manager-4ecc7",storageBucket:"obra-manager-4ecc7.firebasestorage.app",messagingSenderId:"1070586352415",appId:"1:1070586352415:web:8eec9db6c254b68852562a"};
 const app=initializeApp(firebaseConfig);
@@ -6941,7 +6941,7 @@ function renderNotesAudioList(notes){
       +'<div style="flex:1;min-width:0">'
       +'<div id="note-view-'+n.id+'">'
       +(hasText?'<div class="notes-audio-transcript">'+x(n.transcript||n.text)+'</div>':'')
-      +(hasAudio?'<audio class="notes-audio-player" controls src="'+n.audioUrl+'"></audio>':'')
+
       +'<div id="note-photo-'+n.id+'">'
       +window.notePhotos.html(n.id,n)
       +'</div>'
@@ -6955,7 +6955,7 @@ function renderNotesAudioList(notes){
       +'</div>'
       +'</div>'
       +'</div>'
-      +(hasAudio?'':'<button onclick="editRoomNote(\''+n.id+'\')" title="Edit" style="background:none;border:none;color:var(--dim);cursor:pointer;font-size:15px;flex-shrink:0;padding:3px 5px">✏️</button>')
+      +(false?'':'<button onclick="editRoomNote(\''+n.id+'\')" title="Edit" style="background:none;border:none;color:var(--dim);cursor:pointer;font-size:15px;flex-shrink:0;padding:3px 5px">✏️</button>')
       +'<button onclick="deleteRoomNote(\''+n.id+'\')" title="Delete" style="background:none;border:none;color:var(--dim);cursor:pointer;font-size:15px;flex-shrink:0;padding:3px 5px">🗑️</button>'
       +'</div>';
   }).join('');
@@ -9592,7 +9592,7 @@ function renderRoomDetail(cv,room){
     +(todoTasks.length?'<span class="room-chip active">⏳ '+todoTasks.length+'</span>':'')
     +(doneTasks.length?'<span class="room-chip ok">✓ '+doneTasks.length+'</span>':'')
     +'<span class="room-chip" style="cursor:pointer" onclick="activePhotoTab=\'ba\';renderUnitPhotos(\''+activeRid+'\')">📸</span>'
-    +'<button class="room-chip" style="cursor:pointer;min-height:36px" onclick="openCurrentBrief()">Scope / Before</button>'
+    +'<button class="room-chip" style="cursor:pointer;min-height:36px" onclick="openCurrentBrief()">Scope / Initial assessment</button>'
     +'<span class="room-chip" style="cursor:pointer" onclick="openTimelineModal(\''+activeRid+'\')">'+(room.deadline?'📅 '+room.deadline.slice(5):'📅')+'</span>'
     +'</div></div>'
     // Barra progresso única combinada + detalhe tap
@@ -9617,19 +9617,19 @@ function renderRoomDetail(cv,room){
 
     // ── OBSERVATIONS ──
     +'<div class="notes-box">'
-    +'<div class="notes-box-title">📋 OBSERVATIONS</div>'
-    +'<div style="border:1px solid var(--elec);border-radius:9px;padding:12px;margin:10px 0"><strong style="display:block;font-size:13px">📷 BEFORE INSTALLATION</strong><p style="font-size:12px;color:var(--mut);line-height:1.5;margin:8px 0">Record how the unit was found before starting any installation. Add several initial-condition photos and describe existing equipment or defects.</p><button class="btn-sm" style="min-height:44px" onclick="projectBrief.open(\'rooms\',\''+activeRid+'\')">Photos and observations before installation</button></div>'
+    +'<div class="notes-box-title">📋 FIELD RECORDS</div>'
+    +'<div style="border:1px solid var(--elec);border-radius:9px;padding:12px;margin:10px 0"><strong style="display:block;font-size:13px">📷 BEFORE INSTALLATION</strong><p style="font-size:12px;color:var(--mut);line-height:1.5;margin:8px 0">Record how the unit was found before starting any installation. Add several initial-condition photos and describe existing equipment or defects.</p><button class="btn-sm" style="min-height:44px" onclick="projectBrief.open(\'rooms\',\''+activeRid+'\')">Initial assessment and evidence</button></div>'
     +'<div id="notes-audio-list" style="margin-bottom:8px"></div>'
-    +'<label style="display:block;font-size:12px;margin:8px 0">Observation timing <select id="note-phase" aria-label="Observation timing" style="width:100%;min-height:44px;background:var(--sur2);color:var(--txt);border:1px solid var(--bdr);padding:8px"><option value="general">General observation</option><option value="before-installation">BEFORE INSTALLATION — initial conditions</option></select></label>'
-    +'<textarea class="notes-textarea" id="room-notes-ta" placeholder="Type a new note and press Save, or use the mic..." onkeydown="if(event.ctrlKey&&event.key===\'Enter\')saveRoomNote()"></textarea>'
+    +'<label style="display:block;font-size:12px;margin:8px 0">Observation timing <select id="note-phase" aria-label="Observation timing" style="width:100%;min-height:44px;background:var(--sur2);color:var(--txt);border:1px solid var(--bdr);padding:8px"><option value="during-work">DURING WORK — field record</option><option value="before-installation">BEFORE INSTALLATION — initial conditions</option><option value="after-work">AFTER COMPLETION</option><option value="general">General observation</option></select></label>'
+    +'<textarea class="notes-textarea" id="room-notes-ta" placeholder="Describe what you found or what happened..." onkeydown="if(event.ctrlKey&&event.key===\'Enter\')saveRoomNote()"></textarea>'
     +'<div class="notes-actions">'
     +'<button class="btn-save-note" id="btn-save-note" onclick="saveRoomNote()">💾 Save note</button>'
-    +'<button class="btn-rec" id="btn-rec" onclick="toggleRecording()"><span class="rec-dot"></span> 🎙️ Record</button>'
-    +'<button onclick="notePhotos.pick()" class="btn-sm" style="min-height:44px" id="btn-note-photo">📷 Select photos</button>'
-    +'<button onclick="notePhotos.pick(null,true)" class="btn-sm" style="min-height:44px">📸 Take photo</button>'
     +'</div>'
+    +'<label style="display:block;margin:8px 0">Difficulties / blockers<textarea class="notes-textarea" id="note-difficulties"></textarea></label>'
+    +'<label style="display:block;margin:8px 0">Impact on time, materials or scope<textarea class="notes-textarea" id="note-impact"></textarea></label>'
+    +'<label style="display:block;margin:8px 0">Next step<textarea class="notes-textarea" id="note-next"></textarea></label>'
     +'<div id="note-photo-preview" style="display:none;margin-top:8px"></div>'
-    +'<div id="live-transcript" style="font-size:12px;color:#a78bfa;min-height:14px;margin-top:5px;font-style:italic;"></div>'
+
     +'</div>'
 
     // ── NEW TASK FORM — colapsável ──────────────────────────────────────────
@@ -9736,6 +9736,7 @@ function renderTask(t){
     +matBadge
     +(t.doneAt?'<span class="task-date">✅ '+t.doneAt+'</span>':'')
     +'</div>'
+    +((t.sourceObservationId||t.sourceAssessment)?'<button class="btn-sm" onclick="event.stopPropagation();openFieldSource(\''+t.id+'\')">View source record</button>':'')
     +(t.note?'<div style="font-size:11px;color:var(--mut);margin-top:3px;font-style:italic">📝 '+x(t.note)+'</div>':'')
     +subHtml
     +photos
@@ -9764,11 +9765,11 @@ function renderNotesPage(el){
     +(filtered.length?filtered.map(function(n){
       const room=rooms[n.roomId];
       const proj=projects[n.projectId];
-      const txt=n.transcript||n.text||'';
+      const txt=[n.text||n.transcript,n.difficulties,n.impact,n.nextStep].filter(Boolean).join(' · ');
       return'<div class="note-card" onclick="goToRoomNote(\''+n.roomId+'\')">'
         +'<div class="note-card-room">📍 '+(room?x(room.name):'Unknown room')+(proj?' · '+x(proj.name):'')+(room&&room.floor?' · '+x(room.floor):'')+'</div>'
         +'<div class="note-card-text">'+x(txt.substring(0,200))+(txt.length>200?'…':'')+'</div>'
-        +(n.audioUrl?'<div style="font-size:11px;color:#a78bfa;margin-top:4px">🎙️ Has audio recording</div>':'')
+        +(evidenceRows(n).some(p=>p.type==='audio')?'<div style="font-size:11px;color:#a78bfa;margin-top:4px">🎙️ Has audio recording</div>':'')
         +'<div class="note-card-meta">'+(n.savedAt||'')+'</div>'
         +'</div>';
     }).join(''):'<div style="color:var(--dim);font-size:13px;text-align:center;padding:40px 0">No notes yet.<br>Add observations in each room.</div>');
@@ -11647,6 +11648,9 @@ window.generateUnitReport=(rid)=>{
   const initialPhotos=beforeInstallationPhotos(room);
   if(initialPhotos.length)html+='<div style="margin-bottom:24px"><h3>BEFORE INSTALLATION — initial conditions</h3><p>'+x(room.scopeBrief?.before||'Original unit conditions before work starts.')+'</p><div style="display:flex;flex-wrap:wrap;gap:10px">'+initialPhotos.map(p=>'<img src="'+x(p.url)+'" style="width:160px;height:120px;object-fit:contain" alt="Before installation">').join('')+'</div></div>';
 
+  html+='<div style="margin-bottom:24px"><h3>Initial assessment / work scope</h3>'+['initialAnalysis','before','difficulties','impact','nextStep','workScope','observations'].filter(k=>room.scopeBrief?.[k]).map(k=>'<p style="white-space:pre-wrap"><b>'+x({initialAnalysis:'Initial assessment',before:'Initial conditions',difficulties:'Difficulties',impact:'Impact',nextStep:'Next step',workScope:'Work scope',observations:'Items to verify'}[k])+':</b> '+x(room.scopeBrief[k])+'</p>').join('')+evidenceReport({attachments:room.scopeBrief?.attachments||[]})+'</div>';
+  html+='<div style="margin-bottom:24px"><h3>Field records</h3>'+notes.map(n=>'<section style="page-break-inside:avoid;margin-bottom:18px"><h4>'+phaseLabel(n.phase)+'</h4><p>'+x(n.savedAt||'')+' · '+x(fieldAuthor(n.createdBy)||'')+'</p>'+[n.text||n.transcript,n.difficulties&&'Difficulties: '+n.difficulties,n.impact&&'Impact: '+n.impact,n.nextStep&&'Next step: '+n.nextStep].filter(Boolean).map(t=>'<p style="white-space:pre-wrap">'+x(t)+'</p>').join('')+evidenceReport(n)+'</section>').join('')+'</div>';
+
   // ── FOTOS DAS NOTAS ──
   const notesWithPhotos=notes.filter(n=>n.phase!=='before-installation').flatMap(n=>notePhotoRows(n).map(p=>({...n,photoUrl:p.url})));
   if(notesWithPhotos.length){
@@ -13297,49 +13301,59 @@ window.deleteMaterial=async id=>{
 
 function beforeInstallationPhotos(room){const rows=[...(room?.photos?.before?[{url:room.photos.before,name:'Existing before photo'}]:[]),...(room?.scopeBrief?.photos||[]),...Object.values(roomNotesList).filter(n=>n.roomId===room?.id&&n.phase==='before-installation').flatMap(notePhotoRows)];return rows.filter((p,n)=>p.url&&rows.findIndex(x=>x.url===p.url)===n);}
 // Multi-photo observations keep one record for the whole batch.
-import {installNotePhotos,notePhotoRows} from '/note-photos.js?v=1';
-async function uploadObservationPhotos(nid,files){const uploaded=[];try{for(const file of files){const path='roomNotes/'+nid+'/'+crypto.randomUUID()+'.jpg';const target=ref(storage,path);await uploadBytes(target,file.blob,{contentType:'image/jpeg'});try{uploaded.push({url:await getDownloadURL(target),name:file.name,path,addedAt:new Date().toISOString()});}catch(e){await deleteObject(target).catch(()=>{});throw e;}}return uploaded;}catch(e){await Promise.allSettled(uploaded.map(p=>deleteObject(ref(storage,p.path))));throw e;}}
-async function cleanupObservationPhotos(rows){await Promise.allSettled(rows.map(p=>deleteObject(ref(storage,p.path))));}
-installNotePhotos({context:()=>({rid:activeRid,pid:activePid}),compress:compressImage,notify:notif,
- create:async(c,text,phase,files)=>{
-  if(!auth.currentUser)throw Error('Sign in again.');const target=doc(collection(db,'roomNotes')),rows=await uploadObservationPhotos(target.id,files);
-  try{await runTransaction(db,async tx=>{const room=await tx.get(doc(db,'rooms',c.rid));if(!room.exists()||room.data().projectId!==c.pid)throw Error('The selected unit changed.');tx.set(target,{roomId:c.rid,projectId:c.pid,text,transcript:null,audioUrl:null,phase,photoUrl:rows[0]?.url||null,photoUrls:rows,savedAt:new Date().toLocaleString('en-US'),createdBy:auth.currentUser.uid,createdAt:serverTimestamp()});});}catch(e){await cleanupObservationPhotos(rows);throw e;}
+import {installNotePhotos,notePhotoRows} from '/note-photos.js?v=2';
+import {evidenceRows,evidenceReport,phaseLabel} from '/field-media.js?v=1';
+async function uploadFieldEvidence(folder,files,progress=()=>{}){
+ const rows=[];
+ for(const [n,file] of files.entries()){
+  const path=folder+'/'+file.id,target=ref(storage,path);let url;
+  try{url=await getDownloadURL(target);}catch(e){if(e.code!=='storage/object-not-found')throw e;}
+  if(!url){await new Promise((resolve,reject)=>{const task=uploadBytesResumable(target,file.blob,{contentType:file.mime||file.blob.type});const timer=setTimeout(()=>{task.cancel();reject(Error('Upload interrupted. Retry when connected.'));},180000);task.on('state_changed',snap=>progress(n+1,files.length,Math.round(snap.bytesTransferred/snap.totalBytes*100)),e=>{clearTimeout(timer);reject(e);},()=>{clearTimeout(timer);resolve();});});url=await getDownloadURL(target);}
+  rows.push({url,name:file.name,path,type:file.type,mime:file.mime||file.blob.type,addedAt:new Date().toISOString()});
+ }
+ return rows;
+}
+function fieldAuthor(uid){const user=users.find(u=>u.id===uid||u.uid===uid);return user?.name||user?.email||uid;}
+async function linkedFieldTask(rid,name,source,details){
+ if(!auth.currentUser)throw Error('Sign in again.');const room=rooms[rid];if(!room)throw Error('Select an existing unit.');
+ const task=await addDoc(collection(db,'tasks'),{projectId:room.projectId,roomId:rid,name,cat:'eletrica',hasQty:false,qty:0,done:false,doneAt:null,photos:[],note:details,sourceObservationId:source||null,sourceAssessment:source?null:{roomId:rid},createdBy:auth.currentUser.uid,createdAt:serverTimestamp()});
+ return task.id;
+}
+window.openFieldSource=(tid)=>{const task=allTasks[tid];if(!task)return;if(task.sourceObservationId){window.goToRoomNote(task.roomId);setTimeout(()=>document.getElementById('note-item-'+task.sourceObservationId)?.scrollIntoView({behavior:'smooth'}),350);}else if(task.sourceAssessment)projectBrief.open('rooms',task.roomId);};
+installNotePhotos({context:()=>({rid:activeRid,pid:activePid}),owner:()=>auth.currentUser?.uid||'',author:fieldAuthor,compress:compressImage,notify:notif,
+ create:async(c,text,phase,files,details={},progress)=>{
+  if(!auth.currentUser)throw Error('Sign in again.');const uid=auth.currentUser.uid,target=doc(db,'roomNotes',details.id||crypto.randomUUID());
+  const old=await getDoc(target);if(old.exists()){if(old.data().createdBy!==uid||old.data().roomId!==c.rid)throw Error('Record identity changed.');return;}
+  const rows=await uploadFieldEvidence('roomNotes/'+target.id,files,progress),photos=rows.filter(p=>p.type==='image'),attachments=rows.filter(p=>p.type!=='image');
+  await runTransaction(db,async tx=>{const existing=await tx.get(target),room=await tx.get(doc(db,'rooms',c.rid));if(existing.exists()){if(existing.data().createdBy!==uid)throw Error('Record identity changed.');return;}if(!room.exists()||room.data().projectId!==c.pid)throw Error('The selected unit changed.');if(auth.currentUser?.uid!==uid)throw Error('Account changed.');tx.set(target,{roomId:c.rid,projectId:c.pid,text,transcript:null,audioUrl:null,phase,difficulties:details.difficulties||'',impact:details.impact||'',nextStep:details.nextStep||'',photoUrl:photos[0]?.url||null,photoUrls:photos,attachments,savedAt:new Date().toLocaleString('en-US'),createdBy:uid,createdAt:serverTimestamp()});});
  },
  append:async(nid,files)=>{
-  if(!auth.currentUser)throw Error('Sign in again.');const rows=await uploadObservationPhotos(nid,files),target=doc(db,'roomNotes',nid);
-  try{await runTransaction(db,async tx=>{const snap=await tx.get(target);if(!snap.exists())throw Error('This observation was removed.');const existing=notePhotoRows(snap.data());if(existing.length+rows.length>24)throw Error('Use up to 24 photos per observation.');const all=[...existing,...rows];tx.update(target,{photoUrls:all,photoUrl:all[0]?.url||null,updatedAt:serverTimestamp()});});}catch(e){await cleanupObservationPhotos(rows);throw e;}
+  if(!auth.currentUser)throw Error('Sign in again.');const rows=await uploadFieldEvidence('roomNotes/'+nid,files),target=doc(db,'roomNotes',nid);
+  await runTransaction(db,async tx=>{const snap=await tx.get(target);if(!snap.exists())throw Error('This observation was removed.');const all=[...evidenceRows(snap.data()),...rows].filter((p,n,list)=>list.findIndex(x=>x.url===p.url)===n);if(all.length>72)throw Error('Use up to 72 saved files per observation.');const photos=all.filter(p=>p.type==='image');tx.update(target,{photoUrls:photos,photoUrl:photos[0]?.url||null,audioUrl:null,attachments:all.filter(p=>p.type!=='image'),updatedAt:serverTimestamp(),updatedBy:auth.currentUser.uid});});
  },
- remove:async(nid,url)=>{if(!auth.currentUser)throw Error('Sign in again.');await runTransaction(db,async tx=>{const target=doc(db,'roomNotes',nid),snap=await tx.get(target);if(!snap.exists())throw Error('This observation was removed.');const rows=notePhotoRows(snap.data()).filter(p=>p.url!==url);tx.update(target,{photoUrls:rows,photoUrl:rows[0]?.url||null,updatedAt:serverTimestamp()});});}
+ remove:async(nid,url)=>{if(!auth.currentUser)throw Error('Sign in again.');await runTransaction(db,async tx=>{const target=doc(db,'roomNotes',nid),snap=await tx.get(target);if(!snap.exists())throw Error('This observation was removed.');const all=evidenceRows(snap.data()).filter(p=>p.url!==url),photos=all.filter(p=>p.type==='image');tx.update(target,{photoUrls:photos,photoUrl:photos[0]?.url||null,audioUrl:null,attachments:all.filter(p=>p.type!=='image'),updatedAt:serverTimestamp(),updatedBy:auth.currentUser.uid});});},
+ task:async(nid,name)=>{const note=roomNotesList[nid];if(!note)throw Error('This field record is unavailable.');const tid=await linkedFieldTask(note.roomId,name,nid,[note.text,note.difficulties,note.impact,note.nextStep].filter(Boolean).join('\n'));await updateDoc(doc(db,'roomNotes',nid),{linkedTaskIds:arrayUnion(tid)});}
 });
-onAuthStateChanged(auth,user=>{if(!user)window.notePhotos.clear();});
+onAuthStateChanged(auth,user=>{if(!user)window.notePhotos.clear();else window.notePhotos.flush();});
 
-// Explicit project / unit scope and before-condition record.
-import {installProjectBrief} from '/project-brief.js?v=3';
 window.openCurrentBrief=()=>{if(!activePid)return notif('Select a project first.','e');window.projectBrief.open(activeRid&&rooms[activeRid]?'rooms':'projects',activeRid&&rooms[activeRid]?activeRid:activePid);};
 onAuthStateChanged(auth,user=>{if(!user)window.projectBrief?.close();});
 installProjectBrief({
+ owner:()=>auth.currentUser?.uid||'',author:fieldAuthor,compress:compressImage,
  record:(kind,id)=>kind==='rooms'?{...rooms[id],initialObservationPhotos:Object.values(roomNotesList).filter(n=>n.roomId===id&&n.phase==='before-installation').flatMap(notePhotoRows)}:projects[id],notify:notif,
- save:async(kind,id,draft,files,original,mediaFiles=[],mediaPreviews=[])=>{
-  if(!auth.currentUser)throw Error('Sign in again.');
+ task:(rid,name,draft)=>linkedFieldTask(rid,name,null,[draft.initialAnalysis,draft.difficulties,draft.impact,draft.nextStep].filter(Boolean).join('\n')),
+ save:async(kind,id,draft,files,original,progress)=>{
+  if(!auth.currentUser)throw Error('Sign in again.');const uid=auth.currentUser.uid;
   if(!['rooms','projects'].includes(kind))throw Error('Invalid scope target.');
-  const uploaded=[],attachments=[],paths=[];
-  try{
-   for(const [n,file] of [...files,...mediaFiles].entries()){
-    const path='initial-conditions/'+kind+'/'+id+'/'+crypto.randomUUID(),target=ref(storage,path);paths.push(path);
-    await uploadBytes(target,file,{contentType:file.type});
-    const row={url:await getDownloadURL(target),name:file.name,path,addedAt:new Date().toISOString(),source:'site-capture'};
-    if(n<files.length)uploaded.push(row);else attachments.push({...row,type:file.type.startsWith('video/')?'video':'audio',mime:file.type,transcript:mediaPreviews[n-files.length]?.transcript||''});
-   }
-   const target=doc(db,kind,id);
-   await runTransaction(db,async tx=>{
-    const snap=await tx.get(target);if(!snap.exists())throw Error('This project or unit was removed.');
-    const current=snap.data().scopeBrief||{};
-    const comparable=value=>JSON.stringify({before:value.before||'',workScope:value.workScope||'',observations:value.observations||'',initialAnalysis:value.initialAnalysis||'',attachments:value.attachments||[],photos:value.photos||[]});
-    if(comparable(current)!==comparable(original))throw Error('Another person changed the scope. Close and reopen to review.');
-    tx.update(target,{scopeBrief:{...draft,initialAnalysis:(draft.initialAnalysis||'').trim(),before:(draft.before||'').trim(),workScope:(draft.workScope||'').trim(),photos:[...(draft.photos||[]),...uploaded],attachments:[...(draft.attachments||[]),...attachments],captureStatus:uploaded.length||(draft.photos||[]).length||snap.data().photos?.before?'documented':'before-photos-needed',updatedAt:serverTimestamp(),updatedBy:auth.currentUser.uid}});
-   });
-  }catch(e){await Promise.allSettled(paths.map(path=>deleteObject(ref(storage,path))));throw e;}
-  renderContent();
+  const saveId=draft.saveId||(draft.saveId=crypto.randomUUID()),target=doc(db,kind,id);
+  const existing=await getDoc(target);if(!existing.exists())throw Error('This project or unit was removed.');if(existing.data().scopeBrief?.saveId===saveId)return;
+  const rows=await uploadFieldEvidence('initial-conditions/'+kind+'/'+id,files,progress);
+  const comparable=value=>JSON.stringify(['before','workScope','observations','initialAnalysis','difficulties','impact','nextStep','checklist','attachments','photos'].map(k=>value[k]||(['attachments','photos'].includes(k)?[]:k==='checklist'?{}:'')));
+  await runTransaction(db,async tx=>{const snap=await tx.get(target);if(!snap.exists())throw Error('This project or unit was removed.');const current=snap.data().scopeBrief||{};if(current.saveId===saveId)return;if(comparable(current)!==comparable(original))throw Error('Another person changed the scope. Review the saved version before retrying.');if(auth.currentUser?.uid!==uid)throw Error('Account changed.');
+   const clean={...draft};for(const k of ['initialAnalysis','before','workScope','observations','difficulties','impact','nextStep'])clean[k]=String(clean[k]||'').trim();
+   const history=[...(current.history||[]),{at:new Date().toISOString(),by:uid,summary:[clean.initialAnalysis,clean.difficulties,clean.impact,clean.nextStep].filter(Boolean).join(' · ').slice(0,2000)}].slice(-50);
+   tx.update(target,{scopeBrief:{...clean,saveId,history,photos:[...(draft.photos||[]),...rows.filter(p=>p.type==='image')],attachments:[...(draft.attachments||[]),...rows.filter(p=>p.type!=='image')],captureStatus:rows.some(p=>p.type==='image')||(draft.photos||[]).length||snap.data().photos?.before?'documented':'before-photos-needed',updatedAt:serverTimestamp(),updatedBy:uid}});
+  });renderContent();
  }
 });
 

@@ -2,12 +2,13 @@
   "files": [
     "index.html",
     "project-brief.js",
-    "note-photos.js"
+    "note-photos.js",
+    "field-media.js"
   ],
   "baseline": {
-    "index.html": "da4869dc96c4ea53417b2b3171ed401ac2df7690bb228dd7624cec38181fda38",
-    "project-brief.js": "4785b19af63c516271dd68ff7db69a08139ea382d9b06e9278ce12d6fc54f4bd",
+    "index.html": "201db1a8b3b70041b0ce866c125bd396a26487c68cda7d506004ae84d7da63f9",
+    "project-brief.js": "c2d25a83aea3f76919d189615438fadcbf6defd4ed13a3cc9ff67332dae538d6",
     "note-photos.js": "944b5f879f5520dc65ad10433e34e3e68e40fde83cd9452c059448feec758836"
   },
-  "message": "Initial assessment with text, multiple photos, audio and video; browser live transcription"
+  "message": "Initial assessment and field evidence: originals, offline drafts, checklist and linked tasks"
 }
