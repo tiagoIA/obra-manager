@@ -1,0 +1,17 @@
+name: Discover unresolved material evidence sources
+on:
+  push:
+    branches: [feature/lista-guiada-v1]
+    paths: [.github/workflows/audit-identity-data-sources.yml]
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install google-auth google-cloud-storage requests pillow
+      - run: python scripts/audit-identity-data-sources.py
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
