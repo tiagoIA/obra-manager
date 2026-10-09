@@ -2280,6 +2280,7 @@ button, a, [onclick], .btn-g, .bn-item, .home-nav-btn,
       <button class="btn-g work" onclick="goWork()">⚒️ Work</button>
       <button class="btn-g mat" onclick="showPage('materials')">🧰 Library</button>
       <button class="btn-g notes-btn top-nav-secondary" onclick="showPage('notes')">📋 Notes</button>
+      <button class="btn-g top-nav-secondary" onclick="openCurrentBrief()">📷 Scope / Before</button>
       <button class="btn-g shop top-nav-secondary" onclick="showPage('shopping')">🛒 Shopping</button>
       <button class="btn-g" onclick="showPage('taskview')">📋 Tasks</button>
       <button class="btn-g" onclick="showPage('planning')">📅 Planning</button>
@@ -4672,7 +4673,10 @@ window.renderWizard=function renderWizard(){
       +'<button class="scope-btn'+(wizData.scope==='electrical'?' selected elec':'')+'" onclick="setWizScope(\'electrical\')">⚡ Electrical only</button>'
       +'<button class="scope-btn'+(wizData.scope==='fire'?' selected fire':'')+'" onclick="setWizScope(\'fire\')">🔥 Fire Alarm only</button>'
       +'<button class="scope-btn'+(wizData.scope==='both'?' selected both':'')+'" onclick="setWizScope(\'both\')">⚡🔥 Both</button>'
-      +'</div>';
+      +'</div>'
+      +'<div class="fg" style="margin-top:14px"><label class="fl">BEFORE / INITIAL CONDITIONS *</label><textarea class="m-inp" aria-label="Project initial conditions" placeholder="Describe how the site was found before starting work" oninput="wizData.initialConditions=this.value">'+x(wizData.initialConditions||'')+'</textarea></div>'
+      +'<div class="fg"><label class="fl">WORK SCOPE *</label><textarea class="m-inp" aria-label="Project work scope" placeholder="Describe the work included in this project" oninput="wizData.workScope=this.value">'+x(wizData.workScope||'')+'</textarea></div>'
+      +'<div style="font-size:12px;color:var(--mut);line-height:1.5">Add initial-condition photos through Scope / Before after creating the project, before work starts.</div>';
 
   // ── STEP 3: Floor Plan ───────────────────────────────────────────────────
   }else if(wizStep===3){
@@ -5099,6 +5103,7 @@ window.wizNext=()=>{
     if(a)window.wizData.address=a.value.trim();
     if(!window.wizData.name){notif('Enter project name','e');return;}
   }
+  if(wizStep===2&&!wizData.fromProject&&(!String(wizData.initialConditions||'').trim()||!String(wizData.workScope||'').trim())){notif('Describe the initial conditions and work scope.','e');return;}
   if(wizStep===3&&!window.wizData.hasPlan){
     window.wizData.hasPlan='skip';
   }
@@ -5111,10 +5116,12 @@ window.wizNext=()=>{
 window.createProjectFromWizard=async()=>{
   const wizData=window.wizData;
   if(!wizData.name){notif('Enter project name','e');return;}
+  if(!wizData.fromProject&&(!String(wizData.initialConditions||'').trim()||!String(wizData.workScope||'').trim())){notif('Describe the initial conditions and work scope.','e');window.wizStep=2;window.renderWizard();return;}
   syncing(true);setLoadMsg('Creating project...');
   const pr=await addDoc(collection(db,'projects'),{
     name:wizData.name,address:wizData.address,
     type:wizData.type,scope:wizData.scope,
+    scopeBrief:{before:wizData.initialConditions||'',workScope:wizData.workScope||'',observations:'',photos:[],captureStatus:'before-photos-needed'},
     createdAt:serverTimestamp()
   });
   const pid=pr.id;activePid=pid;
@@ -9672,6 +9679,7 @@ function renderRoomDetail(cv,room){
     +(todoTasks.length?'<span class="room-chip active">⏳ '+todoTasks.length+'</span>':'')
     +(doneTasks.length?'<span class="room-chip ok">✓ '+doneTasks.length+'</span>':'')
     +'<span class="room-chip" style="cursor:pointer" onclick="activePhotoTab=\'ba\';renderUnitPhotos(\''+activeRid+'\')">📸</span>'
+    +'<button class="room-chip" style="cursor:pointer;min-height:36px" onclick="openCurrentBrief()">Scope / Before</button>'
     +'<span class="room-chip" style="cursor:pointer" onclick="openTimelineModal(\''+activeRid+'\')">'+(room.deadline?'📅 '+room.deadline.slice(5):'📅')+'</span>'
     +'</div></div>'
     // Barra progresso única combinada + detalhe tap
@@ -13349,6 +13357,23 @@ window.deleteMaterial=async id=>{
  if(!confirm(active?'Reactivate this material for new tasks and purchases?':'Deactivate this material? Stock and historical links will be preserved.'))return;
  try{await updateDoc(doc(db,'materials',id),{active,status:active?'active':'inactive',updatedAt:serverTimestamp()});Object.assign(m,{active,status:active?'active':'inactive'});renderContent();notif(active?'Material reactivated.':'Material deactivated.','s');}catch(e){notif(e.message,'e');}
 };
+
+// Explicit project / unit scope and before-condition record.
+import {installProjectBrief} from '/project-brief.js?v=1';
+window.openCurrentBrief=()=>{if(!activePid)return notif('Select a project first.','e');window.projectBrief.open(activeRid&&rooms[activeRid]?'rooms':'projects',activeRid&&rooms[activeRid]?activeRid:activePid);};
+onAuthStateChanged(auth,user=>{if(!user)window.projectBrief?.close();});
+installProjectBrief({
+ record:(kind,id)=>kind==='rooms'?rooms[id]:projects[id],notify:notif,
+ save:async(kind,id,draft,files,original)=>{
+  if(!auth.currentUser)throw Error('Sign in again.');
+  if(!['rooms','projects'].includes(kind))throw Error('Invalid scope target.');
+  const uploaded=[];
+  for(const file of files){const path=ref(storage,'initial-conditions/'+kind+'/'+id+'/'+crypto.randomUUID());await uploadBytes(path,file,{contentType:file.type});uploaded.push({url:await getDownloadURL(path),name:file.name,addedAt:new Date().toISOString(),source:'site-photo'});}
+  const target=doc(db,kind,id);
+  await runTransaction(db,async tx=>{const snap=await tx.get(target);if(!snap.exists())throw Error('This project or unit was removed.');const current=snap.data().scopeBrief||{};const comparable=value=>JSON.stringify({before:value.before||'',workScope:value.workScope||'',observations:value.observations||'',photos:value.photos||[]});if(comparable(current)!==comparable(original))throw Error('Another person changed the scope. Close and reopen to review.');tx.update(target,{scopeBrief:{...draft,before:draft.before.trim(),workScope:draft.workScope.trim(),photos:[...(draft.photos||[]),...uploaded],captureStatus:uploaded.length||(draft.photos||[]).length||snap.data().photos?.before?'documented':'before-photos-needed',updatedAt:serverTimestamp(),updatedBy:auth.currentUser.uid}});});
+  renderContent();
+ }
+});
 
 // App starts via onAuthStateChanged → startApp() → listenProjects()
 

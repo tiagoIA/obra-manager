@@ -1,0 +1,37 @@
+name: Verify and publish purchasing scope
+on:
+  push:
+    branches: [feature/purchasing-costs-2026-10-09]
+    paths: ['public/**', 'scripts/check-brief.cjs', 'scripts/check-purchasing*', 'scripts/publication_manifest.json', 'scripts/publish_purchasing.py', '.github/workflows/publish_purchasing.yml']
+permissions:
+  contents: read
+concurrency:
+  group: obra-manager-purchasing-publication
+  cancel-in-progress: false
+jobs:
+  verify-publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node --experimental-vm-modules scripts/check-ui.cjs
+      - run: TZ=America/New_York node scripts/check-schedule.cjs
+      - run: npm install --no-save playwright
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/check-brief.cjs
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install google-auth requests
+      - run: python scripts/publish_purchasing.py
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: purchasing-publication-${{ github.run_id }}
+          path: hosting-test/
+          if-no-files-found: ignore
