@@ -6,7 +6,7 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: obra-manager-hosting-publication
+  group: obra-manager-daily-schedule-publication
   cancel-in-progress: false
 jobs:
   verify-publish:
@@ -22,6 +22,7 @@ jobs:
       - run: npm install --no-save playwright
       - run: npx playwright install --with-deps chromium
       - run: node scripts/check-schedule-layout.cjs
+        timeout-minutes: 2
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
