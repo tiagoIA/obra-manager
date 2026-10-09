@@ -13,7 +13,8 @@
     "expectedName": "PVC Conduit Schedule 40 1/2\"",
     "expectedSku": "ELEC-094",
     "basis": "PVC electrical conduit family; example IPEX Scepter bell-end conduit. Confirm recorded trade size and Schedule 40/80 wall thickness",
-    "photoReferenceNote": "Family reference — confirm model. PVC electrical conduit family; example IPEX Scepter bell-end conduit. Confirm recorded trade size and Schedule 40/80 wall thickness. This photo does not identify stock or establish compatibility."
+    "photoReferenceNote": "Family reference — confirm model. PVC electrical conduit family; example IPEX Scepter bell-end conduit. Confirm recorded trade size and Schedule 40/80 wall thickness. This photo does not identify stock or establish compatibility.",
+    "allowDocumentMetadataChange": true
   },
   {
     "key": "pvc-pdf",
@@ -29,7 +30,8 @@
     "expectedName": "PVC Conduit Schedule 40 3/4\"",
     "expectedSku": "ELEC-095",
     "basis": "PVC electrical conduit family; example IPEX Scepter bell-end conduit. Confirm recorded trade size and Schedule 40/80 wall thickness",
-    "photoReferenceNote": "Family reference — confirm model. PVC electrical conduit family; example IPEX Scepter bell-end conduit. Confirm recorded trade size and Schedule 40/80 wall thickness. This photo does not identify stock or establish compatibility."
+    "photoReferenceNote": "Family reference — confirm model. PVC electrical conduit family; example IPEX Scepter bell-end conduit. Confirm recorded trade size and Schedule 40/80 wall thickness. This photo does not identify stock or establish compatibility.",
+    "allowDocumentMetadataChange": true
   },
   {
     "key": "pvc-pdf",
@@ -45,6 +47,7 @@
     "expectedName": "PVC Conduit Schedule 80 3/4\"",
     "expectedSku": "ELEC-096",
     "basis": "PVC electrical conduit family; example IPEX Scepter bell-end conduit. Confirm recorded trade size and Schedule 40/80 wall thickness",
-    "photoReferenceNote": "Family reference — confirm model. PVC electrical conduit family; example IPEX Scepter bell-end conduit. Confirm recorded trade size and Schedule 40/80 wall thickness. This photo does not identify stock or establish compatibility."
+    "photoReferenceNote": "Family reference — confirm model. PVC electrical conduit family; example IPEX Scepter bell-end conduit. Confirm recorded trade size and Schedule 40/80 wall thickness. This photo does not identify stock or establish compatibility.",
+    "allowDocumentMetadataChange": true
   }
 ]
