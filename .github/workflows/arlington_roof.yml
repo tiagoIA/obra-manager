@@ -1,0 +1,20 @@
+name: Add Arlington Roof scope
+on:
+  push:
+    branches: [feature/purchasing-costs-2026-10-09]
+    paths: ['scripts/add_arlington_roof.py', '.github/workflows/arlington_roof.yml']
+permissions:
+  contents: read
+jobs:
+  roof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install google-cloud-firestore
+      - run: python scripts/add_arlington_roof.py
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
