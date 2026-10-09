@@ -1,0 +1,48 @@
+[
+  {
+    "key": "beam",
+    "part": "AX-100PLUS",
+    "title": "AX-100PLUS",
+    "sourceUrl": "https://optexamerica.com/products/intrusion-detection/ax-100plus",
+    "photoSourceUrl": "https://cdn.prod.website-files.com/67f908f283cfa9bab814a30b/68b918a9532093dd8a97dccb_6869520f12c0826fa8ac5d27_AX-PLUS.webp",
+    "photoSha256": "d7b1ca797beda57ea49fd1e16729798d8fcfd5efb68ac1c7350edcca173a59d3",
+    "index": 0,
+    "id": "rrtxCr7nOLzVO4i7Taaf",
+    "expectedName": "Perimeter Beam Sensor",
+    "expectedSku": "FIRE-072",
+    "basis": "Perimeter photoelectric beam sensor family; example Optex AX-100PLUS; confirm range and configuration",
+    "photoReferenceNote": "Family reference — confirm model. Perimeter photoelectric beam sensor family; example Optex AX-100PLUS; confirm range and configuration. This photo does not identify stock or establish compatibility."
+  },
+  {
+    "key": "exit",
+    "part": "EEB",
+    "sourceUrl": "https://www.securitron.com/content/dam/assa-abloy/americas/ems/securitron/document/AADSS1058034.pdf",
+    "photoSourceUrl": "https://www.securitron.com/content/dam/assa-abloy/americas/ems/securitron/document/AADSS1058034.pdf",
+    "photoDocumentSha256": "0e3103a258c70fe21da7bc1ad8a11f881fc1add2f6b40e7191e7ae550c166618",
+    "photoImageXref": 362,
+    "page": 1,
+    "photoSha256": "bc09e8ac356972be1cbee26fec4510a961e911ffe711f0cb8698270879cd9b86",
+    "index": 6,
+    "id": "wYycGvB3ANFwSxCapMN2",
+    "expectedName": "Request to Exit Button (REX)",
+    "expectedSku": "FIRE-087",
+    "basis": "Request-to-exit pushbutton family; example Securitron EEB2; confirm wiring and release requirements",
+    "photoReferenceNote": "Family reference — confirm model. Request-to-exit pushbutton family; example Securitron EEB2; confirm wiring and release requirements. This photo does not identify stock or establish compatibility."
+  },
+  {
+    "key": "exit",
+    "part": "EEB",
+    "sourceUrl": "https://www.securitron.com/content/dam/assa-abloy/americas/ems/securitron/document/AADSS1058034.pdf",
+    "photoSourceUrl": "https://www.securitron.com/content/dam/assa-abloy/americas/ems/securitron/document/AADSS1058034.pdf",
+    "photoDocumentSha256": "0e3103a258c70fe21da7bc1ad8a11f881fc1add2f6b40e7191e7ae550c166618",
+    "photoImageXref": 362,
+    "page": 1,
+    "photoSha256": "bc09e8ac356972be1cbee26fec4510a961e911ffe711f0cb8698270879cd9b86",
+    "index": 6,
+    "id": "QL1DFKh3Ont6a4vbeWyB",
+    "expectedName": "Door Release Button",
+    "expectedSku": "FIRE-088",
+    "basis": "Door-release pushbutton family; example Securitron EEB2; confirm wiring and lock compatibility",
+    "photoReferenceNote": "Family reference — confirm model. Door-release pushbutton family; example Securitron EEB2; confirm wiring and lock compatibility. This photo does not identify stock or establish compatibility."
+  }
+]
