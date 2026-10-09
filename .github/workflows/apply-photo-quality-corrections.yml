@@ -1,0 +1,22 @@
+name: Correct three reviewed wrong-family material photos
+on:
+  push:
+    branches: [feature/lista-guiada-v1]
+    paths: [.github/workflows/apply-photo-quality-corrections.yml]
+permissions:
+  contents: read
+concurrency:
+  group: obra-material-enrichment
+  cancel-in-progress: false
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install google-auth google-cloud-storage requests pillow pymupdf
+      - run: python scripts/apply-photo-quality-corrections.py
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          PHOTO_MANIFEST: photo-quality-corrections-approved.json
+          PHOTO_EXPECTED_COUNT: '3'
