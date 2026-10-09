@@ -1,0 +1,20 @@
+name: Audit unresolved material identities
+on:
+  push:
+    branches: [feature/lista-guiada-v1]
+    paths: [.github/workflows/audit-material-identities.yml]
+permissions:
+  contents: read
+concurrency:
+  group: obra-material-enrichment
+  cancel-in-progress: false
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install google-auth requests pillow
+      - run: python scripts/audit-unresolved-material-identities.py
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
