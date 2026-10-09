@@ -1,0 +1,72 @@
+[
+  {
+    "key": "rod",
+    "part": "ROD12",
+    "url": "https://lhdottie.com/threaded-rod/rod12"
+  },
+  {
+    "key": "anchor",
+    "part": "14H114",
+    "url": "https://lhdottie.com/hex-head-concrete-screw/14h114"
+  },
+  {
+    "key": "piercing",
+    "part": "IPCS1002",
+    "url": "https://nsiindustries.com/product/polaris-ipcs1002-insulation-piercing-conn-1-0-2-awg/"
+  },
+  {
+    "key": "speaker-wire",
+    "part": "speaker",
+    "url": "https://www.southwire.com/wire-cable/low-voltage-cable/flat-speaker-wire-cl3/p/94603L118"
+  },
+  {
+    "key": "doorbell",
+    "part": "D130",
+    "url": "https://us.store.tapo.com/products/tapo-d130-doorbell"
+  },
+  {
+    "key": "wireless-panel",
+    "part": "PROA7PLUS",
+    "url": "https://www.resideo.com/us/en/home-solutions/security-solutions/theft-prevention-system/"
+  },
+  {
+    "key": "communicator",
+    "part": "LTEM-PV",
+    "url": "https://www.resideo.com/us/en/pro/products/security/communicators/ltem-pv-advanced-modular-communicator-verizon-ltem-pv/"
+  },
+  {
+    "key": "duct-smoke",
+    "part": "InnovairFlex",
+    "url": "https://buildings.honeywell.com/us/en/products/by-category/fire-life-safety/sensors-and-detectors/conventional-detectors/duct-detectors/innovairflex-4-wire-duct-smoke-detector"
+  },
+  {
+    "key": "waterflow",
+    "part": "WFD20",
+    "url": "https://www.honeywellbuildings.com/fire/fire-detection-and-alarm-system/system-sensor/sprinkler"
+  },
+  {
+    "key": "base",
+    "part": "B300",
+    "url": "https://secutron.com/products/select-series-mounting-bases-and-accessories/?country=usa"
+  },
+  {
+    "key": "power-supply",
+    "part": "AL400ULX",
+    "url": "https://www.altronix.com/products/AL400ULX"
+  },
+  {
+    "key": "ptz",
+    "part": "C540",
+    "url": "https://www.vigi.com/us/business-networking/vigi-network-camera/vigi-c540/"
+  },
+  {
+    "key": "access",
+    "part": "C3",
+    "url": "https://www.zktecousa.com/c3"
+  },
+  {
+    "key": "annunciator",
+    "part": "RAX-LCD",
+    "url": "https://mircom.com/product-listing/fire-alarm-detection/09-remote-annunciators/rax-lcd-remote-shared-display/"
+  }
+]
