@@ -1,5 +1,5 @@
 // One report contract for every unit. No remote summarization and no record mutations.
-import {translateText,translations} from './unit-report-language.js?v=3';
+import {translateText,translations} from './unit-report-language.js?v=4';
 const clean=v=>String(v??'').trim();
 const safeURL=v=>{try{const u=new URL(String(v),'https://example.invalid');return ['http:','https:'].includes(u.protocol)?String(v):'';}catch{return '';}};
 const escape=v=>clean(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
