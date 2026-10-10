@@ -79,10 +79,10 @@ export function translateText(value,language='en') {
  if(dated)return 'Tarefas vinculadas agendadas — '+dated[1];
  const count=key.match(/^(📸 |✅ |⏳ )?(\d+) (tasks|done|pending|photos|purchase items pending)$/);
  if(count)return (count[1]||'')+count[2]+' '+({tasks:'tarefas',done:'concluídas',pending:'pendentes',photos:'fotos','purchase items pending':'itens de compra pendentes'}[count[3]]);
- const badge=key.match(/^(✅ |⏳ |⚡ |🔥 |🔍 |🔧 )(.+)$/);
- if(badge)return badge[1]+translateText(badge[2],language);
  const section=key.match(/^(⏳ PENDING|✅ COMPLETED) \((\d+)\)$/);
  if(section)return (section[1].startsWith('⏳')?'⏳ PENDENTES':'✅ CONCLUÍDAS')+' ('+section[2]+')';
+ const badge=key.match(/^(✅ |⏳ |⚡ |🔥 |🔍 |🔧 )(.+)$/);
+ if(badge)return badge[1]+translateText(badge[2],language);
  if(key==='📸 PHOTO TIMELINE')return '📸 LINHA DO TEMPO DE FOTOS';
  if(key==='DONE')return 'CONCLUÍDO'; if(key==='PENDING')return 'PENDENTE';
  const date=key.match(/^(January|February|March|April|May|June|July|August|September|October|November|December) (\d{1,2}), (\d{4})$/);
