@@ -12986,7 +12986,7 @@ onAuthStateChanged(auth,user=>{if(!user)window.receiptReview?.close();});
 
 // Guided shopping integration: uses existing collections and authentication.
 import {writeBatch, runTransaction} from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
-import {installGuidedShopping} from '/guided-shopping-v1.js?v=9';
+import {installGuidedShopping} from '/guided-shopping-v1.js?v=10';
 onAuthStateChanged(auth,user=>{if(!user)document.getElementById('guided-shopping-dialog')?.remove();});
 installGuidedShopping({
  userId:()=>auth.currentUser?.uid||null,
@@ -13031,8 +13031,8 @@ installGuidedShopping({
 });
 
 // Expanded product catalog and purchasing documents use the same central material records.
-import {installCentralCatalog, materialSearchText, displayUnit, shoppingPhoto} from '/central-catalog-v1.js?v=9';
-import {materialUses} from '/guided-shopping-v1.js?v=9';
+import {installCentralCatalog, materialSearchText, displayUnit, shoppingPhoto} from '/central-catalog-v1.js?v=10';
+import {materialUses} from '/guided-shopping-v1.js?v=10';
 onAuthStateChanged(auth,user=>{if(!user)document.getElementById('central-material-dialog')?.remove();});
 installCentralCatalog({
  materials:()=>purchasingMaterials(),canEdit:()=>hasRole('owner'),inferredUses:materialUses,

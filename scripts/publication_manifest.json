@@ -2,15 +2,12 @@
   "files": [
     "index.html",
     "central-catalog-v1.js",
-    "guided-shopping-v1.js",
-    "purchasing-reference/roof-metal-box.jpg",
-    "purchasing-reference/roof-mc-connector.jpg"
+    "guided-shopping-v1.js"
   ],
   "baseline": {
-    "index.html": "96e2ef73661489cd9a4c58ce27ab3c270bedadbb8fd00f117006c98d6b96b6be",
-    "central-catalog-v1.js": "ea39346c974e311fdfee400bb4cce55ad8d8d01736fc09c7694d4797cd490006",
-    "guided-shopping-v1.js": "8b3abd6e9a46b81159a8ffda599b32aa5ba8084d42d21c079b8d9f5a50098c29",
-    "unit-report-structure.js": "4783d0b732102b6ac686da802404b12fc8b4fb5b15e8c1784f2e3280478e6305"
+    "index.html": "4739bd880c3496d76126cc2afa9003793710043c3053e23995e14e25d0f242e0",
+    "central-catalog-v1.js": "ba8aaccd8f55c2a8725603d0f08229f0ba05590b20ba76bd0f4cc288de8c37e4",
+    "guided-shopping-v1.js": "0593c6d7e1f55958c22632a8dfb5a2f4f608d89af1fe9eb112eff8b95ea2b209"
   },
-  "message": "Restore supplier purchasing list with job name, real reference photos and preserved Roof quantities"
+  "message": "Compact supplier list columns and remove repeated photo-reference explanations"
 }
