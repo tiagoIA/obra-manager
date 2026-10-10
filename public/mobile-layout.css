@@ -26,3 +26,11 @@
 
 #file-input,#ba-input,#nf-input,#mat-photo-input{display:none}
 @media screen and (max-width:768px){#room-view button:not([class]),#room-view .btn-sm{background:var(--sur2);color:var(--txt);border:1px solid var(--bdr);border-radius:8px;padding:10px 12px;line-height:1.35;cursor:pointer}.mat-card-name{font-size:14px!important;line-height:1.4}.mat-card-sub,.mat-sku{font-size:12px!important}.notif{bottom:calc(88px + env(safe-area-inset-bottom))!important}}
+
+
+/* Home keeps primary actions visible above the fold and the navigation accessible. */
+@media screen and (max-width:768px){
+ #home-overlay{bottom:calc(var(--mobile-nav-height) + env(safe-area-inset-bottom));padding-bottom:16px!important}.bottom-nav{z-index:285}#more-menu{z-index:286!important}
+ .home-page-hdr{padding:14px 12px 0}.home-page-name{font-size:24px!important;letter-spacing:1px}.home-page-proj{margin-bottom:6px}.home-proj-select{min-height:44px}.home-kpi-strip{gap:6px;margin:10px 0}.home-kpi-chip{padding:7px 10px;min-width:60px}.home-kpi-chip-val{font-size:20px}.home-kpi-chip-lbl{font-size:9px}.home-recent{margin-bottom:12px;font-size:12px}.home-recent>summary{padding:8px 0;cursor:pointer}.home-nav-grid{gap:8px;padding:0 12px 12px}.home-nav-btn{padding:12px;gap:5px;min-height:96px;border-radius:12px}.home-nav-btn.wide{grid-column:auto}.home-nav-icon{font-size:23px}.home-nav-label{font-family:'DM Sans',sans-serif;font-size:14px;letter-spacing:0;font-weight:700;line-height:1.2}.home-nav-sub{font-size:11px;line-height:1.35}.home-nav-badge{top:6px;right:6px}.home-rem-strip{margin:0 12px 10px}.home-nav-btn.accent{border:2px solid var(--elec)}
+ .sv-code-found{font-size:15px;font-weight:700;background:#29381d;border:1px solid #639922;border-radius:8px;padding:10px;color:#e0f8be}.sv-code-missing,.sv-store-warning{padding:10px;border-left:3px solid var(--elec);background:var(--sur2);font-size:13px;line-height:1.5}.cc-sharing-controls{margin-top:0;margin-bottom:14px;padding-top:0;border-top:0}.cc-sharing-controls .cc-actions{margin-top:8px}#sv-product-dialog .modal{width:100%;max-width:640px}#sv-product-dialog .sv-button{width:100%;margin-top:8px;text-align:left}#sv-product-dialog .m-actions{display:flex;gap:8px}
+}

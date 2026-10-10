@@ -1,5 +1,5 @@
 import {estimateList,money,supplierName} from './purchasing-core.js?v=2';
-import {shoppingPhoto} from './central-catalog-v1.js?v=14';
+import {shoppingPhoto} from './central-catalog-v1.js?v=15';
 // Guided Shopping v1: isolated UI; persistence is provided by the existing app.
 export const PRESETS = [
  ['panel','Panel replacement','eletrica',['Compatible panel and cover','Breakers by circuit','Entry connectors','Circuit identification'],['Existing and new manufacturer/model','Circuits and poles; reused items']],
