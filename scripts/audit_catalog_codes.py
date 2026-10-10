@@ -7,7 +7,7 @@ from google.oauth2 import service_account
 key=json.loads(os.environ['FIREBASE_SA'])
 assert key['project_id']=='obra-manager-4ecc7'
 db=firestore.Client(project=key['project_id'],credentials=service_account.Credentials.from_service_account_info(key))
-safe_fields={'name','sku','gceCode','brand','manufacturerPart','model','upc','unit','cat','isTask','recordType','active','status','catalogReviewStatus','sourceUrl'}
+safe_fields={'name','sku','gceCode','brand','manufacturerPart','model','upc','unit','cat','isTask','recordType','active','status','catalogReviewStatus','sourceUrl','company','description','materialId','code'}
 ref_fields={'name','code','internetId','aliasCodes','matchVerified','url','unit'}
 out={'collections':{},'storeCounts':{},'storeVerifiedCounts':{},'codedMaterialCount':0,'roof':{}}
 for collection in ['materials','productDB']:
