@@ -10,7 +10,7 @@ assert.equal(vm.runInContext("fieldAuthor('u1')",context),'u1');
 assert.equal(vm.runInContext('fieldAuthor()',context),'User');
 context.window._cachedUsers=[{id:'u1',name:'Technician'}];
 assert.equal(vm.runInContext("fieldAuthor('u1')",context),'Technician');
-const report=html.slice(html.indexOf('window.generateUnitReport=(rid)=>{'),html.indexOf('window.generateReport=()=>'));
+const report=html.slice(html.indexOf('window.generateUnitReport='),html.indexOf('window.generateReport=()=>'));
 vm.runInContext(report,context);context.window.generateUnitReport('roof');
 assert.equal(nodes.open,'open');
 for(const text of ['Machines already installed','Install disconnects and two outlets','Existing supply above rooftop','Technician','before1.jpg','before2.jpg','Check circuits'])assert(nodes['pdf-content'].innerHTML.includes(text),text+' missing from unit report');
@@ -26,3 +26,4 @@ const right={workScope:'Connect',before:'Found',checklist:{access:'yes',circuits
 assert.equal(scopeContext.compareScope(left),scopeContext.compareScope(right),'Firestore map key ordering must not produce a false conflict');
 for(const changed of [{...right,before:'Changed'}, {...right,checklist:{access:'no',circuits:''}}, {...right,photos:[{type:'image',name:'Different',url:'image.jpg'}]}])assert.notEqual(scopeContext.compareScope(left),scopeContext.compareScope(changed),'Real concurrent edits must still be protected');
 console.log('PASS: scope comparison ignores map key order and detects real content changes.');
+

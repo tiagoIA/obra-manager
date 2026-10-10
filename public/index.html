@@ -725,7 +725,8 @@ body{background:var(--bg);color:var(--txt);font-family:'DM Sans',sans-serif;min-
 /* PDF */
 #pdf-report,#shop-pdf{display:none;position:fixed;inset:0;background:#f0f2f5;z-index:9000;overflow-y:auto;padding-top:56px;}
 #pdf-report.open,#shop-pdf.open{display:block;}
-.pdf-topbar{position:fixed;top:0;left:0;right:0;height:56px;display:flex;align-items:center;justify-content:flex-end;gap:8px;padding:0 16px;z-index:9001;background:#3A3A37;border-bottom:1px solid #4A4A46;}
+#unit-report-language-control[hidden]{display:none!important;}
+.pdf-topbar{position:fixed;top:0;left:0;right:0;min-height:56px;height:auto;display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:8px;padding:0 16px;z-index:9001;background:#3A3A37;border-bottom:1px solid #4A4A46;}
 .pdf-btn{border:none;border-radius:7px;padding:8px 16px;cursor:pointer;font-size:12px;font-weight:600;white-space:nowrap;}
 .pdf-btn.close{background:var(--bg);color:var(--txt);border:1px solid var(--bdr);}
 .pdf-btn.close:hover{border-color:var(--fire);color:var(--fire);}
@@ -2437,6 +2438,7 @@ button, a, [onclick], .btn-g, .bn-item, .home-nav-btn,
 </div>
 <div id="pdf-report">
   <div class="pdf-topbar">
+    <label id="unit-report-language-control" hidden style="color:#fff;font-size:12px;display:flex;align-items:center;gap:6px"><span>PDF language / Idioma</span><select id="unit-report-language" aria-label="PDF language / Idioma" style="min-height:36px;border-radius:6px;padding:4px"><option value="en">English</option><option value="pt">Português</option></select></label>
     <button class="pdf-btn print" onclick="window.printPDF()">🖨️ Print / PDF</button>
     <button class="pdf-btn close" onclick="document.getElementById('pdf-report').classList.remove('open')">✕ Close</button>
   </div>
@@ -10632,6 +10634,7 @@ function getFilteredData(){
 }
 
 window.generateFilteredReport=()=>{
+  window.unitReportLanguage?.reset();
   const selPid=rptProjId&&rptProjId!=='all'?rptProjId:activePid;
   if(!selPid){notif('Select a project first','e');return;}
   const proj=projects[selPid];
@@ -11241,7 +11244,7 @@ window.printPDF=function(type){
   if(!w)return;
 
   w.document.write(
-    '<!DOCTYPE html><html><head><meta charset="utf-8">'+
+    '<!DOCTYPE html><html lang="'+(contentEl.lang||'en')+'"><head><meta charset="utf-8">'+
     '<title>Obra Manager — Report</title>'+
     linkTags+
     '<style>'+
@@ -11334,8 +11337,9 @@ window.exportRptCSV=function(){
   notif('CSV exportado!','s');
 };
 
-window.generateUnitReport=(rid)=>{
+window.generateUnitReport=(rid,language='en')=>{
   const room=rooms[rid];if(!room)return;
+  const narrative=v=>'<span data-report-narrative="'+x(v)+'">'+x(v)+'</span>';
   const proj=projects[room.projectId];
   const tasks=Object.values(allTasks).filter(t=>t.roomId===rid);
   const done=tasks.filter(t=>t.done);
@@ -11357,8 +11361,8 @@ window.generateUnitReport=(rid)=>{
   // ── HEADER ──
   let html='<div class="rpt-hdr">'
     +'<div><div class="rpt-logo">⚡ OBRA <span>MANAGER</span> 🔥</div>'
-    +'<div class="rpt-proj">'+(proj?x(proj.name):'')+'</div>'
-    +(proj&&proj.address?'<div class="rpt-addr">📍 '+x(proj.address)+'</div>':'')
+    +'<div class="rpt-proj">'+(proj?'<span data-report-keep-original>'+x(proj.name)+'</span>':'')+'</div>'
+    +(proj&&proj.address?'<div class="rpt-addr">📍 '+'<span data-report-keep-original>'+x(proj.address)+'</span>'+'</div>':'')
     +'</div>'
     +'<div class="rpt-meta" style="text-align:right">'
     +'<strong>Unit Report</strong><br>'+now+'<br>'+(room.floor||'')
@@ -11368,9 +11372,9 @@ window.generateUnitReport=(rid)=>{
   // ── UNIDADE HERO ──
   html+='<div style="background:#f8f9fa;border-radius:14px;padding:22px;margin-bottom:20px;border:1px solid #e5e7eb">'
     +'<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">'
-    +'<div style="font-size:32px;font-weight:900;letter-spacing:-1px">'+x(room.name)+'</div>'
+    +'<div style="font-size:32px;font-weight:900;letter-spacing:-1px">'+'<span data-report-keep-original>'+x(room.name)+'</span>'+'</div>'
     +'<div style="text-align:right"><div style="font-size:36px;font-weight:900;color:'+barC+'">'+pct+'%</div>'
-    +'<div style="font-size:10px;color:#888;letter-spacing:1px">PROGRESSO</div></div>'
+    +'<div style="font-size:10px;color:#888;letter-spacing:1px">PROGRESS</div></div>'
     +'</div>'
     +'<div class="rpt-big-bar" style="margin-bottom:14px"><div class="rpt-big-bar-fill" style="width:'+pct+'%;background:'+barC+'">'+pct+'%</div></div>'
     +'<div style="display:flex;gap:10px;flex-wrap:wrap">'
@@ -11386,7 +11390,7 @@ window.generateUnitReport=(rid)=>{
     .sort((a,b)=>(b.doneAt||b.createdAt||'').localeCompare(a.doneAt||a.createdAt||''));
   if(timelineTasks.length){
     html+='<div style="margin-bottom:24px">'
-      +'<div style="font-size:11px;font-weight:700;color:#555;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;border-bottom:2px solid #e5e7eb;padding-bottom:6px">📸 LINHA DO TEMPO DE FOTOS</div>';
+      +'<div style="font-size:11px;font-weight:700;color:#555;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;border-bottom:2px solid #e5e7eb;padding-bottom:6px">📸 PHOTO TIMELINE</div>';
     timelineTasks.forEach(t=>{
       const cc=catColor[t.cat]||'#888';
       const lbl=catLbl[t.cat]||t.cat;
@@ -11398,7 +11402,7 @@ window.generateUnitReport=(rid)=>{
         +'<span style="background:'+cc+'22;color:'+cc+';font-size:9px;font-weight:700;padding:3px 8px;border-radius:10px">'+lbl+'</span>'
         +(t.doneAt?'<span style="font-size:10px;color:#888">'+t.doneAt+'</span>':'')
         +'</div>'
-        +'<div style="font-size:14px;font-weight:800;margin-bottom:8px">'+x(t.name)+'</div>'
+        +'<div style="font-size:14px;font-weight:800;margin-bottom:8px">'+narrative(t.name)+'</div>'
         +'<div style="display:flex;flex-wrap:wrap;gap:8px">'
         +t.photos.map(src=>'<img src="'+src+'" style="width:140px;height:105px;object-fit:contain;background:#f8fafc;border-radius:8px;border:1px solid #e5e7eb" loading="eager">').join('')
         +'</div></div>';
@@ -11408,24 +11412,24 @@ window.generateUnitReport=(rid)=>{
 
   html+=(window.unitFollowup?.report(rid)||'');
   const initialPhotos=evidenceRows({photoUrl:room.photos?.before,photos:room.scopeBrief?.photos||[]}).filter(p=>p.type==='image');
-  if(initialPhotos.length)html+='<div style="margin-bottom:24px"><h3>BEFORE INSTALLATION — initial conditions</h3><p>'+x(room.scopeBrief?.before||'Original unit conditions before work starts.')+'</p><div style="display:flex;flex-wrap:wrap;gap:10px">'+initialPhotos.map(p=>'<img src="'+x(p.url)+'" style="width:160px;height:120px;object-fit:contain" alt="Before installation">').join('')+'</div></div>';
+  if(initialPhotos.length)html+='<div style="margin-bottom:24px"><h3>BEFORE INSTALLATION — initial conditions</h3><p>'+narrative(room.scopeBrief?.before||'Original unit conditions before work starts.')+'</p><div style="display:flex;flex-wrap:wrap;gap:10px">'+initialPhotos.map(p=>'<img src="'+x(p.url)+'" style="width:160px;height:120px;object-fit:contain" alt="Before installation">').join('')+'</div></div>';
 
-  html+='<div style="margin-bottom:24px"><h3>Initial assessment / work scope</h3>'+['initialAnalysis','before','difficulties','impact','nextStep','workScope','observations'].filter(k=>room.scopeBrief?.[k]).map(k=>'<p style="white-space:pre-wrap"><b>'+x({initialAnalysis:'Initial assessment',before:'Initial conditions',difficulties:'Difficulties',impact:'Impact',nextStep:'Next step',workScope:'Work scope',observations:'Items to verify'}[k])+':</b> '+x(room.scopeBrief[k])+'</p>').join('')+evidenceReport({attachments:room.scopeBrief?.attachments||[]})+'</div>';
-  html+='<div style="margin-bottom:24px"><h3>Field records</h3>'+notes.map(n=>'<section style="page-break-inside:avoid;margin-bottom:18px"><h4>'+phaseLabel(n.phase)+'</h4><p>'+x(n.savedAt||'')+' · '+x(fieldAuthor(n.createdBy)||'')+'</p>'+[n.text||n.transcript,n.difficulties&&'Difficulties: '+n.difficulties,n.impact&&'Impact: '+n.impact,n.nextStep&&'Next step: '+n.nextStep].filter(Boolean).map(t=>'<p style="white-space:pre-wrap">'+x(t)+'</p>').join('')+evidenceReport(n)+'</section>').join('')+'</div>';
+  html+='<div style="margin-bottom:24px"><h3>Initial assessment / work scope</h3>'+['initialAnalysis','before','difficulties','impact','nextStep','workScope','observations'].filter(k=>room.scopeBrief?.[k]).map(k=>'<p style="white-space:pre-wrap"><b>'+x({initialAnalysis:'Initial assessment',before:'Initial conditions',difficulties:'Difficulties',impact:'Impact',nextStep:'Next step',workScope:'Work scope',observations:'Items to verify'}[k])+':</b> '+narrative(room.scopeBrief[k])+'</p>').join('')+evidenceReport({attachments:room.scopeBrief?.attachments||[]})+'</div>';
+  html+='<div style="margin-bottom:24px"><h3>Field records</h3>'+notes.map(n=>'<section style="page-break-inside:avoid;margin-bottom:18px"><h4>'+phaseLabel(n.phase)+'</h4><p>'+x(n.savedAt||'')+' · '+'<span data-report-keep-original>'+x(fieldAuthor(n.createdBy)||'')+'</span>'+'</p>'+[n.text||n.transcript,n.difficulties&&'Difficulties: '+n.difficulties,n.impact&&'Impact: '+n.impact,n.nextStep&&'Next step: '+n.nextStep].filter(Boolean).map(t=>'<p style="white-space:pre-wrap">'+narrative(t)+'</p>').join('')+evidenceReport(n)+'</section>').join('')+'</div>';
 
   // ── TASKS PENDENTES ──
   if(todo.length){
     html+='<div style="margin-bottom:20px">'
-      +'<div style="font-size:11px;font-weight:700;color:#dc2626;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;border-bottom:2px solid #fee2e2;padding-bottom:6px">⏳ PENDENTES ('+todo.length+')</div>'
+      +'<div style="font-size:11px;font-weight:700;color:#dc2626;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;border-bottom:2px solid #fee2e2;padding-bottom:6px">⏳ PENDING ('+todo.length+')</div>'
       +'<table style="width:100%;border-collapse:collapse;font-size:12px">'
       +'<thead><tr style="background:#fef2f2"><th style="padding:8px 12px;text-align:left;border-bottom:2px solid #fecaca">Task</th><th style="padding:8px 12px;text-align:left;border-bottom:2px solid #fecaca">Category</th><th style="padding:8px 12px;text-align:left;border-bottom:2px solid #fecaca">Technician</th></tr></thead><tbody>'
       +todo.map(t=>{
         const u=t.assignedTo?users.find(u=>u.id===t.assignedTo):null;
         const cc=catColor[t.cat]||'#888';
         return'<tr style="border-bottom:1px solid #f3f4f6">'
-          +'<td style="padding:8px 12px;font-weight:600">'+x(t.name)+'</td>'
+          +'<td style="padding:8px 12px;font-weight:600">'+narrative(t.name)+'</td>'
           +'<td style="padding:8px 12px"><span style="background:'+cc+'22;color:'+cc+';padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700">'+(catLbl[t.cat]||t.cat)+'</span></td>'
-          +'<td style="padding:8px 12px;font-size:11px;color:#666">'+(u?x(u.name||u.email):'—')+'</td>'
+          +'<td style="padding:8px 12px;font-size:11px;color:#666">'+(u?'<span data-report-keep-original>'+x(u.name||u.email)+'</span>':'—')+'</td>'
           +'</tr>';
       }).join('')
       +'</tbody></table></div>';
@@ -11434,13 +11438,13 @@ window.generateUnitReport=(rid)=>{
   // ── TASKS CONCLUÍDAS ──
   if(done.length){
     html+='<div style="margin-bottom:20px">'
-      +'<div style="font-size:11px;font-weight:700;color:#16a34a;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;border-bottom:2px solid #bbf7d0;padding-bottom:6px">✅ CONCLUÍDAS ('+done.length+')</div>'
+      +'<div style="font-size:11px;font-weight:700;color:#16a34a;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;border-bottom:2px solid #bbf7d0;padding-bottom:6px">✅ COMPLETED ('+done.length+')</div>'
       +'<table style="width:100%;border-collapse:collapse;font-size:12px">'
       +'<thead><tr style="background:#f0fdf4"><th style="padding:8px 12px;text-align:left;border-bottom:2px solid #bbf7d0">Task</th><th style="padding:8px 12px;text-align:left;border-bottom:2px solid #bbf7d0">Category</th><th style="padding:8px 12px;text-align:left;border-bottom:2px solid #bbf7d0">Completed</th><th style="padding:8px 12px;text-align:center;border-bottom:2px solid #bbf7d0">Photos</th></tr></thead><tbody>'
       +done.map(t=>{
         const cc=catColor[t.cat]||'#888';
         return'<tr style="border-bottom:1px solid #f3f4f6">'
-          +'<td style="padding:8px 12px;text-decoration:line-through;color:#888">'+x(t.name)+'</td>'
+          +'<td style="padding:8px 12px;text-decoration:line-through;color:#888">'+narrative(t.name)+'</td>'
           +'<td style="padding:8px 12px"><span style="background:'+cc+'22;color:'+cc+';padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700">'+(catLbl[t.cat]||t.cat)+'</span></td>'
           +'<td style="padding:8px 12px;font-size:11px;color:#666">'+(t.doneAt||'')+'</td>'
           +'<td style="padding:8px 12px;text-align:center;font-size:11px;color:#2563eb">'+(t.photos&&t.photos.length?'📸 '+t.photos.length:'—')+'</td>'
@@ -11449,8 +11453,8 @@ window.generateUnitReport=(rid)=>{
       +'</tbody></table></div>';
   }
 
-  html+='<div class="rpt-footer"><span>Obra Manager — '+x(room.name)+'</span><span>'+now+'</span></div>';
-  document.getElementById('pdf-content').innerHTML=html;
+  html+='<div class="rpt-footer"><span>Obra Manager — '+'<span data-report-keep-original>'+x(room.name)+'</span>'+'</span><span>'+now+'</span></div>';
+  document.getElementById('pdf-content').innerHTML=window.unitReportLanguage?.render(html,language,rid)||html;
   document.getElementById('pdf-report').classList.add('open');
 };
 
@@ -13057,6 +13061,8 @@ function beforeInstallationPhotos(room){const rows=[...(room?.photos?.before?[{u
 // Multi-photo observations keep one record for the whole batch.
 import {installNotePhotos,notePhotoRows} from '/note-photos.js?v=2';
 import {installProjectBrief} from '/project-brief.js?v=1';
+import {installUnitReportLanguage} from '/unit-report-language.js?v=1';
+installUnitReportLanguage();
 import {evidenceRows,evidenceReport,phaseLabel} from '/field-media.js?v=1';
 async function uploadFieldEvidence(folder,files,progress=()=>{}){
  const rows=[];
@@ -13311,4 +13317,5 @@ window.toggleDoneSection=function(){
 <div id="st-modal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;width:100%;height:100%;z-index:8510;background:rgba(0,0,0,.6);flex-direction:column;align-items:flex-end;justify-content:center;-webkit-overflow-scrolling:touch" onclick="if(event.target===this){this.style.display='none';this.innerHTML=''}"></div>
 </body>
 </html>
+
 
