@@ -1,5 +1,11 @@
 // Reviewed report translations. No remote processing; project records stay unchanged.
 const entries = [
+ ["Rooftop HVAC equipment and existing supply cables were present before this work.", "As máquinas de ar-condicionado e os cabos de alimentação existentes já estavam no teto antes deste trabalho."],
+ ["Install the new supply cable for the HVAC unit serving store 06; complete the disconnect/liquidtight connections and final checks. Confirm separately the other rooftop unit and the two outlet circuits.", "Instalar o novo cabo de alimentação da máquina que atende a loja 06; concluir as conexões de disconnect/liquidtight e as verificações finais. Confirmar separadamente a outra máquina no teto e os circuitos das duas tomadas."],
+ ["Investigated the existing rooftop supply cables in the crawlspace and store 06 basement. Attempted continuity testing and inspected junction boxes. Photos and the original investigation video were recorded.", "Investigação dos cabos existentes no crawlspace e no basement da loja 06. Foram realizados tentativa de teste de continuidade e inspeção de junction boxes. As fotos e o vídeo original da investigação foram registrados."],
+ ["The team reported cut existing supply cables and concluded that a new panel-to-rooftop cable is required for the unit serving store 06. The source panel/circuit has not yet been confirmed.", "A equipe relatou cabos existentes cortados e concluiu que é necessário um novo cabo do painel até a máquina que atende a loja 06. O painel/circuito de origem ainda não foi confirmado."],
+ ["Confirm the serving panel/circuit, HVAC-unit identity, cable specification and route length; prepare the purchase list and schedule the return. Cable replacement, connections and final testing remain pending.", "Confirmar o painel/circuito de origem, a máquina atendida, a especificação do cabo e o comprimento do percurso; preparar a lista de compras e agendar o retorno. A substituição do cabo, as conexões e o teste final permanecem pendentes."],
+
  ['Unit Report','Relatório da unidade'], ['Exterior','Área externa'],
  ['PROGRESS','PROGRESSO'], ['BEFORE INSTALLATION — initial conditions','ANTES DA INSTALAÇÃO — condições iniciais'],
  ['Initial assessment / work scope','Avaliação inicial / escopo do trabalho'], ['Field records','Registros de campo'],

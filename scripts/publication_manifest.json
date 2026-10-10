@@ -1,12 +1,14 @@
 {
   "files": [
     "index.html",
-    "unit-report-language.js"
+    "unit-report-language.js",
+    "unit-followup.js",
+    "unit-report-structure.js"
   ],
   "baseline": {
-    "index.html": "f43103e3941afc7396e42a4276da1461ec0d93a703fb37791b4842fd5133afdf",
+    "index.html": "a8072bae9f2c8459def37c3b6006fe95576ca674b9f8e26e56852f71e3973582",
     "unit-report-language.js": "5328aeffcbe9ef7df27a5622e92f8376ac0b395d03db3e5580b2cdbf8d9d647d",
     "unit-followup.js": "be9da5d4d9ebb0b926b0734151baeb36f45aa0b8db7bf03117fbaaf79e84ad75"
   },
-  "message": "Refresh cached PDF translations after completing Portuguese headings"
+  "message": "Standardize individual unit PDF reports and structured summary inputs"
 }

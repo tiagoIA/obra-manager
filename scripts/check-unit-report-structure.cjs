@@ -1,0 +1,24 @@
+const assert=require('node:assert/strict');
+(async()=>{
+ const m=await import('../public/unit-report-structure.js');
+ const follow=await import('../public/unit-followup.js');
+ const room={id:'u',name:'Office <A>',projectId:'p',scopeBrief:{before:'Existing condition',workScope:'Long original scope retained.'},followUp:{status:'Investigation completed',nextStep:'1. Confirm circuit\n2. Prepare materials',returnNeeded:'yes',reportSummary:{workDone:'Inspection documented.',findings:'New supply needed.',pending:'Verify routing.',workScope:'Replace supply.'},equipment:[{name:'Unit 1',model:'ABC-123',supply:'208–230 V',mca:'26.0 A',maxProtection:'30.0 A',disconnect:'60 A',source:'nameplate'}]}};
+ const state={rooms:{u:room},projects:{p:{name:'Pending'}},tasks:{t:{id:'t',roomId:'u',projectId:'p',name:'Connect supply',done:false,photos:['https://test.invalid/one.jpg']},private:{roomId:'u',projectId:'q',name:'Other project task'}},notes:{n:{roomId:'u',text:'Original extensive historical field record. <script>bad</script>',phase:'during-work',photoUrls:['https://test.invalid/one.jpg'],attachments:[{url:'https://test.invalid/video.mp4',name:'original.mp4',type:'video'}]},q:{roomId:'q',text:'Private note'}},lists:{},items:{}};
+ const evidenceRows=v=>[...(v.photos||[]),...(v.photoUrls||[]),...(v.attachments||[])].map(p=>typeof p==='string'?{url:p,type:'image'}:p);
+ const before=JSON.stringify(state),options={evidenceRows,author:()=>'',now:new Date('2026-10-10T14:00:00Z')};
+ const summary=m.buildUnitReport(room,state,options),full=m.buildUnitReport(room,state,{...options,mode:'complete'});
+ const keys=html=>[...html.matchAll(/data-report-section="([^"]+)"/g)].map(r=>r[1]);
+ assert.deepEqual(keys(summary),['overview','scope','actions','technical','evidence','purchases']);
+ assert.deepEqual(keys(full),[...keys(summary),'tasks','assessment','history']);
+ for(const text of ['Inspection documented.','New supply needed.','Verify routing.','ABC-123','26.0 A','30.0 A','60 A','original.mp4'])assert(summary.includes(text),text);
+ assert(!summary.includes('Original extensive'));assert(full.includes('Original extensive'));assert(full.includes('&lt;script&gt;bad'));assert(!full.includes('<script>'));
+ assert.equal((full.match(/<img /g)||[]).length,1,'Repeated original image appears once');
+ for(const report of [summary,full]){assert(!report.includes('Other project task'));assert(!report.includes('Private note'));assert(report.includes('Office &lt;A&gt;'));}
+ const empty=m.buildUnitReport({id:'empty',name:'Untouched',projectId:'p'},state,options);assert.deepEqual(keys(empty),keys(summary));assert(empty.includes('Not recorded'));assert(empty.includes('Not specified'));assert(!empty.includes('100%'));
+ const pt=m.buildUnitReport(room,state,{...options,language:'pt'});assert(pt.includes('Relatório da unidade'));assert(pt.includes('Referência técnica'));assert(pt.includes('Proteção máxima'));assert(pt.includes('26.0 A'));assert(pt.includes('permanecem no idioma original'));
+ assert.equal(JSON.stringify(state),before,'Rendering does not change data');
+ const plan=follow.normalizePlan(room.followUp);assert.equal(plan.reportSummary.workDone,'Inspection documented.');assert.deepEqual(plan.equipment,m.normalizeEquipment(room.followUp.equipment));assert.deepEqual(plan.reportSummary,m.normalizeReportSummary(room.followUp.reportSummary));assert(follow.hasPlan(follow.normalizePlan({reportSummary:{workDone:'Recorded'}})));assert(!follow.hasPlan(follow.normalizePlan({})));assert.equal(follow.normalizePlan({reportSchemaVersion:1}).reportSchemaVersion,1,'Migration marker survives future follow-up saves');
+ const unsafe=m.collectUnitEvidence({photos:{before:'javascript:alert(1)'}},[],[],v=>v.photoUrl?[{url:v.photoUrl,type:'image'}]:[]);assert.equal(unsafe.length,0);
+ const zero=m.buildUnitReport({...room,followUp:{...room.followUp,listIds:['l']}},{...state,lists:{l:{id:'l',projectId:'p',name:'Parts'}},items:{i:{listId:'l',qty:0,name:'Item'}}},{...options,mode:'complete'});assert(zero.includes('>0</span>'),'Recorded zero quantity is preserved');
+ console.log('PASS: fixed contract for any unit; concise/default and complete history; reviewed fields; technical values; safe evidence and deduplication; purchases; unknown translation; no data changes; no invented completion; normalized input schema.');
+})().catch(e=>{console.error(e);process.exitCode=1});
