@@ -13061,7 +13061,7 @@ function beforeInstallationPhotos(room){const rows=[...(room?.photos?.before?[{u
 // Multi-photo observations keep one record for the whole batch.
 import {installNotePhotos,notePhotoRows} from '/note-photos.js?v=2';
 import {installProjectBrief} from '/project-brief.js?v=1';
-import {installUnitReportLanguage} from '/unit-report-language.js?v=1';
+import {installUnitReportLanguage} from '/unit-report-language.js?v=2';
 installUnitReportLanguage();
 import {evidenceRows,evidenceReport,phaseLabel} from '/field-media.js?v=1';
 async function uploadFieldEvidence(folder,files,progress=()=>{}){

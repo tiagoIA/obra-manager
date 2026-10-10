@@ -1,11 +1,12 @@
 {
   "files": [
+    "index.html",
     "unit-report-language.js"
   ],
   "baseline": {
     "index.html": "f43103e3941afc7396e42a4276da1461ec0d93a703fb37791b4842fd5133afdf",
-    "unit-report-language.js": "a3784ef8a59af2323d29ebef7b82c7e79d7dfefb019eb617a1ed779f8fe4bafd",
+    "unit-report-language.js": "5328aeffcbe9ef7df27a5622e92f8376ac0b395d03db3e5580b2cdbf8d9d647d",
     "unit-followup.js": "be9da5d4d9ebb0b926b0734151baeb36f45aa0b8db7bf03117fbaaf79e84ad75"
   },
-  "message": "Complete Portuguese task section headings in individual unit PDFs"
+  "message": "Refresh cached PDF translations after completing Portuguese headings"
 }
