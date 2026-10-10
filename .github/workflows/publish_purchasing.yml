@@ -46,6 +46,7 @@ jobs:
         env:
           FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
       - run: node scripts/check-purchasing-store.cjs
+      - run: node scripts/check-mobile-live.cjs
       - run: python scripts/snapshot_mobile_data.py
         env:
           FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
