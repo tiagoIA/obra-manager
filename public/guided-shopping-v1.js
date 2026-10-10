@@ -1,5 +1,5 @@
 import {estimateList,money,supplierName} from './purchasing-core.js?v=2';
-import {shoppingPhoto} from './central-catalog-v1.js?v=12';
+import {shoppingPhoto} from './central-catalog-v1.js?v=13';
 // Guided Shopping v1: isolated UI; persistence is provided by the existing app.
 export const PRESETS = [
  ['panel','Panel replacement','eletrica',['Compatible panel and cover','Breakers by circuit','Entry connectors','Circuit identification'],['Existing and new manufacturer/model','Circuits and poles; reused items']],
@@ -136,7 +136,7 @@ export function installGuidedShopping(host){
  async function saveList(){if(busy)return;try{if(!draft.name.trim())throw Error('Enter the list name.');validateItems(draft.items);const historical=new Set((draft.baseItems||[]).map(i=>i.matId));if(draft.items.some(i=>i.matId&&!historical.has(i.matId)&&!materials().some(m=>m.id===i.matId)))throw Error('A selected material is inactive. Remove it or choose an active replacement.');if(!draft.reviewed)throw Error('Confirm your review before creating the list.');busy=true;draft.estimateSnapshot={...estimateList(draft.items,host.materials(),draft.supplier||''),asOf:new Date().toISOString(),beforeTax:true};const id=await host.saveList(copy(draft));sessionStorage.removeItem(key());draft=null;dialog?.remove();dialog=null;host.openList(id);host.notify('List saved. You can continue customizing it.','s');}catch(e){error(e);}finally{busy=false;}}
  function edit(id){const list=host.list(id);if(!list)return;draft={editId:id,baseList:copy(list),baseItems:host.items(id).map(copy),name:list.name,note:list.note||'',projectId:list.projectId||'',supplier:list.purchasingSupplier||'',mode:list.guidedMode||'custom',services:(list.guidedServices||[]).map(s=>copy(host.templates().find(t=>t.id===s.id)||s)),answers:copy(list.guidedAnswers||{}),reviewed:false,items:host.items(id).map(copy)};editor();}
  function saveExistingTemplate(id){const l=host.list(id);if(!l)return;draft={name:l.name,note:l.note||'',items:host.items(id).map(copy),services:[],answers:{},projectId:l.projectId||'',mode:'custom',reviewed:false};editor();}
- window.guidedShopping={launch,edit,saveExistingTemplate,reuse,version:12};window.addEventListener('keydown',e=>{if(e.key==='Escape'&&dialog)close();});
+ window.guidedShopping={launch,edit,saveExistingTemplate,reuse,version:13};window.addEventListener('keydown',e=>{if(e.key==='Escape'&&dialog)close();});
 }
 
 

@@ -5,9 +5,9 @@
     "guided-shopping-v1.js"
   ],
   "baseline": {
-    "index.html": "a6ab4c7c156c9a670214c6797f79787afed071e00b47cec85a97941ecbe147eb",
-    "central-catalog-v1.js": "8e37608503602ece2754e8b987cf376a3ceae1d7583a0be8241fd0d7d74c91ba",
-    "guided-shopping-v1.js": "defeb8016d50c3d0cc23251f16e89762026eccbea4d573288d4743b1d2c674f1"
+    "index.html": "fed6cec5c092d83f32276e04d87a29269e015460b66a3a47d4b182723d4835e0",
+    "central-catalog-v1.js": "6cd452ca5cc8fea1d575ca55d5f21d3c6db4ea93f4e84c8467f47a676eaf5704",
+    "guided-shopping-v1.js": "66cb0e7d8bcc46c8d5d832c60ea57508100bf7351b45743c1cfee8fda64b9c46"
   },
-  "message": "Restore original shopping PDF presentation from v1.0 backup, preserving current purchasing records"
+  "message": "Verify restored original purchasing PDF table contrast and print background"
 }
