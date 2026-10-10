@@ -5,10 +5,10 @@
     "unit-report-structure.js"
   ],
   "baseline": {
-    "index.html": "c46b16f7d3ec3f764f3fd75ed5da66dec89c53f65665b07c6bc32b3e8bf7853c",
-    "unit-report-language.js": "ceef0bc7e8016735104d5e191eae4559cad41e99b49ec0aff8cc72281c1929b7",
-    "unit-report-structure.js": "e565831455df10dbe9a1aa1340df97556c9773c8ee5059df8f5c93150a7faa85",
+    "index.html": "0af0c5473516eb8824dc9f717a90f77ab98e73439efd55399d4154575add8f3f",
+    "unit-report-language.js": "fcf51c7947b1735ade49924428b176e626c74874984cf04c164b43283ae0164a",
+    "unit-report-structure.js": "4849324fff9cc89b99ecde6917eefb1bf8c897234bf2165de173c646e7a29ccd",
     "unit-followup.js": "c69ba1d5c1c0ad949bcd2d247155165a659180a502e046912d85590f7eac36c7"
   },
-  "message": "Record October 9 material preparation, cable investigation and partial LOAD installation in reviewed reports"
+  "message": "Organize reports around completed tasks with linked evidence and optional original record appendix"
 }

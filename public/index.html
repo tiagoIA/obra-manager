@@ -725,7 +725,7 @@ body{background:var(--bg);color:var(--txt);font-family:'DM Sans',sans-serif;min-
 /* PDF */
 #pdf-report,#shop-pdf{display:none;position:fixed;inset:0;background:#f0f2f5;z-index:9000;overflow-y:auto;padding-top:56px;}
 #pdf-report.open,#shop-pdf.open{display:block;}
-#unit-report-language-control[hidden],#unit-report-format-control[hidden]{display:none!important;}
+#unit-report-language-control[hidden],#unit-report-format-control[hidden],#unit-report-history-control[hidden]{display:none!important;}
 .pdf-topbar{position:fixed;top:0;left:0;right:0;min-height:56px;height:auto;display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:8px;padding:0 16px;z-index:9001;background:#3A3A37;border-bottom:1px solid #4A4A46;}
 .pdf-btn{border:none;border-radius:7px;padding:8px 16px;cursor:pointer;font-size:12px;font-weight:600;white-space:nowrap;}
 .pdf-btn.close{background:var(--bg);color:var(--txt);border:1px solid var(--bdr);}
@@ -2440,6 +2440,7 @@ button, a, [onclick], .btn-g, .bn-item, .home-nav-btn,
   <div class="pdf-topbar">
     <label id="unit-report-language-control" hidden style="color:#fff;font-size:12px;display:flex;align-items:center;gap:6px"><span>PDF language / Idioma</span><select id="unit-report-language" aria-label="PDF language / Idioma" style="min-height:36px;border-radius:6px;padding:4px"><option value="en">English</option><option value="pt">Português</option></select></label>
     <label id="unit-report-format-control" hidden style="color:#fff;font-size:12px;display:flex;align-items:center;gap:6px"><span>Report format</span><select id="unit-report-format" aria-label="Report format" style="min-height:36px;border-radius:6px;padding:4px"><option value="summary">Summary / Resumido</option><option value="complete">Complete / Completo</option></select></label>
+    <label id="unit-report-history-control" hidden style="color:#fff;font-size:11px;display:flex;align-items:center;gap:5px"><input id="unit-report-history" type="checkbox">Original records / Registros originais</label>
     <button class="pdf-btn print" onclick="window.printPDF()">🖨️ Print / PDF</button>
     <button class="pdf-btn close" onclick="document.getElementById('pdf-report').classList.remove('open')">✕ Close</button>
   </div>
@@ -11338,8 +11339,8 @@ window.exportRptCSV=function(){
   notif('CSV exportado!','s');
 };
 
-window.generateUnitReport=(rid,language='en',mode)=>{
-  if(window.unitReportEngine)return window.unitReportEngine.generate(rid,language,mode);
+window.generateUnitReport=(rid,language='en',mode,includeHistory)=>{
+  if(window.unitReportEngine)return window.unitReportEngine.generate(rid,language,mode,includeHistory);
   const room=rooms[rid];if(!room)return;
   const narrative=v=>'<span data-report-narrative="'+x(v)+'">'+x(v)+'</span>';
   const proj=projects[room.projectId];
@@ -13063,9 +13064,9 @@ function beforeInstallationPhotos(room){const rows=[...(room?.photos?.before?[{u
 // Multi-photo observations keep one record for the whole batch.
 import {installNotePhotos,notePhotoRows} from '/note-photos.js?v=2';
 import {installProjectBrief} from '/project-brief.js?v=1';
-import {installUnitReportLanguage} from '/unit-report-language.js?v=4';
+import {installUnitReportLanguage} from '/unit-report-language.js?v=5';
 installUnitReportLanguage();
-import {installUnitReportStructure} from '/unit-report-structure.js?v=3';
+import {installUnitReportStructure} from '/unit-report-structure.js?v=4';
 installUnitReportStructure({state:()=>({rooms,projects,tasks:allTasks,notes:roomNotesList,lists:shoppingLists,items:shoppingItems}),author:fieldAuthor,evidenceRows});
 import {evidenceRows,evidenceReport,phaseLabel} from '/field-media.js?v=1';
 async function uploadFieldEvidence(folder,files,progress=()=>{}){
