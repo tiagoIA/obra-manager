@@ -24,7 +24,7 @@ ${generator}
 ${printer}
 installUnitReportStructure({state:()=>({rooms,projects,tasks:allTasks,notes:roomNotesList,lists:{},items:{}}),author:fieldAuthor,evidenceRows:n=>[...(n.photos||[]),...(n.photoUrls||[]),...(n.attachments||[])].map(p=>typeof p==='string'?{url:p,type:'image'}:{...p,type:p.type||'image'})});
 window.generateUnitReport('roof','en','complete');`;
-const fixture=`<!DOCTYPE html><html><head><meta charset="utf-8"><style>.pdf-topbar{display:flex;flex-wrap:wrap;gap:8px}#unit-report-language-control[hidden]{display:none!important}.pdf-page{max-width:900px;overflow-wrap:anywhere}img{max-width:100%}table{table-layout:fixed}</style></head><body>${topbar}<script type="module">${setup}</script></body></html>`;
+const fixture=`<!DOCTYPE html><html><head><meta charset="utf-8"><style>.pdf-topbar{display:flex;flex-wrap:wrap;gap:8px}#unit-report-language-control[hidden],#unit-report-format-control[hidden]{display:none!important}.pdf-page{max-width:900px;overflow-wrap:anywhere}img{max-width:100%}table{table-layout:fixed}</style></head><body>${topbar}<script type="module">${setup}</script></body></html>`;
 const server=http.createServer((req,res)=>{if(req.url==='/'){res.setHeader('Content-Type','text/html; charset=utf-8');res.end(fixture);}else if(req.url==='/photo.svg'){res.setHeader('Content-Type','image/svg+xml');res.end('<svg xmlns="http://www.w3.org/2000/svg" width="60" height="40"><rect width="60" height="40" fill="blue"/></svg>');}else if(['/unit-report-language.js','/unit-followup.js','/unit-report-structure.js'].includes(req.url.split('?')[0])){res.setHeader('Content-Type','text/javascript');res.end(fs.readFileSync('public'+req.url.split('?')[0]));}else{res.statusCode=404;res.end();}});
 (async()=>{await new Promise(r=>server.listen(0,'127.0.0.1',r));const browser=await chromium.launch({headless:true});try{
  for(const width of [390,1280]){const page=await browser.newPage({viewport:{width,height:900}});const errors=[];page.on('pageerror',e=>{errors.push(e.message);console.error('Fixture page error:',e.message)});await page.goto('http://127.0.0.1:'+server.address().port);await page.waitForSelector('#pdf-report.open');
@@ -33,7 +33,7 @@ const server=http.createServer((req,res)=>{if(req.url==='/'){res.setHeader('Cont
  const original=await content.innerHTML(),data=await page.evaluate(()=>JSON.stringify({rooms,allTasks,roomNotesList}));
  const media=await content.locator('img,a').evaluateAll(els=>els.map(e=>[e.tagName,e.getAttribute('src')||e.getAttribute('href')]));
  await language.selectOption('pt');const pt=await content.innerText();
- for(const t of ['Tarefas pendentes: 1','Relatório da unidade','Situação atual','Investigação concluída','Sem data definida','Antes da instalação','monofásica','Samsung AJ024BXS4CH/AA','26.0 A','30.0 A','18.3 A','20 A','disconnects de 60 A','Vídeo · original.mp4'])assert(pt.includes(t),t+'\n'+pt);
+ for(const t of ['Tarefas pendentes: 1','Relatório da unidade','Situação atual','Investigação concluída','Sem data definida','Antes da instalação','monofásica','Samsung AJ024BXS4CH/AA','26.0 A','30.0 A','18.3 A','20 A','disconnects de 60 A','Vídeo · original.mp4','Coordenar com a loja 06'])assert(pt.includes(t),t+'\n'+pt);
  assert(await page.evaluate(()=>translateText('✅ COMPLETED (2)','pt')==='✅ CONCLUÍDAS (2)'),'Completed section translates before generic badge');
  assert(!pt.includes('Some text'));assert(!pt.includes('Alguns textos'),'All fixture Roof explanations translated');
  assert.equal(await page.evaluate(()=>JSON.stringify({rooms,allTasks,roomNotesList})),data);

@@ -1,5 +1,5 @@
 // One report contract for every unit. No remote summarization and no record mutations.
-import {translateText} from './unit-report-language.js?v=3';
+import {translateText,translations} from './unit-report-language.js?v=3';
 const clean=v=>String(v??'').trim();
 const safeURL=v=>{try{const u=new URL(String(v),'https://example.invalid');return ['http:','https:'].includes(u.protocol)?String(v):'';}catch{return '';}};
 const escape=v=>clean(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -56,7 +56,7 @@ export function buildUnitReport(room,state,{language='en',mode='summary',author=
  language=language==='pt'?'pt':'en';mode=mode==='complete'?'complete':'summary';
  const L=s=>language==='pt'?(phrases[s]||translateText(s,'pt')):s;
  let untranslated=false;
- const narrative=v=>{const source=clean(v);if(!source)return escape(L('Not recorded'));const translated=language==='pt'?translateText(source,'pt'):source;if(language==='pt'&&translated===source&&/[a-z]/i.test(source)&&!/[ãõçáéíóúâêô]/i.test(source))untranslated=true;return escape(translated).replace(/\n/g,'<br>');};
+ const narrative=v=>{const source=clean(v);if(!source)return escape(L('Not recorded'));const translated=language==='pt'?translateText(source,'pt'):source;if(language==='pt'&&!translations.has(source.replace(/\r/g,'').replace(/[ \t]+/g,' '))&&source.split('\n').some(line=>line.trim()&&translateText(line,'pt')===line&&/[a-z]/i.test(line)&&!/[ãõçáéíóúâêô]/i.test(line)))untranslated=true;return escape(translated).replace(/\n/g,'<br>');};
  const keep=v=>'<span data-report-keep-original>'+escape(clean(v)||L('Not recorded'))+'</span>';
  const tasks=Object.values(state.tasks||{}).filter(t=>t.roomId===room.id&&(!t.projectId||t.projectId===room.projectId));
  const completed=tasks.filter(t=>t.done),pending=tasks.filter(t=>!t.done),p=room.followUp||{},summary=normalizeReportSummary(p.reportSummary),equipment=normalizeEquipment(p.equipment);
@@ -64,7 +64,7 @@ export function buildUnitReport(room,state,{language='en',mode='summary',author=
  const project=state.projects?.[room.projectId]||{},evidence=collectUnitEvidence(room,notes,tasks,evidenceRows),scope=room.scopeBrief||{};
  const section=(key,title,body)=>'<section class="ur-section" data-report-section="'+key+'"><h2>'+escape(L(title))+'</h2>'+body+'</section>';
  const value=(title,v)=>'<div class="ur-fact"><h3>'+escape(L(title))+'</h3><div class="ur-value">'+v+'</div></div>';
- const steps=clean(p.nextStep||scope.nextStep).split(/\n+/).map(s=>s.replace(/^\s*\d+[.)]\s*/, '').trim()).filter(Boolean);
+ const steps=clean(p.nextStep||scope.nextStep).split(/\n+/).map(s=>s.trim()).filter(Boolean);
  const assigned=(id)=>id?author(id)||id:L('Not assigned');
  const returnDate=p.returnDate?dateLabel(p.returnDate,language)+(p.returnTime?' · '+escape(p.returnTime):''):p.returnNeeded==='no'?L('Not required'):p.returnNeeded==='yes'?L('Required')+' · '+L('Not scheduled'):L('Not specified');
  const progress=tasks.length?Math.round(completed.length/tasks.length*100):null;
