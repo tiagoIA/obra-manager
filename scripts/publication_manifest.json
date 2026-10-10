@@ -5,9 +5,9 @@
     "guided-shopping-v1.js"
   ],
   "baseline": {
-    "index.html": "4739bd880c3496d76126cc2afa9003793710043c3053e23995e14e25d0f242e0",
-    "central-catalog-v1.js": "ba8aaccd8f55c2a8725603d0f08229f0ba05590b20ba76bd0f4cc288de8c37e4",
-    "guided-shopping-v1.js": "0593c6d7e1f55958c22632a8dfb5a2f4f608d89af1fe9eb112eff8b95ea2b209"
+    "index.html": "4e1ce011bdb02adad643cb2ce687486ee7b62b6e1c490703c8fb2f9129f474a8",
+    "central-catalog-v1.js": "bd5ca688e932d7ba7914f5ea783dd8d01c214af96b656feb0930142030753f72",
+    "guided-shopping-v1.js": "2d9c85e147ae4b97f45bfd14f3c3242d9a992fe57a0800b695ab6c79760c5b8f"
   },
-  "message": "Compact supplier list columns and remove repeated photo-reference explanations"
+  "message": "Organize purchasing PDF header and separate screen controls from the document"
 }
