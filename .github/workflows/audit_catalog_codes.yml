@@ -1,0 +1,25 @@
+name: Read-only catalog code audit
+on:
+  push:
+    branches: [feature/unit-followup-2026-10-09]
+    paths: ['scripts/audit_catalog_codes.py', '.github/workflows/audit_catalog_codes.yml']
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install google-auth google-cloud-firestore
+      - run: python scripts/audit_catalog_codes.py
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: catalog-codes-audit
+          path: hosting-test/catalog-codes-audit.json
+          retention-days: 7
