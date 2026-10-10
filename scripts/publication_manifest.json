@@ -5,9 +5,9 @@
     "guided-shopping-v1.js"
   ],
   "baseline": {
-    "index.html": "4e1ce011bdb02adad643cb2ce687486ee7b62b6e1c490703c8fb2f9129f474a8",
-    "central-catalog-v1.js": "bd5ca688e932d7ba7914f5ea783dd8d01c214af96b656feb0930142030753f72",
-    "guided-shopping-v1.js": "2d9c85e147ae4b97f45bfd14f3c3242d9a992fe57a0800b695ab6c79760c5b8f"
+    "index.html": "a6ab4c7c156c9a670214c6797f79787afed071e00b47cec85a97941ecbe147eb",
+    "central-catalog-v1.js": "8e37608503602ece2754e8b987cf376a3ceae1d7583a0be8241fd0d7d74c91ba",
+    "guided-shopping-v1.js": "defeb8016d50c3d0cc23251f16e89762026eccbea4d573288d4743b1d2c674f1"
   },
-  "message": "Organize purchasing PDF header and separate screen controls from the document"
+  "message": "Restore original shopping PDF presentation from v1.0 backup, preserving current purchasing records"
 }
