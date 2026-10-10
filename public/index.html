@@ -9014,14 +9014,15 @@ function renderShopping(el){
     return'<div style="margin-bottom:14px"><div style="font-family:Bebas Neue,sans-serif;font-size:11px;letter-spacing:3px;color:'+color+';margin-bottom:7px;display:flex;align-items:center;gap:7px">'+title+'<div style="flex:1;height:1px;background:'+color+'44"></div></div>'
       +items.map(function(i){
         const mat=i.matId?materials[i.matId]:null;
-        const thumb=mat&&mat.photoUrl
-          ?'<img src="'+x(mat.photoUrl)+'" style="width:38px;height:38px;border-radius:6px;object-fit:cover;flex-shrink:0;border:1px solid var(--bdr)">'
+        const buyingPhoto=shoppingPhoto(i,Object.values(materials));
+        const thumb=buyingPhoto.photoUrl
+          ?'<img src="'+x(buyingPhoto.photoUrl)+'" style="width:38px;height:38px;border-radius:6px;object-fit:cover;flex-shrink:0;border:1px solid var(--bdr)">'
           :'<div style="width:38px;height:38px;border-radius:6px;background:var(--sur2);border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">'+(i.cat==='eletrica'?'⚡':i.cat==='fire'?'🔥':'🔧')+'</div>';
         return'<div class="shop-item '+(i.bought?'bought':'')+'\" id="shop-item-'+i.id+'">'
           +'<div class="shop-chk '+(i.bought?'on':'')+'\" onclick=\"toggleShopItem(\''+i.id+'\')"></div>'
           +thumb
           +'<div class="shop-body">'
-          +'<div class="shop-name">'+x(i.name)+'</div>'
+          +'<div class="shop-name">'+x(i.name)+'</div>'+(buyingPhoto.referenceOnly?'<div style="font-size:10px;color:var(--mut)">Visual reference — confirm model</div>':'')
           +'<div class="shop-meta">'
           +'<span class="shop-qty">'+i.qty+' '+x(i.unit||'un')+'</span>'
           +(i.roomName?'<span style="font-size:10px;color:#a78bfa;background:#a78bfa18;border:1px solid #a78bfa44;border-radius:10px;padding:1px 7px">📍 '+x(i.roomName)+'</span>':'')
@@ -12985,7 +12986,7 @@ onAuthStateChanged(auth,user=>{if(!user)window.receiptReview?.close();});
 
 // Guided shopping integration: uses existing collections and authentication.
 import {writeBatch, runTransaction} from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
-import {installGuidedShopping} from '/guided-shopping-v1.js?v=8';
+import {installGuidedShopping} from '/guided-shopping-v1.js?v=9';
 onAuthStateChanged(auth,user=>{if(!user)document.getElementById('guided-shopping-dialog')?.remove();});
 installGuidedShopping({
  userId:()=>auth.currentUser?.uid||null,
@@ -13009,7 +13010,7 @@ installGuidedShopping({
   if(draft.items.length>200)throw Error('Use up to 200 materials per list in this version.');
   const listRef=draft.editId?doc(db,'shoppingLists',draft.editId):doc(collection(db,'shoppingLists'));
   const data={name:draft.name.trim(),note:draft.note||'',projectId:draft.projectId||null,purchasingSupplier:draft.supplier||'',estimateSnapshot:draft.estimateSnapshot||null,guidedMode:draft.mode,guidedAnswers:draft.answers||{},guidedServices:(draft.services||[]).map(s=>({id:s.id,name:s.name,version:s.version||1,...(s.useIds?{useIds:s.useIds}:{})})),updatedAt:serverTimestamp()};
-  const itemData=i=>({listId:listRef.id,matId:i.matId||null,name:i.name.trim(),cat:i.cat||'geral',unit:i.unit.trim(),qty:Number(i.qty),obs:i.obs||'',roomId:i.roomId||null,roomName:i.roomName||null,bought:!!i.bought,boughtAt:i.boughtAt||null});
+  const itemData=i=>({listId:listRef.id,matId:i.matId||null,name:i.name.trim(),cat:i.cat||'geral',unit:i.unit.trim(),qty:Number(i.qty),obs:i.obs||'',referenceMaterialId:i.referenceMaterialId||null,referencePhotoUrl:i.referencePhotoUrl||null,photoReferenceNote:i.photoReferenceNote||'',roomId:i.roomId||null,roomName:i.roomName||null,bought:!!i.bought,boughtAt:i.boughtAt||null});
   if(!draft.editId){
    const batch=writeBatch(db);batch.set(listRef,{...data,createdBy:user.uid,done:false,createdAt:serverTimestamp()});
    draft.items.forEach(i=>batch.set(doc(collection(db,'shoppingItems')),{...itemData(i),createdAt:serverTimestamp()}));await batch.commit();
@@ -13019,7 +13020,7 @@ installGuidedShopping({
     const list=await tx.get(listRef);if(!list.exists())throw Error('This list was removed.');
     if(draft.baseList)for(const k of ['name','note','projectId','guidedAnswers','guidedServices'])if(JSON.stringify(list.data()[k]??null)!==JSON.stringify(draft.baseList[k]??null))throw Error('Another person changed the list. Close and reopen it.');
     const current=[];for(const i of base){const snap=await tx.get(doc(db,'shoppingItems',i.id));if(!snap.exists())throw Error('The list changed. Close and reopen it before editing.');current.push(snap);}
-    current.forEach((s,n)=>{const before=base[n],now=s.data();for(const k of ['name','qty','unit','obs','bought','boughtAt','matId'])if(JSON.stringify(now[k]??null)!==JSON.stringify(before[k]??null))throw Error('Another person changed this list. Close and reopen it to review.');});
+    current.forEach((s,n)=>{const before=base[n],now=s.data();for(const k of ['name','qty','unit','obs','bought','boughtAt','matId','referenceMaterialId','referencePhotoUrl','photoReferenceNote'])if(JSON.stringify(now[k]??null)!==JSON.stringify(before[k]??null))throw Error('Another person changed this list. Close and reopen it to review.');});
     tx.update(listRef,data);
     const remaining=new Set(draft.items.filter(i=>i.id).map(i=>i.id));base.filter(i=>!remaining.has(i.id)).forEach(i=>tx.delete(doc(db,'shoppingItems',i.id)));
     draft.items.forEach(i=>{if(i.id)tx.update(doc(db,'shoppingItems',i.id),itemData(i));else tx.set(doc(collection(db,'shoppingItems')),{...itemData(i),createdAt:serverTimestamp()});});
@@ -13030,8 +13031,8 @@ installGuidedShopping({
 });
 
 // Expanded product catalog and purchasing documents use the same central material records.
-import {installCentralCatalog, materialSearchText, displayUnit} from '/central-catalog-v1.js?v=8';
-import {materialUses} from '/guided-shopping-v1.js?v=8';
+import {installCentralCatalog, materialSearchText, displayUnit, shoppingPhoto} from '/central-catalog-v1.js?v=9';
+import {materialUses} from '/guided-shopping-v1.js?v=9';
 onAuthStateChanged(auth,user=>{if(!user)document.getElementById('central-material-dialog')?.remove();});
 installCentralCatalog({
  materials:()=>purchasingMaterials(),canEdit:()=>hasRole('owner'),inferredUses:materialUses,

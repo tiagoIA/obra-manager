@@ -1,14 +1,16 @@
 {
   "files": [
     "index.html",
-    "unit-report-language.js",
-    "unit-report-structure.js"
+    "central-catalog-v1.js",
+    "guided-shopping-v1.js",
+    "purchasing-reference/roof-metal-box.jpg",
+    "purchasing-reference/roof-mc-connector.jpg"
   ],
   "baseline": {
-    "index.html": "0af0c5473516eb8824dc9f717a90f77ab98e73439efd55399d4154575add8f3f",
-    "unit-report-language.js": "fcf51c7947b1735ade49924428b176e626c74874984cf04c164b43283ae0164a",
-    "unit-report-structure.js": "4849324fff9cc89b99ecde6917eefb1bf8c897234bf2165de173c646e7a29ccd",
-    "unit-followup.js": "c69ba1d5c1c0ad949bcd2d247155165a659180a502e046912d85590f7eac36c7"
+    "index.html": "96e2ef73661489cd9a4c58ce27ab3c270bedadbb8fd00f117006c98d6b96b6be",
+    "central-catalog-v1.js": "ea39346c974e311fdfee400bb4cce55ad8d8d01736fc09c7694d4797cd490006",
+    "guided-shopping-v1.js": "8b3abd6e9a46b81159a8ffda599b32aa5ba8084d42d21c079b8d9f5a50098c29",
+    "unit-report-structure.js": "4783d0b732102b6ac686da802404b12fc8b4fb5b15e8c1784f2e3280478e6305"
   },
-  "message": "Organize reports around completed tasks with linked evidence and optional original record appendix"
+  "message": "Restore supplier purchasing list with job name, real reference photos and preserved Roof quantities"
 }
