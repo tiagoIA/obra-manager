@@ -31,7 +31,7 @@ const server=http.createServer((req,res)=>{if(req.url==='/'){res.setHeader('Cont
  const original=await content.innerHTML(),data=await page.evaluate(()=>JSON.stringify({rooms,allTasks,roomNotesList}));
  const media=await content.locator('img,a').evaluateAll(els=>els.map(e=>[e.tagName,e.getAttribute('src')||e.getAttribute('href')]));
  await language.selectOption('pt');const pt=await content.innerText();
- for(const t of ['⏳ PENDENTES (1)','Relatório da unidade','Situação atual','Investigação concluída','ainda sem data','ANTES DA INSTALAÇÃO','monofásica','Samsung AJ024BXS4CH/AA','26.0 A','30.0 A','18.3 A','20 A','disconnects de 60 A','Vídeo: original.mp4'])assert(pt.includes(t),t);
+ for(const t of ['⏳ PENDENTES (1)','Relatório da unidade','Situação atual','Investigação concluída','ainda sem data','ANTES DA INSTALAÇÃO','monofásica','Samsung AJ024BXS4CH/AA','26.0 A','30.0 A','18.3 A','20 A','disconnects de 60 A','Vídeo: original.mp4'])assert(pt.includes(t),t+'\n'+pt);
  assert(await page.evaluate(()=>translateText('✅ COMPLETED (2)','pt')==='✅ CONCLUÍDAS (2)'),'Completed section translates before generic badge');
  assert(!pt.includes('Some text'));assert(!pt.includes('Alguns textos'),'All fixture Roof explanations translated');
  assert.equal(await page.evaluate(()=>JSON.stringify({rooms,allTasks,roomNotesList})),data);
