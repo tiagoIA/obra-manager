@@ -1,14 +1,13 @@
 {
   "files": [
     "index.html",
-    "unit-report-language.js",
-    "unit-followup.js",
     "unit-report-structure.js"
   ],
   "baseline": {
-    "index.html": "a8072bae9f2c8459def37c3b6006fe95576ca674b9f8e26e56852f71e3973582",
-    "unit-report-language.js": "5328aeffcbe9ef7df27a5622e92f8376ac0b395d03db3e5580b2cdbf8d9d647d",
-    "unit-followup.js": "be9da5d4d9ebb0b926b0734151baeb36f45aa0b8db7bf03117fbaaf79e84ad75"
+    "index.html": "d594070ac7a737e99ea915b93c100c44de8058a132b86f10362f09b4bc6719f6",
+    "unit-report-language.js": "ceef0bc7e8016735104d5e191eae4559cad41e99b49ec0aff8cc72281c1929b7",
+    "unit-followup.js": "c69ba1d5c1c0ad949bcd2d247155165a659180a502e046912d85590f7eac36c7",
+    "unit-report-structure.js": "1e37b75dffc06e1b0513b72eb09bdccd0838ea8f6f5d8eeddb91deac2f108ede"
   },
-  "message": "Standardize individual unit PDF reports and structured summary inputs"
+  "message": "Compact action tables and remove duplicate report headings"
 }

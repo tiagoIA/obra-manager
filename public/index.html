@@ -13065,7 +13065,7 @@ import {installNotePhotos,notePhotoRows} from '/note-photos.js?v=2';
 import {installProjectBrief} from '/project-brief.js?v=1';
 import {installUnitReportLanguage} from '/unit-report-language.js?v=3';
 installUnitReportLanguage();
-import {installUnitReportStructure} from '/unit-report-structure.js?v=1';
+import {installUnitReportStructure} from '/unit-report-structure.js?v=2';
 installUnitReportStructure({state:()=>({rooms,projects,tasks:allTasks,notes:roomNotesList,lists:shoppingLists,items:shoppingItems}),author:fieldAuthor,evidenceRows});
 import {evidenceRows,evidenceReport,phaseLabel} from '/field-media.js?v=1';
 async function uploadFieldEvidence(folder,files,progress=()=>{}){
@@ -13125,7 +13125,7 @@ installProjectBrief({
 
 
 // Optional unit follow-up uses its own fields; initial assessments and evidence stay intact.
-import {installUnitFollowup,normalizePlan,canonical,validDate} from '/unit-followup.js?v=3';
+import {installUnitFollowup,normalizePlan,canonical,validDate} from '/unit-followup.js?v=4';
 installUnitFollowup({
  state:()=>({rooms,projects,tasks:allTasks,lists:shoppingLists,items:shoppingItems}),
  users:()=>planUsers(),author:fieldAuthor,canEdit:()=>hasRole('supervisor'),notify:notif,
