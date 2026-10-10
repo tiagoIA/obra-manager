@@ -1,6 +1,6 @@
 const fs=require('node:fs'),assert=require('node:assert/strict'),{chromium}=require('playwright');
 const code=n=>{const raw=fs.readFileSync('public/'+n,'utf8'),names=[...raw.matchAll(/export (?:async )?(?:function|const) (\w+)/g)].map(m=>m[1]);return '(()=>{'+raw.replace(/^import .*;\n/gm,'').replace(/export /g,'')+';Object.assign(window,{'+names.join(',')+'});})();';};
-const appCss=fs.readFileSync('public/index.html','utf8').match(/<style[^>]*>([\s\S]*?)<\/style>/i)[1];
+const appCss=fs.readFileSync('public/index.html','utf8').match(/<style[^>]*>([\s\S]*?)<\/style>/i)[1]+fs.readFileSync('public/mobile-layout.css','utf8');
 async function render(page,fixture){
  await page.setContent('<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>'+appCss+'</style></head><body><div id="shop-pdf"><div class="pdf-page" id="shop-pdf-content"></div></div></body></html>');
  await page.addScriptTag({content:code('purchasing-core.js')+code('central-catalog-v1.js')+'window.fixture='+JSON.stringify(fixture)+';window.before=JSON.stringify(fixture);installCentralCatalog({materials:()=>fixture.materials,list:()=>fixture.list,items:()=>fixture.items,projectName:()=>fixture.projectName,notify:()=>{},canEdit:()=>false});generateShopPDF(fixture.list.id);'});
@@ -27,3 +27,4 @@ async function render(page,fixture){
  }
  console.log('PASS: restored v1.0 purchase order header, three status cards, category sections, four-column photo/item table, rooms before consolidated full report, safe catalog codes, print and mobile; no data mutation.');
 }finally{await browser.close();}})().catch(e=>{console.error(e);process.exitCode=1;});
+

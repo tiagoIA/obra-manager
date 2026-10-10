@@ -2,7 +2,7 @@ name: Verify and publish purchasing scope
 on:
   push:
     branches: [feature/purchasing-costs-2026-10-09, feature/unit-followup-2026-10-09]
-    paths: ['public/**', 'scripts/check-unit-report-language.cjs', 'scripts/check-unit-report-structure.cjs', 'scripts/initialize_report_summary.py', 'scripts/update_roof_oct9_progress.py', 'scripts/reconcile_roof_activities.py', 'scripts/repair_roof_purchase_list.py', 'scripts/check-unit-followup.cjs', 'scripts/check-unit-followup-ui.cjs', 'scripts/check-brief.cjs', 'scripts/check-purchasing*', 'scripts/check-note-photos.cjs', 'scripts/check-field-evidence.cjs', 'scripts/check-roof-runtime.cjs', 'scripts/publication_manifest.json', 'scripts/publish_purchasing.py', '.github/workflows/publish_purchasing.yml']
+    paths: ['public/**', 'scripts/check-mobile*', 'scripts/snapshot_mobile_data.py', 'scripts/check-unit-report-language.cjs', 'scripts/check-unit-report-structure.cjs', 'scripts/initialize_report_summary.py', 'scripts/update_roof_oct9_progress.py', 'scripts/reconcile_roof_activities.py', 'scripts/repair_roof_purchase_list.py', 'scripts/check-unit-followup.cjs', 'scripts/check-unit-followup-ui.cjs', 'scripts/check-brief.cjs', 'scripts/check-purchasing*', 'scripts/check-note-photos.cjs', 'scripts/check-field-evidence.cjs', 'scripts/check-roof-runtime.cjs', 'scripts/publication_manifest.json', 'scripts/publish_purchasing.py', '.github/workflows/publish_purchasing.yml']
 permissions:
   contents: read
 concurrency:
@@ -31,24 +31,14 @@ jobs:
       - run: node scripts/check-purchasing.cjs
       - run: node scripts/check-purchasing-ui.cjs
       - run: node scripts/check-purchasing-store.cjs
+      - run: node scripts/check-mobile-store.cjs
+      - run: node scripts/check-mobile-layout.cjs
       - run: node scripts/check-purchasing-dashboard.cjs
       - run: node --experimental-vm-modules scripts/check-note-photos.cjs
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
       - run: pip install google-auth requests google-cloud-firestore
-      - run: python scripts/initialize_report_summary.py
-        env:
-          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-      - run: python scripts/update_roof_oct9_progress.py
-        env:
-          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-      - run: python scripts/reconcile_roof_activities.py
-        env:
-          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-      - run: python scripts/repair_roof_purchase_list.py
-        env:
-          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
       - run: python scripts/audit_field_roof.py
         env:
           FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
@@ -56,10 +46,10 @@ jobs:
         env:
           FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
       - run: node scripts/check-purchasing-store.cjs
-      - run: python scripts/publish_purchasing.py
+      - run: python scripts/snapshot_mobile_data.py
         env:
           FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-      - run: python scripts/repair_roof_purchase_list.py
+      - run: python scripts/publish_purchasing.py
         env:
           FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
       - run: python scripts/audit_field_roof.py
@@ -68,11 +58,15 @@ jobs:
       - run: python scripts/snapshot_roof_purchasing.py --after
         env:
           FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      - run: python scripts/snapshot_mobile_data.py --after
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: purchasing-publication-${{ github.run_id }}
           path: hosting-test/
           if-no-files-found: ignore
+
 
 

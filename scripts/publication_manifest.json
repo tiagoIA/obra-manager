@@ -2,12 +2,14 @@
   "files": [
     "index.html",
     "central-catalog-v1.js",
-    "guided-shopping-v1.js"
+    "guided-shopping-v1.js",
+    "mobile-layout.css",
+    "shopping-view.js"
   ],
   "baseline": {
-    "index.html": "fed6cec5c092d83f32276e04d87a29269e015460b66a3a47d4b182723d4835e0",
-    "central-catalog-v1.js": "6cd452ca5cc8fea1d575ca55d5f21d3c6db4ea93f4e84c8467f47a676eaf5704",
-    "guided-shopping-v1.js": "66cb0e7d8bcc46c8d5d832c60ea57508100bf7351b45743c1cfee8fda64b9c46"
+    "index.html": "b9400a2e37b8bbab9de3d7b54b06a6c977961aec5e1a4c2b95d97ec143f86a44",
+    "central-catalog-v1.js": "325143a477a1030700e664acba116fccd2e4ea991133763df491dffd70e29626",
+    "guided-shopping-v1.js": "5004bec5b6e24669ad9a2fa7c5dc7c8881dab6f709cffba225569e92c0b9f360"
   },
-  "message": "Verify restored original purchasing PDF table contrast and print background"
+  "message": "Mobile navigation and purchasing cards, filters, persisted store and registered store codes; original print layout preserved"
 }
