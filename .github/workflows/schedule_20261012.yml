@@ -1,0 +1,20 @@
+name: Verify authorized October 12 schedule
+on:
+  push:
+    branches: [task/schedule-2026-10-12]
+    paths: ['scripts/schedule_20261012.py']
+permissions:
+  contents: read
+jobs:
+  schedule:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install google-cloud-firestore
+      - run: python scripts/schedule_20261012.py
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
