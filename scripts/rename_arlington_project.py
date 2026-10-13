@@ -4,7 +4,7 @@ from google.oauth2 import service_account
 from google.auth.transport.requests import AuthorizedSession
 
 PROJECT = "obra-manager-4ecc7"
-NEW_NAME = "COAX Main · Arlington"
+NEW_NAME = "455 Massachusetts Ave, Arlington, MA"
 key = json.loads(os.environ["FIREBASE_SA"])
 if key.get("project_id") != PROJECT:
     raise SystemExit("Wrong Firebase project; stopped")
@@ -39,6 +39,8 @@ if sys.argv[1] == "backup":
     if len(matches) != 1:
         raise SystemExit(f"Expected one matching Arlington project; found {len(matches)}; no writes")
     document = matches[0]
+    if document.get("fields", {}).get("address", {}).get("stringValue", "").strip() != NEW_NAME:
+        raise SystemExit("Address does not match authorized project; no writes")
     backup.parent.mkdir(exist_ok=True)
     backup.write_text(json.dumps(document, ensure_ascii=False, indent=2), encoding="utf-8")
     print("Backup prepared for", document["name"].rsplit("/", 1)[-1])
