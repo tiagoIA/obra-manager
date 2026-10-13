@@ -10440,7 +10440,7 @@ function renderReportsPage(el){
   const mkSel=(key,opts,cur)=>opts.map(([v,l])=>'<option value="'+v+'"'+(cur===v?' selected':'')+'>'+l+'</option>').join('');
   const sysSel=mkSel('system',[['all','Todos'],['eletrica','Eletrica'],['fire','Fire Alarm'],['inspecao','Inspecao']],rptFilters.system);
   const staSel=mkSel('status',[['all','Todos'],['todo','Pendentes'],['done','Concluidos']],rptFilters.status);
-  const typSel=mkSel('type',[['executive','Resumo Executivo'],['byunit','Por Unidade (Completo)'],['photos','📸 Fotos por Unidade'],['materials','📦 Lista de Materiais'],['detail','Detalhe por Unidade'],['tasks','Lista de Tarefas'],['punchlist','Punch List (Pendencias)'],['daily','📅 Daily Report (Done + Fotos)'],['technician','Por Tecnico']],rptFilters.reportType||'executive');
+  const typSel=mkSel('type',[['executive','Resumo Executivo'],['byunit','Por Unidade (Completo)'],['photos','📸 Fotos por Unidade'],['photos2','📸 Fotos por Unidade 2.0'],['materials','📦 Lista de Materiais'],['detail','Detalhe por Unidade'],['tasks','Lista de Tarefas'],['punchlist','Punch List (Pendencias)'],['daily','📅 Daily Report (Done + Fotos)'],['technician','Por Tecnico']],rptFilters.reportType||'executive');
   el.innerHTML=''
     +'<div class="page-hdr"><div class="page-title">Reports</div></div>'
     +'<div class="rpt2-wrap"><div class="rpt2-filters"><div class="rpt2-filter-grid">'
@@ -10566,6 +10566,10 @@ function getFilteredData(){
     filtRooms=filtRooms.filter(r=>uSet.has(r.id));
     filtTasks=filtTasks.filter(t=>uSet.has(t.roomId));
   }
+  if(window.rptFilters.floor&&window.rptFilters.floor!=='all'){
+    const allowedRooms=new Set(filtRooms.map(r=>r.id));
+    filtTasks=filtTasks.filter(t=>allowedRooms.has(t.roomId));
+  }
   const rids=new Set(filtTasks.map(t=>t.roomId));
   filtRooms=filtRooms.filter(r=>rids.has(r.id));
   return{filtRooms,filtTasks,selPid};
@@ -10588,6 +10592,12 @@ window.generateFilteredReport=()=>{
   const statusLabel={all:'All Tasks',todo:'To-Do Only',done:'Completed Only'}[window.rptFilters.status]||'All';
   const floorLabel=window.rptFilters.floor==='all'?'All Floors':window.rptFilters.floor;
   const filterSummary=[sysLabel,floorLabel,statusLabel,window.rptFilters.task||''].filter(Boolean).join(' · ');
+
+  // Photo report uses a read-only model; task and observation originals stay unchanged.
+  if(type==='photos2'){
+    window.photoReport.open({project:proj,rooms:Object.values(rooms).filter(r=>r.projectId===selPid),tasks:filtTasks,notes:Object.values(roomNotesList||{}).filter(n=>n.projectId===selPid||rooms[n.roomId]?.projectId===selPid),filters:window.rptFilters,floorOrder:FLOOR_ORDER});
+    return;
+  }
 
   // Fotos por Unidade — early return — v2 com 10 melhorias
   if(type==='photos'){
@@ -11162,6 +11172,7 @@ window.printPDF=function(type){
     ?document.getElementById('shop-pdf-content')
     :document.getElementById('pdf-content');
   if(!contentEl)return;
+  if(type!=='shop'&&contentEl.querySelector('.pr-report'))return window.photoReport.print(contentEl);
 
   // Coletar estilos da página principal
   const styles=Array.from(document.styleSheets).map(ss=>{
@@ -13024,6 +13035,8 @@ window.deleteMaterial=async id=>{
 
 function beforeInstallationPhotos(room){const rows=[...(room?.photos?.before?[{url:room.photos.before,name:'Existing before photo'}]:[]),...(room?.scopeBrief?.photos||[]),...Object.values(roomNotesList).filter(n=>n.roomId===room?.id&&n.phase==='before-installation').flatMap(notePhotoRows)];return rows.filter((p,n)=>p.url&&rows.findIndex(x=>x.url===p.url)===n);}
 // Multi-photo observations keep one record for the whole batch.
+import {installPhotoReport} from '/photo-report.js?v=1';
+installPhotoReport();
 import {installNotePhotos,notePhotoRows} from '/note-photos.js?v=2';
 import {installProjectBrief} from '/project-brief.js?v=1';
 import {installUnitReportLanguage} from '/unit-report-language.js?v=5';
