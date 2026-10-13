@@ -1,7 +1,11 @@
 {
-  "baseline_sha256": "5d5b5f7231c1dd3337aed4d44821f42365fd8db7166f76b2a11275c498bef7db",
+  "baseline_sha256": "52ccadba3c50bf8a42c1e52d40c80efc7e3b630c45a8a70919ee4cd2d2c2e554",
   "files": [
     "app.html",
     "photo-report.js"
-  ]
+  ],
+  "baseline_files": {
+    "photo-report.js": "aa075c9ffec8221913030640c8619feb8f1cbc61a52cb9682516fd52dcee9a4e"
+  },
+  "review_only": true
 }

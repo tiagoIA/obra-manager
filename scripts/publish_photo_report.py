@@ -26,13 +26,17 @@ live = call('GET', SITE+'/channels/live')
 source = live['release']['version']['name']
 response = requests.get('https://'+PROJECT+'.web.app/app.html', timeout=30)
 if not response.ok or hashlib.sha256(response.content).hexdigest() != config['baseline_sha256']:
-    if response.ok and response.content == Path('public/index.html').read_bytes() and verify('https://'+PROJECT+'.web.app/'):
+    if response.ok and response.content == Path('public/app.html').read_bytes() and verify('https://'+PROJECT+'.web.app/'):
         Path('hosting-test').mkdir(exist_ok=True)
         result={'live_url':'https://'+PROJECT+'.web.app/','workspace_url':'https://'+PROJECT+'.web.app/app.html','version':source,'verified_files':config['files'],'already_published':True}
         Path('hosting-test/photo-report-result.json').write_text(json.dumps(result,indent=2))
         print('PUBLICATION_VERIFIED',json.dumps(result))
         raise SystemExit(0)
     raise SystemExit('Live HTML changed; stop to preserve newer work')
+for filename,digest in config.get('baseline_files',{}).items():
+    previous=requests.get('https://'+PROJECT+'.web.app/'+filename,params={'verification':str(time.time_ns())},timeout=30)
+    if not previous.ok or hashlib.sha256(previous.content).hexdigest()!=digest:
+        raise SystemExit('Live report module changed; stop to preserve newer work')
 Path('hosting-test').mkdir(exist_ok=True)
 Path('hosting-test/live-before.json').write_text(json.dumps(live,indent=2))
 op=call('POST',SITE+'/versions:clone',json={'sourceVersion':source,'finalize':False})
@@ -66,6 +70,11 @@ for _ in range(24):
     if verify(preview): break
     time.sleep(5)
 else: raise SystemExit('Preview content verification failed')
+if config.get('review_only'):
+    result={'preview_url':preview,'previous_live_version':source,'preview_version':version,'verified_files':config['files'],'review_only':True}
+    Path('hosting-test/photo-report-result.json').write_text(json.dumps(result,indent=2))
+    print('REVIEW_READY',json.dumps(result))
+    raise SystemExit(0)
 after=call('GET',SITE+'/channels/live')
 if after['release']['name']!=live['release']['name']: raise SystemExit('Live release changed during verification')
 release=call('POST',SITE+'/releases',params={'versionName':version},json={'message':'User-authorized additive photo report 2.0; legacy format preserved'})
