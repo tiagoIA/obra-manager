@@ -85,7 +85,7 @@ const captionTitle=p=>{
  const text=(ref?.description||'').split(/\n|(?<=\.)\s/)[0].trim();
  return text.length>150?text.slice(0,147).replace(/\s+\S*$/,'')+'…':text;
 };
-const photoSheets=(photos,summary=false)=>{const sheets=[];let pair=[],chapter=null;for(const original of photos){const photo={...original},step=storyStep(photo).key;photo.chapter=step;if(!summary&&chapter!==step){if(pair.length)sheets.push(pair);pair=[];chapter=step;}const full=photo.references.some(r=>/\b(map|floor plan|diagram)\b/i.test(r.name||''))||/\b(general map|floor plan|routing map|diagram)\b/i.test(captionTitle(photo));if(full){if(pair.length)sheets.push(pair);pair=[];sheets.push([photo]);photo.fullPage=true;}else{pair.push(photo);if(pair.length===(summary?4:2)){sheets.push(pair);pair=[];}}}if(pair.length)sheets.push(pair);return sheets;};
+const photoSheets=(photos,summary=false)=>{const sheets=[];let pair=[],chapter=null;for(const original of photos){const photo={...original},step=storyStep(photo).key;photo.chapter=step;if(!summary&&chapter!==step){if(pair.length)sheets.push(pair);pair=[];chapter=step;}const full=photo.references.some(r=>/\b(map|floor plan|diagram)\b/i.test(r.name||''))||/\b(general map|floor plan|routing map|diagram)\b/i.test(captionTitle(photo));if(full){if(pair.length)sheets.push(pair);pair=[];sheets.push([photo]);photo.fullPage=true;}else{pair.push(photo);if(pair.length===(summary?4:2)){sheets.push(pair);pair=[];}}}if(pair.length)sheets.push(pair);if(summary){for(let i=1;i<sheets.length;i++){const previous=sheets[i-1],current=sheets[i];if(current.length===1&&!current[0].fullPage&&previous.length===4&&!previous.some(p=>p.fullPage))current.unshift(previous.pop());}}return sheets;};
 export function renderPhotoReport(model,language='en',includeHistory=false){
  const l=strings[language]||strings.en,roomName=u=>u.room.unassigned?l.unassigned:u.service==='condensers'?l.condensers:u.room.name;
  const unitLabel=u=>u.service==='condensers'?roomName(u):l[u.service]+' · '+roomName(u);
@@ -97,7 +97,8 @@ export function renderPhotoReport(model,language='en',includeHistory=false){
   html+='<section class="pr-unit" id="pr-unit-'+i+'"><header class="pr-unit-head"><p class="pr-muted">'+e(l[u.service])+'</p><h2>'+e(roomName(u))+'</h2><p class="pr-muted">'+e(u.room.floor||'')+' · '+u.photos.length+' '+l.photos+'</p></header><div class="pr-current"><b>'+l.current+':</b> '+completed+'/'+u.tasks.length+' '+l.complete+' · '+pending.length+' '+l.pending+(pending.length?'<ul>'+pending.map(t=>'<li>'+e(t.name)+'</li>').join('')+'</ul>':'')+'</div>';
   const sheets=photoSheets(u.photos,!includeHistory);
   sheets.forEach((sheet,j)=>{
-   html+='<section class="pr-sheet"><header class="pr-sheet-head"><h3>'+e(unitLabel(u))+' · '+l[sheet[0].chapter]+'</h3><div class="pr-muted">'+l.part+' '+(j+1)+' '+l.of+' '+sheets.length+'</div></header><div class="pr-gallery">';
+   const chapters=new Set(sheet.map(p=>p.chapter)),heading=chapters.size===1?l[sheet[0].chapter]:l.photos;
+   html+='<section class="pr-sheet"><header class="pr-sheet-head"><h3>'+e(unitLabel(u))+' · '+heading+'</h3><div class="pr-muted">'+l.part+' '+(j+1)+' '+l.of+' '+sheets.length+'</div></header><div class="pr-gallery">';
    sheet.forEach(p=>{
     const ref=p.references.find(r=>r.source==='task')||p.references[0],title=captionTitle(p),stage=p.references.find(r=>r.stage!=='unspecified')?.stage;
     const meta=[ref?.status?l[ref.status]:l.history,ref?.date?dateLabel(ref.date,language):'',stage?l[stage]:''].filter(Boolean).join(' · ');
