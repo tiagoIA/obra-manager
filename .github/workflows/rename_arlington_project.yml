@@ -1,4 +1,4 @@
-name: Correct Arlington project name
+name: Rename Arlington project to job address
 on:
   push:
     branches:
