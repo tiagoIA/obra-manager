@@ -18,7 +18,7 @@ def call(method, path, **kwargs):
     return response.json() if response.content else {}
 def verify(url):
     for filename in config['files']:
-        r = requests.get(url.rstrip('/')+'/'+filename, params={'version':os.environ.get('GITHUB_SHA','verify')}, timeout=30)
+        r = requests.get(url.rstrip('/')+'/'+filename, params={'version':os.environ.get('GITHUB_SHA','verify'),'verification':str(time.time_ns())}, timeout=30)
         if not r.ok or r.content != Path('public',filename).read_bytes():
             return False
     return True
@@ -62,7 +62,7 @@ else: raise SystemExit('Preview channel unavailable')
 call('POST',SITE+'/channels/'+channel_id+'/releases',params={'versionName':version},json={'message':'Photo report 2.0 verification'})
 preview=channel['url']
 print('PREVIEW_READY',preview,flush=True)
-for _ in range(12):
+for _ in range(24):
     if verify(preview): break
     time.sleep(5)
 else: raise SystemExit('Preview content verification failed')
@@ -70,7 +70,7 @@ after=call('GET',SITE+'/channels/live')
 if after['release']['name']!=live['release']['name']: raise SystemExit('Live release changed during verification')
 release=call('POST',SITE+'/releases',params={'versionName':version},json={'message':'User-authorized additive photo report 2.0; legacy format preserved'})
 url='https://'+PROJECT+'.web.app/'
-for _ in range(12):
+for _ in range(24):
     if verify(url): break
     time.sleep(5)
 else:
