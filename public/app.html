@@ -2770,7 +2770,7 @@ window.toggleRptUnit=(rid)=>{
 };
 window.clearRptUnits=()=>{rptFilters.units=[];window.rptFilters=rptFilters;renderContent();};
 let _pendingMatPhotoId=null;
-let rptFilters={system:'all',floor:'all',status:'all',task:'',tech:'',units:[],reportType:'executive'};
+let rptFilters={system:'all',floor:'all',status:'all',task:'',tech:'',units:[],reportType:'executive',photoFormat:'summary'};
 window.rptFilters=rptFilters;
 let activePhotoUnit=null,pendingBAType=null,activePhotoTab='gallery';
 let tlSchedulingUnit=null,tlSchedulingTask=null,tlViewMode='kanban';
@@ -10486,8 +10486,10 @@ function renderReportsPage(el){
     +'</div></div>'
     // Tipo relatorio
     +'<div class="rpt2-filter-group"><label class="rpt2-filter-label">TIPO RELATORIO</label>'
-    +'<select class="rpt2-filter-sel" id="rpt-type-sel" data-k="reportType" onchange="window.setRptF(this.dataset.k,this.value);window.updateRptPreview()">'
+    +'<select class="rpt2-filter-sel" id="rpt-type-sel" data-k="reportType" onchange="window.setRptF(this.dataset.k,this.value);window.updateRptPreview();document.getElementById(\'rpt-photo-format-group\').hidden=this.value!==\'photos2\'">'
     +typSel+'</select></div>'
+    +'<div class="rpt2-filter-group" id="rpt-photo-format-group"'+((rptFilters.reportType||'executive')==='photos2'?'':' hidden')+'><label class="rpt2-filter-label" for="rpt-photo-format">FORMATO</label>'
+    +'<select class="rpt2-filter-sel" id="rpt-photo-format" data-k="photoFormat" onchange="window.setRptF(this.dataset.k,this.value)"><option value="summary"'+(rptFilters.photoFormat!=='complete'?' selected':'')+'>Resumido</option><option value="complete"'+(rptFilters.photoFormat==='complete'?' selected':'')+'>Completo</option></select></div>'
     +'</div>'
     // Botoes
     +'<div class="rpt2-actions">'
@@ -13035,7 +13037,7 @@ window.deleteMaterial=async id=>{
 
 function beforeInstallationPhotos(room){const rows=[...(room?.photos?.before?[{url:room.photos.before,name:'Existing before photo'}]:[]),...(room?.scopeBrief?.photos||[]),...Object.values(roomNotesList).filter(n=>n.roomId===room?.id&&n.phase==='before-installation').flatMap(notePhotoRows)];return rows.filter((p,n)=>p.url&&rows.findIndex(x=>x.url===p.url)===n);}
 // Multi-photo observations keep one record for the whole batch.
-import {installPhotoReport} from '/photo-report.js?v=2';
+import {installPhotoReport} from '/photo-report.js?v=3';
 installPhotoReport();
 import {installNotePhotos,notePhotoRows} from '/note-photos.js?v=2';
 import {installProjectBrief} from '/project-brief.js?v=1';
