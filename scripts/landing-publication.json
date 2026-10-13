@@ -1,12 +1,8 @@
 {
-  "baseline_sha256": "29f72375ff898a9ecaf12c383db9964bd5b5c75739cf1efe2ac6bffa996fce22",
+  "baseline_sha256": "ffb99c6b78f7ed8efbcd3ccf533e70f43fb0ba998868f7d6ef398587cea46826",
   "files": [
     "index.html",
-    "app.html",
     "crewnelo.css",
-    "crewnelo.js",
-    "crewnelo-mark.svg",
-    "sw.js",
-    "manifest.json"
+    "crewnelo-mark.svg"
   ]
 }
