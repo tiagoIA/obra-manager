@@ -1,0 +1,61 @@
+name: Transfer Arlington condenser evidence
+on:
+  push:
+    branches: ['task/arlington-condensers-2026-10-13']
+    paths: ['.github/workflows/transfer_arlington_condensers.yml']
+permissions:
+  contents: read
+jobs:
+  transfer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install firebase-admin
+      - name: Transfer exactly two authorized tasks preserving evidence
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: |
+          python - <<'PY'
+          import json, os
+          import firebase_admin
+          from firebase_admin import credentials, firestore
+          sa = json.loads(os.environ["FIREBASE_SA"])
+          assert sa["project_id"] == "obra-manager-4ecc7"
+          firebase_admin.initialize_app(credentials.Certificate(sa))
+          db = firestore.client()
+          projects = list(db.collection("projects").where("name", "==", "455 Massachusetts Ave, Arlington, MA").stream())
+          assert len(projects) == 1, "Expected exactly one Arlington project"
+          pid = projects[0].id
+          rooms = list(db.collection("rooms").where("projectId", "==", pid).stream())
+          source = [r for r in rooms if r.to_dict().get("name") == "06 · 7 Star Grocery"]
+          dest = [r for r in rooms if r.to_dict().get("name") == "Condensers"]
+          assert len(source) == len(dest) == 1, "Expected unique source and destination"
+          src, dst = source[0], dest[0]
+          names = {"Condenser (Disconnect connection)": "7 Star Grocery — 20 A — Condenser disconnect connection", "Label": "7 Star Grocery — 20 A — Condenser panel label"}
+          tasks = list(db.collection("tasks").where("projectId", "==", pid).where("roomId", "==", src.id).stream())
+          selected = [t for t in tasks if t.to_dict().get("name") in names]
+          assert len(selected) == 2 and {t.to_dict()["name"] for t in selected} == set(names), "Expected exactly two condenser records"
+          before = {t.id: t.to_dict() for t in selected}
+          assert all(len(t.get("photos", [])) == 1 and t.get("done") is True for t in before.values()), "Unexpected evidence or task status"
+          @firestore.transactional
+          def move(transaction):
+              source_now = src.reference.get(transaction=transaction)
+              dest_now = dst.reference.get(transaction=transaction)
+              snapshots = [t.reference.get(transaction=transaction) for t in selected]
+              assert source_now.to_dict()["projectId"] == dest_now.to_dict()["projectId"] == pid
+              assert dest_now.to_dict()["name"] == "Condensers"
+              for s in snapshots:
+                  assert s.to_dict() == before[s.id], "Task changed during review"
+              for s in snapshots:
+                  transaction.update(s.reference, {"roomId": dst.id, "name": names[before[s.id]["name"]]})
+          move(db.transaction())
+          for task in selected:
+              after = task.reference.get().to_dict()
+              expected = dict(before[task.id], roomId=dst.id, name=names[before[task.id]["name"]])
+              assert after == expected, "Post-transfer verification failed"
+          print("VERIFIED: 2 tasks moved to Condensers; both photos and all other task fields preserved; Seven Star identified as 20 A.")
+          
+          PY
