@@ -26,6 +26,12 @@ live = call('GET', SITE+'/channels/live')
 source = live['release']['version']['name']
 response = requests.get('https://'+PROJECT+'.web.app/', timeout=30)
 if not response.ok or hashlib.sha256(response.content).hexdigest() != config['baseline_sha256']:
+    if response.ok and response.content == Path('public/index.html').read_bytes() and verify('https://'+PROJECT+'.web.app/'):
+        Path('hosting-test').mkdir(exist_ok=True)
+        result={'live_url':'https://'+PROJECT+'.web.app/','workspace_url':'https://'+PROJECT+'.web.app/app.html','version':source,'verified_files':config['files'],'already_published':True}
+        Path('hosting-test/landing-result.json').write_text(json.dumps(result,indent=2))
+        print('PUBLICATION_VERIFIED',json.dumps(result))
+        raise SystemExit(0)
     raise SystemExit('Live HTML changed; stop to preserve newer work')
 Path('hosting-test').mkdir(exist_ok=True)
 Path('hosting-test/live-before.json').write_text(json.dumps(live,indent=2))
