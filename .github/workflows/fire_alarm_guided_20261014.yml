@@ -15,6 +15,17 @@ jobs:
         with:
           python-version: '3.11'
       - run: pip install google-cloud-firestore
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm install --no-save playwright
+      - run: npx playwright install --with-deps chromium
       - run: python scripts/fire_alarm_guided_20261014.py
         env:
           FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      - run: node scripts/check_fire_alarm_guided_20261014.cjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fire-alarm-guided-verification
+          path: guided-verification/
+          retention-days: 7
