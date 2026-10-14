@@ -1,0 +1,7 @@
+{
+  "companies": [
+    {"id": "cfc-electric", "name": "CFC Electric", "website": "https://cfcelectric.com", "projects": [{"id": "arlington-pilot", "name": "Arlington", "fixtureOnly": true}]},
+    {"id": "pnv-electric", "name": "PNV Electric", "projects": []}
+  ],
+  "productionImported": false
+}

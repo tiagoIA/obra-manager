@@ -1,0 +1,27 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function member(company) {
+      return request.auth != null && exists(/databases/$(database)/documents/companies/$(company)/members/$(request.auth.uid));
+    }
+    function owner(company) {
+      return member(company) && get(/databases/$(database)/documents/companies/$(company)/members/$(request.auth.uid)).data.role == 'owner';
+    }
+    match /companies/{company} {
+      allow get: if member(company);
+      allow update: if owner(company) && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['name', 'phone', 'email', 'website', 'license', 'logoPath']);
+      match /members/{uid} {
+        allow read: if member(company);
+        // Membership is provisioned by trusted administration, never by clients.
+        allow write: if false;
+      }
+      match /{kind}/{id} {
+        allow read: if kind != 'members' && member(company);
+        allow create: if kind != 'members' && member(company) && request.resource.data.companyId == company;
+        allow update: if kind != 'members' && member(company) && resource.data.companyId == company && request.resource.data.companyId == company;
+        allow delete: if kind != 'members' && member(company) && resource.data.companyId == company;
+      }
+    }
+    match /{document=**} { allow read, write: if false; }
+  }
+}

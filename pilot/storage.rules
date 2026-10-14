@@ -1,0 +1,18 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    function member(company) {
+      return request.auth != null && firestore.exists(/databases/(default)/documents/companies/$(company)/members/$(request.auth.uid));
+    }
+    match /companies/{company}/{path=**} {
+      allow read, delete: if member(company);
+      allow create, update: if member(company)
+        && request.resource.size < 25 * 1024 * 1024
+        && request.resource.contentType.matches('(image/.*|video/.*|application/pdf)')
+        && request.resource.metadata.companyId == company
+        // No public bearer-token download links in the isolated pilot.
+        && !request.resource.metadata.keys().hasAny(['firebaseStorageDownloadTokens']);
+    }
+    match /{path=**} { allow read, write: if false; }
+  }
+}

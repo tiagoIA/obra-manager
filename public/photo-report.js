@@ -20,7 +20,8 @@ const storyStep=photo=>{
 };
 Object.assign(strings.en,{storyInitial:'Initial conditions',storyPreparation:'Investigation and preparation',storyWork:'Work performed',storyFinishing:'Finishing and organization',storyIdentification:'Identification and labels',storyFinal:'Final checks and documented results',storyRecorded:'Supporting documentation'});
 Object.assign(strings.pt,{storyInitial:'Condições iniciais',storyPreparation:'Investigação e preparação',storyWork:'Execução do serviço',storyFinishing:'Acabamento e organização',storyIdentification:'Identificação e etiquetas',storyFinal:'Verificações finais e resultados documentados',storyRecorded:'Documentação complementar'});
-export function buildPhotoModel({project,rooms,tasks,notes,filters={},floorOrder=[]}){
+export function buildPhotoModel({project,rooms,tasks,notes,company=null,filters={},floorOrder=[]}){
+ if(company && (!project.companyId || company.id!==project.companyId))throw new Error('Report company does not match project');
  const restrictive=Boolean(filters.task||filters.tech||filters.status&&filters.status!=='all'||filters.system&&filters.system!=='all');
  const selected=rooms.filter(r=>(!filters.floor||filters.floor==='all'||(r.floor||'Other')===filters.floor)&&(!filters.units?.length||filters.units.includes(r.id)));
  const allowed=new Set(selected.map(r=>r.id));
@@ -53,7 +54,7 @@ export function buildPhotoModel({project,rooms,tasks,notes,filters={},floorOrder
   return {room,tasks:rt,notes:rn,photos:[...photos.values()],service:condenser?'condensers':(/coax/i.test(project.name||'')||rt.some(t=>/coax/i.test(t.name||'')))?'coax':'general'};
  }).filter(u=>u.tasks.length||u.notes.length||u.photos.length);
  let sequence=0;for(const unit of units){unit.photos.sort((a,b)=>storyStep(a).rank-storyStep(b).rank);for(const photo of unit.photos)photo.number=++sequence;}
- return {project,units,filters,restrictive,totalPhotos:globalPhotos.size,done:scopedTasks.filter(t=>t.done).length,pending:scopedTasks.filter(t=>!t.done).length};
+ return {project,company,units,filters,restrictive,totalPhotos:globalPhotos.size,done:scopedTasks.filter(t=>t.done).length,pending:scopedTasks.filter(t=>!t.done).length};
 }
 export const photoReportCSS=`
 .pr-report{max-width:850px;margin:auto;padding:20px;background:#fff;color:#17212b;font:13px/1.45 Arial,sans-serif;overflow-wrap:anywhere}
@@ -91,6 +92,14 @@ export function renderPhotoReport(model,language='en',includeHistory=false){
  const unitLabel=u=>u.service==='condensers'?roomName(u):l[u.service]+' · '+roomName(u);
  const filterText=Object.entries(model.filters).filter(([k,v])=>['floor','system','status','task','tech','units'].includes(k)&&v&&v!=='all'&&(!Array.isArray(v)||v.length)).map(([k,v])=>k+': '+(Array.isArray(v)?model.units.map(roomName).join(', '):v)).join(' · ')||l.all;
  let html='<article class="pr-report'+(!includeHistory?' pr-summary':'')+'"><header class="pr-cover"><div class="pr-brand">OBRA MANAGER · FIELD DOCUMENTATION</div><h1>'+e(model.project.name)+'</h1><h2>'+l.title+'</h2>'+(model.project.address!==model.project.name?'<p>'+e(model.project.address||'')+'</p>':'')+'<p class="pr-muted">'+dateLabel(new Date().toISOString(),language)+' · '+l.filters+': '+e(filterText)+'</p><div class="pr-kpis">'+[[model.units.length,l.units],[model.totalPhotos,l.photos],[model.done,l.done],[model.pending,l.pending]].map(([n,t])=>'<div><strong>'+n+'</strong>'+t+'</div>').join('')+'</div><p class="pr-muted">'+l.historical+'</p><h3>'+l.contents+'</h3><table class="pr-index"><thead><tr><th>'+l.units+'</th><th>'+l.photos+'</th><th>'+l.pending+'</th></tr></thead><tbody>'+model.units.map((u,i)=>'<tr><td><a href="#pr-unit-'+i+'">'+e(unitLabel(u))+'</a></td><td>'+u.photos.length+'</td><td>'+u.tasks.filter(t=>!t.done).length+'</td></tr>').join('')+'</tbody></table></header>';
+ if(model.company){
+  const c=model.company;
+  if(c.id!==model.project.companyId)throw new Error('Report company does not match project');
+  const logo=typeof c.logoURL==='string'&&/^(https:\/\/|blob:)/.test(c.logoURL)?'<img class="pr-company-logo" style="max-width:180px;max-height:70px;object-fit:contain;display:block;margin-bottom:8px" src="'+e(c.logoURL)+'" alt="'+e(c.name||'')+'">':'';
+  const details=[c.phone,c.email,c.website,c.license].filter(Boolean).map(value=>e(String(value))).join(' · ');
+  const brand='<div class="pr-brand">'+logo+e(c.name||'')+(details?'<div class="pr-muted" style="letter-spacing:normal">'+details+'</div>':'')+'</div>';
+  html=html.replace('<div class="pr-brand">OBRA MANAGER · FIELD DOCUMENTATION</div>',brand);
+ }
  if(!model.units.length)html+='<p>'+l.none+'</p>';
  model.units.forEach((u,i)=>{
   const pending=u.tasks.filter(t=>!t.done),completed=u.tasks.filter(t=>t.done).length;
