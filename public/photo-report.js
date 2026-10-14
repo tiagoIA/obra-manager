@@ -74,6 +74,7 @@ export const photoReportCSS=`
  @page{size:Letter;margin:12mm 12mm 16mm;@bottom-right{content:counter(page) " / " counter(pages);font:9px Arial;color:#52616f}}
  html,body{margin:0!important;padding:0!important;width:auto!important;min-width:0!important;background:#fff!important}.pr-report{width:100%;max-width:none;padding:0;font-size:11px}.pr-report-bar,.pr-load-status{display:none!important}
  .pr-unit,.pr-sheet,.pr-history{break-before:page;page-break-before:always}.pr-unit{margin:0}.pr-sheet{margin:0;border:0;padding:0}.pr-sheet:first-of-type{break-before:auto;page-break-before:auto}
+ .pr-unit-head{padding-top:5px}.pr-unit-head p{margin:3px 0}.pr-unit-head h2{font-size:18px;margin:3px 0}.pr-current{padding:4px 6px;margin:4px 0 6px}.pr-sheet-head{margin-bottom:5px}
  .pr-summary .pr-gallery{grid-template-columns:1fr 1fr}.pr-summary .pr-photo img{height:80mm}.pr-summary .pr-full{grid-column:1/-1}.pr-summary .pr-full img{height:150mm}
  .pr-photo img{height:68mm}.pr-gallery{gap:4mm}.pr-photo figcaption{font-size:10px;line-height:1.3}.pr-full img{height:170mm}.pr-cover{padding:0}.pr-index tr,.pr-kpis{break-inside:avoid}.pr-report a{text-decoration:none;color:inherit}.pr-record p{orphans:3;widows:3}
 }

@@ -1,11 +1,11 @@
 {
-  "baseline_sha256": "4863f8f486265008d3810af70fa241af7d81a0cceaa57717e94eea24b624a2cc",
+  "baseline_sha256": "8f4f326dde17d73f1439ad068f636a7ee6fa9b35448fcea5dbfc4e7a06b2f4eb",
   "files": [
     "app.html",
     "photo-report.js"
   ],
   "baseline_files": {
-    "photo-report.js": "a3320d0f5d637ec6bc6ead93cf6ee048fa07ff19bba16c127103a4df39b87826"
+    "photo-report.js": "3eee9d08bb232cf68bd5563b0cc833ccd9950d0ea88f9d87a285cdf1d06cc704"
   },
   "review_only": false
 }
