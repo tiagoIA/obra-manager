@@ -1,0 +1,20 @@
+name: Fire alarm guided list
+on:
+  push:
+    branches: [task/fire-alarm-guided-20261014]
+    paths: ['scripts/fire_alarm_guided_20261014.py', '.github/workflows/fire_alarm_guided_20261014.yml']
+permissions:
+  contents: read
+jobs:
+  guided:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install google-cloud-firestore
+      - run: python scripts/fire_alarm_guided_20261014.py
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
