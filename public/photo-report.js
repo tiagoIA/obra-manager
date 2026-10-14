@@ -144,7 +144,7 @@ export function installPhotoReport(){
      img.src=canvas.toDataURL('image/jpeg',img.closest('.pr-full')?.82:.78);img.dataset.printOptimized='true';if(img.decode)await img.decode();canvas.width=canvas.height=0;
     }catch{ /* If cross-origin optimization is unavailable, keep the successfully loaded original. */ }
    }));if(w.closed)return;}
-   status.textContent='';w.focus();w.print();
+   status.textContent='';w.document.documentElement.dataset.reportReady='true';w.focus();w.print();
   };await load();
  }
  window.photoReport={open:data=>{input=data;includeHistory=data.filters?.photoFormat==='complete';draw();document.getElementById('pdf-report').classList.add('open');},print};

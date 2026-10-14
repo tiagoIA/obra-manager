@@ -15,7 +15,7 @@ const fs=require('node:fs'),assert=require('node:assert/strict');const {chromium
   await page.context().addInitScript(()=>{window.print=()=>{window.__printReady=true;};});
   const popupPromise=page.waitForEvent('popup');
   await page.evaluate(()=>{window.photoReport.print(document.getElementById('pdf-content'));});
-  const popup=await popupPromise;await popup.waitForFunction(()=>window.__printReady,null,{timeout:180000});
+  const popup=await popupPromise;await popup.evaluate(()=>{window.print=()=>{window.__printReady=true;};});try{await popup.waitForFunction(()=>document.documentElement.dataset.reportReady==='true',null,{timeout:90000,polling:100});}catch(error){console.log('EXPORT_DIAGNOSTIC',JSON.stringify(await popup.evaluate(()=>({status:document.getElementById('pr-print-status')?.textContent,images:document.images.length,loaded:[...document.images].filter(i=>i.complete&&i.naturalWidth).length,optimized:document.querySelectorAll('[data-print-optimized]').length}))));throw error;}
   await popup.emulateMedia({media:'print'});
   await popup.pdf({path:'hosting-test/Arlington-photo-report-2.0.pdf',format:'Letter',printBackground:true,preferCSSPageSize:true});
   audit.optimizedPhotos=await popup.locator('img[data-print-optimized=true]').count();
