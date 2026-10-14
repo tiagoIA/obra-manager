@@ -133,6 +133,17 @@ export function installPhotoReport(){
   const l=strings[language];w.document.write('<!doctype html><html lang="'+(el.lang||'en')+'"><head><meta charset="utf-8"><title>'+e(input.project.name+' — '+l.title)+'</title><style>'+photoReportCSS+'</style></head><body><div class="pr-report-bar"><span id="pr-print-status">'+l.wait+'</span><button id="pr-print-retry" hidden>'+l.retry+'</button></div>'+el.querySelector('.pr-report').outerHTML+'</body></html>');w.document.close();
   const load=async()=>{const retry=w.document.getElementById('pr-print-retry'),status=w.document.getElementById('pr-print-status');retry.hidden=true;status.textContent=l.wait;const imgs=[...w.document.images];const settled=await Promise.all(imgs.map(img=>new Promise(resolve=>{if(img.complete)return resolve(img.naturalWidth>0);const finish=ok=>{clearTimeout(timer);img.onload=null;img.onerror=null;resolve(ok);};const timer=setTimeout(()=>finish(false),30000);img.onload=()=>finish(img.naturalWidth>0);img.onerror=()=>finish(false);})));
    if(w.closed)return;if(settled.some(ok=>!ok)){status.textContent=l.missing;retry.hidden=false;retry.onclick=()=>{imgs.forEach(img=>{if(!img.complete||!img.naturalWidth){const src=img.getAttribute('src');img.removeAttribute('src');img.src=src;}});load();};return;}
+   // Optimize only the temporary print document; evidence URLs and originals stay intact.
+   status.textContent=language==='pt'?'Preparando imagens leves para PDF…':'Preparing lighter images for PDF…';
+   for(let start=0;start<imgs.length;start+=4){await Promise.all(imgs.slice(start,start+4).map(async img=>{
+    try{
+     const original=new w.Image();original.crossOrigin='anonymous';
+     await new Promise((resolve,reject)=>{const timer=setTimeout(()=>reject(new Error('Image optimization timeout')),15000);original.onload=()=>{clearTimeout(timer);resolve();};original.onerror=()=>{clearTimeout(timer);reject(new Error('Image CORS unavailable'));};original.src=img.src;});
+     const limit=img.closest('.pr-full')?1800:1280,scale=Math.min(1,limit/Math.max(original.naturalWidth,original.naturalHeight));
+     const canvas=w.document.createElement('canvas');canvas.width=Math.max(1,Math.round(original.naturalWidth*scale));canvas.height=Math.max(1,Math.round(original.naturalHeight*scale));const context=canvas.getContext('2d');context.fillStyle='#fff';context.fillRect(0,0,canvas.width,canvas.height);context.drawImage(original,0,0,canvas.width,canvas.height);
+     img.src=canvas.toDataURL('image/jpeg',img.closest('.pr-full')?.82:.78);img.dataset.printOptimized='true';if(img.decode)await img.decode();canvas.width=canvas.height=0;
+    }catch{ /* If cross-origin optimization is unavailable, keep the successfully loaded original. */ }
+   }));if(w.closed)return;}
    status.textContent='';w.focus();w.print();
   };await load();
  }

@@ -12,8 +12,17 @@ const fs=require('node:fs'),assert=require('node:assert/strict');const {chromium
   const audit=await page.locator('.pr-report').evaluate(el=>({photos:el.querySelectorAll('img').length,loaded:[...el.querySelectorAll('img')].filter(i=>i.naturalWidth>0).length,units:el.querySelectorAll('.pr-unit').length,historyShown:!!el.querySelector('.pr-history'),captionCharacters:[...el.querySelectorAll('figcaption')].map(c=>c.textContent.length),unitNames:[...el.querySelectorAll('.pr-unit h2')].map(h=>h.textContent)}));
   assert.equal(audit.loaded,audit.photos,'No missing evidence images');assert(!audit.historyShown,'Client report must not include the historical appendix by default');assert.equal(audit.units,12);assert(audit.captionCharacters.every(n=>n<550),'Photo captions must remain brief');
   const condensers=page.locator('.pr-unit').filter({has:page.getByRole('heading',{name:'Condensers',exact:true,level:2})});const captions=await condensers.locator('figcaption').allTextContents();assert(captions.some(t=>t.includes('7 Star Grocery')&&t.includes('20 A')));assert(captions.some(t=>t.includes('Backyartists')&&t.includes('30 A')));
-  await page.emulateMedia({media:'print'});
-  await page.pdf({path:'hosting-test/Arlington-photo-report-2.0.pdf',format:'Letter',printBackground:true,preferCSSPageSize:true});
+  await page.context().addInitScript(()=>{window.print=()=>{window.__printReady=true;};});
+  const popupPromise=page.waitForEvent('popup');
+  await page.evaluate(()=>{window.photoReport.print(document.getElementById('pdf-content'));});
+  const popup=await popupPromise;await popup.waitForFunction(()=>window.__printReady,null,{timeout:180000});
+  await popup.emulateMedia({media:'print'});
+  await popup.pdf({path:'hosting-test/Arlington-photo-report-2.0.pdf',format:'Letter',printBackground:true,preferCSSPageSize:true});
+  audit.optimizedPhotos=await popup.locator('img[data-print-optimized=true]').count();
+  audit.pdfBytes=fs.statSync('hosting-test/Arlington-photo-report-2.0.pdf').size;
+  assert(audit.optimizedPhotos===audit.photos,'All real photo assets must support the lightweight export');
+  console.log('PDF_EXPORT_SIZE',JSON.stringify({bytes:audit.pdfBytes,optimizedPhotos:audit.optimizedPhotos}));
+  await popup.close();
   audit.uniquePhotos=expected;audit.runtimeErrors=errors;fs.writeFileSync('hosting-test/arlington-report-audit.json',JSON.stringify(audit,null,2));assert.deepEqual(errors,[]);
   console.log('ARLINGTON_REAL_REPORT_VERIFIED',JSON.stringify({units:audit.units,photos:audit.photos,loaded:audit.loaded,uniquePhotos:expected,historyShown:audit.historyShown,maxCaptionCharacters:Math.max(...audit.captionCharacters)}));
  }finally{await browser.close();fs.unlinkSync('tmp/photo-report/arlington-input.json');}
