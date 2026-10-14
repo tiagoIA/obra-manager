@@ -12,7 +12,8 @@ await page.getByRole('button',{name:'✨ Guided list'}).click();
 await page.getByLabel('Fire Alarm — Scope List',{exact:true}).check();
 await page.getByRole('button',{name:'Choose materials →'}).click();
 assert.equal(await page.locator('.gs-picked').count(),23);
-await page.waitForFunction(()=>[...document.querySelectorAll('.gs-picked img')].length===23&&[...document.querySelectorAll('.gs-picked img')].every(i=>i.complete&&i.naturalWidth>0),null,{timeout:120000});
+for(const row of await page.locator('.gs-picked').all())await row.scrollIntoViewIfNeeded();
+try{await page.waitForFunction(()=>[...document.querySelectorAll('.gs-picked img')].length===23&&[...document.querySelectorAll('.gs-picked img')].every(i=>i.complete&&i.naturalWidth>0),null,{timeout:30000});}catch(error){console.log('GUIDED_PHOTO_DIAGNOSTIC',JSON.stringify(await page.locator('.gs-picked').evaluateAll(rows=>rows.map(row=>({name:row.querySelector('.gs-name')?.textContent,photo:!!row.querySelector('img'),loaded:!!row.querySelector('img')?.naturalWidth,host:row.querySelector('img')?new URL(row.querySelector('img').src).hostname:null})).filter(i=>!i.loaded))));throw error;}
 const draft=await page.evaluate(()=>JSON.parse(sessionStorage.getItem('guided-shopping-v3:'+fixture.owner)));
 assert.equal(draft.items.length,23);assert.deepEqual(draft.items.map(i=>i.sourceQty),[9,7,9,0,3,3,4,null,null,1,null,1,2,1,2,1,2,1,null,2,2,1,null]);
 assert(draft.items[18].obs.includes('2 beacons'));assert(!draft.items[5].matId);
