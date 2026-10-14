@@ -38,6 +38,13 @@ jobs:
       - run: python scripts/publish_photo_report.py
         env:
           FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      - name: Generate an Arlington PDF recovery artifact if native export fails
+        if: failure()
+        run: |
+          python scripts/snapshot_photo_report.py
+          node scripts/render_arlington_direct_pdf.cjs
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
       - uses: actions/upload-artifact@v4
         if: always()
         with:
