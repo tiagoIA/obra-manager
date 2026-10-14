@@ -2,7 +2,7 @@ name: Fire alarm guided list
 on:
   push:
     branches: [task/fire-alarm-guided-20261014]
-    paths: ['scripts/fire_alarm_guided_20261014.py', '.github/workflows/fire_alarm_guided_20261014.yml']
+    paths: ['scripts/fire_alarm_guided_20261014.py', 'scripts/check_fire_alarm_guided_20261014.cjs', '.github/workflows/fire_alarm_guided_20261014.yml']
 permissions:
   contents: read
 jobs:
@@ -25,6 +25,7 @@ jobs:
           FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
       - run: node scripts/check_fire_alarm_guided_20261014.cjs
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: fire-alarm-guided-verification
           path: guided-verification/
