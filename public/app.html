@@ -2133,7 +2133,12 @@ button, a, [onclick], .btn-g, .bn-item, .home-nav-btn,
 @media(max-width:600px){.rpt2-preview{grid-template-columns:repeat(2,1fr);}.rpt2-filter-grid{grid-template-columns:1fr;}.rpt2-filter-sel{width:100%;box-sizing:border-box;font-size:14px;padding:10px 12px;}.rpt2-actions{flex-direction:column;}.rpt2-btn{justify-content:center;width:100%;}}
 
 
-.home-recent-project{display:block;width:100%;text-align:left;min-height:48px;padding:12px;margin:6px 0;background:var(--sur2);color:var(--txt);border:1px solid var(--bdr);border-radius:10px;font:inherit;cursor:pointer;overflow-wrap:anywhere}
+.project-facade-thumb{width:64px;height:64px;object-fit:cover;flex-shrink:0;border-radius:8px;background:var(--sur2)}
+.project-facade-placeholder{display:flex;align-items:center;justify-content:center;font-size:25px}
+.home-project-choices{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:8px;margin-top:12px;max-height:340px;overflow:auto}
+.home-project-choice{display:flex;gap:12px;align-items:center;padding:10px;background:var(--sur2);color:var(--txt);border:1px solid var(--bdr);border-radius:10px;text-align:left;font:inherit;cursor:pointer;overflow-wrap:anywhere}
+.home-project-choice[aria-pressed="true"]{border-color:var(--elec)}
+.home-recent-project{display:flex!important;align-items:center;gap:12px;display:block;width:100%;text-align:left;min-height:48px;padding:12px;margin:6px 0;background:var(--sur2);color:var(--txt);border:1px solid var(--bdr);border-radius:10px;font:inherit;cursor:pointer;overflow-wrap:anywhere}
 .photo-zoom-stage{position:absolute;inset:65px 0 60px;display:flex;align-items:center;justify-content:center;overflow:hidden;touch-action:none;cursor:grab}
 .photo-zoom-stage img{max-width:95vw!important;max-height:100%!important;object-fit:contain;user-select:none;will-change:transform}
 .photo-zoom-controls{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:2}
@@ -2463,6 +2468,7 @@ button, a, [onclick], .btn-g, .bn-item, .home-nav-btn,
   </div>
   <div class="pdf-page" id="shop-pdf-content"></div>
 </div>
+<input type="file" id="project-facade-upload" accept="image/*" hidden aria-label="Project facade photo" onchange="window.updateProjectFacade(event)">
 <input type="file" id="file-input" accept="image/*" multiple onchange="handlePhoto(event)">
 <input type="file" id="note-photo-input" style="display:none" accept="image/*" multiple onchange="handleNotePhoto(event)">
 <input type="file" id="note-camera-input" style="display:none" accept="image/*" capture="environment" onchange="handleNotePhoto(event)">
@@ -4543,6 +4549,44 @@ window.renderProjectFacade=(project)=>{
   if(!url||!/^https:\/\//i.test(url))return '';
   return '<img src="'+String(url).replaceAll('&','&amp;').replaceAll('"','&quot;').replaceAll('<','&lt;')+'" alt="Front of the house / building" loading="lazy" style="display:block;width:100%;max-width:420px;max-height:220px;object-fit:contain;border-radius:10px;margin-top:12px">';
 };
+window.renderProjectFacadeThumbnail=(project)=>{
+  const url=project?.facadePhoto?.url;
+  return url&&/^https:\/\//i.test(url)
+    ?'<img class="project-facade-thumb" src="'+x(url)+'" alt="Facade of '+x(project.name||'project')+'" loading="lazy">'
+    :'<span class="project-facade-thumb project-facade-placeholder" aria-hidden="true">🏠</span>';
+};
+window.chooseProjectFacade=(pid)=>{
+  if(!auth.currentUser||!hasRole('supervisor'))return notif('Manager access required.','e');
+  if(!projects[pid])return;
+  const input=document.getElementById('project-facade-upload');input.dataset.projectId=pid;input.value='';input.click();
+};
+window.updateProjectFacade=async(event)=>{
+  const input=event.target,file=input.files?.[0],pid=input.dataset.projectId,project=projects[pid],uid=auth.currentUser?.uid;
+  if(!file||!project)return;
+  if(!uid||!hasRole('supervisor'))return notif('Manager access required.','e');
+  if(!file.type.startsWith('image/')||file.size>20*1024*1024){input.value='';return notif('Choose an image up to 20 MB.','e');}
+  if(window._facadeUpdating)return notif('A facade photo is already being saved.','e');
+  window._facadeUpdating=pid;
+  const original=project.facadePhoto?.url||'';
+  try{
+    notif('Saving facade photo...','s');
+    const blob=await compressImage(file);
+    if(!blob||blob.type!=='image/jpeg')throw Error('Could not read this image. Choose a JPG or PNG photo.');
+    if(auth.currentUser?.uid!==uid||!hasRole('supervisor'))throw Error('Account changed. Sign in again before saving.');
+    const facadePhoto=await window.uploadWizardFacade({facadeBlob:blob});
+    await runTransaction(db,async tx=>{
+      if(auth.currentUser?.uid!==uid||!hasRole('supervisor'))throw Error('Account changed. Sign in again before saving.');
+      const target=doc(db,'projects',pid),snap=await tx.get(target);
+      if(!snap.exists())throw Error('This project was removed.');
+      if((snap.data().facadePhoto?.url||'')!==original)throw Error('The facade photo changed on another device. Reload the project before trying again.');
+      tx.update(target,{facadePhoto,updatedAt:serverTimestamp(),updatedBy:uid});
+    });
+    if(projects[pid])projects[pid].facadePhoto=facadePhoto;
+    renderHomePage();notif('Facade photo saved.','s');
+  }catch(error){notif(error.message||'Could not save facade photo. Try again.','e');}
+  finally{window._facadeUpdating=null;input.value='';}
+};
+
 // Optional service classification; building type and electrical/fire scope stay independent.
 window.PROJECT_WORK_TYPES=[
   {id:'ev-charger',label:'EV Charger',scope:'electrical'},
@@ -7636,7 +7680,8 @@ window.renderHomePage=function(){
   const prEl=document.getElementById('home-proj');
   if(prEl)prEl.textContent=proj?'\ud83d\udccd '+proj.address:'';
   const facadeEl=document.getElementById('home-facade');
-  if(facadeEl)facadeEl.innerHTML=window.renderProjectFacade(proj);
+  if(facadeEl)facadeEl.innerHTML=proj?window.renderProjectFacade(proj)
+    +(hasRole('supervisor')?'<button type="button" class="btn-g" style="margin-top:10px;min-height:44px" onclick="window.chooseProjectFacade(\''+x(proj.id)+'\')">'+(proj.facadePhoto?.url?'Change facade photo':'Add facade photo')+'</button>':''):'';
   // Project selection is explicit; recent access is scoped to the signed-in user.
   const swEl=document.getElementById('home-proj-switch');
   if(swEl){
@@ -7645,7 +7690,8 @@ window.renderHomePage=function(){
     swEl.innerHTML='<label for="home-project-select" style="font-size:12px">Choose a project</label>'
       +'<select id="home-project-select" class="home-proj-select" onchange="window.switchProjectHome(this.value)">'
       +'<option value=""'+(!activePid?' selected':'')+'>Select a project...</option>'
-      +allProj.map(p=>'<option value="'+x(p.id)+'"'+(p.id===activePid?' selected':'')+'>'+x(p.name.split('—')[0].trim())+'</option>').join('')+'</select>';
+      +allProj.map(p=>'<option value="'+x(p.id)+'"'+(p.id===activePid?' selected':'')+'>'+x(p.name.split('—')[0].trim())+'</option>').join('')+'</select>'
+      +'<div class="home-project-choices" aria-label="Projects">'+allProj.map(p=>'<button type="button" class="home-project-choice" aria-pressed="'+(p.id===activePid)+'" onclick="window.switchProjectHome(\''+x(p.id)+'\')">'+window.renderProjectFacadeThumbnail(p)+'<span>'+x(p.name)+'</span></button>').join('')+'</div>';
   }
   const recentEl=document.getElementById('home-recent-projects');
   if(recentEl){
@@ -7655,7 +7701,7 @@ window.renderHomePage=function(){
     recent.forEach(id=>{
       const p=projects[id], b=document.createElement('button');
       b.type='button';b.className='home-recent-project';
-      b.textContent=p.name;b.onclick=()=>{window.switchProjectHome(id);window.goWork();};
+      b.innerHTML=window.renderProjectFacadeThumbnail(p)+'<span>'+x(p.name)+'</span>';b.onclick=()=>{window.switchProjectHome(id);window.goWork();};
       recentEl.appendChild(b);
     });
   }

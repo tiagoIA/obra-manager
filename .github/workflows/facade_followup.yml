@@ -1,0 +1,38 @@
+name: Publish facade editing and complete requested project setup
+on:
+  push:
+    branches: [feature/project-facade-followup-2026-10-15]
+permissions:
+  contents: read
+concurrency:
+  group: obra-manager-hosting-publication
+  cancel-in-progress: false
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node scripts/check-work-types.cjs
+      - run: node --experimental-vm-modules scripts/check-facade-followup.cjs
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install google-auth google-cloud-storage google-cloud-firestore cryptography requests
+      - run: python scripts/publish_facade_followup.py
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      - name: Complete bounded project setup phase
+        run: python scripts/project_setup_job.py
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: facade-followup-verification-${{ github.run_id }}
+          path: hosting-test/
+          if-no-files-found: ignore
+          retention-days: 30
