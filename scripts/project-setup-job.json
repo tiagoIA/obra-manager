@@ -1,5 +1,5 @@
 {
-  "mode": "prepare",
+  "mode": "finish",
   "object": "automation/project-setup/384c6038-e262-4b21-a341-d666f35068f2.json",
   "payload_sha256": "e5ba3ac9dd6f11d97e51e69185aa0a97fd83c0eef755bb7c3b988da9ac7ca090"
 }
