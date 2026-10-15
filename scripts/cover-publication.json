@@ -10,5 +10,5 @@
     "photo-report.js": "36856aa4d592366204553d4c0b5d900859535d620285e10a0d6cc75d1c191d59",
     "photo-report-pdf.js": "d5cb18ec810bdc9cea008f4a2a9545cfdf060a87e2849237d8bca6f0ce2f0f45"
   },
-  "review_only": true
+  "review_only": false
 }
