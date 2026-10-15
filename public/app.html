@@ -4502,6 +4502,47 @@ function listenInvoices(){  if(unsubs.inv)unsubs.inv();invoices={};
     if(activePage==='invoices')renderContent();
   });
 }
+// Optional facade photograph for project identification.
+window.clearWizardFacade=()=>{
+  const data=window.wizData;
+  if(data?.facadePreview)URL.revokeObjectURL(data.facadePreview);
+  if(data){delete data.facadePreview;delete data.facadeBlob;delete data.facadePhoto;}
+};
+window.handleWizardFacade=async(event)=>{
+  const file=event.target.files?.[0],data=window.wizData;
+  if(!file)return;
+  if(!file.type.startsWith('image/')||file.size>20*1024*1024){notif('Choose an image up to 20 MB.','e');event.target.value='';return;}
+  const token={};data.facadeSelection=token;data.facadeProcessing=true;window.renderWizard();
+  try{
+    const blob=await compressImage(file);
+    if(!blob||blob.type!=='image/jpeg')throw Error('Could not read this image. Choose a JPG or PNG photo.');
+    if(window.wizData!==data||data.facadeSelection!==token)return;
+    window.clearWizardFacade();data.facadeBlob=blob;data.facadePreview=URL.createObjectURL(blob);
+  }catch(error){notif(error.message||'Could not prepare facade photo.','e');}
+  finally{if(window.wizData===data&&data.facadeSelection===token){data.facadeProcessing=false;window.renderWizard();}}
+};
+window.renderWizardFacade=(data)=>'<div class="fg" style="margin:14px 0"><label class="fl" for="wiz-facade">FACADE PHOTO (OPTIONAL)</label>'
+  +'<p style="font-size:12px;color:var(--mut)">Front of the house / building, to identify this project. You may leave this blank.</p>'
+  +'<input id="wiz-facade" type="file" accept="image/*" aria-label="Facade photo (optional)" onchange="handleWizardFacade(event)" '+(data.facadeProcessing?'disabled':'')+' style="max-width:100%">'
+  +(data.facadeProcessing?'<p role="status">Preparing photo...</p>':'')
+  +(data.facadePreview?'<div style="margin-top:10px"><img src="'+data.facadePreview+'" alt="Facade photo preview" style="display:block;width:100%;max-width:360px;max-height:200px;object-fit:contain;border-radius:8px"><button type="button" class="btn-sm" style="margin-top:8px" onclick="clearWizardFacade();renderWizard()">Remove photo</button></div>':'')+'</div>';
+window.uploadWizardFacade=async(data)=>{
+  if(data.facadeProcessing)throw Error('Wait for the facade photo to finish processing.');
+  if(!data.facadeBlob)return null;
+  const uid=auth.currentUser?.uid;if(!uid)throw Error('Sign in before uploading a facade photo.');
+  if(data.facadePhoto?.uploadedBy===uid)return data.facadePhoto;
+  const storagePath='projects/facades/'+uid+'/'+crypto.randomUUID()+'.jpg';
+  const target=ref(storage,storagePath);
+  await uploadBytes(target,data.facadeBlob,{contentType:'image/jpeg'});
+  const url=await getDownloadURL(target);
+  if(auth.currentUser?.uid!==uid)throw Error('Account changed. Sign in again before saving.');
+  return data.facadePhoto={url,storagePath,uploadedBy:uid};
+};
+window.renderProjectFacade=(project)=>{
+  const url=project?.facadePhoto?.url;
+  if(!url||!/^https:\/\//i.test(url))return '';
+  return '<img src="'+String(url).replaceAll('&','&amp;').replaceAll('"','&quot;').replaceAll('<','&lt;')+'" alt="Front of the house / building" loading="lazy" style="display:block;width:100%;max-width:420px;max-height:220px;object-fit:contain;border-radius:10px;margin-top:12px">';
+};
 // Optional service classification; building type and electrical/fire scope stay independent.
 window.PROJECT_WORK_TYPES=[
   {id:'ev-charger',label:'EV Charger',scope:'electrical'},
@@ -4541,6 +4582,7 @@ window.toggleWizWorkType=(id,checked)=>{
 };
 // ─── PROJECT WIZARD ──────────────────────────────────────────────────────────
 window.openProjectWizard=(fromProject)=>{
+  window.clearWizardFacade();
   window.wizStep=1;
   window.wizData={
     name:'',address:'',type:'residential',scope:'both',workTypes:[],customWorkType:'',
@@ -4711,6 +4753,7 @@ window.renderWizard=function renderWizard(){
       +'<input class="m-inp" id="wiz-name" placeholder="Ex: Lofts at Kettlebrook" value="'+x(wizData.name||'')+'" style="margin:0" oninput="wizData.name=this.value"></div>'
       +'<div class="fg" style="margin-bottom:14px"><label class="fl">ADDRESS</label>'
       +'<input class="m-inp" id="wiz-addr" placeholder="Ex: 1511 Main St, Worcester MA" value="'+x(wizData.address||'')+'" style="margin:0" oninput="wizData.address=this.value"></div>'
+      +window.renderWizardFacade(wizData)
       +'<div class="fg"><label class="fl">PROJECT TYPE</label>'
       +'<div class="type-cards">'
       +'<div class="type-card'+(wizData.type==='residential'?' selected':'')+'" onclick="setWizType(\'residential\')"><div class="type-card-icon">🏠</div><div class="type-card-label">Residential</div></div>'
@@ -4932,6 +4975,7 @@ window.renderWizard=function renderWizard(){
     html+='<div class="wiz-title">✅ REVIEW & CREATE</div>'
       +'<div class="wiz-sub">Step 6 of 6 — Confirm and create project</div>';
 
+    if(wizData.facadePreview)html+='<img src="'+wizData.facadePreview+'" alt="Facade photo preview" style="width:100%;max-width:300px;max-height:160px;object-fit:contain;margin-bottom:14px">';
     const workTypeSummary=window.projectWorkTypeSummary(wizData);
     if(workTypeSummary)html+='<div style="margin-bottom:14px;font-size:13px;overflow-wrap:anywhere"><b>Work types:</b> '+x(workTypeSummary)+'</div>';
 
@@ -5175,15 +5219,25 @@ window.createProjectFromWizard=async()=>{
   const wizData=window.wizData;
   if(!wizData.name){notif('Enter project name','e');return;}
   if(!wizData.fromProject&&(!String(wizData.initialConditions||'').trim()||!String(wizData.workScope||'').trim())){notif('Describe the initial conditions and work scope.','e');window.wizStep=2;window.renderWizard();return;}
+  if(window._projectCreating)return;
+  window._projectCreating=true;
   syncing(true);setLoadMsg('Creating project...');
-  const pr=await addDoc(collection(db,'projects'),{
+  let facadePhoto;
+  try{facadePhoto=await window.uploadWizardFacade(wizData);}
+  catch(error){window._projectCreating=false;syncing(false);hideLoad();notif(error.message||'Could not upload facade photo. Retry or remove the photo.','e');return;}
+  let pr;
+  try{pr=await addDoc(collection(db,'projects'),{
     name:wizData.name,address:wizData.address,
     type:wizData.type,scope:wizData.scope,
     ...window.projectWorkTypeValues(wizData),
+    ...(facadePhoto?{facadePhoto}:{}),
     scopeBrief:{before:wizData.initialConditions||'',workScope:wizData.workScope||'',observations:'',photos:[],captureStatus:'before-photos-needed'},
     createdAt:serverTimestamp()
   });
+  }catch(error){notif(error.message||'Could not save project.','e');syncing(false);hideLoad();return;}
+  finally{window._projectCreating=false;}
   const pid=pr.id;activePid=pid;
+  window.clearWizardFacade();
 
   // Build tasks from library selections
   const tasksToBuild=[];
@@ -7581,6 +7635,8 @@ window.renderHomePage=function(){
   }
   const prEl=document.getElementById('home-proj');
   if(prEl)prEl.textContent=proj?'\ud83d\udccd '+proj.address:'';
+  const facadeEl=document.getElementById('home-facade');
+  if(facadeEl)facadeEl.innerHTML=window.renderProjectFacade(proj);
   // Project selection is explicit; recent access is scoped to the signed-in user.
   const swEl=document.getElementById('home-proj-switch');
   if(swEl){
@@ -13336,6 +13392,7 @@ window.toggleDoneSection=function(){
     <div class="home-page-greeting" id="home-greeting">Good morning</div>
     <div class="home-page-name" id="home-name">OBRA MANAGER</div>
     <div class="home-page-proj" id="home-proj"></div>
+    <div id="home-facade"></div>
     <div id="home-proj-switch" style="display:none;flex-wrap:wrap;gap:6px;margin-top:8px"></div>
     <div class="home-kpi-strip" id="home-kpi-strip"></div>
     <details class="home-recent"><summary>Recent projects</summary><div id="home-recent-projects"></div></details>
