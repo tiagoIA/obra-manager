@@ -1,0 +1,40 @@
+name: Verify and publish compact PDF export
+on:
+  push:
+    branches: [fix/compact-photo-pdf-2026-10-15]
+    paths: [public/**, scripts/compact-publication.json, .github/workflows/compact_pdf.yml]
+permissions:
+  contents: read
+concurrency:
+  group: obra-manager-hosting-publication
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node --experimental-vm-modules scripts/check-photo-pdf-node.cjs
+      - run: node --experimental-vm-modules scripts/check-compact.cjs
+      - run: npm install --no-save playwright@1.56.1
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/check-final-browser.cjs
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install google-auth requests PyMuPDF
+      - run: python scripts/check-compact-layout.py
+      - run: python scripts/publish_compact.py
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: compact-pdf-review-${{ github.run_id }}
+          path: |
+            hosting-test/
+            tmp/pdfs/
+          retention-days: 7

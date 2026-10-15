@@ -31,8 +31,27 @@ export async function loadPhotoJPEG(url,signal){
  }finally{canvas.width=canvas.height=0;if(!preview)image.src='';}
 }
 
+// PDF-only presentation order; the web model and original photo records are unchanged.
+function pdfPhotoRank(photo){
+ const refs=photo.references||[];
+ if(refs.some(r=>r.reportRole==='facade'||/^storefront\b|^fachada\b/i.test(r.description||'')))return 0;
+ if(refs.some(r=>r.reportRole==='map'||/^location map\b/i.test(r.description||'')))return 1;
+ const title=refs.find(r=>r.source==='task')?.sourceTitle||'',text=title.toLowerCase();
+ if(/overall.*(?:installation|final)|final photos|installation overview/.test(text))return 100;
+ if(/initial conditions|nameplate|review initial/.test(text)||refs.some(r=>r.stage==='before'))return 10;
+ if(/test|commission|final check/.test(text))return 90;
+ if(/label|identif/.test(text))return 80;
+ if(/mount|bracket/.test(text))return 30;
+ if(/secure|clamp|staple|support/.test(text))return 60;
+ if(/terminate.*charger/.test(text))return 50;
+ if(/breaker|panel.*wir|panel.*termin/.test(text))return 40;
+ if(/drill|penetration|rout|pull/.test(text))return 20;
+ if(refs.some(r=>r.stage==='after'))return 95;
+ return 45;
+}
 export async function createPhotoReportPDF(model,options){
  const {language='en',includeHistory=false,strings:l,captionTitle,photoSheets,signal,onProgress=()=>{},loadImage=loadPhotoJPEG}=options;
+ let photoNumber=0;model={...model,units:model.units.map(u=>({...u,photos:u.photos.map((p,i)=>({...p,pdfOriginalIndex:i})).sort((a,b)=>pdfPhotoRank(a)-pdfPhotoRank(b)||a.pdfOriginalIndex-b.pdfOriginalIndex).map(p=>({...p,number:++photoNumber}))}))};
  const ui=labels[language]||labels.en,pdf=await PDFDocument.create();
  pdf.setTitle(String(model.project.name||'Report'));pdf.setAuthor('Obra Manager');pdf.setSubject(l.title);pdf.setCreator('CrewNelo PDF export');
  const regular=await pdf.embedFont(StandardFonts.Helvetica),bold=await pdf.embedFont(StandardFonts.HelveticaBold);
@@ -75,7 +94,7 @@ export async function createPhotoReportPDF(model,options){
   const done=u.tasks.filter(t=>t.done).length,pending=u.tasks.length-done;
   flow([u.room.floor,u.photos.length+' '+l.photos,done+'/'+u.tasks.length+' '+l.complete,pending+' '+l.pending].filter(Boolean).join(' · '),{size:9,space:3});
   unitProgress(u);
-  flow(ui.part+' '+part+' '+ui.of+' '+total,{size:9,color:muted,space:6});
+  if(total)flow(ui.part+' '+part+' '+ui.of+' '+total,{size:9,color:muted,space:6});
  };
  const imageCache=new Map(),failures=[];let processed=0;
  const cover=coverPhotoLabels(model.project,language),facadeURL=facadePhotoURL(model.project);
@@ -93,7 +112,12 @@ export async function createPhotoReportPDF(model,options){
  let titleY=H-M-65;
  for(const row of titleRows){text(row,M+20,titleY,{size:titleSize,font:bold,color:rgb(1,1,1)});titleY-=titleSize+5;}
  for(const row of addressRows){text(row,M+20,titleY-6,{size:10,color:rgb(.82,.87,.9)});titleY-=14;}
- const imageTop=headerBottom-18,imageHeight=facadeURL?Math.max(120,Math.min(310,imageTop-220)):0;
+ const smallReport=model.units.length<=4;
+ const indexRowsHeight=model.units.reduce((sum,u)=>sum+Math.max(34,wrap(unitLabel(u),CW-120,10,bold).length*13+15),0);
+ const smallNotesHeight=wrap(l.historical,CW,8).length*10.8+wrap(ui.progressBasis,CW,8).length*10.8+42;
+ const smallIndexHeight=30+indexRowsHeight+smallNotesHeight;
+ const imageTop=headerBottom-18,coverImageLimit=smallReport?imageTop-139-smallIndexHeight-BOTTOM-12:310;
+ const imageHeight=facadeURL?Math.max(100,Math.min(310,smallReport?Math.max(100,coverImageLimit):imageTop-220)):0;
  if(facadeURL)page.drawRectangle({x:M,y:imageTop-imageHeight,width:CW,height:imageHeight,color:pale,borderColor:line,borderWidth:.5});
  if(facadeURL){
   try{const embedded=await pdf.embedJpg(await loadImage(facadeURL,signal));imageCache.set(facadeURL,embedded);
@@ -106,12 +130,13 @@ export async function createPhotoReportPDF(model,options){
  const stats=[[model.units.length,l.units],[model.totalPhotos,l.photos],[model.done,l.done],[model.pending,l.pending]],statGap=8,statWidth=(CW-statGap*3)/4;
  stats.forEach(([count,label],index)=>{const x=M+index*(statWidth+statGap);page.drawRectangle({x,y:y-63,width:statWidth,height:63,color:pale});text(count,x+10,y-7,{size:23,font:bold});wrap(label,statWidth-20,8).forEach((row,n)=>text(row,x+10,y-36-n*10,{size:8,color:muted}));});
  y-=82;flow(cover.issued+': '+dateLabel(new Date().toISOString(),language),{size:9,color:muted});
- // The index may continue naturally without crowding the cover.
- newPage();flow(l.contents,{size:20,font:bold,space:14});
+ // Small reports keep their complete navigation on the cover when it fits.
+ const inlineIndex=smallReport&&y-smallIndexHeight>=BOTTOM;
+ if(!inlineIndex)newPage();
+ flow(l.contents,{size:inlineIndex?14:20,font:bold,space:inlineIndex?8:14});
  const filterRows=Object.entries(model.filters||{}).filter(([key,value])=>['floor','system','status','task','tech','units'].includes(key)&&value&&value!=='all'&&(!Array.isArray(value)||value.length));
- flow(l.filters+': '+(filterRows.map(([key,value])=>key+': '+(Array.isArray(value)?model.units.map(unitName).join(', '):value)).join(' · ')||l.all),{size:9,color:muted,space:12});
- flow(l.historical,{size:9,color:muted,space:18});
- flow(ui.progressBasis,{size:9,color:muted,space:12});
+ const filterText=l.filters+': '+(filterRows.map(([key,value])=>key+': '+(Array.isArray(value)?model.units.map(unitName).join(', '):value)).join(' · ')||l.all);
+ if(!inlineIndex){flow(filterText,{size:9,color:muted,space:12});flow(l.historical,{size:9,color:muted,space:18});flow(ui.progressBasis,{size:9,color:muted,space:12});}
  const indexLinks=[],unitPages=new Map();
  model.units.forEach(u=>{
   const rows=wrap(unitLabel(u),CW-120,10,bold),rowHeight=Math.max(34,rows.length*13+15);
@@ -125,6 +150,7 @@ export async function createPhotoReportPDF(model,options){
   indexLinks.push({page,u,rect:[M,top-rowHeight+3,W-M,top+2]});y=top-rowHeight;
  });
  if(!model.units.length)flow(l.none);
+ if(inlineIndex){y-=6;flow(filterText,{size:8,color:muted,space:5});flow(l.historical,{size:8,color:muted,space:5});flow(ui.progressBasis,{size:8,color:muted,space:5});}
  const totalImages=model.units.reduce((sum,u)=>sum+u.photos.length,0);
  // Keep at most three converted photos ahead of the layout, rather than waiting
  // for every network request in sequence or decoding the entire report at once.
@@ -135,7 +161,12 @@ export async function createPhotoReportPDF(model,options){
   // Explicit PDF pages and measured cards do not depend on CSS grid fragmentation.
   const logical=photoSheets(u.photos,!includeHistory),sheets=[];
   logical.forEach(sheet=>{for(let i=0;i<sheet.length;i+=includeHistory?2:4)sheets.push(sheet.slice(i,i+(includeHistory?2:4)));});
-  if(!sheets.length){groupHeader(u,1,1);unitPages.set(u,page);flow(l.noPhotos);}
+  if(!sheets.length){
+   groupHeader(u,1,0);unitPages.set(u,page);flow(l.noPhotos,{size:10,color:muted,space:16});
+   const pending=u.tasks.filter(t=>!t.done);
+   if(pending.length){flow(l.pending,{size:13,font:bold,space:10});pending.forEach(t=>flow('• '+t.name,{size:10,space:8}));}
+   continue;
+  }
   for(let index=0;index<sheets.length;index++){
    groupHeader(u,index+1,sheets.length);if(!unitPages.has(u))unitPages.set(u,page);const sheet=sheets[index],full=sheet.length===1;
    const columns=full||includeHistory?1:2,gap=12,cardWidth=(CW-gap*(columns-1))/columns;
