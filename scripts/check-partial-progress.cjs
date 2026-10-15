@@ -1,0 +1,36 @@
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
+const html=fs.readFileSync(process.argv[2]||'public/app.html','utf8');
+const core=html.match(/\/\/ BEGIN PARTIAL WORK PROGRESS([\s\S]*?)\/\/ END PARTIAL WORK PROGRESS/)[1];
+const ctx={window:{},console};vm.createContext(ctx);vm.runInContext(core,ctx);
+const {fraction,percent}=ctx.window.workProgress;
+const step=(n,d)=>({done:false,subtasks:Array.from({length:n},(_,i)=>({id:String(i),done:i<d}))});
+assert.equal(percent([]),0);assert.equal(percent([{}]),0);
+assert.equal(percent([{done:true}]),100);assert.equal(percent([step(7,4)]),57);
+assert.equal(percent([step(7,3)]),43);assert.equal(percent([step(7,4),step(7,3)]),50);
+assert.equal(percent([step(7,4),step(7,3),{},{},{},{}]),17);
+assert.equal(percent([step(1000,999)]),99);
+assert.equal(percent([{done:true,subtasks:[{done:false}]}]),100);
+assert.equal(percent([{done:true},{}]),50);assert.equal(percent([step(2,1),{}]),25);
+assert.equal(fraction({subtasks:null}),0);
+const roomFn=html.slice(html.indexOf('function roomProg(rid){'),html.indexOf('function renderRoomsList(){'));
+ctx.fixture=[{...step(7,4),cat:'eletrica'},{...step(7,3),cat:'eletrica'},{cat:'fire'}];
+vm.runInContext('function roomTasks(){return fixture;}\n'+roomFn,ctx);
+let r=ctx.roomProg('fixture');assert.equal(r.pct,33);assert.equal(r.done,0);assert.equal(r.elecPct,50);assert.equal(r.firePct,0);
+ctx.rooms={r:{floor:'Basement'}};ctx.fixture=ctx.fixture.map(t=>({...t,roomId:'r'}));
+ctx.document={getElementById:()=>ctx.el};ctx.el={innerHTML:''};
+ctx.getFilteredData=()=>({filtTasks:ctx.fixture,filtRooms:[{floor:'Basement'}],selPid:'p'});
+const preview=html.slice(html.indexOf('window.updateRptPreview=()=>{'),html.indexOf('function getFilteredData(){'));
+vm.runInContext(preview,ctx);ctx.window.updateRptPreview();
+assert.match(ctx.el.innerHTML,/>33%<\/div>/);assert.match(ctx.el.innerHTML,/>0<\/div><div class="rpt2-kpi-lbl">CONCLUIDAS/);
+assert.match(ctx.el.innerHTML,/0\/2 50%/);
+const start=html.indexOf('window.toggleSubtask=async');const end=html.indexOf('window.submitNewTask=',start);
+ctx.allTasks={t:step(2,2)};ctx.allTasks.t.done=true;ctx.allTasks.t.doneAt='10/15/2026';
+ctx.activeRid='r';ctx.dashOpen=false;ctx.renderRoomsList=()=>{};ctx.renderContent=()=>{};ctx.updateDoc=async(_,data)=>{ctx.saved=data};ctx.doc=()=>null;ctx.db={};ctx.notif=()=>{};ctx.document={getElementById:()=>null};
+vm.runInContext(html.slice(start,end),ctx);
+(async()=>{
+await ctx.window.toggleSubtask('t','0');assert.equal(ctx.saved.done,false);assert.equal(ctx.saved.doneAt,null);assert.equal(percent([ctx.allTasks.t]),50);
+await ctx.window.toggleSubtask('t','0');assert.equal(ctx.saved.done,true);assert.equal(percent([ctx.allTasks.t]),100);
+const scripts=[...html.matchAll(/<script([^>]*)>([\s\S]*?)<\/script>/g)].filter(m=>!m[1].includes('src=')&&m[2].trim());
+for(const s of scripts){if(s[1].includes('module'))new vm.SourceTextModule(s[2]);else new vm.Script(s[2]);}
+console.log('PARTIAL_PROGRESS_VERIFIED core, equal task weights, Basement fixture, room categories, report preview, reopen/complete, inline syntax');
+})().catch(e=>{console.error(e);process.exitCode=1});
