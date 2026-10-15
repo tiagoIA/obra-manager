@@ -1,12 +1,18 @@
 {
-  "baseline_sha256": "1a894bcba6c108dd80188600cb572cf6c14b5cbc4be0a478e77987c1ad60e6bc",
+  "baseline_sha256": "ece9831d646dfa0ddb8d4c9ee4c3a3e20c1a7cb6fd4d339d26c54e71b59b824a",
   "files": {
-    "app.html": "ece9831d646dfa0ddb8d4c9ee4c3a3e20c1a7cb6fd4d339d26c54e71b59b824a",
-    "guided-shopping-v2.js": "719fb0369a38243198a0072f59a514157fca7f49f2d93a750192e9eb1a3cc7e7",
-    "shopping-catalog.js": "f39575e4753ba45cb26602c403c095ad26ebf233f6e3e9d2006238cc07dc9e3e"
+    "app.html": "38478a72d9c3ddcedf3cd8846a0fbccf49291f2d647b2b44a145fa896dd79466",
+    "guided-shopping-v2.js": "b33d2edf07cf179127d8784b338d000946c6bead16750d7c4ae349dea5008f15",
+    "shopping-catalog.js": "6f946f4a230c3c3bf796c3c796033eecf3038449ed0697b75139e486b7081407",
+    "shopping-picker-core.js": "bd7df764e2f597bf488f507a3458a6a699616f7d24780bdfc7721e1f56dc1a05",
+    "central-catalog-v1.js": "39b21d279010a3696e21aa7590a44d2431c984660a08e2bb8ef3cb139f43977d",
+    "material-attributes.js": "7f4e29d5a0526cc34bdfc4e0c333b220cb24248bcf3aedc2469c5b24a434b59f"
   },
   "baseline_files": {
-    "guided-shopping-v2.js": "3f725142dd6532344923423a1768dce5281f8a7fab303b8e717bc5b64de2cda5"
+    "guided-shopping-v2.js": "719fb0369a38243198a0072f59a514157fca7f49f2d93a750192e9eb1a3cc7e7",
+    "shopping-catalog.js": "f39575e4753ba45cb26602c403c095ad26ebf233f6e3e9d2006238cc07dc9e3e",
+    "shopping-picker-core.js": "5f46e3e6988468ce6647f12ea14c4a58296ef87d018ad4e2c9b30532222cf938",
+    "central-catalog-v1.js": "5d465bb75e8abb899690c24871a00c17923e7901092492bfc74a791b6e10aa47"
   },
-  "review_only": false
+  "review_only": true
 }

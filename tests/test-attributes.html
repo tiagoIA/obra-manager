@@ -1,0 +1,15 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>:root{--bg:#121923;--sur:#1a2533;--sur2:#253345;--bdr:#36465b;--txt:#f1f5fb;--mut:#a7b6ca;--elec:#f4ba51}body{background:var(--bg);color:var(--txt);font:14px Arial;margin:16px}#catalog{max-width:1200px;margin:auto}</style></head><body><button id="edit">Edit breaker</button><button id="new">New product</button><div id="catalog"></div><script type="module">
+import {mountShoppingCatalog} from './shopping-catalog.js';import {installCentralCatalog} from './central-catalog-v1.js';
+window.products=[
+{id:'a15',name:'Example 15 A AFCI Breaker',family:'breakers',cat:'eletrica',brand:'Example Electric',series:'Example line',amperage:'15',protection:'AFCI',poles:'1',unit:'ea',manufacturerPart:'EX15',variantGroup:'Example AFCI line',suppliers:[{name:'Home Depot',code:'STORE15'}],qty:7,photoUrl:'',purchaseHistory:[{date:'2026-10-15',supplier:'Example',price:10,unit:'ea'}]},
+{id:'a20',name:'Example 20 A AFCI Breaker',family:'breakers',cat:'eletrica',brand:'Example Electric',series:'Example line',amperage:'20',protection:'AFCI',poles:'1',unit:'ea',manufacturerPart:'EX20',variantGroup:'Example AFCI line',suppliers:[{name:'Home Depot',code:'STORE20'}]},
+{id:'dual',name:'Example Dual Function Breaker 20 A',family:'breakers',cat:'eletrica',brand:'Other Electric',amperage:'20',poles:'2',unit:'ea'},
+{id:'panel',name:'Example Load Center',family:'breakers',cat:'eletrica',unit:'ea'},
+{id:'disc',name:'Example Disconnect',family:'breakers',cat:'eletrica',unit:'ea'},
+{id:'fit',name:'EMT Connector half inch',family:'fittings',cat:'eletrica',unit:'ea'}];
+window.selected=[];window.saves=[];window.notices=[];
+const state=window.catalogState={department:'eletrica',family:'breakers',filtersOpen:true};
+window.catalog=mountShoppingCatalog(document.querySelector('#catalog'),{state,materials:()=>products,selected:()=>selected,review:()=>{},persist:()=>{},notify:(...args)=>notices.push(args),manual:()=>{},add:(m,qty)=>selected.push({matId:m.id,name:m.name,qty,unit:m.unit}),remove:m=>{selected=selected.filter(i=>i.matId!==m.id)},quantity:(item,value)=>item.qty=value});
+installCentralCatalog({materials:()=>products,canEdit:()=>true,inferredUses:()=>[],notify:(...args)=>notices.push(args),saveMaterial:async(id,p)=>{saves.push({id,p:structuredClone(p)});},openLegacy:()=>{}});
+document.querySelector('#edit').onclick=()=>centralCatalog.edit('a15');document.querySelector('#new').onclick=()=>centralCatalog.create();window.ready=true;
+</script></body></html>

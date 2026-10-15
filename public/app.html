@@ -13085,7 +13085,7 @@ onAuthStateChanged(auth,user=>{if(!user)window.receiptReview?.close();});
 
 // Guided shopping integration: uses existing collections and authentication.
 import {writeBatch, runTransaction} from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
-import {installGuidedShopping} from '/guided-shopping-v2.js?v=2';
+import {installGuidedShopping} from '/guided-shopping-v2.js?v=3';
 onAuthStateChanged(auth,user=>{if(!user)document.getElementById('guided-shopping-dialog')?.remove();});
 installGuidedShopping({
  userId:()=>auth.currentUser?.uid||null,
@@ -13130,8 +13130,8 @@ installGuidedShopping({
 });
 
 // Expanded product catalog and purchasing documents use the same central material records.
-import {installCentralCatalog, materialSearchText, displayUnit, shoppingPhoto} from '/central-catalog-v1.js?v=15';
-import {materialUses} from '/guided-shopping-v2.js?v=2';
+import {installCentralCatalog, materialSearchText, displayUnit, shoppingPhoto} from '/central-catalog-v1.js?v=16';
+import {materialUses} from '/guided-shopping-v2.js?v=3';
 import {installShoppingView} from '/shopping-view-v3.js?v=1';
 window.shoppingView=installShoppingView({
  data:()=>({lists:Object.values(shoppingLists),items:Object.values(shoppingItems),materials:purchasingMaterials(),projects:Object.values(projects),rooms:Object.values(rooms)}),
@@ -13166,7 +13166,7 @@ installCentralCatalog({
  saveMaterial:async(id,p)=>{
   if(!auth.currentUser||!hasRole('owner'))throw Error('Only the owner can edit the library.');
   const ref=id?doc(db,'materials',id):doc(collection(db,'materials'));
-  const keys=['active','status','name','cat','unit','sku','brand','manufacturerPart','upc','description','specs','family','subcategory','sourceUrl','photoUrl','packQuantity','packUnit','recordType','suppliers','guidedUses','scope'];
+  const keys=['active','status','name','cat','unit','sku','brand','manufacturerPart','upc','description','specs','family','subcategory','sourceUrl','photoUrl','packQuantity','packUnit','recordType','suppliers','guidedUses','scope','catalogFamily','productType','tradeSize','amperage','protection','series','poles','voltage','neutralConnection','wireGauge','cableConfiguration','dimensions','length','finish','variantGroup','compatibilityStatus','compatiblePanels','compatibilitySource'];
   p.active=p.active!==false&&p.status!=='inactive';p.status=p.active?'active':'inactive';
   const data={};keys.forEach(k=>{if(p[k]!==undefined)data[k]=p[k];});
   if(!data.sku)data.sku='MAT-'+ref.id.slice(0,10).toUpperCase();data.updatedAt=serverTimestamp();

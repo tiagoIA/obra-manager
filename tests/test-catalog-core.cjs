@@ -8,7 +8,7 @@ const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),asse
  assert.deepEqual(Array.from(filterCatalog(products,{department:'eletrica',family:'fittings',size:'3/4 in.',brand:'Brand A',supplier:'Home Depot'}),m=>m.id),['a']);
  assert.deepEqual(Array.from(filterCatalog(products,{department:'fire'}),m=>m.id),['d']);
  assert.deepEqual(Array.from(filterCatalog(products,{family:'fittings',sort:'price'}),m=>m.id),['b','a']);
- assert.equal(familyOf(products[2]),'panels');assert.equal(familyOf(products[3]),'detection');
+ assert.equal(familyOf(products[2]),'breakers');assert.equal(familyOf(products[3]),'detection');
  assert.deepEqual(Array.from(ampRatings(products[2])),['40 A']);assert.deepEqual(Array.from(tradeSizes({name:'Copper cable 12/2 AWG'})),[]);
  assert.deepEqual(Array.from(filterCatalog(products,{term:'not-in-library'})),[]);
  assert.equal(JSON.stringify(products),before,'Catalog navigation must not change material data');

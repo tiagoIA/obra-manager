@@ -17,16 +17,18 @@ jobs:
         with:
           node-version: '24'
       - run: node --experimental-vm-modules tests/test-catalog-core.cjs
+      - run: node --experimental-vm-modules tests/test-attributes-core.cjs
       - name: Test both list types and responsive product navigation
         run: |
           npm install --no-save playwright@1.56.1
           npx playwright install --with-deps chromium
           mkdir -p shopping-test hosting-test
-          cp public/guided-shopping-v2.js public/shopping-view-v3.js public/shopping-picker-core.js public/shopping-catalog.js public/central-catalog-v1.js public/purchasing-core.js shopping-test/
-          cp tests/test-shopping.html tests/test-catalog.html shopping-test/
+          cp public/guided-shopping-v2.js public/shopping-view-v3.js public/shopping-picker-core.js public/shopping-catalog.js public/central-catalog-v1.js public/purchasing-core.js public/material-attributes.js shopping-test/
+          cp tests/test-shopping.html tests/test-catalog.html tests/test-attributes.html shopping-test/
           python3 -m http.server 8765 --directory shopping-test &
           node tests/test-shopping.cjs
           node tests/test-catalog-browser.cjs
+          node tests/test-attributes-browser.cjs
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
