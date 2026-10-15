@@ -1,0 +1,16 @@
+{
+  "baseline_sha256": "4e00cd6651e9c6e580e115dc296a9ad1a2614d2101b167031b943515064db6c2",
+  "files": {
+    "app.html": "9b2332921f625d40c016fd8bc05aea0d5e75114d64b6b4645175df8e51c3ebe1",
+    "photo-report.js": "f6df66a3dee63cb0fcda667ce7b397682bcc9c75e8df77ad2b43b65ad9c5fc1d",
+    "photo-report-pdf.js": "1e2ef572781671c7654b5bdcf2816524efd48acb389f4092032086ee464f3a47",
+    "photo-report-cover.js": "2cebf159c87986262ba678b477307b83e33f88bce6b7d3df1ed4a08de39221d8",
+    "report-photo-order.js": "75594d9f8b6df66ed7b5f42e9268a5d8115394a36ec308a034b9ae2a72fcfc3b"
+  },
+  "baseline_files": {
+    "photo-report.js": "83c72507fb86e4184920cf26bdaaabbc1edbffef89ff524075b98350b10b033f",
+    "photo-report-pdf.js": "0a61193ca8e9b0ba30cde17c366cbabb0e366f4cd79f01dfda66449db6c09ec8",
+    "photo-report-cover.js": "75c254d1109cc96afb1f075261efdc9e5bed00e6ce1cc75f41587ca54fec867c"
+  },
+  "review_only": false
+}

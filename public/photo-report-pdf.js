@@ -1,12 +1,12 @@
 import {progressPercent} from './work-progress.js?v=1';
-import {coverLabels,facadePhotoURL} from './photo-report-cover.js?v=1';
+import {coverLabels,facadePhotoURL,coverPhotoLabels} from './photo-report-cover.js?v=2';
 import {PDFDocument, StandardFonts, rgb} from './vendor/pdf-lib.esm.min.js';
 
 const labels={
  en:{prepare:'Preparing PDF',ready:'PDF ready',share:'Share PDF',save:'Save PDF',open:'Open PDF',close:'Close',retry:'Try again',failed:'The PDF could not be completed. No partial file was saved.',missing:'Photos could not be loaded',page:'Page',of:'of',part:'Part',continued:'Continued',history:'Original field records',taskNotes:'Task notes',size:'pages',cancelled:'Cancelled',progress:'Work progress',progressBasis:'Progress reflects tasks in this report, including proportional subtask completion.',noTasks:'No tasks recorded'},
  pt:{prepare:'Preparando PDF',ready:'PDF pronto',share:'Compartilhar PDF',save:'Salvar PDF',open:'Abrir PDF',close:'Fechar',retry:'Tentar novamente',failed:'Não foi possível concluir o PDF. Nenhum arquivo incompleto foi salvo.',missing:'Fotos não carregadas',page:'Página',of:'de',part:'Parte',continued:'Continuação',history:'Registros originais de campo',taskNotes:'Notas das tarefas',size:'páginas',cancelled:'Cancelado',progress:'Progresso do serviço',progressBasis:'O progresso considera as tarefas deste relatório, incluindo o avanço proporcional das subtarefas.',noTasks:'Nenhuma tarefa registrada'}
 };
-const dateLabel=(value,language)=>{try{return value?new Date(typeof value==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(value)?value+'T12:00:00':value).toLocaleDateString(language==='pt'?'pt-BR':'en-US',{year:'numeric',month:'short',day:'numeric'}):'';}catch{return String(value||'');}};
+const dateLabel=(value,language)=>{try{const raw=value?.toDate?value.toDate():value?.seconds?new Date(value.seconds*1000):value?new Date(typeof value==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(value)?value+'T12:00:00':value):null;return raw&&Number.isFinite(+raw)?raw.toLocaleDateString(language==='pt'?'pt-BR':'en-US',{timeZone:'America/New_York',year:'numeric',month:'short',day:'numeric'}):'';}catch{return '';}};
 export const pdfFilename=name=>(String(name||'Report').replace(/[<>:"/\\|?*\x00-\x1f\x7f]/g,'-').replace(/[. ]+$/,'').trim()||'Report')+'.pdf';
 
 export async function loadPhotoJPEG(url,signal){
@@ -71,14 +71,14 @@ export async function createPhotoReportPDF(model,options){
  const groupHeader=(u,part,total)=>{
   newPage();page.drawRectangle({x:M,y:H-M-4,width:CW,height:3,color:gold});y-=17;
   projectHeader();
-  for(const row of wrap(unitLabel(u),CW,16,bold)){text(row,M,y,{size:16,font:bold});y-=20;}
+  const rows=wrap(unitLabel(u),CW-22,part===1?19:16,bold),height=rows.length*24+18;page.drawRectangle({x:M,y:y-height,width:CW,height,color:ink});let ty=y-8;for(const row of rows){text(row,M+11,ty,{size:part===1?19:16,font:bold,color:rgb(1,1,1)});ty-=24;}y-=height+10;
   const done=u.tasks.filter(t=>t.done).length,pending=u.tasks.length-done;
   flow([u.room.floor,u.photos.length+' '+l.photos,done+'/'+u.tasks.length+' '+l.complete,pending+' '+l.pending].filter(Boolean).join(' · '),{size:9,space:3});
   unitProgress(u);
   flow(ui.part+' '+part+' '+ui.of+' '+total,{size:9,color:muted,space:6});
  };
  const imageCache=new Map(),failures=[];let processed=0;
- const cover=coverLabels[language]||coverLabels.en,facadeURL=facadePhotoURL(model.project);
+ const cover=coverPhotoLabels(model.project,language),facadeURL=facadePhotoURL(model.project);
  newPage();
  // A dedicated cover keeps the facade and project identity together on page one.
  let titleSize=26,titleRows=wrap(model.project.name,CW-40,titleSize,bold);
@@ -93,15 +93,15 @@ export async function createPhotoReportPDF(model,options){
  let titleY=H-M-65;
  for(const row of titleRows){text(row,M+20,titleY,{size:titleSize,font:bold,color:rgb(1,1,1)});titleY-=titleSize+5;}
  for(const row of addressRows){text(row,M+20,titleY-6,{size:10,color:rgb(.82,.87,.9)});titleY-=14;}
- const imageTop=headerBottom-18,imageHeight=Math.max(120,Math.min(facadeURL?310:210,imageTop-220));
- page.drawRectangle({x:M,y:imageTop-imageHeight,width:CW,height:imageHeight,color:pale,borderColor:line,borderWidth:.5});
+ const imageTop=headerBottom-18,imageHeight=facadeURL?Math.max(120,Math.min(310,imageTop-220)):0;
+ if(facadeURL)page.drawRectangle({x:M,y:imageTop-imageHeight,width:CW,height:imageHeight,color:pale,borderColor:line,borderWidth:.5});
  if(facadeURL){
   try{const embedded=await pdf.embedJpg(await loadImage(facadeURL,signal));imageCache.set(facadeURL,embedded);
    const scale=Math.min(CW/embedded.width,imageHeight/embedded.height),width=embedded.width*scale,height=embedded.height*scale;
    page.drawImage(embedded,{x:M+(CW-width)/2,y:imageTop-imageHeight+(imageHeight-height)/2,width,height});
   }catch(error){if(error.name==='AbortError')throw error;throw new Error(cover.failed);}
- }else{text(cover.overview,M+20,imageTop-35,{size:18,font:bold});text(cover.missing,M+20,imageTop-67,{size:10,color:muted});}
- text(facadeURL?cover.facade+' / '+cover.context:cover.overview,M,imageTop-imageHeight-8,{size:9,color:muted});
+ }
+ if(facadeURL)text(cover.facade+' / '+cover.context,M,imageTop-imageHeight-8,{size:9,color:muted});
  y=imageTop-imageHeight-38;
  const stats=[[model.units.length,l.units],[model.totalPhotos,l.photos],[model.done,l.done],[model.pending,l.pending]],statGap=8,statWidth=(CW-statGap*3)/4;
  stats.forEach(([count,label],index)=>{const x=M+index*(statWidth+statGap);page.drawRectangle({x,y:y-63,width:statWidth,height:63,color:pale});text(count,x+10,y-7,{size:23,font:bold});wrap(label,statWidth-20,8).forEach((row,n)=>text(row,x+10,y-36-n*10,{size:8,color:muted}));});
@@ -112,9 +112,17 @@ export async function createPhotoReportPDF(model,options){
  flow(l.filters+': '+(filterRows.map(([key,value])=>key+': '+(Array.isArray(value)?model.units.map(unitName).join(', '):value)).join(' · ')||l.all),{size:9,color:muted,space:12});
  flow(l.historical,{size:9,color:muted,space:18});
  flow(ui.progressBasis,{size:9,color:muted,space:12});
- model.units.forEach(u=>{const label=unitLabel(u)+' - '+u.photos.length+' '+l.photos;
-  if(y-wrap(label,CW,10).length*13.5-42<BOTTOM){newPage();projectHeader();}
-  flow(label,{size:10,space:5});unitProgress(u);
+ const indexLinks=[],unitPages=new Map();
+ model.units.forEach(u=>{
+  const rows=wrap(unitLabel(u),CW-120,10,bold),rowHeight=Math.max(34,rows.length*13+15);
+  if(y-rowHeight<BOTTOM){newPage();flow(l.contents,{size:16,font:bold,space:12});}
+  const top=y;for(const row of rows){text(row,M,y,{size:10,font:bold});y-=13;}
+  text(u.photos.length+' '+l.photos,M,y,{size:8,color:muted});
+  const pct=u.tasks.length?progressPercent(u.tasks):null,value=pct==null?'--':pct+'%';
+  text(value,W-M-bold.widthOfTextAtSize(value,10),top,{size:10,font:bold});
+  page.drawRectangle({x:W-M-95,y:top-23,width:95,height:4,color:line});
+  if(pct)page.drawRectangle({x:W-M-95,y:top-23,width:95*pct/100,height:4,color:pct===100?rgb(.22,.45,.3):gold});
+  indexLinks.push({page,u,rect:[M,top-rowHeight+3,W-M,top+2]});y=top-rowHeight;
  });
  if(!model.units.length)flow(l.none);
  const totalImages=model.units.reduce((sum,u)=>sum+u.photos.length,0);
@@ -127,30 +135,31 @@ export async function createPhotoReportPDF(model,options){
   // Explicit PDF pages and measured cards do not depend on CSS grid fragmentation.
   const logical=photoSheets(u.photos,!includeHistory),sheets=[];
   logical.forEach(sheet=>{for(let i=0;i<sheet.length;i+=includeHistory?2:4)sheets.push(sheet.slice(i,i+(includeHistory?2:4)));});
-  if(!sheets.length){groupHeader(u,1,1);flow(l.noPhotos);}
+  if(!sheets.length){groupHeader(u,1,1);unitPages.set(u,page);flow(l.noPhotos);}
   for(let index=0;index<sheets.length;index++){
-   groupHeader(u,index+1,sheets.length);const sheet=sheets[index],full=sheet.length===1&&sheet[0].fullPage;
+   groupHeader(u,index+1,sheets.length);if(!unitPages.has(u))unitPages.set(u,page);const sheet=sheets[index],full=sheet.length===1;
    const columns=full||includeHistory?1:2,gap=12,cardWidth=(CW-gap*(columns-1))/columns;
-   const cards=sheet.map(p=>{
+   const cards=sheet.map((p,cardIndex)=>{
+    const itemWidth=columns===2&&sheet.length===3&&cardIndex===2?CW:cardWidth;
     const ref=p.references.find(r=>r.source==='task')||p.references[0],stage=p.references.find(r=>r.stage&&r.stage!=='unspecified')?.stage;
     const meta=[ref?.status?l[ref.status]:l.history,ref?.date?dateLabel(ref.date,language):'',stage?l[stage]:''].filter(Boolean).join(' · ');
-    const rows=[...wrap(l.photo+' '+p.number+' · '+unitName(u),cardWidth-4,9,bold).map(t=>({t,b:true})),...wrap(captionTitle(p),cardWidth-4,9).map(t=>({t})),...wrap(meta,cardWidth-4,8).map(t=>({t,m:true}))];
-    return {p,rows,captionHeight:rows.reduce((h,r)=>h+(r.m?11:12),10)};
+    const rows=[...wrap(l.photo+' '+p.number+' · '+unitName(u),itemWidth-4,10,bold).map(t=>({t,b:true})),...wrap(captionTitle(p),itemWidth-4,10).map(t=>({t})),...wrap(meta,itemWidth-4,9).map(t=>({t,m:true}))];
+    return {p,rows,width:itemWidth,captionHeight:rows.reduce((h,r)=>h+(r.m?12:14),10)};
    });
    const rowCount=Math.ceil(cards.length/columns),rowGap=15,available=y-BOTTOM-10;
    const rowHeight=(available-rowGap*(rowCount-1))/rowCount,maxCaption=Math.max(...cards.map(c=>c.captionHeight));
    // Even unusually long captions get their own continuation page rather than clipping.
-   const imageHeight=Math.max(64,Math.min(full?460:includeHistory?235:204,rowHeight-Math.min(maxCaption,95)));
+   const imageHeight=Math.max(64,Math.min(full?480:includeHistory?235:420,rowHeight-maxCaption-8));
    for(let n=0;n<cards.length;n++){
-    const {p,rows}=cards[n],x=M+(n%columns)*(cardWidth+gap),top=y-Math.floor(n/columns)*(rowHeight+rowGap);
+    const {p,rows}=cards[n],cardWidth=cards[n].width,x=M+(n%columns)*(cardWidth+gap),top=y-Math.floor(n/columns)*(rowHeight+rowGap);
     let embedded=imageCache.get(p.url);
     if(!imageCache.has(p.url)){try{const loaded=await pendingImages.get(p.url);if(loaded.error)throw loaded.error;embedded=await pdf.embedJpg(loaded.bytes);imageCache.set(p.url,embedded);}catch(error){if(error.name==='AbortError')throw error;imageCache.set(p.url,null);failures.push(p.number);}finally{pendingImages.delete(p.url);fillQueue();}}
     if(embedded){const scale=Math.min(cardWidth/embedded.width,imageHeight/embedded.height);const width=embedded.width*scale,height=embedded.height*scale;page.drawRectangle({x,y:top-imageHeight,width:cardWidth,height:imageHeight,color:pale,borderColor:line,borderWidth:.5});page.drawImage(embedded,{x:x+(cardWidth-width)/2,y:top-imageHeight+(imageHeight-height)/2,width,height});}
     let captionY=top-imageHeight-6;const overflow=[];
-    for(const row of rows){const step=row.m?11:12;if(captionY-step<top-rowHeight+4){overflow.push(row);continue;}text(row.t,x+2,captionY,{size:row.m?8:9,font:row.b?bold:regular,color:row.m?muted:ink});captionY-=step;}
+    for(const row of rows){const step=row.m?12:14;if(captionY-step<top-rowHeight+4){overflow.push(row);continue;}text(row.t,x+2,captionY,{size:row.m?9:10,font:row.b?bold:regular,color:row.m?muted:ink});captionY-=step;}
     cards[n].overflow=overflow;processed++;onProgress(processed,totalImages);if(processed%4===0)await new Promise(resolve=>setTimeout(resolve,0));
    }
-   for(const card of cards.filter(c=>c.overflow.length)){newPage();flow(unitLabel(u)+' · '+l.photo+' '+card.p.number+' · '+ui.continued,{size:14,font:bold});card.overflow.forEach(row=>flow(row.t,{size:row.m?8:9,font:row.b?bold:regular,space:2}));}
+   for(const card of cards.filter(c=>c.overflow.length)){newPage();flow(unitLabel(u)+' · '+l.photo+' '+card.p.number+' · '+ui.continued,{size:14,font:bold});card.overflow.forEach(row=>flow(row.t,{size:row.m?9:10,font:row.b?bold:regular,space:2}));}
   }
   const pending=u.tasks.filter(t=>!t.done);
   if(pending.length){newPage();flow(unitLabel(u),{size:16,font:bold});flow(l.pending,{size:13,font:bold});pending.forEach(t=>flow('• '+t.name));}
@@ -164,6 +173,7 @@ export async function createPhotoReportPDF(model,options){
    u.notes.forEach((note,index)=>{flow(l.field+' '+(index+1)+' · '+dateLabel(note.createdAt||note.savedAt,language),{size:11,font:bold});flow([note.text,note.difficulties,note.impact,note.nextStep].filter(Boolean).join('\n'));const refs=u.photos.filter(p=>p.references.some(ref=>ref.source==='note'&&ref.sourceId===note.id));if(refs.length)flow(l.photos+': '+refs.map(p=>p.number).join(', '),{size:9,color:muted});});
   });
  }
+ for(const link of indexLinks){const target=unitPages.get(link.u);if(target)link.page.node.addAnnot(pdf.context.register(pdf.context.obj({Type:'Annot',Subtype:'Link',Rect:link.rect,Border:[0,0,0],Dest:[target.ref,'Fit']})));}
  const pages=pdf.getPages();pages.forEach((p,index)=>{p.drawLine({start:{x:M,y:29},end:{x:W-M,y:29},color:line,thickness:.5});p.drawText(clean(ui.page+' '+(index+1)+' '+ui.of+' '+pages.length),{x:W-M-100,y:16,size:8,font:regular,color:muted});});
  const bytes=await pdf.save();return {bytes,pages:pages.length,photos:processed,filename:pdfFilename(model.project.name)};
 }

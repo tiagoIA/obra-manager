@@ -9404,6 +9404,11 @@ function buildUnitNavPill(room){
     +'<button class="unit-nav-arr"'+(next?' onclick="window.openRoom(\''+next.id+'\')"':' disabled')+'>&#8250;</button>'
     +'</div>';
 }
+function renderUnitIdentity(room){
+ const rows=[['Storefront',room.facadePhoto],['Location map',room.locationMap]].filter(([,v])=>typeof v?.url==='string'&&/^https:\/\//i.test(v.url));
+ if(!rows.length)return '';
+ return '<details style="margin:12px 0;padding:12px;border:1px solid var(--bdr);border-radius:10px"><summary style="cursor:pointer;min-height:32px">Unit identification - storefront and location</summary><div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:10px">'+rows.map(([label,v])=>'<figure style="margin:0;flex:1;min-width:140px;max-width:300px"><a href="'+x(v.url)+'" target="_blank" rel="noopener"><img src="'+x(v.url)+'" alt="'+label+'" loading="lazy" style="width:100%;height:160px;object-fit:contain;background:white;border-radius:8px"></a><figcaption style="font-size:11px;margin-top:6px">'+label+' - original field record preserved</figcaption></figure>').join('')+'</div></details>';
+}
 function renderRoomDetail(cv,room){
   const allT=roomTasks(activeRid);
   const p=roomProg(activeRid);
@@ -9432,6 +9437,7 @@ function renderRoomDetail(cv,room){
     +'<span style="font-family:Bebas Neue,sans-serif;font-size:12px;letter-spacing:2px;color:var(--elec)">ALL UNITS</span>'
     +'</div>'
     +buildUnitNavPill(room)
+    +renderUnitIdentity(room)
     // ── UNIT HEADER (compacto) ──────────────────────────────────────────────
     +'<div style="margin-bottom:10px">'
     +(room.floor?'<div class="unit-floor" style="margin-bottom:2px">'+x(room.floor)+'</div>':'')

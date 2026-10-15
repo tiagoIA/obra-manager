@@ -1,5 +1,6 @@
-import {coverLabels,facadePhotoURL} from './photo-report-cover.js?v=1';
-import {exportPhotoReportPDF} from './photo-report-pdf.js?v=5';
+import {photoRole,orderPhotos,reportSheets} from './report-photo-order.js?v=1';
+import {coverLabels,facadePhotoURL,coverPhotoLabels} from './photo-report-cover.js?v=2';
+import {exportPhotoReportPDF} from './photo-report-pdf.js?v=6';
 import {progressPercent} from './work-progress.js?v=1';
 import {evidenceRows,escapeEvidence as e} from './field-media.js';
 const strings={en:{title:'Photographic work report 2.0',units:'Units / work groups',photos:'Unique photos',done:'Completed tasks',pending:'Pending tasks',contents:'Contents',tasks:'Recorded tasks',field:'Field records',noPhotos:'No photos recorded for this unit.',none:'No photos match the selected filters.',unassigned:'Unit not assigned',general:'Units',coax:'Coaxial cabling',condensers:'Condensers',photo:'Photo',source:'Source',task:'Task',note:'Field record',before:'Initial conditions',during:'During work',after:'After completion',unspecified:'Stage not specified',status:'Recorded status',complete:'Completed',todo:'Pending',date:'Recorded date',historical:'Photo dates and field notes document their recorded conditions. A completed task does not by itself confirm inspection or testing.',filters:'Applied filters',all:'Whole project',language:'Report language',print:'Print / PDF',close:'Close',original:'Names and field descriptions are preserved in their original language.',missing:'Images failed to load. Retry loading images before printing.',retry:'Retry images',wait:'Loading full-size photos…',without:'Tasks without photos',unfiltered:'Field records are included only when their category or linked tasks match task filters.',context:'Unit context',part:'Part',of:'of'},pt:{title:'Relatório fotográfico da obra 2.0',units:'Unidades / grupos de trabalho',photos:'Fotos únicas',done:'Tarefas concluídas',pending:'Tarefas pendentes',contents:'Índice',tasks:'Tarefas registradas',field:'Registros de campo',noPhotos:'Nenhuma foto registrada nesta unidade.',none:'Nenhuma foto corresponde aos filtros selecionados.',unassigned:'Unidade não definida',general:'Unidades',coax:'Cabeamento coaxial',condensers:'Condensers',photo:'Foto',source:'Origem',task:'Tarefa',note:'Registro de campo',before:'Condições iniciais',during:'Durante o trabalho',after:'Após a conclusão',unspecified:'Etapa não informada',status:'Situação registrada',complete:'Concluída',todo:'Pendente',date:'Data registrada',historical:'As datas e notas documentam as condições na época do registro. Uma tarefa concluída não confirma, por si só, inspeção ou testes.',filters:'Filtros aplicados',all:'Obra completa',language:'Idioma do relatório',print:'Imprimir / PDF',close:'Fechar',original:'Nomes e descrições de campo são preservados no idioma original.',missing:'Algumas imagens não carregaram. Tente carregar novamente antes de imprimir.',retry:'Recarregar imagens',wait:'Carregando fotos em tamanho completo…',without:'Tarefas sem fotos',unfiltered:'Com filtros de tarefas, os registros de campo só entram quando a categoria ou as tarefas vinculadas correspondem.',context:'Contexto da unidade',part:'Parte',of:'de'}};
@@ -43,7 +44,7 @@ export function buildPhotoModel({project,rooms,tasks,notes,filters={},floorOrder
   const photos=new Map();
   const add=(record,source,description,date,phase)=>{
    for(const row of evidenceRows(record).filter(p=>p.type==='image'&&validURL(p.url))){
-    const key=identity(row.url),reference={source,description,sourceTitle:source==='task'?record.name:'',sourceId:record.id||'',date,stage:stageKey(phase),name:row.name||'',status:source==='task'?(record.done?'complete':'todo'):null};
+    const key=identity(row.url),reference={source,description,reportRole:record.reportRole||row.reportRole||'',sourceTitle:source==='task'?record.name:'',sourceId:record.id||'',date,stage:stageKey(phase),name:row.name||'',status:source==='task'?(record.done?'complete':'todo'):null};
     if(photos.has(key)){photos.get(key).references.push(reference);continue;}
     const photo={url:row.url,references:[reference],number:++number,shared:globalPhotos.get(key)?.number||null};
     if(!globalPhotos.has(key))globalPhotos.set(key,photo);
@@ -57,7 +58,7 @@ export function buildPhotoModel({project,rooms,tasks,notes,filters={},floorOrder
   const condenser=/^(roof|condensers)$/i.test(room.name?.trim());
   return {room,tasks:rt,notes:rn,photos:[...photos.values()],service:condenser?'condensers':(/coax/i.test(project.name||'')||rt.some(t=>/coax/i.test(t.name||'')))?'coax':'general'};
  }).filter(u=>u.tasks.length||u.notes.length||u.photos.length);
- let sequence=0;for(const unit of units){unit.photos.sort((a,b)=>storyStep(a).rank-storyStep(b).rank);for(const photo of unit.photos)photo.number=++sequence;}
+ let sequence=0;for(const unit of units){unit.photos=orderPhotos(unit.photos,p=>storyStep(p).rank);for(const photo of unit.photos)photo.number=++sequence;}
  return {project,units,filters,restrictive,totalPhotos:globalPhotos.size,done:scopedTasks.filter(t=>t.done).length,pending:scopedTasks.filter(t=>!t.done).length};
 }
 export const photoReportCSS=`
@@ -95,7 +96,7 @@ export const captionTitle=p=>{
  const text=(ref?.description||'').split(/\n|(?<=\.)\s/)[0].trim();
  return text.length>150?text.slice(0,147).replace(/\s+\S*$/,'')+'…':text;
 };
-export const photoSheets=(photos,summary=false)=>{const sheets=[];let pair=[],chapter=null;for(const original of photos){const photo={...original},step=storyStep(photo).key;photo.chapter=step;if(!summary&&chapter!==step){if(pair.length)sheets.push(pair);pair=[];chapter=step;}const full=photo.references.some(r=>/\b(map|floor plan|diagram)\b/i.test(r.name||''))||/\b(map|floor plan|diagram)\b/i.test(captionTitle(photo));if(full){if(pair.length)sheets.push(pair);pair=[];sheets.push([photo]);photo.fullPage=true;}else{pair.push(photo);if(pair.length===(summary?4:2)){sheets.push(pair);pair=[];}}}if(pair.length)sheets.push(pair);if(summary){for(let i=1;i<sheets.length;i++){const previous=sheets[i-1],current=sheets[i];if(current.length===1&&!current[0].fullPage&&previous.length===4&&!previous.some(p=>p.fullPage))current.unshift(previous.pop());}}return sheets;};
+export const photoSheets=(photos,summary=false)=>reportSheets(photos.map(p=>({...p,chapter:photoRole(p)==='facade'?'storyInitial':photoRole(p)==='map'?'context':storyStep(p).key})),summary);
 function progressHTML(unit,l,compact=false){
  if(!unit.tasks.length)return '<div class="pr-muted">'+e(l.noTasks)+'</div>';
  const pct=progressPercent(unit.tasks),label=(unit.room.name||l.unassigned)+' - '+l.progress;
@@ -105,9 +106,9 @@ export function renderPhotoReport(model,language='en',includeHistory=false){
  const l=strings[language]||strings.en,roomName=u=>u.room.unassigned?l.unassigned:u.service==='condensers'?l.condensers:u.room.name;
  const unitLabel=u=>u.service==='condensers'?roomName(u):l[u.service]+' · '+roomName(u);
  const filterText=Object.entries(model.filters).filter(([k,v])=>['floor','system','status','task','tech','units'].includes(k)&&v&&v!=='all'&&(!Array.isArray(v)||v.length)).map(([k,v])=>k+': '+(Array.isArray(v)?model.units.map(roomName).join(', '):v)).join(' · ')||l.all;
- const cover=coverLabels[language]||coverLabels.en,facadeURL=facadePhotoURL(model.project);
+ const cover=coverPhotoLabels(model.project,language),facadeURL=facadePhotoURL(model.project);
  let html='<article class="pr-report'+(!includeHistory?' pr-summary':'')+'"><header class="pr-cover"><div class="pr-cover-heading"><div class="pr-brand">OBRA MANAGER / FIELD DOCUMENTATION</div><h2>'+l.title+'</h2><h1>'+e(model.project.name)+'</h1>'+(model.project.address&&model.project.address!==model.project.name?'<p class="pr-cover-address">'+e(model.project.address)+'</p>':'')+'</div>'
-  +(facadeURL?'<figure class="pr-cover-photo"><img crossorigin="anonymous" loading="eager" src="'+e(facadeURL)+'" alt="'+e(cover.facade)+'"><figcaption>'+e(cover.facade)+' / '+e(cover.context)+'</figcaption></figure>':'<div class="pr-cover-placeholder">'+e(cover.missing)+'</div>')
+  +(facadeURL?'<figure class="pr-cover-photo"><img crossorigin="anonymous" loading="eager" src="'+e(facadeURL)+'" alt="'+e(cover.facade)+'"><figcaption>'+e(cover.facade)+' / '+e(cover.context)+'</figcaption></figure>':'')
   +'<div class="pr-kpis">'+[[model.units.length,l.units],[model.totalPhotos,l.photos],[model.done,l.done],[model.pending,l.pending]].map(([n,t])=>'<div><strong>'+n+'</strong>'+t+'</div>').join('')+'</div><p class="pr-muted">'+e(cover.issued)+': '+dateLabel(new Date().toISOString(),language)+'</p></header>'
   +'<section class="pr-overview"><h2>'+l.contents+'</h2><p class="pr-muted">'+l.filters+': '+e(filterText)+'</p><p class="pr-muted">'+l.historical+'</p><p class="pr-muted">'+l.progressBasis+'</p><table class="pr-index"><thead><tr><th>'+l.units+'</th><th>'+l.photos+'</th><th>'+l.pending+'</th><th>'+l.progress+'</th></tr></thead><tbody>'+model.units.map((u,i)=>'<tr><td><a href="#pr-unit-'+i+'">'+e(unitLabel(u))+'</a></td><td>'+u.photos.length+'</td><td>'+u.tasks.filter(t=>!t.done).length+'</td><td>'+progressHTML(u,l,true)+'</td></tr>').join('')+'</tbody></table></section>';
 
@@ -118,7 +119,7 @@ export function renderPhotoReport(model,language='en',includeHistory=false){
   const sheets=photoSheets(u.photos,!includeHistory);
   sheets.forEach((sheet,j)=>{
    const chapters=new Set(sheet.map(p=>p.chapter)),heading=chapters.size===1?l[sheet[0].chapter]:l.photos;
-   html+='<section class="pr-sheet"><header class="pr-sheet-head"><h3>'+e(unitLabel(u))+' · '+heading+'</h3><div class="pr-muted">'+l.part+' '+(j+1)+' '+l.of+' '+sheets.length+'</div><div class="pr-sheet-progress">'+progressHTML(u,l)+'</div></header><div class="pr-gallery">';
+   html+='<section class="pr-sheet"><header class="pr-sheet-head"><h3>'+e(unitLabel(u))+' · '+(j===0?l.context:heading)+'</h3><div class="pr-muted">'+l.part+' '+(j+1)+' '+l.of+' '+sheets.length+'</div><div class="pr-sheet-progress">'+progressHTML(u,l)+'</div></header><div class="pr-gallery">';
    sheet.forEach(p=>{
     const ref=p.references.find(r=>r.source==='task')||p.references[0],title=captionTitle(p),stage=p.references.find(r=>r.stage!=='unspecified')?.stage;
     const meta=[ref?.status?l[ref.status]:l.history,ref?.date?dateLabel(ref.date,language):'',stage?l[stage]:''].filter(Boolean).join(' · ');
