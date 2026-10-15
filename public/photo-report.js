@@ -20,8 +20,7 @@ const storyStep=photo=>{
 };
 Object.assign(strings.en,{storyInitial:'Initial conditions',storyPreparation:'Investigation and preparation',storyWork:'Work performed',storyFinishing:'Finishing and organization',storyIdentification:'Identification and labels',storyFinal:'Final checks and documented results',storyRecorded:'Supporting documentation'});
 Object.assign(strings.pt,{storyInitial:'Condições iniciais',storyPreparation:'Investigação e preparação',storyWork:'Execução do serviço',storyFinishing:'Acabamento e organização',storyIdentification:'Identificação e etiquetas',storyFinal:'Verificações finais e resultados documentados',storyRecorded:'Documentação complementar'});
-export function buildPhotoModel({project,rooms,tasks,notes,company=null,filters={},floorOrder=[]}){
- if(company && (!project.companyId || company.id!==project.companyId))throw new Error('Report company does not match project');
+export function buildPhotoModel({project,rooms,tasks,notes,filters={},floorOrder=[]}){
  const restrictive=Boolean(filters.task||filters.tech||filters.status&&filters.status!=='all'||filters.system&&filters.system!=='all');
  const selected=rooms.filter(r=>(!filters.floor||filters.floor==='all'||(r.floor||'Other')===filters.floor)&&(!filters.units?.length||filters.units.includes(r.id)));
  const allowed=new Set(selected.map(r=>r.id));
@@ -54,7 +53,7 @@ export function buildPhotoModel({project,rooms,tasks,notes,company=null,filters=
   return {room,tasks:rt,notes:rn,photos:[...photos.values()],service:condenser?'condensers':(/coax/i.test(project.name||'')||rt.some(t=>/coax/i.test(t.name||'')))?'coax':'general'};
  }).filter(u=>u.tasks.length||u.notes.length||u.photos.length);
  let sequence=0;for(const unit of units){unit.photos.sort((a,b)=>storyStep(a).rank-storyStep(b).rank);for(const photo of unit.photos)photo.number=++sequence;}
- return {project,company,units,filters,restrictive,totalPhotos:globalPhotos.size,done:scopedTasks.filter(t=>t.done).length,pending:scopedTasks.filter(t=>!t.done).length};
+ return {project,units,filters,restrictive,totalPhotos:globalPhotos.size,done:scopedTasks.filter(t=>t.done).length,pending:scopedTasks.filter(t=>!t.done).length};
 }
 export const photoReportCSS=`
 .pr-report{max-width:850px;margin:auto;padding:20px;background:#fff;color:#17212b;font:13px/1.45 Arial,sans-serif;overflow-wrap:anywhere}
@@ -73,9 +72,10 @@ export const photoReportCSS=`
 @media(max-width:500px){.pr-report{padding:12px}.pr-kpis{grid-template-columns:1fr 1fr}.pr-photo img{height:260px}.pr-full img{height:400px}.pr-summary .pr-gallery{grid-template-columns:1fr}}
 @media print{
  @page{size:Letter;margin:12mm 12mm 16mm;@bottom-right{content:counter(page) " / " counter(pages);font:9px Arial;color:#52616f}}
- .pr-report{max-width:none;padding:0;font-size:11px}.pr-report-bar,.pr-load-status{display:none!important}
+ html,body{margin:0!important;padding:0!important;width:auto!important;min-width:0!important;background:#fff!important}.pr-report{width:100%;max-width:none;padding:0;font-size:11px}.pr-report-bar,.pr-load-status{display:none!important}
  .pr-unit,.pr-sheet,.pr-history{break-before:page;page-break-before:always}.pr-unit{margin:0}.pr-sheet{margin:0;border:0;padding:0}.pr-sheet:first-of-type{break-before:auto;page-break-before:auto}
- .pr-summary .pr-gallery{grid-template-columns:1fr 1fr}.pr-summary .pr-photo img{height:60mm}.pr-summary .pr-full{grid-column:1/-1}.pr-summary .pr-full img{height:150mm}
+ .pr-unit-head{padding-top:5px}.pr-unit-head p{margin:3px 0}.pr-unit-head h2{font-size:18px;margin:3px 0}.pr-current{padding:4px 6px;margin:4px 0 6px}.pr-sheet-head{margin-bottom:5px}
+ .pr-summary .pr-gallery{grid-template-columns:1fr 1fr}.pr-summary .pr-photo img{height:80mm}.pr-summary .pr-full{grid-column:1/-1}.pr-summary .pr-full img{height:150mm}
  .pr-photo img{height:68mm}.pr-gallery{gap:4mm}.pr-photo figcaption{font-size:10px;line-height:1.3}.pr-full img{height:170mm}.pr-cover{padding:0}.pr-index tr,.pr-kpis{break-inside:avoid}.pr-report a{text-decoration:none;color:inherit}.pr-record p{orphans:3;widows:3}
 }
 `;
@@ -92,14 +92,6 @@ export function renderPhotoReport(model,language='en',includeHistory=false){
  const unitLabel=u=>u.service==='condensers'?roomName(u):l[u.service]+' · '+roomName(u);
  const filterText=Object.entries(model.filters).filter(([k,v])=>['floor','system','status','task','tech','units'].includes(k)&&v&&v!=='all'&&(!Array.isArray(v)||v.length)).map(([k,v])=>k+': '+(Array.isArray(v)?model.units.map(roomName).join(', '):v)).join(' · ')||l.all;
  let html='<article class="pr-report'+(!includeHistory?' pr-summary':'')+'"><header class="pr-cover"><div class="pr-brand">OBRA MANAGER · FIELD DOCUMENTATION</div><h1>'+e(model.project.name)+'</h1><h2>'+l.title+'</h2>'+(model.project.address!==model.project.name?'<p>'+e(model.project.address||'')+'</p>':'')+'<p class="pr-muted">'+dateLabel(new Date().toISOString(),language)+' · '+l.filters+': '+e(filterText)+'</p><div class="pr-kpis">'+[[model.units.length,l.units],[model.totalPhotos,l.photos],[model.done,l.done],[model.pending,l.pending]].map(([n,t])=>'<div><strong>'+n+'</strong>'+t+'</div>').join('')+'</div><p class="pr-muted">'+l.historical+'</p><h3>'+l.contents+'</h3><table class="pr-index"><thead><tr><th>'+l.units+'</th><th>'+l.photos+'</th><th>'+l.pending+'</th></tr></thead><tbody>'+model.units.map((u,i)=>'<tr><td><a href="#pr-unit-'+i+'">'+e(unitLabel(u))+'</a></td><td>'+u.photos.length+'</td><td>'+u.tasks.filter(t=>!t.done).length+'</td></tr>').join('')+'</tbody></table></header>';
- if(model.company){
-  const c=model.company;
-  if(c.id!==model.project.companyId)throw new Error('Report company does not match project');
-  const logo=typeof c.logoURL==='string'&&/^(https:\/\/|blob:)/.test(c.logoURL)?'<img class="pr-company-logo" style="max-width:180px;max-height:70px;object-fit:contain;display:block;margin-bottom:8px" src="'+e(c.logoURL)+'" alt="'+e(c.name||'')+'">':'';
-  const details=[c.phone,c.email,c.website,c.license].filter(Boolean).map(value=>e(String(value))).join(' · ');
-  const brand='<div class="pr-brand">'+logo+e(c.name||'')+(details?'<div class="pr-muted" style="letter-spacing:normal">'+details+'</div>':'')+'</div>';
-  html=html.replace('<div class="pr-brand">OBRA MANAGER · FIELD DOCUMENTATION</div>',brand);
- }
  if(!model.units.length)html+='<p>'+l.none+'</p>';
  model.units.forEach((u,i)=>{
   const pending=u.tasks.filter(t=>!t.done),completed=u.tasks.filter(t=>t.done).length;
@@ -137,12 +129,24 @@ export function installPhotoReport(){
  let input,language='en',includeHistory=false;
  const draw=()=>{const model=buildPhotoModel(input),l=strings[language];const el=document.getElementById('pdf-content');el.lang=language==='pt'?'pt-BR':'en';el.innerHTML='<style>'+photoReportCSS+'</style><div class="pr-report-bar"><label>'+l.language+' <select id="pr-language"><option value="en">English</option><option value="pt">Português</option></select></label><label>'+l.format+' <select id="pr-format"><option value="summary">'+l.summary+'</option><option value="complete">'+l.full+'</option></select></label><button id="pr-retry">'+l.retry+'</button></div><div class="pr-load-status" role="status"></div>'+renderPhotoReport(model,language,includeHistory);const format=el.querySelector('#pr-format');format.value=includeHistory?'complete':'summary';format.onchange=()=>{includeHistory=format.value==='complete';draw();};const select=el.querySelector('#pr-language');select.value=language;select.onchange=()=>{language=select.value;draw();};el.querySelector('#pr-retry').onclick=()=>{el.querySelectorAll('img').forEach(img=>{if(!img.complete||!img.naturalWidth){const src=img.getAttribute('src');img.removeAttribute('src');img.src=src;}});};};
  async function print(el){
-  // Open synchronously so mobile browsers keep the user gesture permission.
+  // Keep popup creation inside the user gesture; optimize copies in the authenticated source page.
   const w=window.open('','_blank','width=950,height=800');if(!w)return;
-  const l=strings[language];w.document.write('<!doctype html><html lang="'+(el.lang||'en')+'"><head><meta charset="utf-8"><title>'+e(input.project.name+' — '+l.title)+'</title><style>'+photoReportCSS+'</style></head><body><div class="pr-report-bar"><span id="pr-print-status">'+l.wait+'</span><button id="pr-print-retry" hidden>'+l.retry+'</button></div>'+el.querySelector('.pr-report').outerHTML+'</body></html>');w.document.close();
+  const l=strings[language],article=el.querySelector('.pr-report').cloneNode(true);
+  w.document.write('<!doctype html><html><head><meta charset="utf-8"></head><body><p>'+l.wait+'</p></body></html>');w.document.close();
+  const copies=[...article.querySelectorAll('img')];
+  for(let start=0;start<copies.length;start+=4){await Promise.all(copies.slice(start,start+4).map(async img=>{
+   try{
+    const original=new Image();original.crossOrigin='anonymous';
+    await new Promise((resolve,reject)=>{const timer=setTimeout(()=>reject(new Error('Image optimization timeout')),10000);original.onload=()=>{clearTimeout(timer);resolve();};original.onerror=()=>{clearTimeout(timer);reject(new Error('Image CORS unavailable'));};original.src=img.src;});
+    const limit=img.closest('.pr-full')?1800:1280,scale=Math.min(1,limit/Math.max(original.naturalWidth,original.naturalHeight));
+    const canvas=document.createElement('canvas');canvas.width=Math.max(1,Math.round(original.naturalWidth*scale));canvas.height=Math.max(1,Math.round(original.naturalHeight*scale));const context=canvas.getContext('2d');context.fillStyle='#fff';context.fillRect(0,0,canvas.width,canvas.height);context.drawImage(original,0,0,canvas.width,canvas.height);
+    img.src=canvas.toDataURL('image/jpeg',img.closest('.pr-full') ? .82 : .78);img.dataset.printOptimized='true';canvas.width=canvas.height=0;
+   }catch(error){img.dataset.printOptimizationError=String(error.name+': '+error.message);} 
+  }));if(w.closed)return;}
+  w.document.open();w.document.write('<!doctype html><html lang="'+(el.lang||'en')+'"><head><meta charset="utf-8"><title>'+e(input.project.name+' — '+l.title)+'</title><style>'+photoReportCSS+'</style></head><body><div class="pr-report-bar"><span id="pr-print-status">'+l.wait+'</span><button id="pr-print-retry" hidden>'+l.retry+'</button></div>'+article.outerHTML+'</body></html>');w.document.close();
   const load=async()=>{const retry=w.document.getElementById('pr-print-retry'),status=w.document.getElementById('pr-print-status');retry.hidden=true;status.textContent=l.wait;const imgs=[...w.document.images];const settled=await Promise.all(imgs.map(img=>new Promise(resolve=>{if(img.complete)return resolve(img.naturalWidth>0);const finish=ok=>{clearTimeout(timer);img.onload=null;img.onerror=null;resolve(ok);};const timer=setTimeout(()=>finish(false),30000);img.onload=()=>finish(img.naturalWidth>0);img.onerror=()=>finish(false);})));
    if(w.closed)return;if(settled.some(ok=>!ok)){status.textContent=l.missing;retry.hidden=false;retry.onclick=()=>{imgs.forEach(img=>{if(!img.complete||!img.naturalWidth){const src=img.getAttribute('src');img.removeAttribute('src');img.src=src;}});load();};return;}
-   status.textContent='';w.focus();w.print();
+   status.textContent='';w.document.documentElement.dataset.reportReady='true';w.focus();w.print();
   };await load();
  }
  window.photoReport={open:data=>{input=data;includeHistory=data.filters?.photoFormat==='complete';draw();document.getElementById('pdf-report').classList.add('open');},print};

@@ -1,0 +1,116 @@
+{
+  "source": "https://obra-manager-4ecc7.web.app",
+  "capturedAt": "2026-10-15",
+  "files": [
+    {
+      "path": "/app.html",
+      "sha256": "5549ef84ae1c04e43c494467607b293ad81ac6b93c735da8fb339757a4749c79",
+      "bytes": 922551
+    },
+    {
+      "path": "/central-catalog-v1.js",
+      "sha256": "5d465bb75e8abb899690c24871a00c17923e7901092492bfc74a791b6e10aa47",
+      "bytes": 28923
+    },
+    {
+      "path": "/costs-dashboard.js",
+      "sha256": "bd381d18324c8548cdcca7a63bd732f79d5185c7b7aa3c66338427c9f6e0f480",
+      "bytes": 13795
+    },
+    {
+      "path": "/crewnelo-mark.svg",
+      "sha256": "24f21f272718746b4f3cd3cc07e8e2a9df3ecea34eb80246548604eeb4ceb93a",
+      "bytes": 378
+    },
+    {
+      "path": "/crewnelo.css",
+      "sha256": "6a08751e436663da2f4c83f5611d16c91cfc639f2c3c41b237c7788ec7c7010d",
+      "bytes": 22114
+    },
+    {
+      "path": "/crewnelo.js",
+      "sha256": "07f7ae921cb1372282f8defd9bb8412d023190f590b9d604885a63a03d300bb4",
+      "bytes": 14067
+    },
+    {
+      "path": "/field-media.js",
+      "sha256": "ad902cefc2b616d591529445493929f6d364db078076090d1bc46ae64376f4e9",
+      "bytes": 10789
+    },
+    {
+      "path": "/guided-shopping-v1.js",
+      "sha256": "52a22e55fedd38289dd5937cd4da7e5c1e593516a082e2a38232e2408e306e44",
+      "bytes": 29959
+    },
+    {
+      "path": "/index.html",
+      "sha256": "8568ed38da762d0df337b55e83b346942fdd63a2d2d1a9e4add3e1bd7e4c5886",
+      "bytes": 10813
+    },
+    {
+      "path": "/invoice-store.js",
+      "sha256": "98fd48634c2737cc9a65af6ccc43d3c98a48193d41b0828abce96f05f08e1ae3",
+      "bytes": 4265
+    },
+    {
+      "path": "/manifest.json",
+      "sha256": "5a2e53d1ce8245ee80f455b2b26ad77bdc6c2f802d1a51fdb70f4fff6373a0fe",
+      "bytes": 646
+    },
+    {
+      "path": "/mobile-layout.css",
+      "sha256": "7dee8296f8449bbbbde567e3ab817bae238c264808a834927420f51b3a1bfbfd",
+      "bytes": 11578
+    },
+    {
+      "path": "/note-photos.js",
+      "sha256": "9bedda9c12ce9e2d251f5759055311b1cc06bdf4221dc062ad5f1b51c77e9db8",
+      "bytes": 8983
+    },
+    {
+      "path": "/photo-report.js",
+      "sha256": "4f3af2ccbbff6e5de33453decf5b38cb7e6d6a643157df8e53559a07f3cdf46b",
+      "bytes": 23966
+    },
+    {
+      "path": "/project-brief.js",
+      "sha256": "fa1e021cbca78e2725607de9e39dd7e3f03c00164518afba0634c1e6980aa2bd",
+      "bytes": 9843
+    },
+    {
+      "path": "/purchasing-core.js",
+      "sha256": "73c3e2609ccb97e488ea33d62d713590bfbe35f3b4e3ec1d37da01eb837f6052",
+      "bytes": 12426
+    },
+    {
+      "path": "/receipt-review.js",
+      "sha256": "dcb8f6bb72e2119777bbc855129c0896c4ceef6b9b02b58610793c5df7301eed",
+      "bytes": 12512
+    },
+    {
+      "path": "/shopping-view.js",
+      "sha256": "373eac4f3a6803e7f7dd6d50ce064fe25fb9bf1b0c090340fec03bf8250fa240",
+      "bytes": 15121
+    },
+    {
+      "path": "/sw.js",
+      "sha256": "93e46f05256254ff460bb15db44901fd8c026970bbc63b37d23b8a99290410c3",
+      "bytes": 1933
+    },
+    {
+      "path": "/unit-followup.js",
+      "sha256": "c69ba1d5c1c0ad949bcd2d247155165a659180a502e046912d85590f7eac36c7",
+      "bytes": 17441
+    },
+    {
+      "path": "/unit-report-language.js",
+      "sha256": "231a89c5ef9be4ea88e5853f505f77cc5def87757cbc6614d9cf5e0ba9278922",
+      "bytes": 37490
+    },
+    {
+      "path": "/unit-report-structure.js",
+      "sha256": "4783d0b732102b6ac686da802404b12fc8b4fb5b15e8c1784f2e3280478e6305",
+      "bytes": 24783
+    }
+  ]
+}
