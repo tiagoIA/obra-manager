@@ -121,6 +121,7 @@ task_specs = [
     ('Install circuit breaker and terminate panel wiring', ''),
     ('Label EV Charger Circuit - Photo Required', 'Attach a clear, legible photo of the EV charger circuit identification on the panel.'),
     ('Test EV charger and complete installation', ''),
+    ('Secure Cables with Clamps', 'Install cable clamps and verify all cables are securely supported.'),
 ]
 room_ref = db.collection('rooms').document(project_id + '-ev-installation')
 task_refs = [db.collection('tasks').document(project_id + '-ev-task-' + str(i + 1).zfill(2)) for i in range(len(task_specs))]
