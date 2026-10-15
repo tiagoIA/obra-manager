@@ -7687,11 +7687,11 @@ window.renderHomePage=function(){
   if(swEl){
     const allProj=Object.values(projects);
     swEl.style.display='block';
-    swEl.innerHTML='<label for="home-project-select" style="font-size:12px">Choose a project</label>'
+    swEl.innerHTML='<details class="home-project-picker"'+(proj?'':' open')+'><summary style="cursor:pointer;min-height:44px;display:flex;align-items:center;width:fit-content;padding:0 14px;border:1px solid var(--bdr);border-radius:8px;color:var(--txt);background:var(--sur2);font-size:14px;font-weight:700">'+(proj?'Change project / Trocar obra':'Choose a project')+'</summary><div style="padding-top:10px"><label for="home-project-select" style="font-size:12px">Choose a project</label>'
       +'<select id="home-project-select" class="home-proj-select" onchange="window.switchProjectHome(this.value)">'
       +'<option value=""'+(!activePid?' selected':'')+'>Select a project...</option>'
       +allProj.map(p=>'<option value="'+x(p.id)+'"'+(p.id===activePid?' selected':'')+'>'+x(p.name.split('—')[0].trim())+'</option>').join('')+'</select>'
-      +'<div class="home-project-choices" aria-label="Projects">'+allProj.map(p=>'<button type="button" class="home-project-choice" aria-pressed="'+(p.id===activePid)+'" onclick="window.switchProjectHome(\''+x(p.id)+'\')">'+window.renderProjectFacadeThumbnail(p)+'<span>'+x(p.name)+'</span></button>').join('')+'</div>';
+      +'<div class="home-project-choices" aria-label="Projects">'+allProj.map(p=>'<button type="button" class="home-project-choice" aria-pressed="'+(p.id===activePid)+'" onclick="window.switchProjectHome(\''+x(p.id)+'\')">'+window.renderProjectFacadeThumbnail(p)+'<span>'+x(p.name)+'</span></button>').join('')+'</div></div></details>';
   }
   const recentEl=document.getElementById('home-recent-projects');
   if(recentEl){

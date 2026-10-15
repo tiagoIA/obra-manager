@@ -1,15 +1,8 @@
 {
-  "baseline_sha256": "6829513934898ff0a95c55c8363c99a95cd02295b00bcdfc9b60701e57d2a0c5",
-  "baseline_files": {
-    "photo-report.js": "9ae3f762ecfbcbeaaeff0308d72174e9d64da06749ea02ea31d7880c7aadccde",
-    "photo-report-pdf.js": "fd711ec31c0a44ddd801f7eb51e259c55c5963a378ae4d817b9cfae8a6a1776f",
-    "sw.js": "99ae77f8286049ab22387180b0f1ea0c092113791c6271da70f9f7cb8b19d55c"
-  },
+  "baseline_sha256": "5d2ce3ee4a9027578d4d05dcfdb5686e243cb712f1abf35f1980f138d8befd40",
+  "baseline_files": {},
   "files": [
-    "app.html",
-    "photo-report.js",
-    "photo-report-pdf.js",
-    "sw.js"
+    "app.html"
   ],
   "review_only": false
 }

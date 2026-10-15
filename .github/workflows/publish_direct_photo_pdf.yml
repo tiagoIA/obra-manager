@@ -1,7 +1,7 @@
-name: Verify and publish direct photo PDF export
+name: Verify and publish compact Home project selection
 on:
   push:
-    branches: [fix/pdf-export-followup-2026-10-15]
+    branches: [feature/compact-home-selection-2026-10-15]
 permissions:
   contents: read
 concurrency:
