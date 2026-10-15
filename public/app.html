@@ -4502,11 +4502,48 @@ function listenInvoices(){  if(unsubs.inv)unsubs.inv();invoices={};
     if(activePage==='invoices')renderContent();
   });
 }
+// Optional service classification; building type and electrical/fire scope stay independent.
+window.PROJECT_WORK_TYPES=[
+  {id:'ev-charger',label:'EV Charger',scope:'electrical'},
+  {id:'lighting',label:'Lighting',scope:'electrical'},
+  {id:'outlets',label:'Outlets',scope:'electrical'},
+  {id:'electrical-panel',label:'Electrical panel',scope:'electrical'},
+  {id:'circuits-wiring',label:'Circuits / wiring',scope:'electrical'},
+  {id:'equipment-connections',label:'Equipment connections',scope:'electrical'},
+  {id:'fire-alarm-installation',label:'Fire alarm installation',scope:'fire'},
+  {id:'fire-alarm-maintenance',label:'Fire alarm maintenance',scope:'fire'},
+  {id:'inspection-testing',label:'Inspection / testing',scope:'both'},
+  {id:'maintenance-repair',label:'Maintenance / repair',scope:'both'}
+];
+window.projectWorkTypeOptions=(scope)=>window.PROJECT_WORK_TYPES.filter(t=>scope==='both'||t.scope==='both'||t.scope===scope);
+window.projectWorkTypeValues=(data)=>{
+  const allowed=window.projectWorkTypeOptions(data.scope);
+  return {workTypes:allowed.filter(t=>(data.workTypes||[]).includes(t.id)).map(t=>t.id),customWorkType:String(data.customWorkType||'').trim().slice(0,120)};
+};
+window.projectWorkTypeSummary=(data)=>{
+  const values=window.projectWorkTypeValues(data);
+  return [...window.PROJECT_WORK_TYPES.filter(t=>values.workTypes.includes(t.id)).map(t=>t.label),values.customWorkType].filter(Boolean).join(', ');
+};
+window.renderWorkTypePicker=(data)=>{
+  const selected=data.workTypes||[];
+  return '<fieldset style="border:0;padding:0;margin:14px 0"><legend class="fl">WORK TYPES (OPTIONAL)</legend>'
+    +'<div style="font-size:12px;color:var(--mut);margin:6px 0 10px">Choose one or more, enter your own, or leave blank.</div>'
+    +'<div style="display:flex;flex-wrap:wrap;gap:8px">'+window.projectWorkTypeOptions(data.scope).map(t=>
+      '<label style="display:flex;align-items:center;gap:7px;padding:9px 12px;background:var(--sur);border:1px solid var(--bdr);border-radius:8px;font-size:13px;cursor:pointer"><input type="checkbox" value="'+t.id+'" '+(selected.includes(t.id)?'checked ':'')+'onchange="toggleWizWorkType(this.value,this.checked)">'+t.label+'</label>'
+    ).join('')+'</div><label class="fl" for="wiz-custom-work-type" style="display:block;margin-top:12px">OTHER WORK TYPE (OPTIONAL)</label>'
+    +'<input class="m-inp" id="wiz-custom-work-type" maxlength="120" placeholder="Enter another type of work" value="'+x(data.customWorkType||'')+'" oninput="wizData.customWorkType=this.value"></fieldset>';
+};
+window.toggleWizWorkType=(id,checked)=>{
+  const data=window.wizData;
+  if(!window.projectWorkTypeOptions(data.scope).some(t=>t.id===id))return;
+  data.workTypes=(data.workTypes||[]).filter(value=>value!==id);
+  if(checked)data.workTypes.push(id);
+};
 // ─── PROJECT WIZARD ──────────────────────────────────────────────────────────
 window.openProjectWizard=(fromProject)=>{
   window.wizStep=1;
   window.wizData={
-    name:'',address:'',type:'residential',scope:'both',
+    name:'',address:'',type:'residential',scope:'both',workTypes:[],customWorkType:'',
     hasPlan:null,planAnalysis:null,planImage:null,
     unitGroups:[],  // [{name,floor,count,rooms:[{id,name,floor,spaces:[]}]}]
     namingMode:'unit', // 'unit' | 'room' | 'decide'
@@ -4691,6 +4728,7 @@ window.renderWizard=function renderWizard(){
       +'<button class="scope-btn'+(wizData.scope==='fire'?' selected fire':'')+'" onclick="setWizScope(\'fire\')">🔥 Fire Alarm only</button>'
       +'<button class="scope-btn'+(wizData.scope==='both'?' selected both':'')+'" onclick="setWizScope(\'both\')">⚡🔥 Both</button>'
       +'</div>'
+      +window.renderWorkTypePicker(wizData)
       +'<div class="fg" style="margin-top:14px"><label class="fl">BEFORE / INITIAL CONDITIONS *</label><textarea class="m-inp" aria-label="Project initial conditions" placeholder="Describe how the site was found before starting work" oninput="wizData.initialConditions=this.value">'+x(wizData.initialConditions||'')+'</textarea></div>'
       +'<div class="fg"><label class="fl">WORK SCOPE *</label><textarea class="m-inp" aria-label="Project work scope" placeholder="Describe the work included in this project" oninput="wizData.workScope=this.value">'+x(wizData.workScope||'')+'</textarea></div>'
       +'<div style="font-size:12px;color:var(--mut);line-height:1.5">Add initial-condition photos through Scope / Before after creating the project, before work starts.</div>';
@@ -4894,6 +4932,9 @@ window.renderWizard=function renderWizard(){
     html+='<div class="wiz-title">✅ REVIEW & CREATE</div>'
       +'<div class="wiz-sub">Step 6 of 6 — Confirm and create project</div>';
 
+    const workTypeSummary=window.projectWorkTypeSummary(wizData);
+    if(workTypeSummary)html+='<div style="margin-bottom:14px;font-size:13px;overflow-wrap:anywhere"><b>Work types:</b> '+x(workTypeSummary)+'</div>';
+
     // Summary cards
     html+='<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px">'
       +'<div style="background:var(--sur);border:1px solid var(--bdr);border-radius:10px;padding:12px;text-align:center">'
@@ -4975,7 +5016,7 @@ window.renderWizard=function renderWizard(){
 }
 
 window.setWizType=(t)=>{wizData.type=t;window.renderWizard();};
-window.setWizScope=(s)=>{wizData.scope=s;window.renderWizard();};
+window.setWizScope=(s)=>{window.wizData.scope=s;window.wizData.workTypes=window.projectWorkTypeValues(window.wizData).workTypes;window.renderWizard();};
 window.wizBack=()=>{if(window.wizStep>1){window.wizStep--;window.renderWizard();}};
 window.toggleWizTask=(key)=>{
   const idx=window.wizData.selectedTasks.indexOf(key);
@@ -5138,6 +5179,7 @@ window.createProjectFromWizard=async()=>{
   const pr=await addDoc(collection(db,'projects'),{
     name:wizData.name,address:wizData.address,
     type:wizData.type,scope:wizData.scope,
+    ...window.projectWorkTypeValues(wizData),
     scopeBrief:{before:wizData.initialConditions||'',workScope:wizData.workScope||'',observations:'',photos:[],captureStatus:'before-photos-needed'},
     createdAt:serverTimestamp()
   });
