@@ -1,0 +1,24 @@
+name: Read requested Arlington report records
+on:
+  push:
+    branches: [fix/arlington-report-layout-2026-10-15]
+    paths: [scripts/read_arlington.py, .github/workflows/arlington_audit.yml]
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install google-cloud-firestore google-auth
+      - run: python scripts/read_arlington.py
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: arlington-source
+          path: report-audit/
+          retention-days: 2
