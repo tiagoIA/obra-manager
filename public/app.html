@@ -3018,7 +3018,7 @@ function renderJobsPage(el){
   function jobCard(j){
     const proj=projects[j.projectId];
     const pTasks=j.projectId?Object.values(allTasks).filter(t=>t.projectId===j.projectId):[];
-    const pct=pTasks.length?Math.round(pTasks.filter(t=>t.done).length/pTasks.length*100):0;
+    const pct=workProgressPct(pTasks);
     const overdue=pTasks.filter(t=>!t.done&&t.deadline&&t.deadline<new Date().toISOString().slice(0,10)).length;
     const barColor=pct>=80?'var(--ok)':pct>=40?'var(--elec)':'var(--fire)';
     const assigned=(j.assignedTo||[]).slice(0,3);
@@ -3110,7 +3110,7 @@ function jobCard(j,allUsers,canManage){
     return u?u.name||u.email:'?';
   });
   const projTasks=j.projectId?Object.values(allTasks).filter(t=>t.projectId===j.projectId):[];
-  const pct=projTasks.length?Math.round(projTasks.filter(t=>t.done).length/projTasks.length*100):0;
+  const pct=workProgressPct(projTasks);
   return'<div class="job-card" onclick="openJobDetail(\''+j.id+'\')" style="cursor:pointer">'
     +'<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:8px">'
     +'<div><div class="job-card-proj">'+(proj?'📍 '+x(proj.name):'No project')+'</div>'
@@ -3210,7 +3210,7 @@ function buildJobDetailHTML(jid){
   const projTasks=j.projectId?Object.values(allTasks).filter(t=>t.projectId===j.projectId):[];
   const doneTasks=projTasks.filter(t=>t.done).length;
   const totalTasks=projTasks.length;
-  const pct=totalTasks?Math.round(doneTasks/totalTasks*100):0;
+  const pct=workProgressPct(projTasks);
   const mainPhases=JOB_PHASES.filter(p=>p.id!=='on_hold');
   const phaseHTML=mainPhases.map((p,i)=>{
     const pi=JOB_PHASES.findIndex(ph=>ph.id===p.id);
@@ -5634,7 +5634,7 @@ window.toggleSubtask=async(tid,stId)=>{
   if(nm)nm.className='st-name'+(st.done?' done':'');
   // Atualizar progress badge
   const prog=document.getElementById('st-prog-'+tid);
-  if(prog){const done=updated.filter(s=>s.done).length;prog.textContent=done+'/'+updated.length;}
+  if(prog){const done=updated.filter(s=>s.done).length;prog.textContent=done+'/'+updated.length+' · '+workProgressPct([{subtasks:updated}])+'%';}
   // Atualizar checkboxes no modal de edição (se aberto)
   const teChk=document.getElementById('te-st-chk-'+stId);
   const teNm=document.getElementById('te-st-nm-'+stId);
@@ -5653,8 +5653,11 @@ window.toggleSubtask=async(tid,stId)=>{
     const cv=document.getElementById('room-view');
     if(cv&&rooms[activeRid])renderRoomDetail(cv,rooms[activeRid]);
   }
-  // Salvar no Firestore
-  updateDoc(doc(db,'tasks',tid),updateData).catch(err=>{console.error('toggleSubtask:',err);});
+  if(!allDone&&task.done){allTasks[tid].done=false;allTasks[tid].doneAt=null;updateData.done=false;updateData.doneAt=null;}
+  // Refresh both fractional progress and the independent completed-task count.
+  renderRoomsList();renderContent();
+  if(dashOpen)renderDashboard(document.getElementById('dash-content'));
+  updateDoc(doc(db,'tasks',tid),updateData).catch(err=>{console.error('toggleSubtask:',err);notif('Could not save subtask. Reload to confirm its status.','e');});
 };
 
 window.submitNewTask=async(allUnits)=>{
@@ -7656,7 +7659,7 @@ window.renderHomePage=function(){
   const allR=Object.values(rooms);
   const done=allT.filter(t=>t.done).length;
   const total=allT.length;
-  const pct=total?Math.round(done/total*100):0;
+  const pct=workProgressPct(allT);
   const barC=pct>=80?'var(--ok)':pct>=40?'var(--elec)':'var(--fire)';
   const overdue=allT.filter(t=>!t.done&&t.deadline&&t.deadline<today).length;
   const sprintToday=allT.filter(t=>t.assignedDate===today);
@@ -8017,7 +8020,7 @@ function renderUnitPicker(){
         const tasks=Object.values(allTasks).filter(t=>t.roomId===r.id);
         const done=tasks.filter(t=>t.done).length;
         const total=tasks.length;
-        const pct=total>0?Math.round(done/total*100):0;
+        const pct=workProgressPct(tasks);
         const isActive=r.id===activeRid;
         const elec=tasks.filter(t=>t.cat==='eletrica');
         const fire=tasks.filter(t=>t.cat==='fire');
@@ -8110,6 +8113,21 @@ function renderProjSel(){
 }
 function projRooms(){return Object.values(rooms).filter(r=>r.projectId===activePid);}
 function roomTasks(rid){return Object.values(allTasks).filter(t=>t.roomId===rid);}
+// BEGIN PARTIAL WORK PROGRESS
+function workTaskFraction(task){
+  if(task?.done)return 1;
+  const subs=Array.isArray(task?.subtasks)?task.subtasks.filter(s=>s&&typeof s==='object'):[];
+  return subs.length?subs.filter(s=>s.done).length/subs.length:0;
+}
+function workProgressPct(tasks){
+  const list=Array.isArray(tasks)?tasks:[];
+  if(!list.length)return 0;
+  const value=list.reduce((sum,t)=>sum+workTaskFraction(t),0)/list.length;
+  return value>=1-Number.EPSILON?100:Math.min(99,Math.round(value*100));
+}
+window.workProgress={fraction:workTaskFraction,percent:workProgressPct};
+// END PARTIAL WORK PROGRESS
+
 function roomProg(rid){
   const ts=roomTasks(rid);if(!ts.length)return{total:0,done:0,pct:0,elecT:0,elecD:0,elecPct:0,fireT:0,fireD:0,firePct:0};
   const total=ts.length,done=ts.filter(t=>t.done).length;
@@ -8117,7 +8135,7 @@ function roomProg(rid){
   const fire=ts.filter(t=>t.cat==='fire');
   const elecT=elec.length,elecD=elec.filter(t=>t.done).length;
   const fireT=fire.length,fireD=fire.filter(t=>t.done).length;
-  return{total,done,pct:Math.round(done/total*100),elecT,elecD,elecPct:elecT?Math.round(elecD/elecT*100):0,fireT,fireD,firePct:fireT?Math.round(fireD/fireT*100):0};
+  return{total,done,pct:workProgressPct(ts),elecT,elecD,elecPct:workProgressPct(elec),fireT,fireD,firePct:workProgressPct(fire)};
 }
 function renderRoomsList(){
   const el=document.getElementById('rooms-list');
@@ -8257,7 +8275,7 @@ function renderTaskView(el){
     return yr+'-'+p[0].padStart(2,'0')+'-'+p[1].padStart(2,'0');
   };
   const doneTodayTasks=projTasks.filter(t=>t.done&&normDoneAt(t.doneAt)===todayStr).length;
-  const pctDone=totalTasks?Math.round(doneTasks/totalTasks*100):0;
+  const pctDone=workProgressPct(projTasks);
   // Users with tasks in this project (for tech filter)
   const projUserIds=[...new Set(projTasks.filter(t=>t.assignedTo).map(t=>t.assignedTo))];
   const projUsers=projUserIds.map(uid=>(window._cachedUsers||[]).find(u=>u.id===uid)).filter(Boolean);
@@ -8409,7 +8427,7 @@ function renderTaskView(el){
   if(activeView==='compact'){
     html+='<div style="display:flex;flex-direction:column;gap:4px">';
     groups.forEach(function(g){
-      const pct2=g.total?Math.round(g.done/g.total*100):0;
+      const pct2=workProgressPct(g.tasks||projTasks.filter(t=>t.name===g.name));
       const dot2=g.cat==='eletrica'?'var(--elec)':g.cat==='fire'?'var(--fire)':'#818cf8';
       const catLbl=g.cat==='eletrica'?'⚡':g.cat==='fire'?'🔥':'🔧';
       html+='<div style="display:flex;align-items:center;gap:10px;padding:7px 10px;background:var(--sur);border-radius:8px;border-left:3px solid '+dot2+'">';
@@ -8433,7 +8451,7 @@ function renderTaskView(el){
   const sortedFloorOrder=['Basement','Ground Floor','1st Floor','2nd Floor','3rd Floor','3rd Floor (Penthouse)','4th Floor','5th Floor','Penthouse','Garage','Common Area','Exterior','Unknown'];
 
   groups.forEach(g=>{
-    const pct=g.total?Math.round(g.done/g.total*100):0;
+    const pct=workProgressPct(g.tasks||projTasks.filter(t=>t.name===g.name));
     const dot=g.cat==='eletrica'?'var(--elec)':g.cat==='fire'?'var(--fire)':'#818cf8';
     const catLabel=g.cat==='eletrica'?'⚡ Electrical':g.cat==='fire'?'🔥 Fire Alarm':'🔧 General';
     const isCollapsed=window._tvCollapsed[g.name]!==undefined?window._tvCollapsed[g.name]:pct>=80;
@@ -8485,7 +8503,7 @@ function renderTaskView(el){
       sortedFloors.forEach(floor=>{
         const units=byFloor[floor];
         const flDone=units.filter(({task})=>task.done).length;
-        const flPct=units.length?Math.round(flDone/units.length*100):0;
+        const flPct=workProgressPct(units.map(u=>u.task));
         html+='<div class="tv-floor-hdr">'+floor.toUpperCase()+(flPct===100?' <span style="font-size:10px;color:var(--ok);font-weight:700">✅ Complete</span>':'')+'</div>'
           +'<div class="tv-floor-prog">'
           +'<div class="tv-floor-bar-wrap"><div class="tv-floor-bar" style="width:'+flPct+'%;background:'+(flPct===100?'var(--ok)':dot)+'"></div></div>'
@@ -8642,7 +8660,7 @@ function renderWorkerHome(el,now,today,greeting,userName,allT,allR){
   // Tasks assigned hoje para este worker
   const myToday=allT.filter(t=>t.assignedTo===uid&&t.assignedDate===today);
   const myDone=myToday.filter(t=>t.done).length;
-  const myPct=myToday.length?Math.round(myDone/myToday.length*100):0;
+  const myPct=workProgressPct(myToday);
   // Tasks da semana não feitas
   const weekStart=getPlanWeekDates(0).monday;
   const monStr=getPlanDateStr(weekStart);
@@ -8772,11 +8790,11 @@ function renderManagerHome(el,now,today,greeting,userName,allT,allR,allP,isOwner
   const activeJobs=fJobs.filter(j=>j.status!=='completed');
   const fDone=fTasks.filter(t=>t.done).length;
   const fTotal=fTasks.length;
-  const fPct=fTotal?Math.round(fDone/fTotal*100):0;
+  const fPct=workProgressPct(fTasks);
   const fElec=fTasks.filter(t=>t.cat==='eletrica'||t.cat==='inspecao');
   const fFire=fTasks.filter(t=>t.cat==='fire');
-  const fEPct=fElec.length?Math.round(fElec.filter(t=>t.done).length/fElec.length*100):0;
-  const fFPct=fFire.length?Math.round(fFire.filter(t=>t.done).length/fFire.length*100):0;
+  const fEPct=workProgressPct(fElec);
+  const fFPct=workProgressPct(fFire);
   const fOverdue=fTasks.filter(t=>!t.done&&t.deadline&&t.deadline<today);
   const fToday2=fTasks.filter(t=>!t.done&&t.deadline===today);
   const pendRem=Object.values(_reminders||{}).filter(r=>!r.resolved&&r.dueDate&&r.dueDate.split(' ')[0]<=today);
@@ -9006,11 +9024,11 @@ function renderManagerHome(el,now,today,greeting,userName,allT,allR,allP,isOwner
     projToShow.forEach(function(proj){
       var pT=allT.filter(t=>t.projectId===proj.id);
       var pD=pT.filter(t=>t.done).length;
-      var pPct=pT.length?Math.round(pD/pT.length*100):0;
+      var pPct=workProgressPct(pT);
       var pE=pT.filter(t=>t.cat==='eletrica'||t.cat==='inspecao');
       var pF=pT.filter(t=>t.cat==='fire');
-      var pEP=pE.length?Math.round(pE.filter(t=>t.done).length/pE.length*100):0;
-      var pFP=pF.length?Math.round(pF.filter(t=>t.done).length/pF.length*100):0;
+      var pEP=workProgressPct(pE);
+      var pFP=workProgressPct(pF);
       var bc=pPct>=80?'var(--ok)':pPct>=40?'var(--elec)':'var(--fire)';
       var pRooms=allR.filter(r=>r.projectId===proj.id);
       var projJob=allJobs.filter(j=>j.projectId===proj.id&&j.status!=='completed')[0];
@@ -9182,9 +9200,9 @@ function renderOverview(el){
   const elecD=progs.reduce((s,o)=>s+o.p.elecD,0);
   const fireT=progs.reduce((s,o)=>s+o.p.fireT,0);
   const fireD=progs.reduce((s,o)=>s+o.p.fireD,0);
-  const pct=total?Math.round(done/total*100):0;
-  const elecPct=elecT?Math.round(elecD/elecT*100):0;
-  const firePct=fireT?Math.round(fireD/fireT*100):0;
+  const pct=workProgressPct(progs.flatMap(o=>roomTasks(o.r.id)));
+  const elecPct=workProgressPct(progs.flatMap(o=>roomTasks(o.r.id)).filter(t=>t.cat==='eletrica'||t.cat==='inspecao'));
+  const firePct=workProgressPct(progs.flatMap(o=>roomTasks(o.r.id)).filter(t=>t.cat==='fire'));
   const barC=pct>=80?'var(--ok)':pct>=40?'var(--elec)':'var(--fire)';
 
   // Estado do spotlight
@@ -9551,7 +9569,7 @@ function renderTask(t){
   const matBadge=t.materialName?'<span style="font-size:10px;color:var(--mut);background:var(--bg);border:1px solid var(--bdr);padding:1px 7px;border-radius:3px;cursor:pointer" onclick="event.stopPropagation();'+(t.materialId&&materials[t.materialId]?'window.openMatTaskPopup(\''+t.materialId+'\')':'')+'" title="Ver material">📦 '+x(t.materialName)+'</span>':'';
   const subs=t.subtasks&&t.subtasks.length?t.subtasks:[];
   const subDone=subs.filter(s=>s.done).length;
-  const subBadge=subs.length?'<span class="st-progress" id="st-prog-'+t.id+'">'+subDone+'/'+subs.length+'</span>':'';
+  const subBadge=subs.length?'<span class="st-progress" id="st-prog-'+t.id+'">'+subDone+'/'+subs.length+' · '+workProgressPct([t])+'%</span>':'';
   const subHtml=subs.length
     ?'<div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--bdr)44">'
       +'<div style="font-size:9px;font-weight:700;letter-spacing:1.5px;color:var(--mut);margin-bottom:6px;text-transform:uppercase">SUBTASKS ('+subDone+'/'+subs.length+')</div>'
@@ -9792,7 +9810,7 @@ function renderTimeline(el){
       '<div class="tl-search-drop">'
       +searchMatches.slice(0,8).map(n=>{
         const dot=n.cat==='eletrica'?'var(--elec)':n.cat==='fire'?'var(--fire)':'#818cf8';
-        const pct=n.total?Math.round(n.done/n.total*100):0;
+        const pct=workProgressPct(allP.filter(t=>t.name===n.name));
         return '<div class="tl-search-drop-item" onclick="window._tlSearch=\''+n.name.replace(/'/g,"\\'")+"';renderContent()\">"
           +'<div class="tl-search-drop-dot" style="background:'+dot+'"></div>'
           +'<div class="tl-search-drop-name">'+x(n.name)+'</div>'
@@ -10071,7 +10089,7 @@ function _tlRenderGantt(pr,allP,today,todayStr){
     const rTasks=allP.filter(t=>t.roomId===room.id);
     const done=rTasks.filter(t=>t.done).length;
     const total=rTasks.length;
-    const pct=total?Math.round(done/total*100):0;
+    const pct=workProgressPct(rTasks);
     const dl=room.deadline;
     const isOver=dl&&dl<todayStr;
     const dlColor=!dl?'var(--dim)':isOver?'var(--fire)':'var(--ok)';
@@ -10137,7 +10155,7 @@ function _tlRenderUnits(pr,filtered,allP,today,todayStr,expandAll,allFloors){
     const matchTasks=tasksByRoom[room.id]||[];
     if(!matchTasks.length)return;
     const done=rTasks.filter(t=>t.done).length;
-    const pct=rTasks.length?Math.round(done/rTasks.length*100):0;
+    const pct=workProgressPct(rTasks);
     const dl=room.deadline;
     const isOver=dl&&dl<todayStr;
     const isOpen=expandAll||(window._tlOpenUnits[room.id]!==undefined?window._tlOpenUnits[room.id]:false);
@@ -10282,7 +10300,7 @@ window.tvExportCSV=()=>{
   });
   const rows=[['Task Name','Category','Done','Total','% Done']];
   Object.values(byName).sort((a,b)=>a.name.localeCompare(b.name)).forEach(g=>{
-    const pct=g.total?Math.round(g.done/g.total*100):0;
+    const pct=workProgressPct(g.tasks||projTasks.filter(t=>t.name===g.name));
     rows.push([g.name,g.cat,g.done,g.total,pct+'%']);
   });
   const csv=rows.map(r=>r.map(c=>'"'+String(c).replace(/"/g,'""')+'"').join(',')).join('\n');
@@ -10306,10 +10324,10 @@ window.tvExportPDF=()=>{
   });
   const sorted=Object.values(byName).sort((a,b)=>a.name.localeCompare(b.name));
   const doneTasks=projTasks.filter(t=>t.done).length;
-  const pctDone=projTasks.length?Math.round(doneTasks/projTasks.length*100):0;
+  const pctDone=workProgressPct(projTasks);
   const dateStr=new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
   let rows=sorted.map(g=>{
-    const pct=g.total?Math.round(g.done/g.total*100):0;
+    const pct=workProgressPct(g.tasks||projTasks.filter(t=>t.name===g.name));
     const bar='█'.repeat(Math.round(pct/10))+'░'.repeat(10-Math.round(pct/10));
     return'<tr><td style="padding:6px 10px;border-bottom:1px solid #eee">'+g.name+'</td>'
       +'<td style="padding:6px 10px;border-bottom:1px solid #eee;color:'+(g.cat==='fire'?'#e03':'#a80')+'">'+g.cat+'</td>'
@@ -10353,7 +10371,7 @@ function _tlRenderByTask(pending,allP,pr,today,todayStr,expandAll){
     const selCount=sel.size;
     const catColor=g.cat==='eletrica'||g.cat==='inspecao'?'var(--elec)':g.cat==='fire'?'var(--fire)':'#818cf8';
     const totalAll=g.rows.length+g.doneCount;
-    const pct=totalAll?Math.round(g.doneCount/totalAll*100):0;
+    const pct=workProgressPct(allP.filter(t=>t.name===g.name&&t.cat===g.cat));
     h+='<div class="tl-task-group">'
       +'<div style="display:flex;align-items:center">'
       +'<div class="tl-task-group-hdr" data-tgkey="'+keyEnc+'" style="flex:1">'
@@ -10661,12 +10679,12 @@ window.updateRptPreview=()=>{
   if(!selPid){el.innerHTML='<div style="color:var(--dim);padding:20px;text-align:center">Selecione um projeto</div>';return;}
   const done=filtTasks.filter(t=>t.done).length;
   const todo=filtTasks.filter(t=>!t.done).length;
-  const pct=filtTasks.length?Math.round(done/filtTasks.length*100):0;
+  const pct=workProgressPct(filtTasks);
   const pctColor=pct>=80?'var(--ok)':pct>=40?'var(--elec)':'var(--fire)';
   const elecT=filtTasks.filter(t=>t.cat==='eletrica');
   const fireT=filtTasks.filter(t=>t.cat==='fire');
-  const elecPct=elecT.length?Math.round(elecT.filter(t=>t.done).length/elecT.length*100):0;
-  const firePct=fireT.length?Math.round(fireT.filter(t=>t.done).length/fireT.length*100):0;
+  const elecPct=workProgressPct(elecT);
+  const firePct=workProgressPct(fireT);
   const byFloor={};
   filtRooms.forEach(r=>{const f=r.floor||'Other';if(!byFloor[f])byFloor[f]={t:0,d:0};});
   filtTasks.forEach(t=>{const r=rooms[t.roomId];if(!r)return;const f=r.floor||'Other';if(byFloor[f]){byFloor[f].t++;if(t.done)byFloor[f].d++;}});
@@ -10684,7 +10702,7 @@ window.updateRptPreview=()=>{
   const _FO=['Basement','Ground Floor','1st Floor','2nd Floor','3rd Floor','3rd Floor (Penthouse)','4th Floor','5th Floor','Penthouse','Garage','Common Area','Exterior'];
   const sfl=Object.keys(byFloor).sort((a,b)=>{const ai=_FO.indexOf(a),bi=_FO.indexOf(b);if(ai<0&&bi<0)return a.localeCompare(b);if(ai<0)return 1;if(bi<0)return-1;return ai-bi;});
   sfl.forEach(f=>{
-    const fw=byFloor[f];const fp=fw.t?Math.round(fw.d/fw.t*100):0;
+    const fw=byFloor[f];const fp=workProgressPct(filtTasks.filter(t=>(rooms[t.roomId]?.floor||'Other')===f));
     const fc=fp===100?'var(--ok)':fp>=50?'var(--elec)':'var(--fire)';
     html+='<div class="rpt2-bar-row"><div class="rpt2-bar-label"><span>'+f+'</span><span style="color:'+fc+'">'+fw.d+'/'+fw.t+' '+fp+'%</span></div><div class="rpt2-bar-track"><div class="rpt2-bar-fill" style="width:'+fp+'%;background:'+fc+'"></div></div></div>';
   });
@@ -10734,7 +10752,7 @@ window.generateFilteredReport=()=>{
   const now=new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
   const doneTasks=filtTasks.filter(t=>t.done);
   const todoTasks=filtTasks.filter(t=>!t.done);
-  const pct=filtTasks.length?Math.round(doneTasks.length/filtTasks.length*100):0;
+  const pct=workProgressPct(filtTasks);
   const barC=pct>=80?'#639922':pct>=40?'#EF9F27':'#E24B4A';
   const sysLabel={all:'All Systems',eletrica:'⚡ Electrical',fire:'🔥 Fire Alarm'}[window.rptFilters.system]||'All';
   const statusLabel={all:'All Tasks',todo:'To-Do Only',done:'Completed Only'}[window.rptFilters.status]||'All';
@@ -10775,7 +10793,7 @@ window.generateFilteredReport=()=>{
       const photoCount=rtPhotos.reduce((s,t)=>s+t.photos.length,0)+rNotes.length;
       totalPhotos+=photoCount;
       const rDone=rt.filter(t=>t.done).length;
-      const rPct=rt.length?Math.round(rDone/rt.length*100):0;
+      const rPct=workProgressPct(rt);
       roomMeta.push({r,rt,rtPhotos,rNotes,photoCount,rDone,rPct});
     });
     const roomsWithPhotos=roomMeta.filter(m=>m.photoCount>0);
@@ -10978,7 +10996,7 @@ window.generateFilteredReport=()=>{
           +'<th style="padding:8px 10px;text-align:left;border-bottom:2px solid #e5e7eb;width:80px">SKU</th>'
           +'</tr></thead><tbody>';
         mats.forEach(m=>{
-          const pct=m.tasks.length?Math.round(m.doneTasks/m.tasks.length*100):0;
+          const pct=workProgressPct(m.tasks);
           const pctC=pct===100?'#16a34a':pct>0?'#d4a000':'#dc2626';
           mhtml+='<tr style="border-bottom:1px solid #f3f4f6">'
             +'<td style="padding:6px 10px">'+(m.photoUrl?'<img src="'+m.photoUrl+'" style="width:32px;height:32px;object-fit:contain;background:#f8fafc;border-radius:4px;border:1px solid #e5e7eb">':'<div style="width:32px;height:32px;border-radius:4px;background:#f3f4f6;display:flex;align-items:center;justify-content:center;font-size:16px">📦</div>')+'</td>'
@@ -11036,7 +11054,7 @@ window.generateFilteredReport=()=>{
         if(!rTasks.length&&!window.unitFollowup?.report(r.id))return;
         const rDone=rTasks.filter(t=>t.done);
         const rTodo=rTasks.filter(t=>!t.done);
-        const rPct=rTasks.length?Math.round(rDone.length/rTasks.length*100):0;
+        const rPct=workProgressPct(rTasks);
         const pctC=rPct===100?'#16a34a':rPct>=50?'#d4a000':'#dc2626';
         const badge=rPct===100?'<span style="background:#16a34a22;color:#16a34a;font-size:9px;font-weight:700;padding:2px 8px;border-radius:10px">✓ COMPLETO</span>':rPct>0?'<span style="background:#d4a00022;color:#d4a000;font-size:9px;font-weight:700;padding:2px 8px;border-radius:10px">EM PROGRESSO</span>':'<span style="background:#88888822;color:#888;font-size:9px;font-weight:700;padding:2px 8px;border-radius:10px">PENDENTE</span>';
         bhtml+='<div style="background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:14px;margin-bottom:10px;page-break-inside:avoid">';
@@ -11207,7 +11225,7 @@ window.generateFilteredReport=()=>{
         if(!flR.length)return'';
         const flT=filtTasks.filter(t=>flR.some(r=>r.id===t.roomId));
         const flD=flT.filter(t=>t.done).length;
-        const flPct=flT.length?Math.round(flD/flT.length*100):0;
+        const flPct=workProgressPct(flT);
         return'<tr style="border-bottom:1px solid #f3f4f6"><td style="padding:8px 12px">'+fl+'</td><td style="padding:8px 12px;text-align:center">'+flR.length+'</td><td style="padding:8px 12px;text-align:center;color:#16a34a">'+flD+'</td><td style="padding:8px 12px;text-align:center;color:#dc2626">'+(flT.length-flD)+'</td><td style="padding:8px 12px;text-align:center;font-weight:700">'+flPct+'%</td></tr>';
       }).join('')
       +'</tbody></table>';
@@ -11243,7 +11261,7 @@ window.generateFilteredReport=()=>{
       byF[fl].forEach(function(r){
         const rTasks=filtTasks.filter(t=>t.roomId===r.id);
         const rDone=rTasks.filter(t=>t.done).length;
-        const rPct=rTasks.length?Math.round(rDone/rTasks.length*100):0;
+        const rPct=workProgressPct(rTasks);
         const ec=rPct>=80?'#16a34a':rPct>0?'#d4a000':'#e5e7eb';
         const badge=rPct===100?'<span class="rpt-badge done">✓ Done</span>':rPct>0?'<span class="rpt-badge prog">In Progress</span>':'<span class="rpt-badge todo">To-Do</span>';
         html+='<div class="rpt-room-row"><div class="rpt-room-name">'+x(r.name)+'</div>'
@@ -11255,11 +11273,11 @@ window.generateFilteredReport=()=>{
         } else {
           // System bars
           if(window.rptFilters.system==='all'||rptFilters.system==='eletrica'){
-            const et=rTasks.filter(t=>t.cat==='eletrica');const ed=et.filter(t=>t.done).length;const ep=et.length?Math.round(ed/et.length*100):0;
+            const et=rTasks.filter(t=>t.cat==='eletrica');const ed=et.filter(t=>t.done).length;const ep=workProgressPct(et);
             html+='<div class="rpt-brow"><span class="rpt-bicon">⚡</span><div class="rpt-bar"><div class="rpt-bar-fill" style="width:'+ep+'%;background:'+(ep>=80?'#16a34a':ep>0?'#d4a000':'#e5e7eb')+'"></div></div><span class="rpt-bpct">'+ep+'%</span></div>';
           }
           if(window.rptFilters.system==='all'||rptFilters.system==='fire'){
-            const ft=rTasks.filter(t=>t.cat==='fire');const fd=ft.filter(t=>t.done).length;const fp=ft.length?Math.round(fd/ft.length*100):0;
+            const ft=rTasks.filter(t=>t.cat==='fire');const fd=ft.filter(t=>t.done).length;const fp=workProgressPct(ft);
             html+='<div class="rpt-brow"><span class="rpt-bicon">🔥</span><div class="rpt-bar"><div class="rpt-bar-fill" style="width:'+fp+'%;background:'+(fp>=80?'#16a34a':fp>0?'#d4a000':'#e5e7eb')+'"></div></div><span class="rpt-bpct">'+fp+'%</span></div>';
           }
         }
@@ -11296,7 +11314,7 @@ window.generateFilteredReport=()=>{
       const u=allU.find(u=>u.id===uid);
       const nm=u?u.name||u.email:'Unassigned';
       const tp=data.done.length+data.todo.length;
-      const techPct=tp?Math.round(data.done.length/tp*100):0;
+      const techPct=workProgressPct(data.done.concat(data.todo));
       const tc=techPct>=80?'#16a34a':techPct>=40?'#d4a000':'#dc2626';
       html+='<div style="background:#f8f9fa;border-radius:12px;padding:18px;margin-bottom:18px"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px"><div><div style="font-size:16px;font-weight:900">'+x(nm)+'</div></div><div style="text-align:right"><div style="font-size:24px;font-weight:900;color:'+tc+'">'+techPct+'%</div><div style="font-size:10px;color:#888">'+data.rids.size+' units</div></div></div><div class="rpt-big-bar"><div class="rpt-big-bar-fill" style="width:'+techPct+'%;background:'+tc+'">'+data.done.length+'/'+tp+'</div></div>';
       html+='<div style="display:flex;gap:16px;margin-top:10px;font-size:12px"><span style="color:#16a34a;font-weight:700">'+data.done.length+' done</span><span style="color:#dc2626;font-weight:700">'+data.todo.length+' pending</span></div></div>';
@@ -11370,13 +11388,13 @@ window.shareWhatsApp=function(){
   const detail=document.querySelector('input[name="wa-detail"]:checked')?.value||'simple';
   const done=filtTasks.filter(t=>t.done).length;
   const todo=filtTasks.filter(t=>!t.done).length;
-  const pct=filtTasks.length?Math.round(done/filtTasks.length*100):0;
+  const pct=workProgressPct(filtTasks);
   const now=new Date().toLocaleDateString('en-US',{day:'2-digit',month:'2-digit',year:'numeric'});
   const bar=(p)=>{const f=Math.round(p/10);return 'X'.repeat(f)+'.'.repeat(10-f)+' '+p+'%';};
   const elecT=filtTasks.filter(t=>t.cat==='eletrica');
   const fireT=filtTasks.filter(t=>t.cat==='fire');
-  const elecPct=elecT.length?Math.round(elecT.filter(t=>t.done).length/elecT.length*100):0;
-  const firePct=fireT.length?Math.round(fireT.filter(t=>t.done).length/fireT.length*100):0;
+  const elecPct=workProgressPct(elecT);
+  const firePct=workProgressPct(fireT);
   let msg='*'+proj.name+'*\n';
   msg+='Atualizacao '+now+'\n';
   msg+='---\n';
@@ -11390,7 +11408,7 @@ window.shareWhatsApp=function(){
   filtTasks.forEach(t=>{const r=rooms[t.roomId];if(!r)return;const f=r.floor||'Other';if(byFloor[f]){byFloor[f].t++;if(t.done)byFloor[f].d++;}});
   const sf=Object.keys(byFloor).sort((a,b)=>{const o=FLOOR_ORDER;const ai=o.indexOf(a),bi=o.indexOf(b);if(ai<0&&bi<0)return a.localeCompare(b);if(ai<0)return 1;if(bi<0)return-1;return ai-bi;});
   sf.forEach(f=>{
-    const fw=byFloor[f];const fp=fw.t?Math.round(fw.d/fw.t*100):0;
+    const fw=byFloor[f];const fp=workProgressPct(filtTasks.filter(t=>(rooms[t.roomId]?.floor||'Other')===f));
     const ico=fp===100?'[OK]':fp>=50?'[~]':'[!]';
     msg+=ico+' '+f+': '+fp+'% ('+fw.d+'/'+fw.t+')\n';
   });
@@ -11447,7 +11465,7 @@ window.generateUnitReport=(rid,language='en',mode,includeHistory)=>{
   const tasks=Object.values(allTasks).filter(t=>t.roomId===rid);
   const done=tasks.filter(t=>t.done);
   const todo=tasks.filter(t=>!t.done);
-  const pct=tasks.length?Math.round(done.length/tasks.length*100):0;
+  const pct=workProgressPct(tasks);
   const now=new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
   const barC=pct>=80?'#639922':pct>=40?'#EF9F27':'#E24B4A';
   const catColor={eletrica:'#d4a000',fire:'#dc2626',inspecao:'#0ea5e9',geral:'#6366f1'};
