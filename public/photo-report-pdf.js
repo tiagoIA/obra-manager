@@ -1,9 +1,10 @@
+import {progressPercent} from './work-progress.js?v=1';
 import {coverLabels,facadePhotoURL} from './photo-report-cover.js?v=1';
 import {PDFDocument, StandardFonts, rgb} from './vendor/pdf-lib.esm.min.js';
 
 const labels={
- en:{prepare:'Preparing PDF',ready:'PDF ready',share:'Share PDF',save:'Save PDF',open:'Open PDF',close:'Close',retry:'Try again',failed:'The PDF could not be completed. No partial file was saved.',missing:'Photos could not be loaded',page:'Page',of:'of',part:'Part',continued:'Continued',history:'Original field records',taskNotes:'Task notes',size:'pages',cancelled:'Cancelled'},
- pt:{prepare:'Preparando PDF',ready:'PDF pronto',share:'Compartilhar PDF',save:'Salvar PDF',open:'Abrir PDF',close:'Fechar',retry:'Tentar novamente',failed:'Não foi possível concluir o PDF. Nenhum arquivo incompleto foi salvo.',missing:'Fotos não carregadas',page:'Página',of:'de',part:'Parte',continued:'Continuação',history:'Registros originais de campo',taskNotes:'Notas das tarefas',size:'páginas',cancelled:'Cancelado'}
+ en:{prepare:'Preparing PDF',ready:'PDF ready',share:'Share PDF',save:'Save PDF',open:'Open PDF',close:'Close',retry:'Try again',failed:'The PDF could not be completed. No partial file was saved.',missing:'Photos could not be loaded',page:'Page',of:'of',part:'Part',continued:'Continued',history:'Original field records',taskNotes:'Task notes',size:'pages',cancelled:'Cancelled',progress:'Work progress',progressBasis:'Progress reflects tasks in this report, including proportional subtask completion.',noTasks:'No tasks recorded'},
+ pt:{prepare:'Preparando PDF',ready:'PDF pronto',share:'Compartilhar PDF',save:'Salvar PDF',open:'Abrir PDF',close:'Fechar',retry:'Tentar novamente',failed:'Não foi possível concluir o PDF. Nenhum arquivo incompleto foi salvo.',missing:'Fotos não carregadas',page:'Página',of:'de',part:'Parte',continued:'Continuação',history:'Registros originais de campo',taskNotes:'Notas das tarefas',size:'páginas',cancelled:'Cancelado',progress:'Progresso do serviço',progressBasis:'O progresso considera as tarefas deste relatório, incluindo o avanço proporcional das subtarefas.',noTasks:'Nenhuma tarefa registrada'}
 };
 const dateLabel=(value,language)=>{try{return value?new Date(typeof value==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(value)?value+'T12:00:00':value).toLocaleDateString(language==='pt'?'pt-BR':'en-US',{year:'numeric',month:'short',day:'numeric'}):'';}catch{return String(value||'');}};
 export const pdfFilename=name=>(String(name||'Report').replace(/[<>:"/\\|?*\x00-\x1f\x7f]/g,'-').replace(/[. ]+$/,'').trim()||'Report')+'.pdf';
@@ -56,12 +57,24 @@ export async function createPhotoReportPDF(model,options){
  };
  const unitName=u=>u.room.unassigned?l.unassigned:u.service==='condensers'?l.condensers:u.room.name;
  const unitLabel=u=>u.service==='condensers'?unitName(u):l[u.service]+' · '+unitName(u);
+ const unitProgress=u=>{
+  if(y-35<BOTTOM){newPage();projectHeader();}
+  if(!u.tasks.length){flow(ui.noTasks,{size:9,color:muted,space:7});return;}
+  const pct=progressPercent(u.tasks),value=pct+'%';
+  text(ui.progress,M,y,{size:9,color:muted});
+  text(value,W-M-bold.widthOfTextAtSize(value,11),y,{size:11,font:bold});
+  y-=19;
+  page.drawRectangle({x:M,y,width:CW,height:5,color:line});
+  if(pct)page.drawRectangle({x:M,y,width:CW*pct/100,height:5,color:pct===100?rgb(.22,.45,.3):gold});
+  y-=14;
+ };
  const groupHeader=(u,part,total)=>{
   newPage();page.drawRectangle({x:M,y:H-M-4,width:CW,height:3,color:gold});y-=17;
   projectHeader();
   for(const row of wrap(unitLabel(u),CW,16,bold)){text(row,M,y,{size:16,font:bold});y-=20;}
   const done=u.tasks.filter(t=>t.done).length,pending=u.tasks.length-done;
   flow([u.room.floor,u.photos.length+' '+l.photos,done+'/'+u.tasks.length+' '+l.complete,pending+' '+l.pending].filter(Boolean).join(' · '),{size:9,space:3});
+  unitProgress(u);
   flow(ui.part+' '+part+' '+ui.of+' '+total,{size:9,color:muted,space:6});
  };
  const imageCache=new Map(),failures=[];let processed=0;
@@ -98,7 +111,11 @@ export async function createPhotoReportPDF(model,options){
  const filterRows=Object.entries(model.filters||{}).filter(([key,value])=>['floor','system','status','task','tech','units'].includes(key)&&value&&value!=='all'&&(!Array.isArray(value)||value.length));
  flow(l.filters+': '+(filterRows.map(([key,value])=>key+': '+(Array.isArray(value)?model.units.map(unitName).join(', '):value)).join(' · ')||l.all),{size:9,color:muted,space:12});
  flow(l.historical,{size:9,color:muted,space:18});
- model.units.forEach(u=>{flow(unitLabel(u)+' - '+u.photos.length+' '+l.photos,{size:10,space:5});});
+ flow(ui.progressBasis,{size:9,color:muted,space:12});
+ model.units.forEach(u=>{const label=unitLabel(u)+' - '+u.photos.length+' '+l.photos;
+  if(y-wrap(label,CW,10).length*13.5-42<BOTTOM){newPage();projectHeader();}
+  flow(label,{size:10,space:5});unitProgress(u);
+ });
  if(!model.units.length)flow(l.none);
  const totalImages=model.units.reduce((sum,u)=>sum+u.photos.length,0);
  // Keep at most three converted photos ahead of the layout, rather than waiting
