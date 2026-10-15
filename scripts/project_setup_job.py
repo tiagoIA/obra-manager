@@ -109,3 +109,49 @@ if saved['name'] != payload['name'] or saved['facadePhoto']['sha256'] != photo_h
     raise SystemExit('Saved project verification failed')
 tasks = sum(1 for _ in db.collection('tasks').where(filter=firestore.FieldFilter('projectId', '==', project_id)).stream())
 print('PROJECT_SETUP_VERIFIED ' + json.dumps({'projectId': project_id, 'created': created, 'facadeVerified': True, 'taskCount': tasks}))
+
+
+# Add the concise installation tasks requested by the project owner.
+task_specs = [
+    ('Assess cable route', ''),
+    ('Drill exterior-to-basement cable penetration', ''),
+    ('Run circuit cable to electrical panel', ''),
+    ('Install mounting bracket and secure EV charger', ''),
+    ('Terminate wiring at EV charger', ''),
+    ('Install circuit breaker and terminate panel wiring', ''),
+    ('Label EV Charger Circuit - Photo Required', 'Attach a clear, legible photo of the EV charger circuit identification on the panel.'),
+    ('Test EV charger and complete installation', ''),
+]
+room_ref = db.collection('rooms').document(project_id + '-ev-installation')
+task_refs = [db.collection('tasks').document(project_id + '-ev-task-' + str(i + 1).zfill(2)) for i in range(len(task_specs))]
+
+@firestore.transactional
+def add_requested_tasks(transaction):
+    project_snap = target.get(transaction=transaction)
+    room_snap = room_ref.get(transaction=transaction)
+    task_snaps = [ref.get(transaction=transaction) for ref in task_refs]
+    if not project_snap.exists or project_snap.to_dict().get('scope') != 'electrical':
+        raise RuntimeError('Expected electrical project is unavailable')
+    if room_snap.exists and room_snap.to_dict().get('projectId') != project_id:
+        raise RuntimeError('Installation area conflict')
+    for snap, (name, note) in zip(task_snaps, task_specs):
+        if snap.exists and any(snap.to_dict().get(k) != v for k, v in {'projectId': project_id, 'roomId': room_ref.id, 'name': name}.items()):
+            raise RuntimeError('Existing task differs; no changes applied')
+    if not room_snap.exists:
+        transaction.create(room_ref, {'projectId': project_id, 'name': 'EV Charger Installation', 'floor': 'Other', 'createdAt': firestore.SERVER_TIMESTAMP})
+    count = 0
+    for i, (ref, snap, (name, note)) in enumerate(zip(task_refs, task_snaps, task_specs)):
+        if not snap.exists:
+            transaction.create(ref, {'projectId': project_id, 'roomId': room_ref.id,
+                'name': name, 'cat': 'eletrica', 'qty': 0, 'hasQty': False, 'note': note,
+                'materialId': None, 'materialName': None, 'subtasks': [], 'done': False,
+                'doneAt': None, 'photos': [], 'sortOrder': i + 1, 'createdAt': firestore.SERVER_TIMESTAMP})
+            count += 1
+    return count
+
+added = add_requested_tasks(db.transaction())
+for ref, (name, note) in zip(task_refs, task_specs):
+    result = ref.get().to_dict()
+    if result.get('name') != name or result.get('note') != note or result.get('roomId') != room_ref.id:
+        raise SystemExit('Saved task verification failed')
+print('REQUESTED_TASKS_VERIFIED ' + json.dumps({'added': added, 'verified': len(task_specs), 'panelLabelPhotoInstruction': True}))
