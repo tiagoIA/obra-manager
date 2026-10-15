@@ -2133,7 +2133,12 @@ button, a, [onclick], .btn-g, .bn-item, .home-nav-btn,
 @media(max-width:600px){.rpt2-preview{grid-template-columns:repeat(2,1fr);}.rpt2-filter-grid{grid-template-columns:1fr;}.rpt2-filter-sel{width:100%;box-sizing:border-box;font-size:14px;padding:10px 12px;}.rpt2-actions{flex-direction:column;}.rpt2-btn{justify-content:center;width:100%;}}
 
 
-.home-recent-project{display:block;width:100%;text-align:left;min-height:48px;padding:12px;margin:6px 0;background:var(--sur2);color:var(--txt);border:1px solid var(--bdr);border-radius:10px;font:inherit;cursor:pointer;overflow-wrap:anywhere}
+.project-facade-thumb{width:64px;height:64px;object-fit:cover;flex-shrink:0;border-radius:8px;background:var(--sur2)}
+.project-facade-placeholder{display:flex;align-items:center;justify-content:center;font-size:25px}
+.home-project-choices{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:8px;margin-top:12px;max-height:340px;overflow:auto}
+.home-project-choice{display:flex;gap:12px;align-items:center;padding:10px;background:var(--sur2);color:var(--txt);border:1px solid var(--bdr);border-radius:10px;text-align:left;font:inherit;cursor:pointer;overflow-wrap:anywhere}
+.home-project-choice[aria-pressed="true"]{border-color:var(--elec)}
+.home-recent-project{display:flex!important;align-items:center;gap:12px;display:block;width:100%;text-align:left;min-height:48px;padding:12px;margin:6px 0;background:var(--sur2);color:var(--txt);border:1px solid var(--bdr);border-radius:10px;font:inherit;cursor:pointer;overflow-wrap:anywhere}
 .photo-zoom-stage{position:absolute;inset:65px 0 60px;display:flex;align-items:center;justify-content:center;overflow:hidden;touch-action:none;cursor:grab}
 .photo-zoom-stage img{max-width:95vw!important;max-height:100%!important;object-fit:contain;user-select:none;will-change:transform}
 .photo-zoom-controls{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:2}
@@ -2463,6 +2468,7 @@ button, a, [onclick], .btn-g, .bn-item, .home-nav-btn,
   </div>
   <div class="pdf-page" id="shop-pdf-content"></div>
 </div>
+<input type="file" id="project-facade-upload" accept="image/*" hidden aria-label="Project facade photo" onchange="window.updateProjectFacade(event)">
 <input type="file" id="file-input" accept="image/*" multiple onchange="handlePhoto(event)">
 <input type="file" id="note-photo-input" style="display:none" accept="image/*" multiple onchange="handleNotePhoto(event)">
 <input type="file" id="note-camera-input" style="display:none" accept="image/*" capture="environment" onchange="handleNotePhoto(event)">
@@ -4502,11 +4508,128 @@ function listenInvoices(){  if(unsubs.inv)unsubs.inv();invoices={};
     if(activePage==='invoices')renderContent();
   });
 }
+// Optional facade photograph for project identification.
+window.clearWizardFacade=()=>{
+  const data=window.wizData;
+  if(data?.facadePreview)URL.revokeObjectURL(data.facadePreview);
+  if(data){delete data.facadePreview;delete data.facadeBlob;delete data.facadePhoto;}
+};
+window.handleWizardFacade=async(event)=>{
+  const file=event.target.files?.[0],data=window.wizData;
+  if(!file)return;
+  if(!file.type.startsWith('image/')||file.size>20*1024*1024){notif('Choose an image up to 20 MB.','e');event.target.value='';return;}
+  const token={};data.facadeSelection=token;data.facadeProcessing=true;window.renderWizard();
+  try{
+    const blob=await compressImage(file);
+    if(!blob||blob.type!=='image/jpeg')throw Error('Could not read this image. Choose a JPG or PNG photo.');
+    if(window.wizData!==data||data.facadeSelection!==token)return;
+    window.clearWizardFacade();data.facadeBlob=blob;data.facadePreview=URL.createObjectURL(blob);
+  }catch(error){notif(error.message||'Could not prepare facade photo.','e');}
+  finally{if(window.wizData===data&&data.facadeSelection===token){data.facadeProcessing=false;window.renderWizard();}}
+};
+window.renderWizardFacade=(data)=>'<div class="fg" style="margin:14px 0"><label class="fl" for="wiz-facade">FACADE PHOTO (OPTIONAL)</label>'
+  +'<p style="font-size:12px;color:var(--mut)">Front of the house / building, to identify this project. You may leave this blank.</p>'
+  +'<input id="wiz-facade" type="file" accept="image/*" aria-label="Facade photo (optional)" onchange="handleWizardFacade(event)" '+(data.facadeProcessing?'disabled':'')+' style="max-width:100%">'
+  +(data.facadeProcessing?'<p role="status">Preparing photo...</p>':'')
+  +(data.facadePreview?'<div style="margin-top:10px"><img src="'+data.facadePreview+'" alt="Facade photo preview" style="display:block;width:100%;max-width:360px;max-height:200px;object-fit:contain;border-radius:8px"><button type="button" class="btn-sm" style="margin-top:8px" onclick="clearWizardFacade();renderWizard()">Remove photo</button></div>':'')+'</div>';
+window.uploadWizardFacade=async(data)=>{
+  if(data.facadeProcessing)throw Error('Wait for the facade photo to finish processing.');
+  if(!data.facadeBlob)return null;
+  const uid=auth.currentUser?.uid;if(!uid)throw Error('Sign in before uploading a facade photo.');
+  if(data.facadePhoto?.uploadedBy===uid)return data.facadePhoto;
+  const storagePath='projects/facades/'+uid+'/'+crypto.randomUUID()+'.jpg';
+  const target=ref(storage,storagePath);
+  await uploadBytes(target,data.facadeBlob,{contentType:'image/jpeg'});
+  const url=await getDownloadURL(target);
+  if(auth.currentUser?.uid!==uid)throw Error('Account changed. Sign in again before saving.');
+  return data.facadePhoto={url,storagePath,uploadedBy:uid};
+};
+window.renderProjectFacade=(project)=>{
+  const url=project?.facadePhoto?.url;
+  if(!url||!/^https:\/\//i.test(url))return '';
+  return '<img src="'+String(url).replaceAll('&','&amp;').replaceAll('"','&quot;').replaceAll('<','&lt;')+'" alt="Front of the house / building" loading="lazy" style="display:block;width:100%;max-width:420px;max-height:220px;object-fit:contain;border-radius:10px;margin-top:12px">';
+};
+window.renderProjectFacadeThumbnail=(project)=>{
+  const url=project?.facadePhoto?.url;
+  return url&&/^https:\/\//i.test(url)
+    ?'<img class="project-facade-thumb" src="'+x(url)+'" alt="Facade of '+x(project.name||'project')+'" loading="lazy">'
+    :'<span class="project-facade-thumb project-facade-placeholder" aria-hidden="true">🏠</span>';
+};
+window.chooseProjectFacade=(pid)=>{
+  if(!auth.currentUser||!hasRole('supervisor'))return notif('Manager access required.','e');
+  if(!projects[pid])return;
+  const input=document.getElementById('project-facade-upload');input.dataset.projectId=pid;input.value='';input.click();
+};
+window.updateProjectFacade=async(event)=>{
+  const input=event.target,file=input.files?.[0],pid=input.dataset.projectId,project=projects[pid],uid=auth.currentUser?.uid;
+  if(!file||!project)return;
+  if(!uid||!hasRole('supervisor'))return notif('Manager access required.','e');
+  if(!file.type.startsWith('image/')||file.size>20*1024*1024){input.value='';return notif('Choose an image up to 20 MB.','e');}
+  if(window._facadeUpdating)return notif('A facade photo is already being saved.','e');
+  window._facadeUpdating=pid;
+  const original=project.facadePhoto?.url||'';
+  try{
+    notif('Saving facade photo...','s');
+    const blob=await compressImage(file);
+    if(!blob||blob.type!=='image/jpeg')throw Error('Could not read this image. Choose a JPG or PNG photo.');
+    if(auth.currentUser?.uid!==uid||!hasRole('supervisor'))throw Error('Account changed. Sign in again before saving.');
+    const facadePhoto=await window.uploadWizardFacade({facadeBlob:blob});
+    await runTransaction(db,async tx=>{
+      if(auth.currentUser?.uid!==uid||!hasRole('supervisor'))throw Error('Account changed. Sign in again before saving.');
+      const target=doc(db,'projects',pid),snap=await tx.get(target);
+      if(!snap.exists())throw Error('This project was removed.');
+      if((snap.data().facadePhoto?.url||'')!==original)throw Error('The facade photo changed on another device. Reload the project before trying again.');
+      tx.update(target,{facadePhoto,updatedAt:serverTimestamp(),updatedBy:uid});
+    });
+    if(projects[pid])projects[pid].facadePhoto=facadePhoto;
+    renderHomePage();notif('Facade photo saved.','s');
+  }catch(error){notif(error.message||'Could not save facade photo. Try again.','e');}
+  finally{window._facadeUpdating=null;input.value='';}
+};
+
+// Optional service classification; building type and electrical/fire scope stay independent.
+window.PROJECT_WORK_TYPES=[
+  {id:'ev-charger',label:'EV Charger',scope:'electrical'},
+  {id:'lighting',label:'Lighting',scope:'electrical'},
+  {id:'outlets',label:'Outlets',scope:'electrical'},
+  {id:'electrical-panel',label:'Electrical panel',scope:'electrical'},
+  {id:'circuits-wiring',label:'Circuits / wiring',scope:'electrical'},
+  {id:'equipment-connections',label:'Equipment connections',scope:'electrical'},
+  {id:'fire-alarm-installation',label:'Fire alarm installation',scope:'fire'},
+  {id:'fire-alarm-maintenance',label:'Fire alarm maintenance',scope:'fire'},
+  {id:'inspection-testing',label:'Inspection / testing',scope:'both'},
+  {id:'maintenance-repair',label:'Maintenance / repair',scope:'both'}
+];
+window.projectWorkTypeOptions=(scope)=>window.PROJECT_WORK_TYPES.filter(t=>scope==='both'||t.scope==='both'||t.scope===scope);
+window.projectWorkTypeValues=(data)=>{
+  const allowed=window.projectWorkTypeOptions(data.scope);
+  return {workTypes:allowed.filter(t=>(data.workTypes||[]).includes(t.id)).map(t=>t.id),customWorkType:String(data.customWorkType||'').trim().slice(0,120)};
+};
+window.projectWorkTypeSummary=(data)=>{
+  const values=window.projectWorkTypeValues(data);
+  return [...window.PROJECT_WORK_TYPES.filter(t=>values.workTypes.includes(t.id)).map(t=>t.label),values.customWorkType].filter(Boolean).join(', ');
+};
+window.renderWorkTypePicker=(data)=>{
+  const selected=data.workTypes||[];
+  return '<fieldset style="border:0;padding:0;margin:14px 0"><legend class="fl">WORK TYPES (OPTIONAL)</legend>'
+    +'<div style="font-size:12px;color:var(--mut);margin:6px 0 10px">Choose one or more, enter your own, or leave blank.</div>'
+    +'<div style="display:flex;flex-wrap:wrap;gap:8px">'+window.projectWorkTypeOptions(data.scope).map(t=>
+      '<label style="display:flex;align-items:center;gap:7px;padding:9px 12px;background:var(--sur);border:1px solid var(--bdr);border-radius:8px;font-size:13px;cursor:pointer"><input type="checkbox" value="'+t.id+'" '+(selected.includes(t.id)?'checked ':'')+'onchange="toggleWizWorkType(this.value,this.checked)">'+t.label+'</label>'
+    ).join('')+'</div><label class="fl" for="wiz-custom-work-type" style="display:block;margin-top:12px">OTHER WORK TYPE (OPTIONAL)</label>'
+    +'<input class="m-inp" id="wiz-custom-work-type" maxlength="120" placeholder="Enter another type of work" value="'+x(data.customWorkType||'')+'" oninput="wizData.customWorkType=this.value"></fieldset>';
+};
+window.toggleWizWorkType=(id,checked)=>{
+  const data=window.wizData;
+  if(!window.projectWorkTypeOptions(data.scope).some(t=>t.id===id))return;
+  data.workTypes=(data.workTypes||[]).filter(value=>value!==id);
+  if(checked)data.workTypes.push(id);
+};
 // ─── PROJECT WIZARD ──────────────────────────────────────────────────────────
 window.openProjectWizard=(fromProject)=>{
+  window.clearWizardFacade();
   window.wizStep=1;
   window.wizData={
-    name:'',address:'',type:'residential',scope:'both',
+    name:'',address:'',type:'residential',scope:'both',workTypes:[],customWorkType:'',
     hasPlan:null,planAnalysis:null,planImage:null,
     unitGroups:[],  // [{name,floor,count,rooms:[{id,name,floor,spaces:[]}]}]
     namingMode:'unit', // 'unit' | 'room' | 'decide'
@@ -4674,6 +4797,7 @@ window.renderWizard=function renderWizard(){
       +'<input class="m-inp" id="wiz-name" placeholder="Ex: Lofts at Kettlebrook" value="'+x(wizData.name||'')+'" style="margin:0" oninput="wizData.name=this.value"></div>'
       +'<div class="fg" style="margin-bottom:14px"><label class="fl">ADDRESS</label>'
       +'<input class="m-inp" id="wiz-addr" placeholder="Ex: 1511 Main St, Worcester MA" value="'+x(wizData.address||'')+'" style="margin:0" oninput="wizData.address=this.value"></div>'
+      +window.renderWizardFacade(wizData)
       +'<div class="fg"><label class="fl">PROJECT TYPE</label>'
       +'<div class="type-cards">'
       +'<div class="type-card'+(wizData.type==='residential'?' selected':'')+'" onclick="setWizType(\'residential\')"><div class="type-card-icon">🏠</div><div class="type-card-label">Residential</div></div>'
@@ -4691,6 +4815,7 @@ window.renderWizard=function renderWizard(){
       +'<button class="scope-btn'+(wizData.scope==='fire'?' selected fire':'')+'" onclick="setWizScope(\'fire\')">🔥 Fire Alarm only</button>'
       +'<button class="scope-btn'+(wizData.scope==='both'?' selected both':'')+'" onclick="setWizScope(\'both\')">⚡🔥 Both</button>'
       +'</div>'
+      +window.renderWorkTypePicker(wizData)
       +'<div class="fg" style="margin-top:14px"><label class="fl">BEFORE / INITIAL CONDITIONS *</label><textarea class="m-inp" aria-label="Project initial conditions" placeholder="Describe how the site was found before starting work" oninput="wizData.initialConditions=this.value">'+x(wizData.initialConditions||'')+'</textarea></div>'
       +'<div class="fg"><label class="fl">WORK SCOPE *</label><textarea class="m-inp" aria-label="Project work scope" placeholder="Describe the work included in this project" oninput="wizData.workScope=this.value">'+x(wizData.workScope||'')+'</textarea></div>'
       +'<div style="font-size:12px;color:var(--mut);line-height:1.5">Add initial-condition photos through Scope / Before after creating the project, before work starts.</div>';
@@ -4894,6 +5019,10 @@ window.renderWizard=function renderWizard(){
     html+='<div class="wiz-title">✅ REVIEW & CREATE</div>'
       +'<div class="wiz-sub">Step 6 of 6 — Confirm and create project</div>';
 
+    if(wizData.facadePreview)html+='<img src="'+wizData.facadePreview+'" alt="Facade photo preview" style="width:100%;max-width:300px;max-height:160px;object-fit:contain;margin-bottom:14px">';
+    const workTypeSummary=window.projectWorkTypeSummary(wizData);
+    if(workTypeSummary)html+='<div style="margin-bottom:14px;font-size:13px;overflow-wrap:anywhere"><b>Work types:</b> '+x(workTypeSummary)+'</div>';
+
     // Summary cards
     html+='<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px">'
       +'<div style="background:var(--sur);border:1px solid var(--bdr);border-radius:10px;padding:12px;text-align:center">'
@@ -4975,7 +5104,7 @@ window.renderWizard=function renderWizard(){
 }
 
 window.setWizType=(t)=>{wizData.type=t;window.renderWizard();};
-window.setWizScope=(s)=>{wizData.scope=s;window.renderWizard();};
+window.setWizScope=(s)=>{window.wizData.scope=s;window.wizData.workTypes=window.projectWorkTypeValues(window.wizData).workTypes;window.renderWizard();};
 window.wizBack=()=>{if(window.wizStep>1){window.wizStep--;window.renderWizard();}};
 window.toggleWizTask=(key)=>{
   const idx=window.wizData.selectedTasks.indexOf(key);
@@ -5134,14 +5263,25 @@ window.createProjectFromWizard=async()=>{
   const wizData=window.wizData;
   if(!wizData.name){notif('Enter project name','e');return;}
   if(!wizData.fromProject&&(!String(wizData.initialConditions||'').trim()||!String(wizData.workScope||'').trim())){notif('Describe the initial conditions and work scope.','e');window.wizStep=2;window.renderWizard();return;}
+  if(window._projectCreating)return;
+  window._projectCreating=true;
   syncing(true);setLoadMsg('Creating project...');
-  const pr=await addDoc(collection(db,'projects'),{
+  let facadePhoto;
+  try{facadePhoto=await window.uploadWizardFacade(wizData);}
+  catch(error){window._projectCreating=false;syncing(false);hideLoad();notif(error.message||'Could not upload facade photo. Retry or remove the photo.','e');return;}
+  let pr;
+  try{pr=await addDoc(collection(db,'projects'),{
     name:wizData.name,address:wizData.address,
     type:wizData.type,scope:wizData.scope,
+    ...window.projectWorkTypeValues(wizData),
+    ...(facadePhoto?{facadePhoto}:{}),
     scopeBrief:{before:wizData.initialConditions||'',workScope:wizData.workScope||'',observations:'',photos:[],captureStatus:'before-photos-needed'},
     createdAt:serverTimestamp()
   });
+  }catch(error){notif(error.message||'Could not save project.','e');syncing(false);hideLoad();return;}
+  finally{window._projectCreating=false;}
   const pid=pr.id;activePid=pid;
+  window.clearWizardFacade();
 
   // Build tasks from library selections
   const tasksToBuild=[];
@@ -7539,6 +7679,9 @@ window.renderHomePage=function(){
   }
   const prEl=document.getElementById('home-proj');
   if(prEl)prEl.textContent=proj?'\ud83d\udccd '+proj.address:'';
+  const facadeEl=document.getElementById('home-facade');
+  if(facadeEl)facadeEl.innerHTML=proj?window.renderProjectFacade(proj)
+    +(hasRole('supervisor')?'<button type="button" class="btn-g" style="margin-top:10px;min-height:44px" onclick="window.chooseProjectFacade(\''+x(proj.id)+'\')">'+(proj.facadePhoto?.url?'Change facade photo':'Add facade photo')+'</button>':''):'';
   // Project selection is explicit; recent access is scoped to the signed-in user.
   const swEl=document.getElementById('home-proj-switch');
   if(swEl){
@@ -7547,7 +7690,8 @@ window.renderHomePage=function(){
     swEl.innerHTML='<label for="home-project-select" style="font-size:12px">Choose a project</label>'
       +'<select id="home-project-select" class="home-proj-select" onchange="window.switchProjectHome(this.value)">'
       +'<option value=""'+(!activePid?' selected':'')+'>Select a project...</option>'
-      +allProj.map(p=>'<option value="'+x(p.id)+'"'+(p.id===activePid?' selected':'')+'>'+x(p.name.split('—')[0].trim())+'</option>').join('')+'</select>';
+      +allProj.map(p=>'<option value="'+x(p.id)+'"'+(p.id===activePid?' selected':'')+'>'+x(p.name.split('—')[0].trim())+'</option>').join('')+'</select>'
+      +'<div class="home-project-choices" aria-label="Projects">'+allProj.map(p=>'<button type="button" class="home-project-choice" aria-pressed="'+(p.id===activePid)+'" onclick="window.switchProjectHome(\''+x(p.id)+'\')">'+window.renderProjectFacadeThumbnail(p)+'<span>'+x(p.name)+'</span></button>').join('')+'</div>';
   }
   const recentEl=document.getElementById('home-recent-projects');
   if(recentEl){
@@ -7557,7 +7701,7 @@ window.renderHomePage=function(){
     recent.forEach(id=>{
       const p=projects[id], b=document.createElement('button');
       b.type='button';b.className='home-recent-project';
-      b.textContent=p.name;b.onclick=()=>{window.switchProjectHome(id);window.goWork();};
+      b.innerHTML=window.renderProjectFacadeThumbnail(p)+'<span>'+x(p.name)+'</span>';b.onclick=()=>{window.switchProjectHome(id);window.goWork();};
       recentEl.appendChild(b);
     });
   }
@@ -13044,7 +13188,7 @@ window.deleteMaterial=async id=>{
 
 function beforeInstallationPhotos(room){const rows=[...(room?.photos?.before?[{url:room.photos.before,name:'Existing before photo'}]:[]),...(room?.scopeBrief?.photos||[]),...Object.values(roomNotesList).filter(n=>n.roomId===room?.id&&n.phase==='before-installation').flatMap(notePhotoRows)];return rows.filter((p,n)=>p.url&&rows.findIndex(x=>x.url===p.url)===n);}
 // Multi-photo observations keep one record for the whole batch.
-import {installPhotoReport} from '/photo-report.js?v=8';
+import {installPhotoReport} from '/photo-report.js?v=9';
 installPhotoReport();
 import {installNotePhotos,notePhotoRows} from '/note-photos.js?v=2';
 import {installProjectBrief} from '/project-brief.js?v=1';
@@ -13294,6 +13438,7 @@ window.toggleDoneSection=function(){
     <div class="home-page-greeting" id="home-greeting">Good morning</div>
     <div class="home-page-name" id="home-name">OBRA MANAGER</div>
     <div class="home-page-proj" id="home-proj"></div>
+    <div id="home-facade"></div>
     <div id="home-proj-switch" style="display:none;flex-wrap:wrap;gap:6px;margin-top:8px"></div>
     <div class="home-kpi-strip" id="home-kpi-strip"></div>
     <details class="home-recent"><summary>Recent projects</summary><div id="home-recent-projects"></div></details>

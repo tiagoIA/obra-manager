@@ -1,14 +1,15 @@
 {
-  "baseline_sha256": "9c7e59f395c8cc6bd5293d2f0cd29e4b606e7bea9b880e628d3de15aa9b593b0",
+  "baseline_sha256": "1a51ad8d6bbce8bfb977e32e46f000b78894032a5ad79c51f5c1f6c66aecb1f7",
   "baseline_files": {
-    "photo-report.js": "87b892eed46dbec23a9d010e094a2d0467cb06ef87179208e510f8ee7eb55216"
+    "photo-report.js": "136674e8a2948b533fb7f3afed9ac6c5c35038e222fe6f52aa8a4345beb5e93c",
+    "photo-report-pdf.js": "fd711ec31c0a44ddd801f7eb51e259c55c5963a378ae4d817b9cfae8a6a1776f",
+    "sw.js": "93e46f05256254ff460bb15db44901fd8c026970bbc63b37d23b8a99290410c3"
   },
   "files": [
     "app.html",
     "photo-report.js",
     "photo-report-pdf.js",
-    "vendor/pdf-lib.esm.min.js",
-    "vendor/pdf-lib-LICENSE.md"
+    "sw.js"
   ],
   "review_only": false
 }

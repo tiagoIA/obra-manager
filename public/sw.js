@@ -1,4 +1,4 @@
-const CACHE_NAME = 'crewnelo-workspace-v7';
+const CACHE_NAME = 'crewnelo-workspace-v8';
 const APP_SHELL = [
   '/',
   '/index.html',
@@ -37,7 +37,7 @@ self.addEventListener('fetch', event => {
   ) return;
  
   // Network first para o index.html — sempre pega versão mais recente
-  if (new URL(url).pathname==='/' || url.includes('index.html') || new URL(url).pathname==='/app.html' || new URL(url).pathname.startsWith('/crewnelo') || url.includes('guided-shopping-v1.js') || url.includes('central-catalog-v1.js')) {
+  if (new URL(url).pathname==='/' || url.includes('index.html') || new URL(url).pathname==='/app.html' || new URL(url).pathname.startsWith('/crewnelo') || ['/photo-report.js','/photo-report-pdf.js'].includes(new URL(url).pathname) || url.includes('guided-shopping-v1.js') || url.includes('central-catalog-v1.js')) {
     event.respondWith(
       fetch(event.request).then(response => {
         const clone = response.clone();

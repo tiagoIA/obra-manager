@@ -1,7 +1,7 @@
 name: Verify and publish direct photo PDF export
 on:
   push:
-    branches: [fix/direct-photo-pdf-2026-10-15]
+    branches: [fix/pdf-export-followup-2026-10-15]
 permissions:
   contents: read
 concurrency:
