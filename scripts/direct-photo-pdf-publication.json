@@ -1,0 +1,14 @@
+{
+  "baseline_sha256": "9c7e59f395c8cc6bd5293d2f0cd29e4b606e7bea9b880e628d3de15aa9b593b0",
+  "baseline_files": {
+    "photo-report.js": "87b892eed46dbec23a9d010e094a2d0467cb06ef87179208e510f8ee7eb55216"
+  },
+  "files": [
+    "app.html",
+    "photo-report.js",
+    "photo-report-pdf.js",
+    "vendor/pdf-lib.esm.min.js",
+    "vendor/pdf-lib-LICENSE.md"
+  ],
+  "review_only": false
+}
