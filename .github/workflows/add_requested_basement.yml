@@ -1,0 +1,25 @@
+name: Add requested basement unit and electrical tasks
+on:
+  push:
+    branches: [task/basement-2026-10-15]
+    paths: [scripts/add_requested_basement.py, .github/workflows/add_requested_basement.yml]
+permissions:
+  contents: read
+concurrency:
+  group: obra-manager-requested-basement
+  cancel-in-progress: false
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m py_compile scripts/add_requested_basement.py
+      - run: pip install google-cloud-storage google-cloud-firestore google-auth
+      - name: Add and verify only the requested unit and tasks
+        run: python scripts/add_requested_basement.py
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
