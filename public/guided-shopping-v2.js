@@ -136,7 +136,7 @@ export function installGuidedShopping(host){
    });
   }
   function quantityControl(parent,item,onchange){const step=el('div',undefined,'gs-stepper');const input=el('input',undefined,'gs-input');input.type='number';input.min='0.01';input.step='any';input.value=item.qty??'';input.setAttribute('aria-label','Quantity of '+item.name);input.oninput=()=>{item.qty=input.value===''?null:Number(input.value);onchange();};const adjust=n=>{item.qty=Math.max(1,(Number(item.qty)||0)+n);input.value=item.qty;onchange();};step.append(btn('−',()=>adjust(-1)),input,btn('+',()=>adjust(1)),el('span',displayUnit(item.unit),'gs-unit'));parent.append(step);}
-  const browse=el('section',undefined,'gs-browse');browse.append(el('h3','Find materials'));
+  const browse=el('section',undefined,'gs-browse');
   const tabs=el('div',undefined,'gs-tabs'),pane=el('div');browse.append(tabs,pane);const ui=draft.picker,tabButtons={};
   for(const [id,label]of [['suggested','For this work'],['library','All materials'],['manual','Write an item']]){if(id==='suggested'&&draft.mode!=='guided')continue;const b=btn(label,()=>{ui.tab=id;ui.limit=24;persist();showPane();});b.setAttribute('aria-pressed',String(ui.tab===id));tabButtons[id]=b;tabs.append(b);}
   function showPane(){Object.entries(tabButtons).forEach(([k,b])=>{b.classList.toggle('gs-primary',k===ui.tab);b.setAttribute('aria-pressed',String(k===ui.tab));});pane.replaceChildren();
