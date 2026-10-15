@@ -7429,6 +7429,7 @@ window.generateShopPDF=(lid,mode)=>{
   }
   const bs=function(m){return'padding:8px 18px;border-radius:8px;border:2px solid '+(m===activeMode?'#111':'#e5e7eb')+';cursor:pointer;font-family:DM Sans,sans-serif;font-weight:700;font-size:12px;background:'+(m===activeMode?'#111':'#fff')+';color:'+(m===activeMode?'#fff':'#374151')+';';};
   const el=document.getElementById('shop-pdf-content');
+  el.dataset.reportProjectName=projects[sl.projectId]?.name||sl.name||'';
   el.innerHTML=
     '<div class="shop-pdf-hdr"><div><div class="shop-pdf-title">🛒 SHOPPING LIST</div><div class="shop-pdf-sub">'+x(sl.name)+'</div>'+(sl.note?'<div style="font-size:12px;color:#666;margin-top:2px">'+x(sl.note)+'</div>':'')+'</div><div style="text-align:right;font-size:11px;color:#888"><strong style="display:block;font-size:14px;color:#111;margin-bottom:2px">Purchase Order</strong>'+now+'<br>'+total+' items · '+bought+' purchased · '+(total-bought)+' pending</div></div>'
     +'<div style="display:flex;gap:12px;margin-bottom:22px;flex-wrap:wrap">'
@@ -7794,7 +7795,7 @@ window.printMatReport=function(){
   const catLbl={'eletrica':'⚡ Electrical','fire':'🔥 Fire Alarm','inspecao':'🔍 Inspection','geral':'🔧 General'};
   let html='<table style="width:100%;border-collapse:collapse;font-size:12px">'    +'<thead><tr style="background:#f3f4f6">'    +'<th style="padding:8px;text-align:left;border-bottom:2px solid #e5e7eb">Material</th>'    +'<th style="padding:8px;text-align:left;border-bottom:2px solid #e5e7eb">System</th>'    +'<th style="padding:8px;text-align:left;border-bottom:2px solid #e5e7eb">SKU</th>'    +'<th style="padding:8px;text-align:center;border-bottom:2px solid #e5e7eb">Qty</th>'    +'<th style="padding:8px;text-align:center;border-bottom:2px solid #e5e7eb">Installed</th>'    +'<th style="padding:8px;text-align:center;border-bottom:2px solid #e5e7eb">Pending</th>'    +'</tr></thead><tbody>'    +filtered.map(m=>'<tr style="border-bottom:1px solid #f3f4f6">'      +'<td style="padding:7px 8px;font-weight:600">'+m.name+'</td>'      +'<td style="padding:7px 8px">'+( catLbl[m.cat]||m.cat)+'</td>'      +'<td style="padding:7px 8px;font-family:monospace;font-size:10px;color:#888">'+(m.sku||'—')+'</td>'      +'<td style="padding:7px 8px;text-align:center;font-weight:700">'+m.qtyTotal+'</td>'      +'<td style="padding:7px 8px;text-align:center;color:#16a34a;font-weight:700">'+m.doneCount+'</td>'      +'<td style="padding:7px 8px;text-align:center;color:'+(m.pendingCount>0?'#dc2626':'#888')+';font-weight:700">'+m.pendingCount+'</td>'      +'</tr>').join('')    +'</tbody></table>';
   const w=window.open('','_blank','width=900,height=700');if(!w)return;
-  w.document.write('<!DOCTYPE html><html><head><meta charset="utf-8"><title>Materials Report — '+(proj?proj.name:'')+'</title>'    +'<style>body{font-family:sans-serif;margin:20px;color:#111}h1{font-size:18px;margin-bottom:4px}p{font-size:12px;color:#888;margin-bottom:16px}table{width:100%;border-collapse:collapse}</style>'    +'</head><body>'    +'<h1>📦 Materials Report — '+(proj?proj.name:'')+'</h1>'    +'<p>'+now+' · '+filtered.length+' materials</p>'    +html    +'<script>window.onload=function(){setTimeout(function(){window.print();},400);}<\/script>'    +'</body></html>');
+  w.document.write('<!DOCTYPE html><html><head><meta charset="utf-8"><title>'+x(window.reportPDFTitle(proj?.name))+'</title>'    +'<style>body{font-family:sans-serif;margin:20px;color:#111}h1{font-size:18px;margin-bottom:4px}p{font-size:12px;color:#888;margin-bottom:16px}table{width:100%;border-collapse:collapse}</style>'    +'</head><body>'    +'<h1>📦 Materials Report — '+(proj?proj.name:'')+'</h1>'    +'<p>'+now+' · '+filtered.length+' materials</p>'    +html    +'<script>window.onload=function(){setTimeout(function(){window.print();},400);}<\/script>'    +'</body></html>');
   w.document.close();
 };
 window.uploadMatPhoto=(mid)=>{_pendingMatPhotoId=mid;document.getElementById('mat-photo-input').click();};
@@ -10171,7 +10172,7 @@ window.tvExportPDF=()=>{
       +'<td style="padding:6px 10px;border-bottom:1px solid #eee;font-family:monospace;font-size:11px">'+bar+'</td>'
       +'<td style="padding:6px 10px;border-bottom:1px solid #eee;text-align:right">'+g.done+'/'+g.total+' ('+pct+'%)</td></tr>';
   }).join('');
-  const html='<html><head><title>Task View — '+(proj?proj.name:'')+'</title>'
+  const html='<html><head><title>'+x(window.reportPDFTitle(proj?.name))+'</title>'
     +'<style>body{font-family:sans-serif;padding:32px;color:#111}h1{font-size:22px;margin-bottom:4px}h2{font-size:14px;color:#888;font-weight:400;margin-bottom:24px}table{width:100%;border-collapse:collapse}th{text-align:left;padding:8px 10px;background:#f5f5f5;font-size:12px;letter-spacing:1px}td{font-size:13px}</style>'
     +'</head><body><h1>📋 Task View — '+(proj?x(proj.name):'')+'</h1>'
     +'<h2>'+dateStr+' · '+pctDone+'% complete · '+doneTasks+'/'+projTasks.length+' tasks done</h2>'
@@ -10583,6 +10584,7 @@ window.generateFilteredReport=()=>{
   if(!selPid){notif('Select a project first','e');return;}
   const proj=projects[selPid];
   if(!proj){notif('Project not found','e');return;}
+  document.getElementById('pdf-content').dataset.reportProjectName=proj.name||'';
   const type=document.getElementById('rpt-type-sel')?document.getElementById('rpt-type-sel').value:'detail';
   const {filtRooms,filtTasks}=getFilteredData();
   const now=new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
@@ -11168,6 +11170,10 @@ window.toggleWAOpts=function(){
   if(el)el.classList.toggle('open');
 };
 
+window.reportPDFTitle=function(name){
+  return String(name||'').replace(/[\x00-\x1f\x7f]/g,' ').trim()||'Report';
+};
+
 window.printPDF=function(type){
   // Pegar o conteúdo correto
   const contentEl=type==='shop'
@@ -11196,7 +11202,7 @@ window.printPDF=function(type){
 
   w.document.write(
     '<!DOCTYPE html><html lang="'+(contentEl.lang||'en')+'"><head><meta charset="utf-8">'+
-    '<title>Obra Manager — Report</title>'+
+    '<title>'+x(window.reportPDFTitle(contentEl.dataset.reportProjectName))+'</title>'+
     linkTags+
     '<style>'+
     'body{margin:0;padding:0;background:#fff;color:#111;font-family:"DM Sans",sans-serif;}'+
@@ -11293,6 +11299,7 @@ window.generateUnitReport=(rid,language='en',mode,includeHistory)=>{
   const room=rooms[rid];if(!room)return;
   const narrative=v=>'<span data-report-narrative="'+x(v)+'">'+x(v)+'</span>';
   const proj=projects[room.projectId];
+  document.getElementById('pdf-content').dataset.reportProjectName=proj?.name||'';
   const tasks=Object.values(allTasks).filter(t=>t.roomId===rid);
   const done=tasks.filter(t=>t.done);
   const todo=tasks.filter(t=>!t.done);
@@ -13037,13 +13044,13 @@ window.deleteMaterial=async id=>{
 
 function beforeInstallationPhotos(room){const rows=[...(room?.photos?.before?[{url:room.photos.before,name:'Existing before photo'}]:[]),...(room?.scopeBrief?.photos||[]),...Object.values(roomNotesList).filter(n=>n.roomId===room?.id&&n.phase==='before-installation').flatMap(notePhotoRows)];return rows.filter((p,n)=>p.url&&rows.findIndex(x=>x.url===p.url)===n);}
 // Multi-photo observations keep one record for the whole batch.
-import {installPhotoReport} from '/photo-report.js?v=6';
+import {installPhotoReport} from '/photo-report.js?v=7';
 installPhotoReport();
 import {installNotePhotos,notePhotoRows} from '/note-photos.js?v=2';
 import {installProjectBrief} from '/project-brief.js?v=1';
 import {installUnitReportLanguage} from '/unit-report-language.js?v=5';
 installUnitReportLanguage();
-import {installUnitReportStructure} from '/unit-report-structure.js?v=4';
+import {installUnitReportStructure} from '/unit-report-structure.js?v=5';
 installUnitReportStructure({state:()=>({rooms,projects,tasks:allTasks,notes:roomNotesList,lists:shoppingLists,items:shoppingItems}),author:fieldAuthor,evidenceRows});
 import {evidenceRows,evidenceReport,phaseLabel} from '/field-media.js?v=1';
 async function uploadFieldEvidence(folder,files,progress=()=>{}){

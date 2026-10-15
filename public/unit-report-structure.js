@@ -119,7 +119,7 @@ export function installUnitReportStructure(host){
   const html=buildUnitReport({...room,id:rid},state,{language,mode,includeHistory:archive?.checked||false,author:host.author,evidenceRows:host.evidenceRows});
   // Let the existing language controller track the unit and print language; content is already localized.
   window.unitReportLanguage?.render('',language,rid);
-  const content=document.getElementById('pdf-content');content.lang=language==='pt'?'pt-BR':'en';content.innerHTML=html;document.getElementById('pdf-report').classList.add('open');
+  const content=document.getElementById('pdf-content');content.dataset.reportProjectName=state.projects?.[room.projectId]?.name||'';content.lang=language==='pt'?'pt-BR':'en';content.innerHTML=html;document.getElementById('pdf-report').classList.add('open');
  }
  select?.addEventListener('change',()=>{if(currentUnit)generate(currentUnit,document.getElementById('unit-report-language')?.value||'en',select.value);});
  archive?.addEventListener('change',()=>{if(currentUnit)generate(currentUnit,document.getElementById('unit-report-language')?.value||'en',select.value);});

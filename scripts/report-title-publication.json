@@ -1,0 +1,13 @@
+{
+  "baseline_sha256": "5549ef84ae1c04e43c494467607b293ad81ac6b93c735da8fb339757a4749c79",
+  "baseline_files": {
+    "photo-report.js": "4f3af2ccbbff6e5de33453decf5b38cb7e6d6a643157df8e53559a07f3cdf46b",
+    "unit-report-structure.js": "4783d0b732102b6ac686da802404b12fc8b4fb5b15e8c1784f2e3280478e6305"
+  },
+  "files": [
+    "app.html",
+    "photo-report.js",
+    "unit-report-structure.js"
+  ],
+  "review_only": false
+}
