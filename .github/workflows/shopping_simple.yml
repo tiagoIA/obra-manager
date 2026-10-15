@@ -1,0 +1,46 @@
+name: Publish simplified guided and custom shopping lists
+on:
+  push:
+    branches: [feature/shopping-simplification-2026-10-15]
+permissions:
+  contents: read
+concurrency:
+  group: obra-manager-hosting-publication
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: |
+          node --input-type=module --check < public/guided-shopping-v2.js
+          node --input-type=module --check < public/shopping-view-v3.js
+          node --input-type=module --check < public/shopping-picker-core.js
+      - name: Test both shopping flows on mobile
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+          mkdir -p shopping-test hosting-test
+          cp public/guided-shopping-v2.js public/shopping-view-v3.js public/shopping-picker-core.js shopping-test/
+          cp tests/test-shopping.html shopping-test/
+          for f in central-catalog-v1.js guided-shopping-v1.js purchasing-core.js; do curl -fsSL --max-time 30 "https://obra-manager-4ecc7.web.app/$f" -o "shopping-test/$f"; done
+          python3 -m http.server 8765 --directory shopping-test &
+          node tests/test-shopping.cjs
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install google-auth requests
+      - run: python scripts/publish_shopping.py
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: shopping-verification-${{ github.run_id }}
+          path: hosting-test/
+          if-no-files-found: ignore
+          retention-days: 30

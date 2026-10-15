@@ -1,0 +1,9 @@
+{
+  "baseline_sha256": "f5d98ec98544c39d89daf5ca37b0995e34c987b2231b8d8ae4e7a67de07d46a4",
+  "files": {
+    "app.html": "1a894bcba6c108dd80188600cb572cf6c14b5cbc4be0a478e77987c1ad60e6bc",
+    "guided-shopping-v2.js": "3f725142dd6532344923423a1768dce5281f8a7fab303b8e717bc5b64de2cda5",
+    "shopping-view-v3.js": "de318e9547eba3606e107f73d6e481796156c341270e6882f09e4f8635c69fa0",
+    "shopping-picker-core.js": "5f46e3e6988468ce6647f12ea14c4a58296ef87d018ad4e2c9b30532222cf938"
+  }
+}
