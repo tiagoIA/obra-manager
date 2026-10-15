@@ -1,0 +1,24 @@
+name: Read requested Melrose report records
+on:
+  push:
+    branches: [fix/compact-photo-pdf-2026-10-15]
+    paths: [scripts/read_melrose.py, .github/workflows/melrose_audit.yml]
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install google-cloud-firestore google-auth
+      - run: python scripts/read_melrose.py
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: melrose-source
+          path: report-audit/
+          retention-days: 2
