@@ -1,7 +1,7 @@
 const http=require('node:http'),fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
 const {chromium}=require(require.resolve('playwright',{paths:[process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES||process.cwd()]}));
 const root=process.cwd();
-const server=http.createServer((req,res)=>{let file=path.join(root,decodeURIComponent(req.url.split('?')[0]));if(req.url==='/')return res.end('<!doctype html><html><head><meta charset="utf-8"></head><body></body></html>');if(!file.startsWith(root+path.sep)){res.writeHead(403);return res.end();}if(!fs.existsSync(file)){res.writeHead(404);return res.end();}res.setHeader('Content-Type',file.endsWith('.js')?'text/javascript':file.endsWith('.json')?'application/json':file.endsWith('.png')?'image/png':'image/jpeg');res.end(fs.readFileSync(file));});
+const server=http.createServer((req,res)=>{let file=path.join(root,decodeURIComponent(req.url.split('?')[0]));if(req.url==='/')return res.end('<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head><body></body></html>');if(!file.startsWith(root+path.sep)){res.writeHead(403);return res.end();}if(!fs.existsSync(file)){res.writeHead(404);return res.end();}res.setHeader('Content-Type',file.endsWith('.js')?'text/javascript':file.endsWith('.json')?'application/json':file.endsWith('.png')?'image/png':'image/jpeg');res.end(fs.readFileSync(file));});
 (async()=>{
  await new Promise(r=>server.listen(0,'127.0.0.1',r));const browser=await chromium.launch({headless:true});
  try{
@@ -35,9 +35,9 @@ const server=http.createServer((req,res)=>{let file=path.join(root,decodeURIComp
    document.body.innerHTML='<style>'+report.photoReportCSS+'</style>'+report.renderPhotoReport(model);
    await document.querySelector('.pr-cover-photo img').decode();
    let loads=0;const result=await pdf.createPhotoReportPDF(model,{strings:{title:'Photographic work report 2.0',contents:'Contents',filters:'Applied filters',all:'Whole project',historical:'Recorded field conditions',units:'Units / work groups',photos:'Unique photos',done:'Completed tasks',pending:'Pending tasks',general:'Units',complete:'Completed',photo:'Photo'},captionTitle:report.captionTitle,photoSheets:report.photoSheets,loadImage:async(...args)=>{loads++;return pdf.loadPhotoJPEG(...args);}});
-   return {loads,photos:result.photos,pages:result.pages,overflow:document.documentElement.scrollWidth>innerWidth,coverPhotos:document.querySelectorAll('.pr-cover-photo img').length,workPhotos:document.querySelectorAll('.pr-gallery img').length};
+   return {loads,photos:result.photos,pages:result.pages,overflow:document.documentElement.scrollWidth>innerWidth,coverPhotos:document.querySelectorAll('.pr-cover-photo img').length,workPhotos:document.querySelectorAll('.pr-gallery img').length,kpis:document.querySelectorAll('.pr-cover .pr-kpis>div').length,coverFont:getComputedStyle(document.querySelector('.pr-cover')).fontFamily};
   });
-  assert.deepEqual(coverResult,{loads:1,photos:1,pages:3,overflow:false,coverPhotos:1,workPhotos:1});
+  assert.deepEqual(coverResult,{loads:1,photos:1,pages:3,overflow:false,coverPhotos:1,workPhotos:1,kpis:4,coverFont:'Arial, sans-serif'});
   await page.locator('.pr-cover').screenshot({path:'tmp/pdfs/cover-mobile.png'});await page.setViewportSize({width:1280,height:1000});await page.locator('.pr-cover').screenshot({path:'tmp/pdfs/cover-desktop.png'});
   console.log('PASS: facade preview on mobile/desktop, cached image reuse, exact evidence count, dedicated cover and index.');
   console.log(JSON.stringify({summary:{pages:result.summary.pages,photos:result.summary.photos},complete:{pages:result.complete.pages,photos:result.complete.photos},missingImageRefused:result.refused,downloadFilename:result.filename}));
