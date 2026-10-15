@@ -1,0 +1,23 @@
+<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><meta charset="utf-8"><style>:root{--bg:#121923;--sur:#1a2533;--sur2:#253345;--bdr:#36465b;--txt:#f1f5fb;--mut:#a7b6ca;--elec:#f4ba51;--ok:#85ddb0}body{font-family:Arial,sans-serif;background:var(--bg);color:var(--txt);margin:0}button{cursor:pointer}#launch{margin:25px;min-height:44px;padding:10px}</style></head><body><button id="launch">Build purchase list</button><script type="module">
+import {installGuidedShopping} from './guided-shopping-v2.js';
+const photo='https://catalog-fixture.test/product.svg';
+const materials=[
+ {id:'connector34',name:'3/4 in. EMT Set-Screw Connector',family:'fittings',cat:'eletrica',unit:'ea',brand:'Halex',manufacturerPart:'C34',photoUrl:photo,suppliers:[{name:'Home Depot',code:'SKU-34',internetId:'ID-34',price:2.95,priceDate:'2026-10-15',unit:'ea',url:'https://www.homedepot.com/'}],guidedUses:['ev'],specs:'Trade size: 3/4 in. Test fixture; verify registered product.'},
+ {id:'connector12',name:'1/2 in. EMT Compression Connector',family:'fittings',cat:'eletrica',unit:'ea',brand:'Bridgeport',manufacturerPart:'C12',photoUrl:photo,suppliers:[{name:'Granite City Electric',code:'SKU-12'}],guidedUses:['ev']},
+ {id:'breaker',name:'40 A Double-Pole Circuit Breaker',family:'breakers',cat:'eletrica',unit:'ea',brand:'Example Electric',manufacturerPart:'B40',photoUrl:photo,guidedUses:['ev']},
+ {id:'cable',name:'Copper Building Wire 8 AWG',family:'wiring',cat:'eletrica',unit:'ft',brand:'Southwire',photoUrl:photo,guidedUses:['ev']},
+ {id:'box',name:'4 in. Square Junction Box',family:'boxes',cat:'eletrica',unit:'ea',brand:'RACO',photoUrl:photo,guidedUses:['ev']},
+ {id:'charger',name:'Wall-Mounted EV Charger',cat:'eletrica',unit:'ea',brand:'Example EV',photoUrl:photo,guidedUses:['ev']},
+ {id:'conduit',name:'3/4 in. EMT Conduit — 10 ft Stick',family:'conduit',cat:'eletrica',unit:'stick',photoUrl:photo,guidedUses:['ev']},
+ {id:'smoke',name:'Photoelectric Smoke Detector',family:'detectors',cat:'fire',unit:'ea',brand:'Example Fire',photoUrl:photo},
+ {id:'strobe',name:'Wall-Mount Horn Strobe',family:'notification',cat:'fire',unit:'ea',photoUrl:photo},
+ {id:'clamp',name:'Cable Support Clamp',family:'accessories',cat:'eletrica',unit:'ea',photoUrl:photo},
+ {id:'outlet',name:'Duplex GFCI Receptacle',family:'devices',cat:'eletrica',unit:'ea',photoUrl:photo},
+ {id:'led',name:'Recessed LED Downlight',family:'lighting',cat:'eletrica',unit:'ea',photoUrl:photo},
+ {id:'unknown',name:'Breaker Family — Exact Model Needed',family:'breakers',cat:'eletrica',recordType:'family',unit:'ea'},
+ {id:'inactive',name:'Inactive Connector',cat:'eletrica',active:false,unit:'ea'}
+];
+window.saved=[];window.notices=[];window.products=materials;
+installGuidedShopping({userId:()=> 'fixture-user',projectId:()=> 'fixture-project',projects:()=>[{id:'fixture-project',name:'Harbor Street — Example project'}],materials:()=>materials,templates:()=>[],lists:()=>[],list:()=>null,items:()=>[],notify:(...args)=>window.notices.push(args),openList:()=>{},saveList:async draft=>{window.saved.push(structuredClone(draft));return 'saved';},saveTemplate:async()=>{},saveMaterialUses:async()=>{}});
+document.querySelector('#launch').onclick=()=>window.guidedShopping.launch();window.ready=true;
+</script></body></html>

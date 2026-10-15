@@ -1,4 +1,5 @@
-import {matchesMaterial,selectedSummary} from './shopping-picker-core.js?v=1';
+import {mountShoppingCatalog} from './shopping-catalog.js?v=1';
+import {selectedSummary} from './shopping-picker-core.js?v=1';
 import {estimateList,money,supplierName} from './purchasing-core.js?v=2';
 import {shoppingPhoto} from './central-catalog-v1.js?v=15';
 // Guided Shopping v1: isolated UI; persistence is provided by the existing app.
@@ -143,40 +144,33 @@ export function installGuidedShopping(host){
     field(manual,'Item name',form.name,v=>form.name=v);field(manual,'Quantity',form.qty,v=>form.qty=v,'number');field(manual,'Unit',form.unit,v=>form.unit=v);field(manual,'Notes / specifications',form.obs,v=>form.obs=v,'textarea');
     manual.append(btn('Add written item',()=>{try{validateItems([form]);draft.items.push({...copy(form),name:form.name.trim(),unit:form.unit.trim(),qty:Number(form.qty),matId:null,bought:false,boughtAt:null});draft.manual=null;resetReview();renderPicked();host.notify('Item added to your list.','s');showPane();}catch(e){error(e);}},true));pane.append(manual);return;
    }
-   const tools=el('div');const search=field(tools,'Search materials',ui.term,v=>{ui.term=v;ui.limit=24;renderCards();});search.type='search';search.placeholder='Name, size, model or code · English / Português';
-   const filters=el('details',undefined,'gs-details');filters.append(el('summary','Filter by category or supplier'));
-   select(filters,'Category',ui.category,[['all','All categories'],['eletrica','Electrical'],['fire','Fire alarm'],['geral','Other']],v=>{ui.category=v;ui.limit=24;renderCards();});
-   select(filters,'Supplier in library',ui.supplier,[['','All suppliers'],...[...new Set(materials().flatMap(m=>(m.suppliers||[]).map(s=>supplierName(s.name))))].sort().map(n=>[n,n])],v=>{ui.supplier=v;ui.limit=24;renderCards();});tools.append(filters);pane.append(tools);
-   if(ui.tab==='suggested')pane.append(el('p','Suggestions from your library. Confirm the exact model and compatibility.','gs-muted'));
-   const grid=el('div',undefined,'gs-grid'),foot=el('div');pane.append(grid,foot);
-   function renderCards(){grid.replaceChildren();foot.replaceChildren();const all=materials();let rows=ui.tab==='suggested'?suggestedMaterials(all,draft.services):all;
-    const explicitIds=new Set(draft.services.flatMap(s=>(s.items||[]).map(i=>i.matId).filter(Boolean)));if(ui.tab==='suggested')rows=[...rows,...all.filter(m=>explicitIds.has(m.id)&&!rows.some(r=>r.id===m.id))];
-    rows=rows.filter(m=>(!ui.supplier||(m.suppliers||[]).some(s=>supplierName(s.name)===ui.supplier))&&(ui.category==='all'||(ui.category==='geral'?!['eletrica','fire'].includes(m.cat):m.cat===ui.category))&&matchesMaterial(m,ui.term));
-    if(ui.tab==='library')rows.sort((a,b)=>Number(!!b.photoUrl)-Number(!!a.photoUrl)||a.name.localeCompare(b.name));
-    rows.slice(0,ui.limit).forEach(m=>{const matches=draft.items.filter(i=>i.matId===m.id),item=matches[0];const card=el('article',undefined,'gs-card'+(item?' selected':''));card.dataset.materialId=m.id;card.append(photo(m));const body=el('div',undefined,'gs-card-body');body.append(el('strong',m.name,'gs-name'));
-     body.append(el('span',[m.brand,m.manufacturerPart||m.model].filter(Boolean).join(' · ')||'Check exact model','gs-code'),el('span',displayUnit(m.unit)+(m.packQuantity?' · Pack: '+m.packQuantity+' '+displayUnit(m.packUnit||m.unit):''),'gs-code'));
-     const ref=(m.suppliers||[]).find(s=>!draft.supplier||supplierName(s.name)===draft.supplier);if(ref?.code||ref?.internetId)body.append(el('span',ref.name+': '+(ref.code||ref.internetId),'gs-code'));
-     if(matches.length>1){body.append(el('span','✓ '+matches.length+' entries in your list','gs-selected-badge'),btn('Review unit quantities',()=>{selected.open=true;selected.scrollIntoView({behavior:'smooth',block:'start'});}));}
-     else if(item){body.append(el('span','✓ In your list','gs-selected-badge'));quantityControl(body,item,()=>{resetReview();renderPicked();});body.append(btn('Remove from list',()=>{draft.items=draft.items.filter(i=>i.matId!==m.id);resetReview();renderPicked();renderCards();}));}
-     else body.append(btn('Add to list',()=>{draft.items.push(catalogItem(m));resetReview();renderPicked();renderCards();host.notify(m.name+' added.','s');},true));
-     body.append(btn('Product details',()=>{persist();host.openMaterial(m.id);}));if(m.photoReferenceNote)body.append(el('small',m.photoReferenceNote,'gs-muted'));card.append(body);grid.append(card);
-    });
-    if(!rows.length){grid.append(el('p','No matching materials in this library.','gs-empty'));grid.append(btn(ui.tab==='suggested'?'Search all materials':'Write an item instead',()=>{ui.tab=ui.tab==='suggested'?'library':'manual';persist();showPane();},true));}
-    foot.append(el('p',Math.min(ui.limit,rows.length)+' of '+rows.length+' products · Library results','gs-muted'));if(ui.limit<rows.length)foot.append(btn('Show more',()=>{ui.limit+=24;renderCards();}));
-   }
-   refreshCatalog=renderCards;renderCards();
+   const container=el('div');pane.append(container);
+   const view=mountShoppingCatalog(container,{
+    state:ui,materials:()=>{
+     const all=materials();if(ui.tab!=='suggested')return all;
+     const rows=suggestedMaterials(all,draft.services),explicitIds=new Set(draft.services.flatMap(s=>(s.items||[]).map(i=>i.matId).filter(Boolean)));
+     return [...rows,...all.filter(m=>explicitIds.has(m.id)&&!rows.some(r=>r.id===m.id))];
+    },selected:()=>draft.items,buyFrom:()=>draft.supplier||'',suggested:ui.tab==='suggested',
+    subtitle:ui.tab==='suggested'?'Suggestions for '+draft.services.map(s=>s.name).join(', '):'Browse your library by department and product category.',
+    persist,notify:host.notify,review:()=>{selected.open=true;selected.scrollIntoView({behavior:'smooth',block:'start'});},
+    manual:()=>{ui.tab='manual';persist();showPane();},
+    add:(m,qty)=>{draft.items.push({...catalogItem(m),qty});resetReview();renderPicked();host.notify(m.name+' added to your list.','s');},
+    quantity:(item,qty)=>{item.qty=qty;resetReview();renderPicked();},
+    remove:m=>{draft.items=draft.items.filter(i=>i.matId!==m.id);resetReview();renderPicked();}
+   });refreshCatalog=view.refresh;
   }
+
   box.append(browse,selected);
   const extras=el('details',undefined,'gs-details');extras.append(el('summary','Tools and templates'));
   const pipe=el('details',undefined,'gs-details');pipe.append(el('summary','Estimate conduit sticks'));let length='',bar='10',margin='0',unit='ft';field(pipe,'Measured length',length,v=>length=v,'number');field(pipe,'Stick length',bar,v=>bar=v,'number');select(pipe,'Measurement unit',unit,[['ft','ft'],['m','m']],v=>unit=v);field(pipe,'Margin (%)',margin,v=>margin=v,'number');pipe.append(btn('Add estimate',()=>{try{const qty=pipeBars(Number(length),Number(bar),Number(margin));draft.items.push({name:'Conduit — specify type and size',qty,unit:'stick',cat:'eletrica',matId:null,obs:`${length} ${unit}; sticks of ${bar} ${unit}; margin ${margin}%. Review cuts and fittings.`,bought:false,boughtAt:null});resetReview();renderPicked();selected.open=true;}catch(e){error(e);}}));extras.append(pipe,btn('Save as new template',saveTemplate),btn('Save draft on this device',()=>{persist();host.notify('Draft saved in this device session.','s');}));box.append(extras);
-  const checkout=el('div',undefined,'gs-checkout');const review=el('label',undefined,'gs-check');reviewCheck=el('input');reviewCheck.type='checkbox';reviewCheck.checked=!!draft.reviewed;reviewCheck.onchange=()=>{draft.reviewed=reviewCheck.checked;persist();};review.append(reviewCheck,el('span','I checked the products and quantities.'));checkout.append(review,estimate);
+  const checkout=el('div',undefined,'gs-checkout');const review=el('label',undefined,'gs-check');reviewCheck=el('input');reviewCheck.type='checkbox';reviewCheck.checked=!!draft.reviewed;reviewCheck.onchange=()=>{draft.reviewed=reviewCheck.checked;persist();};review.append(reviewCheck,el('span','I checked the products and quantities.'));selected.append(review,estimate);checkout.classList.add('mc-checkout-marker');
   const actions=el('div',undefined,'gs-actions');actions.append(summary,btn('Review list',()=>{selected.open=true;selected.scrollIntoView({behavior:'smooth',block:'start'});}),btn(draft.editId?'Save changes':'Create list',saveList,true));checkout.append(actions);box.append(checkout);renderPicked();showPane();updateEstimate();persist();
  }
  async function saveTemplate(){if(busy)return;try{if(!draft.name.trim())throw Error('Enter the template name.');if(!draft.items.length||draft.items.some(i=>!i.name?.trim()))throw Error('Select materials before saving the template.');busy=true;await host.saveTemplate({name:draft.name.trim(),note:draft.note,items:draft.items.map(({id,bought,boughtAt,...i})=>i),questions:[],useIds:[...new Set(draft.services.flatMap(s=>s.useIds||[s.id.replace('guided-v1-','')]))],version:2});host.notify('New template saved in Guided Shopping.','s');}catch(e){error(e);}finally{busy=false;}}
  async function saveList(){if(busy)return;try{if(!draft.name.trim())throw Error('Enter the list name.');validateItems(draft.items);const historical=new Set((draft.baseItems||[]).map(i=>i.matId));if(draft.items.some(i=>i.matId&&!historical.has(i.matId)&&!materials().some(m=>m.id===i.matId)))throw Error('A selected material is inactive. Remove it or choose an active replacement.');if(!draft.reviewed)throw Error('Confirm your review before creating the list.');busy=true;draft.estimateSnapshot={...estimateList(draft.items,host.materials(),draft.supplier||''),asOf:new Date().toISOString(),beforeTax:true};const id=await host.saveList(copy(draft));sessionStorage.removeItem(key());draft=null;dialog?.remove();dialog=null;host.openList(id);host.notify('List saved. You can continue customizing it.','s');}catch(e){error(e);}finally{busy=false;}}
  function edit(id){const list=host.list(id);if(!list)return;draft={editId:id,baseList:copy(list),baseItems:host.items(id).map(copy),name:list.name,note:list.note||'',projectId:list.projectId||'',supplier:list.purchasingSupplier||'',mode:list.guidedMode||'custom',services:(list.guidedServices||[]).map(s=>copy(host.templates().find(t=>t.id===s.id)||s)),answers:copy(list.guidedAnswers||{}),reviewed:false,items:host.items(id).map(copy)};editor();}
  function saveExistingTemplate(id){const l=host.list(id);if(!l)return;draft={name:l.name,note:l.note||'',items:host.items(id).map(copy),services:[],answers:{},projectId:l.projectId||'',mode:'custom',reviewed:false};editor();}
- window.guidedShopping={launch,edit,saveExistingTemplate,reuse,version:14};window.addEventListener('keydown',e=>{if(e.key==='Escape'&&dialog)close();});
+ window.guidedShopping={launch,edit,saveExistingTemplate,reuse,version:15};window.addEventListener('keydown',e=>{if(e.key==='Escape'&&dialog)close();});
 }
 
 
