@@ -26,6 +26,13 @@ const server=http.createServer((req,res)=>{if(req.url==='/'){res.setHeader('Cont
   }
   await page.emulateMedia({reducedMotion:'reduce'});assert.equal(await page.locator('.pr-progress-fill').first().evaluate(e=>getComputedStyle(e).animationName),'none');
   await page.emulateMedia({media:'print',reducedMotion:'no-preference'});assert.equal(await page.locator('.pr-progress-fill').first().evaluate(e=>getComputedStyle(e).animationName),'none');
+  await page.evaluate(()=>{
+   const canvas=document.createElement('canvas');canvas.width=900;canvas.height=600;const c=canvas.getContext('2d');c.fillStyle='#d9e3eb';c.fillRect(0,0,900,600);c.fillStyle='#17212b';c.font='40px Arial';c.fillText('COMPLETE PHOTO / LAYOUT FIXTURE',35,90);c.strokeRect(8,8,884,584);const url=canvas.toDataURL('image/jpeg');let seq=0;
+   const units=[5,9,7,12,4,8,2,3,4,4,8,35].map((count,n)=>({room:{name:'Arlington pagination fixture - Unit '+(n+1),floor:'1st Floor'},service:'general',tasks:[{name:'Completed fixture task',done:true}],notes:[],photos:Array.from({length:count},()=>({number:++seq,url,references:[{source:'task',sourceTitle:'Installation photo '+seq,status:'complete'}]}))}));
+   document.body.innerHTML='<style>'+progressReport.photoReportCSS+'</style>'+progressReport.renderPhotoReport({project:{name:'Arlington pagination fixture'},filters:{},units,totalPhotos:101,done:12,pending:0});
+  });
+  await page.evaluate(()=>Promise.all(Array.from(document.images,i=>i.decode())));
+  await page.pdf({path:'tmp/pdfs/browser-pagination.pdf',format:'Letter',printBackground:true,preferCSSPageSize:true});
   // Ensure the report and the current application's progress formula agree.
   const html=fs.readFileSync('public/app.html','utf8'),source=html.match(/\/\/ BEGIN PARTIAL WORK PROGRESS([\s\S]*?)\/\/ END PARTIAL WORK PROGRESS/)[1];const context={window:{}};vm.createContext(context);vm.runInContext(source,context);assert.equal(context.window.workProgress.percent([{subtasks:[{done:true},{done:false}]},{}]),25);
   console.log('UNIT_PROGRESS_VERIFIED: 26%, 0%, 100%, no-task fallback; English/Portuguese; mobile/desktop; PDF; reduced motion and print.');
