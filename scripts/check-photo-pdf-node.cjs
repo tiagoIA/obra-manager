@@ -11,6 +11,12 @@ const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),asse
  const strings={title:'Photographic work report 2.0',units:'Units / work groups',photos:'Unique photos',done:'Completed tasks',pending:'Pending tasks',complete:'Completed',history:'Historical field records',historical:'Photo dates and field notes document their recorded conditions.',contents:'Contents',filters:'Applied filters',all:'Whole project',coax:'Coaxial cabling',condensers:'Condensers',photo:'Photo',field:'Field records',noPhotos:'No photos recorded for this unit.'};
  const options={strings,captionTitle:report.captionTitle,photoSheets:report.photoSheets,loadImage};
  const summary=await pdf.createPhotoReportPDF(model,options);
+ // Delayed photo loads must overlap, remain bounded, and preserve every photo.
+ let active=0,peak=0,loads=0;
+ const speedModel={...model,units:[{...model.units[0],photos:Array.from({length:9},(_,i)=>({...model.units[0].photos[0],number:i+1,url:'speed-'+i}))}],totalPhotos:9};
+ const speed=await pdf.createPhotoReportPDF(speedModel,{...options,loadImage:async()=>{loads++;active++;peak=Math.max(peak,active);await new Promise(r=>setTimeout(r,10));active--;return loadImage(local[0]);}});
+ assert.equal(speed.photos,9);assert.equal(loads,9);assert.equal(peak,3);assert.equal(active,0);
+ console.log('Photo preparation overlaps requests with a maximum of three active loads.');
  const completeModel={...model,units:[{...model.units[0],notes:[{id:'note',text:'Historical note '.repeat(600),createdAt:'2026-10-15'}]}],totalPhotos:5};
  const complete=await pdf.createPhotoReportPDF(completeModel,{...options,includeHistory:true});
  assert.equal(summary.photos,101);assert.equal(complete.photos,5);

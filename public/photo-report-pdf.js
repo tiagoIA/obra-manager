@@ -9,8 +9,9 @@ export const pdfFilename=name=>(String(name||'Report').replace(/[<>:"/\\|?*\x00-
 
 export async function loadPhotoJPEG(url,signal){
  if(signal?.aborted)throw new DOMException('Cancelled','AbortError');
- const image=new Image();image.crossOrigin='anonymous';
- await new Promise((resolve,reject)=>{
+ const preview=Array.from(document.images||[]).find(img=>img.complete&&img.naturalWidth&&img.src===url&&img.crossOrigin==='anonymous');
+ const image=preview||new Image();if(!preview)image.crossOrigin='anonymous';
+ if(!preview)await new Promise((resolve,reject)=>{
   const cleanup=()=>{clearTimeout(timer);image.onload=image.onerror=null;signal?.removeEventListener('abort',abort);};
   const finish=error=>{cleanup();error?reject(error):resolve();};
   const abort=()=>{image.src='';finish(new DOMException('Cancelled','AbortError'));};
@@ -25,7 +26,7 @@ export async function loadPhotoJPEG(url,signal){
   context.fillStyle='#fff';context.fillRect(0,0,canvas.width,canvas.height);context.drawImage(image,0,0,canvas.width,canvas.height);
   const blob=await new Promise(resolve=>canvas.toBlob(resolve,'image/jpeg',.8));if(!blob)throw new Error('Image conversion failed');
   return new Uint8Array(await blob.arrayBuffer());
- }finally{canvas.width=canvas.height=0;image.src='';}
+ }finally{canvas.width=canvas.height=0;if(!preview)image.src='';}
 }
 
 export async function createPhotoReportPDF(model,options){
@@ -73,6 +74,11 @@ export async function createPhotoReportPDF(model,options){
  if(!model.units.length)flow(l.none);
  const imageCache=new Map(),failures=[];let processed=0;
  const totalImages=model.units.reduce((sum,u)=>sum+u.photos.length,0);
+ // Keep at most three converted photos ahead of the layout, rather than waiting
+ // for every network request in sequence or decoding the entire report at once.
+ const urls=[...new Set(model.units.flatMap(u=>u.photos.map(p=>p.url)))],pendingImages=new Map();let nextImage=0;
+ const fillQueue=()=>{while(pendingImages.size<3&&nextImage<urls.length&&!signal?.aborted){const url=urls[nextImage++];pendingImages.set(url,Promise.resolve().then(()=>{if(signal?.aborted)throw new DOMException('Cancelled','AbortError');return loadImage(url,signal);}).then(bytes=>({bytes}),error=>({error})));}};
+ fillQueue();
  for(const u of model.units){
   // Explicit PDF pages and measured cards do not depend on CSS grid fragmentation.
   const logical=photoSheets(u.photos,!includeHistory),sheets=[];
@@ -94,11 +100,11 @@ export async function createPhotoReportPDF(model,options){
    for(let n=0;n<cards.length;n++){
     const {p,rows}=cards[n],x=M+(n%columns)*(cardWidth+gap),top=y-Math.floor(n/columns)*(rowHeight+rowGap);
     let embedded=imageCache.get(p.url);
-    if(!embedded){try{embedded=await pdf.embedJpg(await loadImage(p.url,signal));imageCache.set(p.url,embedded);}catch(error){if(error.name==='AbortError')throw error;failures.push(p.number);}}
+    if(!imageCache.has(p.url)){try{const loaded=await pendingImages.get(p.url);if(loaded.error)throw loaded.error;embedded=await pdf.embedJpg(loaded.bytes);imageCache.set(p.url,embedded);}catch(error){if(error.name==='AbortError')throw error;imageCache.set(p.url,null);failures.push(p.number);}finally{pendingImages.delete(p.url);fillQueue();}}
     if(embedded){const scale=Math.min(cardWidth/embedded.width,imageHeight/embedded.height);const width=embedded.width*scale,height=embedded.height*scale;page.drawRectangle({x,y:top-imageHeight,width:cardWidth,height:imageHeight,color:pale,borderColor:line,borderWidth:.5});page.drawImage(embedded,{x:x+(cardWidth-width)/2,y:top-imageHeight+(imageHeight-height)/2,width,height});}
     let captionY=top-imageHeight-6;const overflow=[];
     for(const row of rows){const step=row.m?11:12;if(captionY-step<top-rowHeight+4){overflow.push(row);continue;}text(row.t,x+2,captionY,{size:row.m?8:9,font:row.b?bold:regular,color:row.m?muted:ink});captionY-=step;}
-    cards[n].overflow=overflow;processed++;onProgress(processed,totalImages);
+    cards[n].overflow=overflow;processed++;onProgress(processed,totalImages);if(processed%4===0)await new Promise(resolve=>setTimeout(resolve,0));
    }
    for(const card of cards.filter(c=>c.overflow.length)){newPage();flow(unitLabel(u)+' · '+l.photo+' '+card.p.number+' · '+ui.continued,{size:14,font:bold});card.overflow.forEach(row=>flow(row.t,{size:row.m?8:9,font:row.b?bold:regular,space:2}));}
   }
@@ -128,11 +134,12 @@ export function exportPhotoReportPDF(model,options){
  const status=document.createElement('p');status.setAttribute('role','status');status.textContent=model.project.name;box.append(status);
  const actions=document.createElement('div');actions.style.cssText='display:flex;gap:10px;flex-wrap:wrap';box.append(actions);
  const control=(label,run)=>{const b=document.createElement('button');b.textContent=label;b.style.cssText='min-height:44px;padding:10px 16px;border:1px solid #aab4bd;border-radius:8px;background:white;color:#17212b;font:inherit;cursor:pointer';b.onclick=run;actions.append(b);return b;};
+ const progress=document.createElement('progress');progress.max=Math.max(1,model.totalPhotos);progress.value=0;progress.style.cssText='width:100%;height:12px;accent-color:#b38a33;margin:0 0 16px';progress.setAttribute('aria-label',ui.prepare);box.append(progress);
  const close=()=>{abort.abort();overlay.remove();if(objectURL)setTimeout(()=>URL.revokeObjectURL(objectURL),60000);currentExport=null;};
  const closeButton=control(ui.close,close);overlay.append(box);document.body.append(overlay);closeButton.focus();currentExport=closeButton;
- createPhotoReportPDF(model,{...options,signal:abort.signal,onProgress:(done,total)=>{status.textContent=model.project.name+' · '+done+' / '+total+' '+options.strings.photos;}}).then(result=>{
+ createPhotoReportPDF(model,{...options,signal:abort.signal,onProgress:(done,total)=>{progress.max=Math.max(1,total);progress.value=done;status.textContent=Math.round(done/Math.max(1,total)*100)+'% · '+done+' / '+total+' '+options.strings.photos;}}).then(result=>{
   if(abort.signal.aborted)return;file=new File([result.bytes],result.filename,{type:'application/pdf'});objectURL=URL.createObjectURL(file);
-  heading.textContent=ui.ready;overlay.setAttribute('aria-label',ui.ready);status.textContent=result.filename+' · '+result.pages+' '+ui.size+' · '+(file.size/1048576).toFixed(1)+' MB';
+  progress.value=progress.max;heading.textContent=ui.ready;overlay.setAttribute('aria-label',ui.ready);status.textContent=result.filename+' · '+result.pages+' '+ui.size+' · '+(file.size/1048576).toFixed(1)+' MB';
   if(navigator.share&&navigator.canShare?.({files:[file]})){
    const share=control(ui.share,()=>{share.disabled=true;try{navigator.share({files:[file]}).catch(error=>{if(error.name!=='AbortError')status.textContent=error.message;}).finally(()=>{share.disabled=false;});}catch(error){share.disabled=false;status.textContent=error.message;}});actions.prepend(share);share.focus();
   }
