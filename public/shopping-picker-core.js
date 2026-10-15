@@ -4,7 +4,7 @@ export function normalizeSearch(value){
  return String(value??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase()
  .replace(/\bhalf\s*(?:an?\s*)?inch(?:es)?\b/gi,'1/2 in').replace(/\bthree[ -]quarters?\s*inch(?:es)?\b/gi,'3/4 in').replace(/\bquarter\s*inch(?:es)?\b/gi,'1/4 in')
  .replace(/[¼½¾⅛⅜⅝⅞]/g,c=>({'¼':' 1/4','½':' 1/2','¾':' 3/4','⅛':' 1/8','⅜':' 3/8','⅝':' 5/8','⅞':' 7/8'}[c]))
- .replace(/(\d+(?:\.\d+)?|\d*\.\d+)\s*(?:inches|inch|in\.?|["″])/gi,v=>canonicalSize(v))
+ .replace(/(\d+(?:\.\d+)?|\d*\.\d+)\s*(?:(?:inches|inch|in)\b\.?|["″])/gi,v=>canonicalSize(v))
  .replace(/(\d)\s*\/\s*(\d)/g,'$1/$2').replace(/[^a-z0-9/]+/g,' ').trim();
 }
 const aliases={cabo:'cable',cabos:'cable',fio:'wire',fios:'wire',disjuntor:'breaker',disjuntores:'breaker',tomada:'receptacle',tomadas:'receptacle',conector:'connector',conectores:'connector',interruptor:'switch',interruptores:'switch',eletroduto:'conduit',painel:'panel',carregador:'charger',placa:'plate',bucha:'bushing',abracadeira:'clamp'};

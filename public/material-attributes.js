@@ -25,9 +25,10 @@ export function familyOf(m){
  if(FAMILIES.some(f=>f[0]===m.catalogFamily))return m.catalogFamily;
  const old=m.family||m.subcategory;
  // The original "breakers" family included panels and disconnects.
- if(old==='breakers'){if(/disconnect|safety.?switch/i.test(m.name))return 'disconnects';if(!/breaker|disjuntor/i.test(m.name)&&/panel|painel|load.?center|meter|ground.?bar/i.test(m.name))return 'panels';return 'breakers';}
+ if(old==='breakers'){if(/load.?center|panelboard|breaker.?panel|electrical.?panel|meter.?socket/i.test(m.name))return 'panels';if(/disconnect|safety.?switch/i.test(m.name))return 'disconnects';if(!/breaker|disjuntor/i.test(m.name)&&/panel|painel|load.?center|meter|ground.?bar/i.test(m.name))return 'panels';return 'breakers';}
  if(legacy[old])return legacy[old];if(FAMILIES.some(f=>f[0]===old))return old;
  if(m.cat==='fire'&&/panel|module|pull.?station|annunciator|monitor|booster/i.test(m.name))return 'fire-controls';
+ if(/load.?center|panelboard|breaker.?panel|electrical.?panel|meter.?socket/i.test(m.name||''))return 'panels';
  return FAMILIES.find(f=>f[2]?.test(m.name||''))?.[0]||'other';
 }
 export const PROTECTIONS=['Standard','AFCI','GFCI','Dual Function'];
@@ -74,7 +75,7 @@ const electrical=['breakers','panels','disconnects','devices','ev'];
 export function facetKeys(family){return ['brand',...(family==='all'?[]:['type',...(['conduit','fittings','supports'].includes(family)?['size']:[]),...(electrical.includes(family)?['amps','series','voltage']:[]),...(family==='breakers'?['poles','neutral']:[]),...(family==='cable'?['wireGauge','cableConfiguration','length']:[]),...(['boxes','lighting','supports'].includes(family)?['dimensions']:[]),...(['conduit','supports'].includes(family)?['length']:[]),...(['devices','lighting','boxes'].includes(family)?['finish']:[])]),'supplier'];}
 export function attributeValues(m,key){
  if(key==='type')return typeOf(m)?[typeOf(m)]:[];if(key==='size')return tradeSizes(m);if(key==='amps')return ampRatings(m);
- if(key==='poles'){if(m.poles)return [String(m.poles)];const hit=String(m.name||'').match(/\b([1234])\s*[- ]?poles?\b/i);return hit?[hit[1]]:[];}
+ if(key==='poles'){if(m.poles)return [String(m.poles)];const hit=String(m.name||'').match(/\b([1234])\s*[- ]?poles?\b/i);if(hit)return [hit[1]];const word=String(m.name||'').match(/\b(single|double|triple)[ -]pole\b/i);return word?[String({single:1,double:2,triple:3}[word[1].toLowerCase()])]:[];}
  if(key==='voltage'){if(m.voltage)return [String(m.voltage).replace(/\s*V$/i,'')+' V'];const hit=String(m.name||'').match(/\b(\d+(?:\/\d+)?)\s*(?:volts?|V)\b/i);return hit?[hit[1]+' V']:[];}
  if(key==='neutral')return m.neutralConnection?[m.neutralConnection]:[];
  return m[key]?[String(m[key])]:[];
