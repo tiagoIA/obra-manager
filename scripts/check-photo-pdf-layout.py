@@ -68,6 +68,8 @@ if browser.exists():
         text=page.get_text()
         images=page.get_image_info()
         assert text.strip() or images, (number,'Empty browser print page')
+        if 'Arlington pagination fixture - Unit' in text:
+            assert images,(number,'Unit header stranded on an otherwise empty page')
         for image in images:
             box=fitz.Rect(image['bbox'])
             assert box.x0>=30 and box.x1<=583 and box.y0>=30 and box.y1<=752,(number,box,'Clipped browser print photo')

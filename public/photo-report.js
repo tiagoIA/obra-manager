@@ -70,7 +70,7 @@ export const photoReportCSS=`
 @keyframes pr-progress-enter{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 @media(prefers-reduced-motion:reduce){.pr-progress-fill{animation:none}}
 .pr-unit{margin-top:28px}.pr-unit-head{border-top:4px solid #b48a32;padding-top:12px;break-after:avoid}.pr-current{padding:8px 10px;background:#f1f5f7;margin:8px 0 14px;break-inside:avoid}
-.pr-sheet{margin:20px 0;padding-top:10px;border-top:1px solid #d9dfe5}.pr-sheet-head{margin-bottom:8px;break-after:avoid}.pr-sheet-head h3{font-size:15px;margin:0}
+.pr-sheet{margin:20px 0;padding-top:10px;border-top:1px solid #d9dfe5}.pr-sheet-head{margin-bottom:8px;break-after:avoid}.pr-sheet-head h3{font-size:15px;margin:0}.pr-sheet-progress{display:none}
 .pr-gallery{display:grid;grid-template-columns:1fr;gap:14px}.pr-photo{margin:0;break-inside:avoid;page-break-inside:avoid}.pr-photo img{display:block;width:100%;height:300px;object-fit:contain;background:#f6f7f8;border:1px solid #d9dfe5}
 .pr-photo figcaption{padding:7px 0;font-size:11px;line-height:1.4}.pr-photo a{color:#243e54}.pr-reference{margin:3px 0}.pr-full img{height:480px}
 .pr-summary .pr-gallery{grid-template-columns:1fr 1fr}.pr-summary .pr-photo img{height:240px}
@@ -82,7 +82,7 @@ export const photoReportCSS=`
  .pr-progress-fill{animation:none!important;transform:none!important}.pr-progress-track,.pr-progress-fill{print-color-adjust:exact;-webkit-print-color-adjust:exact}.pr-progress{margin:6px 0 10px}
  @page{size:Letter;margin:12mm 12mm 16mm;@bottom-right{content:counter(page) " / " counter(pages);font:9px Arial;color:#52616f}}
  html,body{margin:0!important;padding:0!important;width:auto!important;min-width:0!important;background:#fff!important}.pr-report{width:100%;max-width:none;padding:0;font-size:11px}.pr-report-bar,.pr-load-status{display:none!important}
- .pr-unit,.pr-history{break-before:page;page-break-before:always}.pr-unit{margin:0}.pr-sheet{margin:0 0 4mm;border:0;padding:0;break-before:auto;page-break-before:auto}
+ .pr-unit,.pr-history{break-before:page;page-break-before:always}.pr-unit{margin:0}.pr-unit:has(.pr-sheet){break-before:auto;page-break-before:auto}.pr-unit:has(.pr-sheet)>.pr-unit-head,.pr-unit:has(.pr-sheet)>.pr-current{display:none}.pr-sheet{margin:0;border:0;padding:0;break-before:page;page-break-before:always}.pr-sheet-head{break-inside:avoid;page-break-inside:avoid}.pr-sheet-progress{display:block}
  .pr-unit-head{padding-top:5px}.pr-unit-head p{margin:3px 0}.pr-unit-head h2{font-size:18px;margin:3px 0}.pr-current{padding:4px 6px;margin:4px 0 6px}.pr-sheet-head{margin-bottom:5px}
  .pr-summary .pr-gallery{grid-template-columns:1fr 1fr}.pr-summary .pr-photo img{height:80mm}.pr-summary .pr-full{grid-column:1/-1}.pr-summary .pr-full img{height:150mm}
  .pr-photo img{height:68mm;max-width:100%;object-fit:contain;object-position:center}.pr-gallery,.pr-summary .pr-gallery{display:block;font-size:0}.pr-photo{display:inline-block;vertical-align:top;width:100%;margin:0 0 4mm;font-size:10px;break-inside:avoid;page-break-inside:avoid}.pr-summary .pr-photo{width:calc(50% - 2mm);margin:0 1mm 4mm}.pr-summary .pr-full{width:100%;margin:0 0 4mm}.pr-photo figcaption{font-size:10px;line-height:1.3}.pr-full img{height:170mm}.pr-cover{padding:0;break-after:page;page-break-after:always}.pr-cover-heading{padding:7mm}.pr-cover-heading h1{font-size:25px}.pr-cover-photo img{height:85mm}.pr-overview{break-before:page;page-break-before:always}.pr-index tr,.pr-kpis{break-inside:avoid}.pr-report a{text-decoration:none;color:inherit}.pr-record p{orphans:3;widows:3}
@@ -118,7 +118,7 @@ export function renderPhotoReport(model,language='en',includeHistory=false){
   const sheets=photoSheets(u.photos,!includeHistory);
   sheets.forEach((sheet,j)=>{
    const chapters=new Set(sheet.map(p=>p.chapter)),heading=chapters.size===1?l[sheet[0].chapter]:l.photos;
-   html+='<section class="pr-sheet"><header class="pr-sheet-head"><h3>'+e(unitLabel(u))+' · '+heading+'</h3><div class="pr-muted">'+l.part+' '+(j+1)+' '+l.of+' '+sheets.length+'</div></header><div class="pr-gallery">';
+   html+='<section class="pr-sheet"><header class="pr-sheet-head"><h3>'+e(unitLabel(u))+' · '+heading+'</h3><div class="pr-muted">'+l.part+' '+(j+1)+' '+l.of+' '+sheets.length+'</div><div class="pr-sheet-progress">'+progressHTML(u,l)+'</div></header><div class="pr-gallery">';
    sheet.forEach(p=>{
     const ref=p.references.find(r=>r.source==='task')||p.references[0],title=captionTitle(p),stage=p.references.find(r=>r.stage!=='unspecified')?.stage;
     const meta=[ref?.status?l[ref.status]:l.history,ref?.date?dateLabel(ref.date,language):'',stage?l[stage]:''].filter(Boolean).join(' · ');
