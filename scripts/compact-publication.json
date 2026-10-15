@@ -1,13 +1,13 @@
 {
   "baseline_sha256": "9b2332921f625d40c016fd8bc05aea0d5e75114d64b6b4645175df8e51c3ebe1",
   "files": {
-    "app.html": "9b2332921f625d40c016fd8bc05aea0d5e75114d64b6b4645175df8e51c3ebe1",
+    "app.html": "544694d22ca633754aae0ada3bbde775bf2cc9a9ff942d3e60dd3a3eeb707da3",
     "photo-report.js": "d952f9d57fa9ac5d6351ce1d6af143372cbea93e9d721299c0a1c29bb15e28d8",
     "photo-report-pdf.js": "8c53667d36b5c8be87cdf1f8688eb01c96e9b7dd67bf434e03c9e75a2efef1e8"
   },
   "baseline_files": {
-    "photo-report.js": "f6df66a3dee63cb0fcda667ce7b397682bcc9c75e8df77ad2b43b65ad9c5fc1d",
-    "photo-report-pdf.js": "1e2ef572781671c7654b5bdcf2816524efd48acb389f4092032086ee464f3a47"
+    "photo-report.js": "d952f9d57fa9ac5d6351ce1d6af143372cbea93e9d721299c0a1c29bb15e28d8",
+    "photo-report-pdf.js": "8c53667d36b5c8be87cdf1f8688eb01c96e9b7dd67bf434e03c9e75a2efef1e8"
   },
   "review_only": false
 }
