@@ -113,3 +113,8 @@ jobs:
           assert d['done'] is True and d['doneAt']=='10/16/2026' and note in d['note']
           print('DEMOLITION_COMPLETED_VERIFIED',json.dumps({'taskName':d['name'],'done':d['done'],'doneAt':d['doneAt']}))
           PY
+
+      - name: Attach and verify junction box photo
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: python ops/attach_junction.py
