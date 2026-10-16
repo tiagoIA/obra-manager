@@ -1,0 +1,25 @@
+{
+  "baseline_sha256": "eb0a2f060062cf63529af08fcd987fbf55c817c5debeb4f0ec16edc09a19d01d",
+  "files": {
+    "material-attributes.js": "ab203d4f3a0a95e5d66684ed4e4e4bc9327211500159d14e5cc0ab572b2b2636",
+    "product-library.js": "a1783f09c884dab8a90581f478f2f873ecc78e4d9a96b52385768201e8fd49b4",
+    "shopping-picker-core.js": "b08bef3eae2b75b4debc44255b7e495e960d0a06b075281aafa6275650327019",
+    "guided-shopping-v2.js": "33b7b552f8e02d1614115e0d04c0ff412fb703e01b11fab91c8e86ef91254bbf",
+    "shopping-catalog.js": "c030539c53940a4504e5c2d066fccc9f3826800b8ac5b42573c061a783e1c598",
+    "product-search.js": "b366478d7fe97637dc2cadb9f6eedecb8a19c2590f2919f28ff88cef2282d837",
+    "shopping-view-v3.js": "d0c2403ad97fa936b2fb13a0d5100882165ae6b5e7ea37f38ecd7a5f6e02f347",
+    "central-catalog-v1.js": "bb783a8e50c89ce0a1fca53cf22e24c07bf2d1f0834b2cf7a2a66af208d09058",
+    "app.html": "7fb4b26aa2965f791b2c021933b19069c82f7dffe19e290f1321bd89ca6f800c"
+  },
+  "baseline_files": {
+    "material-attributes.js": "06aad037aec8ad6ff65b38f54749d6216e1f49d2d3f681a11eded2490d876b65",
+    "product-library.js": "b2c7b7d2bbe362405d57f70af4d7ee6797f9309c3bfb79fefd7d2d71bbb1ee57",
+    "shopping-picker-core.js": "eeed331cb802bafa85238f3834445b8b00e80e3efef3af36af48a4731e96fbd4",
+    "guided-shopping-v2.js": "8c05b536c4debb22249090811587dcb017cf55cc43ad7b1445b2a6767163e4d0",
+    "shopping-catalog.js": "a7e1750b39146dc64059f2f882c98d05d017b89973e416ed78f9d87fdfffaf17",
+    "product-search.js": "8136a50835633ce8d181f53efafbe4e2ce080325c73c4adcc8acabe182110ef3",
+    "shopping-view-v3.js": "fc94f8cca0c48def260305fbaf32692cb0df9f15164519e727c91bc6d1dc7347",
+    "central-catalog-v1.js": "74eb36adefc0c42910c5d135ea646f398d5402c871cb92d9cd8e5e809c517751"
+  },
+  "review_only": false
+}

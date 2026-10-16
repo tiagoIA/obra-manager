@@ -1,4 +1,4 @@
-import {FAMILIES,PRODUCT_TYPES,PROTECTIONS,familyOf,validateAttributes} from './material-attributes.js?v=1';
+import {FAMILIES,PRODUCT_TYPES,PROTECTIONS,familyOf,validateAttributes} from './material-attributes.js?v=material-variants-20261016';
 import {validBarcode,estimateList,money,supplierName} from './purchasing-core.js?v=library-1';
 // Central materials stay in the existing materials collection; buying rows hold matId references.
 export const SUPPLIER_NAMES=['Electric Supply Center','Granite City Electric','NorthEast Electrical','Electrical Wholesalers NE','Standard Electric','City Electric Supply','Graybar','Rexel USA','Platt Electric Supply','ADI Global','Home Depot',"Lowe’s",'Grainger','Leviton Store','Other'];
@@ -57,6 +57,16 @@ export function installCentralCatalog(host){
   if(family==='cable'){field(attrs,'Wire gauge (AWG)',p.wireGauge,v=>p.wireGauge=v);field(attrs,'Cable configuration',p.cableConfiguration,v=>p.cableConfiguration=v).placeholder='12/2, 12/3';}
   if(['cable','conduit','supports'].includes(family))field(attrs,'Length (include unit)',p.length,v=>p.length=v).placeholder='10 ft, 250 ft';
   if(['boxes','lighting','supports'].includes(family))field(attrs,'Dimensions (include units)',p.dimensions,v=>p.dimensions=v);
+  if(family==='boxes'){
+   for(const [label,key] of [['Width (in.)','boxWidth'],['Height (in.)','boxHeight'],['Depth (in.)','boxDepth'],['Capacity (cu. in.)','boxVolume'],['Number of gangs','gangs']]){const input=field(attrs,label,p[key],v=>p[key]=v===''?null:Number(v),'number');input.min=key==='gangs'?'0':'0.001';input.step=key==='gangs'?'1':'any';}
+   for(const [label,key,values] of [['Material','boxMaterial',['Steel','Galvanized Steel','PVC','Polycarbonate','Aluminum','Fiberglass']],['Shape','boxShape',['Square','Rectangle','Round','Octagon']],['Work type','workType',['New Work','Old Work','New/Old Work']],['Indoor / outdoor','useLocation',['Indoor','Outdoor','Indoor/Outdoor']]])select(attrs,label,p[key]||'',choices(values,p[key]),v=>p[key]=v);
+   for(const [label,key] of [['Knockouts / hole sizes','knockouts'],['Mounting / bracket','mountingType'],['Application (wall, ceiling, floor)','boxApplication']])field(attrs,label,p[key],v=>p[key]=v);
+   attributeSection.append(el('p','Capacity is the cubic-inch volume declared for this exact model. Do not calculate it from external dimensions. Fan support requires a separate manufacturer rating.','cc-muted'));
+  }
+  if(['conduit','fittings','supports'].includes(family))field(attrs,'Material',p.constructionMaterial,v=>p.constructionMaterial=v);
+  if(family==='fittings')field(attrs,'Connection type',p.connectionType,v=>p.connectionType=v).placeholder='Set Screw, Compression, Push In';
+  if(family==='cable'){field(attrs,'Wire / cable type',p.wireType,v=>p.wireType=v).placeholder='THHN, NM-B, MC';field(attrs,'Conductor material',p.conductorMaterial,v=>p.conductorMaterial=v);}
+  if(family==='lighting')for(const [label,key] of [['Diameter (include units)','diameter'],['Wattage (W)','wattage'],['Lumens (lm)','lumens'],['Color temperature (K)','colorTemperature']])field(attrs,label,p[key],v=>p[key]=v);
   if(['devices','boxes','lighting'].includes(family))field(attrs,'Color / finish',p.finish,v=>p.finish=v);
   field(attrs,'Variant group (optional)',p.variantGroup,v=>p.variantGroup=v).placeholder='Shared product line name';
   attributeSection.append(el('p','Use the same variant group only for related products from the same manufacturer. Each exact variant keeps its own material record, model, supplier codes and quantities.','cc-muted'));

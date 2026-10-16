@@ -17,13 +17,26 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - run: pip install firebase-admin
-      - run: python scripts/audit_product_catalog.py
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node tests/product-core.mjs && node tests/attributes-core.cjs && node tests/box-variants.mjs
+      - run: npm install --no-save playwright@1.56.1
+      - run: npx playwright install --with-deps chromium
+      - run: node tests/library-browser.cjs && node tests/box-browser.cjs
+      - run: pip install firebase-admin google-auth requests
+      - run: python scripts/import_box_catalog.py
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      - run: python scripts/publish_boxes.py
         env:
           FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: box-catalog-result
-          path: catalog-audit.json
+          path: |
+            box-catalog-result.json
+            box-update-before.json
+            hosting-test/
           retention-days: 7

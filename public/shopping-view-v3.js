@@ -1,4 +1,4 @@
-import {suppliersFor,shoppingPhoto,displayUnit,SUPPLIER_NAMES,materialSearchText,isMaterialActive} from './central-catalog-v1.js?v=library-1';
+import {suppliersFor,shoppingPhoto,displayUnit,SUPPLIER_NAMES,materialSearchText,isMaterialActive} from './central-catalog-v1.js?v=material-variants-20261016';
 import {supplierName} from './purchasing-core.js?v=library-1';
 
 export function registeredStores(materials){return [...new Set(materials.flatMap(m=>suppliersFor(m).map(s=>supplierName(s.name))).filter(Boolean))].sort();}

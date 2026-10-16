@@ -1,4 +1,4 @@
-import {canonicalSize,familyOf} from './material-attributes.js?v=1';
+import {canonicalSize,familyOf} from './material-attributes.js?v=material-variants-20261016';
 // Search vocabulary only. Never changes product identity or compatibility.
 export const VOCABULARY=[
  ['breaker','breakers','disjuntor','disjuntores'],['wire','wires','cable','cables','fio','fios','cabo','cabos'],
@@ -18,7 +18,7 @@ export function normalizeSearch(value){return String(value??'').normalize('NFD')
  .replace(/\bground[ -]fault\b/g,'groundfault').replace(/\barc[ -]fault\b/g,'arcfault')
  .replace(/(\d)\s*\/\s*(\d)/g,'$1/$2').replace(/[^a-z0-9/]+/g,' ').trim();}
 const words=value=>normalizeSearch(value).split(/\s+/).filter(t=>t&&!['in','inch','inches','a','amp','amps','awg'].includes(t));
-export function productText(m){return [m.name,m.sku,m.brand,m.manufacturerPart,m.model,m.upc,m.description,m.specs,m.family,m.catalogFamily,m.subcategory,m.productType,m.protection,m.tradeSize?canonicalSize(m.tradeSize):'',m.amperage,m.series,m.poles,m.voltage,m.neutralConnection,m.wireGauge,m.cableConfiguration,m.dimensions,m.length,m.finish,m.variantGroup,...(Array.isArray(m.aliases)?m.aliases:[]),...(m.suppliers||[]).flatMap(s=>[s.name,s.code,s.internetId,...(s.aliasCodes||[])])].filter(Boolean).join(' ');}
+export function productText(m){return [m.name,m.sku,m.brand,m.manufacturerPart,m.model,m.upc,m.description,m.specs,m.family,m.catalogFamily,m.subcategory,m.productType,m.protection,m.tradeSize?canonicalSize(m.tradeSize):'',m.amperage,m.series,m.poles,m.voltage,m.neutralConnection,m.wireGauge,m.cableConfiguration,m.connectionType,m.wireType,m.conductorMaterial,m.constructionMaterial,m.diameter,m.wattage,m.lumens,m.colorTemperature,m.dimensions,m.boxWidth,m.boxHeight,m.boxDepth,m.boxVolume,m.gangs,m.boxMaterial,m.boxShape,m.workType,m.knockouts,m.mountingType,m.useLocation,m.boxApplication,m.length,m.finish,m.variantGroup,...(Array.isArray(m.aliases)?m.aliases:[]),...(m.suppliers||[]).flatMap(s=>[s.name,s.code,s.internetId,...(s.aliasCodes||[])])].filter(Boolean).join(' ');}
 const synonym=t=>VOCABULARY.find(group=>group.includes(t))||[t];
 function oneEdit(a,b){if(Math.abs(a.length-b.length)>1)return false;let i=0,j=0,n=0;while(i<a.length&&j<b.length){if(a[i]===b[j]){i++;j++;continue;}if(++n>1)return false;if(a.length>=b.length)i++;if(b.length>=a.length)j++;}return n+(i<a.length||j<b.length?1:0)<=1;}
 export function searchScore(m,query){const tokens=words(query);if(!tokens.length)return 1;const text=normalizeSearch(productText(m)),set=new Set(words(productText(m)));let score=0;

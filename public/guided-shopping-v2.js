@@ -1,7 +1,7 @@
-import {mountShoppingCatalog} from './shopping-catalog.js?v=library-1';
-import {selectedSummary} from './shopping-picker-core.js?v=library-1';
+import {mountShoppingCatalog} from './shopping-catalog.js?v=material-variants-20261016';
+import {selectedSummary} from './shopping-picker-core.js?v=material-variants-20261016';
 import {estimateList,money,supplierName} from './purchasing-core.js?v=library-1';
-import {shoppingPhoto} from './central-catalog-v1.js?v=library-1';
+import {shoppingPhoto} from './central-catalog-v1.js?v=material-variants-20261016';
 // Guided Shopping v1: isolated UI; persistence is provided by the existing app.
 export const PRESETS = [
  ['panel','Panel replacement','eletrica',['Compatible panel and cover','Breakers by circuit','Entry connectors','Circuit identification'],['Existing and new manufacturer/model','Circuits and poles; reused items']],

@@ -1,4 +1,4 @@
-import {mountShoppingCatalog} from './shopping-catalog.js?v=library-1';
+import {mountShoppingCatalog} from './shopping-catalog.js?v=material-variants-20261016';
 import {reviewCandidate,candidatePatch} from './product-enrichment.js?v=1';
 import {money} from './purchasing-core.js?v=library-1';
 const node=(tag,text)=>{const n=document.createElement(tag);if(text!=null)n.textContent=text;return n;};
