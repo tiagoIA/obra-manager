@@ -2,7 +2,7 @@ name: Validate company signup and discover staging access
 on:
   push:
     branches: [feature/company-registration-2026-10-16]
-    paths: [pilot/**, scripts/check_company_staging.py, .github/workflows/company_pilot.yml]
+    paths: [pilot/**, scripts/check_company_staging.py, scripts/ensure_company_staging.py, scripts/check-company-signup.cjs, .github/workflows/company_pilot.yml]
 permissions:
   contents: read
 jobs:
@@ -17,6 +17,10 @@ jobs:
       - run: pip install google-auth requests
       - name: Discover separate staging project (read only)
         run: python scripts/check_company_staging.py
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      - name: Ensure isolated staging project without linking billing
+        run: python scripts/ensure_company_staging.py
         env:
           FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
       - uses: actions/upload-artifact@v4
