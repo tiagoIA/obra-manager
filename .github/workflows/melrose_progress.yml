@@ -81,22 +81,35 @@ jobs:
           print('BOILER_STANDBY_VERIFIED',json.dumps({'homeRun12_2Routed':True,'boilerConnected':False,'awaitingOwnerReplacement':True,'finalConnectionPending':True,'photoCount':len(d.get('photos',[]))}))
           PY
 
-      - name: Inspect old wiring removal tasks
+      - name: Complete reported old wiring demolition
         env:
           FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
         run: |
           python - <<'PY'
-          import json,os,re
+          import json,os
           from google.cloud import firestore
           from google.oauth2 import service_account
           k=json.loads(os.environ['FIREBASE_SA'])
           db=firestore.Client(project=k['project_id'],credentials=service_account.Credentials.from_service_account_info(k))
           pid='project-7316b60c7f14f0210e55cbd5'
-          result=[]
-          for s in db.collection('tasks').where('projectId','==',pid).stream():
-              d=s.to_dict()
-              names=' '.join([d.get('name','')]+[x.get('name','') for x in d.get('subtasks',[])])
-              if re.search('decommission|demolition|remove|removal|disconnect|superseded|old wiring',names,re.I):
-                  result.append({'id':s.id,**{a:d.get(a) for a in ['name','roomId','done','subtasks']}})
-          print('DEMOLITION_TASKS',json.dumps(result))
+          ref=db.collection('tasks').document(pid+'-basement-scope-1')
+          marker=db.collection('maintenanceOperations').document('melrose-old-wiring-demolition-20261016-v1')
+          note='Work update — October 16, 2026: Demolition and removal of the old, superseded basement wiring completed, as reported by Tiago.'
+          @firestore.transactional
+          def finish(tx):
+              snap=ref.get(transaction=tx)
+              existing=marker.get(transaction=tx)
+              d=snap.to_dict()
+              assert d and d['projectId']==pid and d['name']=='Decommission Superseded Basement Circuits'
+              assert not d.get('subtasks')
+              if existing.exists:
+                  assert d['done'] and note in d.get('note','')
+                  return
+              old=d.get('note') or ''
+              tx.create(marker,{'projectId':pid,'taskId':ref.id,'beforeTask':d,'createdAt':firestore.SERVER_TIMESTAMP})
+              tx.update(ref,{'done':True,'doneAt':'10/16/2026','note':old if note in old else (old+'\n\n'+note).strip()})
+          finish(db.transaction())
+          d=ref.get().to_dict()
+          assert d['done'] is True and d['doneAt']=='10/16/2026' and note in d['note']
+          print('DEMOLITION_COMPLETED_VERIFIED',json.dumps({'taskName':d['name'],'done':d['done'],'doneAt':d['doneAt']}))
           PY
