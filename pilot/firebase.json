@@ -1,4 +1,6 @@
 {
+  "functions": {"source": "functions", "codebase": "company-pilot"},
+  "hosting": {"public": "site", "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]},
   "firestore": {"rules": "firestore.rules"},
   "storage": {"rules": "storage.rules"},
   "emulators": {

@@ -7,6 +7,10 @@ service cloud.firestore {
     function owner(company) {
       return member(company) && get(/databases/$(database)/documents/companies/$(company)/members/$(request.auth.uid)).data.role == 'owner';
     }
+    match /userCompanies/{uid} {
+      allow get: if request.auth != null && request.auth.uid == uid;
+      allow list, write: if false;
+    }
     match /companies/{company} {
       allow get: if member(company);
       allow update: if owner(company) && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['name', 'phone', 'email', 'website', 'license', 'logoPath']);
