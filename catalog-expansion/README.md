@@ -1,13 +1,11 @@
-# Catalog expansion: staged discovery
+# Electrical product catalog expansion
 
-Target: at least 3,000 distinct usable products in the existing library. Live count remains unverified. No live material writes in this stage.
+Completed live data import on 2026-10-16. Created 2,792 products: a verified 50-product pilot, followed by 2,742 additional create-only writes. Read-back verification confirmed 3,000 active products identified by a single manufacturer and part/model, 3,210 active non-family records, and 3,288 total active library records. Existing records and invoice history were not modified or deleted.
 
-Leviton official store discovery: 1,462 source products; 2,318 raw variants; 2,307 candidates after source-SKU deduplication. 94 candidates lack SKU; 16 lack an acceptable image after variant isolation. 708 candidates have two image references. Second photo is optional and never a blocking requirement. Images explicitly tied to a different variant are excluded. Shared images require review.
+The imported cohort came from public Home Depot exact product records. 3,489 candidates passed native product validation and deduplication before import. Manufacturer, model, title/description, purchase unit, source product link, verified retailer identifiers and a primary supplier image are recorded. Technical attributes are extracted only where explicitly present in source labels; compatibility is unverified. No purchase prices or availability were inferred.
 
-Source data: https://store.leviton.com/products.json?limit=250&page=1 through page=6. Retailer category maps: https://www.homedepot.com/b/Electrical/N-5yc1vZarcd and https://www.lowes.com/c/Electrical . Product candidates are gzip JSON; generator is scripts/stage_manufacturer_catalog.py.
+Images remain HTTPS supplier references, with no image binary in material documents. A second distinct reference is optional and stored when available; gallery UI has not been changed. Thirty sampled primary images served valid image content. Mobile/desktop tests used the real 3,489-product dataset and verified bounded rendering, numeric wire configurations, synonyms, source models and shopping-list controls.
 
-Source SKU remains separate from confirmed manufacturer part. Purchase units, packages, category, dimensions and manufacturer part require source review. No guessed compatibility or dimensions. Before import, match existing products by verified manufacturer/model or barcode; supplier codes belong to separate store references. Preserve invoice price history and company permissions.
+Preferred purchasing supplies are Electric Supply Center (ESC), confirmed by the user, and Granite City Electric. Their codes must be confirmed against exact variants and packaging. Granite City category pages were found in public search results; direct bulk requests were blocked. Home Depot and Lowe's were used for category discovery. A separate Leviton discovery remains staged for future review; its source SKU is distinct from a confirmed manufacturer part number.
 
-Continue with wire/cable, conduit, fittings, boxes/covers, breakers/panels, devices/plates, grounding/supports, lighting and job supplies, across manufacturers. Do not fill the target with colors or patch-cord variants from one manufacturer. Final count must exclude duplicates, unverified candidates and existing records.
-
-Photo handling: retain existing primary photo; secondary reference optional, up to two distinct URLs per candidate. No image binary belongs in material documents. Gallery UI and live imports have not been changed in this branch.
+Results and workflow IDs: `completion.json`. Candidate import package: `prepared-products.json.gz`; expected digest: `import-manifest.json`. Source priorities: `sources.json`. Creation-only importer: `scripts/import_catalog_expansion.py`. Initial Leviton review candidates: `leviton-candidates.json.gz`.
