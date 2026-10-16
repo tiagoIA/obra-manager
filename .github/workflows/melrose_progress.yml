@@ -38,18 +38,7 @@ jobs:
           FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
         run: python ops/attach_boiler.py
 
-      - name: Inspect kitchen task location
+      - name: Save restored kitchen receptacle and photo
         env:
           FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-        run: |
-          python - <<'PY'
-          import json,os
-          from google.cloud import firestore
-          from google.oauth2 import service_account
-          k=json.loads(os.environ['FIREBASE_SA'])
-          db=firestore.Client(project=k['project_id'],credentials=service_account.Credentials.from_service_account_info(k))
-          pid='project-7316b60c7f14f0210e55cbd5'
-          for col in ['rooms','tasks']:
-            data=[dict(id=s.id,**{a:v for a,v in s.to_dict().items() if a in ['name','roomId','done','note']}) for s in db.collection(col).where('projectId','==',pid).stream()]
-            print('PROJECT_'+col.upper(),json.dumps(data))
-          PY
+        run: python ops/attach_kitchen.py
