@@ -54,5 +54,6 @@
     }
   ],
   "mergePolicy": "Never merge by name only. Match exact verified manufacturer/model or valid barcode; retain separate supplier item codes. Compare size, packaging and variant. No inferred availability or account prices.",
-  "status": "Discovery and source planning; no live catalog writes."
+  "status": "Live expansion completed: 2792 new products; 3000 active manufacturer/model-identified products verified; 3288 active library records.",
+  "completionFile": "catalog-expansion/completion.json"
 }
