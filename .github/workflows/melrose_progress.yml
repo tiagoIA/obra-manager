@@ -80,3 +80,23 @@ jobs:
           assert 'home run' in d['note'] and 'NOT connected' in d['note'] and d['done'] is False
           print('BOILER_STANDBY_VERIFIED',json.dumps({'homeRun12_2Routed':True,'boilerConnected':False,'awaitingOwnerReplacement':True,'finalConnectionPending':True,'photoCount':len(d.get('photos',[]))}))
           PY
+
+      - name: Inspect old wiring removal tasks
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: |
+          python - <<'PY'
+          import json,os,re
+          from google.cloud import firestore
+          from google.oauth2 import service_account
+          k=json.loads(os.environ['FIREBASE_SA'])
+          db=firestore.Client(project=k['project_id'],credentials=service_account.Credentials.from_service_account_info(k))
+          pid='project-7316b60c7f14f0210e55cbd5'
+          result=[]
+          for s in db.collection('tasks').where('projectId','==',pid).stream():
+              d=s.to_dict()
+              names=' '.join([d.get('name','')]+[x.get('name','') for x in d.get('subtasks',[])])
+              if re.search('decommission|demolition|remove|removal|disconnect|superseded|old wiring',names,re.I):
+                  result.append({'id':s.id,**{a:d.get(a) for a in ['name','roomId','done','subtasks']}})
+          print('DEMOLITION_TASKS',json.dumps(result))
+          PY
