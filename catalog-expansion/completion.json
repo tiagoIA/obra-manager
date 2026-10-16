@@ -1,0 +1,43 @@
+{
+  "completedOn": "2026-10-16",
+  "status": "live-data-import-complete",
+  "targetMinimumManufacturerIdentifiedProducts": 3000,
+  "verifiedManufacturerIdentifiedProducts": 3000,
+  "activeLibraryRecords": 3288,
+  "activeNonFamilyRecords": 3210,
+  "newProductsCreated": 2792,
+  "pilotCreated": 50,
+  "fullImportCreated": 2742,
+  "existingRecordsUpdated": 0,
+  "existingRecordsDeleted": 0,
+  "source": "Home Depot public exact product records",
+  "preparedCandidateCount": 3489,
+  "pilotWorkflowRun": 38904694520,
+  "completionWorkflowRun": 38904929658,
+  "completionArtifactId": 12047452343,
+  "validation": {
+    "nativeProductValidation": true,
+    "uniqueManufacturerIdentities": true,
+    "allCreatedRecordsReadBack": true,
+    "mobileDesktopBrowserTests": true,
+    "realDatasetSizeTest": 3489,
+    "wireConfigurationsAndModelSearch": true,
+    "supplierPhotoSamplesPassed": 30,
+    "supplierPhotoSamplesTested": 30
+  },
+  "secondPhoto": {
+    "optional": true,
+    "sourceReferencesStoredWhenAvailable": true,
+    "galleryUiChanged": false
+  },
+  "prices": {
+    "existingInvoiceHistoryPreserved": true,
+    "newPricesInferred": false
+  },
+  "preferredSupplies": [
+    "Electric Supply Center (ESC)",
+    "Granite City Electric"
+  ],
+  "supplyCodePolicy": "Only exact source-verified supplier codes are stored; ESC and Granite City codes are not inferred.",
+  "dataScope": "Existing central materials collection; stock quantities on new products start at zero."
+}
