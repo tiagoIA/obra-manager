@@ -29,6 +29,7 @@ jobs:
           for p in db.collection('projects').stream():
               d=p.to_dict()
               if 'melrose' in str(d.get('name','')).lower() or 'melrose' in str(d.get('address','')).lower(): projects.append(p)
+          projects=[p for p in projects if 'bartlett' in (str(p.to_dict().get('name',''))+' '+str(p.to_dict().get('address',''))).lower()]
           print('MATCHING_PROJECT_COUNT',len(projects))
           assert len(projects)==1,'Ambiguous or absent target; no changes'
           p=projects[0]
