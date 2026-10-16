@@ -28,8 +28,41 @@ CFC Electric and PNV Electric are the user-selected test companies. All company
 records used for validation are synthetic. Test accounts use `.invalid` email addresses in emulator fixtures;
 public contact details are never used as login credentials or recipients. No real
 company data, account, project or email is created by the integration test.
-The registration screen is a pilot shell. Full app integration, employee invitations,
-shared catalog policy and private media delivery remain release blockers below.
+The registration screen is a pilot shell. Employee invitation creation, acceptance
+and revocation are implemented as trusted callables and a browser flow. Full app
+integration, shared catalog policy and private media delivery remain release blockers.
+
+## Invitations and browser checks — 2026-10-16
+
+The owner generates an email-bound invitation link for an employee or supervisor.
+The 256-bit token appears only in the link fragment; the backend stores its hash.
+It expires after seven days and can be revoked. Acceptance requires the invited
+verified email, checks that the inviter remains an owner, and atomically creates
+membership. Existing accounts belonging to another company are rejected. Acceptance
+retries are idempotent. No invitation email is sent automatically.
+
+```sh
+npx firebase emulators:exec --project demo-obra-company-pilot --only firestore 'node test-invitations.mjs'
+npx firebase emulators:exec --project demo-obra-company-pilot --only auth,firestore,functions,hosting 'node ../scripts/check-company-signup.cjs'
+```
+
+The browser script uses Playwright (`npm install --no-save playwright` and
+`npx playwright install chromium` in a suitable environment). Optional
+`CHROMIUM_PATH` selects an installed browser. Optional `FIREBASE_SDK_CACHE` points to
+unmodified Firebase 10.12.0 web SDK files for network-independent browser testing.
+Local validation passed 33 invitation checks and 32 browser checks, in addition
+to the earlier 23 registration and 28 company isolation checks. The local Functions
+emulator transport was changed only in untracked dependencies from Unix sockets to
+loopback TCP because the environment denies Unix socket listeners. Production code
+was not changed for that transport limitation.
+
+Staging access was checked through the existing GitHub Actions connection. It found
+no active `obra-company-staging*` project, and attempting to create
+`obra-company-staging-4ecc7` returned HTTP 403 `PERMISSION_DENIED`. No billing account
+was attached. To publish, a Google Cloud/Firebase administrator must provision the
+isolated project and grant this deployment integration appropriate access in it.
+Functions deployment also requires billing configuration; none was changed here.
+See `SECURITY-RELEASE.md` for the remaining security and privacy release requirements.
 
 This branch is not deployed and does not modify production data or production rules.
 It is an emulator-only proof of the company path/membership model, not a usable multi-company release.

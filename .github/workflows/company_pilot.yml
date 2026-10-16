@@ -19,10 +19,6 @@ jobs:
         run: python scripts/check_company_staging.py
         env:
           FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-      - name: Ensure isolated staging project without linking billing
-        run: python scripts/ensure_company_staging.py
-        env:
-          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
       - uses: actions/upload-artifact@v4
         with:
           name: company-staging-access-${{ github.run_id }}
