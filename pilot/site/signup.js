@@ -23,6 +23,11 @@ function inviteMode() {
   $('welcome').hidden = !!invitation;
 }
 inviteMode();
+window.addEventListener('hashchange', () => {
+  invitation = new URLSearchParams(location.hash.slice(1)).get('invite');
+  inviteMode();
+  if (auth) showUser(auth.currentUser).catch(error => status(error.message));
+});
 let draft = {name: '', ownerName: ''};
 let epoch = 0;
 const names = () => {

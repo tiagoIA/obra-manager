@@ -50,7 +50,7 @@ The browser script uses Playwright (`npm install --no-save playwright` and
 `npx playwright install chromium` in a suitable environment). Optional
 `CHROMIUM_PATH` selects an installed browser. Optional `FIREBASE_SDK_CACHE` points to
 unmodified Firebase 10.12.0 web SDK files for network-independent browser testing.
-Local validation passed 33 invitation checks and 32 browser checks, in addition
+Local validation passed 33 invitation checks and 35 browser checks, in addition
 to the earlier 23 registration and 28 company isolation checks. The local Functions
 emulator transport was changed only in untracked dependencies from Unix sockets to
 loopback TCP because the environment denies Unix socket listeners. Production code

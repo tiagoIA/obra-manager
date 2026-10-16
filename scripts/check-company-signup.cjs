@@ -117,6 +117,7 @@ async function prepareContext(context) {
     await expectVisible(crew.locator('#finish'));
     await crew.locator('#finish').click();
     await crew.waitForFunction(() => location.hash === '');
+    await crew.waitForFunction(() => document.getElementById('company-name').textContent === 'CFC Electric' && !document.getElementById('workspace').hidden);
     assert.equal(await crew.locator('#company-name').textContent(),'CFC Electric');checks++;
     assert.equal(await crew.locator('#member-role').textContent(),'Funcionário');checks++;
     await cfc.page.locator('#logout').click();
