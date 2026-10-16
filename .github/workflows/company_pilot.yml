@@ -1,0 +1,26 @@
+name: Validate company signup and discover staging access
+on:
+  push:
+    branches: [feature/company-registration-2026-10-16]
+    paths: [pilot/**, scripts/check_company_staging.py, .github/workflows/company_pilot.yml]
+permissions:
+  contents: read
+jobs:
+  staging-access:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install google-auth requests
+      - name: Discover separate staging project (read only)
+        run: python scripts/check_company_staging.py
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: company-staging-access-${{ github.run_id }}
+          path: company-pilot-results/
+          retention-days: 30
