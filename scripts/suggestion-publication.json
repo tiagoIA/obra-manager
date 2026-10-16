@@ -7,13 +7,13 @@
     "central-catalog-v1.js": "bb783a8e50c89ce0a1fca53cf22e24c07bf2d1f0834b2cf7a2a66af208d09058"
   },
   "files": {
-    "purchase-suggestions.js": "4961260d5216a680146266ac2649702e6ad7eb382d8fe16bbcb63d555f6f9c25",
+    "purchase-suggestions.js": "0faaa62e511fb51e668a3140efccf17cfe544cab0b3acda91af7538bf94af5c7",
     "app.html": "825b1f89c37399054e4fb9884882a749e4a4fb57a08d99dd20b10aa6c2f81aae",
-    "guided-shopping-v2.js": "e02beb38732c642b5f9eb0aa3fc047d1bd091a5a609fc051207fdae15f6b5b99",
+    "guided-shopping-v2.js": "d8cf494ff05b2909dc5846ec5bd80e24c9a266b01dcb014e3292b4350fd391c4",
     "shopping-catalog.js": "e1f38ca5bfe37deb97b7035df702c7224e7b0d54c1957588f674db8214d710b1",
     "shopping-view-v3.js": "53d93cdbdd6210b31708be8307729372168e9b2fa05f55b4bd878c3f8719e6cd",
     "central-catalog-v1.js": "81a1160588174850b85f0121e3b13bbe8d56865a6a239be7c6a84baba375272b",
-    "purchase-suggestions-ui.js": "4ef3f4ed22f6c3b5dc16461ed03aca38fd6e02cf9fb1ad8d2a696cfea1e38cea"
+    "purchase-suggestions-ui.js": "57c7f260b9111f4ae1de4a13186760cc82a8a22ce55c9395981ff62ee9d6d588"
   },
   "review_only": true
 }
