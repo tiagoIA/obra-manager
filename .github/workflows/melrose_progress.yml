@@ -42,3 +42,41 @@ jobs:
         env:
           FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
         run: python ops/attach_kitchen.py
+
+      - name: Verify boiler is unconnected with home run on standby
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: |
+          python - <<'PY'
+          import json,os
+          from google.cloud import firestore
+          from google.oauth2 import service_account
+          k=json.loads(os.environ['FIREBASE_SA'])
+          db=firestore.Client(project=k['project_id'],credentials=service_account.Credentials.from_service_account_info(k))
+          ref=db.collection('tasks').document('project-7316b60c7f14f0210e55cbd5-basement-task-03')
+          @firestore.transactional
+          def clarify(tx):
+              snap=ref.get(transaction=tx)
+              d=snap.to_dict()
+              assert d and d['projectId']=='project-7316b60c7f14f0210e55cbd5'
+              assert d['done'] is False
+              pending=[s for s in d['subtasks'] if s.get('id')=='boiler-connect-20261016']
+              assert len(pending)==1 and pending[0]['done'] is False
+              prepared=[s for s in d['subtasks'] if s.get('id')=='boiler-prepared-20261016']
+              assert len(prepared)==1 and prepared[0]['done'] is True
+              note=d.get('note') or ''
+              old='A 12-2 cable was run and left on standby at the pictured box for the future replacement boiler, at the client’s request.'
+              new='The 12-2 home run was routed to the boiler location and left on standby at the pictured box. The boiler was NOT connected. At the owner’s request, final connection is on hold until the owner replaces the boiler.'
+              updated=note.replace(old,new)
+              assert new in updated
+              if updated!=note:
+                  backup=db.collection('maintenanceOperations').document('melrose-boiler-homerun-clarification-20261016-v1')
+                  previous=backup.get(transaction=tx)
+                  assert not previous.exists
+                  tx.create(backup,{'taskId':ref.id,'beforeNote':note,'createdAt':firestore.SERVER_TIMESTAMP})
+                  tx.update(ref,{'note':updated})
+          clarify(db.transaction())
+          d=ref.get().to_dict()
+          assert 'home run' in d['note'] and 'NOT connected' in d['note'] and d['done'] is False
+          print('BOILER_STANDBY_VERIFIED',json.dumps({'homeRun12_2Routed':True,'boilerConnected':False,'awaitingOwnerReplacement':True,'finalConnectionPending':True,'photoCount':len(d.get('photos',[]))}))
+          PY
