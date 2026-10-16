@@ -1,32 +1,33 @@
-name: Bulk Material Photos
+name: Collect product photos and online prices
 on:
   workflow_dispatch:
     inputs:
       limit:
-        description: 'Quantos processar (0=todos)'
+        description: 'Maximum product pages (0 = all registered supplier pages)'
         default: '0'
+permissions:
+  contents: read
+concurrency:
+  group: obra-manager-product-reference-collection
+  cancel-in-progress: false
 jobs:
-  run:
+  collect:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - run: pip install firebase-admin requests
-      - name: Create service account key
+      - run: pip install firebase-admin
+      - name: Collect exact references for review
+        run: python scripts/bulk_photos.py --firestore --limit "$COLLECT_LIMIT" --output product-reference-candidates.json
         env:
           FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-        run: python3 -c "import os,json; sa=os.environ['FIREBASE_SA']; open('serviceAccountKey.json','w').write(sa); d=json.loads(sa); print('Key OK:', d['project_id'])"
-      - name: Run bulk photo upload
-        run: python3 scripts/bulk_photos.py
-        env:
-          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
-          GOOGLE_CX: ${{ secrets.GOOGLE_CX }}
-          LIMIT: ${{ inputs.limit }}
+          COLLECT_LIMIT: ${{ inputs.limit }}
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: log
-          path: log.json
+          name: product-reference-candidates
+          path: product-reference-candidates.json
+          retention-days: 7
