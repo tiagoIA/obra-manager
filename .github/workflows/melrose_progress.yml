@@ -23,21 +23,7 @@ jobs:
           FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
         run: python ops/update_melrose.py
 
-      - name: Inspect receptacle task and export public encryption key
+      - name: Attach and verify four basement receptacle photos
         env:
           FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-        run: |
-          python - <<'PY'
-          import json, os
-          from google.oauth2 import service_account
-          from google.cloud import firestore
-          from cryptography.hazmat.primitives import serialization
-          k=json.loads(os.environ['FIREBASE_SA'])
-          pk=serialization.load_pem_private_key(k['private_key'].encode(),None).public_key()
-          print(pk.public_bytes(serialization.Encoding.PEM,serialization.PublicFormat.SubjectPublicKeyInfo).decode())
-          db=firestore.Client(project=k['project_id'],credentials=service_account.Credentials.from_service_account_info(k))
-          tid='project-7316b60c7f14f0210e55cbd5-basement-task-02'
-          d=db.collection('tasks').document(tid).get().to_dict()
-          assert d and d['projectId']=='project-7316b60c7f14f0210e55cbd5'
-          print('RECEPTACLE_TARGET',json.dumps({x:d.get(x) for x in ['name','projectId','roomId','done']}),'PHOTO_COUNT',len(d.get('photos',[])))
-          PY
+        run: python ops/attach_outlets.py
