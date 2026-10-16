@@ -1,0 +1,36 @@
+{
+  "completedAt": "2026-10-16T13:51:09Z",
+  "workflowRun": 38910923236,
+  "commit": "05a2358f63453b43dceaba615058ab0d0941cc01",
+  "newProducts": 51,
+  "existingProductsEnriched": 337,
+  "duplicatesSkipped": 0,
+  "activeRecords": 3339,
+  "boxesAndAccessories": 479,
+  "withDeclaredVolume": 138,
+  "withDepth": 102,
+  "classificationsCorrected": 19,
+  "existingUserFieldsOverwritten": 0,
+  "recordsDeleted": 0,
+  "readBackVerified": true,
+  "publication": {
+    "live_url": "https://obra-manager-4ecc7.web.app/",
+    "workspace_url": "https://obra-manager-4ecc7.web.app/app.html",
+    "preview_url": "https://obra-manager-4ecc7--material-variants-20261016-cx8oip2q.web.app",
+    "previous_live_version": "sites/obra-manager-4ecc7/versions/6851477ac83b1166",
+    "version": "sites/obra-manager-4ecc7/versions/ab3bcde7c38ffdda",
+    "release": "sites/obra-manager-4ecc7/releases/1792158668218000",
+    "verified_files": {
+      "material-attributes.js": "ab203d4f3a0a95e5d66684ed4e4e4bc9327211500159d14e5cc0ab572b2b2636",
+      "product-library.js": "a1783f09c884dab8a90581f478f2f873ecc78e4d9a96b52385768201e8fd49b4",
+      "shopping-picker-core.js": "b08bef3eae2b75b4debc44255b7e495e960d0a06b075281aafa6275650327019",
+      "guided-shopping-v2.js": "33b7b552f8e02d1614115e0d04c0ff412fb703e01b11fab91c8e86ef91254bbf",
+      "shopping-catalog.js": "c030539c53940a4504e5c2d066fccc9f3826800b8ac5b42573c061a783e1c598",
+      "product-search.js": "b366478d7fe97637dc2cadb9f6eedecb8a19c2590f2919f28ff88cef2282d837",
+      "shopping-view-v3.js": "d0c2403ad97fa936b2fb13a0d5100882165ae6b5e7ea37f38ecd7a5f6e02f347",
+      "central-catalog-v1.js": "bb783a8e50c89ce0a1fca53cf22e24c07bf2d1f0834b2cf7a2a66af208d09058",
+      "app.html": "ddf29d7992ef790975b8d2ef9a30a2d3e6b6d6bd03a8c2b5be53ae1b14e58936"
+    }
+  },
+  "pendingUserIdea": "Discuss purchasing suggestions after finishing material variant filters."
+}
