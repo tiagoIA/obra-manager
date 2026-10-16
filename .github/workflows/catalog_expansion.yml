@@ -1,0 +1,25 @@
+name: Audit electrical catalog expansion
+on:
+  push:
+    branches: [work/catalog-expansion-2026-10-16]
+    paths: [scripts/audit_product_catalog.py, .github/workflows/catalog_expansion.yml]
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install firebase-admin
+      - run: python scripts/audit_product_catalog.py
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: product-catalog-audit
+          path: catalog-audit.json
+          retention-days: 7
