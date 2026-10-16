@@ -42,7 +42,11 @@ jobs:
           print('TASK_COUNT',len(tasks))
           for t in tasks:
               d=t.to_dict()
-              safe={k:d[k] for k in ['title','name','text','status','done','completed','category','phase'] if k in d}
+              safe={k:d[k] for k in ['name','note','done','cat','qty','hasQty','subtasks'] if k in d}
               print('TASK',t.id,json.dumps(safe,default=str))
+          from cryptography.hazmat.primitives import serialization
+          private=serialization.load_pem_private_key(key['private_key'].encode(),password=None)
+          public=private.public_key().public_bytes(serialization.Encoding.PEM,serialization.PublicFormat.SubjectPublicKeyInfo).decode()
+          print('UPLOAD_PUBLIC_KEY',json.dumps(public))
           print('READ_ONLY_COMPLETE')
           PY
