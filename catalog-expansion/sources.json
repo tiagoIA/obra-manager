@@ -29,10 +29,12 @@
     {
       "spokenName": "ICS",
       "confirmedByUser": true,
-      "resolvedBusinessName": null,
-      "possibleMatch": "Electric Supply Center (ESC)",
+      "resolvedBusinessName": "Electric Supply Center",
       "possibleWebsite": "https://www.escctr.net/",
-      "identityNeedsConfirmation": true
+      "identityNeedsConfirmation": false,
+      "name": "Electric Supply Center",
+      "abbreviation": "ESC",
+      "identityConfirmedByUserOn": "2026-10-16"
     }
   ],
   "discoverySources": [
