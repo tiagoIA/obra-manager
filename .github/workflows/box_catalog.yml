@@ -1,0 +1,29 @@
+name: Audit and expand electrical boxes
+on:
+  push:
+    branches: [work/catalog-expansion-2026-10-16]
+    paths: [.github/workflows/box_catalog.yml, scripts/import_box_catalog.py, catalog-expansion/box-products.json]
+permissions:
+  contents: read
+concurrency:
+  group: obra-manager-product-catalog-expansion
+  cancel-in-progress: false
+jobs:
+  boxes:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install firebase-admin
+      - run: python scripts/audit_product_catalog.py
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: box-catalog-result
+          path: catalog-audit.json
+          retention-days: 7
