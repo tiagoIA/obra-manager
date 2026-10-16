@@ -285,3 +285,12 @@ Os hashes e referências abaixo são um retrato de 16/10/2026, não uma autoriza
 - `task/fire-alarm-guided-20261014` — `b3564612862d04e8cc3a7e1fcdbf0536b6f67d01`
 - `task/schedule-2026-10-12` — `46400a724c9e8d97044edb706bd2362a1c3ee051`
 - `work/catalog-expansion-2026-10-16` — `7948b58998a978b7846b64628373d7cf612292a9`
+
+
+## Decisao de produto — Estimates (16/10/2026)
+
+Nova necessidade solicitada: guardar planta/PDF e suas revisoes, fotos, videos e relatos da visita por orcamento; ajudar a levantar pontos e escopo antes de precificar. Ainda em definicao/piloto documental, nao implementado como modulo novo nesta etapa. Nao confundir com invoices existentes de fornecedores.
+
+Permitir escolhas independentes: somente mao de obra ou material e mao de obra; por hora, empreita ou combinacao por linha. Manter materiais internos mesmo quando fornecidos pelo contractor. Separar quantidade desenhada, complemento de escopo e quantidade aprovada; cada item deve apontar folha/pagina ou evidencia. Delimitar existente versus adicao antes de contar; excluir simbolos de legendas e evitar duplicacao entre fotos e plantas. Comandos graficos nao definem automaticamente tipo/SKU; percursos e circuitos precisam de definicao propria.
+
+Pesquisa de referencias concluida: Countfire, Togal, STACK (takeoff), Handoff (arquivos/visita para rascunho de estimate), magicplan (documentacao por ambiente). Pesquisa de funcoes oficiais nao equivale a teste desses produtos ou acesso ao codigo deles. Piloto em planta do usuario iniciado e consolidado em arquivo privado de levantamento; detalhes de obra permanecem na copia privada. Nao ha valor final calculado nem proposta enviada ao cliente. Proximo passo depende do pedido atual: definir precificacao do piloto ou implementar o modulo, sem pressupor que o levantamento visual ja e um detector automatico.
