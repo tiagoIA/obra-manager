@@ -4,7 +4,7 @@
     "exactSheets": 30,
     "existingBoxRecordsInAudit": 403,
     "attributeCandidates": 337,
-    "newProducts": 54,
+    "newProducts": 51,
     "skippedIncomplete": 0
   },
   "updates": [
@@ -9581,54 +9581,6 @@
       "boxSpecificationSource": "https://www.homedepot.com/p/Carlon-2-Gang-38-cu-in-Square-ENT-Electrical-Box-A238-CAR-A238-CAR/202205406"
     },
     {
-      "id": "catalog-f6a9c11494db0b453a6816eb",
-      "identity": "mpn:unbranded:imsa05035",
-      "name": "Metal Wall Plate Spacers for Electrical Boxes and Receptacles, Silver, 10-Piece Set",
-      "brand": "Unbranded",
-      "manufacturerPart": "IMSA05035",
-      "description": "Metal Wall Plate Spacers for Electrical Boxes and Receptacles, Silver, 10-Piece Set",
-      "cat": "eletrica",
-      "catalogFamily": "boxes",
-      "family": "boxes",
-      "recordType": "product",
-      "productType": "Box",
-      "unit": "pack",
-      "active": true,
-      "status": "active",
-      "isTask": false,
-      "qty": 0,
-      "sku": "CAT-HD-700377176",
-      "sourceUrl": "https://www.homedepot.com/p/Unbranded-Metal-Wall-Plate-Spacers-for-Electrical-Boxes-and-Receptacles-Silver-10-Piece-Set-IMSA05035/700377176",
-      "photoUrl": "https://images.thdstatic.com/productImages/d119842ebc3e487ab3d3bd051eec4e3a/svn/unbranded-boxes-brackets-imsa05035-64_600.jpg",
-      "photoUrls": [
-        "https://images.thdstatic.com/productImages/d119842ebc3e487ab3d3bd051eec4e3a/svn/unbranded-boxes-brackets-imsa05035-64_600.jpg"
-      ],
-      "compatibilityStatus": "unverified",
-      "catalogSourceItemId": "700377176",
-      "catalogSource": "Public retailer product record",
-      "catalogSourceDate": "2026-10-16",
-      "catalogImportBatch": "box-variants-2026-10-16",
-      "catalogReviewStatus": "source-identified",
-      "suppliers": [
-        {
-          "name": "Home Depot",
-          "code": "1016392488",
-          "internetId": "700377176",
-          "url": "https://www.homedepot.com/p/Unbranded-Metal-Wall-Plate-Spacers-for-Electrical-Boxes-and-Receptacles-Silver-10-Piece-Set-IMSA05035/700377176",
-          "unit": "pack",
-          "matchVerified": true,
-          "price": "",
-          "currency": "USD",
-          "priceSource": "reference",
-          "priceDate": ""
-        }
-      ],
-      "boxAttributeEvidence": {},
-      "boxSpecificationSource": "https://www.homedepot.com/p/Unbranded-Metal-Wall-Plate-Spacers-for-Electrical-Boxes-and-Receptacles-Silver-10-Piece-Set-IMSA05035/700377176",
-      "packQuantity": 10,
-      "packUnit": "ea"
-    },
-    {
       "id": "catalog-7774c182ec9328850b44503a",
       "identity": "mpn:steelcity:cxwv25r",
       "name": "1-Gang 3 in. Metal Electrical Box with NMSC Cable Clamps and CV Bracket (CXWV-25R)",
@@ -9680,54 +9632,6 @@
         }
       },
       "boxSpecificationSource": "https://www.homedepot.com/p/Steel-City-1-Gang-3-in-Metal-Electrical-Box-with-NMSC-Cable-Clamps-and-CV-Bracket-CXWV-25R-CXWV-25R/202591746"
-    },
-    {
-      "id": "catalog-b1b238efa772c3737a0ba17a",
-      "identity": "mpn:unbranded:imsa05041",
-      "name": "20-Pack Galvanized Metal Wall Plate Spacers for Electrical Outlet and Switch Leveling Repair",
-      "brand": "Unbranded",
-      "manufacturerPart": "IMSA05041",
-      "description": "20-Pack Galvanized Metal Wall Plate Spacers for Electrical Outlet and Switch Leveling Repair",
-      "cat": "eletrica",
-      "catalogFamily": "boxes",
-      "family": "boxes",
-      "recordType": "product",
-      "productType": "Bracket",
-      "unit": "pack",
-      "active": true,
-      "status": "active",
-      "isTask": false,
-      "qty": 0,
-      "sku": "CAT-HD-700377185",
-      "sourceUrl": "https://www.homedepot.com/p/Unbranded-20-Pack-Galvanized-Metal-Wall-Plate-Spacers-for-Electrical-Outlet-and-Switch-Leveling-Repair-IMSA05041/700377185",
-      "photoUrl": "https://images.thdstatic.com/productImages/56e5f9d5b9e640f9a8189ff8331adcf9/svn/unbranded-boxes-brackets-imsa05041-64_600.jpg",
-      "photoUrls": [
-        "https://images.thdstatic.com/productImages/56e5f9d5b9e640f9a8189ff8331adcf9/svn/unbranded-boxes-brackets-imsa05041-64_600.jpg"
-      ],
-      "compatibilityStatus": "unverified",
-      "catalogSourceItemId": "700377185",
-      "catalogSource": "Public retailer product record",
-      "catalogSourceDate": "2026-10-16",
-      "catalogImportBatch": "box-variants-2026-10-16",
-      "catalogReviewStatus": "source-identified",
-      "suppliers": [
-        {
-          "name": "Home Depot",
-          "code": "1016392548",
-          "internetId": "700377185",
-          "url": "https://www.homedepot.com/p/Unbranded-20-Pack-Galvanized-Metal-Wall-Plate-Spacers-for-Electrical-Outlet-and-Switch-Leveling-Repair-IMSA05041/700377185",
-          "unit": "pack",
-          "matchVerified": true,
-          "price": "",
-          "currency": "USD",
-          "priceSource": "reference",
-          "priceDate": ""
-        }
-      ],
-      "boxAttributeEvidence": {},
-      "boxSpecificationSource": "https://www.homedepot.com/p/Unbranded-20-Pack-Galvanized-Metal-Wall-Plate-Spacers-for-Electrical-Outlet-and-Switch-Leveling-Repair-IMSA05041/700377185",
-      "packQuantity": 20,
-      "packUnit": "ea"
     },
     {
       "id": "catalog-dedcad3ce1bb6105abce7208",
@@ -11454,52 +11358,6 @@
         }
       },
       "boxSpecificationSource": "https://www.homedepot.com/p/Steel-City-18-cu-in-Old-Work-Pre-Galvanized-Metal-Gangable-Switch-Box-CX-25R-CX-25R/204981497"
-    },
-    {
-      "id": "catalog-70afb5b726761e8a9199f100",
-      "identity": "mpn:unbranded:imsa05014",
-      "name": "Metal Outdoor Electrical Outlet Box with Dual 20 Amp WRTR GFCI Receptacles, ETL Listed Waterproof Cover",
-      "brand": "Unbranded",
-      "manufacturerPart": "IMSA05014",
-      "description": "Metal Outdoor Electrical Outlet Box with Dual 20 Amp WRTR GFCI Receptacles, ETL Listed Waterproof Cover",
-      "cat": "eletrica",
-      "catalogFamily": "boxes",
-      "family": "boxes",
-      "recordType": "product",
-      "productType": "Cover",
-      "unit": "ea",
-      "active": true,
-      "status": "active",
-      "isTask": false,
-      "qty": 0,
-      "sku": "CAT-HD-700377189",
-      "sourceUrl": "https://www.homedepot.com/p/Unbranded-Metal-Outdoor-Electrical-Outlet-Box-with-Dual-20-Amp-WRTR-GFCI-Receptacles-ETL-Listed-Waterproof-Cover-IMSA05014/700377189",
-      "photoUrl": "https://images.thdstatic.com/productImages/5465e94dd3384d62965890a464293bed/svn/unbranded-boxes-brackets-imsa05014-64_600.jpg",
-      "photoUrls": [
-        "https://images.thdstatic.com/productImages/5465e94dd3384d62965890a464293bed/svn/unbranded-boxes-brackets-imsa05014-64_600.jpg"
-      ],
-      "compatibilityStatus": "unverified",
-      "catalogSourceItemId": "700377189",
-      "catalogSource": "Public retailer product record",
-      "catalogSourceDate": "2026-10-16",
-      "catalogImportBatch": "box-variants-2026-10-16",
-      "catalogReviewStatus": "source-identified",
-      "suppliers": [
-        {
-          "name": "Home Depot",
-          "code": "1016392580",
-          "internetId": "700377189",
-          "url": "https://www.homedepot.com/p/Unbranded-Metal-Outdoor-Electrical-Outlet-Box-with-Dual-20-Amp-WRTR-GFCI-Receptacles-ETL-Listed-Waterproof-Cover-IMSA05014/700377189",
-          "unit": "ea",
-          "matchVerified": true,
-          "price": "",
-          "currency": "USD",
-          "priceSource": "reference",
-          "priceDate": ""
-        }
-      ],
-      "boxAttributeEvidence": {},
-      "boxSpecificationSource": "https://www.homedepot.com/p/Unbranded-Metal-Outdoor-Electrical-Outlet-Box-with-Dual-20-Amp-WRTR-GFCI-Receptacles-ETL-Listed-Waterproof-Cover-IMSA05014/700377189"
     },
     {
       "id": "catalog-d6829ab9f4c58accf96e2758",
