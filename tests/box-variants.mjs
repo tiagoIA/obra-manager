@@ -25,4 +25,5 @@ assert.throws(()=>validateAttributes({gangs:1.5}));
 const data=JSON.parse(fs.readFileSync('catalog-expansion/box-products.json'));
 const seen=new Set();for(const m of data.materials){validateProduct(m,[]);for(const k of productKeys(m)){assert(!seen.has(k));seen.add(k);}assert(m.photoUrl&&m.sourceUrl&&m.brand&&m.manufacturerPart);}
 for(const r of data.updates){assert(r.id&&r.identity&&r.sourceUrl);validateAttributes(r.attributes);}
+const app=fs.readFileSync('public/app.html','utf8');for(const key of ['boxVolume','boxDepth','gangs','wireType','connectionType','diameter'])assert(app.slice(app.indexOf('const keys=')).includes("'"+key+"'"));
 console.log('PASS box volume/depth isolation, unknown capacity, gang zero, family-specific filters, source label extraction and '+data.materials.length+' native product candidates');
