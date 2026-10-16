@@ -1,25 +1,41 @@
-name: Audit electrical catalog expansion
+name: Audit and import electrical catalog expansion
 on:
   push:
     branches: [work/catalog-expansion-2026-10-16]
-    paths: [scripts/audit_product_catalog.py, .github/workflows/catalog_expansion.yml]
+    paths: [scripts/import_catalog_expansion.py, catalog-expansion/prepared-products.json.gz, catalog-expansion/import-manifest.json, .github/workflows/catalog_expansion.yml]
 permissions:
   contents: read
+concurrency:
+  group: obra-manager-product-catalog-expansion
+  cancel-in-progress: false
 jobs:
-  audit:
+  import:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node tests/product-core.mjs
+      - run: npm install --no-save playwright@1.56.1
+      - run: npx playwright install --with-deps chromium
+      - run: node tests/library-browser.cjs
+      - run: node tests/catalog-expansion-browser.cjs
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
       - run: pip install firebase-admin
-      - run: python scripts/audit_product_catalog.py
+      - run: python scripts/import_catalog_expansion.py
         env:
           FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          IMPORT_LIMIT: '50'
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
-          name: product-catalog-audit
-          path: catalog-audit.json
-          retention-days: 7
+          name: catalog-expansion-result
+          path: |
+            catalog-import-result.json
+            catalog-import-created-ids.json
+            hosting-test/
+          retention-days: 14
