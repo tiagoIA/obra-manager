@@ -1,0 +1,32 @@
+{
+  "baseline_sha256": "544694d22ca633754aae0ada3bbde775bf2cc9a9ff942d3e60dd3a3eeb707da3",
+  "files": {
+    "material-attributes.js": "06aad037aec8ad6ff65b38f54749d6216e1f49d2d3f681a11eded2490d876b65",
+    "product-library.js": "b2c7b7d2bbe362405d57f70af4d7ee6797f9309c3bfb79fefd7d2d71bbb1ee57",
+    "product-enrichment.js": "2c37998a1f63c3b787c696b3403762a854aa4f6151271d458c04deb3ab0ae04b",
+    "invoice-store.js": "fd30bb81fd0773751f26c18ad04714ed32d9c97e314a0a7fa8cefeb94a5d3bb9",
+    "shopping-picker-core.js": "eeed331cb802bafa85238f3834445b8b00e80e3efef3af36af48a4731e96fbd4",
+    "costs-dashboard.js": "e2c50bef074b388056332987f44e48930eefa62fbc385fe4a9d92cf4ad2112df",
+    "app.html": "eb0a2f060062cf63529af08fcd987fbf55c817c5debeb4f0ec16edc09a19d01d",
+    "receipt-review.js": "3dad8accce1c63fed20f3ce91ce0c04dd4e3088161a680c3111870c4380ca216",
+    "guided-shopping-v2.js": "8c05b536c4debb22249090811587dcb017cf55cc43ad7b1445b2a6767163e4d0",
+    "shopping-catalog.js": "a7e1750b39146dc64059f2f882c98d05d017b89973e416ed78f9d87fdfffaf17",
+    "product-search.js": "8136a50835633ce8d181f53efafbe4e2ce080325c73c4adcc8acabe182110ef3",
+    "shopping-view-v3.js": "fc94f8cca0c48def260305fbaf32692cb0df9f15164519e727c91bc6d1dc7347",
+    "central-catalog-v1.js": "74eb36adefc0c42910c5d135ea646f398d5402c871cb92d9cd8e5e809c517751",
+    "purchasing-core.js": "e5274d321c802715b41b24ba5f1785a358c1b0f306f5d89030d0381660a8d340"
+  },
+  "baseline_files": {
+    "material-attributes.js": "06aad037aec8ad6ff65b38f54749d6216e1f49d2d3f681a11eded2490d876b65",
+    "invoice-store.js": "98fd48634c2737cc9a65af6ccc43d3c98a48193d41b0828abce96f05f08e1ae3",
+    "shopping-picker-core.js": "f263b3aebd8727702e2baebba6cab110593584264d0cc285f7785c47c9ee5c2b",
+    "costs-dashboard.js": "bd381d18324c8548cdcca7a63bd732f79d5185c7b7aa3c66338427c9f6e0f480",
+    "receipt-review.js": "dcb8f6bb72e2119777bbc855129c0896c4ceef6b9b02b58610793c5df7301eed",
+    "guided-shopping-v2.js": "b33d2edf07cf179127d8784b338d000946c6bead16750d7c4ae349dea5008f15",
+    "shopping-catalog.js": "6f946f4a230c3c3bf796c3c796033eecf3038449ed0697b75139e486b7081407",
+    "shopping-view-v3.js": "de318e9547eba3606e107f73d6e481796156c341270e6882f09e4f8635c69fa0",
+    "central-catalog-v1.js": "39b21d279010a3696e21aa7590a44d2431c984660a08e2bb8ef3cb139f43977d",
+    "purchasing-core.js": "73c3e2609ccb97e488ea33d62d713590bfbe35f3b4e3ec1d37da01eb837f6052"
+  },
+  "review_only": false
+}

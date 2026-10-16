@@ -1,5 +1,5 @@
-import {suppliersFor,shoppingPhoto,displayUnit,SUPPLIER_NAMES,materialSearchText,isMaterialActive} from './central-catalog-v1.js?v=15';
-import {supplierName} from './purchasing-core.js?v=3';
+import {suppliersFor,shoppingPhoto,displayUnit,SUPPLIER_NAMES,materialSearchText,isMaterialActive} from './central-catalog-v1.js?v=library-1';
+import {supplierName} from './purchasing-core.js?v=library-1';
 
 export function registeredStores(materials){return [...new Set(materials.flatMap(m=>suppliersFor(m).map(s=>supplierName(s.name))).filter(Boolean))].sort();}
 export function storeCodes(material,store){return suppliersFor(material).filter(s=>s.code&&s.matchVerified!==false&&(!store||supplierName(s.name)===supplierName(store)));}

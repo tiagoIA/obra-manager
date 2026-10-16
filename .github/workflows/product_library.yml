@@ -1,0 +1,61 @@
+name: Verify and publish product library
+on:
+  push:
+    branches: [feature/product-library-2026-10-16]
+    paths: [public/**, scripts/**, tests/**, .github/workflows/product_library.yml]
+permissions:
+  contents: read
+concurrency:
+  group: obra-manager-hosting-publication
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node tests/product-core.mjs
+      - run: node tests/attributes-core.cjs
+      - run: python tests/collector_test.py
+      - run: |
+          for file in public/product-*.js public/shopping-catalog.js public/shopping-picker-core.js public/purchasing-core.js public/central-catalog-v1.js; do node --check "$file"; done
+          python -c "from pathlib import Path; s=Path('public/app.html').read_text(); Path('/tmp/app-syntax.mjs').write_text(s.split('<script type=\"module\">',1)[1].split('</script>',1)[0])"
+          node --check /tmp/app-syntax.mjs
+      - run: npm install --no-save playwright@1.56.1
+      - run: npx playwright install --with-deps chromium
+      - run: node tests/library-browser.cjs
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install google-auth requests
+      - run: python scripts/publish_library.py
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: product-library-review-${{ github.run_id }}
+          path: hosting-test/
+          retention-days: 7
+  collect:
+    needs: publish
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install firebase-admin
+      - run: python scripts/collect_product_references.py --firestore --output product-reference-candidates.json
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: product-reference-candidates-${{ github.run_id }}
+          path: product-reference-candidates.json
+          retention-days: 7

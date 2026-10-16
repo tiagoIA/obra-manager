@@ -5500,7 +5500,7 @@ window.filterTaskMaterials=(val)=>{
   const sq=val.toLowerCase().trim();
   if(!sq){dd.style.display='none';dd.innerHTML='';return;}
   const allM=Object.values(materials).filter(m=>!m.isTask&&m.active!==false&&m.status!=='inactive').sort((a,b)=>a.name.localeCompare(b.name));
-  const filtered=allM.filter(m=>materialSearchText(m).includes(sq));
+  const filtered=allM.filter(m=>matchesMaterial(m,sq));
   if(!filtered.length){
     dd.innerHTML='<div class="mat-drop-none" style="padding:12px 14px;font-size:12px;color:var(--dim);font-style:italic">No match — task will use custom name</div>';
     dd.style.display='block';return;
@@ -5528,7 +5528,7 @@ window.filterShopMaterials=(val,dropId,hiddenId)=>{
   const sq=val.toLowerCase().trim();
   if(!sq){dd.style.display='none';return;}
   const allM=Object.values(materials).filter(m=>!m.isTask&&m.active!==false&&m.status!=='inactive').sort((a,b)=>a.name.localeCompare(b.name));
-  const filtered=allM.filter(m=>materialSearchText(m).includes(sq)).slice(0,10);
+  const filtered=allM.filter(m=>matchesMaterial(m,sq)).slice(0,10);
   dd.innerHTML='';
   if(!filtered.length){
     const none=document.createElement('div');
@@ -7875,7 +7875,7 @@ window.renderMatReport=function(){
   const allMats=Object.values(materials).filter(m=>!m.isTask).sort((a,b)=>a.name.localeCompare(b.name));
   const sq=(_matRpt.search||'').toLowerCase();
   let filtered=allMats.filter(m=>{
-    if(sq&&!materialSearchText(m).includes(sq))return false;
+    if(sq&&!matchesMaterial(m,sq))return false;
     if(_matRpt.cat!=='all'&&m.cat!==_matRpt.cat)return false;
     if(_matRpt.scope!=='all'){
       if(!m.scope&&_matRpt.scope!=='none')return false;
@@ -7925,7 +7925,7 @@ window.printMatReport=function(){
   const allMats=Object.values(materials).filter(m=>!m.isTask).sort((a,b)=>a.name.localeCompare(b.name));
   const sq=(_matRpt.search||'').toLowerCase();
   let filtered=allMats.filter(m=>{
-    if(sq&&!materialSearchText(m).includes(sq))return false;
+    if(sq&&!matchesMaterial(m,sq))return false;
     if(_matRpt.cat!=='all'&&m.cat!==_matRpt.cat)return false;
     return true;
   }).map(m=>{
@@ -9061,14 +9061,15 @@ function renderMaterials(el){
   if(window.matSearch!==undefined)matSearch=window.matSearch;
   const sq=matSearch.toLowerCase();
   const activeSub=window._matSubcat||'all';
+  if(activeMatTab==='materials'){window.productLibrary.render(el);return;}
   // MATERIALS tab
   const lifecycle=window._materialLifecycle||'active';
   const allMats=Object.values(materials).filter(m=>!m.isTask&&(lifecycle==='all'||((m.active!==false&&m.status!=='inactive')===(lifecycle==='active')))).sort((a,b)=>a.name.localeCompare(b.name));
   const scopeF=m=>{if(activeScopeTab==='all')return true;if(!m.scope)return true;return m.scope===activeScopeTab||m.scope==='RC';};
   const subcatF=m=>activeSub==='all'||(m.subcategory||'').toLowerCase()===activeSub;
-  const elecMats=allMats.filter(m=>m.cat==='eletrica'&&(!sq||materialSearchText(m).includes(sq))&&scopeF(m)&&subcatF(m));
-  const fireMats=allMats.filter(m=>m.cat==='fire'&&(!sq||materialSearchText(m).includes(sq))&&scopeF(m)&&subcatF(m));
-  const otherMats=allMats.filter(m=>m.cat!=='eletrica'&&m.cat!=='fire'&&(!sq||materialSearchText(m).includes(sq))&&scopeF(m)&&subcatF(m));
+  const elecMats=allMats.filter(m=>m.cat==='eletrica'&&(!sq||matchesMaterial(m,sq))&&scopeF(m)&&subcatF(m));
+  const fireMats=allMats.filter(m=>m.cat==='fire'&&(!sq||matchesMaterial(m,sq))&&scopeF(m)&&subcatF(m));
+  const otherMats=allMats.filter(m=>m.cat!=='eletrica'&&m.cat!=='fire'&&(!sq||matchesMaterial(m,sq))&&scopeF(m)&&subcatF(m));
   // TASKS tab (DEFAULT_TASKS as global library)
   const allTaskLib=Object.values(materials).filter(m=>m.isTask).sort((a,b)=>a.name.localeCompare(b.name));
   const elecTaskLib=allTaskLib.filter(t=>t.cat==='eletrica'&&(!sq||t.name.toLowerCase().includes(sq)));
@@ -13086,10 +13087,10 @@ window._renderRemindersList=function(){
 
 
 // Receipt prices are derived from reviewed purchase records; no stock mutation.
-import {applyPurchasePrices,purchaseProducts,digest as purchaseDigest} from '/purchasing-core.js?v=3';
-import {installReceiptReview} from '/receipt-review.js?v=3';
-import {persistPurchase,changePurchaseStatus,linkPurchaseItem} from '/invoice-store.js?v=3';
-import {installCostsDashboard} from '/costs-dashboard.js?v=3';
+import {applyPurchasePrices,purchaseProducts,digest as purchaseDigest} from '/purchasing-core.js?v=library-1';
+import {installReceiptReview} from '/receipt-review.js?v=library-1';
+import {persistPurchase,changePurchaseStatus,linkPurchaseItem} from '/invoice-store.js?v=library-1';
+import {installCostsDashboard} from '/costs-dashboard.js?v=library-1';
 import {deleteObject} from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js';
 function purchasingMaterials(){return applyPurchasePrices(Object.values(materials),Object.values(invoices),Object.values(invoiceItems));}
 const purchaseHost={
@@ -13109,7 +13110,7 @@ onAuthStateChanged(auth,user=>{if(!user)window.receiptReview?.close();});
 
 // Guided shopping integration: uses existing collections and authentication.
 import {writeBatch, runTransaction} from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
-import {installGuidedShopping} from '/guided-shopping-v2.js?v=3';
+import {installGuidedShopping} from '/guided-shopping-v2.js?v=library-1';
 onAuthStateChanged(auth,user=>{if(!user)document.getElementById('guided-shopping-dialog')?.remove();});
 installGuidedShopping({
  userId:()=>auth.currentUser?.uid||null,
@@ -13154,9 +13155,11 @@ installGuidedShopping({
 });
 
 // Expanded product catalog and purchasing documents use the same central material records.
-import {installCentralCatalog, materialSearchText, displayUnit, shoppingPhoto} from '/central-catalog-v1.js?v=16';
-import {materialUses} from '/guided-shopping-v2.js?v=3';
-import {installShoppingView} from '/shopping-view-v3.js?v=1';
+import {matchesMaterial} from '/product-search.js?v=1';
+import {installProductLibrary} from '/product-library.js?v=1';
+import {installCentralCatalog, materialSearchText, displayUnit, shoppingPhoto} from '/central-catalog-v1.js?v=library-1';
+import {materialUses} from '/guided-shopping-v2.js?v=library-1';
+import {installShoppingView} from '/shopping-view-v3.js?v=library-1';
 window.shoppingView=installShoppingView({
  data:()=>({lists:Object.values(shoppingLists),items:Object.values(shoppingItems),materials:purchasingMaterials(),projects:Object.values(projects),rooms:Object.values(rooms)}),
  active:()=>activeShopListId,setActive:id=>{activeShopListId=id;},create:()=>window.guidedShopping.launch(),quick:()=>window.openNewShopList(),
@@ -13182,7 +13185,7 @@ window.shoppingView=installShoppingView({
  }
 });
 
-onAuthStateChanged(auth,user=>{if(!user)document.getElementById('central-material-dialog')?.remove();});
+onAuthStateChanged(auth,user=>{if(!user){document.getElementById('central-material-dialog')?.remove();window.productLibrary?.reset();}});
 installCentralCatalog({
  materials:()=>purchasingMaterials(),canEdit:()=>hasRole('owner'),inferredUses:materialUses,
  list:id=>shoppingLists[id],items:id=>Object.values(shoppingItems).filter(i=>i.listId===id),
@@ -13190,7 +13193,7 @@ installCentralCatalog({
  saveMaterial:async(id,p)=>{
   if(!auth.currentUser||!hasRole('owner'))throw Error('Only the owner can edit the library.');
   const ref=id?doc(db,'materials',id):doc(collection(db,'materials'));
-  const keys=['active','status','name','cat','unit','sku','brand','manufacturerPart','upc','description','specs','family','subcategory','sourceUrl','photoUrl','packQuantity','packUnit','recordType','suppliers','guidedUses','scope','catalogFamily','productType','tradeSize','amperage','protection','series','poles','voltage','neutralConnection','wireGauge','cableConfiguration','dimensions','length','finish','variantGroup','compatibilityStatus','compatiblePanels','compatibilitySource'];
+  const keys=['active','status','name','cat','unit','sku','brand','manufacturerPart','upc','description','specs','family','subcategory','sourceUrl','photoUrl','packQuantity','packUnit','recordType','suppliers','guidedUses','scope','catalogFamily','productType','tradeSize','amperage','protection','series','poles','voltage','neutralConnection','wireGauge','cableConfiguration','dimensions','length','finish','variantGroup','compatibilityStatus','compatiblePanels','compatibilitySource','aliases'];
   p.active=p.active!==false&&p.status!=='inactive';p.status=p.active?'active':'inactive';
   const data={};keys.forEach(k=>{if(p[k]!==undefined)data[k]=p[k];});
   if(!data.sku)data.sku='MAT-'+ref.id.slice(0,10).toUpperCase();data.updatedAt=serverTimestamp();
@@ -13199,6 +13202,24 @@ installCentralCatalog({
  }
 });
 
+window.productLibrary=installProductLibrary({
+ materials:()=>purchasingMaterials().filter(m=>activeScopeTab==='all'||!m.scope||m.scope===activeScopeTab||m.scope==='RC'),
+ user:()=>auth.currentUser?.uid||'',canEdit:()=>hasRole('owner'),edit:id=>window.centralCatalog.edit(id),create:(seed={})=>window.centralCatalog.create(seed),coverage:()=>window.centralCatalog.coverage(),
+ tasks:()=>{activeMatTab='tasks';renderContent();},report:()=>window.openMatReport(),notify:notif,
+ lists:()=>Object.values(shoppingLists).filter(l=>!l.done&&(!l.projectId||projects[l.projectId])),
+ add:async(mid,qty,lid)=>{if(!auth.currentUser)throw Error('Sign in again.');const ref=doc(db,'shoppingItems','catalog-'+lid+'-'+mid),lr=doc(db,'shoppingLists',lid);
+ await runTransaction(db,async tx=>{const list=await tx.get(lr),mat=await tx.get(doc(db,'materials',mid)),existing=await tx.get(ref);if(existing.exists())throw Error('This product was already added through the library. Adjust its quantity in the list.');if(!list.exists()||!mat.exists())throw Error('The list or product is unavailable.');const m=mat.data();if(m.active===false||m.status==='inactive'||m.recordType==='family'||m.catalogReviewStatus==='needs-identification')throw Error('Choose an active exact product.');
+ const duplicate=Object.values(shoppingItems).some(i=>i.listId===lid&&i.matId===mid);if(duplicate)throw Error('This exact product is already in the list. Adjust its quantity there.');
+ tx.set(ref,{listId:lid,matId:mid,name:m.name,cat:m.cat||'geral',qty,unit:m.unit||'ea',bought:false,createdAt:serverTimestamp()});tx.update(lr,{estimateSnapshot:null,updatedAt:serverTimestamp()});});
+ },
+ save:async(id,p)=>{if(!hasRole('owner')||!auth.currentUser)throw Error('Only the owner can update the library.');const mr=doc(db,'materials',id);
+ await runTransaction(db,async tx=>{const snap=await tx.get(mr);if(!snap.exists())throw Error('Product was removed.');const current=snap.data();const supplier=p.supplier;const suppliers=(current.suppliers||[]).map(r=>({...r}));if(supplier){const n=suppliers.findIndex(r=>r.name===supplier.name&&String(r.code||r.internetId||'')===String(supplier.code||supplier.internetId||''));if(n<0)suppliers.push(supplier);else suppliers[n]={...suppliers[n],...supplier};}
+ const changes={suppliers,updatedAt:serverTimestamp()};if(p.photoUrl&&!current.photoUrl){changes.photoUrl=p.photoUrl;changes.photoReferenceNote=p.photoReferenceNote||'Reviewed supplier image';}tx.update(mr,changes);});
+ },
+});
+
+window.autoFillPhoto=async()=>{window.productLibrary.openReview();return false;};
+window.autoFillAllPhotos=async()=>window.productLibrary.openReview();
 // Lifecycle actions retain IDs, stock and historical references.
 const legacyDeleteMaterial=window.deleteMaterial;
 window.deleteMaterial=async id=>{
