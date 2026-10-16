@@ -1,5 +1,9 @@
 # Multi-company isolation groundwork
 
+Local registration and invitation checks were rerun on 2026-10-16: 23 and 33 passed.
+Seven additional consumption scenarios passed. See `CONSUMPTION.md` for measured
+application request counts, exclusions, reproduction steps and hosted project status.
+
 ## Company registration pilot — 2026-10-16
 
 The separate `site/` landing page links to its company registration form. It requires
