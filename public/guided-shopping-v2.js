@@ -1,7 +1,8 @@
+import {openSuggestionReview} from './purchase-suggestions-ui.js?v=1';
 import {mountShoppingCatalog} from './shopping-catalog.js?v=material-variants-20261016';
 import {selectedSummary} from './shopping-picker-core.js?v=material-variants-20261016';
 import {estimateList,money,supplierName} from './purchasing-core.js?v=library-1';
-import {shoppingPhoto} from './central-catalog-v1.js?v=material-variants-20261016';
+import {shoppingPhoto} from './central-catalog-v1.js?v=purchase-suggestions-1';
 // Guided Shopping v1: isolated UI; persistence is provided by the existing app.
 export const PRESETS = [
  ['panel','Panel replacement','eletrica',['Compatible panel and cover','Breakers by circuit','Entry connectors','Circuit identification'],['Existing and new manufacturer/model','Circuits and poles; reused items']],
@@ -63,11 +64,11 @@ export function suggestedMaterials(materials,services){
 }
 export function catalogItem(m){return {name:m.name,matId:m.id,cat:m.cat||'geral',unit:m.unit||'un',qty:1,obs:'',bought:false,boughtAt:null};}
 export function installGuidedShopping(host){
- let draft=null,busy=false,dialog=null;
+ let draft=null,busy=false,dialog=null,showSuggestions=()=>{};
  const key=()=> 'guided-shopping-v3:'+host.userId();
  const persist=()=>{if(draft&&host.userId())try{sessionStorage.setItem(key(),JSON.stringify(draft));}catch{}};
  const error=e=>host.notify(e.message||'Could not save. Try again.','e');
- const close=()=>{if(busy)return;persist();dialog?.remove();dialog=null;};
+ const close=()=>{if(busy)return;document.getElementById('purchase-suggestions-dialog')?.remove();persist();dialog?.remove();dialog=null;};
  const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;};
  function btn(text,action,primary=false){const b=el('button',text,primary?'gs-btn gs-primary':'gs-btn');b.type='button';b.onclick=action;return b;}
  function styles(){if(document.getElementById('gs-styles'))return;const s=el('style');s.id='gs-styles';s.textContent=`
@@ -164,13 +165,14 @@ export function installGuidedShopping(host){
   const extras=el('details',undefined,'gs-details');extras.append(el('summary','Tools and templates'));
   const pipe=el('details',undefined,'gs-details');pipe.append(el('summary','Estimate conduit sticks'));let length='',bar='10',margin='0',unit='ft';field(pipe,'Measured length',length,v=>length=v,'number');field(pipe,'Stick length',bar,v=>bar=v,'number');select(pipe,'Measurement unit',unit,[['ft','ft'],['m','m']],v=>unit=v);field(pipe,'Margin (%)',margin,v=>margin=v,'number');pipe.append(btn('Add estimate',()=>{try{const qty=pipeBars(Number(length),Number(bar),Number(margin));draft.items.push({name:'Conduit — specify type and size',qty,unit:'stick',cat:'eletrica',matId:null,obs:`${length} ${unit}; sticks of ${bar} ${unit}; margin ${margin}%. Review cuts and fittings.`,bought:false,boughtAt:null});resetReview();renderPicked();selected.open=true;}catch(e){error(e);}}));extras.append(pipe,btn('Save as new template',saveTemplate),btn('Save draft on this device',()=>{persist();host.notify('Draft saved in this device session.','s');}));box.append(extras);
   const checkout=el('div',undefined,'gs-checkout');const review=el('label',undefined,'gs-check');reviewCheck=el('input');reviewCheck.type='checkbox';reviewCheck.checked=!!draft.reviewed;reviewCheck.onchange=()=>{draft.reviewed=reviewCheck.checked;persist();};review.append(reviewCheck,el('span','I checked the products and quantities.'));selected.append(review,estimate);checkout.classList.add('mc-checkout-marker');
-  const actions=el('div',undefined,'gs-actions');actions.append(summary,btn('Review list',()=>{selected.open=true;selected.scrollIntoView({behavior:'smooth',block:'start'});}),btn(draft.editId?'Save changes':'Create list',saveList,true));checkout.append(actions);box.append(checkout);renderPicked();showPane();updateEstimate();persist();
+  showSuggestions=()=>{draft.suggestionAnswers=draft.suggestionAnswers||{};draft.suggestionDismissed=draft.suggestionDismissed||{};openSuggestionReview({items:()=>draft.items,materials:host.materials,answers:draft.suggestionAnswers,dismissed:draft.suggestionDismissed,persist,changed:()=>{resetReview();renderPicked();refreshCatalog();}});};
+  const actions=el('div',undefined,'gs-actions');actions.append(summary,btn('Review suggestions',showSuggestions),btn('Review list',()=>{selected.open=true;selected.scrollIntoView({behavior:'smooth',block:'start'});}),btn(draft.editId?'Save changes':'Create list',saveList,true));checkout.append(actions);box.append(checkout);renderPicked();showPane();updateEstimate();persist();
  }
  async function saveTemplate(){if(busy)return;try{if(!draft.name.trim())throw Error('Enter the template name.');if(!draft.items.length||draft.items.some(i=>!i.name?.trim()))throw Error('Select materials before saving the template.');busy=true;await host.saveTemplate({name:draft.name.trim(),note:draft.note,items:draft.items.map(({id,bought,boughtAt,...i})=>i),questions:[],useIds:[...new Set(draft.services.flatMap(s=>s.useIds||[s.id.replace('guided-v1-','')]))],version:2});host.notify('New template saved in Guided Shopping.','s');}catch(e){error(e);}finally{busy=false;}}
  async function saveList(){if(busy)return;try{if(!draft.name.trim())throw Error('Enter the list name.');validateItems(draft.items);const historical=new Set((draft.baseItems||[]).map(i=>i.matId));if(draft.items.some(i=>i.matId&&!historical.has(i.matId)&&!materials().some(m=>m.id===i.matId)))throw Error('A selected material is inactive. Remove it or choose an active replacement.');if(!draft.reviewed)throw Error('Confirm your review before creating the list.');busy=true;draft.estimateSnapshot={...estimateList(draft.items,host.materials(),draft.supplier||''),asOf:new Date().toISOString(),beforeTax:true};const id=await host.saveList(copy(draft));sessionStorage.removeItem(key());draft=null;dialog?.remove();dialog=null;host.openList(id);host.notify('List saved. You can continue customizing it.','s');}catch(e){error(e);}finally{busy=false;}}
- function edit(id){const list=host.list(id);if(!list)return;draft={editId:id,baseList:copy(list),baseItems:host.items(id).map(copy),name:list.name,note:list.note||'',projectId:list.projectId||'',supplier:list.purchasingSupplier||'',mode:list.guidedMode||'custom',services:(list.guidedServices||[]).map(s=>copy(host.templates().find(t=>t.id===s.id)||s)),answers:copy(list.guidedAnswers||{}),reviewed:false,items:host.items(id).map(copy)};editor();}
+ function edit(id){const list=host.list(id);if(!list)return;draft={editId:id,baseList:copy(list),baseItems:host.items(id).map(copy),name:list.name,note:list.note||'',projectId:list.projectId||'',supplier:list.purchasingSupplier||'',mode:list.guidedMode||'custom',services:(list.guidedServices||[]).map(s=>copy(host.templates().find(t=>t.id===s.id)||s)),answers:copy(list.guidedAnswers||{}),reviewed:false,suggestionAnswers:copy(list.suggestionAnswers||{}),suggestionDismissed:copy(list.suggestionDismissed||{}),items:host.items(id).map(copy)};editor();}
  function saveExistingTemplate(id){const l=host.list(id);if(!l)return;draft={name:l.name,note:l.note||'',items:host.items(id).map(copy),services:[],answers:{},projectId:l.projectId||'',mode:'custom',reviewed:false};editor();}
- window.guidedShopping={launch,edit,saveExistingTemplate,reuse,version:15};window.addEventListener('keydown',e=>{if(e.key==='Escape'&&dialog)close();});
+ window.guidedShopping={launch,edit,reviewSuggestions:id=>{edit(id);if(draft?.editId===id)showSuggestions();},saveExistingTemplate,reuse,version:15};window.addEventListener('keydown',e=>{if(e.key==='Escape'&&dialog)close();});
 }
 
 

@@ -13110,8 +13110,8 @@ onAuthStateChanged(auth,user=>{if(!user)window.receiptReview?.close();});
 
 // Guided shopping integration: uses existing collections and authentication.
 import {writeBatch, runTransaction} from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
-import {installGuidedShopping} from '/guided-shopping-v2.js?v=material-variants-20261016';
-onAuthStateChanged(auth,user=>{if(!user)document.getElementById('guided-shopping-dialog')?.remove();});
+import {installGuidedShopping} from '/guided-shopping-v2.js?v=purchase-suggestions-1';
+onAuthStateChanged(auth,user=>{if(!user){document.getElementById('guided-shopping-dialog')?.remove();document.getElementById('purchase-suggestions-dialog')?.remove();}});
 installGuidedShopping({
  userId:()=>auth.currentUser?.uid||null,
  projectId:()=>activePid,
@@ -13133,8 +13133,8 @@ installGuidedShopping({
   const user=auth.currentUser;if(!user)throw Error('Sign in again.');
   if(draft.items.length>200)throw Error('Use up to 200 materials per list in this version.');
   const listRef=draft.editId?doc(db,'shoppingLists',draft.editId):doc(collection(db,'shoppingLists'));
-  const data={name:draft.name.trim(),note:draft.note||'',projectId:draft.projectId||null,purchasingSupplier:draft.supplier||'',estimateSnapshot:draft.estimateSnapshot||null,guidedMode:draft.mode,guidedAnswers:draft.answers||{},guidedServices:(draft.services||[]).map(s=>({id:s.id,name:s.name,version:s.version||1,...(s.useIds?{useIds:s.useIds}:{})})),updatedAt:serverTimestamp()};
-  const itemData=i=>({listId:listRef.id,matId:i.matId||null,name:i.name.trim(),cat:i.cat||'geral',unit:i.unit.trim(),qty:Number(i.qty),obs:i.obs||'',referenceMaterialId:i.referenceMaterialId||null,referencePhotoUrl:i.referencePhotoUrl||null,photoReferenceNote:i.photoReferenceNote||'',roomId:i.roomId||null,roomName:i.roomName||null,bought:!!i.bought,boughtAt:i.boughtAt||null});
+  const data={name:draft.name.trim(),note:draft.note||'',projectId:draft.projectId||null,purchasingSupplier:draft.supplier||'',estimateSnapshot:draft.estimateSnapshot||null,guidedMode:draft.mode,guidedAnswers:draft.answers||{},suggestionAnswers:draft.suggestionAnswers||{},suggestionDismissed:draft.suggestionDismissed||{},guidedServices:(draft.services||[]).map(s=>({id:s.id,name:s.name,version:s.version||1,...(s.useIds?{useIds:s.useIds}:{})})),updatedAt:serverTimestamp()};
+  const itemData=i=>({listId:listRef.id,matId:i.matId||null,name:i.name.trim(),cat:i.cat||'geral',unit:i.unit.trim(),qty:Number(i.qty),obs:i.obs||'',referenceMaterialId:i.referenceMaterialId||null,referencePhotoUrl:i.referencePhotoUrl||null,photoReferenceNote:i.photoReferenceNote||'',roomId:i.roomId||null,roomName:i.roomName||null,bought:!!i.bought,boughtAt:i.boughtAt||null,suggestionSource:i.suggestionSource||null});
   if(!draft.editId){
    const batch=writeBatch(db);batch.set(listRef,{...data,createdBy:user.uid,done:false,createdAt:serverTimestamp()});
    draft.items.forEach(i=>batch.set(doc(collection(db,'shoppingItems')),{...itemData(i),createdAt:serverTimestamp()}));await batch.commit();
@@ -13142,7 +13142,7 @@ installGuidedShopping({
    const base=draft.baseItems||[];
    await runTransaction(db,async tx=>{
     const list=await tx.get(listRef);if(!list.exists())throw Error('This list was removed.');
-    if(draft.baseList)for(const k of ['name','note','projectId','purchasingSupplier','guidedAnswers','guidedServices'])if(JSON.stringify(list.data()[k]??null)!==JSON.stringify(draft.baseList[k]??null))throw Error('Another person changed the list. Close and reopen it.');
+    if(draft.baseList)for(const k of ['name','note','projectId','purchasingSupplier','guidedAnswers','guidedServices','suggestionAnswers','suggestionDismissed','updatedAt'])if(JSON.stringify(list.data()[k]??null)!==JSON.stringify(draft.baseList[k]??null))throw Error('Another person changed the list. Close and reopen it.');
     const current=[];for(const i of base){const snap=await tx.get(doc(db,'shoppingItems',i.id));if(!snap.exists())throw Error('The list changed. Close and reopen it before editing.');current.push(snap);}
     current.forEach((s,n)=>{const before=base[n],now=s.data();for(const k of ['name','qty','unit','obs','bought','boughtAt','matId','referenceMaterialId','referencePhotoUrl','photoReferenceNote'])if(JSON.stringify(now[k]??null)!==JSON.stringify(before[k]??null))throw Error('Another person changed this list. Close and reopen it to review.');});
     tx.update(listRef,data);
@@ -13157,9 +13157,9 @@ installGuidedShopping({
 // Expanded product catalog and purchasing documents use the same central material records.
 import {matchesMaterial} from '/product-search.js?v=material-variants-20261016';
 import {installProductLibrary} from '/product-library.js?v=material-variants-20261016';
-import {installCentralCatalog, materialSearchText, displayUnit, shoppingPhoto} from '/central-catalog-v1.js?v=material-variants-20261016';
-import {materialUses} from '/guided-shopping-v2.js?v=material-variants-20261016';
-import {installShoppingView} from '/shopping-view-v3.js?v=material-variants-20261016';
+import {installCentralCatalog, materialSearchText, displayUnit, shoppingPhoto} from '/central-catalog-v1.js?v=purchase-suggestions-1';
+import {materialUses} from '/guided-shopping-v2.js?v=purchase-suggestions-1';
+import {installShoppingView} from '/shopping-view-v3.js?v=purchase-suggestions-1';
 window.shoppingView=installShoppingView({
  data:()=>({lists:Object.values(shoppingLists),items:Object.values(shoppingItems),materials:purchasingMaterials(),projects:Object.values(projects),rooms:Object.values(rooms)}),
  active:()=>activeShopListId,setActive:id=>{activeShopListId=id;},create:()=>window.guidedShopping.launch(),quick:()=>window.openNewShopList(),
@@ -13193,7 +13193,7 @@ installCentralCatalog({
  saveMaterial:async(id,p)=>{
   if(!auth.currentUser||!hasRole('owner'))throw Error('Only the owner can edit the library.');
   const ref=id?doc(db,'materials',id):doc(collection(db,'materials'));
-  const keys=['active','status','name','cat','unit','sku','brand','manufacturerPart','upc','description','specs','family','subcategory','sourceUrl','photoUrl','packQuantity','packUnit','recordType','suppliers','guidedUses','scope','catalogFamily','productType','tradeSize','amperage','protection','series','poles','voltage','neutralConnection','wireGauge','cableConfiguration','dimensions','length','finish','variantGroup','compatibilityStatus','compatiblePanels','compatibilitySource','aliases','boxWidth','boxHeight','boxDepth','boxVolume','gangs','boxMaterial','boxShape','workType','knockouts','mountingType','useLocation','boxApplication','connectionType','wireType','conductorMaterial','constructionMaterial','diameter','wattage','lumens','colorTemperature'];
+  const keys=['active','status','name','cat','unit','sku','brand','manufacturerPart','upc','description','specs','family','subcategory','sourceUrl','photoUrl','packQuantity','packUnit','recordType','suppliers','guidedUses','scope','catalogFamily','productType','tradeSize','amperage','protection','series','poles','voltage','neutralConnection','wireGauge','cableConfiguration','dimensions','length','finish','variantGroup','compatibilityStatus','compatiblePanels','compatibilitySource','aliases','boxWidth','boxHeight','boxDepth','boxVolume','gangs','boxMaterial','boxShape','workType','knockouts','mountingType','useLocation','boxApplication','connectionType','wireType','conductorMaterial','constructionMaterial','diameter','wattage','lumens','colorTemperature','accessoryRelations'];
   p.active=p.active!==false&&p.status!=='inactive';p.status=p.active?'active':'inactive';
   const data={};keys.forEach(k=>{if(p[k]!==undefined)data[k]=p[k];});
   if(!data.sku)data.sku='MAT-'+ref.id.slice(0,10).toUpperCase();data.updatedAt=serverTimestamp();

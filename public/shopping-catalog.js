@@ -1,7 +1,7 @@
 import {rankProducts} from './product-search.js?v=material-variants-20261016';
 import {FAMILIES,familyOf,tradeSizes,ampRatings,FACETS,facetKeys,attributeValues,typeOf,compatibilityVerified,groupVariants} from './material-attributes.js?v=material-variants-20261016';
 import {matchesMaterial} from './shopping-picker-core.js?v=material-variants-20261016';
-import {suppliersFor,displayUnit} from './central-catalog-v1.js?v=material-variants-20261016';
+import {suppliersFor,displayUnit} from './central-catalog-v1.js?v=purchase-suggestions-1';
 import {estimateRow,money,supplierName} from './purchasing-core.js?v=library-1';
 
 export const DEPARTMENTS=[['all','All departments','▦'],['eletrica','Electrical','⚡'],['fire','Fire alarm','◉'],['other','Other materials','⌘']];

@@ -1,0 +1,37 @@
+name: Verify and publish native purchase suggestions
+on:
+  push:
+    branches: [feature/purchase-suggestions-2026-10-16]
+    paths: [public/**, tests/suggestions*, scripts/suggestion-publication.json, .github/workflows/purchase_suggestions.yml]
+permissions:
+  contents: read
+concurrency:
+  group: obra-manager-hosting-publication
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node --experimental-vm-modules tests/suggestions-core.mjs
+      - run: node tests/product-core.mjs && node tests/attributes-core.cjs && node tests/box-variants.mjs
+      - run: npm install --no-save playwright@1.56.1
+      - run: npx playwright install --with-deps chromium
+      - run: node tests/suggestions-browser.cjs
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install google-auth requests
+      - run: python scripts/publish_suggestions.py
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: purchase-suggestions-review-${{ github.run_id }}
+          path: hosting-test/
+          retention-days: 7
