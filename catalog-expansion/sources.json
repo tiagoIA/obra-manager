@@ -1,0 +1,56 @@
+{
+  "targetMinimumLiveProducts": 3000,
+  "secondaryPhotoRequired": false,
+  "preferredPurchasingSources": [
+    {
+      "name": "Granite City Electric",
+      "confirmedByUser": true,
+      "domain": "granitecityelectric.com",
+      "categorySources": [
+        "https://www.granitecityelectric.com/all-categories",
+        "https://www.granitecityelectric.com/conduit-and-raceways--7",
+        "https://www.granitecityelectric.com/conduit-fittings-bodies-outlet-boxes-and-accessories--6",
+        "https://www.granitecityelectric.com/steel-rigid-conduit-fittings--5",
+        "https://www.granitecityelectric.com/emt-conduit-bodies-only--6"
+      ],
+      "observedMetadata": [
+        "manufacturer reference",
+        "store item code",
+        "category",
+        "product title"
+      ],
+      "accessStatus": "Search-indexed pages found; direct requests returned 403/453/455. No bulk product import confirmed.",
+      "observedIndexedCounts": {
+        "steelRigidConduitFittings": 836,
+        "EMTConduitBodies": 18
+      },
+      "countCaveat": "Indexed listing counts are not verified current inventory and are not collected or imported record counts."
+    },
+    {
+      "spokenName": "ICS",
+      "confirmedByUser": true,
+      "resolvedBusinessName": null,
+      "possibleMatch": "Electric Supply Center (ESC)",
+      "possibleWebsite": "https://www.escctr.net/",
+      "identityNeedsConfirmation": true
+    }
+  ],
+  "discoverySources": [
+    {
+      "name": "Home Depot",
+      "purpose": "Discover electrical families, real sizes and exact retailer identities",
+      "url": "https://www.homedepot.com/b/Electrical/N-5yc1vZarcd"
+    },
+    {
+      "name": "Lowe's",
+      "purpose": "Discover electrical families, sizes and exact retailer identities",
+      "url": "https://www.lowes.com/c/Electrical"
+    },
+    {
+      "name": "Manufacturer catalogs",
+      "purpose": "Confirm exact manufacturer model, technical characteristics and images"
+    }
+  ],
+  "mergePolicy": "Never merge by name only. Match exact verified manufacturer/model or valid barcode; retain separate supplier item codes. Compare size, packaging and variant. No inferred availability or account prices.",
+  "status": "Discovery and source planning; no live catalog writes."
+}
