@@ -32,3 +32,8 @@ jobs:
         env:
           FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
         run: python ops/attach_lights.py
+
+      - name: Save 12-2 boiler standby details and photo
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: python ops/attach_boiler.py
