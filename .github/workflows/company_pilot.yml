@@ -1,0 +1,45 @@
+name: Validate company signup and discover staging access
+on:
+  push:
+    branches: [feature/company-registration-2026-10-16]
+    paths: [pilot/**, scripts/check_company_staging.py, scripts/ensure_company_staging.py, scripts/check-company-signup.cjs, .github/workflows/company_pilot.yml]
+permissions:
+  contents: read
+jobs:
+  local-validation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+        working-directory: pilot
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+        working-directory: pilot/functions
+      - name: Validate registration, invitations and consumption locally
+        working-directory: pilot
+        run: npx firebase emulators:exec --project demo-obra-company-pilot --only firestore 'node test-registration.mjs && node test-invitations.mjs && node test-consumption.mjs'
+  staging-access:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install google-auth requests
+      - name: Discover separate staging project (read only)
+        run: python scripts/check_company_staging.py
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: company-staging-access-${{ github.run_id }}
+          path: company-pilot-results/
+          retention-days: 30

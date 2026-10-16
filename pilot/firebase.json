@@ -1,7 +1,12 @@
 {
+  "functions": {"source": "functions", "codebase": "company-pilot"},
+  "hosting": {"public": "site", "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]},
   "firestore": {"rules": "firestore.rules"},
   "storage": {"rules": "storage.rules"},
   "emulators": {
+    "auth": {"host": "127.0.0.1", "port": 9099},
+    "functions": {"host": "127.0.0.1", "port": 5001},
+    "hosting": {"host": "127.0.0.1", "port": 5000},
     "firestore": {"host": "127.0.0.1", "port": 8180},
     "storage": {"host": "127.0.0.1", "port": 9299},
     "ui": {"enabled": false},
