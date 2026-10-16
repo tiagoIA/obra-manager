@@ -13,7 +13,7 @@
     "shopping-catalog.js": "e1f38ca5bfe37deb97b7035df702c7224e7b0d54c1957588f674db8214d710b1",
     "shopping-view-v3.js": "53d93cdbdd6210b31708be8307729372168e9b2fa05f55b4bd878c3f8719e6cd",
     "central-catalog-v1.js": "81a1160588174850b85f0121e3b13bbe8d56865a6a239be7c6a84baba375272b",
-    "purchase-suggestions-ui.js": "5d88debb9df44414c776fed450385f061dbea76898f7ccd52ed170a5d6a345f0"
+    "purchase-suggestions-ui.js": "9de9b29cdf8d3bfc195e7ee8fe874bd80e900ee268d0e8d7347869c6b5dc2cef"
   },
-  "review_only": true
+  "review_only": false
 }
