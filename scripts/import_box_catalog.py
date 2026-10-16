@@ -33,6 +33,8 @@ def main():
   if identity(saved)!=row['identity']:raise ValueError('Existing product identity changed')
   if not active(saved):continue
   patch={k:v for k,v in row['attributes'].items() if k not in saved or saved[k] is None or saved[k]==''}
+  if row.get('correctBoxFamily') and saved.get('catalogFamily') not in ('boxes','solar','ev'):
+   patch.update(catalogFamily='boxes',family='boxes')
   if not patch:continue
   # Metadata is also missing-only; existing provenance stays intact.
   if not saved.get('boxSpecificationSource'):patch['boxSpecificationSource']=row['sourceUrl']
@@ -64,6 +66,6 @@ def main():
   old=snap.to_dict()
   for k,v in old.items():
    if k not in patch and after[snap.id].get(k)!=v:raise ValueError('Existing field changed')
- report={'newProducts':len(created),'existingProductsEnriched':len(changed),'duplicatesSkipped':skipped,'activeRecords':sum(active(x) for x in after.values()),'boxesAndAccessories':sum(active(x) and (x.get('catalogFamily')=='boxes' or x.get('family')=='boxes') for x in after.values()),'withDeclaredVolume':sum(active(x) and bool(x.get('boxVolume')) for x in after.values()),'withDepth':sum(active(x) and bool(x.get('boxDepth')) for x in after.values()),'createdIds':created,'updatedIds':changed,'existingFieldsOverwritten':0,'recordsDeleted':0,'readBackVerified':True}
+ report={'newProducts':len(created),'existingProductsEnriched':len(changed),'duplicatesSkipped':skipped,'activeRecords':sum(active(x) for x in after.values()),'boxesAndAccessories':sum(active(x) and (x.get('catalogFamily')=='boxes' or x.get('family')=='boxes') for x in after.values()),'withDeclaredVolume':sum(active(x) and bool(x.get('boxVolume')) for x in after.values()),'withDepth':sum(active(x) and bool(x.get('boxDepth')) for x in after.values()),'createdIds':created,'updatedIds':changed,'classificationsCorrected':sum('catalogFamily' in patch for _,patch in updates),'existingUserFieldsOverwritten':0,'recordsDeleted':0,'readBackVerified':True}
  pathlib.Path('box-catalog-result.json').write_text(json.dumps(report,indent=2));print(json.dumps({k:v for k,v in report.items() if not k.endswith('Ids')}))
 if __name__=='__main__':main()

@@ -2,7 +2,7 @@ name: Audit and expand electrical boxes
 on:
   push:
     branches: [work/catalog-expansion-2026-10-16]
-    paths: [.github/workflows/box_catalog.yml, scripts/import_box_catalog.py, catalog-expansion/box-products.json]
+    paths: [.github/workflows/box_catalog.yml, scripts/**, public/**, tests/**, catalog-expansion/box-products.json]
 permissions:
   contents: read
 concurrency:
