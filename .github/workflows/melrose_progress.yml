@@ -1,52 +1,24 @@
-name: Inspect Melrose tasks
+name: Save verified Melrose progress
 on:
   push:
     branches: [ops/melrose-progress-2026-10-16]
     paths: [.github/workflows/melrose_progress.yml]
 permissions:
   contents: read
+concurrency:
+  group: melrose-progress-20261016
+  cancel-in-progress: false
 jobs:
-  inspect:
+  update:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
+      - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - run: pip install google-cloud-firestore
-      - name: Inspect target records without changing data
+      - run: pip install google-cloud-firestore google-cloud-storage cryptography
+      - name: Save reported work and encrypted panel photo
         env:
           FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-        run: |
-          python - <<'PY'
-          import os,json
-          from google.cloud import firestore
-          from google.oauth2 import service_account
-          key=json.loads(os.environ['FIREBASE_SA'])
-          assert key['project_id']=='obra-manager-4ecc7'
-          db=firestore.Client(project=key['project_id'],credentials=service_account.Credentials.from_service_account_info(key))
-          projects=[]
-          for p in db.collection('projects').stream():
-              d=p.to_dict()
-              if 'melrose' in str(d.get('name','')).lower() or 'melrose' in str(d.get('address','')).lower(): projects.append(p)
-          projects=[p for p in projects if 'bartlett' in (str(p.to_dict().get('name',''))+' '+str(p.to_dict().get('address',''))).lower()]
-          print('MATCHING_PROJECT_COUNT',len(projects))
-          assert len(projects)==1,'Ambiguous or absent target; no changes'
-          p=projects[0]
-          rooms=[r for r in db.collection('rooms').where('projectId','==',p.id).stream() if 'basement' in str(r.to_dict().get('name','')).lower()]
-          print('MATCHING_BASEMENT_COUNT',len(rooms))
-          assert len(rooms)==1,'Ambiguous or absent unit; no changes'
-          r=rooms[0]
-          print('TARGET_IDS',json.dumps({'projectId':p.id,'roomId':r.id}))
-          tasks=list(db.collection('tasks').where('roomId','==',r.id).stream())
-          print('TASK_COUNT',len(tasks))
-          for t in tasks:
-              d=t.to_dict()
-              safe={k:d[k] for k in ['name','note','done','cat','qty','hasQty','subtasks'] if k in d}
-              print('TASK',t.id,json.dumps(safe,default=str))
-          from cryptography.hazmat.primitives import serialization
-          private=serialization.load_pem_private_key(key['private_key'].encode(),password=None)
-          public=private.public_key().public_bytes(serialization.Encoding.PEM,serialization.PublicFormat.SubjectPublicKeyInfo).decode()
-          print('UPLOAD_PUBLIC_KEY',json.dumps(public))
-          print('READ_ONLY_COMPLETE')
-          PY
+        run: python ops/update_melrose.py
