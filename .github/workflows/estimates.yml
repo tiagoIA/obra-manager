@@ -18,7 +18,7 @@ jobs:
         with:
           node-version: '24'
       - run: node --input-type=module --check < public/estimates.js
-      - run: npm install --no-save playwright@1.56.1
+      - run: npm install --no-save playwright@1.56.1 firebase-tools@14.22.0 @firebase/rules-unit-testing@4.0.1 firebase@11.10.0
       - run: npx playwright install --with-deps chromium
       - run: node tests/estimates-browser.cjs
       - run: node --experimental-vm-modules tests/suggestions-core.mjs
@@ -29,6 +29,11 @@ jobs:
       - run: python scripts/check_estimate_rules.py
         env:
           FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - run: npx firebase emulators:exec --project demo-estimates --config firebase-estimates-test.json --only firestore,storage "node tests/estimates-rules.mjs"
       - run: python scripts/publish_estimates.py
         env:
           FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
