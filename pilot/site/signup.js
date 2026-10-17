@@ -1,9 +1,11 @@
+import {createProjectWorkspace} from './projects.js';
 import {initializeApp} from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
 import {getAuth, connectAuthEmulator, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendEmailVerification, signOut, onAuthStateChanged} from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
 import {getFirestore, connectFirestoreEmulator, getDoc, doc} from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
 import {getFunctions, connectFunctionsEmulator, httpsCallable} from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-functions.js';
 const $ = id => document.getElementById(id);
 const status = message => { $('status').textContent = message; };
+let projects;
 let auth, db, register, createInvite, acceptInvite, revokeInvite;
 let invitation = new URLSearchParams(location.hash.slice(1)).get('invite');
 let generatedToken = null;
@@ -53,6 +55,7 @@ async function busy(action) {
 }
 async function showUser(user) {
   const current = ++epoch;
+  projects?.clear();
   $('workspace').hidden = true;
   activeRole = null;
   $('member-role').textContent = '';
@@ -73,6 +76,7 @@ async function showUser(user) {
     activeRole = snap.data().role;
     $('member-role').textContent = {owner:'Administrador',supervisor:'Supervisor',employee:'Funcionário'}[activeRole] || 'Membro';
     $('invite-panel').hidden = activeRole !== 'owner';
+    projects.open(snap.data().companyId, activeRole);
     $('workspace').hidden = false;
     $('cadastro').hidden = true;
     if (invitation) {
@@ -98,7 +102,7 @@ try {
     const response = await fetch('/__/firebase/init.json');
     if (!response.ok) throw Error('Este cadastro precisa ser publicado no ambiente de teste.');
     config = await response.json();
-    if (!/^obra-company-staging[-a-z0-9]*$/.test(config.projectId || '')) throw Error('Cadastro disponível somente no ambiente de teste separado.');
+    if (!/^(obra-manager-teste|obra-company-staging[-a-z0-9]*)$/.test(config.projectId || '')) throw Error('Cadastro disponível somente no ambiente de teste separado.');
   }
   const app = initializeApp(config);
   auth = getAuth(app); db = getFirestore(app);
@@ -108,6 +112,7 @@ try {
     connectFirestoreEmulator(db, '127.0.0.1', 8180);
     connectFunctionsEmulator(functions, '127.0.0.1', 5001);
   }
+  projects = createProjectWorkspace({db, save: httpsCallable(functions, 'saveCompanyProject'), host: $('projects')});
   register = httpsCallable(functions, 'registerCompany');
   createInvite = httpsCallable(functions, 'createCompanyInvite');
   acceptInvite = httpsCallable(functions, 'acceptCompanyInvite');
@@ -191,6 +196,7 @@ try {
   });
   $('logout').onclick = () => busy(async () => {
     ++epoch;
+    projects?.clear();
     activeRole = null;
     clearInviteResult();
     await signOut(auth);

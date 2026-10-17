@@ -21,9 +21,9 @@ service cloud.firestore {
       }
       match /{kind}/{id} {
         allow read: if kind != 'members' && member(company);
-        allow create: if kind != 'members' && member(company) && request.resource.data.companyId == company;
-        allow update: if kind != 'members' && member(company) && resource.data.companyId == company && request.resource.data.companyId == company;
-        allow delete: if kind != 'members' && member(company) && resource.data.companyId == company;
+        allow create: if kind != 'members' && kind != 'projects' && member(company) && request.resource.data.companyId == company;
+        allow update: if kind != 'members' && kind != 'projects' && member(company) && resource.data.companyId == company && request.resource.data.companyId == company;
+        allow delete: if kind != 'members' && kind != 'projects' && member(company) && resource.data.companyId == company;
       }
     }
     match /{document=**} { allow read, write: if false; }

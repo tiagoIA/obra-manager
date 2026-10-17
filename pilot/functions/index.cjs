@@ -4,12 +4,13 @@ const {initializeApp} = require('firebase-admin/app');
 const {getFirestore, FieldValue} = require('firebase-admin/firestore');
 const {registerCompany, RegistrationError} = require('./company-registration.cjs');
 const {createCompanyInvite,acceptCompanyInvite,revokeCompanyInvite} = require('./company-invitations.cjs');
+const {saveCompanyProject} = require('./company-projects.cjs');
 initializeApp();
 
 const callable = handler => onCall({region: 'us-central1', maxInstances: 3}, async request => {
   const projectId = process.env.GCLOUD_PROJECT || process.env.GOOGLE_CLOUD_PROJECT || '';
   // This pilot must never provision companies in the current production project.
-  if (!/^(demo-obra-company-pilot|obra-company-staging[-a-z0-9]*)$/.test(projectId))
+  if (!/^(obra-manager-teste|demo-obra-company-pilot|obra-company-staging[-a-z0-9]*)$/.test(projectId))
     throw new HttpsError('failed-precondition', 'Company registration is available only in the staging project.');
   try {
     return await handler({db: getFirestore(), auth: request.auth, data: request.data, timestamp: () => FieldValue.serverTimestamp()});
@@ -23,3 +24,5 @@ exports.registerCompany = callable(registerCompany);
 exports.createCompanyInvite = callable(createCompanyInvite);
 exports.acceptCompanyInvite = callable(acceptCompanyInvite);
 exports.revokeCompanyInvite = callable(revokeCompanyInvite);
+
+exports.saveCompanyProject = callable(saveCompanyProject);

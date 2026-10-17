@@ -7,8 +7,9 @@
 <details><summary>Já criou sua conta de teste?</summary><form id="login" inert method="post"><label>E-mail<input name="email" type="email" autocomplete="username" required></label><label>Senha<input name="password" type="password" autocomplete="current-password" required></label><button>Entrar</button></form></details>
 </section>
 <section id="verify" hidden><h2>Confirme seu e-mail</h2><p id="verify-help">Abra o link enviado ao seu e-mail. Depois volte aqui para concluir o cadastro da empresa.</p><button id="finish">Já confirmei meu e-mail</button><button class="secondary" id="resend">Reenviar confirmação</button></section>
-<section id="workspace" hidden><h2 id="company-name"></h2><p>Espaço de teste da empresa.</p><dl><dt>Seu acesso</dt><dd id="member-role"></dd><dt>Obras</dt><dd>Seu espaço começa vazio.</dd></dl>
+<section id="workspace" hidden><h2 id="company-name"></h2><p>Espaço de teste da empresa.</p><dl><dt>Seu acesso</dt><dd id="member-role"></dd></dl>
+<div id="projects"></div>
 <div id="invite-panel" hidden><h3>Convidar alguém para a equipe</h3><p>O link só pode ser aceito com o e-mail informado e vale por 7 dias.</p><form id="invite-form"><label>E-mail do convidado<input name="email" type="email" required></label><label>Perfil<select name="role"><option value="employee">Funcionário</option><option value="supervisor">Supervisor</option></select></label><button>Gerar link de convite</button></form><div id="invite-result" hidden><p id="invite-description"></p><label>Link do convite<input id="invite-link" readonly></label><button class="secondary" id="copy-invite">Copiar link</button><button class="secondary" id="revoke-invite">Revogar convite</button><p>Compartilhe o link com a pessoa convidada. Nenhum e-mail de convite é enviado automaticamente.</p></div></div>
-<p>As telas operacionais ainda estão em preparação neste piloto.</p></section>
+<p>Projects are isolated by company. Tasks and other operational modules are not connected to this workspace yet.</p></section>
 <p id="status" role="status" aria-live="polite"></p><button id="logout" class="secondary" hidden>Sair</button>
 </main></body></html>
