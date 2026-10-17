@@ -1,0 +1,82 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAuth() {
+      return request.auth != null
+        && exists(/databases/$(database)/documents/users/$(request.auth.uid))
+        && !exists(/databases/$(database)/documents/userCompanies/$(request.auth.uid));
+    }
+    function isAdmin() {
+      return isAuth() && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role in ['admin','owner','master'];
+    }
+    match /users/{uid} { allow read: if isAuth(); allow write: if isAdmin(); }
+    match /projects/{pid} { allow read, write: if isAuth(); }
+    match /rooms/{rid} { allow read, write: if isAuth(); }
+    match /tasks/{tid} { allow read, write: if isAuth(); }
+    match /materials/{mid} { allow read: if isAuth(); allow write: if isAdmin(); }
+    match /productDB/{pid} { allow read: if isAuth(); allow write: if isAdmin(); }
+    match /roomNotes/{nid} { allow read, write: if isAuth(); }
+    match /shoppingLists/{lid} { allow read, write: if isAuth(); }
+    match /shoppingItems/{iid} { allow read, write: if isAuth(); }
+    match /invoices/{inv} { allow read, write: if isAuth(); }
+    match /invoiceItems/{iid} { allow read, write: if isAuth(); }
+    match /clockEntries/{cid} { allow read, write: if isAuth(); }
+    match /jobs/{jid} { allow read, write: if isAuth(); }
+    match /userLocations/{uid} { allow read, write: if isAuth(); }
+    match /reminders/{rid} { allow read, write: if isAuth(); }
+    // Estimates are private to the signed-in owner; existing collections unchanged.
+    match /users/{uid}/estimates/{estimateId} {
+      function estimateOwner() { return isAuth() && request.auth.uid == uid && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'owner'; }
+      allow read: if estimateOwner();
+      allow create: if estimateOwner() && request.resource.data.createdBy == uid && request.resource.data.revision == 1;
+      allow update: if estimateOwner() && resource.data.createdBy == uid && request.resource.data.createdBy == uid && request.resource.data.revision == resource.data.revision + 1;
+    }
+    function fieldEstimateUser() {
+      return isAuth() && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role in ['supervisor','foreman','owner','master','admin'];
+    }
+    function financialEstimateOwner() {
+      return isAuth() && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'owner';
+    }
+    match /users/{uid}/estimateCaptures/{captureId} {
+      allow read: if fieldEstimateUser() && (request.auth.uid == uid || (financialEstimateOwner() && resource.data.approverUid == request.auth.uid && resource.data.status == 'Submitted'));
+      allow create, update: if fieldEstimateUser() && request.auth.uid == uid
+        && request.resource.data.createdBy == uid
+        && request.resource.data.status in ['Draft','Submitted']
+        && request.resource.data.keys().hasOnly(['id','revision','title','client','address','projectId','approverUid','status','notes','exclusions','rooms','visits','files','items','history','createdBy','createdAt','updatedAt']);
+    }
+    match /users/{owner}/estimateIntake/{requestId} {
+      allow read: if financialEstimateOwner() && request.auth.uid == owner;
+      allow create, update: if fieldEstimateUser()
+        && request.resource.data.sourceUid == request.auth.uid
+        && requestId == request.auth.uid + '~' + request.resource.data.captureId
+        && request.resource.data.keys().hasOnly(['sourceUid','captureId','title','revision','status'])
+        && request.resource.data.status == 'Pending review'
+        && get(/databases/$(database)/documents/users/$(owner)).data.role == 'owner'
+        && getAfter(/databases/$(database)/documents/users/$(request.auth.uid)/estimateCaptures/$(request.resource.data.captureId)).data.approverUid == owner
+        && getAfter(/databases/$(database)/documents/users/$(request.auth.uid)/estimateCaptures/$(request.resource.data.captureId)).data.status == 'Submitted';
+      allow update: if financialEstimateOwner() && request.auth.uid == owner
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status','importedEstimateId'])
+        && request.resource.data.status == 'Imported';
+    }
+    function companyMember(company) {
+      return request.auth != null && exists(/databases/$(database)/documents/companies/$(company)/members/$(request.auth.uid));
+    }
+    match /userCompanies/{uid} {
+      allow get: if request.auth != null && request.auth.uid == uid;
+      allow list, write: if false;
+    }
+    match /companies/{company} {
+      allow get: if companyMember(company);
+      allow list, write: if false;
+      match /members/{uid} {
+        allow read: if companyMember(company);
+        allow write: if false;
+      }
+      match /projects/{projectId} {
+        allow read: if companyMember(company);
+        allow write: if false;
+      }
+    }
+    match /{document=**} { allow read, write: if false; }
+  }
+}
