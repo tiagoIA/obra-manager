@@ -1,9 +1,11 @@
 {
-  "baseline_sha256": "825b1f89c37399054e4fb9884882a749e4a4fb57a08d99dd20b10aa6c2f81aae",
-  "baseline_files": {},
-  "files": {
-    "app.html": "1b2a2db3af1405deb90366c0371179074f452f7e52e3e914ca6360f423a3620a",
+  "baseline_sha256": "1b2a2db3af1405deb90366c0371179074f452f7e52e3e914ca6360f423a3620a",
+  "baseline_files": {
     "estimates.js": "a2cf8e16e019b33f72eacad1f06c9308ce867976cf868b6579a1a57ceb259621"
+  },
+  "files": {
+    "app.html": "40af30e3fc30e26f2e91f6a326164b0c149ff7a60d36331510b0c2215e9acd66",
+    "estimates.js": "fcfadf423c9bcf7ea57b7384ed47f382c126faeb4dec03736425eb5a2b4ea014"
   },
   "review_only": false
 }
