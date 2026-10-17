@@ -80,6 +80,8 @@ if config.get('review_only'):
     raise SystemExit(0)
 after=call('GET',SITE+'/channels/live')
 if after['release']['name']!=live['release']['name']: raise SystemExit('Live release changed during verification')
+from release_estimate_rules import release_rules
+release_rules()
 release=call('POST',SITE+'/releases',params={'versionName':version},json={'message':'Native Estimates workspace'})
 url='https://'+PROJECT+'.web.app/'
 for _ in range(24):
