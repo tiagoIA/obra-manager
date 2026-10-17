@@ -1,6 +1,6 @@
 # Obra Manager / CrewNelo — mapa de continuidade
 
-Verificado em 16/10/2026, America/New_York. Responsável pelo produto: Tiago Elias.
+Auditoria base em 16/10/2026; atualização Estimates em 17/10/2026, America/New_York. Responsável pelo produto: Tiago Elias.
 
 ## Comece aqui, em qualquer chat novo
 
@@ -294,3 +294,20 @@ Nova necessidade solicitada: guardar planta/PDF e suas revisoes, fotos, videos e
 Permitir escolhas independentes: somente mao de obra ou material e mao de obra; por hora, empreita ou combinacao por linha. Manter materiais internos mesmo quando fornecidos pelo contractor. Separar quantidade desenhada, complemento de escopo e quantidade aprovada; cada item deve apontar folha/pagina ou evidencia. Delimitar existente versus adicao antes de contar; excluir simbolos de legendas e evitar duplicacao entre fotos e plantas. Comandos graficos nao definem automaticamente tipo/SKU; percursos e circuitos precisam de definicao propria.
 
 Pesquisa de referencias concluida: Countfire, Togal, STACK (takeoff), Handoff (arquivos/visita para rascunho de estimate), magicplan (documentacao por ambiente). Pesquisa de funcoes oficiais nao equivale a teste desses produtos ou acesso ao codigo deles. Piloto em planta do usuario iniciado e consolidado em arquivo privado de levantamento; detalhes de obra permanecem na copia privada. Nao ha valor final calculado nem proposta enviada ao cliente. Proximo passo depende do pedido atual: definir precificacao do piloto ou implementar o modulo, sem pressupor que o levantamento visual ja e um detector automatico.
+
+
+## Estimates — implementado e publicado em 17/10/2026
+
+Esta atualização supera o estado de proposta/piloto documental descrito anteriormente para este módulo.
+
+- Pedido: implementar o protótipo diretamente no Obra Manager; usuário autorizou testar e publicar no sistema habitual, sem revisão prévia em ambiente separado.
+- Fonte: branch feature/estimates-2026-10-17, commit 8d3e166a6afe55a828e365852b7922632ba4b435. Arquivo principal em produção corresponde a esta branch; main continua sendo a referência do mapa, não o baseline dos assets.
+- Arquivos: public/estimates.js; integração localizada em public/app.html (entrada Owner na Home e bridge Firebase). Outros módulos foram preservados pela clonagem da versão live. Não reimplantar toda a árvore da branch como substituta do Hosting.
+- Entregue: lista e cadastro de estimates independentes de obra contratada; vínculo opcional a projeto; ambientes; notas de visita; gravação de áudio quando suportada; upload de PDF/imagem/vídeo/áudio até 50 MB; revisão de serviços/quantidades/fontes; preço por unidade, hora ou verba; materiais do cliente ou da empresa; PDF marcado DRAFT; histórico de revisões e proteção contra sobrescrita concorrente.
+- Acesso nesta primeira versão: Owner; registros privados em users/{uid}/estimates/{estimateId}; mídia em estimateFiles/{uid}/{estimateId}/{fileId}. Novas regras Firestore isolam por uid e perfil administrativo. Storage restringe o novo prefixo por uid, tipo e tamanho; comportamento dos demais caminhos preservado. Nenhuma migração ou alteração de tarefas/compras/obras existentes foi executada.
+- Upload não é análise por IA. A IA de vídeo/planta ainda NÃO está conectada; não há contagem automática validada. Referência de origem dos serviços é preenchida manualmente. PDF é rascunho e não é enviado ao cliente. Status é controle manual. Impostos não são calculados. Histórico registra metadados, não restauração de versões completas.
+- Validação: testes de interface em 390px/1440px com host simulado (cadastro, salvar/reabrir, notas, escopo aprovado, preço ausente, subtotal, PDF e falha de persistência); regressão suggestions-core com sintaxe do app; Firebase emuladores com regras derivadas das atuais (isolamento de usuário, bloqueio anônimo/worker, revisão e mídia privada, preservação de tarefas/fotos legadas). PDF de QA extraído/renderizado. Teste autenticado na conta real do usuário ainda não realizado: navegador desta sessão estava no login; não alegar salvamento real de um estimate de cliente.
+- Publicação verificada: workflow 39046702992; Hosting sites/obra-manager-4ecc7/versions/72c80d10e55af0ff; release sites/obra-manager-4ecc7/releases/1792252234854000. SHA-256 app.html 1b2a2db3af1405deb90366c0371179074f452f7e52e3e914ca6360f423a3620a; estimates.js a2cf8e16e019b33f72eacad1f06c9308ce867976cf868b6579a1a57ceb259621. Regras Firestore e Storage publicadas e seus releases conferidos pela API.
+- Entrada: https://obra-manager-4ecc7.web.app/app.html, Home → ESTIMATES, perfil Owner; recarregar a página para obter o HTML atualizado. Navegação de app.html usa network first no service worker observado.
+- Publicador: scripts/publish_estimates.py e scripts/estimate-publication.json; prepara preview, confere bytes e baseline, aplica regras testadas via release_estimate_rules.py e publica preservando demais assets. Proteção contra mudança concorrente. Antes de repetir, ler os scripts e atualizar o baseline; o preparador de regras foi feito para adicionar a estrutura ao estado anterior, não para ser reexecutado indiscriminadamente depois da publicação.
+- Próximo passo: usuário testar criação, salvar/reabrir, anexar e baixar no próprio login; corrigir observações. Depois, integrar análise assistida aproveitando o backend existente somente após verificar sua configuração. Não criar provedor/chave nova por inferência.
