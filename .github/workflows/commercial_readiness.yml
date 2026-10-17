@@ -1,0 +1,53 @@
+name: Read-only commercial environment readiness
+on:
+  push:
+    branches: [audit/commercial-readiness-2026-10-17]
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install google-auth requests
+      - name: Inspect environment metadata only
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: |
+          python - <<'PY'
+          import json,os
+          from google.oauth2 import service_account
+          from google.auth.transport.requests import AuthorizedSession
+          key=json.loads(os.environ['FIREBASE_SA'])
+          assert key.get('project_id')=='obra-manager-4ecc7'
+          session=AuthorizedSession(service_account.Credentials.from_service_account_info(key,scopes=['https://www.googleapis.com/auth/cloud-platform']))
+          results={}
+          for project in ['obra-manager-4ecc7','obra-manager-teste']:
+              out={}
+              endpoints={
+                  'project':'https://cloudresourcemanager.googleapis.com/v1/projects/'+project,
+                  'billing':'https://cloudbilling.googleapis.com/v1/projects/'+project+'/billingInfo',
+                  'firestore':'https://firestore.googleapis.com/v1/projects/'+project+'/databases/(default)',
+                  'auth':'https://identitytoolkit.googleapis.com/admin/v2/projects/'+project+'/config',
+                  'functions':'https://cloudfunctions.googleapis.com/v2/projects/'+project+'/locations/us-central1/functions',
+                  'hosting':'https://firebasehosting.googleapis.com/v1beta1/sites/'+project+'/channels/live'
+              }
+              for kind,url in endpoints.items():
+                  r=session.get(url,timeout=30)
+                  entry={'http':r.status_code}
+                  if r.ok:
+                      d=r.json()
+                      if kind=='project':entry['state']=d.get('lifecycleState')
+                      if kind=='billing':entry['enabled']=d.get('billingEnabled',False)
+                      if kind=='firestore':entry['location']=d.get('locationId');entry['type']=d.get('type')
+                      if kind=='auth':entry['emailPasswordEnabled']=d.get('signIn',{}).get('email',{}).get('enabled',False);entry['signupDisabled']=d.get('client',{}).get('permissions',{}).get('disabledUserSignup',False)
+                      if kind=='functions':entry['functions']=[f.get('name','').split('/')[-1] for f in d.get('functions',[])]
+                      if kind=='hosting':entry['hasRelease']=bool(d.get('release'));entry['version']=d.get('release',{}).get('version',{}).get('name')
+                  out[kind]=entry
+              results[project]=out
+          print('READINESS_METADATA '+json.dumps(results,sort_keys=True))
+          PY
