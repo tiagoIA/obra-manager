@@ -1,6 +1,6 @@
 import {photoRole,orderPhotos,reportSheets} from './report-photo-order.js?v=1';
 import {coverLabels,facadePhotoURL,coverPhotoLabels} from './photo-report-cover.js?v=2';
-import {exportPhotoReportPDF} from './photo-report-pdf.js?v=7';
+import {exportPhotoReportPDF} from './photo-report-pdf.js?v=roomfix20261020';
 import {progressPercent} from './work-progress.js?v=1';
 import {evidenceRows,escapeEvidence as e} from './field-media.js';
 const strings={en:{title:'Photographic work report 2.0',units:'Units / work groups',photos:'Unique photos',done:'Completed tasks',pending:'Pending tasks',contents:'Contents',tasks:'Recorded tasks',field:'Field records',noPhotos:'No photos recorded for this unit.',none:'No photos match the selected filters.',unassigned:'Unit not assigned',general:'Units',coax:'Coaxial cabling',condensers:'Condensers',photo:'Photo',source:'Source',task:'Task',note:'Field record',before:'Initial conditions',during:'During work',after:'After completion',unspecified:'Stage not specified',status:'Recorded status',complete:'Completed',todo:'Pending',date:'Recorded date',historical:'Photo dates and field notes document their recorded conditions. A completed task does not by itself confirm inspection or testing.',filters:'Applied filters',all:'Whole project',language:'Report language',print:'Print / PDF',close:'Close',original:'Names and field descriptions are preserved in their original language.',missing:'Images failed to load. Retry loading images before printing.',retry:'Retry images',wait:'Loading full-size photos…',without:'Tasks without photos',unfiltered:'Field records are included only when their category or linked tasks match task filters.',context:'Unit context',part:'Part',of:'of'},pt:{title:'Relatório fotográfico da obra 2.0',units:'Unidades / grupos de trabalho',photos:'Fotos únicas',done:'Tarefas concluídas',pending:'Tarefas pendentes',contents:'Índice',tasks:'Tarefas registradas',field:'Registros de campo',noPhotos:'Nenhuma foto registrada nesta unidade.',none:'Nenhuma foto corresponde aos filtros selecionados.',unassigned:'Unidade não definida',general:'Unidades',coax:'Cabeamento coaxial',condensers:'Condensers',photo:'Foto',source:'Origem',task:'Tarefa',note:'Registro de campo',before:'Condições iniciais',during:'Durante o trabalho',after:'Após a conclusão',unspecified:'Etapa não informada',status:'Situação registrada',complete:'Concluída',todo:'Pendente',date:'Data registrada',historical:'As datas e notas documentam as condições na época do registro. Uma tarefa concluída não confirma, por si só, inspeção ou testes.',filters:'Filtros aplicados',all:'Obra completa',language:'Idioma do relatório',print:'Imprimir / PDF',close:'Fechar',original:'Nomes e descrições de campo são preservados no idioma original.',missing:'Algumas imagens não carregaram. Tente carregar novamente antes de imprimir.',retry:'Recarregar imagens',wait:'Carregando fotos em tamanho completo…',without:'Tarefas sem fotos',unfiltered:'Com filtros de tarefas, os registros de campo só entram quando a categoria ou as tarefas vinculadas correspondem.',context:'Contexto da unidade',part:'Parte',of:'de'}};
@@ -9,7 +9,8 @@ Object.assign(strings.pt,{format:'Formato',summary:'Resumido',full:'Completo',de
 Object.assign(strings.en,{progress:'Work progress',progressBasis:'Progress is based on the tasks included in this report. Completed subtasks contribute proportionally; completed-task counts remain separate.',noTasks:'No tasks recorded'});
 Object.assign(strings.pt,{progress:'Progresso do serviço',progressBasis:'O progresso considera as tarefas incluídas neste relatório. As subtarefas concluídas contribuem proporcionalmente; a contagem de tarefas concluídas permanece separada.',noTasks:'Nenhuma tarefa registrada'});
 const validURL=url=>typeof url==='string'&&/^(https?:\/\/|data:image\/|blob:)/i.test(url);
-const identity=url=>{try{const u=new URL(url);if(u.hostname==='firebasestorage.googleapis.com')return u.origin+u.pathname;}catch{}return url;};
+const identity=url=>{try{const u=new URL(url);if(u.hostname==='firebasestorage.googleapis.com'){const path=decodeURIComponent(u.pathname),name=path.split('/').pop().replace(/^\d+_/, '');return /^IMG_[A-Za-z0-9_()\-]+\.(?:jpe?g|png|heic)$/i.test(name)?'uploaded-photo:'+name:u.origin+u.pathname;}}catch{}return url;};
+const administrative=t=>t.reportExcluded===true||/^(?:Punch-list reference|Record reference)\s*[—-]/i.test(t.name||'');
 const dateValue=v=>{if(v?.seconds)return v.seconds*1000;if(v?.toDate)return +v.toDate();if(typeof v==='string'){const us=v.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/),iso=v.match(/^(\d{4})-(\d{2})-(\d{2})$/);if(us)return Date.UTC(+us[3],+us[1]-1,+us[2],16);if(iso)return Date.UTC(+iso[1],+iso[2]-1,+iso[3],16);const d=Date.parse(v);return Number.isFinite(d)?d:0;}return 0;};
 const dateLabel=(v,lang)=>{const t=dateValue(v);return t?new Date(t).toLocaleDateString(lang==='pt'?'pt-BR':'en-US',{timeZone:'America/New_York',year:'numeric',month:'short',day:'numeric'}):typeof v==='string'?v:'';};
 const stageKey=p=>({'before-installation':'before','during-work':'during','after-work':'after','after-completion':'after'}[p]||'unspecified');
@@ -31,7 +32,7 @@ export function buildPhotoModel({project,rooms,tasks,notes,filters={},floorOrder
  const selected=rooms.filter(r=>(!filters.floor||filters.floor==='all'||(r.floor||'Other')===filters.floor)&&(!filters.units?.length||filters.units.includes(r.id)));
  const allowed=new Set(selected.map(r=>r.id));
  const roomIds=new Set(rooms.map(r=>r.id));
- const scopedTasks=tasks.filter(t=>allowed.has(t.roomId)||(!roomIds.has(t.roomId)&&(!filters.floor||filters.floor==='all')&&!filters.units?.length));
+ const scopedTasks=tasks.filter(t=>!administrative(t)&&(allowed.has(t.roomId)||(!roomIds.has(t.roomId)&&(!filters.floor||filters.floor==='all')&&!filters.units?.length)));
  const taskIds=new Set(scopedTasks.map(t=>t.id));
  const scopedNotes=notes.filter(n=>(allowed.has(n.roomId)||!roomIds.has(n.roomId)&&(!filters.floor||filters.floor==='all')&&!filters.units?.length)&&(!restrictive||n.linkedTaskIds?.some(id=>taskIds.has(id))||(!filters.task&&!filters.tech&&(!filters.status||filters.status==='all')&&n.cat===filters.system)));
  const hasUnassigned=scopedTasks.some(t=>!roomIds.has(t.roomId))||scopedNotes.some(n=>!roomIds.has(n.roomId));
@@ -58,6 +59,8 @@ export function buildPhotoModel({project,rooms,tasks,notes,filters={},floorOrder
   const condenser=/^(roof|condensers)$/i.test(room.name?.trim());
   return {room,tasks:rt,notes:rn,photos:[...photos.values()],service:condenser?'condensers':(/coax/i.test(project.name||'')||rt.some(t=>/coax/i.test(t.name||'')))?'coax':'general'};
  }).filter(u=>u.tasks.length||u.notes.length||u.photos.length);
+ // A shared image is printed once; preserve all evidence references on that image.
+ const unique=new Map();for(const u of units)u.photos=u.photos.filter(p=>{const key=identity(p.url);if(unique.has(key)){unique.get(key).references.push(...p.references);return false;}unique.set(key,p);return true;});
  let sequence=0;for(const unit of units){unit.photos=orderPhotos(unit.photos,p=>storyStep(p).rank);for(const photo of unit.photos)photo.number=++sequence;}
  return {project,units,filters,restrictive,totalPhotos:globalPhotos.size,done:scopedTasks.filter(t=>t.done).length,pending:scopedTasks.filter(t=>!t.done).length};
 }
@@ -104,7 +107,7 @@ function progressHTML(unit,l,compact=false){
 }
 export function renderPhotoReport(model,language='en',includeHistory=false){
  const l=strings[language]||strings.en,roomName=u=>u.room.unassigned?l.unassigned:u.service==='condensers'?l.condensers:u.room.name;
- const unitLabel=u=>u.service==='condensers'?roomName(u):l[u.service]+' · '+roomName(u);
+ const unitLabel=u=>u.service==='general'?[u.room.floor,roomName(u)].filter(Boolean).join(' · '):u.service==='condensers'?roomName(u):l[u.service]+' · '+roomName(u);
  const filterText=Object.entries(model.filters).filter(([k,v])=>['floor','system','status','task','tech','units'].includes(k)&&v&&v!=='all'&&(!Array.isArray(v)||v.length)).map(([k,v])=>k+': '+(Array.isArray(v)?model.units.map(roomName).join(', '):v)).join(' · ')||l.all;
  const cover=coverPhotoLabels(model.project,language),facadeURL=facadePhotoURL(model.project);
  let html='<article class="pr-report'+(!includeHistory?' pr-summary':'')+'"><header class="pr-cover"><div class="pr-cover-heading"><div class="pr-brand">OBRA MANAGER / FIELD DOCUMENTATION</div><h2>'+l.title+'</h2><h1>'+e(model.project.name)+'</h1>'+(model.project.address&&model.project.address!==model.project.name?'<p class="pr-cover-address">'+e(model.project.address)+'</p>':'')+'</div>'
@@ -122,7 +125,7 @@ export function renderPhotoReport(model,language='en',includeHistory=false){
    html+='<section class="pr-sheet"><header class="pr-sheet-head"><h3>'+e(unitLabel(u))+' · '+(j===0?l.context:heading)+'</h3><div class="pr-muted">'+l.part+' '+(j+1)+' '+l.of+' '+sheets.length+'</div><div class="pr-sheet-progress">'+progressHTML(u,l)+'</div></header><div class="pr-gallery">';
    sheet.forEach(p=>{
     const ref=p.references.find(r=>r.source==='task')||p.references[0],title=captionTitle(p),stage=p.references.find(r=>r.stage!=='unspecified')?.stage;
-    const meta=[ref?.status?l[ref.status]:l.history,ref?.date?dateLabel(ref.date,language):'',stage?l[stage]:''].filter(Boolean).join(' · ');
+    const meta=[ref?.status?l[ref.status]:l.history,ref?.date?l.date+': '+dateLabel(ref.date,language):'',stage?l[stage]:''].filter(Boolean).join(' · ');
     html+='<figure class="pr-photo'+(p.fullPage?' pr-full':'')+'"><a href="'+e(p.url)+'" target="_blank" rel="noopener"><img loading="eager" src="'+e(p.url)+'" alt="'+e(unitLabel(u)+' · '+l.photo+' '+p.number)+'"></a><figcaption><strong>'+l.photo+' '+p.number+' · '+e(roomName(u))+'</strong>'+(title?'<div class="pr-reference">'+e(title)+'</div>':'')+'<div class="pr-muted">'+e(meta)+'</div></figcaption></figure>';
    });
    html+='</div></section>';

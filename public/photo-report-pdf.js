@@ -75,7 +75,7 @@ export async function createPhotoReportPDF(model,options){
   for(const row of wrap(value,CW,size,font)){if(y-size*1.35<BOTTOM){newPage();projectHeader();}text(row,M,y,{size,font,color});y-=size*1.35;}y-=space;
  };
  const unitName=u=>u.room.unassigned?l.unassigned:u.service==='condensers'?l.condensers:u.room.name;
- const unitLabel=u=>u.service==='condensers'?unitName(u):l[u.service]+' · '+unitName(u);
+ const unitLabel=u=>u.service==='general'?[u.room.floor,unitName(u)].filter(Boolean).join(' · '):u.service==='condensers'?unitName(u):l[u.service]+' · '+unitName(u);
  const unitProgress=u=>{
   if(y-35<BOTTOM){newPage();projectHeader();}
   if(!u.tasks.length){flow(ui.noTasks,{size:9,color:muted,space:7});return;}
@@ -139,7 +139,7 @@ export async function createPhotoReportPDF(model,options){
  if(!inlineIndex){flow(filterText,{size:9,color:muted,space:12});flow(l.historical,{size:9,color:muted,space:18});flow(ui.progressBasis,{size:9,color:muted,space:12});}
  const indexLinks=[],unitPages=new Map();
  model.units.forEach(u=>{
-  const rows=wrap(unitLabel(u),CW-120,10,bold),rowHeight=Math.max(34,rows.length*13+15);
+  const rows=wrap(unitLabel(u),CW-120,10,bold),rowHeight=Math.max(27,rows.length*13+10);
   if(y-rowHeight<BOTTOM){newPage();flow(l.contents,{size:16,font:bold,space:12});}
   const top=y;for(const row of rows){text(row,M,y,{size:10,font:bold});y-=13;}
   text(u.photos.length+' '+l.photos,M,y,{size:8,color:muted});
@@ -161,19 +161,14 @@ export async function createPhotoReportPDF(model,options){
   // Explicit PDF pages and measured cards do not depend on CSS grid fragmentation.
   const logical=photoSheets(u.photos,!includeHistory),sheets=[];
   logical.forEach(sheet=>{for(let i=0;i<sheet.length;i+=includeHistory?2:4)sheets.push(sheet.slice(i,i+(includeHistory?2:4)));});
-  if(!sheets.length){
-   groupHeader(u,1,0);unitPages.set(u,page);flow(l.noPhotos,{size:10,color:muted,space:16});
-   const pending=u.tasks.filter(t=>!t.done);
-   if(pending.length){flow(l.pending,{size:13,font:bold,space:10});pending.forEach(t=>flow('• '+t.name,{size:10,space:8}));}
-   continue;
-  }
+  if(!sheets.length)continue;
   for(let index=0;index<sheets.length;index++){
    groupHeader(u,index+1,sheets.length);if(!unitPages.has(u))unitPages.set(u,page);const sheet=sheets[index],full=sheet.length===1;
    const columns=full||includeHistory?1:2,gap=12,cardWidth=(CW-gap*(columns-1))/columns;
    const cards=sheet.map((p,cardIndex)=>{
     const itemWidth=columns===2&&sheet.length===3&&cardIndex===2?CW:cardWidth;
     const ref=p.references.find(r=>r.source==='task')||p.references[0],stage=p.references.find(r=>r.stage&&r.stage!=='unspecified')?.stage;
-    const meta=[ref?.status?l[ref.status]:l.history,ref?.date?dateLabel(ref.date,language):'',stage?l[stage]:''].filter(Boolean).join(' · ');
+    const meta=[ref?.status?l[ref.status]:l.history,ref?.date?(language==='pt'?'Registro: ':'Recorded: ')+dateLabel(ref.date,language):'',stage?l[stage]:''].filter(Boolean).join(' · ');
     const rows=[...wrap(l.photo+' '+p.number+' · '+unitName(u),itemWidth-4,10,bold).map(t=>({t,b:true})),...wrap(captionTitle(p),itemWidth-4,10).map(t=>({t})),...wrap(meta,itemWidth-4,9).map(t=>({t,m:true}))];
     return {p,rows,width:itemWidth,captionHeight:rows.reduce((h,r)=>h+(r.m?12:14),10)};
    });
@@ -195,6 +190,8 @@ export async function createPhotoReportPDF(model,options){
   const pending=u.tasks.filter(t=>!t.done);
   if(pending.length){newPage();flow(unitLabel(u),{size:16,font:bold});flow(l.pending,{size:13,font:bold});pending.forEach(t=>flow('• '+t.name));}
  }
+ const undocumented=model.units.filter(u=>!u.photos.length);
+ if(undocumented.length){newPage();flow(l.without||'Completed records without photographs',{size:18,font:bold});for(const u of undocumented){unitPages.set(u,page);flow(unitLabel(u),{size:12,font:bold});u.tasks.forEach(t=>flow((t.done?l.complete:l.pending)+': '+t.name,{size:10,space:5}));}}
  if(failures.length)throw new Error(ui.missing+': '+failures.join(', '));
  if(includeHistory){
   newPage();flow(ui.history,{size:18,font:bold});

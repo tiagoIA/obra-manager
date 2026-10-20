@@ -1,0 +1,34 @@
+name: Verify and publish room organization and photo reports
+on:
+  push:
+    branches: [fix/report-room-organization-2026-10-20]
+    paths: [public/**, scripts/report-organization*, scripts/check-report-organization.cjs, scripts/publish_report_organization.py, .github/workflows/report_organization.yml]
+permissions:
+  contents: read
+concurrency:
+  group: obra-manager-hosting-publication
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node --experimental-vm-modules scripts/check-photo-pdf-node.cjs
+      - run: node --experimental-vm-modules scripts/check-report-organization.cjs
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install google-auth requests
+      - run: python scripts/publish_report_organization.py
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: report-organization-review-${{ github.run_id }}
+          path: hosting-test/
+          retention-days: 7
