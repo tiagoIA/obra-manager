@@ -2,11 +2,11 @@
   "baseline_sha256": "027b1017fb50b76ce3ea7e2efded26506b959dd9ba08125b3a5f8084915f0da1",
   "baseline_files": {
     "photo-report.js": "b639314c8123a4e35f3f744e10752699d2d528b36a82991c28666dba3f0da8e0",
-    "photo-report-pdf.js": "ab4c5aa474f96d0d024f42d09be53d70c4b7718693849bc2a6ac844c1999efc5"
+    "photo-report-pdf.js": "6b6b790caeb57d8e62bb4cca2b127bfebb04e2f643907f8ec653deb3c54ab36d"
   },
   "files": {
-    "app.html": "027b1017fb50b76ce3ea7e2efded26506b959dd9ba08125b3a5f8084915f0da1",
-    "photo-report.js": "b639314c8123a4e35f3f744e10752699d2d528b36a82991c28666dba3f0da8e0",
+    "app.html": "9a4eab5c1e76e09187a9bb3e78f3be6cdf6b64a72a8b2fe4de2448539172843e",
+    "photo-report.js": "97fc2f5d4442c192456944f86c66f61b01f9a86992324e52baac15fbee4dfafa",
     "photo-report-pdf.js": "6b6b790caeb57d8e62bb4cca2b127bfebb04e2f643907f8ec653deb3c54ab36d"
   },
   "review_only": false
