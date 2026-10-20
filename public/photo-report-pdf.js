@@ -191,7 +191,7 @@ export async function createPhotoReportPDF(model,options){
   if(pending.length){newPage();flow(unitLabel(u),{size:16,font:bold});flow(l.pending,{size:13,font:bold});pending.forEach(t=>flow('• '+t.name));}
  }
  const undocumented=model.units.filter(u=>!u.photos.length);
- if(undocumented.length){newPage();flow(l.without||'Completed records without photographs',{size:18,font:bold});for(const u of undocumented){unitPages.set(u,page);flow(unitLabel(u),{size:12,font:bold});u.tasks.forEach(t=>flow((t.done?l.complete:l.pending)+': '+t.name,{size:10,space:5}));}}
+ if(includeHistory&&undocumented.length){newPage();flow(l.without||'Completed records without photographs',{size:18,font:bold});for(const u of undocumented){unitPages.set(u,page);flow(unitLabel(u),{size:12,font:bold});u.tasks.forEach(t=>flow((t.done?l.complete:l.pending)+': '+t.name,{size:10,space:5}));}}
  if(failures.length)throw new Error(ui.missing+': '+failures.join(', '));
  if(includeHistory){
   newPage();flow(ui.history,{size:18,font:bold});
