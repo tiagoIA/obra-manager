@@ -93,8 +93,8 @@ export const photoReportCSS=`
 }
 `;
 export const captionTitle=p=>{
- const task=p.references.find(r=>r.source==='task');
- if(task)return task.sourceTitle||task.description;
+ const taskTitles=[...new Set(p.references.filter(r=>r.source==='task').map(r=>r.sourceTitle||r.description).filter(Boolean))];
+ if(taskTitles.length)return taskTitles.join(' / ');
  const ref=p.references.find(r=>r.source==='context')||p.references[0];
  const text=(ref?.description||'').split(/\n|(?<=\.)\s/)[0].trim();
  return text.length>150?text.slice(0,147).replace(/\s+\S*$/,'')+'…':text;

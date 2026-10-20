@@ -1,12 +1,12 @@
 {
-  "baseline_sha256": "4d951458579fbaeb80248d5429a223a7ef29618df0cb912aa9db12f498dbfe14",
+  "baseline_sha256": "027b1017fb50b76ce3ea7e2efded26506b959dd9ba08125b3a5f8084915f0da1",
   "baseline_files": {
     "photo-report.js": "d53c34e9800664f4889288e954a43b33d0463a81863c34a12ce87a01c658ea49",
     "photo-report-pdf.js": "ab4c5aa474f96d0d024f42d09be53d70c4b7718693849bc2a6ac844c1999efc5"
   },
   "files": {
     "app.html": "027b1017fb50b76ce3ea7e2efded26506b959dd9ba08125b3a5f8084915f0da1",
-    "photo-report.js": "d53c34e9800664f4889288e954a43b33d0463a81863c34a12ce87a01c658ea49",
+    "photo-report.js": "b639314c8123a4e35f3f744e10752699d2d528b36a82991c28666dba3f0da8e0",
     "photo-report-pdf.js": "ab4c5aa474f96d0d024f42d09be53d70c4b7718693849bc2a6ac844c1999efc5"
   },
   "review_only": false
