@@ -5998,9 +5998,9 @@ window.saveTaskEdit=async function(tid){
         const noteDocs=[];for(const n of linkedNotes)noteDocs.push(await tx.get(doc(db,'roomNotes',n.id)));
         if(!fresh.exists()||fresh.data().roomId!==sourceRoom||fresh.data().projectId!==task.projectId||!unit.exists()||unit.data().projectId!==task.projectId||auth.currentUser?.uid!==uid)throw Error('Task or destination changed. Reopen and try again.');
         for(const n of noteDocs){if(!n.exists()||n.data().roomId!==sourceRoom)throw Error('A linked field record changed. Reopen and try again.');const links=n.data().linkedTaskIds||[];if(links.some(id=>id!==tid&&allTasks[id]?.roomId!==destination))throw Error('This field record is linked to another task. Move its linked tasks together first.');}
-        const backup=doc(collection(db,'automationBackups'));
-        tx.set(backup,{operation:'move-task-room',taskId:tid,previousRoomId:sourceRoom,destinationRoomId:destination,taskBefore:fresh.data(),notesBefore:noteDocs.map(n=>({id:n.id,...n.data()})),createdBy:uid,createdAt:serverTimestamp()});
-        tx.update(target,{...changes,roomId:destination,updatedAt:serverTimestamp()});
+        const previous=fresh.data();
+        const history={from:sourceRoom,to:destination,at:new Date().toISOString(),by:uid,previousName:previous.name||'',previousNote:previous.note||'',previousCategory:previous.cat||'',linkedNotes:noteDocs.map(n=>({id:n.id,roomId:n.data().roomId}))};
+        tx.update(target,{...changes,roomId:destination,roomMoveHistory:arrayUnion(history),updatedAt:serverTimestamp()});
         for(const n of noteDocs)tx.update(n.ref,{roomId:destination,updatedAt:serverTimestamp()});
       });
       for(const n of linkedNotes)if(roomNotesList[n.id])roomNotesList[n.id].roomId=destination;
