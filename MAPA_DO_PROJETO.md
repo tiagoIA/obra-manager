@@ -362,3 +362,10 @@ Tiago autorizou explicitamente usar o projeto atual obra-manager-4ecc7 (já Blaz
 - Photo-report model excludes explicit administrative-reference records from service totals; deduplicates repeated camera filenames in Firebase upload paths while retaining all task captions/references. Room headers identify floor and room. PDF has a compact index, consolidated no-photo-unit list, and explicitly recorded dates rather than implying physical execution date.
 - Validation: module/script syntax; VM regression for atomic movement, note links, history and media/completion preservation; existing 101-photo PDF/share/failure suite. Live authenticated task and linked-note moves persisted. A fresh PDF from the real app was downloaded, extracted, hash-checked for repeated image pixels and visually reviewed in full. Private customer data and evidence remain outside this public repository.
 - Canonical main map updated in this step. No separate private continuity-file copy was modified. Next: user regenerates the photo report after reloading the app; investigate only any new specific issue. Other report modes still retain their existing administrative-reference totals; these filtering/layout changes apply to Photos by Unit 2.0.
+
+
+### Summary photo PDF follow-up — 20/10/2026
+
+- User reported the mostly empty last page as possible task duplication. Live records were compared with the source report: the no-photo appendix listed distinct previously reported work, not newly duplicated tasks. No actual task was removed.
+- Summary Photos by Unit 2.0 now omits the no-photo appendix. Complete format retains documentation detail. Change published as `c280eae526482652accd7641a604c431c59a32b7`, branch `fix/report-room-organization-2026-10-20`; workflow `39517546592` succeeded. Live baseline guards preserved unrelated files.
+- Existing PDF regression plus a fixture asserting that adding a no-photo unit does not add a summary appendix page passed. Canonical main continuity map updated; no separate private copy changed.
