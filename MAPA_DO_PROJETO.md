@@ -371,3 +371,12 @@ Tiago autorizou explicitamente usar o projeto atual obra-manager-4ecc7 (já Blaz
 - Existing PDF regression plus a fixture asserting that adding a no-photo unit does not add a summary appendix page passed. Canonical main continuity map updated; no separate private copy changed.
 
 - Cache follow-up: initial browser export retained the previous module despite a successful live-byte publication. Updated explicit import versions in app.html and photo-report.js. Commit `59612fbaae16c4c13655145212256125c6e89b19`, workflow `39517784683` published successfully. Reopen/reload the app before regenerating the summary report. No task data was changed by this follow-up.
+
+
+## Shopping visibility and automatic drafts — 21/10/2026
+
+- Authorized request: show selected products while building a purchase, expose manual item entry directly, and save the draft automatically from the first item.
+- Branch `feature/shopping-drafts-2026-10-21`, initial commit `8dba9a919e447365766bc0cd2b1abc2f00519b6a`; review workflow `39676046297` running. Live baseline compared byte-for-byte with the working inputs before changes. Initial publication is preview-only; do not claim live release yet.
+- Implementation: expanded responsive selected-item view and direct manual entry; durable user-scoped local recovery plus shoppingLists draft snapshots with serialized autosave and revision/owner guards. Confirmed lists retain shoppingItems IDs, purchased state and room links. Finalization is transactional and new-list retries are idempotent. Completed edit snapshots are archived, not deleted.
+- Local transaction/queue regression passed. Browser regression and cloud preview publication still in progress. No customer purchase data was changed by implementation tests.
+- Next: resolve CI results, review mobile/desktop and live preview, publish only the four reviewed shopping assets on a clone of Hosting, verify live bytes and UI, then update this entry. Canonical main map updated; no separate private copy modified.
