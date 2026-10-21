@@ -1,11 +1,12 @@
 {
-  "baseline_sha256": "9a4eab5c1e76e09187a9bb3e78f3be6cdf6b64a72a8b2fe4de2448539172843e",
+  "baseline_sha256": "7618569faaef7ecb8dee913f2f92812b7710d623efafc7b1431dd722c322f8d0",
   "baseline_files": {
-    "guided-shopping-v2.js": "d8cf494ff05b2909dc5846ec5bd80e24c9a266b01dcb014e3292b4350fd391c4",
-    "shopping-view-v3.js": "53d93cdbdd6210b31708be8307729372168e9b2fa05f55b4bd878c3f8719e6cd"
+    "guided-shopping-v2.js": "7b49a309ae61cc5241e95ad0d128f3cdabbbcfb9fc8b5392185d726222304650",
+    "shopping-view-v3.js": "6c393dac2d350af1ca5fe3614aa6ad5349bd734f53e509cf670da261a6375e58",
+    "shopping-drafts.js": "4722ce9e998a66e6d6a12ccbd42676b5befed928915d28d279e62ca57affb19f"
   },
   "files": {
-    "app.html": "7618569faaef7ecb8dee913f2f92812b7710d623efafc7b1431dd722c322f8d0",
+    "app.html": "057fe965e8484bb2e709d7f924019b39f9738230d5d326fd7b6bda3a704d19fb",
     "guided-shopping-v2.js": "7b49a309ae61cc5241e95ad0d128f3cdabbbcfb9fc8b5392185d726222304650",
     "shopping-view-v3.js": "6c393dac2d350af1ca5fe3614aa6ad5349bd734f53e509cf670da261a6375e58",
     "shopping-drafts.js": "4722ce9e998a66e6d6a12ccbd42676b5befed928915d28d279e62ca57affb19f"
