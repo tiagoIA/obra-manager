@@ -6,9 +6,9 @@
   },
   "files": {
     "app.html": "7618569faaef7ecb8dee913f2f92812b7710d623efafc7b1431dd722c322f8d0",
-    "guided-shopping-v2.js": "f0dd609f5ef4a5b9c96165a42e00900efbd28d5744c2a9c62d11684e0ae35908",
+    "guided-shopping-v2.js": "7b49a309ae61cc5241e95ad0d128f3cdabbbcfb9fc8b5392185d726222304650",
     "shopping-view-v3.js": "6c393dac2d350af1ca5fe3614aa6ad5349bd734f53e509cf670da261a6375e58",
     "shopping-drafts.js": "4722ce9e998a66e6d6a12ccbd42676b5befed928915d28d279e62ca57affb19f"
   },
-  "review_only": true
+  "review_only": false
 }
