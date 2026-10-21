@@ -1,0 +1,42 @@
+name: Verify and publish shopping drafts
+on:
+  push:
+    branches: [feature/shopping-drafts-2026-10-21]
+    paths: [public/**, tests/shopping-drafts*, tests/test-shopping*, scripts/shopping-drafts*, scripts/publish_shopping_drafts.py, .github/workflows/shopping_drafts.yml]
+permissions:
+  contents: read
+concurrency:
+  group: obra-manager-hosting-publication
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node tests/shopping-drafts.cjs
+      - run: npm install --no-save playwright@1.56.1
+      - run: npx playwright install --with-deps chromium
+      - name: Shopping regression and draft recovery
+        run: |
+          mkdir -p shopping-test hosting-test
+          cp public/*.js tests/test-shopping.html shopping-test/
+          python3 -m http.server 8765 --directory shopping-test &
+          node tests/test-shopping.cjs
+          node tests/shopping-drafts-browser.cjs
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install google-auth requests
+      - run: python scripts/publish_shopping_drafts.py
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: shopping-drafts-review-${{ github.run_id }}
+          path: hosting-test/
+          retention-days: 7

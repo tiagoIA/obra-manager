@@ -6890,7 +6890,7 @@ window.createShoppingList=async()=>{
 };
 window.openNewShopList=()=>{
   // Verificar se já existe lista ativa (não finalizada) para este projeto
-  const activeForProj=Object.values(shoppingLists).filter(sl=>sl.listType!=='template').filter(sl=>!sl.done&&sl.projectId===activePid);
+  const activeForProj=Object.values(shoppingLists).filter(sl=>!['template','draft','archivedDraft'].includes(sl.listType)).filter(sl=>!sl.done&&sl.projectId===activePid);
   if(activeForProj.length>0){
     // Já tem carrinho aberto — oferecer usar o existente ou criar novo
     const existing=activeForProj[0];
@@ -6940,7 +6940,7 @@ window.deleteShopList=async(lid)=>{
 };
 window.openRoomOrder=(rid)=>{
   const room=rooms[rid];if(!room)return;
-  const projLists=Object.values(shoppingLists).filter(sl=>sl.listType!=='template')
+  const projLists=Object.values(shoppingLists).filter(sl=>!['template','draft','archivedDraft'].includes(sl.listType))
     .filter(sl=>!sl.done&&(sl.projectId===activePid||!sl.projectId))
     .sort((a,b)=>(b.createdAt&&b.createdAt.seconds||0)-(a.createdAt&&a.createdAt.seconds||0));
   // Se só tem uma lista ativa, pré-seleciona automaticamente
@@ -13157,21 +13157,32 @@ onAuthStateChanged(auth,user=>{if(!user)window.receiptReview?.close();});
 
 // Guided shopping integration: uses existing collections and authentication.
 import {writeBatch, runTransaction} from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
-import {installGuidedShopping} from '/guided-shopping-v2.js?v=purchase-suggestions-1';
-onAuthStateChanged(auth,user=>{if(!user){document.getElementById('guided-shopping-dialog')?.remove();document.getElementById('purchase-suggestions-dialog')?.remove();}});
+import {installGuidedShopping} from '/guided-shopping-v2.js?v=shopping-drafts-20261021';
+onAuthStateChanged(auth,user=>{if(!user){window.guidedShopping?.reset();document.getElementById('guided-shopping-dialog')?.remove();document.getElementById('purchase-suggestions-dialog')?.remove();}});
 installGuidedShopping({
  userId:()=>auth.currentUser?.uid||null,
  projectId:()=>activePid,
  projects:()=>Object.values(projects),
  materials:()=>purchasingMaterials(),
  templates:()=>Object.values(shoppingLists).filter(l=>l.listType==='template'&&(!l.ownerUid||l.ownerUid===auth.currentUser?.uid)),
- lists:()=>Object.values(shoppingLists).filter(l=>l.listType!=='template'),
+ lists:()=>Object.values(shoppingLists).filter(l=>!['template','archivedDraft'].includes(l.listType)&& (l.listType!=='draft'||l.ownerUid===auth.currentUser?.uid)),
  openMaterial:id=>window.centralCatalog.view(id),
  saveMaterialUses:async(id,uses)=>{if(!auth.currentUser)throw Error('Sign in again.');await updateDoc(doc(db,'materials',id),{guidedUses:uses});if(materials[id])materials[id].guidedUses=uses;},
  list:id=>shoppingLists[id],
  items:id=>Object.values(shoppingItems).filter(i=>i.listId===id),
  notify:notif,
  openList:id=>{activeShopListId=id;activePage='shopping';renderContent();},
+ saveDraft:async(id,payload,revision)=>{
+  const user=auth.currentUser;if(!user)throw Error('Sign in again to sync the draft.');
+  if(payload.draftOwnerUid!==user.uid)throw Error('Sign in with the account that created this draft.');
+  if(!id||!Array.isArray(payload.items)||payload.items.length>200)throw Error('Use up to 200 materials per draft.');
+  const ref=doc(db,'shoppingLists',id);
+  await runTransaction(db,async tx=>{const snap=await tx.get(ref),current=snap.exists()?snap.data():null;
+   if(current&&(current.listType!=='draft'||current.ownerUid!==user.uid))throw Error('This draft is no longer editable.');
+   if((current?.draftRevision||0)!==revision)throw Error('This draft changed in another session. Reopen its latest version from Shopping.');
+   tx.set(ref,{name:payload.name?.trim()||'Untitled shopping list',note:payload.note||'',projectId:payload.projectId||null,purchasingSupplier:payload.supplier||'',listType:'draft',ownerUid:user.uid,createdBy:user.uid,done:false,draftPayload:payload,draftRevision:revision+1,createdAt:current?.createdAt||serverTimestamp(),updatedAt:serverTimestamp()});
+  });return {revision:revision+1};
+ },
  saveTemplate:async model=>{
   if(!auth.currentUser)throw Error('Sign in again.');
   await addDoc(collection(db,'shoppingLists'),{...model,listType:'template',ownerUid:auth.currentUser.uid,projectId:null,done:false,createdAt:serverTimestamp()});
@@ -13179,20 +13190,27 @@ installGuidedShopping({
  saveList:async draft=>{
   const user=auth.currentUser;if(!user)throw Error('Sign in again.');
   if(draft.items.length>200)throw Error('Use up to 200 materials per list in this version.');
-  const listRef=draft.editId?doc(db,'shoppingLists',draft.editId):doc(collection(db,'shoppingLists'));
-  const data={name:draft.name.trim(),note:draft.note||'',projectId:draft.projectId||null,purchasingSupplier:draft.supplier||'',estimateSnapshot:draft.estimateSnapshot||null,guidedMode:draft.mode,guidedAnswers:draft.answers||{},suggestionAnswers:draft.suggestionAnswers||{},suggestionDismissed:draft.suggestionDismissed||{},guidedServices:(draft.services||[]).map(s=>({id:s.id,name:s.name,version:s.version||1,...(s.useIds?{useIds:s.useIds}:{})})),updatedAt:serverTimestamp()};
+  const listRef=draft.editId?doc(db,'shoppingLists',draft.editId):draft.draftId?doc(db,'shoppingLists',draft.draftId):doc(collection(db,'shoppingLists'));
+  const draftRef=draft.draftId?doc(db,'shoppingLists',draft.draftId):null;
+  const data={listType:'list',draftPayload:null,draftSourceId:draft.draftId||null,name:draft.name.trim(),note:draft.note||'',projectId:draft.projectId||null,purchasingSupplier:draft.supplier||'',estimateSnapshot:draft.estimateSnapshot||null,guidedMode:draft.mode,guidedAnswers:draft.answers||{},suggestionAnswers:draft.suggestionAnswers||{},suggestionDismissed:draft.suggestionDismissed||{},guidedServices:(draft.services||[]).map(s=>({id:s.id,name:s.name,version:s.version||1,...(s.useIds?{useIds:s.useIds}:{})})),updatedAt:serverTimestamp()};
   const itemData=i=>({listId:listRef.id,matId:i.matId||null,name:i.name.trim(),cat:i.cat||'geral',unit:i.unit.trim(),qty:Number(i.qty),obs:i.obs||'',referenceMaterialId:i.referenceMaterialId||null,referencePhotoUrl:i.referencePhotoUrl||null,photoReferenceNote:i.photoReferenceNote||'',roomId:i.roomId||null,roomName:i.roomName||null,bought:!!i.bought,boughtAt:i.boughtAt||null,suggestionSource:i.suggestionSource||null});
   if(!draft.editId){
-   const batch=writeBatch(db);batch.set(listRef,{...data,createdBy:user.uid,done:false,createdAt:serverTimestamp()});
-   draft.items.forEach(i=>batch.set(doc(collection(db,'shoppingItems')),{...itemData(i),createdAt:serverTimestamp()}));await batch.commit();
+   const refs=draft.items.map(()=>doc(collection(db,'shoppingItems')));
+   await runTransaction(db,async tx=>{const snap=await tx.get(listRef),previous=snap.exists()?snap.data():null;
+    if(previous?.listType==='list'&&previous.draftSourceId===draft.draftId)return;
+    if(previous&&(previous.listType!=='draft'||previous.ownerUid!==user.uid||previous.draftRevision!==draft.draftRevision))throw Error('The draft changed. Reopen it from Shopping.');
+    tx.set(listRef,{...data,createdBy:user.uid,done:false,createdAt:previous?.createdAt||serverTimestamp()});
+    draft.items.forEach((i,n)=>tx.set(refs[n],{...itemData(i),createdAt:serverTimestamp()}));
+   });
   }else{
    const base=draft.baseItems||[];
    await runTransaction(db,async tx=>{
-    const list=await tx.get(listRef);if(!list.exists())throw Error('This list was removed.');
+    const list=await tx.get(listRef);const savedDraft=draftRef?await tx.get(draftRef):null;if(savedDraft&&(!savedDraft.exists()||savedDraft.data().ownerUid!==user.uid||savedDraft.data().draftRevision!==draft.draftRevision))throw Error('The draft changed. Reopen it from Shopping.');if(!list.exists())throw Error('This list was removed.');
     if(draft.baseList)for(const k of ['name','note','projectId','purchasingSupplier','guidedAnswers','guidedServices','suggestionAnswers','suggestionDismissed','updatedAt'])if(JSON.stringify(list.data()[k]??null)!==JSON.stringify(draft.baseList[k]??null))throw Error('Another person changed the list. Close and reopen it.');
     const current=[];for(const i of base){const snap=await tx.get(doc(db,'shoppingItems',i.id));if(!snap.exists())throw Error('The list changed. Close and reopen it before editing.');current.push(snap);}
     current.forEach((s,n)=>{const before=base[n],now=s.data();for(const k of ['name','qty','unit','obs','bought','boughtAt','matId','referenceMaterialId','referencePhotoUrl','photoReferenceNote'])if(JSON.stringify(now[k]??null)!==JSON.stringify(before[k]??null))throw Error('Another person changed this list. Close and reopen it to review.');});
     tx.update(listRef,data);
+    if(draftRef&&draftRef.id!==listRef.id)tx.update(draftRef,{listType:'archivedDraft',completedListId:listRef.id,updatedAt:serverTimestamp()});
     const remaining=new Set(draft.items.filter(i=>i.id).map(i=>i.id));base.filter(i=>!remaining.has(i.id)).forEach(i=>tx.delete(doc(db,'shoppingItems',i.id)));
     draft.items.forEach(i=>{if(i.id)tx.update(doc(db,'shoppingItems',i.id),itemData(i));else tx.set(doc(collection(db,'shoppingItems')),{...itemData(i),createdAt:serverTimestamp()});});
    });
@@ -13205,10 +13223,10 @@ installGuidedShopping({
 import {matchesMaterial} from '/product-search.js?v=material-variants-20261016';
 import {installProductLibrary} from '/product-library.js?v=material-variants-20261016';
 import {installCentralCatalog, materialSearchText, displayUnit, shoppingPhoto} from '/central-catalog-v1.js?v=purchase-suggestions-1';
-import {materialUses} from '/guided-shopping-v2.js?v=purchase-suggestions-1';
-import {installShoppingView} from '/shopping-view-v3.js?v=purchase-suggestions-1';
+import {materialUses} from '/guided-shopping-v2.js?v=shopping-drafts-20261021';
+import {installShoppingView} from '/shopping-view-v3.js?v=shopping-drafts-20261021';
 window.shoppingView=installShoppingView({
- data:()=>({lists:Object.values(shoppingLists),items:Object.values(shoppingItems),materials:purchasingMaterials(),projects:Object.values(projects),rooms:Object.values(rooms)}),
+ data:()=>({lists:Object.values(shoppingLists).filter(l=>!['archivedDraft'].includes(l.listType)&&(l.listType!=='draft'||l.ownerUid===auth.currentUser?.uid)),items:Object.values(shoppingItems),materials:purchasingMaterials(),projects:Object.values(projects),rooms:Object.values(rooms)}),
  active:()=>activeShopListId,setActive:id=>{activeShopListId=id;},create:()=>window.guidedShopping.launch(),quick:()=>window.openNewShopList(),
  customize:id=>window.guidedShopping.edit(id),template:id=>window.guidedShopping.saveExistingTemplate(id),removeList:id=>window.deleteShopList(id),removeItem:id=>window.deleteShopItem(id),
  toggleItem:id=>window.toggleShopItem(id),toggleList:id=>window.toggleShopListDone(id),pdf:id=>window.generateShopPDF(id),addItem:()=>window.addShopItem(),
