@@ -1,0 +1,29 @@
+name: Installation references foundation and read-only Firebase audit
+on:
+  push:
+    branches: [feature/installation-references-2026-10-22]
+    paths: [public/installation-reference-core.mjs, tests/installation-reference-core.mjs, scripts/audit_reference_access.py, .github/workflows/installation_references.yml]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node tests/installation-reference-core.mjs
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install google-auth requests
+      - run: python scripts/audit_reference_access.py
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: installation-reference-access
+          path: reference-audit/
+          retention-days: 3
