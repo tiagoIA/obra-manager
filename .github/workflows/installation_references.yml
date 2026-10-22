@@ -5,11 +5,8 @@ on:
     paths: [public/**, tests/*reference*, scripts/*reference*, .github/workflows/installation_references.yml]
 permissions:
   contents: read
-concurrency:
-  group: obra-manager-hosting-publication
-  cancel-in-progress: false
 jobs:
-  publish:
+  verify:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -30,7 +27,7 @@ jobs:
           distribution: temurin
           java-version: '21'
       - run: npm install --no-save playwright@1.56.1 firebase@11.10.0 @firebase/rules-unit-testing@4.0.1 firebase-tools@14.19.1
-      - run: npx playwright install --with-deps chromium
+      - run: google-chrome --version
       - name: Test reference rules in isolated emulator
         run: npx firebase emulators:exec --project demo-installation-references --config tests/reference-emulator.json --only firestore 'node tests/installation-reference-rules.cjs'
       - name: Reference mobile and desktop flows
@@ -38,13 +35,37 @@ jobs:
           mkdir -p reference-test hosting-test
           cp public/*.js public/*.mjs tests/test-references.html reference-test/
           python3 -m http.server 8765 --directory reference-test &
-          node tests/installation-reference-browser.cjs
+          REFERENCE_BROWSER_CHANNEL=chrome node tests/installation-reference-browser.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: reference-validation
+          path: |
+            hosting-test/
+            reference-audit/
+          retention-days: 3
+  publish:
+    needs: verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    concurrency:
+      group: obra-manager-hosting-publication
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install google-auth requests
+      - uses: actions/download-artifact@v4
+        with:
+          name: reference-validation
       - run: python scripts/publish_reference_rules.py && python scripts/publish_reference_ui.py
         env:
           FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: installation-references-review-${{ github.run_id }}
+          name: installation-references-release
           path: hosting-test/
           retention-days: 7
