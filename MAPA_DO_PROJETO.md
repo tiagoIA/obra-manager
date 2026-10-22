@@ -400,3 +400,11 @@ Tiago autorizou explicitamente usar o projeto atual obra-manager-4ecc7 (já Blaz
 - Google console browser session is signed out; that is separate from the functioning service-account automation route. Do not ask for another application login while the existing session works. No customer records, rules, permissions or Hosting releases were modified by the audit.
 - Next: inspect the retrieved current rules, add the central guide persistence and References UI, link optional material/task actions, verify mobile/desktop and persistence, publish only reviewed changed assets while preserving Hosting, then review real completed-task examples privately. No guides, manuals or code interpretations have been approved/imported yet.
 - Canonical main map updated for this stage. Local foundation lives in /workspace/scratch/installation-references; separate private continuity copy not modified.
+
+
+## Installation references UI implementation — 22/10/2026
+
+- Implemented central References menu/editor, optional material and task-type links, exact-ID Reviewed suggestions, manual task links, dated sources, photo URLs and completed-work photo-to-Draft action. No work evidence is automatically approved. Draft/Reviewed/Archived states preserve central IDs; instructional changes return Reviewed guides to Draft.
+- Branch `feature/installation-references-2026-10-22`, commit `3ebdde6f68c6ea0422ed77af999397788044cd6c`; CI run `39842270704` in progress. Pure model and persistence adapter tests passed locally. Mobile/desktop and isolated Firestore rules tests are queued before release. Do not claim publication until the run and destination checks complete.
+- Source adapters use transactional revision checks; the new collection follows the existing library reader/editor roles. Rules publication appends only the guide-collection block to a fresh audited baseline and refuses concurrent source changes. Existing collection permissions remain unchanged. Hosting publication clones the current release and patches five explicit assets with preview/live byte guards.
+- Plan: docs/plans/installation-references.md. Local workspace /workspace/scratch/installation-references; unrelated checkouts preserved. Next: resolve CI, inspect authenticated UI/save read-back and update release evidence. Canonical main map updated; no separate private continuity copy modified.
