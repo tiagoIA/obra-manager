@@ -1,29 +1,50 @@
-name: Installation references foundation and read-only Firebase audit
+name: Verify and publish installation references
 on:
   push:
     branches: [feature/installation-references-2026-10-22]
-    paths: [public/installation-reference-core.mjs, tests/installation-reference-core.mjs, scripts/audit_reference_access.py, .github/workflows/installation_references.yml]
+    paths: [public/**, tests/*reference*, scripts/*reference*, .github/workflows/installation_references.yml]
 permissions:
   contents: read
+concurrency:
+  group: obra-manager-hosting-publication
+  cancel-in-progress: false
 jobs:
-  verify:
+  publish:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
-      - run: node tests/installation-reference-core.mjs
+      - run: node tests/installation-reference-core.mjs && node tests/installation-reference-store.mjs
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
       - run: pip install google-auth requests
-      - run: python scripts/audit_reference_access.py
+      - run: python scripts/audit_reference_access.py && python scripts/prepare_reference_rules.py
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - run: npm install --no-save playwright@1.56.1 firebase@11.10.0 @firebase/rules-unit-testing@4.0.1 firebase-tools@14.19.1
+      - run: npx playwright install --with-deps chromium
+      - name: Test reference rules in isolated emulator
+        run: npx firebase emulators:exec --project demo-installation-references --config tests/reference-emulator.json --only firestore 'node tests/installation-reference-rules.cjs'
+      - name: Reference mobile and desktop flows
+        run: |
+          mkdir -p reference-test hosting-test
+          cp public/*.js public/*.mjs tests/test-references.html reference-test/
+          python3 -m http.server 8765 --directory reference-test &
+          node tests/installation-reference-browser.cjs
+      - run: python scripts/publish_reference_rules.py && python scripts/publish_reference_ui.py
         env:
           FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: installation-reference-access
-          path: reference-audit/
-          retention-days: 3
+          name: installation-references-review-${{ github.run_id }}
+          path: hosting-test/
+          retention-days: 7

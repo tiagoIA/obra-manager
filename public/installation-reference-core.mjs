@@ -12,6 +12,7 @@ export function validateGuide(input) {
   if (!title || title.length > 160) throw Error('Enter a title of up to 160 characters.');
   const status = input.status || 'Draft';
   if (!GUIDE_STATES.includes(status)) throw Error('Invalid review status.');
+  if ((input.sources||[]).length>30 || (input.photos||[]).length>40 || String(input.description||'').length>50000) throw Error('Guide exceeds the supported size.');
   const sources = (input.sources || []).map(source => ({
     kind: ['Manufacturer', 'Massachusetts code', 'Field example', 'Other'].includes(source.kind) ? source.kind : 'Other',
     title: String(source.title || '').trim(),
@@ -27,7 +28,7 @@ export function validateGuide(input) {
     title, category: String(input.category || 'Other').trim(),
     description: String(input.description || '').trim(), status,
     materialIds: ids(input.materialIds), taskTypeIds: ids(input.taskTypeIds),
-    photos: (input.photos || []).map(p => ({url: httpsUrl(p.url), caption: String(p.caption || '').trim()})),
+    photos: (input.photos || []).map(p => {if(!p.url)throw Error('Enter a photo URL or remove the empty photo.');return {url: httpsUrl(p.url), caption: String(p.caption || '').trim()};}),
     sources, reviewedBy: status === 'Reviewed' ? input.reviewedBy : null,
     reviewedAt: status === 'Reviewed' ? input.reviewedAt : null
   };

@@ -2294,6 +2294,7 @@ button, a, [onclick], .btn-g, .bn-item, .home-nav-btn,
       <button class="btn-g dash" onclick="window.openHomePage()">🏠 Home</button>
       <button class="btn-g work" onclick="goWork()">⚒️ Work</button>
       <button class="btn-g mat" onclick="showPage('materials')">🧰 Library</button>
+      <button class="btn-g" onclick="window.installationReferences.open()">📖 References</button>
       <button class="btn-g notes-btn top-nav-secondary" onclick="showPage('notes')">📋 Notes</button>
       <button class="btn-g top-nav-secondary" onclick="openCurrentBrief()">📷 Scope / Initial assessment</button>
       <button class="btn-g shop top-nav-secondary" onclick="showPage('shopping')">🛒 Shopping</button>
@@ -7802,6 +7803,7 @@ window.renderHomePage=function(){
       cls:pendRem.length?'alert':'',badge:pendRem.length?pendRem.length+'':'',badgeCls:'',
       action:"window.closeHomePage();window.showPage('reminders')"
     },
+    {icon:'📖',label:'REFERENCES',sub:'Installation guides & manuals',cls:'',badge:'',badgeCls:'',action:"window.installationReferences.open()"},
     // Linha 4 — Library e Notes
     {
       icon:'\ud83d\udcda',label:'LIBRARY',sub:'Materials & tasks',
@@ -13222,7 +13224,7 @@ installGuidedShopping({
 // Expanded product catalog and purchasing documents use the same central material records.
 import {matchesMaterial} from '/product-search.js?v=material-variants-20261016';
 import {installProductLibrary} from '/product-library.js?v=material-variants-20261016';
-import {installCentralCatalog, materialSearchText, displayUnit, shoppingPhoto} from '/central-catalog-v1.js?v=purchase-suggestions-1';
+import {installCentralCatalog, materialSearchText, displayUnit, shoppingPhoto} from '/central-catalog-v1.js?v=refs20261022-purchase-suggestions-1';
 import {materialUses} from '/guided-shopping-v2.js?v=shopping-drafts-20261021';
 import {installShoppingView} from '/shopping-view-v3.js?v=shopping-drafts-20261021';
 window.shoppingView=installShoppingView({
@@ -13530,6 +13532,20 @@ window.toggleDoneSection=function(){
   }catch(e){}
 })();
 
+
+import {installReferences} from '/installation-references.js?v=20261022';
+import {referenceStore} from '/installation-reference-store.mjs?v=20261022';
+const referenceTask=id=>{const t=allTasks[id];return t?{...t,taskTypeId:t.taskTypeId||(materials[t.materialId]?.isTask?t.materialId:null)}:null;};
+const referenceData=referenceStore({user:()=>auth.currentUser?.uid||'',canEdit:()=>hasRole('owner'),newId:()=>doc(collection(db,'installationReferences')).id,
+ transaction:fn=>runTransaction(db,tx=>fn({get:async(kind,id)=>{const s=await tx.get(doc(db,kind,id));return s.exists()?s.data():null;},set:(kind,id,data)=>tx.set(doc(db,kind,id),data),update:(kind,id,data)=>tx.update(doc(db,kind,id),data)}))});
+const refsUI=installReferences({user:()=>auth.currentUser?.uid||'',canEdit:()=>hasRole('owner'),materials:()=>Object.values(materials),task:referenceTask,notify:notif,
+ subscribe:(next,error)=>onSnapshot(collection(db,'installationReferences'),snap=>next(snap.docs.map(d=>({...d.data(),id:d.id}))),error),
+ save:referenceData.save,link:async(tid,gid,add)=>{const ids=await referenceData.link(tid,gid,add);if(allTasks[tid])allTasks[tid].referenceIds=ids;},
+ refreshTask:()=>{const root=document.querySelector('#task-edit-modal .task-edit-body');if(root&&root.dataset.referenceTask){root.querySelector('.ir-inline')?.remove();refsUI.mountTask(root,referenceTask(root.dataset.referenceTask));}}
+});
+const referenceTaskEditor=window.openTaskEdit;
+window.openTaskEdit=function(id){referenceTaskEditor.apply(this,arguments);const root=document.querySelector('#task-edit-modal .task-edit-body');if(root){root.dataset.referenceTask=id;refsUI.mountTask(root,referenceTask(id));}};
+onAuthStateChanged(auth,user=>{if(user)refsUI.connect();else refsUI.reset();});
 </script>
 
 <!-- ── QUICK CAPTURE FAB ─────────────────────────────────────────────────── -->
