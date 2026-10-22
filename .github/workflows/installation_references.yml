@@ -29,7 +29,9 @@ jobs:
       - run: npm install --no-save playwright@1.56.1 firebase@11.10.0 @firebase/rules-unit-testing@4.0.1 firebase-tools@14.19.1
       - run: google-chrome --version
       - name: Test reference rules in isolated emulator
-        run: npx firebase emulators:exec --project demo-installation-references --config tests/reference-emulator.json --only firestore 'node tests/installation-reference-rules.cjs'
+        run: |
+          cp tests/reference-emulator.json reference-emulator.json
+          npx firebase emulators:exec --project demo-installation-references --config reference-emulator.json --only firestore 'node tests/installation-reference-rules.cjs'
       - name: Reference mobile and desktop flows
         run: |
           mkdir -p reference-test hosting-test
