@@ -426,3 +426,10 @@ Tiago autorizou explicitamente usar o projeto atual obra-manager-4ecc7 (já Blaz
 - Applied the user-supplied facade image to the requested existing project through its authenticated Home cover control. Project identity was checked before upload; no duplicate project was created. Private project identifiers, street address and media URLs are intentionally omitted from this public record.
 - The app confirmed the save; after a full reload and project reselection the same facade image remained visible. Existing work records and source assets were not changed. No Hosting deployment or permission change was required.
 - Canonical main continuity map updated. No separate private continuity copy modified. Next: receive the user's additional project information/videos; do not infer work tasks from the facade photo.
+
+
+## Bedroom operational progress — 04/11/2026
+
+- Saved one English bedroom rough-in field record in the existing basement unit, with seven original user photos and explicit completed/pending scope. Excluded the duplicate upload. Created one source-linked pending task for the missing boxes, four light drivers and finish work; preserved existing tasks and media.
+- Completion is reported field progress only: installed mounting plates/cable loops and prepared smoke points do not imply installed detectors, drivers, final devices, testing or inspection approval. Private customer identity, address, IDs and media URLs remain outside this public repository.
+- App displayed saved-and-synced evidence and the linked task. No source deployment or permission change. Canonical main continuity map updated; no separate private copy modified.
