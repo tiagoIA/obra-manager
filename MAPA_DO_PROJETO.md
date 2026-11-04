@@ -419,3 +419,10 @@ Tiago autorizou explicitamente usar o projeto atual obra-manager-4ecc7 (já Blaz
 - Initial bootstrap run stalled installing browser dependencies. Changed UI testing to the runner's existing Chrome. Corrected the emulator fixture path; subsequent rules/browser tests passed. One superseded bootstrap execution was cancelled through a narrowly guarded one-off workflow (`9236be006fe41f9039da3c189c4deef174dd4966`, run `39844433702`) to release the shared publication queue. Its temporary Actions token expired with that job; no customer data, credentials or browser login was needed. Earlier pending publication was superseded.
 - Next content stage: identify exact frequently used product models, obtain manufacturer installation instructions and applicable Massachusetts primary sources, review candidate field examples, and link verified guides to exact materials/task types. No automatic researcher, bulk import or code interpretations have been installed. The initial visual example remains Draft pending identification/review.
 - Canonical main map updated. Local implementation remains in /workspace/scratch/installation-references. No separate private continuity copy modified.
+
+
+## Project facade photo operation — 04/11/2026
+
+- Applied the user-supplied facade image to the requested existing project through its authenticated Home cover control. Project identity was checked before upload; no duplicate project was created. Private project identifiers, street address and media URLs are intentionally omitted from this public record.
+- The app confirmed the save; after a full reload and project reselection the same facade image remained visible. Existing work records and source assets were not changed. No Hosting deployment or permission change was required.
+- Canonical main continuity map updated. No separate private continuity copy modified. Next: receive the user's additional project information/videos; do not infer work tasks from the facade photo.
