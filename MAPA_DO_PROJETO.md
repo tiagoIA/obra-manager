@@ -433,3 +433,10 @@ Tiago autorizou explicitamente usar o projeto atual obra-manager-4ecc7 (já Blaz
 - Saved one English bedroom rough-in field record in the existing basement unit, with seven original user photos and explicit completed/pending scope. Excluded the duplicate upload. Created one source-linked pending task for the missing boxes, four light drivers and finish work; preserved existing tasks and media.
 - Completion is reported field progress only: installed mounting plates/cable loops and prepared smoke points do not imply installed detectors, drivers, final devices, testing or inspection approval. Private customer identity, address, IDs and media URLs remain outside this public repository.
 - App displayed saved-and-synced evidence and the linked task. No source deployment or permission change. Canonical main continuity map updated; no separate private copy modified.
+
+
+## Bathroom operational progress — 04/11/2026
+
+- Saved one English bathroom field record with three user-supplied photos in the existing basement unit. Created and completed one source-linked task limited to reported lighting and fan wiring rough-in: recessed point, shower mounting plate/wiring and switch point, relocated old fan cable and loop to the fan point.
+- Fan installation and lighting/device finish/testing remain pending; fan point was reported by the user but not photographed. No duplicate finish task was created, and existing tasks/media were preserved. This records field progress, not technical inspection approval.
+- App confirmed the field record and all evidence saved and synced, and displayed the rough-in task as completed. No Hosting or permission change. Private customer identifiers, address and media remain outside the public repository. Canonical main map updated; no separate private continuity copy changed.
