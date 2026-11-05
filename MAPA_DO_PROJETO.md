@@ -447,3 +447,10 @@ Tiago autorizou explicitamente usar o projeto atual obra-manager-4ecc7 (já Blaz
 - Saved one English laundry field record with four user photos. Completed a source-linked task limited to reported washer/dryer cable runs, lighting wiring and switch point. Lighting count remains explicitly unconfirmed (one or two); mounting plates and finish/devices/testing remain pending. No electrical ratings were inferred.
 - Updated the existing home-run task, preserving identity, with six new original route/arrival photos. Completed routing only: cables run to panel location and left coiled awaiting termination. Identification, panel entry/termination, breaker connections and testing remain explicitly pending in its note. Did not create a duplicate home-run routing task or alter unrelated records.
 - App confirmed saves, showed all six task photos and the laundry source record with four photos. No Hosting or permission changes. Private project identity, address, record IDs and media URLs omitted. Canonical main map updated; no separate private continuity copy modified.
+
+
+## Unsupported default-task audit — 04/11/2026
+
+- Reviewed the user's exported report against live task cards and the wizard SPACE_TEMPLATES source. Thirty uncompleted, photo-free, note-free and source-unlinked tasks exactly match the kitchen (9), bedroom (6), bathroom (6), living (5) and laundry (4) electrical defaults. These are not confirmed project scope. Two separately reported pending tasks and the completed field-work records must be preserved.
+- User requested removing unsupported inferred scope. Current UI deleteTask uses deleteDoc with no trash/restore flow; no deletion was performed before action-time confirmation. Prepared removal scope is exactly those thirty default tasks; all reported field notes/photos and actual work records remain unchanged. Do not mark defaults complete to manipulate progress.
+- Canonical main continuity map updated; no separate private copy modified. Next: obtain required permanent-deletion confirmation or use a supported reversible exclusion path if one is implemented; then verify the new report counts and retained media.
