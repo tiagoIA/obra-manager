@@ -440,3 +440,10 @@ Tiago autorizou explicitamente usar o projeto atual obra-manager-4ecc7 (já Blaz
 - Saved one English bathroom field record with three user-supplied photos in the existing basement unit. Created and completed one source-linked task limited to reported lighting and fan wiring rough-in: recessed point, shower mounting plate/wiring and switch point, relocated old fan cable and loop to the fan point.
 - Fan installation and lighting/device finish/testing remain pending; fan point was reported by the user but not photographed. No duplicate finish task was created, and existing tasks/media were preserved. This records field progress, not technical inspection approval.
 - App confirmed the field record and all evidence saved and synced, and displayed the rough-in task as completed. No Hosting or permission change. Private customer identifiers, address and media remain outside the public repository. Canonical main map updated; no separate private continuity copy changed.
+
+
+## Laundry and home-run route progress — 04/11/2026
+
+- Saved one English laundry field record with four user photos. Completed a source-linked task limited to reported washer/dryer cable runs, lighting wiring and switch point. Lighting count remains explicitly unconfirmed (one or two); mounting plates and finish/devices/testing remain pending. No electrical ratings were inferred.
+- Updated the existing home-run task, preserving identity, with six new original route/arrival photos. Completed routing only: cables run to panel location and left coiled awaiting termination. Identification, panel entry/termination, breaker connections and testing remain explicitly pending in its note. Did not create a duplicate home-run routing task or alter unrelated records.
+- App confirmed saves, showed all six task photos and the laundry source record with four photos. No Hosting or permission changes. Private project identity, address, record IDs and media URLs omitted. Canonical main map updated; no separate private continuity copy modified.
